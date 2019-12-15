@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'none'; child-src 'none'; object-src 'none'; style-src 'self' https://stackpath.bootstrapcdn.com; script-src 'self' 'unsafe-inline';">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="wbsc.css">
+	
+	<script type="text/javascript" src="wbsc.js"></script>
+	
+	<title>WBSC Scoring Creator</title>
+</head>
+
+<body class="text-center" onload="init()">
+
+<h1>WBSC Scoring Creator <span class="demo">DEMO</span></h1>
+
+<h2>Situation editor</h2>
+
+<div class="container">
+	<div class="row demo">
+		<div class="col-12">
+			Only limited range of situations available so far
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+		
+			<label for="baseAction">Base action:</label>
+			<select id="baseAction" onchange="changeBaseAction()">
+				<option class="blank">
+				<option value="StrikeOut">Strike out</option>
+				<option value="GroundOut">Ground out</option>
+				<option value="FlyOut">Fly out</option>
+				<option value="Single">Hit - single</option>
+				<option value="Double">Hit - double</option>
+				<option value="Triple">Hit - triple</option>
+				<option value="Homerun">Hit - homerun</option>
+				<option value="Advance">Advance to 1st</option>
+			</select>
+		
+			<label for="specificAction">Specification:</label>
+			<select id="specificAction">
+				<option class="blank">
+			</select>
+
+			<button type="button" class="btn btn-primary wbsc-button" onclick="drawAction()">Generate action</button>
+
+		</div>
+	</div>
+</div>
+
+<h2>Output</h2>
+
+<canvas id="canvas" width="250" height="250"></canvas>
+
+<h2>About</h2>
+
+<div class="container wbsc-about">
+	<div class="row">
+		<div class="col-12">
+			<p>This JavaScript-based tool provides visualisation for <a href="https://www.wbsc.org/">WBSC</a> Scoring System to help new scorers adopting it.</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p>Use GUI elements to create a baseball/softball game situation, then click <strong>'Generate action'</strong> button to see how it shall be scored. If you want to store the result, right click it and pick <strong>'Save image as...'</strong>.</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p>This tool and its output is absolutely free to use for any purpose. You don't have to ask for any permission, nor you have to credit the author of this software in order to use it. However, if you want to, it would be appreciated. Also if you like this thing, please spread your word about it to help it reach other potential users.</p>
+		</div>
+	</div>
+</div>
+
+<footer class="page-footer wbsc-footer">
+	Created and maintained by <a href="http://alois-seckar.cz">Alois Sečkár</a> (2019)
+</footer>
+
+</body>
+
+</html>
