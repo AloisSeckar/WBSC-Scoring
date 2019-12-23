@@ -13,6 +13,8 @@ function init() {
 	
 	window.baseAction = document.getElementById("baseAction");
 	window.specificAction = document.getElementById("specificAction");
+	window.playerSelection1 = document.getElementById("playerSelection1");
+	window.playerSelection2 = document.getElementById("playerSelection2");
 }
 
 function changeBaseAction() {
@@ -22,42 +24,28 @@ function changeBaseAction() {
 	var baseActionValue = baseAction.value;
 	switch (baseActionValue) {
 		case "StrikeOut":
-			actionOptions.push('<option value="Ks">Strike out swinging</option>');
-			actionOptions.push('<option value="Kl">Strike out looking</option>');
+			actionOptions.push('<option value="KS">Strike out swinging</option>');
+			actionOptions.push('<option value="KL">Strike out looking</option>');
 			break;
 		case "GroundOut":
-			actionOptions.push('<option value="3">Ground out 1B unassisted</option>');
-			actionOptions.push('<option value="13">Ground out P to 1B</option>');
-			actionOptions.push('<option value="43">Ground out 2B to 1B</option>');
-			actionOptions.push('<option value="53">Ground out 3B to 1B</option>');
-			actionOptions.push('<option value="63">Ground out SS to 1B</option>');
-			actionOptions.push('<option value="143">Ground out P to 2B to 1B</option>');
+			actionOptions.push('<option value="GOU">Ground out (unassisted)</option>');
+			actionOptions.push('<option value="GO">Ground out</option>');
 			break;
 		case "FlyOut":
-			actionOptions.push('<option value="L1">Line out to P</option>');
-			actionOptions.push('<option value="F3">Fly out to 1B</option>');
-			actionOptions.push('<option value="P4">Pop out to 2B</option>');
-			actionOptions.push('<option value="FF2">Fouled fly out to C</option>');
+			actionOptions.push('<option value="F">Fly out</option>');
+			actionOptions.push('<option value="P">Pop out</option>');
+			actionOptions.push('<option value="L">Line out</option>');
+			actionOptions.push('<option value="FF">Fouled fly out</option>');
+			actionOptions.push('<option value="FP">Fouled pop out</option>');
+			actionOptions.push('<option value="FL">Fouled line out</option>');
 			break;
-		case "Single":
-			actionOptions.push('<option value="1B4">Single to 2B</option>');
-			actionOptions.push('<option value="1BLS">Single to left side</option>');
-			actionOptions.push('<option value="1BRC">Single to right center</option>');
-			break;
-		case "Double":
-			actionOptions.push('<option value="2B8">Double to center field</option>');
-			actionOptions.push('<option value="2BLL">Double to left line</option>');
-			actionOptions.push('<option value="2BRC">Double to right center</option>');
-			break;
-		case "Triple":
-			actionOptions.push('<option value="3B8">Triple to center field</option>');
-			actionOptions.push('<option value="3BLL">Triple to left line</option>');
-			actionOptions.push('<option value="3BRC">Triple to right center</option>');
-			break;
-		case "Homerun":
-			actionOptions.push('<option value="HR8">Homerun to center field</option>');
-			actionOptions.push('<option value="HRLC">Homerun to left center</option>');
-			actionOptions.push('<option value="HR9I">Inside the park homerun to right</option>');
+		case "Hit":
+			actionOptions.push('<option value="1B">Single</option>');
+			actionOptions.push('<option value="2B">Double</option>');
+			actionOptions.push('<option value="3B">Triple</option>');
+			actionOptions.push('<option value="HR">Homerun</option>');
+			actionOptions.push('<option value="2BG">Double - ground rule</option>');
+			actionOptions.push('<option value="HRI">Homerun - inside the park</option>');
 			break;
 		case "Advance":
 			actionOptions.push('<option value="BB">Base on balls</option>');
@@ -68,51 +56,158 @@ function changeBaseAction() {
 	}
 	
 	specificAction.innerHTML = actionOptions;
+	
+	changeSpecificAction();
+}
+
+function changeSpecificAction() {
+	var enable1 = "disabled";
+	var enable2 = "disabled";
+	var enhance = false;
+	
+	var specificActionValue = specificAction.value;
+	switch (specificActionValue) {
+		case "GO":
+			enable1 = "";
+			enable2 = "";
+			break;
+		case "1B":
+		case "2B":
+		case "3B":
+		case "HR":
+		case "2BG":
+		case "HRI":
+			enhance = true;
+		case "GOU":
+		case "F":
+		case "P":
+		case "L":
+		case "FF":
+		case "FP":
+		case "FL":
+			enable1 = "";
+			break;
+	}
+	
+	enhancePlayerSelection(enhance);
+	enablePlayerSelection(enable1, enable2);
+	changePlayerSelection();
+}	
+
+function changePlayerSelection() {
+	if (!playerSelection2.disabled) {
+		var player1Value = playerSelection1.value;
+		var playerOptions = [];
+		
+		if (player1Value != 1) {
+			playerOptions.push('<option value="1">Pitcher (P)</option>');
+		}
+		if (player1Value != 2) {
+			playerOptions.push('<option value="2">Catcher (C)</option>');
+		}
+		if (player1Value != 3) {
+			playerOptions.push('<option value="3">1st Baseman (1B)</option>');
+		}
+		if (player1Value != 4) {
+			playerOptions.push('<option value="4">2nd Baseman (2B)</option>');
+		}
+		if (player1Value != 5) {
+			playerOptions.push('<option value="5">3rd Baseman (3B)</option>');
+		}
+		if (player1Value != 6) {
+			playerOptions.push('<option value="6">Shortstop (SS)</option>');
+		}
+		if (player1Value != 7) {
+			playerOptions.push('<option value="7">Left Fielder (LF)</option>');
+		}
+		if (player1Value != 8) {
+			playerOptions.push('<option value="8">Center Fielder (CF)</option>');
+		}
+		if (player1Value != 9) {
+			playerOptions.push('<option value="9">Right Fielder (RF)</option>');
+		}
+		
+		playerSelection2.innerHTML = playerOptions;
+	}
+}
+
+function enablePlayerSelection(enable1, enable2) {
+	playerSelection1.disabled = enable1;
+	if (enable1 === "disabled") {
+		playerSelection1.value = '';
+	}
+	
+	playerSelection2.disabled = enable2;
+	if (enable2 === "disabled") {
+		playerSelection2.value = '';
+	}
+}
+
+function enhancePlayerSelection(enhance) {
+	
+	var playerOptions = [];
+	
+	playerOptions.push('<option value="1">Pitcher (P)</option>');
+	playerOptions.push('<option value="2">Catcher (C)</option>');
+	playerOptions.push('<option value="3">1st Baseman (1B)</option>');
+	playerOptions.push('<option value="4">2nd Baseman (2B)</option>');
+	playerOptions.push('<option value="5">3rd Baseman (3B)</option>');
+	playerOptions.push('<option value="6">Shortstop (SS)</option>');
+	playerOptions.push('<option value="7">Left Fielder (LF)</option>');
+	playerOptions.push('<option value="8">Center Fielder (CF)</option>');
+	playerOptions.push('<option value="9">Right Fielder (RF)</option>');
+	
+	if (enhance === true) {
+		playerOptions.push('<option value="LL">Left line (LL)</option>');
+		playerOptions.push('<option value="LS">Left side (LS)</option>');
+		playerOptions.push('<option value="LC">Left center (LC)</option>');
+		playerOptions.push('<option value="MI">Middle inside (MI)</option>');
+		playerOptions.push('<option value="RC">Right center (RC)</option>');
+		playerOptions.push('<option value="RS">Right side (RS)</option>');
+		playerOptions.push('<option value="RL">Right line (RL)</option>');
+	}
+	
+	playerSelection1.innerHTML = playerOptions;
 }
 
 function drawAction() {
 	drawBackground();
 	
 	var specificActionValue = specificAction.value;
+	var player1Value = playerSelection1.value;
+	var player2Value = playerSelection2.value;
+	
 	switch (specificActionValue) {
-		case "Ks":
-		case "Kl":
-		case "3":
-		case "13":
-		case "43":
-		case "53":
-		case "63":
-		case "143":
-		case "L1":
-		case "F3":
-		case "P4":
-		case "FF2":
-			drawOut(0, specificActionValue);
+		case "KS":
+		case "KL":
+		case "GO":
+		case "GOU":
+		case "F":
+		case "P":
+		case "L":
+		case "FF":
+		case "FP":
+		case "FL":
+			drawOut(0, specificActionValue, player1Value, player2Value);
 			break;
-		case "1B4":
-		case "1BLS":
-		case "1BRC":
-			drawAdvance(1, specificActionValue);
+		case "1B":
+			drawAdvance(1, specificActionValue, player1Value, player2Value);
 			break;
-		case "2B8":
-		case "2BLL":
-		case "2BRC":
-			drawAdvance(2, specificActionValue);
+		case "2B":
+		case "2BG":
+			drawAdvance(2, specificActionValue, player1Value, player2Value);
 			break;
-		case "3B8":
-		case "3BLL":
-		case "3BRC":
-			drawAdvance(3, specificActionValue);
+		case "3B":
+			drawAdvance(3, specificActionValue, player1Value, player2Value);
 			break;
-		case "HR8":
-		case "HRLC":
-		case "HR9I":
-			drawAdvance(4, specificActionValue);
+		case "HR":
+		case "HRI":
+			drawAdvance(4, specificActionValue, player1Value, player2Value);
 			break;
 		case "BB":
 		case "IBB":
 		case "HP":
-			drawAdvance(1, specificActionValue);
+			drawAdvance(1, specificActionValue, "", "");
 			break;
 	}
 }
@@ -143,7 +238,7 @@ function drawBackground() {
 	ctx.stroke();
 }
 
-function drawOut(base, situation) {
+function drawOut(base, situation, player1, player2) {
 	ctx.lineWidth = 8;
 	ctx.strokeStyle = 'black';
 	
@@ -155,10 +250,11 @@ function drawOut(base, situation) {
 	}
 	ctx.stroke();
 	
-	writeSituation(base, situation);
+	situationToWrite = situation + player1 + player2;	
+	writeSituation(base, situationToWrite);
 }
 
-function drawAdvance(base, situation) {
+function drawAdvance(base, situation, player1, player2) {
 	ctx.lineWidth = 8;
 	ctx.strokeStyle = 'black';
 	
@@ -178,7 +274,8 @@ function drawAdvance(base, situation) {
 	}
 	ctx.stroke();
 	
-	writeSituation(base, situation);
+	situationToWrite = situation + player1 + player2;
+	writeSituation(base, situationToWrite);
 }
 
 function writeSituation(base, situation) {
@@ -190,6 +287,13 @@ function writeSituation(base, situation) {
 	
 	switch (base) {
 		case 0:
+			if (situation.startsWith("GO")) {
+				if (situation.startsWith("GOU")) {
+					situation = situation.substring(3);
+				} else {
+					situation = situation.substring(2);
+				}
+			}
 			if (situation.length < 3) {
 				ctx.font = "bold 120px Verdana";
 				offset = 46
@@ -205,9 +309,8 @@ function writeSituation(base, situation) {
 				drawHitSymbol(1);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 40px Verdana";
-					offset = 25;
 				}
-				ctx.fillText(situation.substring(2), w2 * 1.5 + 12, h2 * 1.5 + offset);
+				ctx.fillText(situation.substring(2), w2 * 1.5 + 12, h2 * 1.5 + 25);
 			} else {
 				ctx.fillText(situation, w2 * 1.5, h2 * 1.5 + offset);
 			}
@@ -215,11 +318,16 @@ function writeSituation(base, situation) {
 		case 2:
 			if (situation.startsWith("2B")) {
 				drawHitSymbol(2);
-				if (situation.substring(2).length > 1) {
-					ctx.font = "bold 40px Verdana";
-					offset = 25;
+				if (situation.startsWith("2BG")) {
+					ctx.font = "bold 35px Verdana";
+					ctx.fillText(situation.substring(3), w2 * 1.5 + 22, h2 * 0.5);
+					ctx.fillText("GR", w2 * 1.5 + 22, h2 * 0.5 + 35);
+				} else {
+					if (situation.substring(2).length > 1) {
+						ctx.font = "bold 40px Verdana";
+					}
+					ctx.fillText(situation.substring(2), w2 * 1.5 + 15, h2 * 0.5 + 25);
 				}
-				ctx.fillText(situation.substring(2), w2 * 1.5 + 12, h2 * 0.5 + offset);
 			} else {
 				ctx.fillText(situation, w2 * 1.5, h2 * 0.5 + offset);
 			}
@@ -229,15 +337,32 @@ function writeSituation(base, situation) {
 				drawHitSymbol(3);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 40px Verdana";
-					offset = 25;
 				}
-				ctx.fillText(situation.substring(2), w2 * 0.5 + 20, h2 * 0.5 + offset);
+				ctx.fillText(situation.substring(2), w2 * 0.5 + 15, h2 * 0.5 + 25);
 			} else {
 				ctx.fillText(situation, w2 * 0.5, h2 * 0.5 + offset);
 			}
 			break;
 		case 4:
-			ctx.fillText(situation, w2 * 0.5, h2 * 1.5 + offset);
+			if (situation.length > 3) {
+				if (situation.startsWith("HRI")) {
+					situation = "HR" + situation.substring(3) + " IP";
+				}
+				if (situation.substring(2).length > 4) {
+					ctx.font = "bold 35px Verdana";
+					var lOffset = 65;
+				} else if (situation.substring(2).length > 3) {
+					ctx.font = "bold 40px Verdana";
+					var lOffset = 60;
+				} else {
+					ctx.font = "bold 40px Verdana";
+					var lOffset = 55;
+				}
+				ctx.fillText("HR", lOffset, h2 * 1.5 - 5);
+				ctx.fillText(situation.substring(2), lOffset, h2 * 1.5 + 40);
+			} else {
+				ctx.fillText(situation, w2 * 0.5, h2 * 1.5 + offset);
+			}
 			break;
 	}
 }
@@ -261,14 +386,14 @@ function drawHitSymbol(base) {
 			ctx.lineTo(w2 + 56, 50);
 			break;
 		case 3:
-			ctx.moveTo(25, h2 - 35);
-			ctx.lineTo(50, 25);
-			ctx.moveTo(30, 35);
-			ctx.lineTo(58, 40);
-			ctx.moveTo(28, 45);
-			ctx.lineTo(56, 50);
-			ctx.moveTo(26, 55);
-			ctx.lineTo(54, 60);
+			ctx.moveTo(20, h2 - 35);
+			ctx.lineTo(45, 25);
+			ctx.moveTo(25, 35);
+			ctx.lineTo(53, 40);
+			ctx.moveTo(23, 45);
+			ctx.lineTo(51, 50);
+			ctx.moveTo(21, 55);
+			ctx.lineTo(49, 60);
 			break;
 	}
 	ctx.stroke();

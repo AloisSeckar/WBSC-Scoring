@@ -31,21 +31,54 @@
 		
 			<label for="baseAction">Base action:</label>
 			<select id="baseAction" onchange="changeBaseAction()">
-				<option class="blank">
+				<option class="blank" />
 				<option value="StrikeOut">Strike out</option>
 				<option value="GroundOut">Ground out</option>
 				<option value="FlyOut">Fly out</option>
-				<option value="Single">Hit - single</option>
-				<option value="Double">Hit - double</option>
-				<option value="Triple">Hit - triple</option>
-				<option value="Homerun">Hit - homerun</option>
+				<option value="Hit">Hit</option>
 				<option value="Advance">Advance to 1st</option>
 			</select>
+			
+			<br />
 		
-			<label for="specificAction">Specification:</label>
-			<select id="specificAction">
-				<option class="blank">
+			<label for="specificAction">Specific action:</label>
+			<select id="specificAction" onchange="changeSpecificAction()">
+				<option class="blank"  />
 			</select>
+			
+			<br />
+		
+			<label for="playerSelection1">Player 1:</label>
+			<select id="playerSelection1" disabled="disabled" onchange="changePlayerSelection()">
+				<option class="blank" />
+				<option value="1">Pitcher (P)</option>
+				<option value="2">Catcher (C)</option>
+				<option value="3">1st Baseman (1B)</option>
+				<option value="4">2nd Baseman (2B)</option>
+				<option value="5">3rd Baseman (3B)</option>
+				<option value="6">Shortstop (SS)</option>
+				<option value="7">Left Fielder (LF)</option>
+				<option value="8">Center Fielder (CF)</option>
+				<option value="9">Right Fielder (RF)</option>
+			</select>
+			
+			<br />
+			
+			<label for="playerSelection2">Player 2:</label>
+			<select id="playerSelection2" disabled="disabled">
+				<option class="blank" />
+				<option value="1">Pitcher (P)</option>
+				<option value="2">Catcher (C)</option>
+				<option value="3">1st Baseman (1B)</option>
+				<option value="4">2nd Baseman (2B)</option>
+				<option value="5">3rd Baseman (3B)</option>
+				<option value="6">Shortstop (SS)</option>
+				<option value="7">Left Fielder (LF)</option>
+				<option value="8">Center Fielder (CF)</option>
+				<option value="9">Right Fielder (RF)</option>
+			</select>
+			
+			<br />
 
 			<button type="button" class="btn btn-primary wbsc-button" onclick="drawAction()">Generate action</button>
 
@@ -59,7 +92,7 @@
 
 <h2>About</h2>
 
-<div class="container wbsc-about">
+<div class="container wbsc-paragraph">
 	<div class="row">
 		<div class="col-12">
 			<p>This JavaScript-based tool provides visualisation for <a href="https://www.wbsc.org/">WBSC</a> Scoring System to help new scorers adopting it.</p>
@@ -73,6 +106,26 @@
 	<div class="row">
 		<div class="col-12">
 			<p>This tool and its output is absolutely free to use for any purpose. You don't have to ask for any permission, nor you have to credit the author of this software in order to use it. However, if you want to, it would be appreciated. Also if you like this thing, please spread your word about it to help it reach other potential users.</p>
+		</div>
+	</div>
+</div>
+
+<h2>History</h2>
+
+<div class="container wbsc-paragraph">
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.1</strong> (2019-12-23)</p>
+			<p>First version recorded and launched. Basic website with inputs to generate situation for one batter. Output can be saved as an image.</p>
+			<p>Supported batter's actions:</p>
+			<ul>
+				<li>Strikeout looking and swinging</li>
+				<li>Simple ground outs with 1 or 2 fielders involved</li>
+				<li>Full spectrum of fly outs</li>
+				<li>Full spectrum of hits including named locations</li>
+				<li>Ground rule doubles and inside the park homeruns</li>
+				<li>BB, IBB and HP</li>
+			</ul>
 		</div>
 	</div>
 </div>
