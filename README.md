@@ -1,6 +1,11 @@
 # WBSC Scoring
 Visualisation tool for WBSC scoring system
 
+### Version 0.2 (2020-01-13)
+Newly supported batter's actions:
+- Fielder's choice and occupied ball
+- Errors
+
 ### Version 0.1 (2019-12-23)
 First version recorded and launched. Basic website with inputs to generate situation for one batter. Output can be saved as an image. Supported batter's actions:
 - Strikeout looking and swinging
