@@ -9,6 +9,7 @@ function init() {
 	window.h2 = h / 2;
 	window.h3 = h / 3;
 	
+	renderInputsForBatter();
 	drawBackground();
 	
 	window.baseAction = document.getElementById("baseAction");
