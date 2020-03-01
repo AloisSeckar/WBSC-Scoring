@@ -409,7 +409,10 @@ function writeSituation(base, situation) {
 		case 4:
 			if (situation.length > 3) {
 				if (situation.startsWith("HRI")) {
-					situation = "HR" + situation.substring(3) + " IP";
+					ipr = "I";
+					situation = "HR" + situation.substring(3);
+				} else {
+					ipr = "";
 				}
 				if (situation.substring(2).length > 4) {
 					ctx.font = "bold 35px Verdana";
@@ -421,7 +424,7 @@ function writeSituation(base, situation) {
 					ctx.font = "bold 40px Verdana";
 					var lOffset = 55;
 				}
-				ctx.fillText("HR", lOffset, h2 * 1.5 - 5);
+				ctx.fillText(ipr + "HR", lOffset, h2 * 1.5 - 5);
 				ctx.fillText(situation.substring(2), lOffset, h2 * 1.5 + 40);
 			} else {
 				ctx.fillText(situation, w2 * 0.5, h2 * 1.5 + offset);
