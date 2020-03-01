@@ -6,8 +6,11 @@ function init() {
 	window.h = canvas.height;
 	window.w2 = w / 2;
 	window.w3 = w / 3;
+	window.w4 = w / 4;
 	window.h2 = h / 2;
 	window.h3 = h / 3;
+	window.h4 = h / 4;
+	window.h5 = h / 5;
 	
 	renderInputsForBatter();
 	renderActionButtons();
@@ -153,6 +156,25 @@ function changePlayerSelection(fc) {
 	}
 }
 
+function changeBrActionResult() {
+	var actionOptions = [];
+
+	var brActionResult = document.getElementById("brActionResult");
+	switch (brActionResult.value) {
+		case "safe":
+			actionOptions.push('<option value="T">Advanced on the throw</option>');
+			actionOptions.push('<option value="E">Advanced on decisive error</option>');
+			actionOptions.push('<option value="e">Advanced on extra-base error</option>');
+			break;
+		case "out":
+			actionOptions.push('<option value="O">Tagged out</option>');
+			break;
+	}
+	
+	var brSpecificAction = document.getElementById("brSpecificAction");
+	brSpecificAction.innerHTML = actionOptions;
+}
+
 function enablePlayerSelection(enable1, enable2) {
 	playerSelection1.disabled = enable1;
 	if (enable1 === "disabled") {
@@ -212,9 +234,12 @@ function drawAction() {
 	var player1Value = playerSelection1.value;
 	var player2Value = playerSelection2.value;
 	
+	var outcome = "advance";
+	var base = 0;
+	
 	switch (specificActionValue) {
 		case "EDF":
-			drawAdvance(0, specificActionValue, player1Value, player2Value);
+		    base = 0;
 			break;
 		case "KS":
 		case "KL":
@@ -226,7 +251,7 @@ function drawAction() {
 		case "FF":
 		case "FP":
 		case "FL":
-			drawOut(0, specificActionValue, player1Value, player2Value);
+		    outcome = "out";
 			break;
 		case "1B":
 		case "EF":
@@ -235,24 +260,52 @@ function drawAction() {
 		case "ED":
 		case "O":
 		case "FC":
-			drawAdvance(1, specificActionValue, player1Value, player2Value);
+		    base = 1;
 			break;
 		case "2B":
 		case "2BG":
-			drawAdvance(2, specificActionValue, player1Value, player2Value);
+		    base = 2;
 			break;
 		case "3B":
-			drawAdvance(3, specificActionValue, player1Value, player2Value);
+		    base = 3;
 			break;
 		case "HR":
 		case "HRI":
-			drawAdvance(4, specificActionValue, player1Value, player2Value);
+		    base = 4;
 			break;
 		case "BB":
 		case "IBB":
 		case "HP":
-			drawAdvance(1, specificActionValue, "", "");
+		    base = 1;
+		    player1Value = "";
+		    player2Value = "";
 			break;
+	}
+	
+	if (outcome == "advance") {
+		drawAdvance(base, specificActionValue, player1Value, player2Value);
+	
+		var brBaseValue = document.getElementById("brBase").value;
+		if (brBaseValue != null) {
+			brBaseValue = parseInt(brBaseValue);
+			var brActionResultValue = document.getElementById("brActionResult").value;
+			var brSpecificActionValue = document.getElementById("brSpecificAction").value;
+			var brPlayer1Value = document.getElementById("brPlayer1").value;
+			var brPlayer2Value = document.getElementById("brPlayer2").value;
+			
+			switch (brActionResultValue) {
+				case "safe":
+					drawAdvance(brBaseValue, brSpecificActionValue, brPlayer1Value, brPlayer2Value);
+					break;
+				case "out":
+					drawOut(brBaseValue, brSpecificActionValue, brPlayer1Value, brPlayer2Value);
+					break;
+			}
+			
+			drawConnector(base, brBaseValue);
+		}
+	} else {
+		drawOut(0, specificActionValue, player1Value, player2Value);
 	}
 }
 
@@ -283,13 +336,24 @@ function drawBackground() {
 }
 
 function drawOut(base, situation, player1, player2) {
-	ctx.lineWidth = 8;
-	ctx.strokeStyle = 'black';
+	ctx.lineWidth = 7;
+	ctx.strokeStyle = 'red';
 	
 	ctx.beginPath();
 	switch (base) {
 		case 0:
+		case 1:
+			ctx.strokeStyle = 'black';
 			ctx.arc(h2, h2, h2 - 20, 0, 2 * Math.PI);
+			break;
+		case 2:
+			ctx.arc(h2 - 38, h2 - 38, h3 - 12, 0, 2 * Math.PI);
+			break;
+		case 3:
+			ctx.arc(w4, h2, h5, 0, 2 * Math.PI);
+			break;
+		case 4:
+			ctx.arc(w4, h4 * 3, h5, 0, 2 * Math.PI);
 			break;
 	}
 	ctx.stroke();
@@ -320,6 +384,47 @@ function drawAdvance(base, situation, player1, player2) {
 	
 	situationToWrite = situation + player1 + player2;
 	writeSituation(base, situationToWrite);
+}
+
+function drawConnector(base1, base2) {
+	if (base1 < 1 || base1 > 3 || base2 < 1 || base2 > 4 || base1 >= base2) {
+		alert("Invalid input for consecutive action!");
+	} else {
+		ctx.lineWidth = 5;
+		ctx.strokeStyle = 'black';
+		
+		var gap = 16;
+		var length = 40;
+		
+		ctx.beginPath();
+		switch (base1) {
+			case 1:
+				ctx.moveTo(w - gap, h2 + length);
+				ctx.lineTo(w - gap, h2 - length);
+				if (base2 > 2) {
+					ctx.lineTo(w - gap, gap);
+					ctx.lineTo(w2 - length, gap);
+				}
+				if (base2 > 3) {
+					ctx.lineTo(gap, gap);
+					ctx.lineTo(gap, h2 + length - 10);
+				}
+				break;
+			case 2:
+				ctx.moveTo(w2 + length, gap);
+				ctx.lineTo(w2 - length, gap);
+				if (base2 > 3) {
+					ctx.lineTo(gap, gap);
+					ctx.lineTo(gap, h2 + length -10);
+				}
+				break;
+			case 3:
+				ctx.moveTo(gap, h2 - length);
+			    ctx.lineTo(gap, h2 + length - 10);
+				break;
+		}
+		ctx.stroke();
+	}
 }
 
 function writeSituation(base, situation) {

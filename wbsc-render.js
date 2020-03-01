@@ -89,9 +89,65 @@ function renderInputsForRunningBatter() {
 	batterRunnerInputsContainer.setAttribute('id', "batter-runner-inputs");
 	batterRunnerInputsContainer.setAttribute('class', "wbsc-inputs");
 	
-	var genButton = document.createElement("button");
-	genButton.innerHTML = "This is generated";
-	batterRunnerInputsContainer.appendChild(genButton);
+	var brBaseLabel = document.createElement("label");
+	brBaseLabel.setAttribute('for', "brBase");
+	brBaseLabel.innerHTML = "Base:";
+	batterRunnerInputsContainer.appendChild(brBaseLabel);
+	
+	var brBase = document.createElement("select");
+	brBase.setAttribute('id', "brBase");
+	brBase.innerHTML = renderDefaultBrBase();
+	batterRunnerInputsContainer.appendChild(brBase);
+	
+	batterRunnerInputsContainer.appendChild(document.createElement("br"));
+	
+	var brActionResultLabel = document.createElement("label");
+	brActionResultLabel.setAttribute('for', "brActionResult");
+	brActionResultLabel.innerHTML = "Action result:";
+	batterRunnerInputsContainer.appendChild(brActionResultLabel);
+	
+	var brActionResult = document.createElement("select");
+	brActionResult.setAttribute('id', "brActionResult");
+	brActionResult.setAttribute('onchange', "changeBrActionResult()");
+	brActionResult.innerHTML = renderDefaultBrActionResult();
+	batterRunnerInputsContainer.appendChild(brActionResult);
+	
+	batterRunnerInputsContainer.appendChild(document.createElement("br"));
+	
+	var brSpecificActionLabel = document.createElement("label");
+	brSpecificActionLabel.setAttribute('for', "brSpecificAction");
+	brSpecificActionLabel.innerHTML = "Specific action:";
+	batterRunnerInputsContainer.appendChild(brSpecificActionLabel);
+	
+	var brSpecificAction = document.createElement("select");
+	brSpecificAction.setAttribute('id', "brSpecificAction");
+	batterRunnerInputsContainer.appendChild(brSpecificAction);
+	
+	batterRunnerInputsContainer.appendChild(document.createElement("br"));
+	
+	var brPlayer1Label = document.createElement("label");
+	brPlayer1Label.setAttribute('for', "brPlayer1");
+	brPlayer1Label.innerHTML = "Player 1:";
+	batterRunnerInputsContainer.appendChild(brPlayer1Label);
+	
+	var brPlayer1 = document.createElement("select");
+	brPlayer1.setAttribute('id', "brPlayer1");
+	brPlayer1.innerHTML = renderDefaultPlayerSelection();
+	batterRunnerInputsContainer.appendChild(brPlayer1);
+	
+	batterRunnerInputsContainer.appendChild(document.createElement("br"));
+	
+	var brPlayer2Label = document.createElement("label");
+	brPlayer2Label.setAttribute('for', "brPlayer2");
+	brPlayer2Label.innerHTML = "Player 2:";
+	batterRunnerInputsContainer.appendChild(brPlayer2Label);
+	
+	var brPlayer2 = document.createElement("select");
+	brPlayer2.setAttribute('id', "brPlayer2");
+	brPlayer2.innerHTML = renderDefaultPlayerSelection();
+	batterRunnerInputsContainer.appendChild(brPlayer2);
+	
+	batterRunnerInputsContainer.appendChild(document.createElement("br"));
 	
 	container.insertBefore(batterRunnerInputsContainer, toolbar);
 	
@@ -111,8 +167,8 @@ function renderDefaultBaseAction() {
 	options.push('<option value="Hit">Hit</option>');
 	options.push('<option value="FC">Fielder\'s choice</option>');
 	options.push('<option value="Error">Error</option>');
-	options.push('<option value="Advance">Advance to 1st</option>');			
-	return options;					
+	options.push('<option value="Advance">Advance to 1st</option>');
+	return options;
 }
 
 function renderDefaultPlayerSelection() {
@@ -127,5 +183,23 @@ function renderDefaultPlayerSelection() {
 	options.push('<option value="7">Left Fielder (LF)</option>');
 	options.push('<option value="8">Center Fielder (CF)</option>');
 	options.push('<option value="9">Right Fielder (RF)</option>');
-	return options;	
+	return options;
+}
+
+function renderDefaultBrBase() {
+	var options = [];
+	options.push('<option value=""></option>');
+	options.push('<option value="1">1st</option>');
+	options.push('<option value="2">2nd</option>');
+	options.push('<option value="3">3rd</option>');
+	options.push('<option value="4">Home</option>');
+	return options;
+}
+
+function renderDefaultBrActionResult() {
+	var options = [];
+	options.push('<option value=""></option>');
+	options.push('<option value="safe">Safe</option>');
+	options.push('<option value="out">Out</option>');
+	return options;
 }
