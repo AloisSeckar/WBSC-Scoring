@@ -15,6 +15,10 @@ p {
 	padding: 0 2px;
 }
 
+label {
+	padding-right: 5px;
+}
+
 .demo {
 	color: red;
 }
@@ -23,8 +27,14 @@ p {
 	display:none;
 }
 
-.wbsc-button {
+.wbsc-action-button {
 	background-color: #00a7d7;
+	margin: 5px;
+}
+
+.wbsc-render-button {
+	background-color: #44dd77;
+	margin: 5px;
 }
 
 .wbsc-paragraph {
@@ -41,4 +51,21 @@ p {
 	height: 30px; 
 	vertical-align: middle;
 	background-color: var(--wbsc-blue);
+}
+
+.wbsc-inputs {
+	background-color: #ccddee;
+	border: 2px solid black;
+	margin: 0px auto;
+	margin-bottom: 5px;
+	padding: 3px;
+	width: 60%;
+}
+
+.wbsc-buttons {
+	background-color: #aaff33;
+	border: 2px solid black;
+	margin: 0px auto;
+	padding: 5px;
+	width: 60%;
 }

@@ -10,6 +10,7 @@ function init() {
 	window.h3 = h / 3;
 	
 	renderInputsForBatter();
+	renderActionButtons();
 	drawBackground();
 	
 	window.baseAction = document.getElementById("baseAction");
