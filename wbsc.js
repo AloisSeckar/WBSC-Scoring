@@ -337,13 +337,12 @@ function drawBackground() {
 
 function drawOut(base, situation, player1, player2) {
 	ctx.lineWidth = 7;
-	ctx.strokeStyle = 'red';
+	ctx.strokeStyle = 'black';
 	
 	ctx.beginPath();
 	switch (base) {
 		case 0:
 		case 1:
-			ctx.strokeStyle = 'black';
 			ctx.arc(h2, h2, h2 - 20, 0, 2 * Math.PI);
 			break;
 		case 2:
@@ -394,7 +393,7 @@ function drawConnector(base1, base2) {
 		ctx.strokeStyle = 'black';
 		
 		var gap = 16;
-		var length = 40;
+		var length = 35;
 		
 		ctx.beginPath();
 		switch (base1) {
@@ -498,6 +497,9 @@ function writeSituation(base, situation) {
 					}
 					ctx.fillText(situation.substring(2), w2 * 1.5 + 15, h2 * 0.5 + 25);
 				}
+			} else if (situation.match(/O\d+/)) {
+			    ctx.font = "bold 56px Verdana";
+				ctx.fillText(situation.substring(1), w2 * 0.7, h2 - offset);
 			} else {
 				ctx.fillText(situation, w2 * 1.5, h2 * 0.5 + offset);
 			}
@@ -509,12 +511,20 @@ function writeSituation(base, situation) {
 					ctx.font = "bold 40px Verdana";
 				}
 				ctx.fillText(situation.substring(2), w2 * 0.5 + 15, h2 * 0.5 + 25);
+			} else if (situation.match(/O\d+/)) {
+			    ctx.font = "bold 48px Verdana";
+				offset = 18;
+				ctx.fillText(situation.substring(1), w2 * 0.5, h2 + offset);
 			} else {
 				ctx.fillText(situation, w2 * 0.5, h2 * 0.5 + offset);
 			}
 			break;
 		case 4:
-			if (situation.length > 3) {
+		    if (situation.match(/O\d+/)) {
+			    ctx.font = "bold 48px Verdana";
+				offset = 18;
+				ctx.fillText(situation.substring(1), w2 * 0.5, h2 * 1.5 + offset);
+			} else if (situation.length > 3) {
 				if (situation.startsWith("HRI")) {
 					ipr = "I";
 					situation = "HR" + situation.substring(3);
