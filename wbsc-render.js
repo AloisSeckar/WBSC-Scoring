@@ -189,7 +189,6 @@ function renderDefaultPlayerSelection() {
 function renderDefaultBrBase() {
 	var options = [];
 	options.push('<option value=""></option>');
-	options.push('<option value="1">1st</option>');
 	options.push('<option value="2">2nd</option>');
 	options.push('<option value="3">3rd</option>');
 	options.push('<option value="4">Home</option>');

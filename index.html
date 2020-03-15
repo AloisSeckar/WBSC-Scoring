@@ -29,63 +29,6 @@
 	</div>
 	<div class="row">
 		<div id="wbsc-inputs" class="col-12">
-		
-		<!--
-			<label for="baseAction">Base action:</label>
-			<select id="baseAction" onchange="changeBaseAction()">
-				<option class="blank" />
-				<option value="StrikeOut">Strike out</option>
-				<option value="GroundOut">Ground out</option>
-				<option value="FlyOut">Fly out</option>
-				<option value="Hit">Hit</option>
-				<option value="FC">Fielder's choice</option>
-				<option value="Error">Error</option>
-				<option value="Advance">Advance to 1st</option>
-			</select>
-			
-			<br />
-		
-			<label for="specificAction">Specific action:</label>
-			<select id="specificAction" onchange="changeSpecificAction()">
-				<option class="blank"  />
-			</select>
-			
-			<br />
-		
-			<label for="playerSelection1">Player 1:</label>
-			<select id="playerSelection1" disabled="disabled" onchange="changePlayerSelection()">
-				<option class="blank" />
-				<option value="1">Pitcher (P)</option>
-				<option value="2">Catcher (C)</option>
-				<option value="3">1st Baseman (1B)</option>
-				<option value="4">2nd Baseman (2B)</option>
-				<option value="5">3rd Baseman (3B)</option>
-				<option value="6">Shortstop (SS)</option>
-				<option value="7">Left Fielder (LF)</option>
-				<option value="8">Center Fielder (CF)</option>
-				<option value="9">Right Fielder (RF)</option>
-			</select>
-			
-			<br />
-			
-			<label for="playerSelection2">Player 2:</label>
-			<select id="playerSelection2" disabled="disabled">
-				<option class="blank" />
-				<option value="1">Pitcher (P)</option>
-				<option value="2">Catcher (C)</option>
-				<option value="3">1st Baseman (1B)</option>
-				<option value="4">2nd Baseman (2B)</option>
-				<option value="5">3rd Baseman (3B)</option>
-				<option value="6">Shortstop (SS)</option>
-				<option value="7">Left Fielder (LF)</option>
-				<option value="8">Center Fielder (CF)</option>
-				<option value="9">Right Fielder (RF)</option>
-			</select>
-			
-			<br />
-
-			<button type="button" class="btn btn-primary wbsc-button" onclick="drawAction()">Generate action</button>
-			-->
 
 		</div>
 	</div>
@@ -118,6 +61,22 @@
 <h2>History</h2>
 
 <div class="container wbsc-paragraph">
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.3</strong> (2020-03-15)</p>
+			<ul>
+				<li>Fixed error in displaying "Inside-the-ark homerun"</li>
+				<li>Code for rendering action inputs moved from HTML to JavaScript</li>
+				<li>Introduced possibility to add consecutive action after batter reaches first. Available are:
+					<ul>
+						<li>Safe advance on the throw</li>
+						<li>Safe advance on error (either decisive or extra-base)</li>
+						<li>Out after defensive play</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-12">
 			<p><strong>Version 0.2</strong> (2020-01-13)</p>

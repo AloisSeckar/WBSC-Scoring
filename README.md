@@ -1,6 +1,11 @@
 # WBSC Scoring
 Visualisation tool for WBSC scoring system
 
+### Version 0.3 (2020-03-15)
+- Fixed error in displaying "Inside-the-ark homerun"
+- Code for rendering action inputs moved from HTML to JavaScript
+- Introduced possibility to add consecutive action after batter reaches first. Available are: Safe advance on the throw, Safe advance on error (either decisive or extra-base) and Out after defensive play
+
 ### Version 0.2 (2020-01-13)
 Newly supported batter's actions:
 - Fielder's choice and occupied ball
