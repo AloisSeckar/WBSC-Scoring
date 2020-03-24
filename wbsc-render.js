@@ -151,6 +151,22 @@ function renderInputsForRunningBatter() {
 	
 	container.insertBefore(batterRunnerInputsContainer, toolbar);
 	
+	var renderBRButton = document.getElementById("batter-runner-button");
+	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
+	renderBRButton.setAttribute('onclick', "unRenderInputsForRunningBatter()");
+	renderBRButton.innerHTML = "- BR";
+}
+
+function unRenderInputsForRunningBatter() {
+    var batterRunnerInputsContainer = document.getElementById("batter-runner-inputs");
+	
+	var container = document.getElementById("wbsc-inputs");
+    container.removeChild(batterRunnerInputsContainer);
+	
+	var renderBRButton = document.getElementById("batter-runner-button");
+	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
+	renderBRButton.setAttribute('onclick', "renderInputsForRunningBatter()");
+	renderBRButton.innerHTML = "+ BR";
 }
 
 /*
