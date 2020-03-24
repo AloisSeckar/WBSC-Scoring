@@ -175,6 +175,40 @@ function changeBrActionResult() {
 	brSpecificAction.innerHTML = actionOptions;
 }
 
+function changeRunnerActionResult(base) {
+	var actionOptions = [];
+	
+	var runnerActionResult;
+	var runnerSpecificAction;
+	switch (base) {
+		case 1:
+			runnerActionResult = document.getElementById("r1ActionResult");	
+			runnerSpecificAction = document.getElementById("r1SpecificAction");
+			break;
+		case 2:
+			runnerActionResult = document.getElementById("r2ActionResult");	
+			runnerSpecificAction = document.getElementById("r2SpecificAction");
+			break;
+		case 2:
+			runnerActionResult = document.getElementById("r3ActionResult");	
+			runnerSpecificAction = document.getElementById("r3SpecificAction");
+			break;
+	}
+
+	switch (runnerActionResult.value) {
+		case "safe":
+			actionOptions.push('<option value="A">Advanced by batter</option>');
+			actionOptions.push('<option value="E">Advanced on decisive error</option>');
+			actionOptions.push('<option value="e">Advanced on extra-base error</option>');
+			break;
+		case "out":
+			actionOptions.push('<option value="O">Tagged out</option>');
+			break;
+	}
+	
+	runnerSpecificAction.innerHTML = actionOptions;
+}
+
 function enablePlayerSelection(enable1, enable2) {
 	playerSelection1.disabled = enable1;
 	if (enable1 === "disabled") {
