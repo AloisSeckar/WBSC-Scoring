@@ -12,8 +12,8 @@ function init() {
 	window.h4 = h / 4;
 	window.h5 = h / 5;
 	
-	renderInputsForBatter();
 	renderActionButtons();
+	renderInputsForBatter();
 	drawBackground();
 	
 	window.baseAction = document.getElementById("baseAction");

@@ -11,6 +11,14 @@ function renderActionButtons() {
 	generateButton.innerHTML = "Generate action";
 	actionButtonsContainer.appendChild(generateButton);
 	
+	var renderBatterButton = document.createElement("button");
+	renderBatterButton.setAttribute('id', "batter-button");
+	renderBatterButton.setAttribute('type', "button");
+	renderBatterButton.setAttribute('class', "btn btn-info wbsc-render-button");
+	renderBatterButton.setAttribute('onclick', "renderInputsForBatter()");
+	renderBatterButton.innerHTML = " +B ";
+	actionButtonsContainer.appendChild(renderBatterButton);
+	
 	var renderBRButton = document.createElement("button");
 	renderBRButton.setAttribute('id', "batter-runner-button");
 	renderBRButton.setAttribute('type', "button");
@@ -48,6 +56,9 @@ function renderActionButtons() {
 }
 
 function renderInputsForBatter() {
+	var container = document.getElementById("wbsc-inputs");
+	var toolbar = document.getElementById("wbsc-toolbar");
+	
 	var batterInputsContainer = document.createElement("div");
 	batterInputsContainer.setAttribute('id', "batter-inputs");
 	batterInputsContainer.setAttribute('class', "wbsc-inputs");
@@ -107,8 +118,24 @@ function renderInputsForBatter() {
 	playerSelection2.setAttribute('disabled', "disabled");
 	batterInputsContainer.appendChild(playerSelection2);
 	
+	container.insertBefore(batterInputsContainer, toolbar);
+	
+	var renderBRButton = document.getElementById("batter-button");
+	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
+	renderBRButton.setAttribute('onclick', "unRenderInputsForBatter()");
+	renderBRButton.innerHTML = "- B";
+}
+
+function unRenderInputsForBatter() {
+    var batterInputsContainer = document.getElementById("batter-inputs");
+	
 	var container = document.getElementById("wbsc-inputs");
-	container.appendChild(batterInputsContainer);
+    container.removeChild(batterInputsContainer);
+	
+	var renderBRButton = document.getElementById("batter-button");
+	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
+	renderBRButton.setAttribute('onclick', "renderInputsForBatter()");
+	renderBRButton.innerHTML = "+ B";
 }
 
 function renderInputsForRunningBatter() {
