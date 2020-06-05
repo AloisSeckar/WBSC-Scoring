@@ -93,32 +93,9 @@ function renderInputsForBatter() {
 	specificAction.innerHTML = '<option class="blank" />';
 	batterInputsContainer.appendChild(specificAction);
 	
-	batterInputsContainer.appendChild(document.createElement("br"));
-	
-	var playerSelection1Label = document.createElement("label");
-	playerSelection1Label.setAttribute('for', "playerSelection1");
-	playerSelection1Label.innerHTML = "Player 1:";
-	batterInputsContainer.appendChild(playerSelection1Label);
-	
-	var playerSelection1 = document.createElement("select");
-	playerSelection1.setAttribute('id', "playerSelection1");
-	playerSelection1.setAttribute('disabled', "disabled");
-	playerSelection1.setAttribute('onchange', "changePlayerSelection()");
-	batterInputsContainer.appendChild(playerSelection1);
-	
-	batterInputsContainer.appendChild(document.createElement("br"));
-	
-	var playerSelection2Label = document.createElement("label");
-	playerSelection2Label.setAttribute('for', "playerSelection2");
-	playerSelection2Label.innerHTML = "Player 2:";
-	batterInputsContainer.appendChild(playerSelection2Label);
-	
-	var playerSelection2 = document.createElement("select");
-	playerSelection2.setAttribute('id', "playerSelection2");
-	playerSelection2.setAttribute('disabled', "disabled");
-	batterInputsContainer.appendChild(playerSelection2);
-	
 	container.insertBefore(batterInputsContainer, toolbar);
+	
+	renderInvolvedPlayersSelection("batter-inputs");
 	
 	var renderBRButton = document.getElementById("batter-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -182,31 +159,9 @@ function renderInputsForRunningBatter() {
 	
 	batterRunnerInputsContainer.appendChild(document.createElement("br"));
 	
-	var brPlayer1Label = document.createElement("label");
-	brPlayer1Label.setAttribute('for', "brPlayer1");
-	brPlayer1Label.innerHTML = "Player 1:";
-	batterRunnerInputsContainer.appendChild(brPlayer1Label);
-	
-	var brPlayer1 = document.createElement("select");
-	brPlayer1.setAttribute('id', "brPlayer1");
-	brPlayer1.innerHTML = renderDefaultPlayerSelection();
-	batterRunnerInputsContainer.appendChild(brPlayer1);
-	
-	batterRunnerInputsContainer.appendChild(document.createElement("br"));
-	
-	var brPlayer2Label = document.createElement("label");
-	brPlayer2Label.setAttribute('for', "brPlayer2");
-	brPlayer2Label.innerHTML = "Player 2:";
-	batterRunnerInputsContainer.appendChild(brPlayer2Label);
-	
-	var brPlayer2 = document.createElement("select");
-	brPlayer2.setAttribute('id', "brPlayer2");
-	brPlayer2.innerHTML = renderDefaultPlayerSelection();
-	batterRunnerInputsContainer.appendChild(brPlayer2);
-	
-	batterRunnerInputsContainer.appendChild(document.createElement("br"));
-	
 	container.insertBefore(batterRunnerInputsContainer, toolbar);
+	
+	renderInvolvedPlayersSelection("batter-runner-inputs");
 	
 	var renderBRButton = document.getElementById("batter-runner-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -276,31 +231,9 @@ function renderInputsForRunner1() {
 	
 	r1InputsContainer.appendChild(document.createElement("br"));
 	
-	var r1Player1Label = document.createElement("label");
-	r1Player1Label.setAttribute('for', "r1Player1");
-	r1Player1Label.innerHTML = "Player 1:";
-	r1InputsContainer.appendChild(r1Player1Label);
-	
-	var r1Player1 = document.createElement("select");
-	r1Player1.setAttribute('id', "r1Player1");
-	r1Player1.innerHTML = renderDefaultPlayerSelection();
-	r1InputsContainer.appendChild(r1Player1);
-	
-	r1InputsContainer.appendChild(document.createElement("br"));
-	
-	var r1Player2Label = document.createElement("label");
-	r1Player2Label.setAttribute('for', "r1Player2");
-	r1Player2Label.innerHTML = "Player 2:";
-	r1InputsContainer.appendChild(r1Player2Label);
-	
-	var r1Player2 = document.createElement("select");
-	r1Player2.setAttribute('id', "r1Player2");
-	r1Player2.innerHTML = renderDefaultPlayerSelection();
-	r1InputsContainer.appendChild(r1Player2);
-	
-	r1InputsContainer.appendChild(document.createElement("br"));
-	
 	container.insertBefore(r1InputsContainer, toolbar);
+	
+	renderInvolvedPlayersSelection("runner-1-inputs");
 	
 	var runnerButton = document.getElementById("runner-1-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -370,31 +303,9 @@ function renderInputsForRunner2() {
 	
 	r2InputsContainer.appendChild(document.createElement("br"));
 	
-	var r2Player2Label = document.createElement("label");
-	r2Player2Label.setAttribute('for', "r2Player2");
-	r2Player2Label.innerHTML = "Player 1:";
-	r2InputsContainer.appendChild(r2Player2Label);
-	
-	var r2Player2 = document.createElement("select");
-	r2Player2.setAttribute('id', "r2Player2");
-	r2Player2.innerHTML = renderDefaultPlayerSelection();
-	r2InputsContainer.appendChild(r2Player2);
-	
-	r2InputsContainer.appendChild(document.createElement("br"));
-	
-	var r2Player2Label = document.createElement("label");
-	r2Player2Label.setAttribute('for', "r2Player2");
-	r2Player2Label.innerHTML = "Player 2:";
-	r2InputsContainer.appendChild(r2Player2Label);
-	
-	var r2Player2 = document.createElement("select");
-	r2Player2.setAttribute('id', "r2Player2");
-	r2Player2.innerHTML = renderDefaultPlayerSelection();
-	r2InputsContainer.appendChild(r2Player2);
-	
-	r2InputsContainer.appendChild(document.createElement("br"));
-	
 	container.insertBefore(r2InputsContainer, toolbar);
+	
+	renderInvolvedPlayersSelection("runner-2-inputs");
 	
 	var runnerButton = document.getElementById("runner-2-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -464,31 +375,9 @@ function renderInputsForRunner3() {
 	
 	r3InputsContainer.appendChild(document.createElement("br"));
 	
-	var r3Player3Label = document.createElement("label");
-	r3Player3Label.setAttribute('for', "r3Player3");
-	r3Player3Label.innerHTML = "Player 1:";
-	r3InputsContainer.appendChild(r3Player3Label);
-	
-	var r3Player3 = document.createElement("select");
-	r3Player3.setAttribute('id', "r3Player3");
-	r3Player3.innerHTML = renderDefaultPlayerSelection();
-	r3InputsContainer.appendChild(r3Player3);
-	
-	r3InputsContainer.appendChild(document.createElement("br"));
-	
-	var r3Player3Label = document.createElement("label");
-	r3Player3Label.setAttribute('for', "r3Player3");
-	r3Player3Label.innerHTML = "Player 2:";
-	r3InputsContainer.appendChild(r3Player3Label);
-	
-	var r3Player3 = document.createElement("select");
-	r3Player3.setAttribute('id', "r3Player3");
-	r3Player3.innerHTML = renderDefaultPlayerSelection();
-	r3InputsContainer.appendChild(r3Player3);
-	
-	r3InputsContainer.appendChild(document.createElement("br"));
-	
 	container.insertBefore(r3InputsContainer, toolbar);
+	
+	renderInvolvedPlayersSelection("runner-3-inputs");
 	
 	var runnerButton = document.getElementById("runner-3-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -521,18 +410,92 @@ function renderDefaultBaseAction() {
 	return options;
 }
 
+
+function renderInvolvedPlayersSelection(loc) {
+	
+	var sectionID = "involved-players-" + loc;
+	
+	var involvedPlayersInputsContainer = document.createElement("div");
+	involvedPlayersInputsContainer.setAttribute('id', sectionID);
+	
+	var involvedPlayersLabel = document.createElement("label");
+	involvedPlayersLabel.innerHTML = "Involved players:";
+	involvedPlayersInputsContainer.appendChild(involvedPlayersLabel);
+	
+	var involvedPlayer1 = document.createElement("select");
+	involvedPlayer1.setAttribute('id', sectionID + "-p1");
+	involvedPlayer1.setAttribute('class', "wbsc-render-player");
+	involvedPlayer1.innerHTML = renderDefaultPlayerSelection();
+	involvedPlayersInputsContainer.appendChild(involvedPlayer1);
+	
+	var addInvolvedPlayerButton = document.createElement("button");
+	addInvolvedPlayerButton.setAttribute('id', sectionID + "-add-button");
+	addInvolvedPlayerButton.setAttribute('type', "button");
+	addInvolvedPlayerButton.setAttribute('class', "btn btn-info wbsc-render-button");
+	addInvolvedPlayerButton.addEventListener('click', function(){
+		renderInvolvedPlayerSelect(sectionID);
+	});
+	addInvolvedPlayerButton.innerHTML = " +P";
+	involvedPlayersInputsContainer.appendChild(addInvolvedPlayerButton);
+	
+	var removeInvolvedPlayerButton = document.createElement("button");
+	removeInvolvedPlayerButton.setAttribute('id', sectionID + "-remove-button");
+	removeInvolvedPlayerButton.setAttribute('type', "button");
+	removeInvolvedPlayerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
+	removeInvolvedPlayerButton.addEventListener('click', function(){
+		unRenderInvolvedPlayerSelect(sectionID);
+	});
+	removeInvolvedPlayerButton.innerHTML = " -P";
+	involvedPlayersInputsContainer.appendChild(removeInvolvedPlayerButton);
+	
+	var container = document.getElementById(loc);
+	container.appendChild(document.createElement("br"));
+	container.appendChild(involvedPlayersInputsContainer);
+}
+
+function renderInvolvedPlayerSelect(loc) {
+	
+	var container = document.getElementById(loc);
+	
+	var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
+	if (inputsCreated < 5) {
+		inputsCreated++;
+		var involvedPlayerN = document.createElement("select");
+		involvedPlayerN.setAttribute('id', loc + "-p" + inputsCreated);
+		involvedPlayerN.setAttribute('class', "wbsc-render-player");
+		involvedPlayerN.innerHTML = renderDefaultPlayerSelection();
+		
+		var addButton = document.getElementById(loc + "-add-button");
+		container.insertBefore(involvedPlayerN, addButton);
+	} else {
+		alert("Currently only situations with up to 4 assists are supported");
+	}
+}
+
+function unRenderInvolvedPlayerSelect(loc) {
+	var container = document.getElementById(loc);
+	
+	var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
+	if (inputsCreated > 1) {
+		var involvedPlayerN = document.getElementById(loc + "-p" + inputsCreated);
+		container.removeChild(involvedPlayerN);		
+	} else {
+		alert("There has to be at least 1 player involved");
+	}
+}
+
+
 function renderDefaultPlayerSelection() {
 	var options = [];
-	options.push('<option value=""></option>');
-	options.push('<option value="1">Pitcher (P)</option>');
-	options.push('<option value="2">Catcher (C)</option>');
-	options.push('<option value="3">1st Baseman (1B)</option>');
-	options.push('<option value="4">2nd Baseman (2B)</option>');
-	options.push('<option value="5">3rd Baseman (3B)</option>');
-	options.push('<option value="6">Shortstop (SS)</option>');
-	options.push('<option value="7">Left Fielder (LF)</option>');
-	options.push('<option value="8">Center Fielder (CF)</option>');
-	options.push('<option value="9">Right Fielder (RF)</option>');
+	options.push('<option value="1">P</option>');
+	options.push('<option value="2">C</option>');
+	options.push('<option value="3">1B</option>');
+	options.push('<option value="4">2B</option>');
+	options.push('<option value="5">3B</option>');
+	options.push('<option value="6">SS</option>');
+	options.push('<option value="7">LF</option>');
+	options.push('<option value="8">CF</option>');
+	options.push('<option value="9">RF</option>');
 	return options;
 }
 

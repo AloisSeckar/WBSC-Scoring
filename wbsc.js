@@ -33,7 +33,6 @@ function changeBaseAction() {
 			actionOptions.push('<option value="KL">Strike out looking</option>');
 			break;
 		case "GroundOut":
-			actionOptions.push('<option value="GOU">Ground out (unassisted)</option>');
 			actionOptions.push('<option value="GO">Ground out</option>');
 			break;
 		case "FlyOut":
@@ -114,9 +113,9 @@ function changeSpecificAction() {
 			break;
 	}
 	
-	enhancePlayerSelection(enhance, fc);
-	enablePlayerSelection(enable1, enable2);
-	changePlayerSelection(fc);
+	//enhancePlayerSelection(enhance, fc);
+	//enablePlayerSelection(enable1, enable2);
+	//changePlayerSelection(fc);
 }	
 
 function changePlayerSelection(fc) {
@@ -261,85 +260,129 @@ function enhancePlayerSelection(enhance, fc) {
 	playerSelection1.innerHTML = playerOptions;
 }
 
+function getPlayersSelection(loc) {
+	var selection = "";
+	
+	var sectionID = "involved-players-" + loc;
+	var container = document.getElementById(sectionID);
+	
+	var players = container.getElementsByClassName("wbsc-render-player");
+	for (var i = 0; i < players.length; i++) {
+		selection += players.item(i).value;
+	}
+	
+	return selection;
+}
+
+function checkPlayersSelection(selection) {
+	var validation = "";
+	
+	if (selection.length == 2) {
+		if (selection.substr(0,1) == selection.substr(1)) {
+			validation = "A player cannot assist directly to self";
+		}
+	} else if (selection.length > 2) {
+		var alreadyEncounteredPlayers = [false, false, false, false, false, false, false, false, false, false];
+		for (var i = 0; i < selection.length - 1; i++) {
+			if (alreadyEncounteredPlayers[selection.substr(i,1)] == true) {
+				validation = "A player cannot have more than 1 assist in a play";
+				break;
+			}
+			alreadyEncounteredPlayers[selection.substr(i,i+1)] = true;
+		}
+	}
+	
+	return validation;
+}
+
 function drawAction() {
 	drawBackground();
 	
-	var specificActionValue = specificAction.value;
-	var player1Value = playerSelection1.value;
-	var player2Value = playerSelection2.value;
-	
-	var outcome = "advance";
-	var base = 0;
-	
-	switch (specificActionValue) {
-		case "EDF":
-		    base = 0;
-			break;
-		case "KS":
-		case "KL":
-		case "GO":
-		case "GOU":
-		case "F":
-		case "P":
-		case "L":
-		case "FF":
-		case "FP":
-		case "FL":
-		    outcome = "out";
-			break;
-		case "1B":
-		case "EF":
-		case "ET":
-		case "EM":
-		case "ED":
-		case "O":
-		case "FC":
-		    base = 1;
-			break;
-		case "2B":
-		case "2BG":
-		    base = 2;
-			break;
-		case "3B":
-		    base = 3;
-			break;
-		case "HR":
-		case "HRI":
-		    base = 4;
-			break;
-		case "BB":
-		case "IBB":
-		case "HP":
-		    base = 1;
-		    player1Value = "";
-		    player2Value = "";
-			break;
-	}
-	
-	if (outcome == "advance") {
-		drawAdvance(base, specificActionValue, player1Value, player2Value);
-	
-		var brBaseValue = document.getElementById("brBase").value;
-		if (brBaseValue != null) {
-			brBaseValue = parseInt(brBaseValue);
-			var brActionResultValue = document.getElementById("brActionResult").value;
-			var brSpecificActionValue = document.getElementById("brSpecificAction").value;
-			var brPlayer1Value = document.getElementById("brPlayer1").value;
-			var brPlayer2Value = document.getElementById("brPlayer2").value;
-			
-			switch (brActionResultValue) {
-				case "safe":
-					drawAdvance(brBaseValue, brSpecificActionValue, brPlayer1Value, brPlayer2Value);
-					break;
-				case "out":
-					drawOut(brBaseValue, brSpecificActionValue, brPlayer1Value, brPlayer2Value);
-					break;
-			}
-			
-			drawConnector(base, brBaseValue);
+	var playersValue = getPlayersSelection("batter-inputs");
+	var validation = checkPlayersSelection(playersValue);
+	if (validation === "") {
+		var specificActionValue = specificAction.value;
+		
+		var outcome = "advance";
+		var base = 0;
+		
+		switch (specificActionValue) {
+			case "EDF":
+				base = 0;
+				break;
+			case "KS":
+			case "KL":
+			case "GO":
+			case "GOU":
+			case "F":
+			case "P":
+			case "L":
+			case "FF":
+			case "FP":
+			case "FL":
+				outcome = "out";
+				break;
+			case "1B":
+			case "EF":
+			case "ET":
+			case "EM":
+			case "ED":
+			case "O":
+			case "FC":
+				base = 1;
+				break;
+			case "2B":
+			case "2BG":
+				base = 2;
+				break;
+			case "3B":
+				base = 3;
+				break;
+			case "HR":
+			case "HRI":
+				base = 4;
+				break;
+			case "BB":
+			case "IBB":
+			case "HP":
+				base = 1;
+				playersValue = "";
+				break;
 		}
+		
+		if (outcome == "advance") {
+			drawAdvance(base, specificActionValue, playersValue);
+		
+			var brBaseValue = document.getElementById("brBase").value;
+			if (brBaseValue != null) {
+				brBaseValue = parseInt(brBaseValue);
+				var brActionResultValue = document.getElementById("brActionResult").value;
+				var brSpecificActionValue = document.getElementById("brSpecificAction").value;
+				
+				var brPlayersValue = getPlayersSelection("batter-runner-inputs");
+				var brValidation = checkPlayersSelection(brPlayersValue);
+				if (brValidation === "") {
+					switch (brActionResultValue) {
+						case "safe":
+							drawAdvance(brBaseValue, brSpecificActionValue, brPlayersValue);
+							break;
+						case "out":
+							drawOut(brBaseValue, brSpecificActionValue, brPlayersValue);
+							break;
+					}
+					
+					drawConnector(base, brBaseValue);
+				} else {
+					alert(brValidation);
+				}
+			}
+		} else {
+			drawOut(0, specificActionValue, playersValue);
+		}
+	
+	
 	} else {
-		drawOut(0, specificActionValue, player1Value, player2Value);
+		alert(validation);
 	}
 }
 
@@ -369,7 +412,7 @@ function drawBackground() {
 	ctx.stroke();
 }
 
-function drawOut(base, situation, player1, player2) {
+function drawOut(base, situation, players) {
 	ctx.lineWidth = 7;
 	ctx.strokeStyle = 'black';
 	
@@ -391,11 +434,11 @@ function drawOut(base, situation, player1, player2) {
 	}
 	ctx.stroke();
 	
-	situationToWrite = situation + player1 + player2;	
+	situationToWrite = situation + players;	
 	writeSituation(base, situationToWrite);
 }
 
-function drawAdvance(base, situation, player1, player2) {
+function drawAdvance(base, situation, players) {
 	ctx.lineWidth = 8;
 	ctx.strokeStyle = 'black';
 	
@@ -415,7 +458,7 @@ function drawAdvance(base, situation, player1, player2) {
 	}
 	ctx.stroke();
 	
-	situationToWrite = situation + player1 + player2;
+	situationToWrite = situation + players;
 	writeSituation(base, situationToWrite);
 }
 
