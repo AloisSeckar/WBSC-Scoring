@@ -1,8 +1,23 @@
 # WBSC Scoring
 Visualisation tool for WBSC scoring system
 
+Live demo (currently v0.3) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
+
+## Limitations
+- Only one additional play may be consecutively inserted for batting runner
+- It is not possible to specify actions leading to runners appearing on bases
+- Actions are limited to up to 4 assists (followed by an out or an error)
+- No 10th player (additional outfielder) for slowpitch
+- Not covering Baseball5
+
+## History
+
+### Version 0.4 (2020-06-08)
+- Inputs reworked using dynamic JavaScript for displaying and hidding input fields</li>
+- With broadened options it is now possible to set up situations ranging from 0 to 4 assists (followed by an out or an error) and to set up some consecutive actions for runners on 1st, 2nd and/or 3rd base
+
 ### Version 0.3 (2020-03-15)
-- Fixed error in displaying "Inside-the-ark homerun"
+- Fixed error in displaying "Inside-the-park homerun"
 - Code for rendering action inputs moved from HTML to JavaScript
 - Introduced possibility to add consecutive action after batter reaches first. Available are: Safe advance on the throw, Safe advance on error (either decisive or extra-base) and Out after defensive play
 
