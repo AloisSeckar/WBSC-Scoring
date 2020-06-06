@@ -69,28 +69,23 @@ function renderInputsForBatter() {
 	
 	batterInputsContainer.appendChild(document.createElement("br"));
 	
-	var baseActionLabel = document.createElement("label");
-	baseActionLabel.setAttribute('for', "baseAction");
-	baseActionLabel.innerHTML = "Base action:";
-	batterInputsContainer.appendChild(baseActionLabel);
+	var actionLabel = document.createElement("label");
+	actionLabel.innerHTML = "Action:";
+	batterInputsContainer.appendChild(actionLabel);
 	
 	var baseAction = document.createElement("select");
 	baseAction.setAttribute('id', "baseAction");
+	baseAction.setAttribute('class', "wbsc-action-select");
 	baseAction.setAttribute('onchange', "changeBaseAction()");
 	baseAction.innerHTML = renderDefaultBaseAction();
 	batterInputsContainer.appendChild(baseAction);
 	
-	batterInputsContainer.appendChild(document.createElement("br"));
-	
-	var specificActionLabel = document.createElement("label");
-	specificActionLabel.setAttribute('for', "specificAction");
-	specificActionLabel.innerHTML = "Specific action:";
-	batterInputsContainer.appendChild(specificActionLabel);
-	
 	var specificAction = document.createElement("select");
 	specificAction.setAttribute('id', "specificAction");
+	specificAction.setAttribute('class', "wbsc-action-select");
 	specificAction.setAttribute('onchange', "changeSpecificAction()");
 	specificAction.innerHTML = '<option class="blank" />';
+	specificAction.disabled = true;
 	batterInputsContainer.appendChild(specificAction);
 	
 	container.insertBefore(batterInputsContainer, toolbar);
@@ -100,7 +95,7 @@ function renderInputsForBatter() {
 	var renderBRButton = document.getElementById("batter-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
 	renderBRButton.setAttribute('onclick', "unRenderInputsForBatter()");
-	renderBRButton.innerHTML = "- B";
+	renderBRButton.innerHTML = " -B ";
 }
 
 function unRenderInputsForBatter() {
@@ -112,7 +107,7 @@ function unRenderInputsForBatter() {
 	var renderBRButton = document.getElementById("batter-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
 	renderBRButton.setAttribute('onclick', "renderInputsForBatter()");
-	renderBRButton.innerHTML = "+ B";
+	renderBRButton.innerHTML = " +B ";
 }
 
 function renderInputsForRunningBatter() {
@@ -124,7 +119,6 @@ function renderInputsForRunningBatter() {
 	batterRunnerInputsContainer.setAttribute('class', "wbsc-inputs");
 	
 	var brBaseLabel = document.createElement("label");
-	brBaseLabel.setAttribute('for', "brBase");
 	brBaseLabel.innerHTML = "Base:";
 	batterRunnerInputsContainer.appendChild(brBaseLabel);
 	
@@ -136,28 +130,21 @@ function renderInputsForRunningBatter() {
 	batterRunnerInputsContainer.appendChild(document.createElement("br"));
 	
 	var brActionResultLabel = document.createElement("label");
-	brActionResultLabel.setAttribute('for', "brActionResult");
-	brActionResultLabel.innerHTML = "Action result:";
+	brActionResultLabel.innerHTML = "Action:";
 	batterRunnerInputsContainer.appendChild(brActionResultLabel);
 	
 	var brActionResult = document.createElement("select");
 	brActionResult.setAttribute('id', "brActionResult");
+	brActionResult.setAttribute('class', "wbsc-action-select");
 	brActionResult.setAttribute('onchange', "changeBrActionResult()");
 	brActionResult.innerHTML = renderDefaultBrActionResult();
 	batterRunnerInputsContainer.appendChild(brActionResult);
 	
-	batterRunnerInputsContainer.appendChild(document.createElement("br"));
-	
-	var brSpecificActionLabel = document.createElement("label");
-	brSpecificActionLabel.setAttribute('for', "brSpecificAction");
-	brSpecificActionLabel.innerHTML = "Specific action:";
-	batterRunnerInputsContainer.appendChild(brSpecificActionLabel);
-	
 	var brSpecificAction = document.createElement("select");
 	brSpecificAction.setAttribute('id', "brSpecificAction");
+	brSpecificAction.setAttribute('class', "wbsc-action-select");
+	brSpecificAction.disabled = true;
 	batterRunnerInputsContainer.appendChild(brSpecificAction);
-	
-	batterRunnerInputsContainer.appendChild(document.createElement("br"));
 	
 	container.insertBefore(batterRunnerInputsContainer, toolbar);
 	
@@ -166,7 +153,7 @@ function renderInputsForRunningBatter() {
 	var renderBRButton = document.getElementById("batter-runner-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
 	renderBRButton.setAttribute('onclick', "unRenderInputsForRunningBatter()");
-	renderBRButton.innerHTML = "- BR";
+	renderBRButton.innerHTML = " -BR ";
 }
 
 function unRenderInputsForRunningBatter() {
@@ -178,7 +165,7 @@ function unRenderInputsForRunningBatter() {
 	var renderBRButton = document.getElementById("batter-runner-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
 	renderBRButton.setAttribute('onclick', "renderInputsForRunningBatter()");
-	renderBRButton.innerHTML = "+ BR";
+	renderBRButton.innerHTML = " +BR ";
 }
 
 function renderInputsForRunner1() {
@@ -196,7 +183,6 @@ function renderInputsForRunner1() {
 	r1InputsContainer.appendChild(document.createElement("br"));
 	
 	var r1BaseLabel = document.createElement("label");
-	r1BaseLabel.setAttribute('for', "r1Base");
 	r1BaseLabel.innerHTML = "Base:";
 	r1InputsContainer.appendChild(r1BaseLabel);
 	
@@ -208,28 +194,23 @@ function renderInputsForRunner1() {
 	r1InputsContainer.appendChild(document.createElement("br"));
 	
 	var r1ActionResultLabel = document.createElement("label");
-	r1ActionResultLabel.setAttribute('for', "r1ActionResult");
-	r1ActionResultLabel.innerHTML = "Action result:";
+	r1ActionResultLabel.innerHTML = "Action:";
 	r1InputsContainer.appendChild(r1ActionResultLabel);
 	
 	var r1ActionResult = document.createElement("select");
 	r1ActionResult.setAttribute('id', "r1ActionResult");
-	r1ActionResult.setAttribute('onchange', "changeRunnerActionResult()");
+	r1ActionResult.setAttribute('class', "wbsc-action-select");
+	r1ActionResult.addEventListener('click', function(){
+		changeRunnerActionResult(1);
+	});
 	r1ActionResult.innerHTML = renderDefaultBrActionResult();
 	r1InputsContainer.appendChild(r1ActionResult);
 	
-	r1InputsContainer.appendChild(document.createElement("br"));
-	
-	var r1SpecificActionLabel = document.createElement("label");
-	r1SpecificActionLabel.setAttribute('for', "r1SpecificAction");
-	r1SpecificActionLabel.innerHTML = "Specific action:";
-	r1InputsContainer.appendChild(r1SpecificActionLabel);
-	
 	var r1SpecificAction = document.createElement("select");
 	r1SpecificAction.setAttribute('id', "r1SpecificAction");
+	r1SpecificAction.setAttribute('class', "wbsc-action-select");
+	r1SpecificAction.disabled = true;
 	r1InputsContainer.appendChild(r1SpecificAction);
-	
-	r1InputsContainer.appendChild(document.createElement("br"));
 	
 	container.insertBefore(r1InputsContainer, toolbar);
 	
@@ -238,7 +219,7 @@ function renderInputsForRunner1() {
 	var runnerButton = document.getElementById("runner-1-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
 	runnerButton.setAttribute('onclick', "unRenderInputsForRunner1()");
-	runnerButton.innerHTML = "- R1";
+	runnerButton.innerHTML = " -R1 ";
 }
 
 function unRenderInputsForRunner1() {
@@ -250,7 +231,7 @@ function unRenderInputsForRunner1() {
 	var runnerButton = document.getElementById("runner-1-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-render-button");
 	runnerButton.setAttribute('onclick', "renderInputsForRunner1()");
-	runnerButton.innerHTML = "+ R1";
+	runnerButton.innerHTML = " +R1 ";
 }
 
 function renderInputsForRunner2() {
@@ -268,7 +249,6 @@ function renderInputsForRunner2() {
 	r2InputsContainer.appendChild(document.createElement("br"));
 	
 	var r2BaseLabel = document.createElement("label");
-	r2BaseLabel.setAttribute('for', "r2Base");
 	r2BaseLabel.innerHTML = "Base:";
 	r2InputsContainer.appendChild(r2BaseLabel);
 	
@@ -280,28 +260,23 @@ function renderInputsForRunner2() {
 	r2InputsContainer.appendChild(document.createElement("br"));
 	
 	var r2ActionResultLabel = document.createElement("label");
-	r2ActionResultLabel.setAttribute('for', "r2ActionResult");
-	r2ActionResultLabel.innerHTML = "Action result:";
+	r2ActionResultLabel.innerHTML = "Action:";
 	r2InputsContainer.appendChild(r2ActionResultLabel);
 	
 	var r2ActionResult = document.createElement("select");
 	r2ActionResult.setAttribute('id', "r2ActionResult");
-	r2ActionResult.setAttribute('onchange', "changeRunnerActionResult()");
+	r2ActionResult.setAttribute('class', "wbsc-action-select");
+	r2ActionResult.addEventListener('click', function(){
+		changeRunnerActionResult(2);
+	});
 	r2ActionResult.innerHTML = renderDefaultBrActionResult();
 	r2InputsContainer.appendChild(r2ActionResult);
 	
-	r2InputsContainer.appendChild(document.createElement("br"));
-	
-	var r2SpecificActionLabel = document.createElement("label");
-	r2SpecificActionLabel.setAttribute('for', "r2SpecificAction");
-	r2SpecificActionLabel.innerHTML = "Specific action:";
-	r2InputsContainer.appendChild(r2SpecificActionLabel);
-	
 	var r2SpecificAction = document.createElement("select");
 	r2SpecificAction.setAttribute('id', "r2SpecificAction");
+	r2SpecificAction.setAttribute('class', "wbsc-action-select");
+	r2SpecificAction.disabled = true;
 	r2InputsContainer.appendChild(r2SpecificAction);
-	
-	r2InputsContainer.appendChild(document.createElement("br"));
 	
 	container.insertBefore(r2InputsContainer, toolbar);
 	
@@ -310,7 +285,7 @@ function renderInputsForRunner2() {
 	var runnerButton = document.getElementById("runner-2-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
 	runnerButton.setAttribute('onclick', "unRenderInputsForRunner2()");
-	runnerButton.innerHTML = "- R2";
+	runnerButton.innerHTML = " -R2 ";
 }
 
 function unRenderInputsForRunner2() {
@@ -322,7 +297,7 @@ function unRenderInputsForRunner2() {
 	var runnerButton = document.getElementById("runner-2-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-render-button");
 	runnerButton.setAttribute('onclick', "renderInputsForRunner2()");
-	runnerButton.innerHTML = "+ R2";
+	runnerButton.innerHTML = " +R2 ";
 }
 
 function renderInputsForRunner3() {
@@ -340,7 +315,6 @@ function renderInputsForRunner3() {
 	r3InputsContainer.appendChild(document.createElement("br"));
 	
 	var r3BaseLabel = document.createElement("label");
-	r3BaseLabel.setAttribute('for', "r3Base");
 	r3BaseLabel.innerHTML = "Base:";
 	r3InputsContainer.appendChild(r3BaseLabel);
 	
@@ -352,28 +326,23 @@ function renderInputsForRunner3() {
 	r3InputsContainer.appendChild(document.createElement("br"));
 	
 	var r3ActionResultLabel = document.createElement("label");
-	r3ActionResultLabel.setAttribute('for', "r3ActionResult");
-	r3ActionResultLabel.innerHTML = "Action result:";
+	r3ActionResultLabel.innerHTML = "Action:";
 	r3InputsContainer.appendChild(r3ActionResultLabel);
 	
 	var r3ActionResult = document.createElement("select");
 	r3ActionResult.setAttribute('id', "r3ActionResult");
-	r3ActionResult.setAttribute('onchange', "changeRunnerActionResult()");
+	r3ActionResult.setAttribute('class', "wbsc-action-select");
+	r3ActionResult.addEventListener('click', function(){
+		changeRunnerActionResult(3);
+	});
 	r3ActionResult.innerHTML = renderDefaultBrActionResult();
 	r3InputsContainer.appendChild(r3ActionResult);
 	
-	r3InputsContainer.appendChild(document.createElement("br"));
-	
-	var r3SpecificActionLabel = document.createElement("label");
-	r3SpecificActionLabel.setAttribute('for', "r3SpecificAction");
-	r3SpecificActionLabel.innerHTML = "Specific action:";
-	r3InputsContainer.appendChild(r3SpecificActionLabel);
-	
 	var r3SpecificAction = document.createElement("select");
 	r3SpecificAction.setAttribute('id', "r3SpecificAction");
+	r3SpecificAction.setAttribute('class', "wbsc-action-select");
+	r3SpecificAction.disabled = true;
 	r3InputsContainer.appendChild(r3SpecificAction);
-	
-	r3InputsContainer.appendChild(document.createElement("br"));
 	
 	container.insertBefore(r3InputsContainer, toolbar);
 	
@@ -382,7 +351,7 @@ function renderInputsForRunner3() {
 	var runnerButton = document.getElementById("runner-3-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
 	runnerButton.setAttribute('onclick', "unRenderInputsForRunner3()");
-	runnerButton.innerHTML = "- R3";
+	runnerButton.innerHTML = " -R3 ";
 }
 
 function unRenderInputsForRunner3() {
@@ -394,7 +363,7 @@ function unRenderInputsForRunner3() {
 	var runnerButton = document.getElementById("runner-3-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-render-button");
 	runnerButton.setAttribute('onclick', "renderInputsForRunner3()");
-	runnerButton.innerHTML = "+ R3";
+	runnerButton.innerHTML = " +R3 ";
 }
 
 function renderDefaultBaseAction() {
@@ -431,21 +400,23 @@ function renderInvolvedPlayersSelection(loc) {
 	var addInvolvedPlayerButton = document.createElement("button");
 	addInvolvedPlayerButton.setAttribute('id', sectionID + "-add-button");
 	addInvolvedPlayerButton.setAttribute('type', "button");
-	addInvolvedPlayerButton.setAttribute('class', "btn btn-info wbsc-render-button");
+	addInvolvedPlayerButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button wbsc-render-button");
 	addInvolvedPlayerButton.addEventListener('click', function(){
 		renderInvolvedPlayerSelect(sectionID);
 	});
-	addInvolvedPlayerButton.innerHTML = " +P";
+    addInvolvedPlayerButton.disabled = true;
+	addInvolvedPlayerButton.innerHTML = "+P";
 	involvedPlayersInputsContainer.appendChild(addInvolvedPlayerButton);
 	
 	var removeInvolvedPlayerButton = document.createElement("button");
 	removeInvolvedPlayerButton.setAttribute('id', sectionID + "-remove-button");
 	removeInvolvedPlayerButton.setAttribute('type', "button");
-	removeInvolvedPlayerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
+	removeInvolvedPlayerButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button wbsc-unrender-button");
 	removeInvolvedPlayerButton.addEventListener('click', function(){
 		unRenderInvolvedPlayerSelect(sectionID);
 	});
-	removeInvolvedPlayerButton.innerHTML = " -P";
+    removeInvolvedPlayerButton.disabled = true;
+	removeInvolvedPlayerButton.innerHTML = "-P";
 	involvedPlayersInputsContainer.appendChild(removeInvolvedPlayerButton);
 	
 	var container = document.getElementById(loc);
@@ -496,6 +467,26 @@ function renderDefaultPlayerSelection() {
 	options.push('<option value="7">LF</option>');
 	options.push('<option value="8">CF</option>');
 	options.push('<option value="9">RF</option>');
+	return options;
+}
+
+function renderHitLocationSelection() {
+	var options = renderDefaultPlayerSelection();
+	options.push('<option value="LL">LL</option>');
+	options.push('<option value="LS">LS</option>');
+	options.push('<option value="LC">LC</option>');
+	options.push('<option value="MI">MI</option>');
+	options.push('<option value="RC">RC</option>');
+	options.push('<option value="RS">RS</option>');
+	options.push('<option value="RL">RL</option>');
+	return options;
+}
+
+function renderFCLocationSelection() {
+	var options = [];
+	options.push('<option value="4">2nd</option>');
+	options.push('<option value="5">3rd</option>');
+	options.push('<option value="2">HP</option>');
 	return options;
 }
 

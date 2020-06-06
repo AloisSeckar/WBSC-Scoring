@@ -27,9 +27,17 @@ label {
 	display:none;
 }
 
+.wbsc-action-select {
+	width: 150px;
+}
+
 .wbsc-action-button {
 	background-color: #00a7d7;
 	margin: 5px;
+}
+
+.wbsc-small-button {
+	width: 40px;
 }
 
 .wbsc-render-button {
@@ -40,6 +48,10 @@ label {
 .wbsc-unrender-button {
 	background-color: #a31808;
 	margin: 5px;
+}
+
+.wbsc-render-player {
+	height: 32px;
 }
 
 .wbsc-paragraph {

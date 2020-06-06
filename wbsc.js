@@ -25,15 +25,17 @@ function init() {
 function changeBaseAction() {
 	
 	var actionOptions = [];
+	var specificActionDisabled = false;
 
 	var baseActionValue = baseAction.value;
 	switch (baseActionValue) {
 		case "StrikeOut":
-			actionOptions.push('<option value="KS">Strike out swinging</option>');
-			actionOptions.push('<option value="KL">Strike out looking</option>');
+			actionOptions.push('<option value="KS">Swinging</option>');
+			actionOptions.push('<option value="KL">Looking</option>');
 			break;
 		case "GroundOut":
 			actionOptions.push('<option value="GO">Ground out</option>');
+	        specificActionDisabled = true;
 			break;
 		case "FlyOut":
 			actionOptions.push('<option value="F">Fly out</option>');
@@ -71,24 +73,26 @@ function changeBaseAction() {
 	}
 	
 	specificAction.innerHTML = actionOptions;
+	specificAction.disabled = specificActionDisabled;
 	
 	changeSpecificAction();
 }
 
 function changeSpecificAction() {
-	var enable1 = "disabled";
-	var enable2 = "disabled";
-	var enhance = false;
 	var fc = false;
+	var hit = false;
+	var allowedPlayerInputs = 5;
 	
 	var specificActionValue = specificAction.value;
 	switch (specificActionValue) {
 		case "FC":
 			fc = true;
-		case "GO":
-		case "EM":
-			enable1 = "";
-			enable2 = "";
+			allowedPlayerInputs = 2;
+			break;
+	    case "BB":
+	    case "IBB":
+	    case "HP":
+			allowedPlayerInputs = 0;
 			break;
 		case "1B":
 		case "2B":
@@ -96,62 +100,74 @@ function changeSpecificAction() {
 		case "HR":
 		case "2BG":
 		case "HRI":
-			enhance = true;
-		case "GOU":
+			hit = true;
+			allowedPlayerInputs = 1;
+			break;
+		case "O":
+		case "EDF":
+			allowedPlayerInputs = 1;
+			break;
+		case "GO":
 		case "F":
 		case "P":
 		case "L":
 		case "FF":
 		case "FP":
 		case "FL":
-		case "O":
 		case "EF":
 		case "ET":
+		case "EM":
 		case "ED":
-		case "EDF":
-			enable1 = "";
+			// no adjustments
 			break;
 	}
 	
-	//enhancePlayerSelection(enhance, fc);
-	//enablePlayerSelection(enable1, enable2);
-	//changePlayerSelection(fc);
-}	
-
-function changePlayerSelection(fc) {
-	if (fc === false && !playerSelection2.disabled) {
-		var player1Value = playerSelection1.value;
-		var playerOptions = [];
+	var loc = "involved-players-batter-inputs";
+	var addInvolvedPlayerButton = document.getElementById(loc + "-add-button");
+	var removeInvolvedPlayerButton = document.getElementById(loc + "-remove-button");
+	if (allowedPlayerInputs < 5) {
+		addInvolvedPlayerButton.disabled = true;
+		removeInvolvedPlayerButton.disabled = true;
 		
-		if (player1Value != 1) {
-			playerOptions.push('<option value="1">Pitcher (P)</option>');
-		}
-		if (player1Value != 2) {
-			playerOptions.push('<option value="2">Catcher (C)</option>');
-		}
-		if (player1Value != 3) {
-			playerOptions.push('<option value="3">1st Baseman (1B)</option>');
-		}
-		if (player1Value != 4) {
-			playerOptions.push('<option value="4">2nd Baseman (2B)</option>');
-		}
-		if (player1Value != 5) {
-			playerOptions.push('<option value="5">3rd Baseman (3B)</option>');
-		}
-		if (player1Value != 6) {
-			playerOptions.push('<option value="6">Shortstop (SS)</option>');
-		}
-		if (player1Value != 7) {
-			playerOptions.push('<option value="7">Left Fielder (LF)</option>');
-		}
-		if (player1Value != 8) {
-			playerOptions.push('<option value="8">Center Fielder (CF)</option>');
-		}
-		if (player1Value != 9) {
-			playerOptions.push('<option value="9">Right Fielder (RF)</option>');
+		var container = document.getElementById(loc);
+		var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
+	    while (inputsCreated != allowedPlayerInputs) {
+			if (inputsCreated > allowedPlayerInputs) {
+				var involvedPlayerN = document.getElementById(loc + "-p" + inputsCreated);
+				container.removeChild(involvedPlayerN);
+				inputsCreated--;
+			} else {
+				inputsCreated++;
+				var involvedPlayerN = document.createElement("select");
+				involvedPlayerN.setAttribute('id', loc + "-p" + inputsCreated);
+				involvedPlayerN.setAttribute('class', "wbsc-render-player");
+				involvedPlayerN.innerHTML = renderDefaultPlayerSelection();		
+				container.insertBefore(involvedPlayerN, addInvolvedPlayerButton);
+			}
 		}
 		
-		playerSelection2.innerHTML = playerOptions;
+		if (hit == true) {
+			var involvedPlayer1 = document.getElementById(loc + "-p1");
+			involvedPlayer1.innerHTML = renderHitLocationSelection();
+		}
+		
+		if (fc == true) {
+			var involvedPlayer2 = document.getElementById(loc + "-p2");
+			involvedPlayer2.innerHTML = renderFCLocationSelection();
+		}
+	} else {
+		addInvolvedPlayerButton.disabled = false;
+		removeInvolvedPlayerButton.disabled = false;
+		
+		var involvedPlayer1 = document.getElementById(loc + "-p1");
+		if (involvedPlayer1 != null) {
+			involvedPlayer1.innerHTML = renderDefaultPlayerSelection();
+		}
+		
+		var involvedPlayer2 = document.getElementById(loc + "-p2");
+		if (involvedPlayer2 != null) {
+			involvedPlayer2.innerHTML = renderDefaultPlayerSelection();
+		}
 	}
 }
 
@@ -206,58 +222,6 @@ function changeRunnerActionResult(base) {
 	}
 	
 	runnerSpecificAction.innerHTML = actionOptions;
-}
-
-function enablePlayerSelection(enable1, enable2) {
-	playerSelection1.disabled = enable1;
-	if (enable1 === "disabled") {
-		playerSelection1.value = '';
-	}
-	
-	playerSelection2.disabled = enable2;
-	if (enable2 === "disabled") {
-		playerSelection2.value = '';
-	}
-}
-
-function enhancePlayerSelection(enhance, fc) {
-	
-	var playerOptions = [];
-	
-	playerOptions.push('<option value="1">Pitcher (P)</option>');
-	playerOptions.push('<option value="2">Catcher (C)</option>');
-	playerOptions.push('<option value="3">1st Baseman (1B)</option>');
-	playerOptions.push('<option value="4">2nd Baseman (2B)</option>');
-	playerOptions.push('<option value="5">3rd Baseman (3B)</option>');
-	playerOptions.push('<option value="6">Shortstop (SS)</option>');
-	playerOptions.push('<option value="7">Left Fielder (LF)</option>');
-	playerOptions.push('<option value="8">Center Fielder (CF)</option>');
-	playerOptions.push('<option value="9">Right Fielder (RF)</option>');
-	
-	
-	if (fc === true) {
-		var player2Options = [];
-		
-		player2Options.push('<option value="4">2nd base</option>');
-		player2Options.push('<option value="5">3rd base</option>');
-		player2Options.push('<option value="2">Home plate</option>');
-		
-		playerSelection2.innerHTML = player2Options;
-	} else {
-		playerSelection2.innerHTML = playerOptions;
-	}
-	
-	if (enhance === true) {
-		playerOptions.push('<option value="LL">Left line (LL)</option>');
-		playerOptions.push('<option value="LS">Left side (LS)</option>');
-		playerOptions.push('<option value="LC">Left center (LC)</option>');
-		playerOptions.push('<option value="MI">Middle inside (MI)</option>');
-		playerOptions.push('<option value="RC">Right center (RC)</option>');
-		playerOptions.push('<option value="RS">Right side (RS)</option>');
-		playerOptions.push('<option value="RL">Right line (RL)</option>');
-	}
-	
-	playerSelection1.innerHTML = playerOptions;
 }
 
 function getPlayersSelection(loc) {
