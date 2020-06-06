@@ -382,13 +382,13 @@ function drawAction() {
 			var brBaseValue = document.getElementById("brBase").value;
 			if (brBaseValue != null) {
 				brBaseValue = parseInt(brBaseValue);
-				var brActionResultValue = document.getElementById("brActionResult").value;
+				var brActionValue = document.getElementById("brAction").value;
 				var brSpecificActionValue = document.getElementById("brSpecificAction").value;
 				
 				var brPlayersValue = getPlayersSelection("batter-runner-inputs");
 				var brValidation = checkPlayersSelection(brPlayersValue);
 				if (brValidation === "") {
-					switch (brActionResultValue) {
+					switch (brActionValue) {
 						case "safe":
 							drawAdvance(brBaseValue, brSpecificActionValue, brPlayersValue);
 							break;
