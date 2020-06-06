@@ -15,11 +15,6 @@ function init() {
 	renderActionButtons();
 	renderInputsForBatter();
 	drawBackground();
-	
-	window.baseAction = document.getElementById("baseAction");
-	window.specificAction = document.getElementById("specificAction");
-	window.playerSelection1 = document.getElementById("playerSelection1");
-	window.playerSelection2 = document.getElementById("playerSelection2");
 }
 
 function changeBaseAction() {
@@ -27,6 +22,7 @@ function changeBaseAction() {
 	var actionOptions = [];
 	var specificActionDisabled = false;
 
+	var baseAction = document.getElementById("baseAction");
 	var baseActionValue = baseAction.value;
 	switch (baseActionValue) {
 		case "StrikeOut":
@@ -72,6 +68,7 @@ function changeBaseAction() {
 			
 	}
 	
+	var specificAction = document.getElementById("specificAction");
 	specificAction.innerHTML = actionOptions;
 	specificAction.disabled = specificActionDisabled;
 	
@@ -83,6 +80,7 @@ function changeSpecificAction() {
 	var hit = false;
 	var allowedPlayerInputs = 5;
 	
+	var specificAction = document.getElementById("specificAction");
 	var specificActionValue = specificAction.value;
 	switch (specificActionValue) {
 		case "FC":
@@ -171,11 +169,11 @@ function changeSpecificAction() {
 	}
 }
 
-function changeBrActionResult() {
+function changeBrAction() {
 	var actionOptions = [];
 
-	var brActionResult = document.getElementById("brActionResult");
-	switch (brActionResult.value) {
+	var brAction = document.getElementById("brAction");
+	switch (brAction.value) {
 		case "safe":
 			actionOptions.push('<option value="T">Advanced on the throw</option>');
 			actionOptions.push('<option value="E">Advanced on decisive error</option>');
@@ -188,6 +186,69 @@ function changeBrActionResult() {
 	
 	var brSpecificAction = document.getElementById("brSpecificAction");
 	brSpecificAction.innerHTML = actionOptions;
+	
+	changeBrSpecificAction();
+}
+
+function changeBrSpecificAction() {
+	var throwing = false;
+	var allowedPlayerInputs = 5;
+	
+	var brSpecificAction = document.getElementById("brSpecificAction");
+	var brSpecificActionValue = brSpecificAction.value;
+	switch (brSpecificActionValue) {
+		case "e":
+			allowedPlayerInputs = 2;
+			break;
+		case "T":
+			allowedPlayerInputs = 2;
+			throwing = true;
+			break;
+	    case "E":
+	    case "O":
+			// no adjustments
+			break;
+	}
+	
+	brSpecificAction.disabled = false;
+	
+	var loc = "involved-players-batter-runner-inputs";
+	var addInvolvedPlayerButton = document.getElementById(loc + "-add-button");
+	var removeInvolvedPlayerButton = document.getElementById(loc + "-remove-button");
+	if (allowedPlayerInputs < 5) {
+		addInvolvedPlayerButton.disabled = true;
+		removeInvolvedPlayerButton.disabled = true;
+		
+		var container = document.getElementById(loc);
+		var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
+	    while (inputsCreated != allowedPlayerInputs) {
+			if (inputsCreated > allowedPlayerInputs) {
+				var involvedPlayerN = document.getElementById(loc + "-p" + inputsCreated);
+				container.removeChild(involvedPlayerN);
+				inputsCreated--;
+			} else {
+				inputsCreated++;
+				var involvedPlayerN = document.createElement("select");
+				involvedPlayerN.setAttribute('id', loc + "-p" + inputsCreated);
+				involvedPlayerN.setAttribute('class', "wbsc-render-player");
+				involvedPlayerN.innerHTML = renderDefaultPlayerSelection();		
+				container.insertBefore(involvedPlayerN, addInvolvedPlayerButton);
+			}
+		}
+		
+		if (throwing == true) {
+			var involvedPlayer2 = document.getElementById(loc + "-p2");
+			involvedPlayer2.innerHTML = renderFCLocationSelection();
+		}
+	} else {
+		addInvolvedPlayerButton.disabled = false;
+		removeInvolvedPlayerButton.disabled = false;
+		
+		var involvedPlayer2 = document.getElementById(loc + "-p2");
+		if (involvedPlayer2 != null) {
+			involvedPlayer2.innerHTML = renderDefaultPlayerSelection();
+		}
+	}
 }
 
 function changeRunnerActionResult(base) {
@@ -265,6 +326,7 @@ function drawAction() {
 	var playersValue = getPlayersSelection("batter-inputs");
 	var validation = checkPlayersSelection(playersValue);
 	if (validation === "") {
+	    var specificAction = document.getElementById("specificAction");
 		var specificActionValue = specificAction.value;
 		
 		var outcome = "advance";

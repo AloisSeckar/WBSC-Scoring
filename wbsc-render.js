@@ -129,20 +129,21 @@ function renderInputsForRunningBatter() {
 	
 	batterRunnerInputsContainer.appendChild(document.createElement("br"));
 	
-	var brActionResultLabel = document.createElement("label");
-	brActionResultLabel.innerHTML = "Action:";
-	batterRunnerInputsContainer.appendChild(brActionResultLabel);
+	var brActionLabel = document.createElement("label");
+	brActionLabel.innerHTML = "Action:";
+	batterRunnerInputsContainer.appendChild(brActionLabel);
 	
-	var brActionResult = document.createElement("select");
-	brActionResult.setAttribute('id', "brActionResult");
-	brActionResult.setAttribute('class', "wbsc-action-select");
-	brActionResult.setAttribute('onchange', "changeBrActionResult()");
-	brActionResult.innerHTML = renderDefaultBrActionResult();
-	batterRunnerInputsContainer.appendChild(brActionResult);
+	var brAction = document.createElement("select");
+	brAction.setAttribute('id', "brAction");
+	brAction.setAttribute('class', "wbsc-action-select");
+	brAction.setAttribute('onchange', "changeBrAction()");
+	brAction.innerHTML = renderDefaultRunnerAction();
+	batterRunnerInputsContainer.appendChild(brAction);
 	
 	var brSpecificAction = document.createElement("select");
 	brSpecificAction.setAttribute('id', "brSpecificAction");
 	brSpecificAction.setAttribute('class', "wbsc-action-select");
+	brSpecificAction.setAttribute('onchange', "changeBrSpecificAction()");
 	brSpecificAction.disabled = true;
 	batterRunnerInputsContainer.appendChild(brSpecificAction);
 	
@@ -203,7 +204,7 @@ function renderInputsForRunner1() {
 	r1ActionResult.addEventListener('click', function(){
 		changeRunnerActionResult(1);
 	});
-	r1ActionResult.innerHTML = renderDefaultBrActionResult();
+	r1ActionResult.innerHTML = renderDefaultRunnerAction();
 	r1InputsContainer.appendChild(r1ActionResult);
 	
 	var r1SpecificAction = document.createElement("select");
@@ -269,7 +270,7 @@ function renderInputsForRunner2() {
 	r2ActionResult.addEventListener('click', function(){
 		changeRunnerActionResult(2);
 	});
-	r2ActionResult.innerHTML = renderDefaultBrActionResult();
+	r2ActionResult.innerHTML = renderDefaultRunnerAction();
 	r2InputsContainer.appendChild(r2ActionResult);
 	
 	var r2SpecificAction = document.createElement("select");
@@ -335,7 +336,7 @@ function renderInputsForRunner3() {
 	r3ActionResult.addEventListener('click', function(){
 		changeRunnerActionResult(3);
 	});
-	r3ActionResult.innerHTML = renderDefaultBrActionResult();
+	r3ActionResult.innerHTML = renderDefaultRunnerAction();
 	r3InputsContainer.appendChild(r3ActionResult);
 	
 	var r3SpecificAction = document.createElement("select");
@@ -365,20 +366,6 @@ function unRenderInputsForRunner3() {
 	runnerButton.setAttribute('onclick', "renderInputsForRunner3()");
 	runnerButton.innerHTML = " +R3 ";
 }
-
-function renderDefaultBaseAction() {
-	var options = [];
-	options.push('<option value=""></option>');
-	options.push('<option value="StrikeOut">Strike out</option>');
-	options.push('<option value="GroundOut">Ground out</option>');
-	options.push('<option value="FlyOut">Fly out</option>');
-	options.push('<option value="Hit">Hit</option>');
-	options.push('<option value="FC">Fielder\'s choice</option>');
-	options.push('<option value="Error">Error</option>');
-	options.push('<option value="Advance">Advance to 1st</option>');
-	return options;
-}
-
 
 function renderInvolvedPlayersSelection(loc) {
 	
@@ -455,7 +442,6 @@ function unRenderInvolvedPlayerSelect(loc) {
 	}
 }
 
-
 function renderDefaultPlayerSelection() {
 	var options = [];
 	options.push('<option value="1">P</option>');
@@ -503,7 +489,20 @@ function renderDefaultBrBase(base) {
 	return options;
 }
 
-function renderDefaultBrActionResult() {
+function renderDefaultBaseAction() {
+	var options = [];
+	options.push('<option value=""></option>');
+	options.push('<option value="StrikeOut">Strike out</option>');
+	options.push('<option value="GroundOut">Ground out</option>');
+	options.push('<option value="FlyOut">Fly out</option>');
+	options.push('<option value="Hit">Hit</option>');
+	options.push('<option value="FC">Fielder\'s choice</option>');
+	options.push('<option value="Error">Error</option>');
+	options.push('<option value="Advance">Advance to 1st</option>');
+	return options;
+}
+
+function renderDefaultRunnerAction() {
 	var options = [];
 	options.push('<option value=""></option>');
 	options.push('<option value="safe">Safe</option>');
