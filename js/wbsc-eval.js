@@ -1,9 +1,41 @@
-function changeBaseAction() {
+function changeBaseAction(group) {
+	switch (group) {
+		case input_b:
+			changeBatterBaseAction();
+			break;
+		case input_br:
+			changeBrBaseAction();
+			break;
+		case input_r1:
+		case input_r2:
+		case input_r3:
+			changeRunnerBaseResult(group);
+			break;
+	}
+}
+
+function changeSpecificAction(group) {
+	switch (group) {
+		case input_b:
+			changeBatterSpecificAction();
+			break;
+		case input_br:
+			changeBrSpecificAction();
+			break;
+		case input_r1:
+		case input_r2:
+		case input_r3:
+			// NOTHING YET
+			break;
+	}
+}
+
+function changeBatterBaseAction() {
 	
 	var actionOptions = [];
 	var specificActionDisabled = false;
 
-	var baseAction = document.getElementById("baseAction");
+	var baseAction = document.getElementById(input_b + input_base_action);
 	var baseActionValue = baseAction.value;
 	switch (baseActionValue) {
 		case "StrikeOut":
@@ -49,29 +81,29 @@ function changeBaseAction() {
 			
 	}
 	
-	var specificAction = document.getElementById("specificAction");
+	var specificAction = document.getElementById(input_b + input_spec_action);
 	specificAction.innerHTML = actionOptions;
 	specificAction.disabled = specificActionDisabled;
 	
-	changeSpecificAction();
+	changeBatterSpecificAction();
 }
 
-function changeSpecificAction() {
+function changeBatterSpecificAction() {
 	var fc = false;
 	var hit = false;
-	var allowedPlayerInputs = 5;
+	var allowedPosItems = 5;
 	
-	var specificAction = document.getElementById("specificAction");
+	var specificAction = document.getElementById(input_b + input_spec_action);
 	var specificActionValue = specificAction.value;
 	switch (specificActionValue) {
 		case "FC":
 			fc = true;
-			allowedPlayerInputs = 2;
+			allowedPosItems = 2;
 			break;
 	    case "BB":
 	    case "IBB":
 	    case "HP":
-			allowedPlayerInputs = 0;
+			allowedPosItems = 0;
 			break;
 		case "1B":
 		case "2B":
@@ -80,11 +112,11 @@ function changeSpecificAction() {
 		case "2BG":
 		case "HRI":
 			hit = true;
-			allowedPlayerInputs = 1;
+			allowedPosItems = 1;
 			break;
 		case "O":
 		case "EDF":
-			allowedPlayerInputs = 1;
+			allowedPosItems = 1;
 			break;
 		case "GO":
 		case "F":
@@ -101,59 +133,59 @@ function changeSpecificAction() {
 			break;
 	}
 	
-	var loc = "involved-players-" + input_b;
-	var addInvolvedPlayerButton = document.getElementById(loc + "-add-button");
-	var removeInvolvedPlayerButton = document.getElementById(loc + "-remove-button");
-	if (allowedPlayerInputs < 5) {
-		addInvolvedPlayerButton.disabled = true;
-		removeInvolvedPlayerButton.disabled = true;
+	var groupID = input_b + input_position;
+	var addItemButton = document.getElementById(groupID + input_add);
+	var removeItemButton = document.getElementById(groupID + input_remove);
+	if (allowedPosItems < 5) {
+		addItemButton.disabled = true;
+		removeItemButton.disabled = true;
 		
-		var container = document.getElementById(loc);
-		var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
-	    while (inputsCreated != allowedPlayerInputs) {
-			if (inputsCreated > allowedPlayerInputs) {
-				var involvedPlayerN = document.getElementById(loc + "-p" + inputsCreated);
-				container.removeChild(involvedPlayerN);
-				inputsCreated--;
+		var container = document.getElementById(groupID);
+		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	    while (itemsCreated != allowedPosItems) {
+			if (itemsCreated > allowedPosItems) {
+				var posItemN = document.getElementById(groupID + itemsCreated);
+				container.removeChild(posItemN);
+				itemsCreated--;
 			} else {
-				inputsCreated++;
-				var involvedPlayerN = document.createElement("select");
-				involvedPlayerN.setAttribute('id', loc + "-p" + inputsCreated);
-				involvedPlayerN.setAttribute('class', "wbsc-render-player");
-				involvedPlayerN.innerHTML = renderDefaultPlayerSelection();		
-				container.insertBefore(involvedPlayerN, addInvolvedPlayerButton);
+				itemsCreated++;
+				var posItemN = document.createElement("select");
+				posItemN.setAttribute('id', groupID + itemsCreated);
+				posItemN.setAttribute('class', class_wbsc_pos);
+				posItemN.innerHTML = renderPlayerOptions();		
+				container.insertBefore(posItemN, addItemButton);
 			}
 		}
 		
 		if (hit == true) {
-			var involvedPlayer1 = document.getElementById(loc + "-p1");
-			involvedPlayer1.innerHTML = renderHitLocationSelection();
+			var posItem1 = document.getElementById(groupID + "1");
+			posItem1.innerHTML = renderHitLocationOptions();
 		}
 		
 		if (fc == true) {
-			var involvedPlayer2 = document.getElementById(loc + "-p2");
-			involvedPlayer2.innerHTML = renderFCLocationSelection();
+			var posItem2 = document.getElementById(groupID + "2");
+			posItem2.innerHTML = renderFCLocationOptions();
 		}
 	} else {
-		addInvolvedPlayerButton.disabled = false;
-		removeInvolvedPlayerButton.disabled = false;
+		addItemButton.disabled = false;
+		removeItemButton.disabled = false;
 		
-		var involvedPlayer1 = document.getElementById(loc + "-p1");
-		if (involvedPlayer1 != null) {
-			involvedPlayer1.innerHTML = renderDefaultPlayerSelection();
+		var posItem1 = document.getElementById(groupID + "1");
+		if (posItem1 != null) {
+			posItem1.innerHTML = renderPlayerOptions();
 		}
 		
-		var involvedPlayer2 = document.getElementById(loc + "-p2");
-		if (involvedPlayer2 != null) {
-			involvedPlayer2.innerHTML = renderDefaultPlayerSelection();
+		var posItem2 = document.getElementById(groupID + "2");
+		if (posItem2 != null) {
+			posItem2.innerHTML = renderPlayerOptions();
 		}
 	}
 }
 
-function changeBrAction() {
+function changeBrBaseAction() {
 	var actionOptions = [];
 
-	var brAction = document.getElementById("brAction");
+	var brAction = document.getElementById(input_br + input_base_action);
 	switch (brAction.value) {
 		case "safe":
 			actionOptions.push('<option value="T">Advanced on the throw</option>');
@@ -165,7 +197,7 @@ function changeBrAction() {
 			break;
 	}
 	
-	var brSpecificAction = document.getElementById("brSpecificAction");
+	var brSpecificAction = document.getElementById(input_br + input_spec_action);
 	brSpecificAction.innerHTML = actionOptions;
 	
 	changeBrSpecificAction();
@@ -173,16 +205,16 @@ function changeBrAction() {
 
 function changeBrSpecificAction() {
 	var throwing = false;
-	var allowedPlayerInputs = 5;
+	var allowedPosItems = 5;
 	
-	var brSpecificAction = document.getElementById("brSpecificAction");
+	var brSpecificAction = document.getElementById(input_br + input_spec_action);
 	var brSpecificActionValue = brSpecificAction.value;
 	switch (brSpecificActionValue) {
 		case "e":
-			allowedPlayerInputs = 2;
+			allowedPosItems = 2;
 			break;
 		case "T":
-			allowedPlayerInputs = 2;
+			allowedPosItems = 2;
 			throwing = true;
 			break;
 	    case "E":
@@ -193,66 +225,52 @@ function changeBrSpecificAction() {
 	
 	brSpecificAction.disabled = false;
 	
-	var loc = "involved-players-" + input_br;
-	var addInvolvedPlayerButton = document.getElementById(loc + "-add-button");
-	var removeInvolvedPlayerButton = document.getElementById(loc + "-remove-button");
-	if (allowedPlayerInputs < 5) {
-		addInvolvedPlayerButton.disabled = true;
-		removeInvolvedPlayerButton.disabled = true;
+	var groupID = group + input_position;
+	var addItemButton = document.getElementById(groupID + input_add);
+	var removeItemButton = document.getElementById(groupID + input_remove);
+	if (allowedPosItems < 5) {
+		addItemButton.disabled = true;
+		removeItemButton.disabled = true;
 		
-		var container = document.getElementById(loc);
-		var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
-	    while (inputsCreated != allowedPlayerInputs) {
-			if (inputsCreated > allowedPlayerInputs) {
-				var involvedPlayerN = document.getElementById(loc + "-p" + inputsCreated);
-				container.removeChild(involvedPlayerN);
-				inputsCreated--;
+		var container = document.getElementById(groupID);
+		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	    while (itemsCreated != allowedPosItems) {
+			if (itemsCreated > allowedPosItems) {
+				var posItemN = document.getElementById(groupID + itemsCreated);
+				container.removeChild(posItemN);
+				itemsCreated--;
 			} else {
-				inputsCreated++;
-				var involvedPlayerN = document.createElement("select");
-				involvedPlayerN.setAttribute('id', loc + "-p" + inputsCreated);
-				involvedPlayerN.setAttribute('class', "wbsc-render-player");
-				involvedPlayerN.innerHTML = renderDefaultPlayerSelection();		
-				container.insertBefore(involvedPlayerN, addInvolvedPlayerButton);
+				itemsCreated++;
+				var posItemN = document.createElement("select");
+				posItemN.setAttribute('id', groupID + itemsCreated);
+				posItemN.setAttribute('class', class_wbsc_pos);
+				posItemN.innerHTML = renderPlayerOptions();		
+				container.insertBefore(posItemN, addItemButton);
 			}
 		}
 		
 		if (throwing == true) {
-			var involvedPlayer2 = document.getElementById(loc + "-p2");
-			involvedPlayer2.innerHTML = renderFCLocationSelection();
+			var posItem2 = document.getElementById(groupID + "2");
+			posItem2.innerHTML = renderFCLocationOptions();
 		}
 	} else {
-		addInvolvedPlayerButton.disabled = false;
-		removeInvolvedPlayerButton.disabled = false;
+		addItemButton.disabled = false;
+		removeItemButton.disabled = false;
 		
-		var involvedPlayer2 = document.getElementById(loc + "-p2");
-		if (involvedPlayer2 != null) {
-			involvedPlayer2.innerHTML = renderDefaultPlayerSelection();
+		var posItem2 = document.getElementById(groupID + "2");
+		if (posItem2 != null) {
+			posItem2.innerHTML = renderPlayerOptions();
 		}
 	}
 }
 
-function changeRunnerActionResult(base) {
+function changeRunnerBaseResult(group) {
 	var actionOptions = [];
 	
-	var runnerActionResult;
-	var runnerSpecificAction;
-	switch (base) {
-		case 1:
-			runnerActionResult = document.getElementById("r1ActionResult");	
-			runnerSpecificAction = document.getElementById("r1SpecificAction");
-			break;
-		case 2:
-			runnerActionResult = document.getElementById("r2ActionResult");	
-			runnerSpecificAction = document.getElementById("r2SpecificAction");
-			break;
-		case 2:
-			runnerActionResult = document.getElementById("r3ActionResult");	
-			runnerSpecificAction = document.getElementById("r3SpecificAction");
-			break;
-	}
+	var runnerBaseAction = document.getElementById(group + input_base_action);
+	var runnerSpecificAction = document.getElementById(group + input_spec_action);
 
-	switch (runnerActionResult.value) {
+	switch (runnerBaseAction.value) {
 		case "safe":
 			actionOptions.push('<option value="A">Advanced by batter</option>');
 			actionOptions.push('<option value="E">Advanced on decisive error</option>');
@@ -266,21 +284,30 @@ function changeRunnerActionResult(base) {
 	runnerSpecificAction.innerHTML = actionOptions;
 }
 
-function getPlayersSelection(loc) {
+function getBaseSelection(group) {
+	var base = "";
+	
+	var baseSelect = document.getElementById(group + input_base);
+	if (baseSelect != null) {
+		base = baseSelect.value;
+	}
+	
+	return base;
+}
+
+function getPosSelection(group) {
 	var selection = "";
 	
-	var sectionID = "involved-players-" + loc;
-	var container = document.getElementById(sectionID);
-	
-	var players = container.getElementsByClassName("wbsc-render-player");
-	for (var i = 0; i < players.length; i++) {
-		selection += players.item(i).value;
+	var container = document.getElementById(group + input_position);
+	var posCount = container.getElementsByClassName(class_wbsc_pos);
+	for (var i = 0; i < posCount.length; i++) {
+		selection += posCount.item(i).value;
 	}
 	
 	return selection;
 }
 
-function checkPlayersSelection(selection) {
+function checkPosSelection(selection) {
 	var validation = "";
 	
 	if (selection.length == 2) {
@@ -288,16 +315,31 @@ function checkPlayersSelection(selection) {
 			validation = "A player cannot assist directly to self";
 		}
 	} else if (selection.length > 2) {
-		var alreadyEncounteredPlayers = [false, false, false, false, false, false, false, false, false, false];
+		var alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false];
 		for (var i = 0; i < selection.length - 1; i++) {
-			if (alreadyEncounteredPlayers[selection.substr(i,1)] == true) {
+			if (alreadyEncounteredPositions[selection.substr(i,1)] == true) {
 				validation = "A player cannot have more than 1 assist in a play";
 				break;
 			}
-			alreadyEncounteredPlayers[selection.substr(i,i+1)] = true;
+			alreadyEncounteredPositions[selection.substr(i,i+1)] = true;
 		}
 	}
 	
 	return validation;
 }
 
+function getInput(group) {
+	var values = null;
+	
+	var container = document.getElementById(group);
+	if (container != null) {
+		values = [];
+		values[input_base_action] = document.getElementById(group + input_base_action).value;
+		values[input_spec_action] = document.getElementById(group + input_spec_action).value;
+		values[input_base] = getBaseSelection(group);
+		values[input_position] = getPosSelection(group);
+		values[input_validation] = checkPosSelection(values[input_position]);
+	}
+	
+	return values;
+}

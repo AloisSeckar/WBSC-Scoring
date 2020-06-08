@@ -7,442 +7,287 @@ function renderActionButtons() {
 	generateButton.setAttribute('id', "generate-button");
 	generateButton.setAttribute('type', "button");
 	generateButton.setAttribute('class', "btn btn-primary wbsc-action-button");
-	generateButton.setAttribute('onclick', "drawAction()");
+	generateButton.setAttribute('onclick', "renderAction()");
 	generateButton.innerHTML = "Generate action";
 	actionButtonsContainer.appendChild(generateButton);
 	
 	var renderBatterButton = document.createElement("button");
-	renderBatterButton.setAttribute('id', "batter-button");
+	renderBatterButton.setAttribute('id', "button-" + input_b);
 	renderBatterButton.setAttribute('type', "button");
-	renderBatterButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderBatterButton.setAttribute('onclick', "renderInputsForBatter()");
-	renderBatterButton.innerHTML = " +B ";
+	renderBatterButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderBatterButton.addEventListener('click', function(){
+		renderInputs(input_b);
+	});
+	renderBatterButton.innerHTML = getLabelForRenderButton(input_b, true);
 	actionButtonsContainer.appendChild(renderBatterButton);
 	
 	var renderBRButton = document.createElement("button");
-	renderBRButton.setAttribute('id', "batter-runner-button");
+	renderBRButton.setAttribute('id', "button-" + input_br);
 	renderBRButton.setAttribute('type', "button");
-	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderBRButton.setAttribute('onclick', "renderInputsForBatterRunner()");
-	renderBRButton.innerHTML = " +BR ";
+	renderBRButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderBRButton.addEventListener('click', function(){
+		renderInputs(input_br);
+	});
+	renderBRButton.innerHTML = getLabelForRenderButton(input_br, true);
 	actionButtonsContainer.appendChild(renderBRButton);
 	
 	var renderRunner1Button = document.createElement("button");
-	renderRunner1Button.setAttribute('id', "runner-1-button");
+	renderRunner1Button.setAttribute('id', "button-" + input_r1);
 	renderRunner1Button.setAttribute('type', "button");
-	renderRunner1Button.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderRunner1Button.setAttribute('onclick', "renderInputsForRunner1()");
-	renderRunner1Button.innerHTML = " +R1 ";
+	renderRunner1Button.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderRunner1Button.addEventListener('click', function(){
+		renderInputs(input_r1);
+	});
+	renderRunner1Button.innerHTML = getLabelForRenderButton(input_r1, true);
 	actionButtonsContainer.appendChild(renderRunner1Button);
 	
 	var renderRunner2Button = document.createElement("button");
-	renderRunner2Button.setAttribute('id', "runner-2-button");
+	renderRunner2Button.setAttribute('id', "button-" + input_r2);
 	renderRunner2Button.setAttribute('type', "button");
-	renderRunner2Button.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderRunner2Button.setAttribute('onclick', "renderInputsForRunner2()");
-	renderRunner2Button.innerHTML = " +R2 ";
+	renderRunner2Button.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderRunner2Button.addEventListener('click', function(){
+		renderInputs(input_r2);
+	});
+	renderRunner2Button.innerHTML = getLabelForRenderButton(input_r2, true);
 	actionButtonsContainer.appendChild(renderRunner2Button);
 	
 	var renderRunner3Button = document.createElement("button");
-	renderRunner3Button.setAttribute('id', "runner-3-button");
+	renderRunner3Button.setAttribute('id', "button-" + input_r3);
 	renderRunner3Button.setAttribute('type', "button");
-	renderRunner3Button.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderRunner3Button.setAttribute('onclick', "renderInputsForRunner3()");
-	renderRunner3Button.innerHTML = " +R3 ";
+	renderRunner3Button.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderRunner3Button.addEventListener('click', function(){
+		renderInputs(input_r3);
+	});
+	renderRunner3Button.innerHTML = getLabelForRenderButton(input_r3, true);
 	actionButtonsContainer.appendChild(renderRunner3Button);
 	
 	var container = document.getElementById(div_input);
 	container.appendChild(actionButtonsContainer);
 }
 
-function renderInputsForBatter() {
+function renderInputs(group) {
+	var renderButton = document.getElementById("button-" + group);
+	if (renderButton.innerHTML.includes("+")) {
+		showInputs(group);
+		
+		renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_unrender);
+		renderButton.innerHTML = getLabelForRenderButton(group, false);
+	} else {
+		hideInputs(group);
+		
+		renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+		renderButton.innerHTML = getLabelForRenderButton(group, true);
+	}
+}
+	
+function showInputs(group) {
 	var container = document.getElementById(div_input);
 	var toolbar = document.getElementById(div_tools);
 	
-	var batterInputsContainer = document.createElement("div");
-	batterInputsContainer.setAttribute('id', input_b);
-	batterInputsContainer.setAttribute('class', class_wbsc);
+	var inputsContainer = document.createElement("div");
+	inputsContainer.setAttribute('id', group);
+	inputsContainer.setAttribute('class', class_wbsc);
 	
-	var batterLabel = document.createElement("label");
-	batterLabel.innerHTML = "<strong>Batter:<strong>";
-	batterInputsContainer.appendChild(batterLabel);
+	container.insertBefore(inputsContainer, toolbar);
 	
-	batterInputsContainer.appendChild(document.createElement("br"));
+	if (group != input_br) {
+		var batterLabel = document.createElement("label");
+		batterLabel.innerHTML = getLabelForInputGroup(group);
+		inputsContainer.appendChild(batterLabel);
+		inputsContainer.appendChild(document.createElement("br"));
+	}
+	
+	if (group == input_r1 || group == input_r2 || group == input_r3) {
+		renderBaseSelection(group);
+	}
 	
 	var actionLabel = document.createElement("label");
 	actionLabel.innerHTML = "Action:";
-	batterInputsContainer.appendChild(actionLabel);
+	inputsContainer.appendChild(actionLabel);
 	
-	var baseAction = document.createElement("select");
-	baseAction.setAttribute('id', "baseAction");
-	baseAction.setAttribute('class', "wbsc-action-select");
-	baseAction.setAttribute('onchange', "changeBaseAction()");
-	baseAction.innerHTML = renderDefaultBaseAction();
-	batterInputsContainer.appendChild(baseAction);
-	
-	var specificAction = document.createElement("select");
-	specificAction.setAttribute('id', "specificAction");
-	specificAction.setAttribute('class', "wbsc-action-select");
-	specificAction.setAttribute('onchange', "changeSpecificAction()");
-	specificAction.innerHTML = '<option class="blank" />';
-	specificAction.disabled = true;
-	batterInputsContainer.appendChild(specificAction);
-	
-	container.insertBefore(batterInputsContainer, toolbar);
-	
-	renderInvolvedPlayersSelection(input_b);
-	
-	var renderBRButton = document.getElementById("batter-button");
-	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
-	renderBRButton.setAttribute('onclick', "unRenderInputsForBatter()");
-	renderBRButton.innerHTML = " -B ";
-}
-
-function unRenderInputsForBatter() {
-    var batterInputsContainer = document.getElementById(input_b);
-	
-	var container = document.getElementById(div_input);
-    container.removeChild(batterInputsContainer);
-	
-	var renderBRButton = document.getElementById("batter-button");
-	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderBRButton.setAttribute('onclick', "renderInputsForBatter()");
-	renderBRButton.innerHTML = " +B ";
-}
-
-function renderInputsForBatterRunner() {
-	var container = document.getElementById(div_input);
-	var toolbar = document.getElementById(div_tools);
-	
-	var batterRunnerInputsContainer = document.createElement("div");
-	batterRunnerInputsContainer.setAttribute('id', input_br);
-	batterRunnerInputsContainer.setAttribute('class', class_wbsc);
-	
-	var brBaseLabel = document.createElement("label");
-	brBaseLabel.innerHTML = "Base:";
-	batterRunnerInputsContainer.appendChild(brBaseLabel);
-	
-	var brBase = document.createElement("select");
-	brBase.setAttribute('id', "brBase");
-	brBase.innerHTML = renderDefaultBrBase(1);
-	batterRunnerInputsContainer.appendChild(brBase);
-	
-	batterRunnerInputsContainer.appendChild(document.createElement("br"));
-	
-	var brActionLabel = document.createElement("label");
-	brActionLabel.innerHTML = "Action:";
-	batterRunnerInputsContainer.appendChild(brActionLabel);
-	
-	var brAction = document.createElement("select");
-	brAction.setAttribute('id', "brAction");
-	brAction.setAttribute('class', "wbsc-action-select");
-	brAction.setAttribute('onchange', "changeBrAction()");
-	brAction.innerHTML = renderDefaultRunnerAction();
-	batterRunnerInputsContainer.appendChild(brAction);
-	
-	var brSpecificAction = document.createElement("select");
-	brSpecificAction.setAttribute('id', "brSpecificAction");
-	brSpecificAction.setAttribute('class', "wbsc-action-select");
-	brSpecificAction.setAttribute('onchange', "changeBrSpecificAction()");
-	brSpecificAction.disabled = true;
-	batterRunnerInputsContainer.appendChild(brSpecificAction);
-	
-	container.insertBefore(batterRunnerInputsContainer, toolbar);
-	
-	renderInvolvedPlayersSelection(input_br);
-	
-	var renderBRButton = document.getElementById("batter-runner-button");
-	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
-	renderBRButton.setAttribute('onclick', "unRenderInputsForBatterRunner()");
-	renderBRButton.innerHTML = " -BR ";
-}
-
-function unRenderInputsForBatterRunner() {
-    var batterRunnerInputsContainer = document.getElementById(input_br);
-	
-	var container = document.getElementById(div_input);
-    container.removeChild(batterRunnerInputsContainer);
-	
-	var renderBRButton = document.getElementById("batter-runner-button");
-	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderBRButton.setAttribute('onclick', "renderInputsForBatterRunner()");
-	renderBRButton.innerHTML = " +BR ";
-}
-
-function renderInputsForRunner1() {
-	var container = document.getElementById(div_input);
-	var toolbar = document.getElementById(div_tools);
-	
-	var r1InputsContainer = document.createElement("div");
-	r1InputsContainer.setAttribute('id', input_r1);
-	r1InputsContainer.setAttribute('class', class_wbsc);
-	
-	var r1Label = document.createElement("label");
-	r1Label.innerHTML = "<strong>Runner at 1st:<strong>";
-	r1InputsContainer.appendChild(r1Label);
-	
-	r1InputsContainer.appendChild(document.createElement("br"));
-	
-	var r1BaseLabel = document.createElement("label");
-	r1BaseLabel.innerHTML = "Base:";
-	r1InputsContainer.appendChild(r1BaseLabel);
-	
-	var r1Base = document.createElement("select");
-	r1Base.setAttribute('id', "r1Base");
-	r1Base.innerHTML = renderDefaultBrBase(1);
-	r1InputsContainer.appendChild(r1Base);
-	
-	r1InputsContainer.appendChild(document.createElement("br"));
-	
-	var r1ActionResultLabel = document.createElement("label");
-	r1ActionResultLabel.innerHTML = "Action:";
-	r1InputsContainer.appendChild(r1ActionResultLabel);
-	
-	var r1ActionResult = document.createElement("select");
-	r1ActionResult.setAttribute('id', "r1ActionResult");
-	r1ActionResult.setAttribute('class', "wbsc-action-select");
-	r1ActionResult.addEventListener('click', function(){
-		changeRunnerActionResult(1);
+	var baseActionSelect = document.createElement("select");
+	baseActionSelect.setAttribute('id', group + input_base_action);
+	baseActionSelect.setAttribute('class', class_wbsc_action);
+	baseActionSelect.addEventListener('click', function(){
+		changeBaseAction(group);
 	});
-	r1ActionResult.innerHTML = renderDefaultRunnerAction();
-	r1InputsContainer.appendChild(r1ActionResult);
+	baseActionSelect.innerHTML = renderBatterActionOptions();
+	inputsContainer.appendChild(baseActionSelect);
 	
-	var r1SpecificAction = document.createElement("select");
-	r1SpecificAction.setAttribute('id', "r1SpecificAction");
-	r1SpecificAction.setAttribute('class', "wbsc-action-select");
-	r1SpecificAction.disabled = true;
-	r1InputsContainer.appendChild(r1SpecificAction);
-	
-	container.insertBefore(r1InputsContainer, toolbar);
-	
-	renderInvolvedPlayersSelection(input_r1);
-	
-	var runnerButton = document.getElementById("runner-1-button");
-	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
-	runnerButton.setAttribute('onclick', "unRenderInputsForRunner1()");
-	runnerButton.innerHTML = " -R1 ";
-}
-
-function unRenderInputsForRunner1() {
-    var runner1InputsContainer = document.getElementById(input_r1);
-	
-	var container = document.getElementById(div_input);
-    container.removeChild(runner1InputsContainer);
-	
-	var runnerButton = document.getElementById("runner-1-button");
-	runnerButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	runnerButton.setAttribute('onclick', "renderInputsForRunner1()");
-	runnerButton.innerHTML = " +R1 ";
-}
-
-function renderInputsForRunner2() {
-	var container = document.getElementById(div_input);
-	var toolbar = document.getElementById(div_tools);
-	
-	var r2InputsContainer = document.createElement("div");
-	r2InputsContainer.setAttribute('id', input_r2);
-	r2InputsContainer.setAttribute('class', class_wbsc);
-	
-	var r2Label = document.createElement("label");
-	r2Label.innerHTML = "<strong>Runner at 2nd:<strong>";
-	r2InputsContainer.appendChild(r2Label);
-	
-	r2InputsContainer.appendChild(document.createElement("br"));
-	
-	var r2BaseLabel = document.createElement("label");
-	r2BaseLabel.innerHTML = "Base:";
-	r2InputsContainer.appendChild(r2BaseLabel);
-	
-	var r2Base = document.createElement("select");
-	r2Base.setAttribute('id', "r2Base");
-	r2Base.innerHTML = renderDefaultBrBase(1);
-	r2InputsContainer.appendChild(r2Base);
-	
-	r2InputsContainer.appendChild(document.createElement("br"));
-	
-	var r2ActionResultLabel = document.createElement("label");
-	r2ActionResultLabel.innerHTML = "Action:";
-	r2InputsContainer.appendChild(r2ActionResultLabel);
-	
-	var r2ActionResult = document.createElement("select");
-	r2ActionResult.setAttribute('id', "r2ActionResult");
-	r2ActionResult.setAttribute('class', "wbsc-action-select");
-	r2ActionResult.addEventListener('click', function(){
-		changeRunnerActionResult(2);
+	var specificActionSelect = document.createElement("select");
+	specificActionSelect.setAttribute('id', group + input_spec_action);
+	specificActionSelect.setAttribute('class', class_wbsc_action);
+	specificActionSelect.addEventListener('click', function(){
+		changeSpecificAction(group);
 	});
-	r2ActionResult.innerHTML = renderDefaultRunnerAction();
-	r2InputsContainer.appendChild(r2ActionResult);
+	specificActionSelect.innerHTML = '<option class="blank" />';
+	specificActionSelect.disabled = true;
+	inputsContainer.appendChild(specificActionSelect);
 	
-	var r2SpecificAction = document.createElement("select");
-	r2SpecificAction.setAttribute('id', "r2SpecificAction");
-	r2SpecificAction.setAttribute('class', "wbsc-action-select");
-	r2SpecificAction.disabled = true;
-	r2InputsContainer.appendChild(r2SpecificAction);
-	
-	container.insertBefore(r2InputsContainer, toolbar);
-	
-	renderInvolvedPlayersSelection(input_r2);
-	
-	var runnerButton = document.getElementById("runner-2-button");
-	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
-	runnerButton.setAttribute('onclick', "unRenderInputsForRunner2()");
-	runnerButton.innerHTML = " -R2 ";
+	renderPosSelection(group);
 }
-
-function unRenderInputsForRunner2() {
-    var runner2InputsContainer = document.getElementById(input_r2);
 	
+function hideInputs(group) {
 	var container = document.getElementById(div_input);
-    container.removeChild(runner2InputsContainer);
-	
-	var runnerButton = document.getElementById("runner-2-button");
-	runnerButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	runnerButton.setAttribute('onclick', "renderInputsForRunner2()");
-	runnerButton.innerHTML = " +R2 ";
+	var inputsContainer = document.getElementById(group);
+    container.removeChild(inputsContainer);
 }
 
-function renderInputsForRunner3() {
-	var container = document.getElementById(div_input);
-	var toolbar = document.getElementById(div_tools);
+function getLabelForInputGroup(group) {
+	var label = "<strong>";
 	
-	var r3InputsContainer = document.createElement("div");
-	r3InputsContainer.setAttribute('id', input_r3);
-	r3InputsContainer.setAttribute('class', class_wbsc);
+	switch (group) {
+		case input_b:
+			label += "Batter";
+			break;
+		case input_r1:
+			label += "Runner at 1st";
+			break;
+		case input_r2:
+			label += "Runner at 2nd";
+			break;
+		case input_r3:
+			label += "Runner at 3rd";
+			break;
+	}
 	
-	var r3Label = document.createElement("label");
-	r3Label.innerHTML = "<strong>Runner at 3rd:<strong>";
-	r3InputsContainer.appendChild(r3Label);
+	label += "</strong>";
 	
-	r3InputsContainer.appendChild(document.createElement("br"));
-	
-	var r3BaseLabel = document.createElement("label");
-	r3BaseLabel.innerHTML = "Base:";
-	r3InputsContainer.appendChild(r3BaseLabel);
-	
-	var r3Base = document.createElement("select");
-	r3Base.setAttribute('id', "r3Base");
-	r3Base.innerHTML = renderDefaultBrBase(1);
-	r3InputsContainer.appendChild(r3Base);
-	
-	r3InputsContainer.appendChild(document.createElement("br"));
-	
-	var r3ActionResultLabel = document.createElement("label");
-	r3ActionResultLabel.innerHTML = "Action:";
-	r3InputsContainer.appendChild(r3ActionResultLabel);
-	
-	var r3ActionResult = document.createElement("select");
-	r3ActionResult.setAttribute('id', "r3ActionResult");
-	r3ActionResult.setAttribute('class', "wbsc-action-select");
-	r3ActionResult.addEventListener('click', function(){
-		changeRunnerActionResult(3);
-	});
-	r3ActionResult.innerHTML = renderDefaultRunnerAction();
-	r3InputsContainer.appendChild(r3ActionResult);
-	
-	var r3SpecificAction = document.createElement("select");
-	r3SpecificAction.setAttribute('id', "r3SpecificAction");
-	r3SpecificAction.setAttribute('class', "wbsc-action-select");
-	r3SpecificAction.disabled = true;
-	r3InputsContainer.appendChild(r3SpecificAction);
-	
-	container.insertBefore(r3InputsContainer, toolbar);
-	
-	renderInvolvedPlayersSelection(input_r3);
-	
-	var runnerButton = document.getElementById("runner-3-button");
-	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
-	runnerButton.setAttribute('onclick', "unRenderInputsForRunner3()");
-	runnerButton.innerHTML = " -R3 ";
+	return label;
 }
 
-function unRenderInputsForRunner3() {
-    var runner3InputsContainer = document.getElementById(input_r3);
+function getLabelForRenderButton(group, render) {
+	var label = "";
 	
-	var container = document.getElementById(div_input);
-    container.removeChild(runner3InputsContainer);
+	if (render == true) {
+		label += "+";
+	} else {
+		label += "-";
+	}
 	
-	var runnerButton = document.getElementById("runner-3-button");
-	runnerButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	runnerButton.setAttribute('onclick', "renderInputsForRunner3()");
-	runnerButton.innerHTML = " +R3 ";
+	switch (group) {
+		case input_b:
+			label += "B";
+			break;
+		case input_br:
+			label += "BR";
+			break;
+		case input_r1:
+			label += "R1";
+			break;
+		case input_r2:
+			label += "R2";
+			break;
+		case input_r3:
+			label += "R3";
+			break;
+	}
+	
+	return label;
 }
 
-function renderInvolvedPlayersSelection(loc) {
+function renderBaseSelection(group) {
+	var inputsContainer = document.getElementById(group);
 	
-	var sectionID = "involved-players-" + loc;
+	var baseSelect = document.createElement("select");
+	baseSelect.setAttribute('id', group + input_base);
 	
-	var involvedPlayersInputsContainer = document.createElement("div");
-	involvedPlayersInputsContainer.setAttribute('id', sectionID);
+	var baseLabel = document.createElement("label");
+	baseLabel.innerHTML = "Base:";
+	inputsContainer.appendChild(baseLabel);
 	
-	var involvedPlayersLabel = document.createElement("label");
-	involvedPlayersLabel.innerHTML = "Involved players:";
-	involvedPlayersInputsContainer.appendChild(involvedPlayersLabel);
+	switch (group) {
+		case input_r1:
+			baseSelect.innerHTML = renderBaseOptions(1);
+			break;
+		case input_r2:
+			baseSelect.innerHTML = renderBaseOptions(2);
+			break;
+		case input_r3:
+			baseSelect.innerHTML = renderBaseOptions(3);
+			break;
+	}
 	
-	var involvedPlayer1 = document.createElement("select");
-	involvedPlayer1.setAttribute('id', sectionID + "-p1");
-	involvedPlayer1.setAttribute('class', "wbsc-render-player");
-	involvedPlayer1.innerHTML = renderDefaultPlayerSelection();
-	involvedPlayersInputsContainer.appendChild(involvedPlayer1);
+	inputsContainer.appendChild(baseSelect);
+	inputsContainer.appendChild(document.createElement("br"));
+}
+
+function renderPosSelection(group) {
 	
-	var addInvolvedPlayerButton = document.createElement("button");
-	addInvolvedPlayerButton.setAttribute('id', sectionID + "-add-button");
-	addInvolvedPlayerButton.setAttribute('type', "button");
-	addInvolvedPlayerButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button wbsc-render-button");
-	addInvolvedPlayerButton.addEventListener('click', function(){
-		renderInvolvedPlayerSelect(sectionID);
+	var groupID = group + input_position;
+	
+	var inputsContainer = document.createElement("div");
+	inputsContainer.setAttribute('id', groupID);
+	
+	var involvedLabel = document.createElement("label");
+	involvedLabel.innerHTML = "Involved:";
+	inputsContainer.appendChild(involvedLabel);
+	
+	var posItem1 = document.createElement("select");
+	posItem1.setAttribute('id', groupID + "1");
+	posItem1.setAttribute('class', class_wbsc_pos);
+	posItem1.innerHTML = renderPlayerOptions();
+	inputsContainer.appendChild(posItem1);
+	
+	var addItemButton = document.createElement("button");
+	addItemButton.setAttribute('id', groupID + input_add);
+	addItemButton.setAttribute('type', "button");
+	addItemButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button " + class_wbsc_b_render);
+	addItemButton.addEventListener('click', function(){
+		renderPosSelectItem(groupID);
 	});
-    addInvolvedPlayerButton.disabled = true;
-	addInvolvedPlayerButton.innerHTML = "+P";
-	involvedPlayersInputsContainer.appendChild(addInvolvedPlayerButton);
+    addItemButton.disabled = true;
+	addItemButton.innerHTML = "+P";
+	inputsContainer.appendChild(addItemButton);
 	
-	var removeInvolvedPlayerButton = document.createElement("button");
-	removeInvolvedPlayerButton.setAttribute('id', sectionID + "-remove-button");
-	removeInvolvedPlayerButton.setAttribute('type', "button");
-	removeInvolvedPlayerButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button wbsc-unrender-button");
-	removeInvolvedPlayerButton.addEventListener('click', function(){
-		unRenderInvolvedPlayerSelect(sectionID);
+	var removeItemButton = document.createElement("button");
+	removeItemButton.setAttribute('id', groupID + input_remove);
+	removeItemButton.setAttribute('type', "button");
+	removeItemButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button " + class_wbsc_b_unrender);
+	removeItemButton.addEventListener('click', function(){
+		unRenderPosSelectItem(groupID);
 	});
-    removeInvolvedPlayerButton.disabled = true;
-	removeInvolvedPlayerButton.innerHTML = "-P";
-	involvedPlayersInputsContainer.appendChild(removeInvolvedPlayerButton);
+    removeItemButton.disabled = true;
+	removeItemButton.innerHTML = "-P";
+	inputsContainer.appendChild(removeItemButton);
 	
-	var container = document.getElementById(loc);
+	var container = document.getElementById(group);
 	container.appendChild(document.createElement("br"));
-	container.appendChild(involvedPlayersInputsContainer);
+	container.appendChild(inputsContainer);
 }
 
-function renderInvolvedPlayerSelect(loc) {
+function renderPosSelectItem(group) {
 	
-	var container = document.getElementById(loc);
+	var container = document.getElementById(group);
 	
-	var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
-	if (inputsCreated < 5) {
-		inputsCreated++;
-		var involvedPlayerN = document.createElement("select");
-		involvedPlayerN.setAttribute('id', loc + "-p" + inputsCreated);
-		involvedPlayerN.setAttribute('class', "wbsc-render-player");
-		involvedPlayerN.innerHTML = renderDefaultPlayerSelection();
+	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	if (itemsCreated < 5) {
+		itemsCreated++;
+		var posItemN = document.createElement("select");
+		posItemN.setAttribute('id', group + itemsCreated);
+		posItemN.setAttribute('class', class_wbsc_pos);
+		posItemN.innerHTML = renderPlayerOptions();
 		
-		var addButton = document.getElementById(loc + "-add-button");
-		container.insertBefore(involvedPlayerN, addButton);
+		var addButton = document.getElementById(group + input_add);
+		container.insertBefore(posItemN, addButton);
 	} else {
 		alert("Currently only situations with up to 4 assists are supported");
 	}
 }
 
-function unRenderInvolvedPlayerSelect(loc) {
-	var container = document.getElementById(loc);
+function unRenderPosSelectItem(group) {
+	var container = document.getElementById(group);
 	
-	var inputsCreated = container.getElementsByClassName("wbsc-render-player").length;
-	if (inputsCreated > 1) {
-		var involvedPlayerN = document.getElementById(loc + "-p" + inputsCreated);
-		container.removeChild(involvedPlayerN);		
+	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	if (itemsCreated > 1) {
+		var posItemN = document.getElementById(group + itemsCreated);
+		container.removeChild(posItemN);		
 	} else {
 		alert("There has to be at least 1 player involved");
 	}
 }
 
-function renderDefaultPlayerSelection() {
+function renderPlayerOptions() {
 	var options = [];
 	options.push('<option value="1">P</option>');
 	options.push('<option value="2">C</option>');
@@ -456,8 +301,8 @@ function renderDefaultPlayerSelection() {
 	return options;
 }
 
-function renderHitLocationSelection() {
-	var options = renderDefaultPlayerSelection();
+function renderHitLocationOptions() {
+	var options = renderPlayerOptions();
 	options.push('<option value="LL">LL</option>');
 	options.push('<option value="LS">LS</option>');
 	options.push('<option value="LC">LC</option>');
@@ -468,7 +313,7 @@ function renderHitLocationSelection() {
 	return options;
 }
 
-function renderFCLocationSelection() {
+function renderFCLocationOptions() {
 	var options = [];
 	options.push('<option value="4">2nd</option>');
 	options.push('<option value="5">3rd</option>');
@@ -476,7 +321,7 @@ function renderFCLocationSelection() {
 	return options;
 }
 
-function renderDefaultBrBase(base) {
+function renderBaseOptions(base) {
 	var options = [];
 	options.push('<option value=""></option>');
 	if (base < 2) {
@@ -489,7 +334,7 @@ function renderDefaultBrBase(base) {
 	return options;
 }
 
-function renderDefaultBaseAction() {
+function renderBatterActionOptions() {
 	var options = [];
 	options.push('<option value=""></option>');
 	options.push('<option value="StrikeOut">Strike out</option>');
@@ -502,7 +347,7 @@ function renderDefaultBaseAction() {
 	return options;
 }
 
-function renderDefaultRunnerAction() {
+function renderRunnerActionOptions() {
 	var options = [];
 	options.push('<option value=""></option>');
 	options.push('<option value="safe">Safe</option>');

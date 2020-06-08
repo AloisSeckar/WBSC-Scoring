@@ -1,10 +1,21 @@
+function renderAction() {
+	var bInput = getInput(input_b);
+	var brInput = getInput(input_br);
+	var r1Input = getInput(input_r1);
+	var r2Input = getInput(input_r2);
+	var r3Input = getInput(input_r3);
+	
+	drawAction();
+}
+
 function drawAction() {
+	
 	drawBackground();
 	
-	var playersValue = getPlayersSelection(input_b);
-	var validation = checkPlayersSelection(playersValue);
+	var playersValue = getPosSelection(input_b);
+	var validation = checkPosSelection(playersValue);
 	if (validation === "") {
-	    var specificAction = document.getElementById("specificAction");
+	    var specificAction = document.getElementById(input_b + input_spec_action);
 		var specificActionValue = specificAction.value;
 		
 		var outcome = "advance";
@@ -57,14 +68,14 @@ function drawAction() {
 		if (outcome == "advance") {
 			drawAdvance(base, specificActionValue, playersValue);
 		
-			var brBaseValue = document.getElementById("brBase").value;
+			var brBaseValue = document.getElementById(input_base).value;
 			if (brBaseValue != null) {
 				brBaseValue = parseInt(brBaseValue);
 				var brActionValue = document.getElementById("brAction").value;
 				var brSpecificActionValue = document.getElementById("brSpecificAction").value;
 				
-				var brPlayersValue = getPlayersSelection(input_br);
-				var brValidation = checkPlayersSelection(brPlayersValue);
+				var brPlayersValue = getPosSelection(input_br);
+				var brValidation = checkPosSelection(brPlayersValue);
 				if (brValidation === "") {
 					switch (brActionValue) {
 						case "safe":
