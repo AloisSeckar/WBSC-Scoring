@@ -1,7 +1,7 @@
 function drawAction() {
 	drawBackground();
 	
-	var playersValue = getPlayersSelection("batter-inputs");
+	var playersValue = getPlayersSelection(input_b);
 	var validation = checkPlayersSelection(playersValue);
 	if (validation === "") {
 	    var specificAction = document.getElementById("specificAction");
@@ -63,7 +63,7 @@ function drawAction() {
 				var brActionValue = document.getElementById("brAction").value;
 				var brSpecificActionValue = document.getElementById("brSpecificAction").value;
 				
-				var brPlayersValue = getPlayersSelection("batter-runner-inputs");
+				var brPlayersValue = getPlayersSelection(input_br);
 				var brValidation = checkPlayersSelection(brPlayersValue);
 				if (brValidation === "") {
 					switch (brActionValue) {

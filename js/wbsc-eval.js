@@ -1,22 +1,3 @@
-function init() {
-	window.canvas = document.getElementById("canvas");
-	window.ctx = canvas.getContext("2d");
-	
-	window.w = canvas.width;
-	window.h = canvas.height;
-	window.w2 = w / 2;
-	window.w3 = w / 3;
-	window.w4 = w / 4;
-	window.h2 = h / 2;
-	window.h3 = h / 3;
-	window.h4 = h / 4;
-	window.h5 = h / 5;
-	
-	renderActionButtons();
-	renderInputsForBatter();
-	drawBackground();
-}
-
 function changeBaseAction() {
 	
 	var actionOptions = [];
@@ -120,7 +101,7 @@ function changeSpecificAction() {
 			break;
 	}
 	
-	var loc = "involved-players-batter-inputs";
+	var loc = "involved-players-" + input_b;
 	var addInvolvedPlayerButton = document.getElementById(loc + "-add-button");
 	var removeInvolvedPlayerButton = document.getElementById(loc + "-remove-button");
 	if (allowedPlayerInputs < 5) {
@@ -212,7 +193,7 @@ function changeBrSpecificAction() {
 	
 	brSpecificAction.disabled = false;
 	
-	var loc = "involved-players-batter-runner-inputs";
+	var loc = "involved-players-" + input_br;
 	var addInvolvedPlayerButton = document.getElementById(loc + "-add-button");
 	var removeInvolvedPlayerButton = document.getElementById(loc + "-remove-button");
 	if (allowedPlayerInputs < 5) {

@@ -1,6 +1,6 @@
 function renderActionButtons() {
 	var actionButtonsContainer = document.createElement("div");
-	actionButtonsContainer.setAttribute('id', "wbsc-toolbar");
+	actionButtonsContainer.setAttribute('id', div_tools);
 	actionButtonsContainer.setAttribute('class', "wbsc-buttons");
 	
 	var generateButton = document.createElement("button");
@@ -23,7 +23,7 @@ function renderActionButtons() {
 	renderBRButton.setAttribute('id', "batter-runner-button");
 	renderBRButton.setAttribute('type', "button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderBRButton.setAttribute('onclick', "renderInputsForRunningBatter()");
+	renderBRButton.setAttribute('onclick', "renderInputsForBatterRunner()");
 	renderBRButton.innerHTML = " +BR ";
 	actionButtonsContainer.appendChild(renderBRButton);
 	
@@ -51,17 +51,17 @@ function renderActionButtons() {
 	renderRunner3Button.innerHTML = " +R3 ";
 	actionButtonsContainer.appendChild(renderRunner3Button);
 	
-	var container = document.getElementById("wbsc-inputs");
+	var container = document.getElementById(div_input);
 	container.appendChild(actionButtonsContainer);
 }
 
 function renderInputsForBatter() {
-	var container = document.getElementById("wbsc-inputs");
-	var toolbar = document.getElementById("wbsc-toolbar");
+	var container = document.getElementById(div_input);
+	var toolbar = document.getElementById(div_tools);
 	
 	var batterInputsContainer = document.createElement("div");
-	batterInputsContainer.setAttribute('id', "batter-inputs");
-	batterInputsContainer.setAttribute('class', "wbsc-inputs");
+	batterInputsContainer.setAttribute('id', input_b);
+	batterInputsContainer.setAttribute('class', class_wbsc);
 	
 	var batterLabel = document.createElement("label");
 	batterLabel.innerHTML = "<strong>Batter:<strong>";
@@ -90,7 +90,7 @@ function renderInputsForBatter() {
 	
 	container.insertBefore(batterInputsContainer, toolbar);
 	
-	renderInvolvedPlayersSelection("batter-inputs");
+	renderInvolvedPlayersSelection(input_b);
 	
 	var renderBRButton = document.getElementById("batter-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -99,9 +99,9 @@ function renderInputsForBatter() {
 }
 
 function unRenderInputsForBatter() {
-    var batterInputsContainer = document.getElementById("batter-inputs");
+    var batterInputsContainer = document.getElementById(input_b);
 	
-	var container = document.getElementById("wbsc-inputs");
+	var container = document.getElementById(div_input);
     container.removeChild(batterInputsContainer);
 	
 	var renderBRButton = document.getElementById("batter-button");
@@ -110,13 +110,13 @@ function unRenderInputsForBatter() {
 	renderBRButton.innerHTML = " +B ";
 }
 
-function renderInputsForRunningBatter() {
-	var container = document.getElementById("wbsc-inputs");
-	var toolbar = document.getElementById("wbsc-toolbar");
+function renderInputsForBatterRunner() {
+	var container = document.getElementById(div_input);
+	var toolbar = document.getElementById(div_tools);
 	
 	var batterRunnerInputsContainer = document.createElement("div");
-	batterRunnerInputsContainer.setAttribute('id', "batter-runner-inputs");
-	batterRunnerInputsContainer.setAttribute('class', "wbsc-inputs");
+	batterRunnerInputsContainer.setAttribute('id', input_br);
+	batterRunnerInputsContainer.setAttribute('class', class_wbsc);
 	
 	var brBaseLabel = document.createElement("label");
 	brBaseLabel.innerHTML = "Base:";
@@ -149,33 +149,33 @@ function renderInputsForRunningBatter() {
 	
 	container.insertBefore(batterRunnerInputsContainer, toolbar);
 	
-	renderInvolvedPlayersSelection("batter-runner-inputs");
+	renderInvolvedPlayersSelection(input_br);
 	
 	var renderBRButton = document.getElementById("batter-runner-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
-	renderBRButton.setAttribute('onclick', "unRenderInputsForRunningBatter()");
+	renderBRButton.setAttribute('onclick', "unRenderInputsForBatterRunner()");
 	renderBRButton.innerHTML = " -BR ";
 }
 
-function unRenderInputsForRunningBatter() {
-    var batterRunnerInputsContainer = document.getElementById("batter-runner-inputs");
+function unRenderInputsForBatterRunner() {
+    var batterRunnerInputsContainer = document.getElementById(input_br);
 	
-	var container = document.getElementById("wbsc-inputs");
+	var container = document.getElementById(div_input);
     container.removeChild(batterRunnerInputsContainer);
 	
 	var renderBRButton = document.getElementById("batter-runner-button");
 	renderBRButton.setAttribute('class', "btn btn-info wbsc-render-button");
-	renderBRButton.setAttribute('onclick', "renderInputsForRunningBatter()");
+	renderBRButton.setAttribute('onclick', "renderInputsForBatterRunner()");
 	renderBRButton.innerHTML = " +BR ";
 }
 
 function renderInputsForRunner1() {
-	var container = document.getElementById("wbsc-inputs");
-	var toolbar = document.getElementById("wbsc-toolbar");
+	var container = document.getElementById(div_input);
+	var toolbar = document.getElementById(div_tools);
 	
 	var r1InputsContainer = document.createElement("div");
-	r1InputsContainer.setAttribute('id', "runner-1-inputs");
-	r1InputsContainer.setAttribute('class', "wbsc-inputs");
+	r1InputsContainer.setAttribute('id', input_r1);
+	r1InputsContainer.setAttribute('class', class_wbsc);
 	
 	var r1Label = document.createElement("label");
 	r1Label.innerHTML = "<strong>Runner at 1st:<strong>";
@@ -215,7 +215,7 @@ function renderInputsForRunner1() {
 	
 	container.insertBefore(r1InputsContainer, toolbar);
 	
-	renderInvolvedPlayersSelection("runner-1-inputs");
+	renderInvolvedPlayersSelection(input_r1);
 	
 	var runnerButton = document.getElementById("runner-1-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -224,9 +224,9 @@ function renderInputsForRunner1() {
 }
 
 function unRenderInputsForRunner1() {
-    var runner1InputsContainer = document.getElementById("runner-1-inputs");
+    var runner1InputsContainer = document.getElementById(input_r1);
 	
-	var container = document.getElementById("wbsc-inputs");
+	var container = document.getElementById(div_input);
     container.removeChild(runner1InputsContainer);
 	
 	var runnerButton = document.getElementById("runner-1-button");
@@ -236,12 +236,12 @@ function unRenderInputsForRunner1() {
 }
 
 function renderInputsForRunner2() {
-	var container = document.getElementById("wbsc-inputs");
-	var toolbar = document.getElementById("wbsc-toolbar");
+	var container = document.getElementById(div_input);
+	var toolbar = document.getElementById(div_tools);
 	
 	var r2InputsContainer = document.createElement("div");
-	r2InputsContainer.setAttribute('id', "runner-2-inputs");
-	r2InputsContainer.setAttribute('class', "wbsc-inputs");
+	r2InputsContainer.setAttribute('id', input_r2);
+	r2InputsContainer.setAttribute('class', class_wbsc);
 	
 	var r2Label = document.createElement("label");
 	r2Label.innerHTML = "<strong>Runner at 2nd:<strong>";
@@ -281,7 +281,7 @@ function renderInputsForRunner2() {
 	
 	container.insertBefore(r2InputsContainer, toolbar);
 	
-	renderInvolvedPlayersSelection("runner-2-inputs");
+	renderInvolvedPlayersSelection(input_r2);
 	
 	var runnerButton = document.getElementById("runner-2-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -290,9 +290,9 @@ function renderInputsForRunner2() {
 }
 
 function unRenderInputsForRunner2() {
-    var runner2InputsContainer = document.getElementById("runner-2-inputs");
+    var runner2InputsContainer = document.getElementById(input_r2);
 	
-	var container = document.getElementById("wbsc-inputs");
+	var container = document.getElementById(div_input);
     container.removeChild(runner2InputsContainer);
 	
 	var runnerButton = document.getElementById("runner-2-button");
@@ -302,12 +302,12 @@ function unRenderInputsForRunner2() {
 }
 
 function renderInputsForRunner3() {
-	var container = document.getElementById("wbsc-inputs");
-	var toolbar = document.getElementById("wbsc-toolbar");
+	var container = document.getElementById(div_input);
+	var toolbar = document.getElementById(div_tools);
 	
 	var r3InputsContainer = document.createElement("div");
-	r3InputsContainer.setAttribute('id', "runner-3-inputs");
-	r3InputsContainer.setAttribute('class', "wbsc-inputs");
+	r3InputsContainer.setAttribute('id', input_r3);
+	r3InputsContainer.setAttribute('class', class_wbsc);
 	
 	var r3Label = document.createElement("label");
 	r3Label.innerHTML = "<strong>Runner at 3rd:<strong>";
@@ -347,7 +347,7 @@ function renderInputsForRunner3() {
 	
 	container.insertBefore(r3InputsContainer, toolbar);
 	
-	renderInvolvedPlayersSelection("runner-3-inputs");
+	renderInvolvedPlayersSelection(input_r3);
 	
 	var runnerButton = document.getElementById("runner-3-button");
 	runnerButton.setAttribute('class', "btn btn-info wbsc-unrender-button");
@@ -356,9 +356,9 @@ function renderInputsForRunner3() {
 }
 
 function unRenderInputsForRunner3() {
-    var runner3InputsContainer = document.getElementById("runner-3-inputs");
+    var runner3InputsContainer = document.getElementById(input_r3);
 	
-	var container = document.getElementById("wbsc-inputs");
+	var container = document.getElementById(div_input);
     container.removeChild(runner3InputsContainer);
 	
 	var runnerButton = document.getElementById("runner-3-button");
