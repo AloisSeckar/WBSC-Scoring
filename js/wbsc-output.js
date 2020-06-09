@@ -31,23 +31,25 @@ function renderAction() {
 		window.canvas.height = playersInvolved * h - ((playersInvolved - 1) * 8);
         window.batter = playersInvolved;
 		window.vOffset = 0;
+		window.hOffset = 75;
+		var displayed = 1;
 		if (r3Input != null) {
 			r3Input[input_origBase] = 3;
-			drawAction(r3Input, null);
+			drawAction(displayed++, r3Input, null);
 			window.vOffset += h - 8;
 		}
 		if (r2Input != null) {
 			r2Input[input_origBase] = 2;
-			drawAction(r2Input, null);
+			drawAction(displayed++, r2Input, null);
 			window.vOffset += h - 8;
 		}
 		if (r1Input != null) {
 			r1Input[input_origBase] = 1;
-			drawAction(r1Input, null);
+			drawAction(displayed++, r1Input, null);
 			window.vOffset += h - 8;
 		}
 		if (bInput != null) {
-			drawAction(bInput, brInput);
+			drawAction(displayed++, bInput, brInput);
 			window.vOffset += h - 8;
 		}
 	} else {
@@ -55,8 +57,8 @@ function renderAction() {
 	}
 }
 
-function drawAction(mainInput, extraInput) {
-	drawBackground();
+function drawAction(battingOrder, mainInput, extraInput) {
+	drawBackground(battingOrder);
 	
 	if (mainInput[input_origBase] != null) {
 		drawAdvance(mainInput[input_origBase], "*", "");
@@ -138,29 +140,36 @@ function drawAction(mainInput, extraInput) {
 	}
 }
 
-function drawBackground() {
+function drawBackground(battingOrder) {
 	ctx.fillStyle = "white";
 	ctx.fillRect(0, 0 + vOffset, w, h);
 	
 	ctx.lineWidth = 8;
 	ctx.strokeStyle = '#00a7d7';
 	
-	ctx.strokeRect(4, 4 + vOffset, w - 8, h - 8);
+	ctx.strokeRect(4, 4 + vOffset, hOffset, h - 8);
+	
+	ctx.font = "bold 60px Verdana";
+	ctx.textAlign = "center";
+	ctx.fillStyle = '#00a7d7';
+	ctx.fillText(battingOrder, 40,  h2 + 25 + vOffset);
+	
+	ctx.strokeRect(4 + hOffset, 4 + vOffset, w - 8, h - 8);
 	
 	ctx.lineWidth = 4;
 	
 	ctx.beginPath();
-	ctx.moveTo(w2, 0 + vOffset);
-	ctx.lineTo(w2, h3 + vOffset);
+	ctx.moveTo(w2 + hOffset, 0 + vOffset);
+	ctx.lineTo(w2 + hOffset, h3 + vOffset);
 	ctx.stroke();
-	ctx.moveTo(w2, h + vOffset);
-	ctx.lineTo(w2, h - h3 + vOffset);
+	ctx.moveTo(w2 + hOffset, h + vOffset);
+	ctx.lineTo(w2 + hOffset, h - h3 + vOffset);
 	ctx.stroke();
-	ctx.moveTo(0, h2 + vOffset);
-	ctx.lineTo(w3, h2 + vOffset);
+	ctx.moveTo(0 + hOffset, h2 + vOffset);
+	ctx.lineTo(w3 + hOffset, h2 + vOffset);
 	ctx.stroke();
-	ctx.moveTo(w, h2 + vOffset);
-	ctx.lineTo(w - h3, h2 + vOffset);
+	ctx.moveTo(w + hOffset, h2 + vOffset);
+	ctx.lineTo(w - h3 + hOffset, h2 + vOffset);
 	ctx.stroke();
 }
 
@@ -172,16 +181,16 @@ function drawOut(base, situation, players) {
 	switch (base) {
 		case 0:
 		case 1:
-			ctx.arc(h2, h2 + vOffset, h2 - 20, 0, 2 * Math.PI);
+			ctx.arc(h2 + hOffset, h2 + vOffset, h2 - 20, 0, 2 * Math.PI);
 			break;
 		case 2:
-			ctx.arc(h2 - 38, h2 - 38 + vOffset, h3 - 12, 0, 2 * Math.PI);
+			ctx.arc(h2 - 38 + hOffset, h2 - 38 + vOffset, h3 - 12, 0, 2 * Math.PI);
 			break;
 		case 3:
-			ctx.arc(w4, h2 + vOffset, h5, 0, 2 * Math.PI);
+			ctx.arc(w4 + hOffset, h2 + vOffset, h5, 0, 2 * Math.PI);
 			break;
 		case 4:
-			ctx.arc(w4, h4 * 3 + vOffset, h5, 0, 2 * Math.PI);
+			ctx.arc(w4 + hOffset, h4 * 3 + vOffset, h5, 0, 2 * Math.PI);
 			break;
 	}
 	ctx.stroke();
@@ -196,17 +205,17 @@ function drawAdvance(base, situation, players) {
 	
 	ctx.beginPath();
 	if (base > 0) {
-		ctx.moveTo(w2, h - h3 + vOffset);
-		ctx.lineTo(w - w3, h2 + vOffset);
+		ctx.moveTo(w2 + hOffset, h - h3 + vOffset);
+		ctx.lineTo(w - w3 + hOffset, h2 + vOffset);
 	}
 	if (base > 1) {
-		ctx.lineTo(w2, h3 + vOffset);
+		ctx.lineTo(w2 + hOffset, h3 + vOffset);
 	}
 	if (base > 2) {
-		ctx.lineTo(w3, h2 + vOffset);
+		ctx.lineTo(w3 + hOffset, h2 + vOffset);
 	}
 	if (base > 3) {
-		ctx.lineTo(w2 + 3, h - h3 + 3 + vOffset);
+		ctx.lineTo(w2 + 3 + hOffset, h - h3 + 3 + vOffset);
 	}
 	ctx.stroke();
 	
@@ -227,28 +236,28 @@ function drawConnector(base1, base2) {
 		ctx.beginPath();
 		switch (base1) {
 			case 1:
-				ctx.moveTo(w - gap, h2 + length + vOffset);
-				ctx.lineTo(w - gap, h2 - length + vOffset);
+				ctx.moveTo(w - gap + hOffset, h2 + length + vOffset);
+				ctx.lineTo(w - gap + hOffset, h2 - length + vOffset);
 				if (base2 > 2) {
-					ctx.lineTo(w - gap, gap + vOffset);
-					ctx.lineTo(w2 - length, gap + vOffset);
+					ctx.lineTo(w - gap + hOffset, gap + vOffset);
+					ctx.lineTo(w2 - length + hOffset, gap + vOffset);
 				}
 				if (base2 > 3) {
-					ctx.lineTo(gap, gap + vOffset);
-					ctx.lineTo(gap, h2 + length - 10 + vOffset);
+					ctx.lineTo(gap + hOffset, gap + vOffset);
+					ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset);
 				}
 				break;
 			case 2:
-				ctx.moveTo(w2 + length, gap + vOffset);
-				ctx.lineTo(w2 - length, gap + vOffset);
+				ctx.moveTo(w2 + length + hOffset, gap + vOffset);
+				ctx.lineTo(w2 - length + hOffset, gap + vOffset);
 				if (base2 > 3) {
-					ctx.lineTo(gap, gap + vOffset);
-					ctx.lineTo(gap, h2 + length - 10 + vOffset);
+					ctx.lineTo(gap + hOffset, gap + vOffset);
+					ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset);
 				}
 				break;
 			case 3:
-				ctx.moveTo(gap, h2 - length + vOffset);
-			    ctx.lineTo(gap, h2 + length - 10 + vOffset);
+				ctx.moveTo(gap + hOffset, h2 - length + vOffset);
+			    ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset);
 				break;
 		}
 		ctx.stroke();
@@ -256,8 +265,6 @@ function drawConnector(base1, base2) {
 }
 
 function writeSituation(base, situation) {
-	ctx.textAlign = "center";
-	
 	if (situation == "*") {
 		ctx.fillStyle = "red";
 	} else {
@@ -272,7 +279,7 @@ function writeSituation(base, situation) {
 			if (situation.startsWith("EDF")) {
 				esituation = "E" + situation.substring(3) + " DF";
 				ctx.font = "bold 20px Verdana";
-				ctx.fillText(esituation, w2 * 1.5 + 18, h2 * 1.5 + 50 + vOffset);
+				ctx.fillText(esituation, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset);
 			} else {
 				if (situation.startsWith("GO")) {
 					if (situation.startsWith("GOU")) {
@@ -288,18 +295,18 @@ function writeSituation(base, situation) {
 					ctx.font = "bold 90px Verdana";
 					offset = 33;
 				}
-				ctx.fillText(situation, w2, h2 + offset + vOffset);
+				ctx.fillText(situation, w2 + hOffset, h2 + offset + vOffset);
 			}
 			break;
 		case 1:
 			if (situation.startsWith("A")) {
-				ctx.fillText(window.batter, w2 * 1.5 + 12, h2 * 1.5 + 25 + vOffset);
+				ctx.fillText(window.batter, w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
 			} else if (situation.startsWith("1B")) {
 				drawHitSymbol(1);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 35px Verdana";
 				}
-				ctx.fillText(situation.substring(2), w2 * 1.5 + 12, h2 * 1.5 + 25 + vOffset);
+				ctx.fillText(situation.substring(2), w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
 			} else if (situation.startsWith("E")) {
 				if (situation.startsWith("EM")) {
 					esituation = situation.substring(2, 3) + "E" + situation.substring(3);
@@ -312,60 +319,60 @@ function writeSituation(base, situation) {
 				} else {
 					esituation = "E" + situation.substring(2) + situation.substring(1, 2);
 				}
-				ctx.fillText(esituation, w2 * 1.5, h2 * 1.5 + offset + vOffset);
+				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else {
 				if (situation.length > 3) {
 					ctx.font = "bold 36px Verdana";
 				} 
-				ctx.fillText(situation, w2 * 1.5, h2 * 1.5 + offset + vOffset);
+				ctx.fillText(situation, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			}
 			break;
 		case 2:
 			if (situation.startsWith("A")) {
-				ctx.fillText(window.batter, w2 * 1.5, h2 * 0.5 + offset + vOffset);
+				ctx.fillText(window.batter, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.startsWith("2B")) {
 				drawHitSymbol(2);
 				if (situation.startsWith("2BG")) {
 					ctx.font = "bold 35px Verdana";
-					ctx.fillText(situation.substring(3), w2 * 1.5 + 22, h2 * 0.5 + vOffset);
-					ctx.fillText("GR", w2 * 1.5 + 22, h2 * 0.5 + 35 + vOffset);
+					ctx.fillText(situation.substring(3), w2 * 1.5 + 22 + hOffset, h2 * 0.5 + vOffset);
+					ctx.fillText("GR", w2 * 1.5 + 22 + hOffset, h2 * 0.5 + 35 + vOffset);
 				} else {
 					if (situation.substring(2).length > 1) {
 						ctx.font = "bold 40px Verdana";
 					}
-					ctx.fillText(situation.substring(2), w2 * 1.5 + 15, h2 * 0.5 + 25 + vOffset);
+					ctx.fillText(situation.substring(2), w2 * 1.5 + 15 + hOffset, h2 * 0.5 + 25 + vOffset);
 				}
 			} else if (situation.match(/O\d+/)) {
 			    ctx.font = "bold 56px Verdana";
-				ctx.fillText(situation.substring(1), w2 * 0.7, h2 - offset + vOffset);
+				ctx.fillText(situation.substring(1), w2 * 0.7 + hOffset, h2 - offset + vOffset);
 			} else {
-				ctx.fillText(situation, w2 * 1.5, h2 * 0.5 + offset + vOffset);
+				ctx.fillText(situation, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			}
 			break;
 		case 3:
 			if (situation.startsWith("A")) {
-				ctx.fillText(window.batter, w2 * 0.5 + 15, h2 * 0.5 + 25 + vOffset);
+				ctx.fillText(window.batter, w2 * 0.5 + 15 + hOffset, h2 * 0.5 + 25 + vOffset);
 			} else if (situation.startsWith("3B")) {
 				drawHitSymbol(3);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 40px Verdana";
 				}
-				ctx.fillText(situation.substring(2), w2 * 0.5 + 15, h2 * 0.5 + 25 + vOffset);
+				ctx.fillText(situation.substring(2), w2 * 0.5 + 15 + hOffset, h2 * 0.5 + 25 + vOffset);
 			} else if (situation.match(/O\d+/)) {
 			    ctx.font = "bold 48px Verdana";
 				offset = 18;
-				ctx.fillText(situation.substring(1), w2 * 0.5, h2 + offset + vOffset);
+				ctx.fillText(situation.substring(1), w2 * 0.5 + hOffset, h2 + offset + vOffset);
 			} else {
-				ctx.fillText(situation, w2 * 0.5, h2 * 0.5 + offset + vOffset);
+				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			}
 			break;
 		case 4:
 		    if (situation.startsWith("A")) {
-				ctx.fillText(window.batter, w2 * 0.5, h2 * 1.5 + offset + vOffset);
+				ctx.fillText(window.batter, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
 			    ctx.font = "bold 48px Verdana";
 				offset = 18;
-				ctx.fillText(situation.substring(1), w2 * 0.5, h2 * 1.5 + offset + vOffset);
+				ctx.fillText(situation.substring(1), w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.length > 3) {
 				if (situation.startsWith("HRI")) {
 					ipr = "I";
@@ -383,10 +390,10 @@ function writeSituation(base, situation) {
 					ctx.font = "bold 40px Verdana";
 					var lOffset = 55;
 				}
-				ctx.fillText(ipr + "HR", lOffset, h2 * 1.5 - 5 + vOffset);
-				ctx.fillText(situation.substring(2), lOffset, h2 * 1.5 + 40 + vOffset);
+				ctx.fillText(ipr + "HR", lOffset + hOffset, h2 * 1.5 - 5 + vOffset);
+				ctx.fillText(situation.substring(2), lOffset + hOffset, h2 * 1.5 + 40 + vOffset);
 			} else {
-				ctx.fillText(situation, w2 * 0.5, h2 * 1.5 + offset + vOffset);
+				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			}
 			break;
 	}
@@ -397,28 +404,28 @@ function drawHitSymbol(base) {
 	ctx.beginPath();
 	switch (base) {
 		case 1:
-			ctx.moveTo(w2 + 25, h - 35 + vOffset);
-			ctx.lineTo(w2 + 50, h2 + 25 + vOffset);
-			ctx.moveTo(w2 + 30, h2 + 40 + vOffset);
-			ctx.lineTo(w2 + 58, h2 + 45 + vOffset);
+			ctx.moveTo(w2 + 25 + hOffset, h - 35 + vOffset);
+			ctx.lineTo(w2 + 50 + hOffset, h2 + 25 + vOffset);
+			ctx.moveTo(w2 + 30 + hOffset, h2 + 40 + vOffset);
+			ctx.lineTo(w2 + 58 + hOffset, h2 + 45 + vOffset);
 			break;
 		case 2:
-			ctx.moveTo(w2 + 25, h2 - 35 + vOffset);
-			ctx.lineTo(w2 + 50, 25 + vOffset);
-			ctx.moveTo(w2 + 30, 35 + vOffset);
-			ctx.lineTo(w2 + 58, 40 + vOffset);
-			ctx.moveTo(w2 + 28, 45 + vOffset);
-			ctx.lineTo(w2 + 56, 50 + vOffset);
+			ctx.moveTo(w2 + 25 + hOffset, h2 - 35 + vOffset);
+			ctx.lineTo(w2 + 50 + hOffset, 25 + vOffset);
+			ctx.moveTo(w2 + 30 + hOffset, 35 + vOffset);
+			ctx.lineTo(w2 + 58 + hOffset, 40 + vOffset);
+			ctx.moveTo(w2 + 28 + hOffset, 45 + vOffset);
+			ctx.lineTo(w2 + 56 + hOffset, 50 + vOffset);
 			break;
 		case 3:
-			ctx.moveTo(20, h2 - 35 + vOffset);
-			ctx.lineTo(45, 25 + vOffset);
-			ctx.moveTo(25, 35 + vOffset);
-			ctx.lineTo(53, 40 + vOffset);
-			ctx.moveTo(23, 45 + vOffset);
-			ctx.lineTo(51, 50 + vOffset);
-			ctx.moveTo(21, 55 + vOffset);
-			ctx.lineTo(49, 60 + vOffset);
+			ctx.moveTo(20 + hOffset, h2 - 35 + vOffset);
+			ctx.lineTo(45 + hOffset, 25 + vOffset);
+			ctx.moveTo(25 + hOffset, 35 + vOffset);
+			ctx.lineTo(53 + hOffset, 40 + vOffset);
+			ctx.moveTo(23 + hOffset, 45 + vOffset);
+			ctx.lineTo(51 + hOffset, 50 + vOffset);
+			ctx.moveTo(21 + hOffset, 55 + vOffset);
+			ctx.lineTo(49 + hOffset, 60 + vOffset);
 			break;
 	}
 	ctx.stroke();

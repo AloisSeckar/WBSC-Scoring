@@ -3,7 +3,8 @@ function init() {
 	window.ctx = canvas.getContext("2d");
 	
 	window.vOffset = 0;
-	window.w = canvas.width;
+	window.hOffset = 75;
+	window.w = canvas.width - hOffset;
 	window.h = canvas.height;
 	window.w2 = w / 2;
 	window.w3 = w / 3;
@@ -17,7 +18,7 @@ function init() {
 	
 	renderActionButtons();
 	renderInputs(input_b);
-	drawBackground();
+	drawBackground(1);
 }
 
 function setVariables() {
