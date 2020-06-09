@@ -59,11 +59,11 @@ function drawAction(mainInput, extraInput) {
 	drawBackground();
 	
 	if (mainInput[input_origBase] != null) {
-		writeSituation(mainInput[input_origBase], "*");
+		drawAdvance(mainInput[input_origBase], "*", "");
 	}
 	
 	var outcome = "advance";
-	var base =  parseInt(mainInput[input_base]);
+	var base = parseInt(mainInput[input_base]);
 	switch (mainInput[input_spec_action]) {
 		case "EDF":
 			base = 0;
@@ -79,6 +79,7 @@ function drawAction(mainInput, extraInput) {
 		case "FP":
 		case "FL":
 			outcome = "out";
+			base = 0;
 			break;
 		case "1B":
 		case "EF":
@@ -104,10 +105,15 @@ function drawAction(mainInput, extraInput) {
 		case "IBB":
 		case "HP":
 			base = 1;
-			playersValue = "";
+			mainInput[input_position] = "";
 			break;
 		case "A":
-			playersValue = "";
+			mainInput[input_position] = "";
+			break;
+		case "TO":
+		case "FO":
+			outcome = "out";
+			mainInput[input_spec_action] = "";
 			break;
 	}
 	
@@ -128,10 +134,8 @@ function drawAction(mainInput, extraInput) {
 			drawConnector(base, extraBaseValue);
 		}
 	} else {
-		drawOut(0, mainInput[input_spec_action], mainInput[input_position]);
+		drawOut(base, mainInput[input_spec_action], mainInput[input_position]);
 	}
-	
-	
 }
 
 function drawBackground() {

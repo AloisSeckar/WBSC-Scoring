@@ -195,7 +195,7 @@ function changeBrBaseAction() {
 			actionOptions.push('<option value="e">Extra-base error</option>');
 			break;
 		case "out":
-			actionOptions.push('<option value="O">Tagged out</option>');
+			actionOptions.push('<option value="TO">Tagged out</option>');
 			break;
 		default:
 			specificActionDisabled = true;
@@ -277,7 +277,8 @@ function changeRunnerBaseResult(group) {
 			actionOptions.push('<option value="e">Extra-base error</option>');
 			break;
 		case "out":
-			actionOptions.push('<option value="O">Tagged out</option>');
+			actionOptions.push('<option value="TO">Tagged out</option>');
+			actionOptions.push('<option value="FO">Forced out</option>');
 			break;
 	    default:
 			specificActionDisabled = true;
@@ -286,6 +287,12 @@ function changeRunnerBaseResult(group) {
 	var runnerSpecificAction = document.getElementById(group + input_spec_action);
 	runnerSpecificAction.innerHTML = actionOptions;
 	runnerSpecificAction.disabled = specificActionDisabled;
+	
+	var groupID = group + input_position;
+	var addItemButton = document.getElementById(groupID + input_add);
+	var removeItemButton = document.getElementById(groupID + input_remove);
+	addItemButton.disabled = false;
+	removeItemButton.disabled = false;
 }
 
 function getBaseSelection(group) {
