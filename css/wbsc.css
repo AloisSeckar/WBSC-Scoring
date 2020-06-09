@@ -36,6 +36,11 @@ label {
 	margin: 5px;
 }
 
+.wbsc-clear-button {
+	background-color: #ffad33;
+	margin: 5px;
+}
+
 .wbsc-small-button {
 	width: 40px;
 }

@@ -61,22 +61,34 @@ function renderActionButtons() {
 	renderRunner3Button.innerHTML = getLabelForRenderButton(input_r3, true);
 	actionButtonsContainer.appendChild(renderRunner3Button);
 	
+	var clearButton = document.createElement("button");
+	clearButton.setAttribute('id', "clear-button");
+	clearButton.setAttribute('type', "button");
+	clearButton.setAttribute('class', "btn btn-primary wbsc-clear-button");
+	clearButton.setAttribute('onclick', "clearInputs()");
+	clearButton.innerHTML = "Clear";
+	actionButtonsContainer.appendChild(clearButton);
+	
 	var container = document.getElementById(div_input);
 	container.appendChild(actionButtonsContainer);
+}
+
+function clearInputs() {
+	hideInputs(input_b);
+	hideInputs(input_br);
+	hideInputs(input_r1);
+	hideInputs(input_r2);
+	hideInputs(input_r3);
+	
+	showInputs(input_b);
 }
 
 function renderInputs(group) {
 	var renderButton = document.getElementById("button-" + group);
 	if (renderButton.innerHTML.includes("+")) {
 		showInputs(group);
-		
-		renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_unrender);
-		renderButton.innerHTML = getLabelForRenderButton(group, false);
 	} else {
 		hideInputs(group);
-		
-		renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-		renderButton.innerHTML = getLabelForRenderButton(group, true);
 	}
 }
 	
@@ -137,12 +149,22 @@ function showInputs(group) {
 	inputsContainer.appendChild(specificActionSelect);
 	
 	renderPosSelection(group);
+	
+	var renderButton = document.getElementById("button-" + group);
+	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_unrender);
+	renderButton.innerHTML = getLabelForRenderButton(group, false);
 }
 	
 function hideInputs(group) {
 	var container = document.getElementById(div_input);
 	var inputsContainer = document.getElementById(group);
-    container.removeChild(inputsContainer);
+	if (inputsContainer != null) {
+		container.removeChild(inputsContainer);
+	}
+	
+	var renderButton = document.getElementById("button-" + group);
+	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderButton.innerHTML = getLabelForRenderButton(group, true);
 }
 
 function getLabelForInputGroup(group) {
