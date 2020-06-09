@@ -351,7 +351,7 @@ function writeSituation(base, situation) {
 			break;
 		case 3:
 			if (situation.startsWith("A")) {
-				ctx.fillText(window.batter, w2 * 0.5 + 15 + hOffset, h2 * 0.5 + 25 + vOffset);
+				ctx.fillText(window.batter, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.startsWith("3B")) {
 				drawHitSymbol(3);
 				if (situation.substring(2).length > 1) {
