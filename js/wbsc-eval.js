@@ -343,3 +343,18 @@ function getInput(group) {
 	
 	return values;
 }
+
+function attachValidation(input, validation) {
+	
+	if (input != "") {
+		input += "\n";
+	}
+	
+	if (validation != "") {
+		input += "- ";
+	}
+	
+	input += validation;
+	
+	return input;
+}

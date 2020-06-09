@@ -2,6 +2,7 @@ function init() {
 	window.canvas = document.getElementById("canvas");
 	window.ctx = canvas.getContext("2d");
 	
+	window.vOffset = 0;
 	window.w = canvas.width;
 	window.h = canvas.height;
 	window.w2 = w / 2;
