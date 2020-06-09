@@ -32,14 +32,17 @@ function renderAction() {
         window.batter = playersInvolved;
 		window.vOffset = 0;
 		if (r3Input != null) {
+			r3Input[input_origBase] = 3;
 			drawAction(r3Input, null);
 			window.vOffset += h - 8;
 		}
 		if (r2Input != null) {
+			r2Input[input_origBase] = 2;
 			drawAction(r2Input, null);
 			window.vOffset += h - 8;
 		}
 		if (r1Input != null) {
+			r1Input[input_origBase] = 1;
 			drawAction(r1Input, null);
 			window.vOffset += h - 8;
 		}
@@ -54,6 +57,10 @@ function renderAction() {
 
 function drawAction(mainInput, extraInput) {
 	drawBackground();
+	
+	if (mainInput[input_origBase] != null) {
+		writeSituation(mainInput[input_origBase], "*");
+	}
 	
 	var outcome = "advance";
 	var base =  parseInt(mainInput[input_base]);
@@ -245,8 +252,13 @@ function drawConnector(base1, base2) {
 }
 
 function writeSituation(base, situation) {
-	ctx.fillStyle = "black";
 	ctx.textAlign = "center";
+	
+	if (situation == "*") {
+		ctx.fillStyle = "red";
+	} else {
+		ctx.fillStyle = "black";
+	}
 	
 	ctx.font = "bold 48px Verdana";
 	var offset = 20;
