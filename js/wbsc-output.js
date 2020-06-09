@@ -28,7 +28,8 @@ function renderAction() {
 	}
 	
 	if (validation == "") {
-		window.canvas.height = playersInvolved * h - ((playersInvolved - 1) * 8);		
+		window.canvas.height = playersInvolved * h - ((playersInvolved - 1) * 8);
+        window.batter = playersInvolved;
 		window.vOffset = 0;
 		if (r3Input != null) {
 			drawAction(r3Input, null);
@@ -55,7 +56,7 @@ function drawAction(mainInput, extraInput) {
 	drawBackground();
 	
 	var outcome = "advance";
-	var base = 0;
+	var base =  parseInt(mainInput[input_base]);
 	switch (mainInput[input_spec_action]) {
 		case "EDF":
 			base = 0;
@@ -96,6 +97,9 @@ function drawAction(mainInput, extraInput) {
 		case "IBB":
 		case "HP":
 			base = 1;
+			playersValue = "";
+			break;
+		case "A":
 			playersValue = "";
 			break;
 	}
@@ -272,7 +276,9 @@ function writeSituation(base, situation) {
 			}
 			break;
 		case 1:
-			if (situation.startsWith("1B")) {
+			if (situation.startsWith("A")) {
+				ctx.fillText(window.batter, w2 * 1.5 + 12, h2 * 1.5 + 25 + vOffset);
+			} else if (situation.startsWith("1B")) {
 				drawHitSymbol(1);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 35px Verdana";
@@ -299,7 +305,9 @@ function writeSituation(base, situation) {
 			}
 			break;
 		case 2:
-			if (situation.startsWith("2B")) {
+			if (situation.startsWith("A")) {
+				ctx.fillText(window.batter, w2 * 1.5, h2 * 0.5 + offset + vOffset);
+			} else if (situation.startsWith("2B")) {
 				drawHitSymbol(2);
 				if (situation.startsWith("2BG")) {
 					ctx.font = "bold 35px Verdana";
@@ -319,7 +327,9 @@ function writeSituation(base, situation) {
 			}
 			break;
 		case 3:
-			if (situation.startsWith("3B")) {
+			if (situation.startsWith("A")) {
+				ctx.fillText(window.batter, w2 * 0.5 + 15, h2 * 0.5 + 25 + vOffset);
+			} else if (situation.startsWith("3B")) {
 				drawHitSymbol(3);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 40px Verdana";
@@ -334,7 +344,9 @@ function writeSituation(base, situation) {
 			}
 			break;
 		case 4:
-		    if (situation.match(/O\d+/)) {
+		    if (situation.startsWith("A")) {
+				ctx.fillText(window.batter, w2 * 0.5, h2 * 1.5 + offset + vOffset);
+			} else if (situation.match(/O\d+/)) {
 			    ctx.font = "bold 48px Verdana";
 				offset = 18;
 				ctx.fillText(situation.substring(1), w2 * 0.5, h2 * 1.5 + offset + vOffset);

@@ -97,7 +97,7 @@ function showInputs(group) {
 		inputsContainer.appendChild(document.createElement("br"));
 	}
 	
-	if (group == input_r1 || group == input_r2 || group == input_r3) {
+	if (group != input_b) {
 		renderBaseSelection(group);
 	}
 	
@@ -111,7 +111,19 @@ function showInputs(group) {
 	baseActionSelect.addEventListener('click', function(){
 		changeBaseAction(group);
 	});
-	baseActionSelect.innerHTML = renderBatterActionOptions();
+	switch (group) {
+		case input_b:
+			baseActionSelect.innerHTML = renderBatterActionOptions();
+			break;
+		case input_br:
+			baseActionSelect.innerHTML = renderBatterRunnerActionOptions();
+			break;
+		case input_r1:
+		case input_r2:
+		case input_r3:
+			baseActionSelect.innerHTML = renderRunnerActionOptions();
+			break;
+	}
 	inputsContainer.appendChild(baseActionSelect);
 	
 	var specificActionSelect = document.createElement("select");
@@ -197,6 +209,7 @@ function renderBaseSelection(group) {
 	inputsContainer.appendChild(baseLabel);
 	
 	switch (group) {
+		case input_br:
 		case input_r1:
 			baseSelect.innerHTML = renderBaseOptions(1);
 			break;
@@ -289,6 +302,7 @@ function unRenderPosSelectItem(group) {
 
 function renderPlayerOptions() {
 	var options = [];
+	options.push('<option value=""></option>');
 	options.push('<option value="1">P</option>');
 	options.push('<option value="2">C</option>');
 	options.push('<option value="3">1B</option>');
@@ -345,6 +359,11 @@ function renderBatterActionOptions() {
 	options.push('<option value="Error">Error</option>');
 	options.push('<option value="Advance">Advance to 1st</option>');
 	return options;
+}
+
+function renderBatterRunnerActionOptions() {
+	// TODO some options (like SB, WP, PB) won't be available
+	return renderRunnerActionOptions();
 }
 
 function renderRunnerActionOptions() {

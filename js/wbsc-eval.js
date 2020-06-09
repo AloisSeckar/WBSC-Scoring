@@ -78,7 +78,8 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="IBB">Intentional base on balls</option>');
 			actionOptions.push('<option value="HP">Hit by pitch</option>');
 			break;
-			
+		default:
+	        specificActionDisabled = true;	
 	}
 	
 	var specificAction = document.getElementById(input_b + input_spec_action);
@@ -184,21 +185,25 @@ function changeBatterSpecificAction() {
 
 function changeBrBaseAction() {
 	var actionOptions = [];
+	var specificActionDisabled = false;
 
 	var brAction = document.getElementById(input_br + input_base_action);
 	switch (brAction.value) {
 		case "safe":
-			actionOptions.push('<option value="T">Advanced on the throw</option>');
-			actionOptions.push('<option value="E">Advanced on decisive error</option>');
-			actionOptions.push('<option value="e">Advanced on extra-base error</option>');
+			actionOptions.push('<option value="T">On the throw</option>');
+			actionOptions.push('<option value="E">Decisive error</option>');
+			actionOptions.push('<option value="e">Extra-base error</option>');
 			break;
 		case "out":
 			actionOptions.push('<option value="O">Tagged out</option>');
 			break;
+		default:
+			specificActionDisabled = true;
 	}
 	
 	var brSpecificAction = document.getElementById(input_br + input_spec_action);
 	brSpecificAction.innerHTML = actionOptions;
+	brSpecificAction.disabled = specificActionDisabled;
 	
 	changeBrSpecificAction();
 }
@@ -210,22 +215,18 @@ function changeBrSpecificAction() {
 	var brSpecificAction = document.getElementById(input_br + input_spec_action);
 	var brSpecificActionValue = brSpecificAction.value;
 	switch (brSpecificActionValue) {
-		case "e":
-			allowedPosItems = 2;
-			break;
 		case "T":
 			allowedPosItems = 2;
 			throwing = true;
 			break;
 	    case "E":
+		case "e":
 	    case "O":
 			// no adjustments
 			break;
 	}
 	
-	brSpecificAction.disabled = false;
-	
-	var groupID = group + input_position;
+	var groupID = input_br + input_position;
 	var addItemButton = document.getElementById(groupID + input_add);
 	var removeItemButton = document.getElementById(groupID + input_remove);
 	if (allowedPosItems < 5) {
@@ -266,26 +267,29 @@ function changeBrSpecificAction() {
 
 function changeRunnerBaseResult(group) {
 	var actionOptions = [];
+	var specificActionDisabled = false;
 	
 	var runnerBaseAction = document.getElementById(group + input_base_action);
-	var runnerSpecificAction = document.getElementById(group + input_spec_action);
-
 	switch (runnerBaseAction.value) {
 		case "safe":
 			actionOptions.push('<option value="A">Advanced by batter</option>');
-			actionOptions.push('<option value="E">Advanced on decisive error</option>');
-			actionOptions.push('<option value="e">Advanced on extra-base error</option>');
+			actionOptions.push('<option value="E">Decisive error</option>');
+			actionOptions.push('<option value="e">Extra-base error</option>');
 			break;
 		case "out":
 			actionOptions.push('<option value="O">Tagged out</option>');
 			break;
+	    default:
+			specificActionDisabled = true;
 	}
 	
+	var runnerSpecificAction = document.getElementById(group + input_spec_action);
 	runnerSpecificAction.innerHTML = actionOptions;
+	runnerSpecificAction.disabled = specificActionDisabled;
 }
 
 function getBaseSelection(group) {
-	var base = "";
+	var base = "0";
 	
 	var baseSelect = document.getElementById(group + input_base);
 	if (baseSelect != null) {
