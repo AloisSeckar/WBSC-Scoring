@@ -41,6 +41,16 @@ function changeBatterBaseAction() {
 		case "StrikeOut":
 			actionOptions.push('<option value="KS">Swinging</option>');
 			actionOptions.push('<option value="KL">Looking</option>');
+			actionOptions.push('<option value="KSO">Swinging with tag/throw out</option>');
+			actionOptions.push('<option value="KSET">Swinging with throwing error</option>');
+			actionOptions.push('<option value="KSEM">Swinging with muffled throw error</option>');
+			actionOptions.push('<option value="KSWP">Swinging with wild pitch</option>');
+			actionOptions.push('<option value="KSPB">Swinging with passed ball</option>');
+			actionOptions.push('<option value="KLO">Looking with tag/throw out</option>');
+			actionOptions.push('<option value="KLET">Looking with throwing error</option>');
+			actionOptions.push('<option value="KLEM">Looking with muffled throw error</option>');
+			actionOptions.push('<option value="KLWP">Looking with wild pitch</option>');
+			actionOptions.push('<option value="KLPB">Looking with passed ball</option>');
 			break;
 		case "GroundOut":
 			actionOptions.push('<option value="GO">Ground out</option>');
@@ -104,6 +114,12 @@ function changeBatterSpecificAction() {
 	    case "BB":
 	    case "IBB":
 	    case "HP":
+	    case "KS":
+	    case "KSWP":
+	    case "KSPB":
+	    case "KL":
+	    case "KLWP":
+	    case "KLPB":
 			allowedPosItems = 0;
 			break;
 		case "1B":
@@ -116,7 +132,11 @@ function changeBatterSpecificAction() {
 			allowedPosItems = 1;
 			break;
 		case "O":
+		case "EF":
+		case "ED":
 		case "EDF":
+		case "KSET":
+		case "KLET":
 			allowedPosItems = 1;
 			break;
 		case "GO":
@@ -126,22 +146,20 @@ function changeBatterSpecificAction() {
 		case "FF":
 		case "FP":
 		case "FL":
-		case "EF":
 		case "ET":
 		case "EM":
-		case "ED":
 			// no adjustments
 			break;
 	}
 	
 	var groupID = input_b + input_position;
+	var container = document.getElementById(groupID);
 	var addItemButton = document.getElementById(groupID + input_add);
 	var removeItemButton = document.getElementById(groupID + input_remove);
 	if (allowedPosItems < 5) {
 		addItemButton.disabled = true;
 		removeItemButton.disabled = true;
 		
-		var container = document.getElementById(groupID);
 		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	    while (itemsCreated != allowedPosItems) {
 			if (itemsCreated > allowedPosItems) {
@@ -174,6 +192,12 @@ function changeBatterSpecificAction() {
 		var posItem1 = document.getElementById(groupID + "1");
 		if (posItem1 != null) {
 			posItem1.innerHTML = renderPlayerOptions();
+		} else {
+			var posItem1 = document.createElement("select");
+			posItem1.setAttribute('id', groupID + "1");
+			posItem1.setAttribute('class', class_wbsc_pos);
+			posItem1.innerHTML = renderPlayerOptions();		
+			container.insertBefore(posItem1, addItemButton);
 		}
 		
 		var posItem2 = document.getElementById(groupID + "2");

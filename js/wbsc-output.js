@@ -71,7 +71,9 @@ function drawAction(battingOrder, mainInput, extraInput) {
 			base = 0;
 			break;
 		case "KS":
+		case "KSO":
 		case "KL":
+		case "KLO":
 		case "GO":
 		case "GOU":
 		case "F":
@@ -90,6 +92,14 @@ function drawAction(battingOrder, mainInput, extraInput) {
 		case "ED":
 		case "O":
 		case "FC":
+		case "KSET":
+		case "KSEM":
+		case "KSWP":
+		case "KSPB":
+		case "KLET":
+		case "KLEM":
+		case "KLWP":
+		case "KLPB":
 			base = 1;
 			break;
 		case "2B":
@@ -280,17 +290,21 @@ function writeSituation(base, situation) {
 				esituation = "E" + situation.substring(3) + " DF";
 				ctx.font = "bold 20px Verdana";
 				ctx.fillText(esituation, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset);
+			} else if (situation.startsWith("KSO") || situation.startsWith("KLO")) {
+				ksituation1 = situation.substring(0,2);
+				ctx.font = "bold 80px Verdana";
+				offset = -10;
+				ctx.fillText(ksituation1, w2 + hOffset, h2 + offset + vOffset);
+				ksituation2 = situation.substring(3);
+				offset = 70;
+				ctx.fillText(ksituation2, w2 + hOffset, h2 + offset + vOffset);
 			} else {
 				if (situation.startsWith("GO")) {
-					if (situation.startsWith("GOU")) {
-						situation = situation.substring(3);
-					} else {
-						situation = situation.substring(2);
-					}
+					situation = situation.substring(2);
 				}
 				if (situation.length < 3) {
-					ctx.font = "bold 120px Verdana";
-					offset = 46
+					ctx.font = "bold 110px Verdana";
+					offset = 42
 				} else {
 					ctx.font = "bold 90px Verdana";
 					offset = 33;
@@ -301,6 +315,23 @@ function writeSituation(base, situation) {
 		case 1:
 			if (situation.startsWith("A")) {
 				ctx.fillText(window.batter, w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
+		    } else if (situation.startsWith("K")) {
+				ksituation1 = situation.substring(0,2);
+				ctx.font = "bold 45px Verdana";
+				offset = -5;
+				ctx.fillText(ksituation1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+				ksituation2 = situation.substring(2);
+				if (ksituation2.startsWith("ET")) {
+					ksituation2 = "E" + ksituation2.substring(2);
+				} else if (ksituation2.startsWith("EM")) {
+					if (ksituation2.length > 2) {
+						ksituation2 = ksituation2.substring(2, ksituation2.length - 1) + "E" + ksituation2.substring(ksituation2.length - 1);
+					} else {
+						ksituation2 = "E";
+					}
+				}
+				offset = 40;
+				ctx.fillText(ksituation2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.startsWith("1B")) {
 				drawHitSymbol(1);
 				if (situation.substring(2).length > 1) {
