@@ -1,32 +1,16 @@
 function changeBaseAction(group) {
-	switch (group) {
-		case input_b:
-			changeBatterBaseAction();
-			break;
-		case input_br:
-			changeBrBaseAction();
-			break;
-		case input_r1:
-		case input_r2:
-		case input_r3:
-			changeRunnerBaseResult(group);
-			break;
+	if (group == input_b) {
+		changeBatterBaseAction();
+	} else {
+		changeRunnerBaseAction(group);
 	}
 }
 
 function changeSpecificAction(group) {
-	switch (group) {
-		case input_b:
-			changeBatterSpecificAction();
-			break;
-		case input_br:
-			changeBrSpecificAction();
-			break;
-		case input_r1:
-		case input_r2:
-		case input_r3:
-			// NOTHING YET
-			break;
+	if (group == input_b) {
+		changeBatterSpecificAction();
+	} else {
+		changeRunnerSpecificAction(group);
 	}
 }
 
@@ -207,57 +191,90 @@ function changeBatterSpecificAction() {
 	}
 }
 
-function changeBrBaseAction() {
+function changeRunnerBaseAction(group) {
 	var actionOptions = [];
 	var specificActionDisabled = false;
-
-	var brAction = document.getElementById(input_br + input_base_action);
-	switch (brAction.value) {
-		case "safe":
+	
+	var runnerBaseAction = document.getElementById(group + input_base_action);
+	switch (runnerBaseAction.value) {
+		case "adv":
+			actionOptions.push('<option value="A">Advanced by batter</option>');
+			specificActionDisabled = true;
+			break;
+		case "exb":	
+			actionOptions.push('<option value="WP">Wild pitch</option>');
+			actionOptions.push('<option value="PB">Passed ball</option>');
+			break;
+		case "ste":	
+			actionOptions.push('<option value="SB">Stolen base</option>');
+			actionOptions.push('<option value="CS">Caught stealing - out</option>');
+			actionOptions.push('<option value="CSE">Caught stealing - error</option>');
+			break;
+		case "fdc":
 			actionOptions.push('<option value="T">On the throw</option>');
-			actionOptions.push('<option value="E">Decisive error</option>');
-			actionOptions.push('<option value="e">Extra-base error</option>');
+			actionOptions.push('<option value="IN">Indifference</option>');
+			break;
+		case "err":
+			actionOptions.push('<option value="EF">Decessive fielding</option>');
+			actionOptions.push('<option value="ET">Decessive throwing</option>');
+			actionOptions.push('<option value="EM">Decessive muffled throw</option>');
+			actionOptions.push('<option value="eF">Extra base fielding</option>');
+			actionOptions.push('<option value="eT">Extra base throwing</option>');
 			break;
 		case "out":
-			actionOptions.push('<option value="TO">Tagged out</option>');
+			actionOptions.push('<option value="GO">Out</option>');
+			specificActionDisabled = true;
 			break;
-		default:
+	    default:
 			specificActionDisabled = true;
 	}
 	
-	var brSpecificAction = document.getElementById(input_br + input_spec_action);
-	brSpecificAction.innerHTML = actionOptions;
-	brSpecificAction.disabled = specificActionDisabled;
+	var runnerSpecificAction = document.getElementById(group + input_spec_action);
+	runnerSpecificAction.innerHTML = actionOptions;
+	runnerSpecificAction.disabled = specificActionDisabled;
 	
-	changeBrSpecificAction();
+	changeRunnerSpecificAction(group);
 }
 
-function changeBrSpecificAction() {
+function changeRunnerSpecificAction(group) {
 	var throwing = false;
 	var allowedPosItems = 5;
 	
-	var brSpecificAction = document.getElementById(input_br + input_spec_action);
-	var brSpecificActionValue = brSpecificAction.value;
-	switch (brSpecificActionValue) {
+	var runnerSpecificAction = document.getElementById(group + input_spec_action);
+	var runnerSpecificActionValue = runnerSpecificAction.value;
+	switch (runnerSpecificActionValue) {
+		case "A":
+		case "WP":
+		case "PB":
+			allowedPosItems = 0;
+			break;
+		case "IN":
+		case "EF":
+		case "eF":
+			allowedPosItems = 1;
+			break;
 		case "T":
 			allowedPosItems = 2;
 			throwing = true;
 			break;
-	    case "E":
-		case "e":
-	    case "O":
+	    case "CSE":
+	    case "CS":
+	    case "ET":
+	    case "EM":
+	    case "eT":
+	    case "GO":
 			// no adjustments
 			break;
 	}
 	
-	var groupID = input_br + input_position;
+	var groupID = group + input_position;
+	var container = document.getElementById(groupID);
 	var addItemButton = document.getElementById(groupID + input_add);
 	var removeItemButton = document.getElementById(groupID + input_remove);
 	if (allowedPosItems < 5) {
 		addItemButton.disabled = true;
 		removeItemButton.disabled = true;
 		
-		var container = document.getElementById(groupID);
 		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	    while (itemsCreated != allowedPosItems) {
 			if (itemsCreated > allowedPosItems) {
@@ -282,41 +299,20 @@ function changeBrSpecificAction() {
 		addItemButton.disabled = false;
 		removeItemButton.disabled = false;
 		
+		var posItem1 = document.getElementById(groupID + "1");
+		if (posItem1 == null) {
+			var posItem1 = document.createElement("select");
+			posItem1.setAttribute('id', groupID + "1");
+			posItem1.setAttribute('class', class_wbsc_pos);
+			posItem1.innerHTML = renderPlayerOptions();		
+			container.insertBefore(posItem1, addItemButton);
+		}
+		
 		var posItem2 = document.getElementById(groupID + "2");
 		if (posItem2 != null) {
 			posItem2.innerHTML = renderPlayerOptions();
 		}
 	}
-}
-
-function changeRunnerBaseResult(group) {
-	var actionOptions = [];
-	var specificActionDisabled = false;
-	
-	var runnerBaseAction = document.getElementById(group + input_base_action);
-	switch (runnerBaseAction.value) {
-		case "safe":
-			actionOptions.push('<option value="A">Advanced by batter</option>');
-			actionOptions.push('<option value="E">Decisive error</option>');
-			actionOptions.push('<option value="e">Extra-base error</option>');
-			break;
-		case "out":
-			actionOptions.push('<option value="TO">Tagged out</option>');
-			actionOptions.push('<option value="FO">Forced out</option>');
-			break;
-	    default:
-			specificActionDisabled = true;
-	}
-	
-	var runnerSpecificAction = document.getElementById(group + input_spec_action);
-	runnerSpecificAction.innerHTML = actionOptions;
-	runnerSpecificAction.disabled = specificActionDisabled;
-	
-	var groupID = group + input_position;
-	var addItemButton = document.getElementById(groupID + input_add);
-	var removeItemButton = document.getElementById(groupID + input_remove);
-	addItemButton.disabled = false;
-	removeItemButton.disabled = false;
 }
 
 function getBaseSelection(group) {
