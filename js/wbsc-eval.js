@@ -354,7 +354,7 @@ function checkPosSelection(selection) {
 	var validation = "";
 	
 	if (selection.length == 2) {
-		if (selection.substr(0,1) == selection.substr(1)) {
+		if (selection != "LL" && selection.substr(0,1) == selection.substr(1)) {
 			validation = "A player cannot assist directly to self";
 		}
 	} else if (selection.length > 2) {
