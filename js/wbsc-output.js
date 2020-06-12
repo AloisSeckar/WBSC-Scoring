@@ -119,6 +119,15 @@ function drawAction(battingOrder, mainInput, extraInput) {
 			base = 1;
 			mainInput[input_position] = "";
 			break;
+	    case "bb":
+	    case "ibb":
+	    case "hp":
+		case "WP":
+		case "PB":
+		case "BK":
+		case "IP":
+			mainInput[input_position] = window.batter;
+			break;
 		case "A":
 			mainInput[input_position] = "";
 			break;
@@ -281,7 +290,7 @@ function writeSituation(base, situation) {
 		ctx.fillStyle = "black";
 	}
 	
-	ctx.font = "bold 48px Verdana";
+	ctx.font = "bold 45px Verdana";
 	var offset = 20;
 	
 	switch (base) {
@@ -377,6 +386,10 @@ function writeSituation(base, situation) {
 			    ctx.font = "bold 56px Verdana";
 				ctx.fillText(situation.substring(1), w2 * 0.7 + hOffset, h2 - offset + vOffset);
 			} else {
+				if (situation.length > 2) {
+					ctx.font = "bold 40px Verdana";
+					offset = 18;
+				} 
 				ctx.fillText(situation, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			}
 			break;
@@ -394,6 +407,10 @@ function writeSituation(base, situation) {
 				offset = 18;
 				ctx.fillText(situation.substring(1), w2 * 0.5 + hOffset, h2 + offset + vOffset);
 			} else {
+				if (situation.length > 2) {
+					ctx.font = "bold 40px Verdana";
+					offset = 18;
+				} 
 				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			}
 			break;
@@ -404,7 +421,7 @@ function writeSituation(base, situation) {
 			    ctx.font = "bold 48px Verdana";
 				offset = 18;
 				ctx.fillText(situation.substring(1), w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else if (situation.length > 3) {
+			} else if (situation.startsWith("HR")) {
 				if (situation.startsWith("HRI")) {
 					ipr = "I";
 					situation = "HR" + situation.substring(3);
@@ -424,6 +441,10 @@ function writeSituation(base, situation) {
 				ctx.fillText(ipr + "HR", lOffset + hOffset, h2 * 1.5 - 5 + vOffset);
 				ctx.fillText(situation.substring(2), lOffset + hOffset, h2 * 1.5 + 40 + vOffset);
 			} else {
+				if (situation.length > 2) {
+					ctx.font = "bold 40px Verdana";
+					offset = 18;
+				} 
 				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			}
 			break;

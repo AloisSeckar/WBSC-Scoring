@@ -201,9 +201,16 @@ function changeRunnerBaseAction(group) {
 			actionOptions.push('<option value="A">Advanced by batter</option>');
 			specificActionDisabled = true;
 			break;
+		case "exbb":	
+			actionOptions.push('<option value="bb">Base on balls</option>');
+			actionOptions.push('<option value="ibb">Intentional base on balls</option>');
+			actionOptions.push('<option value="hp">Hit by pitch</option>');
+			break;
 		case "exb":	
 			actionOptions.push('<option value="WP">Wild pitch</option>');
 			actionOptions.push('<option value="PB">Passed ball</option>');
+			actionOptions.push('<option value="BK">Balk</option>');
+			actionOptions.push('<option value="IP">Illegal pitch</option>');
 			break;
 		case "ste":	
 			actionOptions.push('<option value="SB">Stolen base</option>');
@@ -244,8 +251,13 @@ function changeRunnerSpecificAction(group) {
 	var runnerSpecificActionValue = runnerSpecificAction.value;
 	switch (runnerSpecificActionValue) {
 		case "A":
+	    case "bb":
+	    case "ibb":
+	    case "hp":
 		case "WP":
 		case "PB":
+		case "BK":
+		case "IP":
 			allowedPosItems = 0;
 			break;
 		case "IN":
