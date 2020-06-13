@@ -333,7 +333,7 @@ function changeRunnerSpecificAction(group) {
 }
 
 function getBaseSelection(group) {
-	var base = "0";
+	var base = "1";
 	
 	var baseSelect = document.getElementById(group + input_base);
 	if (baseSelect != null) {

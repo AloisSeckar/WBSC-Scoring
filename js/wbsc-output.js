@@ -86,10 +86,6 @@ function drawAction(battingOrder, mainInput, extraInput) {
 			base = 0;
 			break;
 		case "1B":
-		case "EF":
-		case "ET":
-		case "EM":
-		case "ED":
 		case "O":
 		case "FC":
 		case "KSET":
@@ -139,6 +135,12 @@ function drawAction(battingOrder, mainInput, extraInput) {
 			break;
 		case "CSO":
 			outcome = "out";
+			break;
+		case "EF":
+		case "ET":
+		case "EM":
+		case "ED":
+			// np adjustment
 			break;
 	}
 	
@@ -352,16 +354,18 @@ function writeSituation(base, situation) {
 				}
 				ctx.fillText(situation.substring(2), w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
 			} else if (situation.startsWith("E")) {
-				if (situation.startsWith("EM")) {
-					esituation = situation.substring(2, 3) + "E" + situation.substring(3);
-				} else if (situation.startsWith("EF")) {
-					esituation = "E" + situation.substring(2);
-					ctx.font = "bold 56px Verdana";
-					offset = 25;
-				} else if (situation.startsWith("ED")) {
-					esituation = "E" + situation.substring(2) + "F";
+				if (situation.length > 3) {
+					esituation = situation.substring(2, situation.length - 1) + "E" +  situation.substring(situation.length - 1);
 				} else {
-					esituation = "E" + situation.substring(2) + situation.substring(1, 2);
+					esituation = "E" + situation.substring(2);
+				}
+				switch (situation[1]) {
+					case "T":
+						esituation += "T";
+						break;
+					case "D":
+						esituation += "F";
+						break;
 				}
 				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else {
@@ -422,6 +426,21 @@ function writeSituation(base, situation) {
 				ctx.fillText("CS", w2 * 0.7 + hOffset, h2 - offset + vOffset);
 				ctx.font = row2font;
 				ctx.fillText(csituation, w2 * 0.7 + hOffset, h2 + row2offset + vOffset);
+			} else if (situation.startsWith("E") || situation.startsWith("e")) {
+				if (situation.length > 3) {
+					esituation = situation.substring(2, situation.length - 1) + situation.substring(0,1) +  situation.substring(situation.length - 1);
+				} else {
+					esituation = situation.substring(0,1) + situation.substring(2);
+				}
+				switch (situation[1]) {
+					case "T":
+						esituation += "T";
+						break;
+					case "D":
+						esituation += "F";
+						break;
+				}
+				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
 			    ctx.font = "bold 56px Verdana";
 				ctx.fillText(situation.substring(1), w2 * 0.7 + hOffset, h2 - offset + vOffset);
@@ -478,6 +497,21 @@ function writeSituation(base, situation) {
 				ctx.fillText("CS", w2 * 0.5 + hOffset, h2 - offset + vOffset);
 				ctx.font = row2font;
 				ctx.fillText(csituation, w2 * 0.5 + hOffset, h2 + row2offset + vOffset);
+			} else if (situation.startsWith("E") || situation.startsWith("e")) {
+				if (situation.length > 3) {
+					esituation = situation.substring(2, situation.length - 1) + situation.substring(0,1) +  situation.substring(situation.length - 1);
+				} else {
+					esituation = situation.substring(0,1) + situation.substring(2);
+				}
+				switch (situation[1]) {
+					case "T":
+						esituation += "T";
+						break;
+					case "D":
+						esituation += "F";
+						break;
+				}
+				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
 			    ctx.font = "bold 48px Verdana";
 				offset = 18;
@@ -529,6 +563,21 @@ function writeSituation(base, situation) {
 				ctx.fillText("CS", w2 * 0.5 + hOffset, h2 * 1.5  - offset + vOffset);
 				ctx.font = row2font;
 				ctx.fillText(csituation, w2 * 0.5 + hOffset, h2 * 1.5 + row2offset + vOffset);
+			} else if (situation.startsWith("E") || situation.startsWith("e")) {
+				if (situation.length > 3) {
+					esituation = situation.substring(2, situation.length - 1) + situation.substring(0,1) +  situation.substring(situation.length - 1);
+				} else {
+					esituation = situation.substring(0,1) + situation.substring(2);
+				}
+				switch (situation[1]) {
+					case "T":
+						esituation += "T";
+						break;
+					case "D":
+						esituation += "F";
+						break;
+				}
+				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
 			    ctx.font = "bold 48px Verdana";
 				offset = 18;
