@@ -128,6 +128,9 @@ function drawAction(battingOrder, mainInput, extraInput) {
 			break;
 		case "GO":
 			outcome = "out";
+			if (base == 1) {
+				base = 0;
+			}
 			break;
 		case "CSO":
 			outcome = "out";
@@ -313,12 +316,15 @@ function writeSituation(base, situation) {
 				if (situation.startsWith("GO")) {
 					situation = situation.substring(2);
 				}
-				if (situation.length < 3) {
+				if (situation.length > 3) {
+					ctx.font = "bold 68px Verdana";
+					offset = 26;
+				} else if (situation.length > 2) {
+					ctx.font = "bold 90px Verdana";
+					offset = 34;
+				} else {
 					ctx.font = "bold 110px Verdana";
 					offset = 42
-				} else {
-					ctx.font = "bold 90px Verdana";
-					offset = 33;
 				}
 				ctx.fillText(situation, w2 + hOffset, h2 + offset + vOffset);
 			}
