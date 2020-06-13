@@ -337,7 +337,13 @@ function writeSituation(base, situation) {
 				if (situation.startsWith("GO")) {
 					situation = situation.substring(2);
 				}
-				if (situation.length > 3) {
+				if (situation.length > 5) {
+					ctx.font = "bold 45px Verdana";
+					offset = 16;
+				} else if (situation.length > 4) {
+					ctx.font = "bold 52px Verdana";
+					offset = 20;
+				} else if (situation.length > 3) {
 					ctx.font = "bold 68px Verdana";
 					offset = 26;
 				} else if (situation.length > 2) {
@@ -398,6 +404,16 @@ function writeSituation(base, situation) {
 					case "D":
 						esituation += "F";
 						break;
+				}
+				if (esituation.length > 5) {
+					ctx.font = "bold 24px Verdana";
+					offset = 12;
+				} else if (esituation.length > 4) {
+					ctx.font = "bold 30px Verdana";
+					offset = 16;
+				} else if (esituation.length > 3) {
+					ctx.font = "bold 38px Verdana";
+					offset = 18;
 				}
 				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else {
@@ -471,6 +487,16 @@ function writeSituation(base, situation) {
 					case "D":
 						esituation += "F";
 						break;
+				}
+				if (esituation.length > 5) {
+					ctx.font = "bold 24px Verdana";
+					offset = 12;
+				} else if (esituation.length > 4) {
+					ctx.font = "bold 30px Verdana";
+					offset = 16;
+				} else if (esituation.length > 3) {
+					ctx.font = "bold 38px Verdana";
+					offset = 18;
 				}
 				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
@@ -547,6 +573,16 @@ function writeSituation(base, situation) {
 						esituation += "F";
 						break;
 				}
+				if (esituation.length > 5) {
+					ctx.font = "bold 24px Verdana";
+					offset = 12;
+				} else if (esituation.length > 4) {
+					ctx.font = "bold 30px Verdana";
+					offset = 16;
+				} else if (esituation.length > 3) {
+					ctx.font = "bold 38px Verdana";
+					offset = 18;
+				}
 				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
 			    if (situation.length > 5) {
@@ -620,6 +656,16 @@ function writeSituation(base, situation) {
 					case "D":
 						esituation += "F";
 						break;
+				}
+				if (esituation.length > 5) {
+					ctx.font = "bold 24px Verdana";
+					offset = 12;
+				} else if (esituation.length > 4) {
+					ctx.font = "bold 30px Verdana";
+					offset = 16;
+				} else if (esituation.length > 3) {
+					ctx.font = "bold 38px Verdana";
+					offset = 18;
 				}
 				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
