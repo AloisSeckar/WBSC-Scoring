@@ -221,7 +221,7 @@ function changeRunnerBaseAction(group) {
 			break;
 		case "fdc":
 			actionOptions.push('<option value="T">On the throw</option>');
-			actionOptions.push('<option value="IN">Indifference</option>');
+			actionOptions.push('<option value="O/">Indifference</option>');
 			break;
 		case "err":
 			actionOptions.push('<option value="EF">Decessive fielding</option>');
@@ -263,7 +263,7 @@ function changeRunnerSpecificAction(group) {
 		case "SB":
 			allowedPosItems = 0;
 			break;
-		case "IN":
+		case "O/":
 		case "EF":
 		case "eF":
 			allowedPosItems = 1;
