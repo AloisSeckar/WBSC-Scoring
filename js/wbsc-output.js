@@ -74,8 +74,6 @@ function drawAction(battingOrder, mainInput, extraInput) {
 		case "KSO":
 		case "KL":
 		case "KLO":
-		case "GO":
-		case "GOU":
 		case "F":
 		case "P":
 		case "L":
@@ -128,10 +126,8 @@ function drawAction(battingOrder, mainInput, extraInput) {
 		case "A":
 			mainInput[input_position] = "";
 			break;
-		case "TO":
-		case "FO":
+		case "GO":
 			outcome = "out";
-			mainInput[input_spec_action] = "";
 			break;
 		case "CSO":
 			outcome = "out";
@@ -442,8 +438,12 @@ function writeSituation(base, situation) {
 				}
 				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
-			    ctx.font = "bold 56px Verdana";
-				ctx.fillText(situation.substring(1), w2 * 0.7 + hOffset, h2 - offset + vOffset);
+				if (situation.length > 5) {
+					ctx.font = "bold 45px Verdana";
+				} else {
+					ctx.font = "bold 56px Verdana";
+				}
+				ctx.fillText(situation.substring(2), w2 * 0.7 + hOffset, h2 - offset + vOffset);
 			} else {
 				if (situation.length > 2) {
 					ctx.font = "bold 40px Verdana";
@@ -513,9 +513,17 @@ function writeSituation(base, situation) {
 				}
 				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
-			    ctx.font = "bold 48px Verdana";
-				offset = 18;
-				ctx.fillText(situation.substring(1), w2 * 0.5 + hOffset, h2 + offset + vOffset);
+			    if (situation.length > 5) {
+					ctx.font = "bold 32px Verdana";
+					offset = 12;
+				} else if (situation.length > 4) {
+					ctx.font = "bold 40px Verdana";
+					offset = 14;
+				} else {
+					ctx.font = "bold 48px Verdana";
+					offset = 18;
+				}
+				ctx.fillText(situation.substring(2), w2 * 0.5 + hOffset, h2 + offset + vOffset);
 			} else {
 				if (situation.length > 2) {
 					ctx.font = "bold 40px Verdana";
@@ -579,9 +587,17 @@ function writeSituation(base, situation) {
 				}
 				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.match(/O\d+/)) {
-			    ctx.font = "bold 48px Verdana";
-				offset = 18;
-				ctx.fillText(situation.substring(1), w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
+			    if (situation.length > 5) {
+					ctx.font = "bold 32px Verdana";
+					offset = 12;
+				} else if (situation.length > 4) {
+					ctx.font = "bold 40px Verdana";
+					offset = 14;
+				} else {
+					ctx.font = "bold 48px Verdana";
+					offset = 18;
+				}
+				ctx.fillText(situation.substring(2), w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.startsWith("HR")) {
 				if (situation.startsWith("HRI")) {
 					ipr = "I";
