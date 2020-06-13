@@ -296,7 +296,7 @@ function renderPosSelectItem(group) {
 	var container = document.getElementById(group);
 	
 	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-	if (itemsCreated < 5) {
+	if (itemsCreated < 4) {
 		itemsCreated++;
 		var posItemN = document.createElement("select");
 		posItemN.setAttribute('id', group + itemsCreated);
@@ -306,7 +306,7 @@ function renderPosSelectItem(group) {
 		var addButton = document.getElementById(group + input_add);
 		container.insertBefore(posItemN, addButton);
 	} else {
-		alert("Currently only situations with up to 4 assists are supported");
+		alert("Currently only situations with up to 3 assists are supported");
 	}
 }
 

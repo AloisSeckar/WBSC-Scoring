@@ -17,7 +17,7 @@ Live demo (currently v0.4) available at [http://alois-seckar.cz/wbsc/](http://al
 - Only one additional play may be consecutively inserted for the batting runner
 - It is not possible to specify actions leading to runners appearing on bases
 - It is not possible to specify batting order of the batter and previous runners
-- Actions are limited to up to 4 assists (followed by an out or an error)
+- Actions are limited to up to 3 assists (followed by an out or an error)
 - No 10th player (additional outfielder) for slowpitch
 - Not covering possible Baseball5 features
 - Not covering substitutions and statistic outputs
