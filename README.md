@@ -1,17 +1,17 @@
 # WBSC Scoring
 Visualisation tool for WBSC scoring system
 
-Live demo (currently v0.4) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
+Live demo (currently v0.5) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
 
 ## TO-DO list (to be implemented in next few releases)
-- Rendering corrections and various bugfixing
-- Enhance rendering of Ks and BBs
-- Rendering runner-related situations such as SB/CS/WP/PBs
-- Rendering uncommon situations like out-by-rules
+- Sacrifice hits and flys
 - Consecutive actions for the runners
 - Input validations
 - Earned/unearned runs switchers
 - Double and Triple plays
+- "Same error" advances
+- Rendering uncommon situations like out-by-rules, LT and As
+- Responsive CSS design
 
 ## Limitations (not planned to be implemented soon)
 - Only one additional play may be consecutively inserted for the batting runner
@@ -23,6 +23,13 @@ Live demo (currently v0.4) available at [http://alois-seckar.cz/wbsc/](http://al
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 0.5 (2020-06-13)
+- Batting order (1-4) is now considered
+- New actions supported - Numerous strike out variants<, Extra base advances - BB, IBB, HP, WP, PB, O/, SB and CS situations, Various plays with errors
+- Rendering improved and corrected for currently supported actions
+- Due to rendering issues situations are now allowed only with 0-3 assists (followed by an out or an error)
+- Various bugfixes and corrections
 
 ### Version 0.4 (2020-06-09)
 - Inputs reworked using dynamic JavaScript for displaying and hidding input fields
