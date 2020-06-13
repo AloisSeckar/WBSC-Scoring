@@ -358,15 +358,19 @@ function getPosSelection(group) {
 function checkPosSelection(selection) {
 	var validation = "";
 	
-	if (selection.length == 2) {
-		if (selection != "LL" && selection.substr(0,1) == selection.substr(1)) {
+	if (selection.length > 1) {
+		if (!selection.endsWith("LL") && selection[selection.length - 2] == selection[selection.length - 1]) {
 			validation = "A player cannot assist directly to self";
 		}
-	} else if (selection.length > 2) {
+	}
+	if (selection.length > 2) {
 		var alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false];
 		for (var i = 0; i < selection.length - 1; i++) {
 			if (alreadyEncounteredPositions[selection.substr(i,1)] == true) {
-				validation = "A player cannot have more than 1 assist in a play";
+				if (validation != "") {
+					validation += "\n- ";
+				}
+				validation += "A player cannot have more than 1 assist in a play";
 				break;
 			}
 			alreadyEncounteredPositions[selection.substr(i,i+1)] = true;
