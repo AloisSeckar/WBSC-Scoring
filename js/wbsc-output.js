@@ -260,6 +260,7 @@ function drawConnector(base1, base2) {
 		
 		var gap = 16;
 		var length = 35;
+		var arc = 20;
 		
 		ctx.beginPath();
 		switch (base1) {
@@ -267,20 +268,28 @@ function drawConnector(base1, base2) {
 				ctx.moveTo(w - gap + hOffset, h2 + length + vOffset);
 				ctx.lineTo(w - gap + hOffset, h2 - length + vOffset);
 				if (base2 > 2) {
-					ctx.lineTo(w - gap + hOffset, gap + vOffset);
+					ctx.lineTo(w - gap + hOffset, gap + vOffset + arc);
+					ctx.moveTo(w - gap + hOffset - arc, gap + vOffset);
 					ctx.lineTo(w2 - length + hOffset, gap + vOffset);
+					ctx.arc(w - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5*Math.PI, 0);
 				}
 				if (base2 > 3) {
-					ctx.lineTo(gap + hOffset, gap + vOffset);
-					ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset);
+					ctx.moveTo(w2 - length + hOffset, gap + vOffset);
+					ctx.lineTo(gap + hOffset + arc, gap + vOffset);
+					ctx.moveTo(gap + hOffset, gap + vOffset + arc);
+					ctx.lineTo(gap + hOffset, h2 + length + vOffset);
+					ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5*Math.PI);
 				}
 				break;
 			case 2:
 				ctx.moveTo(w2 + length + hOffset, gap + vOffset);
 				ctx.lineTo(w2 - length + hOffset, gap + vOffset);
 				if (base2 > 3) {
-					ctx.lineTo(gap + hOffset, gap + vOffset);
-					ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset);
+					ctx.moveTo(w2 - length + hOffset, gap + vOffset);
+					ctx.lineTo(gap + hOffset + arc, gap + vOffset);
+					ctx.moveTo(gap + hOffset, gap + vOffset + arc);
+					ctx.lineTo(gap + hOffset, h2 + length + vOffset);
+					ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5*Math.PI);
 				}
 				break;
 			case 3:
