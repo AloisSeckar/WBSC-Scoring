@@ -323,7 +323,15 @@ function writeSituation(base, situation) {
 				offset = -10;
 				ctx.fillText(ksituation1, w2 + hOffset, h2 + offset + vOffset);
 				ksituation2 = situation.substring(3);
-				offset = 70;
+				if (ksituation2.length > 3) {
+					offset = 60;
+					ctx.font = "bold 60px Verdana";
+				} else if (ksituation2.length > 2) {
+					offset = 65;
+					ctx.font = "bold 72px Verdana";
+				} else {
+					offset = 70;
+				}
 				ctx.fillText(ksituation2, w2 + hOffset, h2 + offset + vOffset);
 			} else {
 				if (situation.startsWith("GO")) {
@@ -352,7 +360,7 @@ function writeSituation(base, situation) {
 				ctx.fillText(ksituation1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 				ksituation2 = situation.substring(2);
 				if (ksituation2.startsWith("ET")) {
-					ksituation2 = "E" + ksituation2.substring(2);
+					ksituation2 = "E" + ksituation2.substring(2) + "T";
 				} else if (ksituation2.startsWith("EM")) {
 					if (ksituation2.length > 2) {
 						ksituation2 = ksituation2.substring(2, ksituation2.length - 1) + "E" + ksituation2.substring(ksituation2.length - 1);
@@ -360,13 +368,22 @@ function writeSituation(base, situation) {
 						ksituation2 = "E";
 					}
 				}
-				offset = 40;
+				if (ksituation2.length > 4) {
+					ctx.font = "bold 28px Verdana";
+					offset = 36;
+				} else if (ksituation2.length > 3) {
+					ctx.font = "bold 36px Verdana";
+					offset = 38;
+				} else {
+					offset = 40
+				}
 				ctx.fillText(ksituation2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.startsWith("1B")) {
 				drawHitSymbol(1);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 35px Verdana";
 				}
+				
 				ctx.fillText(situation.substring(2), w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
 			} else if (situation.startsWith("E")) {
 				if (situation.length > 3) {

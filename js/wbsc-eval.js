@@ -115,14 +115,18 @@ function changeBatterSpecificAction() {
 			hit = true;
 			allowedPosItems = 1;
 			break;
+		case "KSET":
+		case "KLET":
 		case "O":
 		case "EF":
 		case "ED":
 		case "EDF":
-		case "KSET":
-		case "KLET":
 			allowedPosItems = 1;
 			break;
+		case "KSO":
+		case "KLO":
+		case "KSEM":
+		case "KLEM":
 		case "GO":
 		case "F":
 		case "P":
