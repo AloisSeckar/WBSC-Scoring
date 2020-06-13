@@ -148,12 +148,14 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 			break;
 	}
 	
-	if (pos.endsWith("X")) {
-		pos = pos.substring(0, pos.length - 1) + "4";
-	} else if (pos.endsWith("Y")) {
-		pos = pos.substring(0, pos.length - 1) + "5";
-	} else if (pos.endsWith("Z")) {
-		pos = pos.substring(0, pos.length - 1) + "2";
+	if (pos != null) {
+		if (pos[pos.length - 1] == "X") {
+			pos = pos.substring(0, pos.length - 1) + "4";
+		} else if (pos[pos.length - 1] == "Y") {
+			pos = pos.substring(0, pos.length - 1) + "5";
+		} else if (pos[pos.length - 1] == "Z") {
+			pos = pos.substring(0, pos.length - 1) + "2";
+		}
 	}
 	
 	if (outcome == "advance") {
