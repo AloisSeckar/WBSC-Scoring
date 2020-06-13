@@ -134,6 +134,8 @@ function changeBatterSpecificAction() {
 		case "EM":
 			// no adjustments
 			break;
+		default:
+			allowedPosItems = 1;
 	}
 	
 	var groupID = input_b + input_position;
@@ -214,7 +216,7 @@ function changeRunnerBaseAction(group) {
 			break;
 		case "ste":	
 			actionOptions.push('<option value="SB">Stolen base</option>');
-			actionOptions.push('<option value="CS">Caught stealing - out</option>');
+			actionOptions.push('<option value="CSO">Caught stealing - out</option>');
 			actionOptions.push('<option value="CSE">Caught stealing - error</option>');
 			break;
 		case "fdc":
@@ -258,6 +260,7 @@ function changeRunnerSpecificAction(group) {
 		case "PB":
 		case "BK":
 		case "IP":
+		case "SB":
 			allowedPosItems = 0;
 			break;
 		case "IN":
@@ -269,14 +272,16 @@ function changeRunnerSpecificAction(group) {
 			allowedPosItems = 2;
 			throwing = true;
 			break;
+	    case "CSO":
 	    case "CSE":
-	    case "CS":
 	    case "ET":
 	    case "EM":
 	    case "eT":
 	    case "GO":
 			// no adjustments
 			break;
+		default:
+			allowedPosItems = 1;
 	}
 	
 	var groupID = group + input_position;
