@@ -35,21 +35,21 @@ function renderAction() {
 		var displayed = 1;
 		if (r3Input != null) {
 			r3Input[input_origBase] = 3;
-			drawAction(displayed++, r3Input, null);
+			drawAction(displayed++, r3Input, null, true);
 			window.vOffset += h - 8;
 		}
 		if (r2Input != null) {
 			r2Input[input_origBase] = 2;
-			drawAction(displayed++, r2Input, null);
+			drawAction(displayed++, r2Input, null, true);
 			window.vOffset += h - 8;
 		}
 		if (r1Input != null) {
 			r1Input[input_origBase] = 1;
-			drawAction(displayed++, r1Input, null);
+			drawAction(displayed++, r1Input, null, true);
 			window.vOffset += h - 8;
 		}
 		if (bInput != null) {
-			drawAction(displayed++, bInput, brInput);
+			drawAction(displayed++, bInput, brInput, true);
 			window.vOffset += h - 8;
 		}
 	} else {
@@ -57,8 +57,10 @@ function renderAction() {
 	}
 }
 
-function drawAction(battingOrder, mainInput, extraInput) {
-	drawBackground(battingOrder);
+function drawAction(battingOrder, mainInput, extraInput, clear) {
+	if (clear) {
+		drawBackground(battingOrder);
+	}
 	
 	if (mainInput[input_origBase] != null) {
 		drawAdvance(mainInput[input_origBase], "*", "");
@@ -147,7 +149,7 @@ function drawAction(battingOrder, mainInput, extraInput) {
 		drawAdvance(base, mainInput[input_spec_action], mainInput[input_position]);
 	
 		if (extraInput != null) {
-			var extraBaseValue = parseInt(extraInput[input_base]);
+			/*var extraBaseValue = );
 			switch (extraInput[input_base_action]) {
 				case "safe":
 					drawAdvance(extraBaseValue, extraInput[input_spec_action], extraInput[input_position]);
@@ -155,9 +157,10 @@ function drawAction(battingOrder, mainInput, extraInput) {
 				case "out":
 					drawOut(extraBaseValue, extraInput[input_spec_action], extraInput[input_position]);
 					break;
-			}
+			}*/
+			drawAction(battingOrder, extraInput, null, false);
 			
-			drawConnector(base, extraBaseValue);
+			drawConnector(base, parseInt(extraInput[input_base]));
 		}
 	} else {
 		drawOut(base, mainInput[input_spec_action], mainInput[input_position]);
