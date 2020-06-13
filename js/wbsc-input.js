@@ -359,14 +359,25 @@ function renderFCLocationOptions() {
 
 function renderBaseOptions(base) {
 	var options = [];
-	options.push('<option value=""></option>');
 	if (base < 2) {
-		options.push('<option value="2">2nd</option>');
+		if (base == 1) {
+			options.push('<option value="2" selected>2nd</option>');
+		} else {
+			options.push('<option value="2">2nd</option>');
+		}
 	}
 	if (base < 3) {
-		options.push('<option value="3">3rd</option>');
+		if (base == 2) {
+			options.push('<option value="3" selected>3rd</option>');
+		} else {
+			options.push('<option value="3">3rd</option>');
+		}
 	}
-	options.push('<option value="4">Home</option>');
+	if (base == 3) {
+		options.push('<option value="4" selected>Home</option>');
+	} else {
+		options.push('<option value="4">Home</option>');
+	}
 	return options;
 }
 
