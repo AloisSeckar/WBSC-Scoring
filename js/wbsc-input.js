@@ -351,9 +351,9 @@ function renderHitLocationOptions() {
 
 function renderFCLocationOptions() {
 	var options = [];
-	options.push('<option value="4">2nd</option>');
-	options.push('<option value="5">3rd</option>');
-	options.push('<option value="2">HP</option>');
+	options.push('<option value="X">2nd</option>');
+	options.push('<option value="Y">3rd</option>');
+	options.push('<option value="Z">HP</option>');
 	return options;
 }
 

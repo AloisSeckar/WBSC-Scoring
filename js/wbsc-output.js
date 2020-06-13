@@ -66,9 +66,12 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		drawAdvance(mainInput[input_origBase], "*", "");
 	}
 	
-	var outcome = "advance";
 	var base = parseInt(mainInput[input_base]);
-	switch (mainInput[input_spec_action]) {
+	var action = mainInput[input_spec_action];
+	var pos = mainInput[input_position];
+	var outcome = "advance";
+	
+	switch (action) {
 		case "EDF":
 			base = 0;
 			break;
@@ -113,7 +116,7 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "IBB":
 		case "HP":
 			base = 1;
-			mainInput[input_position] = "";
+			pos = "";
 			break;
 	    case "bb":
 	    case "ibb":
@@ -123,10 +126,10 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "BK":
 		case "IP":
 		case "SB":
-			mainInput[input_position] = window.batter;
+			pos = window.batter;
 			break;
 		case "A":
-			mainInput[input_position] = "";
+			pos = "";
 			break;
 		case "GO":
 			outcome = "out";
@@ -145,25 +148,23 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 			break;
 	}
 	
-	if (outcome == "advance") {
-		drawAdvance(base, mainInput[input_spec_action], mainInput[input_position]);
+	if (pos.endsWith("X")) {
+		pos = pos.substring(0, pos.length - 1) + "4";
+	} else if (pos.endsWith("Y")) {
+		pos = pos.substring(0, pos.length - 1) + "5";
+	} else if (pos.endsWith("Z")) {
+		pos = pos.substring(0, pos.length - 1) + "2";
+	}
 	
+	if (outcome == "advance") {
+		drawAdvance(base, action, pos);
+		
 		if (extraInput != null) {
-			/*var extraBaseValue = );
-			switch (extraInput[input_base_action]) {
-				case "safe":
-					drawAdvance(extraBaseValue, extraInput[input_spec_action], extraInput[input_position]);
-					break;
-				case "out":
-					drawOut(extraBaseValue, extraInput[input_spec_action], extraInput[input_position]);
-					break;
-			}*/
 			drawAction(battingOrder, extraInput, null, false);
-			
 			drawConnector(base, parseInt(extraInput[input_base]));
 		}
 	} else {
-		drawOut(base, mainInput[input_spec_action], mainInput[input_position]);
+		drawOut(base, action, pos);
 	}
 }
 
