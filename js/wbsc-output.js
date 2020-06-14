@@ -214,12 +214,18 @@ function drawOut(base, situation, players) {
 			ctx.arc(h2 + hOffset, h2 + vOffset, h2 - 20, 0, 2 * Math.PI);
 			break;
 		case 2:
+			drawAdvanceLine(1);
+			ctx.moveTo(h2 - 38 + hOffset + h3 - 12, h2 - 38 + vOffset);
 			ctx.arc(h2 - 38 + hOffset, h2 - 38 + vOffset, h3 - 12, 0, 2 * Math.PI);
 			break;
 		case 3:
+			drawAdvanceLine(2);
+			ctx.moveTo(w4 + hOffset + h5, h2 + vOffset);
 			ctx.arc(w4 + hOffset, h2 + vOffset, h5, 0, 2 * Math.PI);
 			break;
 		case 4:
+			drawAdvanceLine(3);
+			ctx.moveTo(w4 + hOffset + h5, h4 * 3 + vOffset);
 			ctx.arc(w4 + hOffset, h4 * 3 + vOffset, h5, 0, 2 * Math.PI);
 			break;
 	}
@@ -230,6 +236,12 @@ function drawOut(base, situation, players) {
 }
 
 function drawAdvance(base, situation, players) {
+	drawAdvanceLine(base);
+	situationToWrite = situation + players;
+	writeSituation(base, situationToWrite);
+}
+
+function drawAdvanceLine(base) {
 	ctx.lineWidth = 8;
 	ctx.strokeStyle = 'black';
 	
@@ -248,9 +260,6 @@ function drawAdvance(base, situation, players) {
 		ctx.lineTo(w2 + 3 + hOffset, h - h3 + 3 + vOffset);
 	}
 	ctx.stroke();
-	
-	situationToWrite = situation + players;
-	writeSituation(base, situationToWrite);
 }
 
 function drawConnector(base1, base2) {
@@ -279,7 +288,7 @@ function drawConnector(base1, base2) {
 					ctx.moveTo(w2 - length + hOffset, gap + vOffset);
 					ctx.lineTo(gap + hOffset + arc, gap + vOffset);
 					ctx.moveTo(gap + hOffset, gap + vOffset + arc);
-					ctx.lineTo(gap + hOffset, h2 + length + vOffset);
+					ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset);
 					ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5*Math.PI);
 				}
 				break;
@@ -290,7 +299,7 @@ function drawConnector(base1, base2) {
 					ctx.moveTo(w2 - length + hOffset, gap + vOffset);
 					ctx.lineTo(gap + hOffset + arc, gap + vOffset);
 					ctx.moveTo(gap + hOffset, gap + vOffset + arc);
-					ctx.lineTo(gap + hOffset, h2 + length + vOffset);
+					ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset);
 					ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5*Math.PI);
 				}
 				break;
