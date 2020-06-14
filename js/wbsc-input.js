@@ -7,7 +7,9 @@ function renderActionButtons() {
 	generateButton.setAttribute('id', "generate-button");
 	generateButton.setAttribute('type', "button");
 	generateButton.setAttribute('class', "btn btn-primary wbsc-action-button");
-	generateButton.setAttribute('onclick', "renderAction()");
+	generateButton.addEventListener('click', function(){
+		renderAction();
+	});
 	generateButton.innerHTML = "Generate action";
 	actionButtonsContainer.appendChild(generateButton);
 	
@@ -65,7 +67,9 @@ function renderActionButtons() {
 	clearButton.setAttribute('id', "clear-button");
 	clearButton.setAttribute('type', "button");
 	clearButton.setAttribute('class', "btn btn-primary wbsc-clear-button");
-	clearButton.setAttribute('onclick', "clearInputs()");
+	clearButton.addEventListener('click', function(){
+		clearInputs();
+	});
 	clearButton.innerHTML = "Clear";
 	actionButtonsContainer.appendChild(clearButton);
 	
