@@ -94,13 +94,13 @@ function renderInputs(group) {
 	
 function showInputs(group) {
 	var container = document.getElementById(div_input);
-	var toolbar = document.getElementById(div_tools);
+	var hook = getProperLocationForInputs(group);
 	
 	var inputsContainer = document.createElement("div");
 	inputsContainer.setAttribute('id', group);
 	inputsContainer.setAttribute('class', class_wbsc);
 	
-	container.insertBefore(inputsContainer, toolbar);
+	container.insertBefore(inputsContainer, hook);
 	
 	if (group != input_br) {
 		var batterLabel = document.createElement("label");
@@ -165,6 +165,40 @@ function hideInputs(group) {
 	var renderButton = document.getElementById("button-" + group);
 	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
 	renderButton.innerHTML = getLabelForRenderButton(group, true);
+}
+
+function getProperLocationForInputs(group) {
+	var hook = document.getElementById(div_tools);
+	
+	var r1inputs = document.getElementById(input_r1);
+	var r2inputs = document.getElementById(input_r2);
+	var r3inputs = document.getElementById(input_r3);
+	
+	switch (group) {
+		case input_br:
+			if (r1inputs != null) {
+				hook = r1inputs;
+			} else if (r2inputs != null) {
+				hook = r2inputs;
+			} else if (r3inputs != null) {
+				hook = r3inputs;
+			}
+			break;
+		case input_r1:
+			if (r2inputs != null) {
+				hook = r2inputs;
+			} else if (r3inputs != null) {
+				hook = r3inputs;
+			}
+			break;
+		case input_r2:
+			if (r3inputs != null) {
+				hook = r3inputs;
+			}
+			break;
+	}
+	
+	return hook;
 }
 
 function getLabelForInputGroup(group) {
