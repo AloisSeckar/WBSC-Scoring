@@ -426,6 +426,7 @@ function renderBatterActionOptions() {
 	options.push('<option value="GroundOut">Ground out</option>');
 	options.push('<option value="FlyOut">Fly out</option>');
 	options.push('<option value="Hit">Hit</option>');
+	options.push('<option value="Sacrifice">Sacrifice</option>');
 	options.push('<option value="FC">Fielder\'s choice</option>');
 	options.push('<option value="Error">Error</option>');
 	options.push('<option value="Advance">Advance to 1st</option>');

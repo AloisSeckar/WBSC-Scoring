@@ -85,6 +85,9 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "FF":
 		case "FP":
 		case "FL":
+		case "SH":
+		case "SF":
+		case "FSF":
 			outcome = "out";
 			base = 0;
 			break;
@@ -99,6 +102,10 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "KLEM":
 		case "KLWP":
 		case "KLPB":
+		case "SHE":
+		case "SHFC":
+		case "SFE":
+		case "SFO":
 			base = 1;
 			break;
 		case "2B":
@@ -344,6 +351,26 @@ function writeSituation(base, situation) {
 					offset = 70;
 				}
 				ctx.fillText(ksituation2, w2 + hOffset, h2 + offset + vOffset);
+			} else if (situation.startsWith("SH")) {
+				ctx.font = "bold 75px Verdana";
+				offset = -10;
+				ctx.fillText("SH", w2 + hOffset, h2 + offset + vOffset);
+				if (situation.length > 5) {
+					ctx.font = "bold 58px Verdana";
+					offset = 60;
+				} else if (situation.length > 4) {
+					ctx.font = "bold 68px Verdana";
+					offset = 65;
+				} else {
+					offset = 70
+				}
+				ctx.fillText(situation.substring(2), w2 + hOffset, h2 + offset + vOffset);
+			} else if (situation.startsWith("FSF")) {
+				ctx.font = "bold 75px Verdana";
+				offset = -5;
+				ctx.fillText("FSF", w2 + hOffset, h2 + offset + vOffset);
+				offset = 75;
+				ctx.fillText(situation.substring(3), w2 + hOffset, h2 + offset + vOffset);
 			} else {
 				if (situation.startsWith("GO")) {
 					situation = situation.substring(2);
@@ -395,12 +422,30 @@ function writeSituation(base, situation) {
 					offset = 40
 				}
 				ctx.fillText(ksituation2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+			} else if (situation.startsWith("FC") || situation.startsWith("SH") || situation.startsWith("SF")) {
+				situation1 = situation.substring(0,2);
+				ctx.font = "bold 45px Verdana";
+				offset = -5;
+				ctx.fillText(situation1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+				situation2 = situation.substring(2);
+				if (situation2.startsWith("E") && situation2.length > 2) {
+					situation2 = situation.substring(3, situation.length - 1) + "E" +  situation.substring(situation.length - 1);
+				} 
+				if (situation2.length > 4) {
+					ctx.font = "bold 28px Verdana";
+					offset = 36;
+				} else if (situation2.length > 3) {
+					ctx.font = "bold 36px Verdana";
+					offset = 38;
+				} else {
+					offset = 40
+				}
+				ctx.fillText(situation2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.startsWith("1B")) {
 				drawHitSymbol(1);
 				if (situation.substring(2).length > 1) {
 					ctx.font = "bold 35px Verdana";
 				}
-				
 				ctx.fillText(situation.substring(2), w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
 			} else if (situation.startsWith("E")) {
 				if (situation.length > 3) {

@@ -56,6 +56,15 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="2BG">Double - ground rule</option>');
 			actionOptions.push('<option value="HRI">Homerun - inside the park</option>');
 			break;
+		case "Sacrifice":
+			actionOptions.push('<option value="SH">Sacrifice bunt</option>');
+			actionOptions.push('<option value="SHE">Sacrifice bunt with error</option>');
+			actionOptions.push('<option value="SHFC">Sacrifice bunt with FC</option>');
+			actionOptions.push('<option value="SF">Sacrifice fly</option>');
+			actionOptions.push('<option value="FSF">Sacrifice fly in foul territory</option>');
+			actionOptions.push('<option value="SFE">Sacrifice fly with error</option>');
+			actionOptions.push('<option value="SFO">Dropped sacrifice fly + forced out</option>');
+			break;
 		case "FC":
 			actionOptions.push('<option value="O">Occupied</option>');
 			actionOptions.push('<option value="FC">Fielder\'s choice</option>');
@@ -92,6 +101,7 @@ function changeBatterSpecificAction() {
 	var specificActionValue = specificAction.value;
 	switch (specificActionValue) {
 		case "FC":
+		case "SHFC":
 			fc = true;
 			allowedPosItems = 2;
 			break;
@@ -121,6 +131,9 @@ function changeBatterSpecificAction() {
 		case "EF":
 		case "ED":
 		case "EDF":
+		case "SF":
+		case "SFE":
+		case "FSF":
 			allowedPosItems = 1;
 			break;
 		case "KSO":
@@ -136,6 +149,8 @@ function changeBatterSpecificAction() {
 		case "FL":
 		case "ET":
 		case "EM":
+		case "SH":
+		case "SHE":
 			// no adjustments
 			break;
 		default:
