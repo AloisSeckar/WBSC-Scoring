@@ -85,6 +85,7 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "FF":
 		case "FP":
 		case "FL":
+		case "IF":
 		case "SH":
 		case "SF":
 		case "FSF":

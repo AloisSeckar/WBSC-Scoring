@@ -47,6 +47,7 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="FF">Fouled fly out</option>');
 			actionOptions.push('<option value="FP">Fouled pop out</option>');
 			actionOptions.push('<option value="FL">Fouled line out</option>');
+			actionOptions.push('<option value="IF">Infield fly</option>');
 			break;
 		case "Hit":
 			actionOptions.push('<option value="1B">Single</option>');
@@ -134,6 +135,7 @@ function changeBatterSpecificAction() {
 		case "SF":
 		case "SFE":
 		case "FSF":
+		case "IF":
 			allowedPosItems = 1;
 			break;
 		case "KSO":
