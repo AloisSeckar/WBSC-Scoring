@@ -44,6 +44,7 @@ function setVariables() {
 	window.input_base_action = "-base-action";
 	window.input_spec_action = "-spec-action";
 	window.input_base = "-base";
+	window.input_tie = "-tie";
 	window.input_origBase = "-orig-base";
 	window.input_position = "-pos";
 	window.input_validation = "-validation";

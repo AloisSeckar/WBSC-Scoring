@@ -63,7 +63,13 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 	}
 	
 	if (mainInput[input_origBase] != null) {
-		drawAdvance(mainInput[input_origBase], "*", "");
+		
+		var origBaseAction = "*";
+		if (mainInput[input_tie] == true) {
+			origBaseAction = "TIE";
+		}
+		
+		drawAdvance(mainInput[input_origBase], origBaseAction, "");
 	}
 	
 	var base = parseInt(mainInput[input_base]);

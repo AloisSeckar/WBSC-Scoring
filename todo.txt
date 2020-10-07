@@ -5,9 +5,9 @@ CSP
 Sacrifice hit/fly
 Infield fly
 Ks+O
+TIE
 
 TODO
 ====
 Bunt hit/out
-TIE
 Numbering Ks and BBs

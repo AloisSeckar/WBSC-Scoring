@@ -368,6 +368,17 @@ function getBaseSelection(group) {
 	return base;
 }
 
+function getTIESelection(group) {
+	var tie = false;
+	
+	var tieCheck = document.getElementById(group + input_tie);
+	if (tieCheck != null) {
+		tie = tieCheck.checked;
+	}
+	
+	return tie;
+}
+
 function getPosSelection(group) {
 	var selection = "";
 	
@@ -413,6 +424,7 @@ function getInput(group) {
 		values = [];
 		values[input_base_action] = document.getElementById(group + input_base_action).value;
 		values[input_spec_action] = document.getElementById(group + input_spec_action).value;
+		values[input_tie] = getTIESelection(group);
 		values[input_base] = getBaseSelection(group);
 		values[input_position] = getPosSelection(group);
 		values[input_validation] = checkPosSelection(values[input_position]);

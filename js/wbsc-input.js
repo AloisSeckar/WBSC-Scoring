@@ -261,12 +261,26 @@ function getLabelForRenderButton(group, render) {
 function renderBaseSelection(group) {
 	var inputsContainer = document.getElementById(group);
 	
-	var baseSelect = document.createElement("select");
-	baseSelect.setAttribute('id', group + input_base);
+	if (group != input_r3) {
+		var baseTIECheck = document.createElement("input");
+		baseTIECheck.type = "checkbox";
+		baseTIECheck.setAttribute('class', 'wbsc-select');
+		baseTIECheck.setAttribute('id', group + input_tie);
+		inputsContainer.appendChild(baseTIECheck);
+		
+		var baseTIELabel = document.createElement("label");
+		baseTIELabel.innerHTML = "Tiebreak";
+		inputsContainer.appendChild(baseTIELabel);
+		
+		inputsContainer.appendChild(document.createElement("br"));
+	}
 	
 	var baseLabel = document.createElement("label");
 	baseLabel.innerHTML = "Base:";
 	inputsContainer.appendChild(baseLabel);
+	
+	var baseSelect = document.createElement("select");
+	baseSelect.setAttribute('id', group + input_base);
 	
 	switch (group) {
 		case input_br:
@@ -282,6 +296,7 @@ function renderBaseSelection(group) {
 	}
 	
 	inputsContainer.appendChild(baseSelect);
+	
 	inputsContainer.appendChild(document.createElement("br"));
 }
 
