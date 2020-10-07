@@ -1,0 +1,13 @@
+v.06
+====
+Bugfix #3 a #12
+CSP
+Sacrifice hit/fly
+Infield fly
+Ks+O
+
+TODO
+====
+Bunt hit/out
+TIE
+Numbering Ks and BBs

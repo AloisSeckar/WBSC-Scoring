@@ -30,11 +30,13 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="KSEM">Swinging with muffled throw error</option>');
 			actionOptions.push('<option value="KSWP">Swinging with wild pitch</option>');
 			actionOptions.push('<option value="KSPB">Swinging with passed ball</option>');
+			actionOptions.push('<option value="KSFC">Swinging with putting out runner</option>');
 			actionOptions.push('<option value="KLO">Looking with tag/throw out</option>');
 			actionOptions.push('<option value="KLET">Looking with throwing error</option>');
 			actionOptions.push('<option value="KLEM">Looking with muffled throw error</option>');
 			actionOptions.push('<option value="KLWP">Looking with wild pitch</option>');
 			actionOptions.push('<option value="KLPB">Looking with passed ball</option>');
+			actionOptions.push('<option value="KLFC">Looking with putting out runner</option>');
 			break;
 		case "GroundOut":
 			actionOptions.push('<option value="GO">Ground out</option>');
@@ -128,6 +130,8 @@ function changeBatterSpecificAction() {
 			break;
 		case "KSET":
 		case "KLET":
+		case "KSFC":
+		case "KLFC":
 		case "O":
 		case "EF":
 		case "ED":

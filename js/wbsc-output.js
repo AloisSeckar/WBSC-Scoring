@@ -99,10 +99,12 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "KSEM":
 		case "KSWP":
 		case "KSPB":
+		case "KSFC":
 		case "KLET":
 		case "KLEM":
 		case "KLWP":
 		case "KLPB":
+		case "KLFC":
 		case "SHE":
 		case "SHFC":
 		case "SFE":
@@ -412,6 +414,8 @@ function writeSituation(base, situation) {
 					} else {
 						ksituation2 = "E";
 					}
+				} else if (ksituation2.startsWith("FC")) {
+					ksituation2 = "O" + ksituation2.substring(2);
 				}
 				if (ksituation2.length > 4) {
 					ctx.font = "bold 28px Verdana";
