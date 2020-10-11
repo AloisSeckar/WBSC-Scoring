@@ -3,6 +3,8 @@ Visualisation tool for WBSC scoring system
 
 Live demo (currently v0.6) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
 
+This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
+
 ## TO-DO list (to be implemented in next few releases)
 - Sacrifice hits and flys
 - Consecutive actions for the runners
