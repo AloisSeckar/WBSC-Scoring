@@ -1,14 +1,11 @@
-v.06
+v.07
 ====
-Bugfix #3 a #12
-CSP
-Sacrifice hit/fly
-Infield fly
-Ks+O
-TIE
-Bunt hit/out
-Option groups out/safe
-Numbering Ks and BBs
+
 
 TODO
 ====
+Responsive webdesign
+More validations
+Remember player input selections
+Earned/Unearned runs
+Muffled throw require 2+ player inputs

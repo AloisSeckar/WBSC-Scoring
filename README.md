@@ -1,7 +1,7 @@
 # WBSC Scoring
 Visualisation tool for WBSC scoring system
 
-Live demo (currently v0.5) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
+Live demo (currently v0.6) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
 
 ## TO-DO list (to be implemented in next few releases)
 - Sacrifice hits and flys
@@ -24,9 +24,18 @@ Live demo (currently v0.5) available at [http://alois-seckar.cz/wbsc/](http://al
 
 ## History
 
+### Version 0.6 (2020-10-11)
+- New actions supported: Sacrifice hit/fly, Infield fly, Bunt hit/out, Strikeout with occupied ball, TIE
+- Strikouts and base-on-balls are numbered according to the manual
+- Added option groups to help user determine if safe our out will occcur
+- GUI inputs now render in correct order
+- Advances to 3rd and HP now render correctly
+- CSP implemented in order to increase web security
+- Various bugfixes and corrections
+
 ### Version 0.5 (2020-06-13)
 - Batting order (1-4) is now considered
-- New actions supported - Numerous strike out variants<, Extra base advances - BB, IBB, HP, WP, PB, O/, SB and CS situations, Various plays with errors
+- New actions supported - Numerous strike out variants, Extra base advances - BB, IBB, HP, WP, PB, O/, SB and CS situations, Various plays with errors
 - Rendering improved and corrected for currently supported actions
 - Due to rendering issues situations are now allowed only with 0-3 assists (followed by an out or an error)
 - Various bugfixes and corrections
