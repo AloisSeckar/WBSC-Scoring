@@ -261,7 +261,7 @@ function getLabelForRenderButton(group, render) {
 function renderBaseSelection(group) {
 	var inputsContainer = document.getElementById(group);
 	
-	if (group != input_r3) {
+	if (group == input_r1 || group == input_r2) {
 		var baseTIECheck = document.createElement("input");
 		baseTIECheck.type = "checkbox";
 		baseTIECheck.setAttribute('class', 'wbsc-select');
@@ -269,7 +269,11 @@ function renderBaseSelection(group) {
 		inputsContainer.appendChild(baseTIECheck);
 		
 		var baseTIELabel = document.createElement("label");
-		baseTIELabel.innerHTML = "Tiebreak";
+		if (group == input_r1) {
+			baseTIELabel.innerHTML = "Tiebreak (baseball)";
+		} else {
+			baseTIELabel.innerHTML = "Tiebreak (baseball/softball)";
+		}
 		inputsContainer.appendChild(baseTIELabel);
 		
 		inputsContainer.appendChild(document.createElement("br"));
