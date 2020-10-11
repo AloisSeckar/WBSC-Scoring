@@ -23,26 +23,33 @@ function changeBatterBaseAction() {
 	var baseActionValue = baseAction.value;
 	switch (baseActionValue) {
 		case "StrikeOut":
+			actionOptions.push('<optgroup label="Batter is out">');
 			actionOptions.push('<option value="KS">Swinging</option>');
 			actionOptions.push('<option value="KL">Looking</option>');
 			actionOptions.push('<option value="KSO">Swinging with tag/throw out</option>');
+			actionOptions.push('<option value="KLO">Looking with tag/throw out</option>');
+			actionOptions.push('</optgroup>');
+			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="KSET">Swinging with throwing error</option>');
 			actionOptions.push('<option value="KSEM">Swinging with muffled throw error</option>');
 			actionOptions.push('<option value="KSWP">Swinging with wild pitch</option>');
 			actionOptions.push('<option value="KSPB">Swinging with passed ball</option>');
 			actionOptions.push('<option value="KSFC">Swinging with putting out runner</option>');
-			actionOptions.push('<option value="KLO">Looking with tag/throw out</option>');
 			actionOptions.push('<option value="KLET">Looking with throwing error</option>');
 			actionOptions.push('<option value="KLEM">Looking with muffled throw error</option>');
 			actionOptions.push('<option value="KLWP">Looking with wild pitch</option>');
 			actionOptions.push('<option value="KLPB">Looking with passed ball</option>');
 			actionOptions.push('<option value="KLFC">Looking with putting out runner</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "GroundOut":
+			actionOptions.push('<optgroup label="Batter is out">');
 			actionOptions.push('<option value="GO">Ground out</option>');
 			actionOptions.push('<option value="GOB">Ground out - bunt</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "FlyOut":
+			actionOptions.push('<optgroup label="Batter is out">');
 			actionOptions.push('<option value="F">Fly out</option>');
 			actionOptions.push('<option value="P">Pop out</option>');
 			actionOptions.push('<option value="L">Line out</option>');
@@ -50,8 +57,10 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="FP">Fouled pop out</option>');
 			actionOptions.push('<option value="FL">Fouled line out</option>');
 			actionOptions.push('<option value="IF">Infield fly</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "Hit":
+			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="1B">Single</option>');
 			actionOptions.push('<option value="2B">Double</option>');
 			actionOptions.push('<option value="3B">Triple</option>');
@@ -59,31 +68,42 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="1BB">Single - bunt</option>');
 			actionOptions.push('<option value="2BG">Double - ground rule</option>');
 			actionOptions.push('<option value="HRI">Homerun - inside the park</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "Sacrifice":
+			actionOptions.push('<optgroup label="Batter is out">');
 			actionOptions.push('<option value="SH">Sacrifice bunt</option>');
+			actionOptions.push('<option value="SF">Sacrifice fly</option>');
+			actionOptions.push('</optgroup>');
+			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="SHE">Sacrifice bunt with error</option>');
 			actionOptions.push('<option value="SHFC">Sacrifice bunt with FC</option>');
-			actionOptions.push('<option value="SF">Sacrifice fly</option>');
 			actionOptions.push('<option value="FSF">Sacrifice fly in foul territory</option>');
 			actionOptions.push('<option value="SFE">Sacrifice fly with error</option>');
 			actionOptions.push('<option value="SFO">Dropped sacrifice fly + forced out</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "FC":
+			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="O">Occupied</option>');
 			actionOptions.push('<option value="FC">Fielder\'s choice</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "Error":
+			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="EF">Fielding error</option>');
 			actionOptions.push('<option value="ET">Throwing error</option>');
 			actionOptions.push('<option value="EM">Muffled throw</option>');
 			actionOptions.push('<option value="ED">Dropped fly</option>');
 			actionOptions.push('<option value="EDF">Dropped foul</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "Advance":
+			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="BB">Base on balls</option>');
 			actionOptions.push('<option value="IBB">Intentional base on balls</option>');
 			actionOptions.push('<option value="HP">Hit by pitch</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		default:
 	        specificActionDisabled = true;	
@@ -228,39 +248,54 @@ function changeRunnerBaseAction(group) {
 	var runnerBaseAction = document.getElementById(group + input_base_action);
 	switch (runnerBaseAction.value) {
 		case "adv":
+			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="A">Advanced by batter</option>');
-			specificActionDisabled = true;
+			actionOptions.push('</optgroup>');
 			break;
-		case "exbb":	
+		case "exbb":
+			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="bb">Base on balls</option>');
 			actionOptions.push('<option value="ibb">Intentional base on balls</option>');
 			actionOptions.push('<option value="hp">Hit by pitch</option>');
+			actionOptions.push('</optgroup>');
 			break;
-		case "exb":	
+		case "exb":
+			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="WP">Wild pitch</option>');
 			actionOptions.push('<option value="PB">Passed ball</option>');
 			actionOptions.push('<option value="BK">Balk</option>');
 			actionOptions.push('<option value="IP">Illegal pitch</option>');
+			actionOptions.push('</optgroup>');
 			break;
-		case "ste":	
+		case "ste":
+			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="SB">Stolen base</option>');
-			actionOptions.push('<option value="CSO">Caught stealing - out</option>');
-			actionOptions.push('<option value="CSE">Caught stealing - error</option>');
+			actionOptions.push('<option value="CSE">Caught stealing with error</option>');
+			actionOptions.push('</optgroup>');
+			actionOptions.push('<optgroup label="Runner is out">');
+			actionOptions.push('<option value="CSO">Caught stealing</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "fdc":
+			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="T">On the throw</option>');
 			actionOptions.push('<option value="O/">Indifference</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "err":
+			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="EF">Decessive fielding</option>');
 			actionOptions.push('<option value="ET">Decessive throwing</option>');
 			actionOptions.push('<option value="EM">Decessive muffled throw</option>');
 			actionOptions.push('<option value="eF">Extra base fielding</option>');
 			actionOptions.push('<option value="eT">Extra base throwing</option>');
+			actionOptions.push('</optgroup>');
 			break;
 		case "out":
-			actionOptions.push('<option value="GO">Out</option>');
-			specificActionDisabled = true;
+			actionOptions.push('<optgroup label="Runner is out">');
+			actionOptions.push('<option value="GO">Force out</option>');
+			actionOptions.push('<option value="GO">Tag out</option>');
+			actionOptions.push('</optgroup>');
 			break;
 	    default:
 			specificActionDisabled = true;
