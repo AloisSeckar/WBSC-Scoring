@@ -129,8 +129,8 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "HRI":
 			base = 4;
 			break;
-		case "BB":
-		case "IBB":
+		case "BB1":
+		case "IBB1":
 		case "HP":
 			base = 1;
 			pos = "";
@@ -406,6 +406,10 @@ function writeSituation(base, situation) {
 				}
 				ctx.fillText(situation, w2 + hOffset, h2 + offset + vOffset);
 			}
+			if (situation.startsWith("K")) {
+				ctx.font = "bold 40px Verdana";
+				ctx.fillText("1", w + hOffset - 30, h - 20);
+			}
 			break;
 		case 1:
 			if (situation.startsWith("A")) {
@@ -497,6 +501,10 @@ function writeSituation(base, situation) {
 					ctx.font = "bold 36px Verdana";
 				} 
 				ctx.fillText(situation, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+			}
+			if (situation.startsWith("K")) {
+				ctx.font = "bold 30px Verdana";
+				ctx.fillText("1", w + hOffset - 20, h - 62);
 			}
 			break;
 		case 2:

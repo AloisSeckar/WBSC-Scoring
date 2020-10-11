@@ -8,7 +8,7 @@ Ks+O
 TIE
 Bunt hit/out
 Option groups out/safe
+Numbering Ks and BBs
 
 TODO
 ====
-Numbering Ks and BBs

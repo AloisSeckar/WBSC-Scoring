@@ -100,8 +100,8 @@ function changeBatterBaseAction() {
 			break;
 		case "Advance":
 			actionOptions.push('<optgroup label="Batter is safe">');
-			actionOptions.push('<option value="BB">Base on balls</option>');
-			actionOptions.push('<option value="IBB">Intentional base on balls</option>');
+			actionOptions.push('<option value="BB1">Base on balls</option>');
+			actionOptions.push('<option value="IBB1">Intentional base on balls</option>');
 			actionOptions.push('<option value="HP">Hit by pitch</option>');
 			actionOptions.push('</optgroup>');
 			break;
@@ -129,8 +129,8 @@ function changeBatterSpecificAction() {
 			fc = true;
 			allowedPosItems = 2;
 			break;
-	    case "BB":
-	    case "IBB":
+	    case "BB1":
+	    case "IBB1":
 	    case "HP":
 	    case "KS":
 	    case "KSWP":
