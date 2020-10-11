@@ -174,11 +174,23 @@ function hideInputs(group) {
 function getProperLocationForInputs(group) {
 	var hook = document.getElementById(div_tools);
 	
+	var brinputs = document.getElementById(input_br);
 	var r1inputs = document.getElementById(input_r1);
 	var r2inputs = document.getElementById(input_r2);
 	var r3inputs = document.getElementById(input_r3);
 	
 	switch (group) {
+		case input_b:
+			if (brinputs != null) {
+				hook = brinputs;
+			} else if (r1inputs != null) {
+				hook = r1inputs;
+			} else if (r2inputs != null) {
+				hook = r2inputs;
+			} else if (r3inputs != null) {
+				hook = r3inputs;
+			}
+			break;
 		case input_br:
 			if (r1inputs != null) {
 				hook = r1inputs;
