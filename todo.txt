@@ -6,8 +6,8 @@ Sacrifice hit/fly
 Infield fly
 Ks+O
 TIE
+Bunt hit/out
 
 TODO
 ====
-Bunt hit/out
 Numbering Ks and BBs

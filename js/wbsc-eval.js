@@ -40,7 +40,7 @@ function changeBatterBaseAction() {
 			break;
 		case "GroundOut":
 			actionOptions.push('<option value="GO">Ground out</option>');
-	        specificActionDisabled = true;
+			actionOptions.push('<option value="GOB">Ground out - bunt</option>');
 			break;
 		case "FlyOut":
 			actionOptions.push('<option value="F">Fly out</option>');
@@ -56,6 +56,7 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="2B">Double</option>');
 			actionOptions.push('<option value="3B">Triple</option>');
 			actionOptions.push('<option value="HR">Homerun</option>');
+			actionOptions.push('<option value="1BB">Single - bunt</option>');
 			actionOptions.push('<option value="2BG">Double - ground rule</option>');
 			actionOptions.push('<option value="HRI">Homerun - inside the park</option>');
 			break;
@@ -123,6 +124,7 @@ function changeBatterSpecificAction() {
 		case "2B":
 		case "3B":
 		case "HR":
+		case "1BB":
 		case "2BG":
 		case "HRI":
 			hit = true;
@@ -147,6 +149,7 @@ function changeBatterSpecificAction() {
 		case "KSEM":
 		case "KLEM":
 		case "GO":
+		case "GOB":
 		case "F":
 		case "P":
 		case "L":

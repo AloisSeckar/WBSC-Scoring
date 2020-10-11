@@ -99,6 +99,7 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 			base = 0;
 			break;
 		case "1B":
+		case "1BB":
 		case "O":
 		case "FC":
 		case "KSET":
@@ -148,6 +149,7 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 			pos = "";
 			break;
 		case "GO":
+		case "GOB":
 			outcome = "out";
 			if (base == 1) {
 				base = 0;
@@ -381,7 +383,9 @@ function writeSituation(base, situation) {
 				offset = 75;
 				ctx.fillText(situation.substring(3), w2 + hOffset, h2 + offset + vOffset);
 			} else {
-				if (situation.startsWith("GO")) {
+				if (situation.startsWith("GOB")) {
+					situation = situation.substring(3) + "B";
+				} else if (situation.startsWith("GO")) {
 					situation = situation.substring(2);
 				}
 				if (situation.length > 5) {
@@ -453,11 +457,16 @@ function writeSituation(base, situation) {
 				}
 				ctx.fillText(situation2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else if (situation.startsWith("1B")) {
-				drawHitSymbol(1);
-				if (situation.substring(2).length > 1) {
-					ctx.font = "bold 35px Verdana";
+				if (situation.startsWith("1BB")) {
+					hitSituation = situation.substring(3) + "B";
+				} else {
+					hitSituation = situation.substring(2);
 				}
-				ctx.fillText(situation.substring(2), w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
+				if (hitSituation.length > 1) {
+					ctx.font = "bold 40px Verdana";
+				}
+				drawHitSymbol(1);
+				ctx.fillText(hitSituation, w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
 			} else if (situation.startsWith("E")) {
 				if (situation.length > 3) {
 					esituation = situation.substring(2, situation.length - 1) + "E" +  situation.substring(situation.length - 1);
