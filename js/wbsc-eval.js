@@ -74,11 +74,11 @@ function changeBatterBaseAction() {
 			actionOptions.push('<optgroup label="Batter is out">');
 			actionOptions.push('<option value="SH">Sacrifice bunt</option>');
 			actionOptions.push('<option value="SF">Sacrifice fly</option>');
+			actionOptions.push('<option value="FSF">Sacrifice fly in foul territory</option>');
 			actionOptions.push('</optgroup>');
 			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="SHE">Sacrifice bunt with error</option>');
 			actionOptions.push('<option value="SHFC">Sacrifice bunt with FC</option>');
-			actionOptions.push('<option value="FSF">Sacrifice fly in foul territory</option>');
 			actionOptions.push('<option value="SFE">Sacrifice fly with error</option>');
 			actionOptions.push('<option value="SFO">Dropped sacrifice fly + forced out</option>');
 			actionOptions.push('</optgroup>');
