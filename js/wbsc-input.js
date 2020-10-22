@@ -3,16 +3,6 @@ function renderActionButtons() {
 	actionButtonsContainer.setAttribute('id', div_tools);
 	actionButtonsContainer.setAttribute('class', "wbsc-buttons");
 	
-	var generateButton = document.createElement("button");
-	generateButton.setAttribute('id', "generate-button");
-	generateButton.setAttribute('type', "button");
-	generateButton.setAttribute('class', "btn btn-primary wbsc-action-button");
-	generateButton.addEventListener('click', function(){
-		renderAction();
-	});
-	generateButton.innerHTML = "Generate action";
-	actionButtonsContainer.appendChild(generateButton);
-	
 	var renderBatterButton = document.createElement("button");
 	renderBatterButton.setAttribute('id', "button-" + input_b);
 	renderBatterButton.setAttribute('type', "button");
@@ -43,6 +33,17 @@ function renderActionButtons() {
 	renderRunner1Button.innerHTML = getLabelForRenderButton(input_r1, true);
 	actionButtonsContainer.appendChild(renderRunner1Button);
 	
+	var renderRunner1RButton = document.createElement("button");
+	renderRunner1RButton.setAttribute('id', "button-" + input_r1r);
+	renderRunner1RButton.setAttribute('type', "button");
+	renderRunner1RButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderRunner1RButton.addEventListener('click', function(){
+		renderInputs(input_r1r);
+	});
+	renderRunner1RButton.innerHTML = getLabelForRenderButton(input_r1r, true);
+	renderRunner1RButton.disabled = true;
+	actionButtonsContainer.appendChild(renderRunner1RButton);
+	
 	var renderRunner2Button = document.createElement("button");
 	renderRunner2Button.setAttribute('id', "button-" + input_r2);
 	renderRunner2Button.setAttribute('type', "button");
@@ -53,6 +54,17 @@ function renderActionButtons() {
 	renderRunner2Button.innerHTML = getLabelForRenderButton(input_r2, true);
 	actionButtonsContainer.appendChild(renderRunner2Button);
 	
+	var renderRunner2RButton = document.createElement("button");
+	renderRunner2RButton.setAttribute('id', "button-" + input_r2r);
+	renderRunner2RButton.setAttribute('type', "button");
+	renderRunner2RButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
+	renderRunner2RButton.addEventListener('click', function(){
+		renderInputs(input_r2r);
+	});
+	renderRunner2RButton.innerHTML = getLabelForRenderButton(input_r2r, true);
+	renderRunner2RButton.disabled = true;
+	actionButtonsContainer.appendChild(renderRunner2RButton);
+	
 	var renderRunner3Button = document.createElement("button");
 	renderRunner3Button.setAttribute('id', "button-" + input_r3);
 	renderRunner3Button.setAttribute('type', "button");
@@ -62,6 +74,18 @@ function renderActionButtons() {
 	});
 	renderRunner3Button.innerHTML = getLabelForRenderButton(input_r3, true);
 	actionButtonsContainer.appendChild(renderRunner3Button);
+	
+	actionButtonsContainer.appendChild(document.createElement("br"));
+	
+	var generateButton = document.createElement("button");
+	generateButton.setAttribute('id', "generate-button");
+	generateButton.setAttribute('type', "button");
+	generateButton.setAttribute('class', "btn btn-primary wbsc-action-button");
+	generateButton.addEventListener('click', function(){
+		renderAction();
+	});
+	generateButton.innerHTML = "Generate action";
+	actionButtonsContainer.appendChild(generateButton);
 	
 	var clearButton = document.createElement("button");
 	clearButton.setAttribute('id', "clear-button");
@@ -81,7 +105,9 @@ function clearInputs() {
 	hideInputs(input_b);
 	hideInputs(input_br);
 	hideInputs(input_r1);
+	hideInputs(input_r1r);
 	hideInputs(input_r2);
+	hideInputs(input_r2r);
 	hideInputs(input_r3);
 	
 	showInputs(input_b);
@@ -95,7 +121,7 @@ function renderInputs(group) {
 		hideInputs(group);
 	}
 }
-	
+
 function showInputs(group) {
 	var container = document.getElementById(div_input);
 	var hook = getProperLocationForInputs(group);
@@ -106,7 +132,7 @@ function showInputs(group) {
 	
 	container.insertBefore(inputsContainer, hook);
 	
-	if (group != input_br) {
+	if (!group.match(input_br + "|" + input_r1r + "|" + input_r2r)) {
 		var batterLabel = document.createElement("label");
 		batterLabel.innerHTML = getLabelForInputGroup(group);
 		inputsContainer.appendChild(batterLabel);
@@ -135,7 +161,9 @@ function showInputs(group) {
 			baseActionSelect.innerHTML = renderBatterRunnerActionOptions();
 			break;
 		case input_r1:
+		case input_r1r:
 		case input_r2:
+		case input_r2r:
 		case input_r3:
 			baseActionSelect.innerHTML = renderRunnerActionOptions();
 			break;
@@ -157,9 +185,47 @@ function showInputs(group) {
 	var renderButton = document.getElementById("button-" + group);
 	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_unrender);
 	renderButton.innerHTML = getLabelForRenderButton(group, false);
+	
+	
+	switch (group) {
+		case input_b:
+			var consecutiveRenderButton = document.getElementById("button-" + input_br);
+			consecutiveRenderButton.disabled = false;
+			break;
+		case input_r1:
+			var consecutiveRenderButton = document.getElementById("button-" + input_r1r);
+			consecutiveRenderButton.disabled = false;
+			break;
+		case input_r2:
+			var consecutiveRenderButton = document.getElementById("button-" + input_r2r);
+			consecutiveRenderButton.disabled = false;
+			break;
+	}
 }
 	
 function hideInputs(group) {
+	execHideInputs(group);
+	
+	switch (group) {
+		case input_b:
+			execHideInputs(input_br);
+			var consecutiveRenderButton = document.getElementById("button-" + input_br);
+			consecutiveRenderButton.disabled = true;
+			break;
+		case input_r1:
+			execHideInputs(input_r1r);
+			var consecutiveRenderButton = document.getElementById("button-" + input_r1r);
+			consecutiveRenderButton.disabled = true;
+			break;
+		case input_r2:
+			execHideInputs(input_r2r);
+			var consecutiveRenderButton = document.getElementById("button-" + input_r2r);
+			consecutiveRenderButton.disabled = true;
+			break;
+	}
+}
+
+function execHideInputs(group) {
 	var container = document.getElementById(div_input);
 	var inputsContainer = document.getElementById(group);
 	if (inputsContainer != null) {
@@ -174,23 +240,12 @@ function hideInputs(group) {
 function getProperLocationForInputs(group) {
 	var hook = document.getElementById(div_tools);
 	
-	var brinputs = document.getElementById(input_br);
 	var r1inputs = document.getElementById(input_r1);
 	var r2inputs = document.getElementById(input_r2);
 	var r3inputs = document.getElementById(input_r3);
 	
 	switch (group) {
 		case input_b:
-			if (brinputs != null) {
-				hook = brinputs;
-			} else if (r1inputs != null) {
-				hook = r1inputs;
-			} else if (r2inputs != null) {
-				hook = r2inputs;
-			} else if (r3inputs != null) {
-				hook = r3inputs;
-			}
-			break;
 		case input_br:
 			if (r1inputs != null) {
 				hook = r1inputs;
@@ -201,6 +256,7 @@ function getProperLocationForInputs(group) {
 			}
 			break;
 		case input_r1:
+		case input_r1r:
 			if (r2inputs != null) {
 				hook = r2inputs;
 			} else if (r3inputs != null) {
@@ -208,6 +264,7 @@ function getProperLocationForInputs(group) {
 			}
 			break;
 		case input_r2:
+		case input_r2r:
 			if (r3inputs != null) {
 				hook = r3inputs;
 			}
@@ -259,8 +316,14 @@ function getLabelForRenderButton(group, render) {
 		case input_r1:
 			label += "R1";
 			break;
+		case input_r1r:
+			label += "R1R";
+			break;
 		case input_r2:
 			label += "R2";
+			break;
+		case input_r2r:
+			label += "R2R";
 			break;
 		case input_r3:
 			label += "R3";
@@ -303,9 +366,11 @@ function renderBaseSelection(group) {
 		case input_r1:
 			baseSelect.innerHTML = renderBaseOptions(1);
 			break;
+		case input_r1r:
 		case input_r2:
 			baseSelect.innerHTML = renderBaseOptions(2);
 			break;
+		case input_r2r:
 		case input_r3:
 			baseSelect.innerHTML = renderBaseOptions(3);
 			break;

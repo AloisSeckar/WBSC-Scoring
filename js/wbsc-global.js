@@ -38,7 +38,9 @@ function setVariables() {
 	window.input_b  = "input-b";
 	window.input_br = "input-br";
 	window.input_r1 = "input-r1";
+	window.input_r1r = "input-r1r";
 	window.input_r2 = "input-r2";
+	window.input_r2r = "input-r2r";
 	window.input_r3 = "input-r3";
 	
 	window.input_base_action = "-base-action";

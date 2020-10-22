@@ -2,7 +2,9 @@ function renderAction() {
 	var bInput = getInput(input_b);
 	var brInput = getInput(input_br);
 	var r1Input = getInput(input_r1);
+	var r1rInput = getInput(input_r1r);
 	var r2Input = getInput(input_r2);
+	var r2rInput = getInput(input_r2r);
 	var r3Input = getInput(input_r3);
 	
 	var playersInvolved = 0;
@@ -18,9 +20,15 @@ function renderAction() {
 		playersInvolved++;
 		validation += attachValidation(validation, r1Input[input_validation]);
 	}
+    if (r1rInput != null) {
+		validation += attachValidation(validation, r1rInput[input_validation]);
+	}
 	if (r2Input != null) {
 		playersInvolved++;
 		validation += attachValidation(validation, r2Input[input_validation]);
+	}
+    if (r2rInput != null) {
+		validation += attachValidation(validation, r2rInput[input_validation]);
 	}
 	if (r3Input != null) {
 		playersInvolved++;
@@ -40,12 +48,12 @@ function renderAction() {
 		}
 		if (r2Input != null) {
 			r2Input[input_origBase] = 2;
-			drawAction(displayed++, r2Input, null, true);
+			drawAction(displayed++, r2Input, r2rInput, true);
 			window.vOffset += h - 8;
 		}
 		if (r1Input != null) {
 			r1Input[input_origBase] = 1;
-			drawAction(displayed++, r1Input, null, true);
+			drawAction(displayed++, r1Input, r1rInput, true);
 			window.vOffset += h - 8;
 		}
 		if (bInput != null) {
