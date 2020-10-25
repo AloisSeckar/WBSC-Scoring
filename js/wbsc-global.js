@@ -35,12 +35,17 @@ function setVariables() {
 	window.class_wbsc_b_unrender = "wbsc-unrender-button";
 	window.class_wbsc_pos = "wbsc-render-pos";
 	
+	window.input_generate = "input-generate";
+	window.input_clear  = "input-clear";
 	window.input_b  = "input-b";
-	window.input_br = "input-br";
+	window.input_b1 = "input-b1";
+	window.input_b2 = "input-b2";
+	window.input_b3 = "input-b3";
 	window.input_r1 = "input-r1";
-	window.input_r1r = "input-r1r";
+	window.input_r1a = "input-r1a";
+	window.input_r1b = "input-r1b";
 	window.input_r2 = "input-r2";
-	window.input_r2r = "input-r2r";
+	window.input_r2a = "input-r2a";
 	window.input_r3 = "input-r3";
 	
 	window.input_base_action = "-base-action";

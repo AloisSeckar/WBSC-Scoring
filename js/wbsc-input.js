@@ -3,136 +3,89 @@ function renderActionButtons() {
 	actionButtonsContainer.setAttribute('id', div_tools);
 	actionButtonsContainer.setAttribute('class', "wbsc-buttons");
 	
-	var renderBatterButton = document.createElement("button");
-	renderBatterButton.setAttribute('id', "button-" + input_b);
-	renderBatterButton.setAttribute('type', "button");
-	renderBatterButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-	renderBatterButton.addEventListener('click', function(){
-		renderInputs(input_b);
-	});
-	renderBatterButton.innerHTML = getLabelForRenderButton(input_b, true);
+	var renderBatterButton = renderInputsButton(input_b, null);
 	actionButtonsContainer.appendChild(renderBatterButton);
 	
-	var renderBRButton = document.createElement("button");
-	renderBRButton.setAttribute('id', "button-" + input_br);
-	renderBRButton.setAttribute('type', "button");
-	renderBRButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-	renderBRButton.addEventListener('click', function(){
-		renderInputs(input_br);
-	});
-	renderBRButton.innerHTML = getLabelForRenderButton(input_br, true);
-	actionButtonsContainer.appendChild(renderBRButton);
-	
-	var renderRunner1Button = document.createElement("button");
-	renderRunner1Button.setAttribute('id', "button-" + input_r1);
-	renderRunner1Button.setAttribute('type', "button");
-	renderRunner1Button.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-	renderRunner1Button.addEventListener('click', function(){
-		renderInputs(input_r1);
-	});
-	renderRunner1Button.innerHTML = getLabelForRenderButton(input_r1, true);
+	var renderRunner1Button = renderInputsButton(input_r1, null);
 	actionButtonsContainer.appendChild(renderRunner1Button);
 	
-	var renderRunner1RButton = document.createElement("button");
-	renderRunner1RButton.setAttribute('id', "button-" + input_r1r);
-	renderRunner1RButton.setAttribute('type', "button");
-	renderRunner1RButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-	renderRunner1RButton.addEventListener('click', function(){
-		renderInputs(input_r1r);
-	});
-	renderRunner1RButton.innerHTML = getLabelForRenderButton(input_r1r, true);
-	renderRunner1RButton.disabled = true;
-	actionButtonsContainer.appendChild(renderRunner1RButton);
-	
-	var renderRunner2Button = document.createElement("button");
-	renderRunner2Button.setAttribute('id', "button-" + input_r2);
-	renderRunner2Button.setAttribute('type', "button");
-	renderRunner2Button.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-	renderRunner2Button.addEventListener('click', function(){
-		renderInputs(input_r2);
-	});
-	renderRunner2Button.innerHTML = getLabelForRenderButton(input_r2, true);
+	var renderRunner2Button = renderInputsButton(input_r2, null);
 	actionButtonsContainer.appendChild(renderRunner2Button);
 	
-	var renderRunner2RButton = document.createElement("button");
-	renderRunner2RButton.setAttribute('id', "button-" + input_r2r);
-	renderRunner2RButton.setAttribute('type', "button");
-	renderRunner2RButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-	renderRunner2RButton.addEventListener('click', function(){
-		renderInputs(input_r2r);
-	});
-	renderRunner2RButton.innerHTML = getLabelForRenderButton(input_r2r, true);
-	renderRunner2RButton.disabled = true;
-	actionButtonsContainer.appendChild(renderRunner2RButton);
-	
-	var renderRunner3Button = document.createElement("button");
-	renderRunner3Button.setAttribute('id', "button-" + input_r3);
-	renderRunner3Button.setAttribute('type', "button");
-	renderRunner3Button.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
-	renderRunner3Button.addEventListener('click', function(){
-		renderInputs(input_r3);
-	});
-	renderRunner3Button.innerHTML = getLabelForRenderButton(input_r3, true);
+	var renderRunner3Button = renderInputsButton(input_r3, null);
 	actionButtonsContainer.appendChild(renderRunner3Button);
 	
 	actionButtonsContainer.appendChild(document.createElement("br"));
 	
-	var generateButton = document.createElement("button");
-	generateButton.setAttribute('id', "generate-button");
-	generateButton.setAttribute('type', "button");
+	var generateButton = renderInputsButton(input_generate, null);
 	generateButton.setAttribute('class', "btn btn-primary wbsc-action-button");
-	generateButton.addEventListener('click', function(){
-		renderAction();
-	});
-	generateButton.innerHTML = "Generate action";
 	actionButtonsContainer.appendChild(generateButton);
 	
-	var clearButton = document.createElement("button");
-	clearButton.setAttribute('id', "clear-button");
-	clearButton.setAttribute('type', "button");
+	var clearButton = renderInputsButton(input_clear, null);
 	clearButton.setAttribute('class', "btn btn-primary wbsc-clear-button");
-	clearButton.addEventListener('click', function(){
-		clearInputs();
-	});
-	clearButton.innerHTML = "Clear";
 	actionButtonsContainer.appendChild(clearButton);
 	
 	var container = document.getElementById(div_input);
 	container.appendChild(actionButtonsContainer);
 }
 
+function renderInputsButton(group, parentDiv) {
+	var renderInputsButton = document.createElement("button");
+	renderInputsButton.setAttribute('id', "button-" + group);
+	renderInputsButton.setAttribute('type', "button");
+	renderInputsButton.setAttribute('class', "btn btn-info wbsc-render-button");
+	renderInputsButton.addEventListener('click', function(){
+		switch (group) {
+			case input_generate:
+				renderAction();
+				break;
+			case input_clear:
+				clearInputs();
+				break;
+			default:
+				renderInputs(group, parentDiv);
+		}
+	});
+	renderInputsButton.innerHTML = getLabelForRenderButton(group, true);
+	
+	return renderInputsButton;
+}
+
 function clearInputs() {
 	hideInputs(input_b);
-	hideInputs(input_br);
 	hideInputs(input_r1);
-	hideInputs(input_r1r);
 	hideInputs(input_r2);
-	hideInputs(input_r2r);
 	hideInputs(input_r3);
 	
 	showInputs(input_b);
 }
 
-function renderInputs(group) {
+function renderInputs(group, parentDiv) {
 	var renderButton = document.getElementById("button-" + group);
 	if (renderButton.innerHTML.includes("+")) {
-		showInputs(group);
+		showInputs(group, parentDiv);
 	} else {
 		hideInputs(group);
 	}
 }
 
-function showInputs(group) {
-	var container = document.getElementById(div_input);
-	var hook = getProperLocationForInputs(group);
-	
+function showInputs(group, parentDiv) {
 	var inputsContainer = document.createElement("div");
 	inputsContainer.setAttribute('id', group);
-	inputsContainer.setAttribute('class', class_wbsc);
 	
-	container.insertBefore(inputsContainer, hook);
+	if (parentDiv == null) {
+		inputsContainer.setAttribute('class', class_wbsc);
+		
+		var container = document.getElementById(div_input);
+		var hook = getProperLocationForInputs(group);
+		container.insertBefore(inputsContainer, hook);
+	} else {
+		var parentDiv = getParentDiv(group, true);
+		var container = document.getElementById(parentDiv);
+		container.appendChild(inputsContainer);
+	}
 	
-	if (!group.match(input_br + "|" + input_r1r + "|" + input_r2r)) {
+	if (parentDiv == null) {
 		var batterLabel = document.createElement("label");
 		batterLabel.innerHTML = getLabelForInputGroup(group);
 		inputsContainer.appendChild(batterLabel);
@@ -157,13 +110,16 @@ function showInputs(group) {
 		case input_b:
 			baseActionSelect.innerHTML = renderBatterActionOptions();
 			break;
-		case input_br:
+		case input_b1:
+		case input_b2:
+		case input_b3:
 			baseActionSelect.innerHTML = renderBatterRunnerActionOptions();
 			break;
 		case input_r1:
-		case input_r1r:
+		case input_r1a:
+		case input_r1b:
 		case input_r2:
-		case input_r2r:
+		case input_r2a:
 		case input_r3:
 			baseActionSelect.innerHTML = renderRunnerActionOptions();
 			break;
@@ -182,51 +138,23 @@ function showInputs(group) {
 	
 	renderPosSelection(group);
 	
+	
+	var additionalInputsGroup = getAdditionalInputsGroup(group);
+	if (additionalInputsGroup != null) {
+		var renderExtraButton = renderInputsButton(additionalInputsGroup, inputsContainer);
+		inputsContainer.appendChild(renderExtraButton);
+		inputsContainer.appendChild(document.createElement("br"));
+	}
+	
+	
 	var renderButton = document.getElementById("button-" + group);
 	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_unrender);
 	renderButton.innerHTML = getLabelForRenderButton(group, false);
-	
-	
-	switch (group) {
-		case input_b:
-			var consecutiveRenderButton = document.getElementById("button-" + input_br);
-			consecutiveRenderButton.disabled = false;
-			break;
-		case input_r1:
-			var consecutiveRenderButton = document.getElementById("button-" + input_r1r);
-			consecutiveRenderButton.disabled = false;
-			break;
-		case input_r2:
-			var consecutiveRenderButton = document.getElementById("button-" + input_r2r);
-			consecutiveRenderButton.disabled = false;
-			break;
-	}
 }
 	
 function hideInputs(group) {
-	execHideInputs(group);
-	
-	switch (group) {
-		case input_b:
-			execHideInputs(input_br);
-			var consecutiveRenderButton = document.getElementById("button-" + input_br);
-			consecutiveRenderButton.disabled = true;
-			break;
-		case input_r1:
-			execHideInputs(input_r1r);
-			var consecutiveRenderButton = document.getElementById("button-" + input_r1r);
-			consecutiveRenderButton.disabled = true;
-			break;
-		case input_r2:
-			execHideInputs(input_r2r);
-			var consecutiveRenderButton = document.getElementById("button-" + input_r2r);
-			consecutiveRenderButton.disabled = true;
-			break;
-	}
-}
-
-function execHideInputs(group) {
-	var container = document.getElementById(div_input);
+	var parentDiv = getParentDiv(group, false);
+	var container = document.getElementById(parentDiv);
 	var inputsContainer = document.getElementById(group);
 	if (inputsContainer != null) {
 		container.removeChild(inputsContainer);
@@ -246,7 +174,9 @@ function getProperLocationForInputs(group) {
 	
 	switch (group) {
 		case input_b:
-		case input_br:
+		case input_b1:
+		case input_b2:
+		case input_b3:
 			if (r1inputs != null) {
 				hook = r1inputs;
 			} else if (r2inputs != null) {
@@ -256,7 +186,8 @@ function getProperLocationForInputs(group) {
 			}
 			break;
 		case input_r1:
-		case input_r1r:
+		case input_r1a:
+		case input_r1b:
 			if (r2inputs != null) {
 				hook = r2inputs;
 			} else if (r3inputs != null) {
@@ -264,7 +195,7 @@ function getProperLocationForInputs(group) {
 			}
 			break;
 		case input_r2:
-		case input_r2r:
+		case input_r2a:
 			if (r3inputs != null) {
 				hook = r3inputs;
 			}
@@ -300,34 +231,33 @@ function getLabelForInputGroup(group) {
 function getLabelForRenderButton(group, render) {
 	var label = "";
 	
-	if (render == true) {
-		label += "+";
-	} else {
-		label += "-";
-	}
-	
 	switch (group) {
-		case input_b:
-			label += "B";
+		case input_generate:
+			label = "Generate action";
 			break;
-		case input_br:
-			label += "BR";
+		case input_clear:
+			label = "Clear";
 			break;
-		case input_r1:
-			label += "R1";
-			break;
-		case input_r1r:
-			label += "R1R";
-			break;
-		case input_r2:
-			label += "R2";
-			break;
-		case input_r2r:
-			label += "R2R";
-			break;
-		case input_r3:
-			label += "R3";
-			break;
+		default:
+			if (render == true) {
+				label += "+";
+			} else {
+				label += "-";
+			}
+			switch (group) {
+				case input_b:
+					label += "B";
+					break;
+				case input_r1:
+					label += "R1";
+					break;
+				case input_r2:
+					label += "R2";
+					break;
+				case input_r3:
+					label += "R3";
+					break;
+			}
 	}
 	
 	return label;
@@ -362,15 +292,18 @@ function renderBaseSelection(group) {
 	baseSelect.setAttribute('id', group + input_base);
 	
 	switch (group) {
-		case input_br:
+		case input_b1:
 		case input_r1:
 			baseSelect.innerHTML = renderBaseOptions(1);
 			break;
-		case input_r1r:
+		case input_b2:
+		case input_r1a:
 		case input_r2:
 			baseSelect.innerHTML = renderBaseOptions(2);
 			break;
-		case input_r2r:
+		case input_b3:
+		case input_r1b:
+		case input_r2a:
 		case input_r3:
 			baseSelect.innerHTML = renderBaseOptions(3);
 			break;
@@ -426,9 +359,7 @@ function renderPosSelection(group) {
 }
 
 function renderPosSelectItem(group) {
-	
 	var container = document.getElementById(group);
-	
 	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	if (itemsCreated < 4) {
 		itemsCreated++;
@@ -446,7 +377,6 @@ function renderPosSelectItem(group) {
 
 function unRenderPosSelectItem(group) {
 	var container = document.getElementById(group);
-	
 	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	if (itemsCreated > 1) {
 		var posItemN = document.getElementById(group + itemsCreated);
@@ -454,6 +384,54 @@ function unRenderPosSelectItem(group) {
 	} else {
 		alert("There has to be at least 1 player involved");
 	}
+}
+
+function getParentDiv(group, show) {
+	var parentDiv;
+	switch (group) {
+		case input_b1:
+		case input_b2:
+		case input_b3:
+			parentDiv = input_b;
+			break;
+		case input_r1a:
+		case input_r1b:
+			parentDiv = input_r1;
+			break;
+		case input_r2a:
+			parentDiv = input_r2;
+			break;
+		default:
+			parentDiv = show ? group : div_input;
+	}
+	return parentDiv;
+}
+
+function getAdditionalInputsGroup(group) {
+	var additionalInputsGroup;
+	switch (group) {
+		case input_b:
+			additionalInputsGroup = input_b1;
+			break;
+		case input_b1:
+			additionalInputsGroup = input_b2;
+			break;
+		case input_b2:
+			additionalInputsGroup = input_b3;
+			break;
+		case input_r1:
+			additionalInputsGroup = input_r1a;
+			break;
+		case input_r1a:
+			additionalInputsGroup = input_r1b;
+			break;
+		case input_r2:
+			additionalInputsGroup = input_r2a;
+			break;
+		default:
+			additionalInputsGroup = null;
+	}
+	return additionalInputsGroup;
 }
 
 function renderPlayerOptions() {

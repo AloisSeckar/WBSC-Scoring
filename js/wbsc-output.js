@@ -1,35 +1,63 @@
 function renderAction() {
 	var bInput = getInput(input_b);
-	var brInput = getInput(input_br);
+	var b1Input = getInput(input_b1);
+	var b2Input = getInput(input_b2);
+	var b3Input = getInput(input_b3);
 	var r1Input = getInput(input_r1);
-	var r1rInput = getInput(input_r1r);
+	var r1aInput = getInput(input_r1a);
+	var r1bInput = getInput(input_r1b);
 	var r2Input = getInput(input_r2);
-	var r2rInput = getInput(input_r2r);
+	var r2aInput = getInput(input_r2a);
 	var r3Input = getInput(input_r3);
 	
 	var playersInvolved = 0;
 	var validation = "";
+	
     if (bInput != null) {
 		playersInvolved++;
 		validation += attachValidation(validation, bInput[input_validation]);
 	}
-	if (brInput != null) {
-		validation += attachValidation(validation, brInput[input_validation]);
+	
+	var extraBatterInput = [];
+	if (b1Input != null) {
+		validation += attachValidation(validation, b1Input[input_validation]);
+		extraBatterInput.push(b1Input);
 	}
+	if (b2Input != null) {
+		validation += attachValidation(validation, b2Input[input_validation]);
+		extraBatterInput.push(b2Input);
+	}
+	if (b3Input != null) {
+		validation += attachValidation(validation, b3Input[input_validation]);
+		extraBatterInput.push(b3Input);
+	}
+	
     if (r1Input != null) {
 		playersInvolved++;
 		validation += attachValidation(validation, r1Input[input_validation]);
 	}
-    if (r1rInput != null) {
-		validation += attachValidation(validation, r1rInput[input_validation]);
+	
+	var extraR1Input = [];
+    if (r1aInput != null) {
+		validation += attachValidation(validation, r1aInput[input_validation]);
+		extraR1Input.push(r1aInput);
 	}
+    if (r1bInput != null) {
+		validation += attachValidation(validation, r1bInput[input_validation]);
+		extraR1Input.push(r1bInput);
+	}
+	
 	if (r2Input != null) {
 		playersInvolved++;
 		validation += attachValidation(validation, r2Input[input_validation]);
 	}
-    if (r2rInput != null) {
-		validation += attachValidation(validation, r2rInput[input_validation]);
+	
+	var extraR2Input = [];
+    if (r2aInput != null) {
+		validation += attachValidation(validation, r2aInput[input_validation]);
+		extraR2Input.push(r2aInput);
 	}
+	
 	if (r3Input != null) {
 		playersInvolved++;
 		validation += attachValidation(validation, r3Input[input_validation]);
@@ -48,16 +76,16 @@ function renderAction() {
 		}
 		if (r2Input != null) {
 			r2Input[input_origBase] = 2;
-			drawAction(displayed++, r2Input, r2rInput, true);
+			drawAction(displayed++, r2Input, extraR2Input, true);
 			window.vOffset += h - 8;
 		}
 		if (r1Input != null) {
 			r1Input[input_origBase] = 1;
-			drawAction(displayed++, r1Input, r1rInput, true);
+			drawAction(displayed++, r1Input, extraR1Input, true);
 			window.vOffset += h - 8;
 		}
 		if (bInput != null) {
-			drawAction(displayed++, bInput, brInput, true);
+			drawAction(displayed++, bInput, extraBatterInput, true);
 			window.vOffset += h - 8;
 		}
 	} else {
@@ -170,7 +198,7 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		case "ET":
 		case "EM":
 		case "ED":
-			// np adjustment
+			// no adjustment
 			break;
 	}
 	
@@ -188,8 +216,10 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 		drawAdvance(base, action, pos);
 		
 		if (extraInput != null) {
-			drawAction(battingOrder, extraInput, null, false);
-			drawConnector(base, parseInt(extraInput[input_base]));
+			for (i = 0; i < extraInput.length; i++) {
+				drawAction(battingOrder, extraInput[i], null, false);
+				drawConnector(base, parseInt(extraInput[i][input_base]));
+			}
 		}
 	} else {
 		drawOut(base, action, pos);
