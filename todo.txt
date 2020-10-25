@@ -1,6 +1,7 @@
 v.07
 ====
 Unlicense
+Improved consecutive actions handling
 
 
 TODO
@@ -10,3 +11,4 @@ More validations
 Remember player input selections
 Earned/Unearned runs
 Muffled throw require 2+ player inputs
+"Same error" advances

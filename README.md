@@ -6,7 +6,6 @@ Live demo (currently v0.6) available at [http://alois-seckar.cz/wbsc/](http://al
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
 
 ## TO-DO list (to be implemented in next few releases)
-- Sacrifice hits and flys
 - Consecutive actions for the runners
 - Input validations
 - Earned/unearned runs switchers
@@ -16,8 +15,7 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Responsive CSS design
 
 ## Limitations (not planned to be implemented soon)
-- Only one additional play may be consecutively inserted for the batting runner
-- It is not possible to specify actions leading to runners appearing on bases
+- It is not possible to specify actions leading to runners appearing on bases (except TIE)
 - It is not possible to specify batting order of the batter and previous runners
 - Actions are limited to up to 3 assists (followed by an out or an error)
 - No 10th player (additional outfielder) for slowpitch
