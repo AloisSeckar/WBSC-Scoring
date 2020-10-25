@@ -150,6 +150,8 @@ function showInputs(group, parentDiv) {
 	var renderButton = document.getElementById("button-" + group);
 	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_unrender);
 	renderButton.innerHTML = getLabelForRenderButton(group, false);
+	
+	disableParentExtraInput(group, true);
 }
 	
 function hideInputs(group) {
@@ -163,6 +165,8 @@ function hideInputs(group) {
 	var renderButton = document.getElementById("button-" + group);
 	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
 	renderButton.innerHTML = getLabelForRenderButton(group, true);
+	
+	disableParentExtraInput(group, false);
 }
 
 function getProperLocationForInputs(group) {
@@ -383,6 +387,25 @@ function unRenderPosSelectItem(group) {
 		container.removeChild(posItemN);		
 	} else {
 		alert("There has to be at least 1 player involved");
+	}
+}
+
+function disableParentExtraInput(group, disable) {
+	var parentExtraButtonId = null;
+	switch (group) {
+		case input_b2:
+			parentExtraButtonId = input_b1;
+			break;
+		case input_b3:
+			parentExtraButtonId = input_b2;
+			break;
+		case input_r1b:
+			parentExtraButtonId = input_r1a;
+			break;
+	}
+	if (parentExtraButtonId != null) {
+		var parentExtraButton = document.getElementById("button-" + parentExtraButtonId);
+		parentExtraButton.disabled = disable;
 	}
 }
 
