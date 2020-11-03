@@ -29,6 +29,14 @@ label {
 
 .wbsc-action-select {
 	width: 250px;
+	display: inline;
+	margin-bottom: 3px;
+}
+
+.wbsc-pos-select {
+	width: 65px;
+	display: inline;
+	margin-bottom: 3px;
 }
 
 .wbsc-action-button {
@@ -53,10 +61,6 @@ label {
 .wbsc-unrender-button {
 	background-color: #a31808;
 	margin: 5px;
-}
-
-.wbsc-render-pos {
-	height: 32px;
 }
 
 .wbsc-paragraph {
@@ -86,7 +90,9 @@ label {
 	margin: 0px auto;
 	margin-bottom: 5px;
 	padding: 3px;
-	width: 60%;
+	width: 96%;
+	max-width: 600px;
+	text-align: center;
 }
 
 .wbsc-buttons {
@@ -94,7 +100,8 @@ label {
 	border: 2px solid black;
 	margin: 0px auto;
 	padding: 5px;
-	width: 60%;
+	width: 96%;
+	max-width: 600px;
 }
 
 .wbsc-select {
