@@ -485,15 +485,15 @@ function writeSituation(base, situation) {
 			}
 			if (situation.startsWith("K") || situation.startsWith("OBR2")) {
 				ctx.font = "bold 40px Verdana";
-				ctx.fillText("1", w + hOffset - 30, h - 20);
+				ctx.fillText("1", w + hOffset - 30, h - 20 + vOffset);
 			}
 			if (situation.startsWith("OBR")) {
 				if (situation.startsWith("OBR14")) {
 					ctx.font = "bold 28px Verdana";
-					ctx.fillText("14", w + hOffset - 32, 38);
+					ctx.fillText("14", w + hOffset - 32, 38 + vOffset);
 				} else {
 					ctx.font = "bold 40px Verdana";
-					ctx.fillText(situation.substring(3,4), w + hOffset - 30, 42);
+					ctx.fillText(situation.substring(3,4), w + hOffset - 30, 42 + vOffset);
 				}
 			}
 			break;
@@ -590,7 +590,7 @@ function writeSituation(base, situation) {
 			}
 			if (situation.startsWith("K")) {
 				ctx.font = "bold 30px Verdana";
-				ctx.fillText("1", w + hOffset - 20, h - 62);
+				ctx.fillText("1", w + hOffset - 20, h - 62 + vOffset);
 			}
 			break;
 		case 2:
@@ -718,7 +718,7 @@ function writeSituation(base, situation) {
 			}
 			if (situation.startsWith("OBR")) {
 				ctx.font = "bold 28px Verdana";
-				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 2 - 15, 35);
+				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 2 - 15, 35 + vOffset);
 			}
 			break;
 		case 3:
@@ -847,7 +847,7 @@ function writeSituation(base, situation) {
 			}
 			if (situation.startsWith("OBR")) {
 				ctx.font = "bold 28px Verdana";
-				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 1.5 - 5, h2 * 0.5 + 12);
+				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset);
 			}
 			break;
 		case 4:
@@ -990,7 +990,7 @@ function writeSituation(base, situation) {
 			}
 			if (situation.startsWith("OBR")) {
 				ctx.font = "bold 28px Verdana";
-				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 1.5 + 2, h2 + 20);
+				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 1.5 + 2, h2 + 20 + vOffset);
 			}
 			break;
 	}
