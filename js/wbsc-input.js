@@ -102,7 +102,7 @@ function showInputs(group, parentDiv) {
 	
 	var baseActionSelect = document.createElement("select");
 	baseActionSelect.setAttribute('id', group + input_base_action);
-	baseActionSelect.setAttribute('class', class_wbsc_action);
+	baseActionSelect.setAttribute('class', 'wbsc-base-action-select form-control');
 	baseActionSelect.addEventListener('click', function(){
 		changeBaseAction(group);
 	});
@@ -128,7 +128,7 @@ function showInputs(group, parentDiv) {
 	
 	var specificActionSelect = document.createElement("select");
 	specificActionSelect.setAttribute('id', group + input_spec_action);
-	specificActionSelect.setAttribute('class', class_wbsc_action);
+	specificActionSelect.setAttribute('class', 'wbsc-specific-action-select form-control');
 	specificActionSelect.addEventListener('click', function(){
 		changeSpecificAction(group);
 	});
@@ -527,6 +527,8 @@ function renderBatterActionOptions() {
 	options.push('<option value="FC">Fielder\'s choice</option>');
 	options.push('<option value="Error">Error</option>');
 	options.push('<option value="Advance">Advance to 1st</option>');
+	options.push('<option value="OBR">Out by rule</option>');
+	options.push('<option value="Other">Other out</option>');
 	return options;
 }
 
@@ -536,6 +538,7 @@ function renderBatterRunnerActionOptions() {
 	options.push('<option value="fdc">Fielder\'s choice</option>');
 	options.push('<option value="err">Error</option>');
 	options.push('<option value="out">Out</option>');
+	options.push('<option value="obr">Out by rule</option>');
 	return options;
 }
 
@@ -549,5 +552,6 @@ function renderRunnerActionOptions() {
 	options.push('<option value="fdc">Fielder\'s choice</option>');
 	options.push('<option value="err">Error</option>');
 	options.push('<option value="out">Out</option>');
+	options.push('<option value="obr">Out by rule</option>');
 	return options;
 }

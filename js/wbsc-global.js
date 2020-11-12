@@ -30,7 +30,6 @@ function setVariables() {
 	window.div_tools = "wbsc-toolbar";
 	
 	window.class_wbsc = "wbsc-inputs";
-	window.class_wbsc_action = "wbsc-action-select form-control";
 	window.class_wbsc_b_render = "wbsc-render-button";
 	window.class_wbsc_b_unrender = "wbsc-unrender-button";
 	window.class_wbsc_pos = "wbsc-pos-select form-control";

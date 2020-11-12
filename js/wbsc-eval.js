@@ -105,6 +105,24 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="HP">Hit by pitch</option>');
 			actionOptions.push('</optgroup>');
 			break;
+		case "OBR":
+			actionOptions.push('<optgroup label="Batter is out">');
+			actionOptions.push('<option value="OBR1_">1 - Illegally batted ball</option>');
+			actionOptions.push('<option value="OBR2_">2 - Bunting foul third strike</option>');
+			actionOptions.push('<option value="OBR3_">3 - Touched by own batted ball</option>');
+			actionOptions.push('<option value="OBR4_">4 - Interfering with the catcher</option>');
+			actionOptions.push('<option value="OBR5_">5 - Failing to bat in proper turn</option>');
+			actionOptions.push('<option value="OBR6_">6 - Refusing to touch 1st base</option>');
+			actionOptions.push('<option value="OBR8_">8 - Infield Fly that is not caught</option>');
+			actionOptions.push('<option value="OBR14_">14 - Interference by a preceding runner</option>');
+			actionOptions.push('</optgroup>');
+			break;
+		case "Other":
+			actionOptions.push('<optgroup label="Batter is out">');
+			actionOptions.push('<option value="A">Appeal play</option>');
+			actionOptions.push('<option value="LT">Lost turn</option>');
+			actionOptions.push('</optgroup>');
+			break;
 		default:
 	        specificActionDisabled = true;	
 	}
@@ -138,6 +156,13 @@ function changeBatterSpecificAction() {
 	    case "KL":
 	    case "KLWP":
 	    case "KLPB":
+		case "OBR1_":
+		case "OBR2_":
+		case "OBR3_":
+		case "OBR4_":
+		case "OBR6_":
+		case "OBR7_":
+		case "LT":
 			allowedPosItems = 0;
 			break;
 		case "1B":
@@ -162,6 +187,7 @@ function changeBatterSpecificAction() {
 		case "SFE":
 		case "FSF":
 		case "IF":
+		case "OBR8_":
 			allowedPosItems = 1;
 			break;
 		case "KSO":
@@ -180,6 +206,9 @@ function changeBatterSpecificAction() {
 		case "EM":
 		case "SH":
 		case "SHE":
+		case "OBR5_":
+		case "OBR14_":
+		case "A":
 			// no adjustments
 			break;
 		default:
@@ -249,7 +278,7 @@ function changeRunnerBaseAction(group) {
 	switch (runnerBaseAction.value) {
 		case "adv":
 			actionOptions.push('<optgroup label="Runner is safe">');
-			actionOptions.push('<option value="A">Advanced by batter</option>');
+			actionOptions.push('<option value="ADV">Advanced by batter</option>');
 			actionOptions.push('</optgroup>');
 			break;
 		case "exbb":
@@ -295,6 +324,18 @@ function changeRunnerBaseAction(group) {
 			actionOptions.push('<optgroup label="Runner is out">');
 			actionOptions.push('<option value="GO">Force out</option>');
 			actionOptions.push('<option value="GO">Tag out</option>');
+			actionOptions.push('<option value="A">Appeal play</option>');
+			actionOptions.push('</optgroup>');
+			break;
+		case "obr":
+			actionOptions.push('<optgroup label="Runner is out">');
+			actionOptions.push('<option value="OBR7_">7 - Refusing to advance from 3rd base to HP</option>');
+			actionOptions.push('<option value="OBR9_">9 - Touched by a fair ball</option>');
+			actionOptions.push('<option value="OBR10_">10 - Running out of line to avoid being tagged</option>');
+			actionOptions.push('<option value="OBR11_">11 - Passing another runner</option>');
+			actionOptions.push('<option value="OBR12_">12 - Running the bases in reverse order</option>');
+			actionOptions.push('<option value="OBR13_">13 - Interfered with a fielder</option>');
+			actionOptions.push('<option value="OBR15_">15 - Runner left early</option>');
 			actionOptions.push('</optgroup>');
 			break;
 	    default:
@@ -315,7 +356,7 @@ function changeRunnerSpecificAction(group) {
 	var runnerSpecificAction = document.getElementById(group + input_spec_action);
 	var runnerSpecificActionValue = runnerSpecificAction.value;
 	switch (runnerSpecificActionValue) {
-		case "A":
+		case "ADV":
 	    case "bb":
 	    case "ibb":
 	    case "hp":
@@ -324,11 +365,16 @@ function changeRunnerSpecificAction(group) {
 		case "BK":
 		case "IP":
 		case "SB":
+		case "OBR7_":
 			allowedPosItems = 0;
 			break;
 		case "O/":
 		case "EF":
 		case "eF":
+		case "OBR9_":
+		case "OBR11_":
+		case "OBR12_":
+		case "OBR15_":
 			allowedPosItems = 1;
 			break;
 		case "T":
@@ -341,6 +387,9 @@ function changeRunnerSpecificAction(group) {
 	    case "EM":
 	    case "eT":
 	    case "GO":
+		case "OBR10_":
+		case "OBR13_":
+		case "A":
 			// no adjustments
 			break;
 		default:

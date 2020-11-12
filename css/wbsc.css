@@ -27,8 +27,14 @@ label {
 	display:none;
 }
 
-.wbsc-action-select {
-	width: 250px;
+.wbsc-base-action-select {
+	width: 200px;
+	display: inline;
+	margin-bottom: 3px;
+}
+
+.wbsc-specific-action-select {
+	width: 400px;
 	display: inline;
 	margin-bottom: 3px;
 }
@@ -91,7 +97,7 @@ label {
 	margin-bottom: 5px;
 	padding: 3px;
 	width: 96%;
-	max-width: 600px;
+	max-width: 800px;
 	text-align: center;
 }
 
@@ -101,7 +107,7 @@ label {
 	margin: 0px auto;
 	padding: 5px;
 	width: 96%;
-	max-width: 600px;
+	max-width: 800px;
 }
 
 .wbsc-select {
