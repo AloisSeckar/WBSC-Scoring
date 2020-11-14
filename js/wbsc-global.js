@@ -56,4 +56,8 @@ function setVariables() {
 	window.input_validation = "-validation";
 	window.input_add = "-add";
 	window.input_remove = "-remove";
+	
+	window.minPosItems = [];
+	window.targetPosItems = [];
+	window.maxPosItems = [];
 }

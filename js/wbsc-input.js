@@ -364,30 +364,41 @@ function renderPosSelection(group) {
 
 function renderPosSelectItem(group) {
 	var container = document.getElementById(group);
+	var renderButton = document.getElementById(group + input_add);
+	var unRenderButton = document.getElementById(group + input_remove);
+	
 	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-	if (itemsCreated < 4) {
+	if (itemsCreated < maxPosItems[group]) {
 		itemsCreated++;
+		
 		var posItemN = document.createElement("select");
 		posItemN.setAttribute('id', group + itemsCreated);
 		posItemN.setAttribute('class', class_wbsc_pos);
-		posItemN.innerHTML = renderPlayerOptions();
+		posItemN.innerHTML = renderPlayerOptions();	
 		
-		var addButton = document.getElementById(group + input_add);
-		container.insertBefore(posItemN, addButton);
-	} else {
-		alert("Currently only situations with up to 3 assists are supported");
+		container.insertBefore(posItemN, renderButton);
 	}
+	
+	renderButton.disabled = itemsCreated >= maxPosItems[group];
+	unRenderButton.disabled = itemsCreated <= minPosItems[group];
 }
 
 function unRenderPosSelectItem(group) {
 	var container = document.getElementById(group);
+	var renderButton = document.getElementById(group + input_add);
+	var unRenderButton = document.getElementById(group + input_remove);
+	
 	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-	if (itemsCreated > 1) {
+	if (itemsCreated > minPosItems[group]) {
 		var posItemN = document.getElementById(group + itemsCreated);
-		container.removeChild(posItemN);		
-	} else {
-		alert("There has to be at least 1 player involved");
+		
+		container.removeChild(posItemN);
+		
+        itemsCreated--;
 	}
+	
+	renderButton.disabled = itemsCreated >= maxPosItems[group];
+	unRenderButton.disabled = itemsCreated <= minPosItems[group];
 }
 
 function disableParentExtraInput(group, disable) {

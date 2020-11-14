@@ -1,19 +1,19 @@
 v.07
 ====
 Unlicense
+Improved player selection inputs rendering
 Improved consecutive actions handling
 Improved CSS form design
 New actions:
 	- LT - lost turn
 	- A - appeal play
 	- OBR - out by rule
-
+Resolving #14 and #16
 
 TODO
 ====
 More validations
 Remember player input selections
 Earned/Unearned runs
-Muffled throw require 2+ player inputs
 "Same error" advances
 Double and Triple plays

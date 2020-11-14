@@ -137,7 +137,9 @@ function changeBatterBaseAction() {
 function changeBatterSpecificAction() {
 	var fc = false;
 	var hit = false;
-	var allowedPosItems = 5;
+	var minPosItems = 1;
+	var targetPosItems = 1;
+	var maxPosItems = 4;
 	
 	var specificAction = document.getElementById(input_b + input_spec_action);
 	var specificActionValue = specificAction.value;
@@ -145,7 +147,7 @@ function changeBatterSpecificAction() {
 		case "FC":
 		case "SHFC":
 			fc = true;
-			allowedPosItems = 2;
+			minPosItems = targetPosItems = maxPosItems = 2;
 			break;
 	    case "BB1":
 	    case "IBB1":
@@ -163,7 +165,7 @@ function changeBatterSpecificAction() {
 		case "OBR6_":
 		case "OBR7_":
 		case "LT":
-			allowedPosItems = 0;
+			minPosItems = targetPosItems = maxPosItems = 0;
 			break;
 		case "1B":
 		case "2B":
@@ -173,7 +175,7 @@ function changeBatterSpecificAction() {
 		case "2BG":
 		case "HRI":
 			hit = true;
-			allowedPosItems = 1;
+			minPosItems = targetPosItems = maxPosItems = 1;
 			break;
 		case "KSET":
 		case "KLET":
@@ -188,14 +190,24 @@ function changeBatterSpecificAction() {
 		case "FSF":
 		case "IF":
 		case "OBR8_":
-			allowedPosItems = 1;
+			minPosItems = targetPosItems = maxPosItems = 1;
+			break;
+		case "GO":
+		case "GOB":
+		case "SH":
+			minPosItems = 1;
+			targetPosItems = 2;
+			break;
+		case "KSEM":
+		case "KLEM":
+		case "EM":
+			minPosItems = targetPosItems = 2;
+			break;
+		case "OBR5_":
+			minPosItems = targetPosItems = 0;
 			break;
 		case "KSO":
 		case "KLO":
-		case "KSEM":
-		case "KLEM":
-		case "GO":
-		case "GOB":
 		case "F":
 		case "P":
 		case "L":
@@ -203,29 +215,31 @@ function changeBatterSpecificAction() {
 		case "FP":
 		case "FL":
 		case "ET":
-		case "EM":
-		case "SH":
 		case "SHE":
-		case "OBR5_":
 		case "OBR14_":
 		case "A":
 			// no adjustments
 			break;
 		default:
-			allowedPosItems = 1;
+			maxPosItems = 1;
 	}
 	
 	var groupID = input_b + input_position;
+	
+	window.minPosItems[groupID] = minPosItems;
+	window.targetPosItems[groupID] = targetPosItems;
+	window.maxPosItems[groupID] = maxPosItems;
+	
 	var container = document.getElementById(groupID);
 	var addItemButton = document.getElementById(groupID + input_add);
 	var removeItemButton = document.getElementById(groupID + input_remove);
-	if (allowedPosItems < 5) {
+	if (maxPosItems < 4) {
 		addItemButton.disabled = true;
 		removeItemButton.disabled = true;
 		
 		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-	    while (itemsCreated != allowedPosItems) {
-			if (itemsCreated > allowedPosItems) {
+	    while (itemsCreated != targetPosItems) {
+			if (itemsCreated > targetPosItems) {
 				var posItemN = document.getElementById(groupID + itemsCreated);
 				container.removeChild(posItemN);
 				itemsCreated--;
@@ -254,8 +268,12 @@ function changeBatterSpecificAction() {
 		
 		var posItem1 = document.getElementById(groupID + "1");
 		if (posItem1 != null) {
-			posItem1.innerHTML = renderPlayerOptions();
-		} else {
+			if (targetPosItems > 0) {
+				posItem1.innerHTML = renderPlayerOptions();
+			} else {
+				container.removeChild(posItem1);
+			}
+		} else if (targetPosItems > 0) {
 			var posItem1 = document.createElement("select");
 			posItem1.setAttribute('id', groupID + "1");
 			posItem1.setAttribute('class', class_wbsc_pos);
@@ -265,7 +283,17 @@ function changeBatterSpecificAction() {
 		
 		var posItem2 = document.getElementById(groupID + "2");
 		if (posItem2 != null) {
-			posItem2.innerHTML = renderPlayerOptions();
+			if (targetPosItems > 1) {
+				posItem2.innerHTML = renderPlayerOptions();
+			} else {
+				container.removeChild(posItem2);
+			}
+		} else if (targetPosItems > 1) {
+			var posItem2 = document.createElement("select");
+			posItem2.setAttribute('id', groupID + "2");
+			posItem2.setAttribute('class', class_wbsc_pos);
+			posItem2.innerHTML = renderPlayerOptions();		
+			container.insertBefore(posItem2, addItemButton);
 		}
 	}
 }
@@ -351,7 +379,9 @@ function changeRunnerBaseAction(group) {
 
 function changeRunnerSpecificAction(group) {
 	var throwing = false;
-	var allowedPosItems = 5;
+	var minPosItems = 1;
+	var targetPosItems = 1;
+	var maxPosItems = 4;
 	
 	var runnerSpecificAction = document.getElementById(group + input_spec_action);
 	var runnerSpecificActionValue = runnerSpecificAction.value;
@@ -366,7 +396,7 @@ function changeRunnerSpecificAction(group) {
 		case "IP":
 		case "SB":
 		case "OBR7_":
-			allowedPosItems = 0;
+			minPosItems = targetPosItems = maxPosItems = 0;
 			break;
 		case "O/":
 		case "EF":
@@ -375,38 +405,48 @@ function changeRunnerSpecificAction(group) {
 		case "OBR11_":
 		case "OBR12_":
 		case "OBR15_":
-			allowedPosItems = 1;
+			minPosItems = targetPosItems = maxPosItems = 1;
 			break;
 		case "T":
-			allowedPosItems = 2;
+			minPosItems = targetPosItems = maxPosItems = 2;
 			throwing = true;
 			break;
-	    case "CSO":
 	    case "CSE":
-	    case "ET":
 	    case "EM":
-	    case "eT":
+			minPosItems = targetPosItems = 2;
+			break;
+	    case "CSO":
 	    case "GO":
+			minPosItems = 1;
+			targetPosItems = 2;
+			break;
+	    case "ET":
+	    case "eT":
 		case "OBR10_":
 		case "OBR13_":
 		case "A":
 			// no adjustments
 			break;
 		default:
-			allowedPosItems = 1;
+			maxPosItems = 1;
 	}
 	
 	var groupID = group + input_position;
+	
+	window.minPosItems[groupID] = minPosItems;
+	window.targetPosItems[groupID] = targetPosItems;
+	window.maxPosItems[groupID] = maxPosItems;
+	
 	var container = document.getElementById(groupID);
 	var addItemButton = document.getElementById(groupID + input_add);
 	var removeItemButton = document.getElementById(groupID + input_remove);
-	if (allowedPosItems < 5) {
+	if (maxPosItems < 4) {
 		addItemButton.disabled = true;
 		removeItemButton.disabled = true;
 		
 		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-	    while (itemsCreated != allowedPosItems) {
-			if (itemsCreated > allowedPosItems) {
+	    while (itemsCreated != targetPosItems) {
+			if (itemsCreated > targetPosItems) {
 				var posItemN = document.getElementById(groupID + itemsCreated);
 				container.removeChild(posItemN);
 				itemsCreated--;
@@ -429,7 +469,7 @@ function changeRunnerSpecificAction(group) {
 		removeItemButton.disabled = false;
 		
 		var posItem1 = document.getElementById(groupID + "1");
-		if (posItem1 == null) {
+		if (posItem1 == null && targetPosItems > 0) {
 			var posItem1 = document.createElement("select");
 			posItem1.setAttribute('id', groupID + "1");
 			posItem1.setAttribute('class', class_wbsc_pos);
@@ -440,6 +480,12 @@ function changeRunnerSpecificAction(group) {
 		var posItem2 = document.getElementById(groupID + "2");
 		if (posItem2 != null) {
 			posItem2.innerHTML = renderPlayerOptions();
+		} else if (targetPosItems > 1) {
+			var posItem2 = document.createElement("select");
+			posItem2.setAttribute('id', groupID + "2");
+			posItem2.setAttribute('class', class_wbsc_pos);
+			posItem2.innerHTML = renderPlayerOptions();		
+			container.insertBefore(posItem2, addItemButton);
 		}
 	}
 }
