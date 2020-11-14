@@ -329,10 +329,7 @@ function renderPosSelection(group) {
 	involvedLabel.innerHTML = "Involved:";
 	inputsContainer.appendChild(involvedLabel);
 	
-	var posItem1 = document.createElement("select");
-	posItem1.setAttribute('id', groupID + "1");
-	posItem1.setAttribute('class', class_wbsc_pos);
-	posItem1.innerHTML = renderPlayerOptions();
+	var posItem1 = getPosSelectionSelect(group, 1);
 	inputsContainer.appendChild(posItem1);
 	
 	var addItemButton = document.createElement("button");
@@ -340,7 +337,7 @@ function renderPosSelection(group) {
 	addItemButton.setAttribute('type', "button");
 	addItemButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button " + class_wbsc_b_render);
 	addItemButton.addEventListener('click', function(){
-		renderPosSelectItem(groupID);
+		renderPosSelectItem(group);
 	});
     addItemButton.disabled = true;
 	addItemButton.innerHTML = "+P";
@@ -351,7 +348,7 @@ function renderPosSelection(group) {
 	removeItemButton.setAttribute('type', "button");
 	removeItemButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button " + class_wbsc_b_unrender);
 	removeItemButton.addEventListener('click', function(){
-		unRenderPosSelectItem(groupID);
+		unRenderPosSelectItem(group);
 	});
     removeItemButton.disabled = true;
 	removeItemButton.innerHTML = "-P";
@@ -363,18 +360,16 @@ function renderPosSelection(group) {
 }
 
 function renderPosSelectItem(group) {
-	var container = document.getElementById(group);
-	var renderButton = document.getElementById(group + input_add);
-	var unRenderButton = document.getElementById(group + input_remove);
+	var groupID = group + input_position;
+	var container = document.getElementById(groupID);
+	var renderButton = document.getElementById(groupID + input_add);
+	var unRenderButton = document.getElementById(groupID + input_remove);
 	
 	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	if (itemsCreated < maxPosItems[group]) {
 		itemsCreated++;
 		
-		var posItemN = document.createElement("select");
-		posItemN.setAttribute('id', group + itemsCreated);
-		posItemN.setAttribute('class', class_wbsc_pos);
-		posItemN.innerHTML = renderPlayerOptions();	
+		var posItemN = getPosSelectionSelect(group, itemsCreated);
 		
 		container.insertBefore(posItemN, renderButton);
 	}
@@ -384,13 +379,14 @@ function renderPosSelectItem(group) {
 }
 
 function unRenderPosSelectItem(group) {
-	var container = document.getElementById(group);
-	var renderButton = document.getElementById(group + input_add);
-	var unRenderButton = document.getElementById(group + input_remove);
+	var groupID = group + input_position;
+	var container = document.getElementById(groupID);
+	var renderButton = document.getElementById(groupID + input_add);
+	var unRenderButton = document.getElementById(groupID + input_remove);
 	
 	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	if (itemsCreated > minPosItems[group]) {
-		var posItemN = document.getElementById(group + itemsCreated);
+		var posItemN = document.getElementById(groupID + itemsCreated);
 		
 		container.removeChild(posItemN);
 		
@@ -399,6 +395,25 @@ function unRenderPosSelectItem(group) {
 	
 	renderButton.disabled = itemsCreated >= maxPosItems[group];
 	unRenderButton.disabled = itemsCreated <= minPosItems[group];
+}
+
+function getPosSelectionSelect(group, ord) {
+	var groupID = group + input_position;
+	
+	var posItem = document.createElement("select");
+	posItem.setAttribute('id', groupID + ord);
+	posItem.setAttribute('class', class_wbsc_pos);
+	posItem.innerHTML = renderPlayerOptions();
+	
+	if (posSelection[groupID]) {
+		posItem.value = posSelection[groupID][ord - 1];
+	}
+	
+	posItem.addEventListener("change", function() {
+		getPosSelection(group);
+	});
+	
+	return posItem;
 }
 
 function disableParentExtraInput(group, disable) {

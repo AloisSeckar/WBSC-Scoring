@@ -224,11 +224,11 @@ function changeBatterSpecificAction() {
 			maxPosItems = 1;
 	}
 	
-	var groupID = input_b + input_position;
+	window.minPosItems[input_b] = minPosItems;
+	window.targetPosItems[input_b] = targetPosItems;
+	window.maxPosItems[input_b] = maxPosItems;
 	
-	window.minPosItems[groupID] = minPosItems;
-	window.targetPosItems[groupID] = targetPosItems;
-	window.maxPosItems[groupID] = maxPosItems;
+	var groupID = input_b + input_position;
 	
 	var container = document.getElementById(groupID);
 	var addItemButton = document.getElementById(groupID + input_add);
@@ -245,10 +245,7 @@ function changeBatterSpecificAction() {
 				itemsCreated--;
 			} else {
 				itemsCreated++;
-				var posItemN = document.createElement("select");
-				posItemN.setAttribute('id', groupID + itemsCreated);
-				posItemN.setAttribute('class', class_wbsc_pos);
-				posItemN.innerHTML = renderPlayerOptions();		
+				var posItemN = getPosSelectionSelect(input_b, itemsCreated);
 				container.insertBefore(posItemN, addItemButton);
 			}
 		}
@@ -256,11 +253,17 @@ function changeBatterSpecificAction() {
 		if (hit == true) {
 			var posItem1 = document.getElementById(groupID + "1");
 			posItem1.innerHTML = renderHitLocationOptions();
+			if (posSelection[groupID]) {
+				posItem1.value = posSelection[groupID][0];
+			}
 		}
 		
 		if (fc == true) {
 			var posItem2 = document.getElementById(groupID + "2");
 			posItem2.innerHTML = renderFCLocationOptions();
+			if (posSelection[groupID]) {
+				posItem2.value = posSelection[groupID][1];
+			}
 		}
 	} else {
 		addItemButton.disabled = false;
@@ -270,14 +273,14 @@ function changeBatterSpecificAction() {
 		if (posItem1 != null) {
 			if (targetPosItems > 0) {
 				posItem1.innerHTML = renderPlayerOptions();
+				if (posSelection[groupID]) {
+					posItem1.value = posSelection[groupID][0];
+				}
 			} else {
 				container.removeChild(posItem1);
 			}
 		} else if (targetPosItems > 0) {
-			var posItem1 = document.createElement("select");
-			posItem1.setAttribute('id', groupID + "1");
-			posItem1.setAttribute('class', class_wbsc_pos);
-			posItem1.innerHTML = renderPlayerOptions();		
+		    var posItem1 = getPosSelectionSelect(input_b, 1);
 			container.insertBefore(posItem1, addItemButton);
 		}
 		
@@ -285,14 +288,14 @@ function changeBatterSpecificAction() {
 		if (posItem2 != null) {
 			if (targetPosItems > 1) {
 				posItem2.innerHTML = renderPlayerOptions();
+				if (posSelection[groupID]) {
+					posItem2.value = posSelection[groupID][1];
+				}
 			} else {
 				container.removeChild(posItem2);
 			}
 		} else if (targetPosItems > 1) {
-			var posItem2 = document.createElement("select");
-			posItem2.setAttribute('id', groupID + "2");
-			posItem2.setAttribute('class', class_wbsc_pos);
-			posItem2.innerHTML = renderPlayerOptions();		
+		    var posItem2 = getPosSelectionSelect(input_b, 2);
 			container.insertBefore(posItem2, addItemButton);
 		}
 	}
@@ -431,11 +434,11 @@ function changeRunnerSpecificAction(group) {
 			maxPosItems = 1;
 	}
 	
-	var groupID = group + input_position;
+	window.minPosItems[group] = minPosItems;
+	window.targetPosItems[group] = targetPosItems;
+	window.maxPosItems[group] = maxPosItems;
 	
-	window.minPosItems[groupID] = minPosItems;
-	window.targetPosItems[groupID] = targetPosItems;
-	window.maxPosItems[groupID] = maxPosItems;
+	var groupID = group + input_position;
 	
 	var container = document.getElementById(groupID);
 	var addItemButton = document.getElementById(groupID + input_add);
@@ -452,10 +455,7 @@ function changeRunnerSpecificAction(group) {
 				itemsCreated--;
 			} else {
 				itemsCreated++;
-				var posItemN = document.createElement("select");
-				posItemN.setAttribute('id', groupID + itemsCreated);
-				posItemN.setAttribute('class', class_wbsc_pos);
-				posItemN.innerHTML = renderPlayerOptions();		
+				var posItemN = getPosSelectionSelect(group, itemsCreated);
 				container.insertBefore(posItemN, addItemButton);
 			}
 		}
@@ -463,6 +463,9 @@ function changeRunnerSpecificAction(group) {
 		if (throwing == true) {
 			var posItem2 = document.getElementById(groupID + "2");
 			posItem2.innerHTML = renderFCLocationOptions();
+			if (posSelection[groupID]) {
+				posItem2.value = posSelection[groupID][1];	
+			}
 		}
 	} else {
 		addItemButton.disabled = false;
@@ -470,21 +473,18 @@ function changeRunnerSpecificAction(group) {
 		
 		var posItem1 = document.getElementById(groupID + "1");
 		if (posItem1 == null && targetPosItems > 0) {
-			var posItem1 = document.createElement("select");
-			posItem1.setAttribute('id', groupID + "1");
-			posItem1.setAttribute('class', class_wbsc_pos);
-			posItem1.innerHTML = renderPlayerOptions();		
+		    var posItem1 = getPosSelectionSelect(group, 1);
 			container.insertBefore(posItem1, addItemButton);
 		}
 		
 		var posItem2 = document.getElementById(groupID + "2");
 		if (posItem2 != null) {
 			posItem2.innerHTML = renderPlayerOptions();
+			if (posSelection[groupID]) {
+				posItem2.value = posSelection[groupID][1];	
+			}
 		} else if (targetPosItems > 1) {
-			var posItem2 = document.createElement("select");
-			posItem2.setAttribute('id', groupID + "2");
-			posItem2.setAttribute('class', class_wbsc_pos);
-			posItem2.innerHTML = renderPlayerOptions();		
+		    var posItem2 = getPosSelectionSelect(group, 2);
 			container.insertBefore(posItem2, addItemButton);
 		}
 	}
@@ -513,15 +513,17 @@ function getTIESelection(group) {
 }
 
 function getPosSelection(group) {
-	var selection = "";
+	var selection = [];
 	
 	var container = document.getElementById(group + input_position);
 	var posCount = container.getElementsByClassName(class_wbsc_pos);
 	for (var i = 0; i < posCount.length; i++) {
-		selection += posCount.item(i).value;
+		selection[i] = posCount.item(i).value;
 	}
 	
-	return selection;
+	posSelection[group + input_position] = selection;
+	
+	return selection.join("");
 }
 
 function checkPosSelection(selection) {

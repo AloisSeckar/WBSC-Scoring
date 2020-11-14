@@ -60,4 +60,5 @@ function setVariables() {
 	window.minPosItems = [];
 	window.targetPosItems = [];
 	window.maxPosItems = [];
+	window.posSelection = [];
 }
