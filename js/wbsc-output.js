@@ -245,7 +245,7 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 
 function drawBackground(battingOrder) {
 	ctx.fillStyle = "white";
-	ctx.fillRect(0, 0 + vOffset, w, h);
+	ctx.fillRect(0, 0 + vOffset, w + hOffset, h);
 	
 	ctx.lineWidth = 8;
 	ctx.strokeStyle = '#00a7d7';
