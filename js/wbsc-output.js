@@ -100,146 +100,29 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 	
 	if (mainInput[input_origBase] != null) {
 		
-		var origBaseAction = "*";
+		output = [];
+		output[output_base] = mainInput[input_origBase];
 		if (mainInput[input_tie] == true) {
-			origBaseAction = "TIE";
+			output[output_text_1] = "TIE";
+		} else {
+			output[output_text_1] = "*";
 		}
 		
-		drawAdvance(mainInput[input_origBase], origBaseAction, "");
+		drawAdvance(output);
 	}
 	
-	var base = parseInt(mainInput[input_base]);
-	var action = mainInput[input_spec_action];
-	var pos = mainInput[input_position];
-	var outcome = "advance";
-	
-	switch (action) {
-		case "EDF":
-			base = 0;
-			break;
-		case "KS":
-		case "KSO":
-		case "KL":
-		case "KLO":
-		case "F":
-		case "P":
-		case "L":
-		case "FF":
-		case "FP":
-		case "FL":
-		case "IF":
-		case "SH":
-		case "SF":
-		case "FSF":
-		case "LT":
-		case "OBR1_":
-		case "OBR2_":
-		case "OBR3_":
-		case "OBR4_":
-		case "OBR5_":
-		case "OBR6_":
-		case "OBR8_":
-		case "OBR14_":
-			outcome = "out";
-			base = 0;
-			break;
-		case "1B":
-		case "1BB":
-		case "O":
-		case "FC":
-		case "KSET":
-		case "KSEM":
-		case "KSWP":
-		case "KSPB":
-		case "KSFC":
-		case "KLET":
-		case "KLEM":
-		case "KLWP":
-		case "KLPB":
-		case "KLFC":
-		case "SHE":
-		case "SHFC":
-		case "SFE":
-		case "SFO":
-			base = 1;
-			break;
-		case "2B":
-		case "2BG":
-			base = 2;
-			break;
-		case "3B":
-			base = 3;
-			break;
-		case "HR":
-		case "HRI":
-			base = 4;
-			break;
-		case "BB1":
-		case "IBB1":
-		case "HP":
-			base = 1;
-			pos = "";
-			break;
-	    case "bb":
-	    case "ibb":
-	    case "hp":
-		case "WP":
-		case "PB":
-		case "BK":
-		case "IP":
-		case "SB":
-			pos = window.batter;
-			break;
-		case "ADV":
-			pos = "";
-			break;
-		case "GO":
-		case "GOB":
-		case "A":
-			outcome = "out";
-			if (base == 1) {
-				base = 0;
-			}
-			break;
-		case "CSO":
-		case "OBR7_":
-		case "OBR9_":
-		case "OBR10_":
-		case "OBR11_":
-		case "OBR12_":
-		case "OBR13_":
-		case "OBR15_":
-			outcome = "out";
-			break;
-		case "EF":
-		case "ET":
-		case "EM":
-		case "ED":
-			// no adjustment
-			break;
-	}
-	
-	if (pos != null) {
-		if (pos[pos.length - 1] == "X") {
-			pos = pos.substring(0, pos.length - 1) + "4";
-		} else if (pos[pos.length - 1] == "Y") {
-			pos = pos.substring(0, pos.length - 1) + "5";
-		} else if (pos[pos.length - 1] == "Z") {
-			pos = pos.substring(0, pos.length - 1) + "2";
-		}
-	}
-	
-	if (outcome == "advance") {
-		drawAdvance(base, action, pos);
+	var output = processInput(mainInput);
+	if (output[output_out] == true) {
+		drawOut(output);
+	} else {
+		drawAdvance(output);
 		
 		if (extraInput != null) {
 			for (i = 0; i < extraInput.length; i++) {
 				drawAction(battingOrder, extraInput[i], null, false);
-				drawConnector(base, parseInt(extraInput[i][input_base]));
+				drawConnector(parseInt(mainInput[input_base]), parseInt(extraInput[i][input_base]));
 			}
 		}
-	} else {
-		drawOut(base, action, pos);
 	}
 }
 
@@ -276,15 +159,15 @@ function drawBackground(battingOrder) {
 	ctx.stroke();
 }
 
-function drawOut(base, situation, players) {
+function drawOut(output) {
 	ctx.lineWidth = 7;
 	ctx.strokeStyle = 'black';
 	
 	ctx.beginPath();
-	switch (base) {
+	switch (output[output_base]) {
 		case 0:
 		case 1:
-			if (!situation.startsWith("LT")) {
+			if (output[output_text_1] != "LT") {
 				ctx.arc(h2 + hOffset, h2 + vOffset, h2 - 15, 0, 2 * Math.PI);
 			}
 			break;
@@ -306,14 +189,12 @@ function drawOut(base, situation, players) {
 	}
 	ctx.stroke();
 	
-	situationToWrite = situation + players;	
-	writeSituation(base, situationToWrite);
+	writeSituation(output);
 }
 
-function drawAdvance(base, situation, players) {
-	drawAdvanceLine(base);
-	situationToWrite = situation + players;
-	writeSituation(base, situationToWrite);
+function drawAdvance(output) {
+	drawAdvanceLine(output[output_base]);
+	writeSituation(output);
 }
 
 function drawAdvanceLine(base) {
@@ -387,610 +268,310 @@ function drawConnector(base1, base2) {
 	}
 }
 
-function writeSituation(base, situation) {
-	if (situation == "*") {
+function writeSituation(output) {
+    text1 = output[output_text_1];
+	text2 = output[output_text_2];
+	out = output[output_out];
+	hit = output[output_hit];
+	sub = output[output_sub];
+	sup = output[output_sup];
+	
+	if (text1 == "*") {
 		ctx.fillStyle = "red";
 	} else {
 		ctx.fillStyle = "black";
 	}
 	
 	ctx.font = "bold 45px Verdana";
-	var offset = 20;
+	offset = 20;
 	
-	switch (base) {
+	switch (output[output_base]) {
 		case 0:
-			if (situation.startsWith("EDF")) {
-				esituation = "E" + situation.substring(3) + " DF";
+			if (text1.endsWith("DF")) {
 				ctx.font = "bold 20px Verdana";
-				ctx.fillText(esituation, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset);
-			} else if (situation.startsWith("KSO") || situation.startsWith("KLO")) {
-				ksituation1 = situation.substring(0,2);
-				ctx.font = "bold 80px Verdana";
-				offset = -10;
-				ctx.fillText(ksituation1, w2 + hOffset, h2 + offset + vOffset);
-				ksituation2 = situation.substring(3);
-				if (ksituation2.length > 3) {
-					offset = 60;
-					ctx.font = "bold 60px Verdana";
-				} else if (ksituation2.length > 2) {
-					offset = 65;
-					ctx.font = "bold 72px Verdana";
-				} else {
-					offset = 70;
-				}
-				ctx.fillText(ksituation2, w2 + hOffset, h2 + offset + vOffset);
-			} else if (situation.startsWith("SH")) {
-				ctx.font = "bold 75px Verdana";
-				offset = -10;
-				ctx.fillText("SH", w2 + hOffset, h2 + offset + vOffset);
-				if (situation.length > 5) {
-					ctx.font = "bold 58px Verdana";
-					offset = 60;
-				} else if (situation.length > 4) {
-					ctx.font = "bold 68px Verdana";
-					offset = 65;
-				} else {
-					offset = 70
-				}
-				ctx.fillText(situation.substring(2), w2 + hOffset, h2 + offset + vOffset);
-			} else if (situation.startsWith("FSF")) {
-				ctx.font = "bold 75px Verdana";
-				offset = -5;
-				ctx.fillText("FSF", w2 + hOffset, h2 + offset + vOffset);
-				offset = 75;
-				ctx.fillText(situation.substring(3), w2 + hOffset, h2 + offset + vOffset);
-			} else if (situation.startsWith("OBR")) {
-				ctx.font = "bold 75px Verdana";
-				offset = -5;
-				ctx.fillText("OBR", w2 + hOffset, h2 + offset + vOffset);
-				offset = 70;
-				if (situation.startsWith("OBR2")) {
-					osituation = "KS"
-				} else if (situation.startsWith("OBR5") || situation.startsWith("OBR8") || situation.startsWith("OBR14")) {
-					osituation = situation.substring(situation.indexOf("_") + 1);
-					if (osituation == "") {
-						osituation = "2";
-					}
-				} else {
-					osituation = "2";
-				}
-				if (osituation.length > 3) {
-					ctx.font = "bold 60px Verdana";
-					offset = 62;
-				}
-				ctx.fillText(osituation, w2 + hOffset, h2 + offset + vOffset);
+				ctx.fillText(text1, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset);
 			} else {
-				if (situation.startsWith("GOB")) {
-					situation = situation.substring(3) + "B";
-				} else if (situation.startsWith("GO")) {
-					situation = situation.substring(2);
-				}
-				if (situation.length > 5) {
-					ctx.font = "bold 45px Verdana";
-					offset = 16;
-				} else if (situation.length > 4) {
-					ctx.font = "bold 52px Verdana";
-					offset = 20;
-				} else if (situation.length > 3) {
-					ctx.font = "bold 68px Verdana";
-					offset = 26;
-				} else if (situation.length > 2) {
-					ctx.font = "bold 90px Verdana";
-					offset = 34;
+				if (text2 != null) {
+					ctx.font = "bold 75px Verdana";
+					offset = -5;
+					ctx.fillText(text1, w2 + hOffset, h2 + offset + vOffset);
+				
+					if (text2.length > 3) {
+						ctx.font = "bold 60px Verdana";
+						offset = 60;
+					} else if (text2.length > 2) {
+						ctx.font = "bold 72px Verdana";
+						offset = 65;
+					} else {
+						ctx.font = "bold 90px Verdana";
+						offset = 70;
+					}
+					ctx.fillText(text2, w2 + hOffset, h2 + offset + vOffset);	
 				} else {
-					ctx.font = "bold 110px Verdana";
-					offset = 42
+					if (text1.length > 5) {
+						ctx.font = "bold 45px Verdana";
+						offset = 16;
+					} else if (text1.length > 4) {
+						ctx.font = "bold 52px Verdana";
+						offset = 20;
+					} else if (text1.length > 3) {
+						ctx.font = "bold 68px Verdana";
+						offset = 26;
+					} else if (text1.length > 2) {
+						ctx.font = "bold 90px Verdana";
+						offset = 34;
+					} else {
+						ctx.font = "bold 110px Verdana";
+						offset = 42
+					}
+					ctx.fillText(text1, w2 + hOffset, h2 + offset + vOffset);
 				}
-				ctx.fillText(situation, w2 + hOffset, h2 + offset + vOffset);
 			}
-			if (situation.startsWith("K") || situation.startsWith("OBR2")) {
+			if (sub != null) {
 				ctx.font = "bold 40px Verdana";
-				ctx.fillText("1", w + hOffset - 30, h - 20 + vOffset);
+				ctx.fillText(sub, w + hOffset - 30, h - 20 + vOffset);
 			}
-			if (situation.startsWith("OBR")) {
-				if (situation.startsWith("OBR14")) {
+			if (sup != null) {
+				if (sup == "14") {
 					ctx.font = "bold 28px Verdana";
-					ctx.fillText("14", w + hOffset - 32, 38 + vOffset);
+					ctx.fillText(sup, w + hOffset - 32, 38 + vOffset);
 				} else {
 					ctx.font = "bold 40px Verdana";
-					ctx.fillText(situation.substring(3,4), w + hOffset - 30, 42 + vOffset);
+					ctx.fillText(sup, w + hOffset - 30, 42 + vOffset);
 				}
 			}
 			break;
 		case 1:
-			if (situation.startsWith("ADV")) {
-				ctx.fillText(window.batter, w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
-		    } else if (situation.startsWith("K")) {
-				ksituation1 = situation.substring(0,2);
-				ctx.font = "bold 45px Verdana";
-				offset = -5;
-				ctx.fillText(ksituation1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
-				ksituation2 = situation.substring(2);
-				if (ksituation2.startsWith("ET")) {
-					ksituation2 = "E" + ksituation2.substring(2) + "T";
-				} else if (ksituation2.startsWith("EM")) {
-					if (ksituation2.length > 2) {
-						ksituation2 = ksituation2.substring(2, ksituation2.length - 1) + "E" + ksituation2.substring(ksituation2.length - 1);
-					} else {
-						ksituation2 = "E";
-					}
-				} else if (ksituation2.startsWith("FC")) {
-					ksituation2 = "O" + ksituation2.substring(2);
-				}
-				if (ksituation2.length > 4) {
-					ctx.font = "bold 28px Verdana";
-					offset = 36;
-				} else if (ksituation2.length > 3) {
-					ctx.font = "bold 36px Verdana";
-					offset = 38;
-				} else {
-					offset = 40
-				}
-				ctx.fillText(ksituation2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else if (situation.startsWith("FC") || situation.startsWith("SH") || situation.startsWith("SF")) {
-				situation1 = situation.substring(0,2);
-				ctx.font = "bold 45px Verdana";
-				offset = -5;
-				ctx.fillText(situation1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
-				situation2 = situation.substring(2);
-				if (situation2.startsWith("E") && situation2.length > 2) {
-					situation2 = situation.substring(3, situation.length - 1) + "E" +  situation.substring(situation.length - 1);
-				} 
-				if (situation2.length > 4) {
-					ctx.font = "bold 28px Verdana";
-					offset = 36;
-				} else if (situation2.length > 3) {
-					ctx.font = "bold 36px Verdana";
-					offset = 38;
-				} else {
-					offset = 40
-				}
-				ctx.fillText(situation2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else if (situation.startsWith("1B")) {
-				if (situation.startsWith("1BB")) {
-					hitSituation = situation.substring(3) + "B";
-				} else {
-					hitSituation = situation.substring(2);
-				}
-				if (hitSituation.length > 1) {
-					ctx.font = "bold 40px Verdana";
-				}
+			if (hit) {
 				drawHitSymbol(1);
-				ctx.fillText(hitSituation, w2 * 1.5 + 12 + hOffset, h2 * 1.5 + 25 + vOffset);
-			} else if (situation.startsWith("E")) {
-				if (situation.length > 3) {
-					esituation = situation.substring(2, situation.length - 1) + "E" +  situation.substring(situation.length - 1);
+				hitOffset = 15;
+			} else {
+				hitOffset = 0;
+			}
+			if (text2 != null) {
+				offset = -5;
+				ctx.fillText(text1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+				
+				if (text2.length > 4) {
+					ctx.font = "bold 28px Verdana";
+					offset = 36;
+				} else if (text2.length > 3) {
+					ctx.font = "bold 36px Verdana";
+					offset = 38;
 				} else {
-					esituation = "E" + situation.substring(2);
+					offset = 40;
 				}
-				switch (situation[1]) {
-					case "T":
-						esituation += "T";
-						break;
-					case "D":
-						esituation += "F";
-						break;
-				}
-				if (esituation.length > 5) {
+				ctx.fillText(text2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+			} else {
+				if (text1.length > 5) {
 					ctx.font = "bold 24px Verdana";
 					offset = 12;
-				} else if (esituation.length > 4) {
+				} else if (text1.length > 4) {
 					ctx.font = "bold 30px Verdana";
 					offset = 16;
-				} else if (esituation.length > 3) {
+				} else if (text1.length > 3) {
 					ctx.font = "bold 38px Verdana";
 					offset = 18;
 				}
-				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else {
-				if (situation.length > 3) {
-					ctx.font = "bold 36px Verdana";
-				} 
-				ctx.fillText(situation, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+				ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 1.5 + offset + vOffset);
 			}
-			if (situation.startsWith("K")) {
+			if (sub != null) {
 				ctx.font = "bold 30px Verdana";
-				ctx.fillText("1", w + hOffset - 20, h - 62 + vOffset);
+				ctx.fillText(sub, w + hOffset - 20, h - 62 + vOffset);
 			}
 			break;
 		case 2:
-			if (situation.startsWith("ADV")) {
-				ctx.fillText(window.batter, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
-			} else if (situation.startsWith("2B")) {
-				drawHitSymbol(2);
-				if (situation.startsWith("2BG")) {
-					ctx.font = "bold 35px Verdana";
-					ctx.fillText(situation.substring(3), w2 * 1.5 + 22 + hOffset, h2 * 0.5 + vOffset);
-					ctx.fillText("GR", w2 * 1.5 + 22 + hOffset, h2 * 0.5 + 35 + vOffset);
-				} else {
-					if (situation.substring(2).length > 1) {
-						ctx.font = "bold 40px Verdana";
-					}
-					ctx.fillText(situation.substring(2), w2 * 1.5 + 15 + hOffset, h2 * 0.5 + 25 + vOffset);
-				}
-			} else if (situation.startsWith("CSE")) {
-				csituation = situation.substring(3, situation.length - 1) + "E" + situation.substring(situation.length - 1);
-				ctx.font = "bold 40px Verdana";
-				row2font = "bold 40px Verdana";
-				offset = 8;
-				row2offset = 30;
-				if (csituation.length > 4) {
-					offset = 3;
-					row2offset = 26;
-					row2font = "bold 24px Verdana";
-				} else if (csituation.length > 3) {
-					offset = 5;
-					row2offset = 28;
-					row2font = "bold 30px Verdana";
-				}
-				ctx.fillText("CS", w2 * 1.5 + hOffset, h2 * 0.5 - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(csituation, w2 * 1.5 + hOffset, h2 * 0.5 + row2offset + vOffset);
-			} else if (situation.startsWith("CSO")) {
-				csituation = situation.substring(3);
-				ctx.font = "bold 56px Verdana";
-				row2font = "bold 56px Verdana";
-				offset = 45;
-				row2offset = 6;
-				if (csituation.length > 3) {
-					offset = 35;
-					row2offset = 2;
-					row2font = "bold 28px Verdana";
-				} else if (csituation.length > 2) {
-					offset = 40;
-					row2offset = 4;
-					row2font = "bold 36px Verdana";
-				}
-				ctx.fillText("CS", w2 * 0.7 + hOffset, h2 - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(csituation, w2 * 0.7 + hOffset, h2 + row2offset + vOffset);
-			} else if (situation.startsWith("OBR")) {
-				ctx.font = "bold 50px Verdana";
-				row2font = "bold 50px Verdana";
-				offset = 40;
-				row2offset = 10;
-				if (situation.startsWith("OBR7")) {
-					osituation = "2"
-				} else {
-					osituation = situation.substring(situation.indexOf("_") + 1);
-				}
-				if (osituation.length > 3) {
-					offset = 38;
-					row2offset = 6;
-					row2font = "bold 36px Verdana";
-				} else if (osituation.length > 2) {
-					row2offset = 8;
-					row2font = "bold 44px Verdana";
-				}
-				ctx.fillText("OBR", w2 * 0.7 + hOffset, h2 - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(osituation, w2 * 0.7 + hOffset, h2 + row2offset + vOffset);
-			} else if (situation.startsWith("E") || situation.startsWith("e")) {
-				if (situation.length > 3) {
-					esituation = situation.substring(2, situation.length - 1) + situation.substring(0,1) +  situation.substring(situation.length - 1);
-				} else {
-					esituation = situation.substring(0,1) + situation.substring(2);
-				}
-				switch (situation[1]) {
-					case "T":
-						esituation += "T";
-						break;
-					case "D":
-						esituation += "F";
-						break;
-				}
-				if (esituation.length > 5) {
-					ctx.font = "bold 24px Verdana";
-					offset = 12;
-				} else if (esituation.length > 4) {
-					ctx.font = "bold 30px Verdana";
-					offset = 16;
-				} else if (esituation.length > 3) {
-					ctx.font = "bold 38px Verdana";
-					offset = 18;
-				}
-				ctx.fillText(esituation, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
-			} else if (situation.match(/O\d+/)) {
-				if (situation.length > 5) {
-					ctx.font = "bold 45px Verdana";
-				} else {
-					ctx.font = "bold 56px Verdana";
-				}
-				ctx.fillText(situation.substring(2), w2 * 0.7 + hOffset, h2 - offset + vOffset);
-			} else if (situation.startsWith("A")) {
-				if (situation.length > 4) {
-					ctx.font = "bold 32px Verdana";
-					offset = 26;
-				} else if (situation.length > 3) {
-					ctx.font = "bold 40px Verdana";
-					offset = 23;
-				} else {
-					ctx.font = "bold 48px Verdana";
-					offset = 20;
-				}
-				ctx.fillText(situation, w2 * 0.7 + hOffset, h2 - offset + vOffset);
+			if (hit) {
+				drawHitSymbol(1);
+				hitOffset = 15;
 			} else {
-				if (situation.length > 2) {
-					ctx.font = "bold 40px Verdana";
-					offset = 18;
-				} 
-				ctx.fillText(situation, w2 * 1.5 + hOffset, h2 * 0.5 + offset + vOffset);
+				hitOffset = 0;
 			}
-			if (situation.startsWith("OBR")) {
+			if (out) {
+				if (text2 != null) {
+					row1font = "bold 56px Verdana";
+					row2font = "bold 56px Verdana";
+					row1offset = 45;
+					row2offset = 6;
+					if (csituation.length > 3) {
+						row1offset = 35;
+						row2offset = 2;
+						row2font = "bold 28px Verdana";
+					} else if (csituation.length > 2) {
+						row1offset = 40;
+						row2offset = 4;
+						row2font = "bold 36px Verdana";
+					}
+					ctx.font = row1font;
+					ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - row1offset + vOffset);
+					ctx.font = row2font;
+					ctx.fillText(text2, w2 * 0.7 + hOffset, h2 + row2offset + vOffset);
+				} else {
+					if (text1.length > 4) {
+						ctx.font = "bold 32px Verdana";
+						offset = 26;
+					} else if (text1.length > 3) {
+						ctx.font = "bold 40px Verdana";
+						offset = 23;
+					}
+					ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset);
+					}
+			} else {
+				if (text2 != null) {
+					row1font = "bold 40px Verdana";
+					row1offset = 8;
+					row2font = "bold 40px Verdana";
+					row2offset = 30;
+					if (text2.length > 4) {
+						row1offset = 3;
+						row2offset = 26;
+						row2font = "bold 24px Verdana";
+					} else if (text2.length > 3) {
+						row1offset = 5;
+						row2offset = 28;
+						row2font = "bold 30px Verdana";
+					}
+					ctx.font = row1font;
+					ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 - row1offset + vOffset);
+					ctx.font = row2font;
+					ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset);
+				} else {
+					if (text1.length > 5) {
+						ctx.font = "bold 32px Verdana";
+						offset = 12;
+					} else if (text1.length > 4) {
+						ctx.font = "bold 40px Verdana";
+						offset = 14;
+					} else {
+						ctx.font = "bold 48px Verdana";
+						offset = 18;
+					}
+					ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
+				}
+			}
+			if (sup != null) {
 				ctx.font = "bold 28px Verdana";
-				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 2 - 15, 35 + vOffset);
+				ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset);
 			}
 			break;
 		case 3:
-			if (situation.startsWith("ADV")) {
-				ctx.fillText(window.batter, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
-			} else if (situation.startsWith("3B")) {
-				drawHitSymbol(3);
-				if (situation.substring(2).length > 1) {
-					ctx.font = "bold 40px Verdana";
-				}
-				ctx.fillText(situation.substring(2), w2 * 0.5 + 15 + hOffset, h2 * 0.5 + 25 + vOffset);
-			} else if (situation.startsWith("CSE")) {
-				csituation = situation.substring(3, situation.length - 1) + "E" + situation.substring(situation.length - 1);
-				ctx.font = "bold 40px Verdana";
-				row2font = "bold 40px Verdana";
-				offset = 8;
-				row2offset = 30;
-				if (csituation.length > 4) {
-					offset = 3;
-					row2offset = 26;
-					row2font = "bold 24px Verdana";
-				} else if (csituation.length > 3) {
-					offset = 5;
-					row2offset = 28;
-					row2font = "bold 30px Verdana";
-				}
-				ctx.fillText("CS", w2 * 0.5 + hOffset, h2 * 0.5 - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(csituation, w2 * 0.5 + hOffset, h2 * 0.5 + row2offset + vOffset);
-			} else if (situation.startsWith("CSO")) {
-				csituation = situation.substring(3);
-				ctx.font = "bold 40px Verdana";
-				row2font = "bold 40px Verdana";
-				offset = 5;
-				row2offset = 35;
-				if (csituation.length > 3) {
-					offset = 4;
-					row2offset = 26;
-					row2font = "bold 28px Verdana";
-				} else if (csituation.length > 2) {
-					offset = 3;
-					row2offset = 28;
-					row2font = "bold 34px Verdana";
-				}
-				ctx.fillText("CS", w2 * 0.5 + hOffset, h2 - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(csituation, w2 * 0.5 + hOffset, h2 + row2offset + vOffset);
-			} else if (situation.startsWith("OBR")) {
-				ctx.font = "bold 32px Verdana";
-				row2font = "bold 32px Verdana";
-				offset = 0;
-				row2offset = 35;
-				if (situation.startsWith("OBR7")) {
-					osituation = "2"
-				} else {
-					osituation = situation.substring(situation.indexOf("_") + 1);
-				}
-				if (osituation.length > 3) {
-					row2offset = 26;
-					row2font = "bold 26px Verdana";
-				} else if (osituation.length > 2) {
-					row2offset = 30;
-					row2font = "bold 30px Verdana";
-				}
-				ctx.fillText("OBR", w2 * 0.5 + hOffset, h2 - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(osituation, w2 * 0.5 + hOffset, h2 + row2offset + vOffset);
-			} else if (situation.startsWith("E") || situation.startsWith("e")) {
-				if (situation.length > 3) {
-					esituation = situation.substring(2, situation.length - 1) + situation.substring(0,1) +  situation.substring(situation.length - 1);
-				} else {
-					esituation = situation.substring(0,1) + situation.substring(2);
-				}
-				switch (situation[1]) {
-					case "T":
-						esituation += "T";
-						break;
-					case "D":
-						esituation += "F";
-						break;
-				}
-				if (esituation.length > 5) {
-					ctx.font = "bold 24px Verdana";
-					offset = 12;
-				} else if (esituation.length > 4) {
-					ctx.font = "bold 30px Verdana";
-					offset = 16;
-				} else if (esituation.length > 3) {
-					ctx.font = "bold 38px Verdana";
-					offset = 18;
-				}
-				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
-			} else if (situation.match(/O\d+/)) {
-			    if (situation.length > 5) {
-					ctx.font = "bold 32px Verdana";
-					offset = 12;
-				} else if (situation.length > 4) {
-					ctx.font = "bold 40px Verdana";
-					offset = 14;
-				} else {
-					ctx.font = "bold 48px Verdana";
-					offset = 18;
-				}
-				ctx.fillText(situation.substring(2), w2 * 0.5 + hOffset, h2 + offset + vOffset);
-			} else if (situation.startsWith("A")) {
-				if (situation.length > 4) {
-					ctx.font = "bold 24px Verdana";
-					offset = 10;
-				} else if (situation.length > 3) {
-					ctx.font = "bold 30px Verdana";
-					offset = 12;
-				} else if (situation.length > 2) {
-					ctx.font = "bold 38px Verdana";
-					offset = 14;
-				} else {
-					ctx.font = "bold 48px Verdana";
-					offset = 18;
-				}
-				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 + offset + vOffset);
+			if (hit) {
+				drawHitSymbol(1);
+				hitOffset = 15;
 			} else {
-				if (situation.length > 2) {
-					ctx.font = "bold 40px Verdana";
-					offset = 18;
-				} 
-				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 * 0.5 + offset + vOffset);
+				hitOffset = 0;
 			}
-			if (situation.startsWith("OBR")) {
+			if (out) {
+				if (text2 != null) {
+					row1font = "bold 40px Verdana";
+					row2font = "bold 40px Verdana";
+					row1offset = 5;
+					row2offset = 35;
+					if (csituation.length > 3) {
+						row1offset = 4;
+						row2offset = 26;
+						row2font = "bold 28px Verdana";
+					} else if (csituation.length > 2) {
+						row1offset = 3;
+						row2offset = 28;
+						row2font = "bold 34px Verdana";
+					}
+					ctx.font = row1font;
+					ctx.fillText(text1, w2 * 0.5 + hOffset, h2 - offset + vOffset);
+					ctx.font = row2font;
+					ctx.fillText(text2, w2 * 0.5 + hOffset, h2 + row2offset + vOffset);
+				} else {
+					if (text1.length > 4) {
+						ctx.font = "bold 24px Verdana";
+						offset = 10;
+					} else if (text1.length > 3) {
+						ctx.font = "bold 30px Verdana";
+						offset = 12;
+					} else if (text1.length > 2) {
+						ctx.font = "bold 38px Verdana";
+						offset = 14;
+					} else {
+						ctx.font = "bold 48px Verdana";
+						offset = 18;
+					}
+					ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset);
+				}
+			} else {
+				if (text2 != null) {
+					row1font = "bold 40px Verdana";
+					row1offset = 8;
+					row2font = "bold 40px Verdana";
+					row2offset = 30;
+					if (text2.length > 4) {
+						row1offset = 3;
+						row2offset = 26;
+						row2font = "bold 24px Verdana";
+					} else if (text2.length > 3) {
+						row1offset = 5;
+						row2offset = 28;
+						row2font = "bold 30px Verdana";
+					}
+					ctx.font = row1font;
+					ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 0.5 - offset + vOffset);
+					ctx.font = row2font;
+					ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 0.5 + row2offset + vOffset);
+				} else {
+					if (text1.length > 5) {
+						ctx.font = "bold 32px Verdana";
+						offset = 12;
+					} else if (text1.length > 4) {
+						ctx.font = "bold 40px Verdana";
+						offset = 14;
+					} else {
+						ctx.font = "bold 48px Verdana";
+						offset = 18;
+					}
+					ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
+				}
+			}
+			if (sup != null) {
 				ctx.font = "bold 28px Verdana";
-				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset);
+				ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset);
 			}
 			break;
 		case 4:
-		    if (situation.startsWith("ADV")) {
-				ctx.fillText(window.batter, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else if (situation.startsWith("CSE")) {
-				csituation = situation.substring(3, situation.length - 1) + "E" + situation.substring(situation.length - 1);
-				ctx.font = "bold 40px Verdana";
+			if (text2 != null) {
+				row1font = "bold 40px Verdana";
+				row1offset = 8;
 				row2font = "bold 40px Verdana";
-				offset = 8;
 				row2offset = 30;
-				if (csituation.length > 4) {
-					offset = 3;
+				if (text2.length > 4) {
+					row1offset = 3;
 					row2offset = 26;
 					row2font = "bold 24px Verdana";
-				} else if (csituation.length > 3) {
-					offset = 5;
+				} else if (text2.length > 3) {
+					row1offset = 5;
 					row2offset = 28;
 					row2font = "bold 30px Verdana";
 				}
-				ctx.fillText("CS", w2 * 0.5 + hOffset, h2 * 1.5 - offset + vOffset);
+				ctx.font = row1font;
+				ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 - offset + vOffset);
 				ctx.font = row2font;
-				ctx.fillText(csituation, w2 * 0.5 + hOffset, h2 * 1.5 + row2offset + vOffset);
-			} else if (situation.startsWith("CSO")) {
-				csituation = situation.substring(3);
-				ctx.font = "bold 40px Verdana";
-				row2font = "bold 40px Verdana";
-				offset = 5;
-				row2offset = 35;
-				if (csituation.length > 3) {
-					offset = 4;
-					row2offset = 26;
-					row2font = "bold 28px Verdana";
-				} else if (csituation.length > 2) {
-					offset = 3;
-					row2offset = 28;
-					row2font = "bold 34px Verdana";
-				}
-				ctx.fillText("CS", w2 * 0.5 + hOffset, h2 * 1.5  - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(csituation, w2 * 0.5 + hOffset, h2 * 1.5 + row2offset + vOffset);
-			} else if (situation.startsWith("OBR")) {
-				ctx.font = "bold 32px Verdana";
-				row2font = "bold 32px Verdana";
-				offset = 0;
-				row2offset = 35;
-				if (situation.startsWith("OBR7")) {
-					osituation = "2"
-				} else {
-					osituation = situation.substring(situation.indexOf("_") + 1);
-				}
-				if (osituation.length > 3) {
-					row2offset = 26;
-					row2font = "bold 26px Verdana";
-				} else if (osituation.length > 2) {
-					row2offset = 30;
-					row2font = "bold 30px Verdana";
-				}
-				ctx.fillText("OBR",  w2 * 0.5 + hOffset, h2 * 1.5  - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(osituation, w2 * 0.5 + hOffset, h2 * 1.5 + row2offset + vOffset);
-			} else if (situation.startsWith("E") || situation.startsWith("e")) {
-				if (situation.length > 3) {
-					esituation = situation.substring(2, situation.length - 1) + situation.substring(0,1) +  situation.substring(situation.length - 1);
-				} else {
-					esituation = situation.substring(0,1) + situation.substring(2);
-				}
-				switch (situation[1]) {
-					case "T":
-						esituation += "T";
-						break;
-					case "D":
-						esituation += "F";
-						break;
-				}
-				if (esituation.length > 5) {
-					ctx.font = "bold 24px Verdana";
-					offset = 12;
-				} else if (esituation.length > 4) {
-					ctx.font = "bold 30px Verdana";
-					offset = 16;
-				} else if (esituation.length > 3) {
-					ctx.font = "bold 38px Verdana";
-					offset = 18;
-				}
-				ctx.fillText(esituation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else if (situation.match(/O\d+/)) {
-			    if (situation.length > 5) {
-					ctx.font = "bold 32px Verdana";
-					offset = 12;
-				} else if (situation.length > 4) {
-					ctx.font = "bold 40px Verdana";
-					offset = 14;
-				} else {
-					ctx.font = "bold 48px Verdana";
-					offset = 18;
-				}
-				ctx.fillText(situation.substring(2), w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else if (situation.startsWith("A")) {
-				if (situation.length > 4) {
+				ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 1.5 + row2offset + vOffset);
+			} else {
+				if (text1.length > 4) {
 					ctx.font = "bold 24px Verdana";
 					offset = 10;
-				} else if (situation.length > 3) {
+				} else if (text1.length > 3) {
 					ctx.font = "bold 30px Verdana";
 					offset = 12;
-				} else if (situation.length > 2) {
+				} else if (text1.length > 2) {
 					ctx.font = "bold 38px Verdana";
 					offset = 14;
 				} else {
 					ctx.font = "bold 48px Verdana";
 					offset = 18;
 				}
-				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
-			} else if (situation.startsWith("HR")) {
-				if (situation.startsWith("HRI")) {
-					ipr = "I";
-					situation = "HR" + situation.substring(3);
-				} else {
-					ipr = "";
-				}
-				if (situation.substring(2).length > 4) {
-					ctx.font = "bold 35px Verdana";
-					var lOffset = 65;
-				} else if (situation.substring(2).length > 3) {
-					ctx.font = "bold 40px Verdana";
-					var lOffset = 60;
-				} else {
-					ctx.font = "bold 40px Verdana";
-					var lOffset = 55;
-				}
-				ctx.fillText(ipr + "HR", lOffset + hOffset, h2 * 1.5 - 5 + vOffset);
-				ctx.fillText(situation.substring(2), lOffset + hOffset, h2 * 1.5 + 40 + vOffset);
-			} else {
-				
-				if (situation.length > 2) {
-					ctx.font = "bold 40px Verdana";
-					offset = 18;
-				} 
-				ctx.fillText(situation, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
+				ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			}
-			if (situation.startsWith("OBR")) {
+			if (sup != null) {
 				ctx.font = "bold 28px Verdana";
-				ctx.fillText(situation.substring(3, situation.indexOf("_")), w2 * 1.5 + 2, h2 + 20 + vOffset);
+				ctx.fillText(sup, w2 * 1.5 + 2, h2 + 20 + vOffset);
 			}
 			break;
 	}

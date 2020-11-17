@@ -9,10 +9,11 @@ New actions:
 	- LT - lost turn
 	- A - appeal play
 	- OBR - out by rule
-Resolved issues #6, #14, #15 and #16
+Resolved issues #6, #14, #15, #16 and #17
 
 TODO
 ====
+Finish rendering testing
 More validations
 Earned/Unearned runs
 "Same error" advances

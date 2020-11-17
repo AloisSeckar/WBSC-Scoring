@@ -67,7 +67,7 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="HR">Homerun</option>');
 			actionOptions.push('<option value="1BB">Single - bunt</option>');
 			actionOptions.push('<option value="2BG">Double - ground rule</option>');
-			actionOptions.push('<option value="HRI">Homerun - inside the park</option>');
+			actionOptions.push('<option value="IHR">Homerun - inside the park</option>');
 			actionOptions.push('</optgroup>');
 			break;
 		case "Sacrifice":
@@ -173,7 +173,7 @@ function changeBatterSpecificAction() {
 		case "HR":
 		case "1BB":
 		case "2BG":
-		case "HRI":
+		case "IHR":
 			hit = true;
 			minPosItems = targetPosItems = maxPosItems = 1;
 			break;
@@ -581,4 +581,238 @@ function attachValidation(input, validation) {
 	input += validation;
 	
 	return input;
+}
+
+function processInput(input) {
+	var output = [];
+	
+	output[output_base] = parseInt(input[input_base]);
+	output[output_out] = false;
+	output[output_hit] = false;
+	
+	var pos = input[input_position];
+	if (pos != null) {
+		lastPos = pos[pos.length - 1];
+		if (lastPos == "X") {
+			pos = pos.substring(0, pos.length - 1) + "4";
+		} else if (lastPos == "Y") {
+			pos = pos.substring(0, pos.length - 1) + "5";
+		} else if (lastPos == "Z") {
+			pos = pos.substring(0, pos.length - 1) + "2";
+		}
+	}
+	
+	var action = input[input_spec_action];
+	switch (action) {
+		case "EDF":
+			output[output_base] = 0;
+			output[output_text_1] = "E" + pos + " DF";
+			break;
+		case "KSO":
+		case "KLO":
+			output[output_text_2] = pos;
+		case "KS":
+		case "KL":
+			output[output_base] = 0;
+			output[output_text_1] = action.substring(0, 2);
+			output[output_sub] = "1";
+			output[output_out] = true;
+			break;
+		case "F":
+		case "P":
+		case "L":
+		case "FF":
+		case "FP":
+		case "FL":
+		case "IF":
+		case "SF":
+			output[output_base] = 0;
+			output[output_text_1] = action + pos;
+			output[output_out] = true;
+			break;
+		case "SH":
+		case "FSF":
+		case "LT":
+			output[output_base] = 0;
+			output[output_text_1] = action;
+			output[output_text_2] = pos;
+			output[output_out] = true;
+			break;
+		case "OBR1_":
+		case "OBR2_":
+		case "OBR3_":
+		case "OBR4_":
+		case "OBR6_":
+			output[output_base] = 0;
+			output[output_text_1] = "OBR";
+			if (action.includes("2")) {
+				output[output_text_2] = "KS";
+				output[output_sub] = "1";
+			} else {
+				output[output_text_2] = "2";
+			}
+			output[output_out] = true;
+			output[output_sup] = action.substring(3, action.indexOf("_"));
+			break;
+		case "OBR5_":	
+		case "OBR8_":
+		case "OBR14_":
+			output[output_base] = 0;
+			output[output_text_1] = "OBR";
+			if (pos == "") {
+				output[output_text_2] = "2";
+			} else {
+				output[output_text_2] = pos;
+			}
+			output[output_out] = true;
+			output[output_sup] = action.substring(3, action.indexOf("_"));
+			break;
+		case "1B":
+		case "1BB":
+			output[output_base] = 1;
+			output[output_text_1] = pos;
+			if (action.endsWith("BB")) {
+				output[output_text_1] += "B";
+			}
+			output[output_hit] = true;
+			break;
+		case "O":
+		case "FC":
+			output[output_base] = 1;
+			output[output_text_1] = action + pos;
+			break;
+		case "KSWP":
+		case "KSPB":
+		case "KLWP":
+		case "KLPB":
+			output[output_base] = 1;
+			output[output_text_1] = action.substring(0, 2);
+			output[output_text_2] = action.substring(2);
+			output[output_sub] = "1";
+			break;
+		case "KSFC":	
+		case "KLFC":
+			output[output_sub] = "1";
+		case "SHFC":
+		case "SFO":
+			output[output_base] = 1;
+			output[output_text_1] = action.substring(0, 2);
+			output[output_text_2] = action.substring(2) + pos;
+			break;
+		case "KSET":
+		case "KSEM":
+		case "KLET":
+		case "KLEM":
+			output[output_sub] = "1";
+		case "SHE":
+		case "SFE":
+			output[output_base] = 1;
+			output[output_text_1] = action.substring(0, 2);
+			output[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);
+			if (action.length > 3) {
+				output[output_text_2] += action.substring(3);
+			}
+			break;
+		case "2B":
+		case "2BG":
+			output[output_base] = 2;
+			output[output_text_1] = pos;
+			if (action.endsWith("G")) {
+				output[output_text_2] += "GR";
+			}
+			output[output_hit] = true;
+			break;
+		case "3B":
+			output[output_base] = 3;
+			output[output_text_1] = pos;
+			output[output_hit] = true;
+			break;
+		case "HR":
+		case "IHR":
+			output[output_base] = 4;
+			output[output_text_1] = action;
+			output[output_text_2] = pos;
+			output[output_hit] = true;
+			break;
+		case "BB1":
+		case "IBB1":
+			output[output_sub] = "1";
+		case "HP":
+			output[output_base] = 1;
+			if (action.length > 2) {
+				output[output_text_1] = action.substring(0, action.length - 1);
+			} else {
+				output[output_text_1] = action;
+			}
+			break;
+	    case "bb":
+	    case "ibb":
+	    case "hp":
+		case "WP":
+		case "PB":
+		case "BK":
+		case "IP":
+		case "SB":
+			output[output_text_1] = action.toUpperCase() + window.batter;
+			break;
+		case "ADV":
+			output[output_text_1] = window.batter;
+			break;
+		case "GO":
+		case "GOB":
+		case "A":
+			if (output[output_base] == 1) {
+				output[output_base] = 0;
+			}
+			output[output_text_1] = pos;
+			if (action.startsWith("A")) {
+				output[output_text_1] = "A" + pos;
+			} else if (action.endsWith("B")) {
+				output[output_text_1] += "B";
+			}
+			output[output_out] = true;
+			break;
+		case "O/":
+		case "T":
+		    output[output_text_1] = action + pos;
+			break;
+		case "CSO":
+		    output[output_text_1] = "CS";
+		    output[output_text_2] = pos;
+			output[output_out] = true;
+			break;
+		case "CSE":
+		    output[output_text_1] = "CS";
+			output[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);
+			break;
+		case "OBR7_":
+		case "OBR9_":
+		case "OBR10_":
+		case "OBR11_":
+		case "OBR12_":
+		case "OBR13_":
+		case "OBR15_":
+		    output[output_text_1] = "OBR";
+			if (action.includes("7")) {
+				output[output_text_2] = "2";
+			} else {
+				output[output_text_2] = pos;
+			}
+			output[output_out] = true;
+			output[output_sup] = action.substring(3, action.indexOf("_"));
+			break;
+		case "EF":
+		case "ET":
+		case "EM":
+		case "ED":
+		case "eF":
+		case "eT":
+			output[output_text_1] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);
+			if (!action.endsWith("F")) {
+				output[output_text_1] += action.substring(1);
+			}
+			break;
+	}
+	
+	return output;
 }

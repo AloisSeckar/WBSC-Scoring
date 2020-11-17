@@ -63,6 +63,14 @@ function setVariables() {
 	window.input_add = "-add";
 	window.input_remove = "-remove";
 	
+	window.output_base = "base";
+	window.output_text_1 = "text-1";
+	window.output_text_2 = "text-2";
+	window.output_out = "out";
+	window.output_hit = "hit";
+	window.output_sub = "sub";
+	window.output_sup = "sup";
+	
 	window.minPosItems = [];
 	window.targetPosItems = [];
 	window.maxPosItems = [];
