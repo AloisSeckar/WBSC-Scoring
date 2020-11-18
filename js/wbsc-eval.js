@@ -221,7 +221,7 @@ function changeBatterSpecificAction() {
 			// no adjustments
 			break;
 		default:
-			maxPosItems = 1;
+			minPosItems = targetPosItems = maxPosItems = 0;
 	}
 	
 	window.minPosItems[input_b] = minPosItems;
@@ -267,7 +267,7 @@ function changeBatterSpecificAction() {
 		}
 	} else {
 		addItemButton.disabled = false;
-		removeItemButton.disabled = false;
+		removeItemButton.disabled = minPosItems > 1;
 		
 		var posItems = container.getElementsByClassName(class_wbsc_pos);
 		while (posItems[0]) {

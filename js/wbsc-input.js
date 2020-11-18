@@ -58,6 +58,8 @@ function clearInputs() {
 	hideInputs(input_r3);
 	
 	showInputs(input_b);
+	
+	window.posSelection = [];
 }
 
 function renderInputs(group, parentDiv) {
@@ -329,8 +331,8 @@ function renderPosSelection(group) {
 	involvedLabel.innerHTML = "Involved:";
 	inputsContainer.appendChild(involvedLabel);
 	
-	var posItem1 = getPosSelectionSelect(group, 1);
-	inputsContainer.appendChild(posItem1);
+	//var posItem1 = getPosSelectionSelect(group, 1);
+	//inputsContainer.appendChild(posItem1);
 	
 	var addItemButton = document.createElement("button");
 	addItemButton.setAttribute('id', groupID + input_add);
