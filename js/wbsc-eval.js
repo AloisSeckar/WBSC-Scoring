@@ -77,7 +77,10 @@ function changeBatterBaseAction() {
 			actionOptions.push('<option value="FSF">Sacrifice fly in foul territory</option>');
 			actionOptions.push('</optgroup>');
 			actionOptions.push('<optgroup label="Batter is safe">');
-			actionOptions.push('<option value="SHE">Sacrifice bunt with error</option>');
+			actionOptions.push('<option value="SHE">Sacrifice bunt with fielding error</option>');
+			actionOptions.push('<option value="SHET">Sacrifice bunt with throwing error</option>');
+			actionOptions.push('<option value="SHEM">Sacrifice bunt with muffled throw</option>');
+			actionOptions.push('<option value="SHEF">Sacrifice bunt with dropped fly</option>');		// code ends with "F" for easier output transformation
 			actionOptions.push('<option value="SHFC">Sacrifice bunt with FC</option>');
 			actionOptions.push('<option value="SFE">Sacrifice fly with error</option>');
 			actionOptions.push('<option value="SFO">Dropped sacrifice fly + forced out</option>');
@@ -100,8 +103,8 @@ function changeBatterBaseAction() {
 			break;
 		case "Advance":
 			actionOptions.push('<optgroup label="Batter is safe">');
-			actionOptions.push('<option value="BB1">Base on balls</option>');
-			actionOptions.push('<option value="IBB1">Intentional base on balls</option>');
+			actionOptions.push('<option value="BB1">Base on balls</option>');							// "1" indicates the numbering should be included in output
+			actionOptions.push('<option value="IBB1">Intentional base on balls</option>');				// "1" indicates the numbering should be included in output
 			actionOptions.push('<option value="HP">Hit by pitch</option>');
 			actionOptions.push('</optgroup>');
 			break;
@@ -185,8 +188,10 @@ function changeBatterSpecificAction() {
 		case "EF":
 		case "ED":
 		case "EDF":
+		case "SHEF":
 		case "SF":
 		case "SFE":
+		case "SFO":
 		case "FSF":
 		case "IF":
 		case "OBR8_":
@@ -202,6 +207,7 @@ function changeBatterSpecificAction() {
 		case "KSEM":
 		case "KLEM":
 		case "EM":
+		case "SHEM":
 			minPosItems = targetPosItems = 2;
 			break;
 		case "OBR5_":
@@ -217,6 +223,7 @@ function changeBatterSpecificAction() {
 		case "FL":
 		case "ET":
 		case "SHE":
+		case "SHET":
 		case "OBR14_":
 			// no adjustments
 			break;
@@ -710,7 +717,11 @@ function processInput(input) {
 		case "KLEM":
 			output[output_sub] = "1";
 		case "SHE":
+		case "SHET":
+		case "SHEM":
+		case "SHEF":
 		case "SFE":
+		case "SFO":
 			output[output_base] = 1;
 			output[output_text_1] = action.substring(0, 2);
 			output[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);
