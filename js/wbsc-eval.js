@@ -195,6 +195,7 @@ function changeBatterSpecificAction() {
 		case "GO":
 		case "GOB":
 		case "SH":
+		case "A":
 			minPosItems = 1;
 			targetPosItems = 2;
 			break;
@@ -217,7 +218,6 @@ function changeBatterSpecificAction() {
 		case "ET":
 		case "SHE":
 		case "OBR14_":
-		case "A":
 			// no adjustments
 			break;
 		default:
@@ -268,6 +268,11 @@ function changeBatterSpecificAction() {
 	} else {
 		addItemButton.disabled = false;
 		removeItemButton.disabled = false;
+		
+		var posItems = container.getElementsByClassName(class_wbsc_pos);
+		while (posItems[0]) {
+			posItems[0].parentNode.removeChild(posItems[0]);
+		}
 		
 		var posItem1 = document.getElementById(groupID + "1");
 		if (posItem1 != null) {
