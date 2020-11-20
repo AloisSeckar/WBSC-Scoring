@@ -15,7 +15,7 @@ New actions:
 Fixed actions:
 	- "Muffled throws" removed (not official WBSC scoring term)
 	- Batter indicator for CS, PO and O/ situations
-Resolved issues #6, #14, #15, #16, #17, #19 and #22
+Resolved issues #6, #11, #14, #15, #16, #17, #19 and #22
 
 TODO
 ====
