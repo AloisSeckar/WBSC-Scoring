@@ -393,11 +393,11 @@ function writeSituation(output) {
 					row2font = "bold 56px Verdana";
 					row1offset = 45;
 					row2offset = 6;
-					if (csituation.length > 3) {
+					if (text2.length > 3) {
 						row1offset = 35;
 						row2offset = 2;
 						row2font = "bold 28px Verdana";
-					} else if (csituation.length > 2) {
+					} else if (text2.length > 2) {
 						row1offset = 40;
 						row2offset = 4;
 						row2font = "bold 36px Verdana";
@@ -467,11 +467,11 @@ function writeSituation(output) {
 					row2font = "bold 40px Verdana";
 					row1offset = 5;
 					row2offset = 35;
-					if (csituation.length > 3) {
+					if (text2.length > 3) {
 						row1offset = 4;
 						row2offset = 26;
 						row2font = "bold 28px Verdana";
-					} else if (csituation.length > 2) {
+					} else if (text2.length > 2) {
 						row1offset = 3;
 						row2offset = 28;
 						row2font = "bold 34px Verdana";

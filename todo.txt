@@ -6,10 +6,12 @@ Improved consecutive actions handling
 Improved CSS form design
 Download button to save outcome as PNG
 New actions:
+	- PO - pick off
 	- LT - lost turn
 	- A - appeal play
 	- OBR - out by rule
-	- SH with throwing/muffled throw/dropped fly error
+	- SH with throwing/dropped fly error
+	- CS with throwing error
 Resolved issues #6, #14, #15, #16, #17 and #19
 
 TODO

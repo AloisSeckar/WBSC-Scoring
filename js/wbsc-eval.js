@@ -342,10 +342,13 @@ function changeRunnerBaseAction(group) {
 		case "ste":
 			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="SB">Stolen base</option>');
-			actionOptions.push('<option value="CSE">Caught stealing with error</option>');
+			actionOptions.push('<option value="CSE">Caught stealing with fielding error</option>');
+			actionOptions.push('<option value="CSET">Caught stealing with throwing error</option>');
+			actionOptions.push('<option value="POE">Picked off with (throwing) error</option>');
 			actionOptions.push('</optgroup>');
 			actionOptions.push('<optgroup label="Runner is out">');
 			actionOptions.push('<option value="CSO">Caught stealing</option>');
+			actionOptions.push('<option value="PO">Picked off</option>');
 			actionOptions.push('</optgroup>');
 			break;
 		case "fdc":
@@ -414,6 +417,7 @@ function changeRunnerSpecificAction(group) {
 			minPosItems = targetPosItems = maxPosItems = 0;
 			break;
 		case "O/":
+	    case "POE":
 		case "EF":
 		case "eF":
 		case "OBR9_":
@@ -426,10 +430,12 @@ function changeRunnerSpecificAction(group) {
 			minPosItems = targetPosItems = maxPosItems = 2;
 			throwing = true;
 			break;
-	    case "CSE":
+	    case "PO":
 	    case "EM":
 			minPosItems = targetPosItems = 2;
 			break;
+	    case "CSE":
+	    case "CSET":
 	    case "CSO":
 	    case "GO":
 			minPosItems = 1;
@@ -437,6 +443,7 @@ function changeRunnerSpecificAction(group) {
 			break;
 	    case "ET":
 	    case "eT":
+	    case "POET":
 		case "OBR10_":
 		case "OBR13_":
 		case "A":
@@ -481,7 +488,7 @@ function changeRunnerSpecificAction(group) {
 		}
 	} else {
 		addItemButton.disabled = false;
-		removeItemButton.disabled = false;
+		removeItemButton.disabled = minPosItems > 1;
 		
 		var posItem1 = document.getElementById(groupID + "1");
 		if (posItem1 == null && targetPosItems > 0) {
@@ -793,13 +800,22 @@ function processInput(input) {
 		    output[output_text_1] = action + pos;
 			break;
 		case "CSO":
-		    output[output_text_1] = "CS";
+		case "PO":
+		    output[output_text_1] = action.substring(0, 2);
 		    output[output_text_2] = pos;
 			output[output_out] = true;
 			break;
 		case "CSE":
-		    output[output_text_1] = "CS";
+		case "CSET":
+		    output[output_text_1] = action.substring(0, 2);
 			output[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);
+			if (action.endsWith("T")) {
+				output[output_text_2] += "T";
+			}
+			break;
+		case "POE":
+		    output[output_text_1] = action.substring(0, 2);
+		    output[output_text_2] = "e" + pos + "T";
 			break;
 		case "OBR7_":
 		case "OBR9_":
