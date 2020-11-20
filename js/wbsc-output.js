@@ -64,10 +64,17 @@ function renderAction() {
 	}
 	
 	if (validation == "") {
-		window.canvas.height = playersInvolved * h - ((playersInvolved - 1) * 8);
-        window.batter = playersInvolved;
 		window.vOffset = 0;
 		window.hOffset = 75;
+		
+		window.canvas.height = playersInvolved * h - ((playersInvolved - 1) * 8);
+		
+		if (bInput == null) {
+			window.batter = playersInvolved + 1;
+		} else {
+			window.batter = playersInvolved;
+		}
+		
 		var displayed = 1;
 		if (r3Input != null) {
 			r3Input[input_origBase] = 3;
