@@ -268,7 +268,7 @@ function changeBatterSpecificAction() {
 		}
 	} else {
 		addItemButton.disabled = false;
-		removeItemButton.disabled = minPosItems > 1;
+		removeItemButton.disabled = targetPosItems < 2;
 		
 		var posItems = container.getElementsByClassName(class_wbsc_pos);
 		while (posItems[0]) {
@@ -427,7 +427,6 @@ function changeRunnerSpecificAction(group) {
 			minPosItems = targetPosItems = 2;
 			break;
 	    case "CSE":
-	    case "CSET":
 	    case "CSO":
 	    case "GO":
 			minPosItems = 1;
@@ -435,7 +434,7 @@ function changeRunnerSpecificAction(group) {
 			break;
 	    case "ET":
 	    case "eT":
-	    case "POET":
+	    case "CSET":
 		case "OBR10_":
 		case "OBR13_":
 		case "A":
@@ -480,7 +479,7 @@ function changeRunnerSpecificAction(group) {
 		}
 	} else {
 		addItemButton.disabled = false;
-		removeItemButton.disabled = minPosItems > 1;
+		removeItemButton.disabled = targetPosItems < 2;
 		
 		var posItem1 = document.getElementById(groupID + "1");
 		if (posItem1 == null && targetPosItems > 0) {
@@ -490,9 +489,13 @@ function changeRunnerSpecificAction(group) {
 		
 		var posItem2 = document.getElementById(groupID + "2");
 		if (posItem2 != null) {
-			posItem2.innerHTML = renderPlayerOptions();
-			if (posSelection[groupID]) {
-				posItem2.value = posSelection[groupID][1];	
+			if (targetPosItems > 1) {
+				posItem2.innerHTML = renderPlayerOptions();
+				if (posSelection[groupID]) {
+					posItem2.value = posSelection[groupID][1];
+				}
+			} else {
+				container.removeChild(posItem2);
 			}
 		} else if (targetPosItems > 1) {
 		    var posItem2 = getPosSelectionSelect(group, 2);
