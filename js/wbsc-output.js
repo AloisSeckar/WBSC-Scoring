@@ -275,6 +275,7 @@ function writeSituation(output) {
 	hit = output[output_hit];
 	sub = output[output_sub];
 	sup = output[output_sup];
+	num = output[output_num];
 	
 	if (text1 == "*") {
 		ctx.fillStyle = "red";
@@ -453,6 +454,16 @@ function writeSituation(output) {
 				ctx.font = "bold 28px Verdana";
 				ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset);
 			}
+			if (num) {
+				ctx.font = "bold 20px Verdana";
+				ctx.fillText(window.batter, w + hOffset - 16, 26 + vOffset);
+				
+				ctx.lineWidth = 3;
+				ctx.moveTo(w + hOffset - 26, 8 + vOffset);
+				ctx.lineTo(w + hOffset - 26, 31 + vOffset);
+				ctx.lineTo(w + hOffset - 8, 31 + vOffset);
+				ctx.stroke();
+			}
 			break;
 		case 3:
 			if (hit) {
@@ -533,6 +544,16 @@ function writeSituation(output) {
 				ctx.font = "bold 28px Verdana";
 				ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset);
 			}
+			if (num) {
+				ctx.font = "bold 20px Verdana";
+				ctx.fillText(window.batter, hOffset + 15, 26 + vOffset);
+				
+				ctx.lineWidth = 3;
+				ctx.moveTo(hOffset + 26, 8 + vOffset);
+				ctx.lineTo(hOffset + 26, 31 + vOffset);
+				ctx.lineTo(hOffset + 8, 31 + vOffset);
+				ctx.stroke();
+			}
 			break;
 		case 4:
 			if (text2 != null) {
@@ -572,6 +593,16 @@ function writeSituation(output) {
 			if (sup != null) {
 				ctx.font = "bold 28px Verdana";
 				ctx.fillText(sup, w2 * 1.5 + 2, h2 + 20 + vOffset);
+			}
+			if (num) {
+				ctx.font = "bold 20px Verdana";
+				ctx.fillText(window.batter, hOffset + 15, h2 + 20 + vOffset);
+				
+				ctx.lineWidth = 3;
+				ctx.moveTo(hOffset + 26, h2 + 2 + vOffset);
+				ctx.lineTo(hOffset + 26, h2 + 25 + vOffset);
+				ctx.lineTo(hOffset + 8, h2 + 25 + vOffset);
+				ctx.stroke();
 			}
 			break;
 	}

@@ -70,6 +70,7 @@ function setVariables() {
 	window.output_hit = "hit";
 	window.output_sub = "sub";
 	window.output_sup = "sup";
+	window.output_num = "num";
 	
 	window.minPosItems = [];
 	window.targetPosItems = [];

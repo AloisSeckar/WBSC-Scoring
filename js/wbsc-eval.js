@@ -787,6 +787,7 @@ function processInput(input) {
 			output[output_out] = true;
 			break;
 		case "O/":
+			output[output_num] = true;
 		case "T":
 		    output[output_text_1] = action + pos;
 			break;
@@ -795,6 +796,7 @@ function processInput(input) {
 		    output[output_text_1] = action.substring(0, 2);
 		    output[output_text_2] = pos;
 			output[output_out] = true;
+			output[output_num] = true;
 			break;
 		case "CSE":
 		case "CSET":
@@ -803,10 +805,12 @@ function processInput(input) {
 			if (action.endsWith("T")) {
 				output[output_text_2] += "T";
 			}
+			output[output_num] = true;
 			break;
 		case "POE":
 		    output[output_text_1] = action.substring(0, 2);
 		    output[output_text_2] = "e" + pos + "T";
+			output[output_num] = true;
 			break;
 		case "OBR7_":
 		case "OBR9_":
