@@ -31,12 +31,12 @@ function changeBatterBaseAction() {
 			actionOptions.push('</optgroup>');
 			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="KSET">Swinging with throwing error</option>');
-			actionOptions.push('<option value="KSEM">Swinging with muffled throw error</option>');
+			actionOptions.push('<option value="KSE">Swinging with fielding error</option>');
 			actionOptions.push('<option value="KSWP">Swinging with wild pitch</option>');
 			actionOptions.push('<option value="KSPB">Swinging with passed ball</option>');
 			actionOptions.push('<option value="KSFC">Swinging with putting out runner</option>');
 			actionOptions.push('<option value="KLET">Looking with throwing error</option>');
-			actionOptions.push('<option value="KLEM">Looking with muffled throw error</option>');
+			actionOptions.push('<option value="KLE">Looking with fielding error</option>');
 			actionOptions.push('<option value="KLWP">Looking with wild pitch</option>');
 			actionOptions.push('<option value="KLPB">Looking with passed ball</option>');
 			actionOptions.push('<option value="KLFC">Looking with putting out runner</option>');
@@ -79,7 +79,6 @@ function changeBatterBaseAction() {
 			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="SHE">Sacrifice bunt with fielding error</option>');
 			actionOptions.push('<option value="SHET">Sacrifice bunt with throwing error</option>');
-			actionOptions.push('<option value="SHEM">Sacrifice bunt with muffled throw</option>');
 			actionOptions.push('<option value="SHEF">Sacrifice bunt with dropped fly</option>');		// code ends with "F" for easier output transformation
 			actionOptions.push('<option value="SHFC">Sacrifice bunt with FC</option>');
 			actionOptions.push('<option value="SFE">Sacrifice fly with error</option>');
@@ -96,7 +95,6 @@ function changeBatterBaseAction() {
 			actionOptions.push('<optgroup label="Batter is safe">');
 			actionOptions.push('<option value="EF">Fielding error</option>');
 			actionOptions.push('<option value="ET">Throwing error</option>');
-			actionOptions.push('<option value="EM">Muffled throw</option>');
 			actionOptions.push('<option value="ED">Dropped fly</option>');
 			actionOptions.push('<option value="EDF">Dropped foul</option>');
 			actionOptions.push('</optgroup>');
@@ -147,6 +145,8 @@ function changeBatterSpecificAction() {
 	var specificAction = document.getElementById(input_b + input_spec_action);
 	var specificActionValue = specificAction.value;
 	switch (specificActionValue) {
+		case "KSE":
+		case "KLE":
 		case "FC":
 		case "SHFC":
 			fc = true;
@@ -203,12 +203,6 @@ function changeBatterSpecificAction() {
 		case "A":
 			minPosItems = 1;
 			targetPosItems = 2;
-			break;
-		case "KSEM":
-		case "KLEM":
-		case "EM":
-		case "SHEM":
-			minPosItems = targetPosItems = 2;
 			break;
 		case "OBR5_":
 			minPosItems = targetPosItems = 0;
@@ -361,7 +355,6 @@ function changeRunnerBaseAction(group) {
 			actionOptions.push('<optgroup label="Runner is safe">');
 			actionOptions.push('<option value="EF">Decessive fielding</option>');
 			actionOptions.push('<option value="ET">Decessive throwing</option>');
-			actionOptions.push('<option value="EM">Decessive muffled throw</option>');
 			actionOptions.push('<option value="eF">Extra base fielding</option>');
 			actionOptions.push('<option value="eT">Extra base throwing</option>');
 			actionOptions.push('</optgroup>');
@@ -431,7 +424,6 @@ function changeRunnerSpecificAction(group) {
 			throwing = true;
 			break;
 	    case "PO":
-	    case "EM":
 			minPosItems = targetPosItems = 2;
 			break;
 	    case "CSE":
@@ -719,13 +711,12 @@ function processInput(input) {
 			output[output_text_2] = action.substring(2) + pos;
 			break;
 		case "KSET":
-		case "KSEM":
+		case "KSE":
 		case "KLET":
-		case "KLEM":
+		case "KLE":
 			output[output_sub] = "1";
 		case "SHE":
 		case "SHET":
-		case "SHEM":
 		case "SHEF":
 		case "SFE":
 		case "SFO":

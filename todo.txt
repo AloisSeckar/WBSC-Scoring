@@ -12,6 +12,8 @@ New actions:
 	- OBR - out by rule
 	- SH with throwing/dropped fly error
 	- CS with throwing error
+Fixed actions:
+	- "Muffled throws" removed (not official WBSC scoring term)
 Resolved issues #6, #14, #15, #16, #17 and #19
 
 TODO
