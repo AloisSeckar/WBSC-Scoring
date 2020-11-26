@@ -145,8 +145,6 @@ function changeBatterSpecificAction() {
 	var specificAction = document.getElementById(input_b + input_spec_action);
 	var specificActionValue = specificAction.value;
 	switch (specificActionValue) {
-		case "KSE":
-		case "KLE":
 		case "FC":
 		case "SHFC":
 			fc = true;
@@ -180,12 +178,9 @@ function changeBatterSpecificAction() {
 			hit = true;
 			minPosItems = targetPosItems = maxPosItems = 1;
 			break;
-		case "KSET":
-		case "KLET":
 		case "KSFC":
 		case "KLFC":
 		case "O":
-		case "EF":
 		case "ED":
 		case "EDF":
 		case "SHEF":
@@ -207,6 +202,10 @@ function changeBatterSpecificAction() {
 		case "OBR5_":
 			minPosItems = targetPosItems = 0;
 			break;
+		case "KSE":
+		case "KLE":
+		case "KSET":
+		case "KLET":
 		case "KSO":
 		case "KLO":
 		case "F":
@@ -215,6 +214,7 @@ function changeBatterSpecificAction() {
 		case "FF":
 		case "FP":
 		case "FL":
+		case "EF":
 		case "ET":
 		case "SHE":
 		case "SHET":
@@ -411,8 +411,6 @@ function changeRunnerSpecificAction(group) {
 			break;
 		case "O/":
 	    case "POE":
-		case "EF":
-		case "eF":
 		case "OBR9_":
 		case "OBR11_":
 		case "OBR12_":
@@ -432,6 +430,8 @@ function changeRunnerSpecificAction(group) {
 			minPosItems = 1;
 			targetPosItems = 2;
 			break;
+		case "EF":
+		case "eF":
 	    case "ET":
 	    case "eT":
 	    case "CSET":

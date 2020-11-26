@@ -300,8 +300,13 @@ function writeSituation(output) {
 				ctx.fillText(text1, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset);
 			} else {
 				if (text2 != null) {
-					ctx.font = "bold 75px Verdana";
-					offset = -5;
+					if (text1.length > 2) {
+						ctx.font = "bold 75px Verdana";
+						offset = -4;
+					} else {
+						ctx.font = "bold 90px Verdana";
+						offset = -8;
+					}
 					ctx.fillText(text1, w2 + hOffset, h2 + offset + vOffset);
 				
 					if (text2.length > 3) {
@@ -312,7 +317,7 @@ function writeSituation(output) {
 						offset = 65;
 					} else {
 						ctx.font = "bold 90px Verdana";
-						offset = 70;
+						offset = 75;
 					}
 					ctx.fillText(text2, w2 + hOffset, h2 + offset + vOffset);	
 				} else {
@@ -354,7 +359,7 @@ function writeSituation(output) {
 				drawHitSymbol(1);
 				hitOffset = 15;
 			} else {
-				hitOffset = 0;
+				hitOffset = -2;
 			}
 			if (text2 != null) {
 				offset = -5;
@@ -377,7 +382,7 @@ function writeSituation(output) {
 				} else if (text1.length > 4) {
 					ctx.font = "bold 30px Verdana";
 					offset = 16;
-				} else if (text1.length > 3) {
+				} else if (text1.length > 3 || (hit && text1.length > 1) ) {
 					ctx.font = "bold 38px Verdana";
 					offset = 18;
 				}
@@ -564,23 +569,10 @@ function writeSituation(output) {
 			break;
 		case 4:
 			if (text2 != null) {
-				row1font = "bold 40px Verdana";
-				row1offset = 8;
-				row2font = "bold 40px Verdana";
-				row2offset = 30;
-				if (text2.length > 4) {
-					row1offset = 3;
-					row2offset = 26;
-					row2font = "bold 24px Verdana";
-				} else if (text2.length > 3) {
-					row1offset = 5;
-					row2offset = 28;
-					row2font = "bold 30px Verdana";
-				}
-				ctx.font = row1font;
-				ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 - offset + vOffset);
-				ctx.font = row2font;
-				ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 1.5 + row2offset + vOffset);
+				ctx.font = "bold 32px Verdana";
+				offset = 32;
+				ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset);
+				ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
 			} else {
 				if (text1.length > 4) {
 					ctx.font = "bold 24px Verdana";
