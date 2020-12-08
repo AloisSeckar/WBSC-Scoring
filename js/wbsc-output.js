@@ -382,7 +382,7 @@ function writeSituation(output) {
 				} else if (text1.length > 4) {
 					ctx.font = "bold 30px Verdana";
 					offset = 16;
-				} else if (text1.length > 3 || (hit && text1.length > 1) ) {
+				} else if (text1.length > 3 || (hit && text1.length > 1) || text1 == "IBB") {
 					ctx.font = "bold 38px Verdana";
 					offset = 18;
 				}
@@ -390,7 +390,11 @@ function writeSituation(output) {
 			}
 			if (sub != null) {
 				ctx.font = "bold 30px Verdana";
-				ctx.fillText(sub, w + hOffset - 20, h - 62 + vOffset);
+				if (text1.startsWith("K")) {
+					ctx.fillText(sub, w + hOffset - 20, h - 62 + vOffset);
+				} else {
+					ctx.fillText(sub, w + hOffset - 18, h - 33 + vOffset);
+				}
 			}
 			break;
 		case 2:
