@@ -1,18 +1,15 @@
 # WBSC Scoring
 Visualisation tool for WBSC scoring system
 
-Live demo (currently v0.6) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
+Live demo (currently v0.7) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
 
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
 
 ## TO-DO list (to be implemented in next few releases)
-- Consecutive actions for the runners
-- Input validations
+- More input validations
 - Earned/unearned runs switchers
 - Double and Triple plays
 - "Same error" advances
-- Rendering uncommon situations like out-by-rules, LT and As
-- Responsive CSS design
 
 ## Limitations (not planned to be implemented soon)
 - It is not possible to specify actions leading to runners appearing on bases (except TIE)
@@ -23,6 +20,16 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 0.7 (2020-12-08)
+- New actions supported: PO - pick off, LT - lost turn, A - appeal play, OBR - out by rule, SH with throwing/dropped fly error, CS with throwing error
+- Fixed actions: "Muffled throws" removed (not official WBSC scoring term), Batter indicator for CS, PO and O/ situations added
+- Improved player selection inputs rendering and handling
+- Improved consecutive actions handling
+- Improved GUI and CSS form design
+- Download button to save outcome as PNG
+- Unlicense was officially included to declare this SW free of use
+- Various bugfixes and corrections
 
 ### Version 0.6 (2020-10-11)
 - New actions supported: Sacrifice hit/fly, Infield fly, Bunt hit/out, Strikeout with occupied ball, TIE
