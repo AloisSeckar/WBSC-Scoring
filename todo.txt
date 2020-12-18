@@ -1,6 +1,7 @@
 v.08
 ====
-"Same error" advances 
+* "Same error" advances 
+* Bugfixing: #23
 
 
 TODO

@@ -229,80 +229,41 @@ function changeBatterSpecificAction() {
 	window.targetPosItems[input_b] = targetPosItems;
 	window.maxPosItems[input_b] = maxPosItems;
 	
-	var groupID = input_b + input_position;
+	let groupID = input_b + input_position;
 	
-	var container = document.getElementById(groupID);
-	var addItemButton = document.getElementById(groupID + input_add);
-	var removeItemButton = document.getElementById(groupID + input_remove);
-	if (maxPosItems < 4) {
-		addItemButton.disabled = true;
-		removeItemButton.disabled = true;
-		
-		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-	    while (itemsCreated != targetPosItems) {
-			if (itemsCreated > targetPosItems) {
-				var posItemN = document.getElementById(groupID + itemsCreated);
-				container.removeChild(posItemN);
-				itemsCreated--;
-			} else {
-				itemsCreated++;
-				var posItemN = getPosSelectionSelect(input_b, itemsCreated);
-				container.insertBefore(posItemN, addItemButton);
-			}
+	let container = document.getElementById(groupID);
+	let addItemButton = document.getElementById(groupID + input_add);
+	let removeItemButton = document.getElementById(groupID + input_remove);
+	
+	let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	while (itemsCreated > 0) {
+		let posItemN = document.getElementById(groupID + itemsCreated); 
+		container.removeChild(posItemN);
+		itemsCreated--;
+	}
+	
+	while (itemsCreated < targetPosItems) {
+		itemsCreated++;
+		let posItemN = getPosSelectionSelect(input_b, itemsCreated);
+		container.insertBefore(posItemN, addItemButton);
+	}
+	
+	addItemButton.disabled = itemsCreated >= maxPosItems;
+	removeItemButton.disabled = itemsCreated <= minPosItems;
+	
+	if (hit == true) {
+		let posItem1 = document.getElementById(groupID + "1");
+		posItem1.innerHTML = renderHitLocationOptions();
+		if (posSelection[groupID]) {
+			posItem1.value = posSelection[groupID][0];
 		}
-		
-		if (hit == true) {
-			var posItem1 = document.getElementById(groupID + "1");
-			posItem1.innerHTML = renderHitLocationOptions();
-			if (posSelection[groupID]) {
-				posItem1.value = posSelection[groupID][0];
-			}
-		}
-		
-		if (fc == true) {
-			var posItem2 = document.getElementById(groupID + "2");
-			posItem2.innerHTML = renderFCLocationOptions();
-			if (posSelection[groupID]) {
-				posItem2.value = posSelection[groupID][1];
-			}
-		}
-	} else {
-		addItemButton.disabled = false;
-		removeItemButton.disabled = targetPosItems < 2;
-		
-		var posItems = container.getElementsByClassName(class_wbsc_pos);
-		while (posItems[0]) {
-			posItems[0].parentNode.removeChild(posItems[0]);
-		}
-		
-		var posItem1 = document.getElementById(groupID + "1");
-		if (posItem1 != null) {
-			if (targetPosItems > 0) {
-				posItem1.innerHTML = renderPlayerOptions();
-				if (posSelection[groupID]) {
-					posItem1.value = posSelection[groupID][0];
-				}
-			} else {
-				container.removeChild(posItem1);
-			}
-		} else if (targetPosItems > 0) {
-		    var posItem1 = getPosSelectionSelect(input_b, 1);
-			container.insertBefore(posItem1, addItemButton);
-		}
-		
-		var posItem2 = document.getElementById(groupID + "2");
-		if (posItem2 != null) {
-			if (targetPosItems > 1) {
-				posItem2.innerHTML = renderPlayerOptions();
-				if (posSelection[groupID]) {
-					posItem2.value = posSelection[groupID][1];
-				}
-			} else {
-				container.removeChild(posItem2);
-			}
-		} else if (targetPosItems > 1) {
-		    var posItem2 = getPosSelectionSelect(input_b, 2);
-			container.insertBefore(posItem2, addItemButton);
+	}
+	
+	if (fc == true) {
+		let posItem2 = document.getElementById(groupID + "2");
+		posItem2.innerHTML = renderFCLocationOptions();
+		if (posSelection[groupID]) {
+			posItem2.value = posSelection[groupID][1];
 		}
 	}
 }
@@ -462,58 +423,33 @@ function changeRunnerSpecificAction(group) {
 	window.targetPosItems[group] = targetPosItems;
 	window.maxPosItems[group] = maxPosItems;
 	
-	var groupID = group + input_position;
+	let groupID = group + input_position;
 	
-	var container = document.getElementById(groupID);
-	var addItemButton = document.getElementById(groupID + input_add);
-	var removeItemButton = document.getElementById(groupID + input_remove);
-	if (maxPosItems < 4) {
-		addItemButton.disabled = true;
-		removeItemButton.disabled = true;
-		
-		var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-	    while (itemsCreated != targetPosItems) {
-			if (itemsCreated > targetPosItems) {
-				var posItemN = document.getElementById(groupID + itemsCreated);
-				container.removeChild(posItemN);
-				itemsCreated--;
-			} else {
-				itemsCreated++;
-				var posItemN = getPosSelectionSelect(group, itemsCreated);
-				container.insertBefore(posItemN, addItemButton);
-			}
-		}
-		
-		if (throwing == true) {
-			var posItem2 = document.getElementById(groupID + "2");
-			posItem2.innerHTML = renderFCLocationOptions();
-			if (posSelection[groupID]) {
-				posItem2.value = posSelection[groupID][1];	
-			}
-		}
-	} else {
-		addItemButton.disabled = false;
-		removeItemButton.disabled = targetPosItems < 2;
-		
-		var posItem1 = document.getElementById(groupID + "1");
-		if (posItem1 == null && targetPosItems > 0) {
-		    var posItem1 = getPosSelectionSelect(group, 1);
-			container.insertBefore(posItem1, addItemButton);
-		}
-		
-		var posItem2 = document.getElementById(groupID + "2");
-		if (posItem2 != null) {
-			if (targetPosItems > 1) {
-				posItem2.innerHTML = renderPlayerOptions();
-				if (posSelection[groupID]) {
-					posItem2.value = posSelection[groupID][1];
-				}
-			} else {
-				container.removeChild(posItem2);
-			}
-		} else if (targetPosItems > 1) {
-		    var posItem2 = getPosSelectionSelect(group, 2);
-			container.insertBefore(posItem2, addItemButton);
+	let container = document.getElementById(groupID);
+	let addItemButton = document.getElementById(groupID + input_add);
+	let removeItemButton = document.getElementById(groupID + input_remove);
+	
+	let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	while (itemsCreated > 0) {
+		let posItemN = document.getElementById(groupID + itemsCreated); 
+		container.removeChild(posItemN);
+		itemsCreated--;
+	}
+	
+	while (itemsCreated < targetPosItems) {
+		itemsCreated++;
+		let posItemN = getPosSelectionSelect(group, itemsCreated);
+		container.insertBefore(posItemN, addItemButton);
+	}
+	
+	addItemButton.disabled = itemsCreated >= maxPosItems;
+	removeItemButton.disabled = itemsCreated <= minPosItems;
+	
+	if (throwing == true) {
+		let posItem2 = document.getElementById(groupID + "2");
+		posItem2.innerHTML = renderFCLocationOptions();
+		if (posSelection[groupID]) {
+			posItem2.value = posSelection[groupID][1];	
 		}
 	}
 }
