@@ -357,6 +357,16 @@ function changeRunnerBaseAction(group) {
 			actionOptions.push('<option value="ET">Decessive throwing</option>');
 			actionOptions.push('<option value="eF">Extra base fielding</option>');
 			actionOptions.push('<option value="eT">Extra base throwing</option>');
+			actionOptions.push('<option value="se0">Same error (Batter)</option>');
+			if (!(group.includes("1"))) {
+				actionOptions.push('<option value="se1">Same error (Runner at 1st)</option>');
+			}
+			if (!(group.includes("2"))) {
+				actionOptions.push('<option value="se2">Same error (Runner at 2nd)</option>');
+			}
+			if (!(group.includes("3"))) {
+				actionOptions.push('<option value="se3">Same error (Runner at 3rd)</option>');
+			}
 			actionOptions.push('</optgroup>');
 			break;
 		case "out":
@@ -407,6 +417,10 @@ function changeRunnerSpecificAction(group) {
 		case "IP":
 		case "SB":
 		case "OBR7_":
+		case "se0":
+		case "se1":
+		case "se2":
+		case "se3":
 			minPosItems = targetPosItems = maxPosItems = 0;
 			break;
 		case "O/":
@@ -774,6 +788,22 @@ function processInput(input) {
 			break;
 		case "ADV":
 			output[output_text_1] = window.batter;
+			break;
+		case "se0":
+			output[output_text_1] = "(" + window.batter + ")" ;
+			break;
+		case "se1":
+			battingOrder = 1;
+			battingOrder += document.getElementById(input_r2) != null ? 1 : 0;
+			battingOrder += document.getElementById(input_r3) != null ? 1 : 0;
+			output[output_text_1] = "(" + battingOrder + ")" ;
+			break;
+		case "se2":
+			battingOrder = 1;
+			battingOrder += document.getElementById(input_r3) != null ? 1 : 0;
+			output[output_text_1] = "(" + battingOrder + ")" ;
+		case "se3":
+			output[output_text_1] = "(1)" ;
 			break;
 		case "GO":
 		case "GOB":

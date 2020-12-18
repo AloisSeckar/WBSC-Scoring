@@ -1,10 +1,10 @@
 v.08
 ====
+"Same error" advances 
 
 
 TODO
 ====
 More validations
 Earned/Unearned runs
-"Same error" advances
 Double and Triple plays
