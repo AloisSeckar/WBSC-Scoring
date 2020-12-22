@@ -16,11 +16,11 @@ function changeSpecificAction(group) {
 
 function changeBatterBaseAction() {
 	
-	var actionOptions = [];
-	var specificActionDisabled = false;
+	const actionOptions = [];
+	let specificActionDisabled = false;
 
-	var baseAction = document.getElementById(input_b + input_base_action);
-	var baseActionValue = baseAction.value;
+	const baseAction = document.getElementById(input_b + input_base_action);
+	const baseActionValue = baseAction.value;
 	switch (baseActionValue) {
 		case "StrikeOut":
 			actionOptions.push('<optgroup label="Batter is out">');
@@ -128,7 +128,7 @@ function changeBatterBaseAction() {
 	        specificActionDisabled = true;	
 	}
 	
-	var specificAction = document.getElementById(input_b + input_spec_action);
+	const specificAction = document.getElementById(input_b + input_spec_action);
 	specificAction.innerHTML = actionOptions;
 	specificAction.disabled = specificActionDisabled;
 	
@@ -136,14 +136,14 @@ function changeBatterBaseAction() {
 }
 
 function changeBatterSpecificAction() {
-	var fc = false;
-	var hit = false;
-	var minPosItems = 1;
-	var targetPosItems = 1;
-	var maxPosItems = 4;
+	let fc = false;
+	let hit = false;
+	let minPosItems = 1;
+	let targetPosItems = 1;
+	let maxPosItems = 4;
 	
-	var specificAction = document.getElementById(input_b + input_spec_action);
-	var specificActionValue = specificAction.value;
+	const specificAction = document.getElementById(input_b + input_spec_action);
+	const specificActionValue = specificAction.value;
 	switch (specificActionValue) {
 		case "FC":
 		case "SHFC":
@@ -229,22 +229,22 @@ function changeBatterSpecificAction() {
 	window.targetPosItems[input_b] = targetPosItems;
 	window.maxPosItems[input_b] = maxPosItems;
 	
-	let groupID = input_b + input_position;
+	const groupID = input_b + input_position;
 	
-	let container = document.getElementById(groupID);
-	let addItemButton = document.getElementById(groupID + input_add);
-	let removeItemButton = document.getElementById(groupID + input_remove);
+	const container = document.getElementById(groupID);
+	const addItemButton = document.getElementById(groupID + input_add);
+	const removeItemButton = document.getElementById(groupID + input_remove);
 	
 	let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	while (itemsCreated > 0) {
-		let posItemN = document.getElementById(groupID + itemsCreated); 
+		const posItemN = document.getElementById(groupID + itemsCreated); 
 		container.removeChild(posItemN);
 		itemsCreated--;
 	}
 	
 	while (itemsCreated < targetPosItems) {
 		itemsCreated++;
-		let posItemN = getPosSelectionSelect(input_b, itemsCreated);
+		const posItemN = getPosSelectionSelect(input_b, itemsCreated);
 		container.insertBefore(posItemN, addItemButton);
 	}
 	
@@ -252,7 +252,7 @@ function changeBatterSpecificAction() {
 	removeItemButton.disabled = itemsCreated <= minPosItems;
 	
 	if (hit == true) {
-		let posItem1 = document.getElementById(groupID + "1");
+		const posItem1 = document.getElementById(groupID + "1");
 		posItem1.innerHTML = renderHitLocationOptions();
 		if (posSelection[groupID]) {
 			posItem1.value = posSelection[groupID][0];
@@ -260,7 +260,7 @@ function changeBatterSpecificAction() {
 	}
 	
 	if (fc == true) {
-		let posItem2 = document.getElementById(groupID + "2");
+		const posItem2 = document.getElementById(groupID + "2");
 		posItem2.innerHTML = renderFCLocationOptions();
 		if (posSelection[groupID]) {
 			posItem2.value = posSelection[groupID][1];
@@ -269,10 +269,10 @@ function changeBatterSpecificAction() {
 }
 
 function changeRunnerBaseAction(group) {
-	var actionOptions = [];
-	var specificActionDisabled = false;
+	const actionOptions = [];
+	let specificActionDisabled = false;
 	
-	var runnerBaseAction = document.getElementById(group + input_base_action);
+	const runnerBaseAction = document.getElementById(group + input_base_action);
 	switch (runnerBaseAction.value) {
 		case "adv":
 			actionOptions.push('<optgroup label="Runner is safe">');
@@ -352,7 +352,7 @@ function changeRunnerBaseAction(group) {
 			specificActionDisabled = true;
 	}
 	
-	var runnerSpecificAction = document.getElementById(group + input_spec_action);
+	const runnerSpecificAction = document.getElementById(group + input_spec_action);
 	runnerSpecificAction.innerHTML = actionOptions;
 	runnerSpecificAction.disabled = specificActionDisabled;
 	
@@ -360,13 +360,13 @@ function changeRunnerBaseAction(group) {
 }
 
 function changeRunnerSpecificAction(group) {
-	var throwing = false;
-	var minPosItems = 1;
-	var targetPosItems = 1;
-	var maxPosItems = 4;
+	let throwing = false;
+	let minPosItems = 1;
+	let targetPosItems = 1;
+	let maxPosItems = 4;
 	
-	var runnerSpecificAction = document.getElementById(group + input_spec_action);
-	var runnerSpecificActionValue = runnerSpecificAction.value;
+	const runnerSpecificAction = document.getElementById(group + input_spec_action);
+	const runnerSpecificActionValue = runnerSpecificAction.value;
 	switch (runnerSpecificActionValue) {
 		case "ADV":
 	    case "bb":
@@ -423,22 +423,22 @@ function changeRunnerSpecificAction(group) {
 	window.targetPosItems[group] = targetPosItems;
 	window.maxPosItems[group] = maxPosItems;
 	
-	let groupID = group + input_position;
+	const groupID = group + input_position;
 	
-	let container = document.getElementById(groupID);
-	let addItemButton = document.getElementById(groupID + input_add);
-	let removeItemButton = document.getElementById(groupID + input_remove);
+	const container = document.getElementById(groupID);
+	const addItemButton = document.getElementById(groupID + input_add);
+	const removeItemButton = document.getElementById(groupID + input_remove);
 	
 	let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	while (itemsCreated > 0) {
-		let posItemN = document.getElementById(groupID + itemsCreated); 
+		const posItemN = document.getElementById(groupID + itemsCreated); 
 		container.removeChild(posItemN);
 		itemsCreated--;
 	}
 	
 	while (itemsCreated < targetPosItems) {
 		itemsCreated++;
-		let posItemN = getPosSelectionSelect(group, itemsCreated);
+		const posItemN = getPosSelectionSelect(group, itemsCreated);
 		container.insertBefore(posItemN, addItemButton);
 	}
 	
@@ -446,7 +446,7 @@ function changeRunnerSpecificAction(group) {
 	removeItemButton.disabled = itemsCreated <= minPosItems;
 	
 	if (throwing == true) {
-		let posItem2 = document.getElementById(groupID + "2");
+		const posItem2 = document.getElementById(groupID + "2");
 		posItem2.innerHTML = renderFCLocationOptions();
 		if (posSelection[groupID]) {
 			posItem2.value = posSelection[groupID][1];	
@@ -455,9 +455,9 @@ function changeRunnerSpecificAction(group) {
 }
 
 function getBaseSelection(group) {
-	var base = "1";
+	let base = "1";
 	
-	var baseSelect = document.getElementById(group + input_base);
+	const baseSelect = document.getElementById(group + input_base);
 	if (baseSelect != null) {
 		base = baseSelect.value;
 	}
@@ -466,9 +466,9 @@ function getBaseSelection(group) {
 }
 
 function getTIESelection(group) {
-	var tie = false;
+	let tie = false;
 	
-	var tieCheck = document.getElementById(group + input_tie);
+	const tieCheck = document.getElementById(group + input_tie);
 	if (tieCheck != null) {
 		tie = tieCheck.checked;
 	}
@@ -477,11 +477,11 @@ function getTIESelection(group) {
 }
 
 function getPosSelection(group) {
-	var selection = [];
+	let selection = [];
 	
-	var container = document.getElementById(group + input_position);
-	var posCount = container.getElementsByClassName(class_wbsc_pos);
-	for (var i = 0; i < posCount.length; i++) {
+	const container = document.getElementById(group + input_position);
+	const posCount = container.getElementsByClassName(class_wbsc_pos);
+	for (let i = 0; i < posCount.length; i++) {
 		selection[i] = posCount.item(i).value;
 	}
 	
@@ -491,7 +491,7 @@ function getPosSelection(group) {
 }
 
 function checkPosSelection(selection) {
-	var validation = "";
+	let validation = "";
 	
 	if (selection.length > 1) {
 		if (!selection.endsWith("LL") && selection[selection.length - 2] == selection[selection.length - 1]) {
@@ -499,8 +499,8 @@ function checkPosSelection(selection) {
 		}
 	}
 	if (selection.length > 2) {
-		var alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false];
-		for (var i = 0; i < selection.length - 1; i++) {
+		let alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false];
+		for (let i = 0; i < selection.length - 1; i++) {
 			if (alreadyEncounteredPositions[selection.substr(i,1)] == true) {
 				if (validation != "") {
 					validation += "\n- ";
@@ -516,9 +516,9 @@ function checkPosSelection(selection) {
 }
 
 function getInput(group) {
-	var values = null;
+	let values = null;
 	
-	var container = document.getElementById(group);
+	const container = document.getElementById(group);
 	if (container != null) {
 		values = [];
 		values[input_base_action] = document.getElementById(group + input_base_action).value;
@@ -548,13 +548,13 @@ function attachValidation(input, validation) {
 }
 
 function processInput(input) {
-	var output = [];
+	let output = [];
 	
 	output[output_base] = parseInt(input[input_base]);
 	output[output_out] = false;
 	output[output_hit] = false;
 	
-	var pos = input[input_position];
+	const pos = input[input_position];
 	if (pos != null) {
 		lastPos = pos[pos.length - 1];
 		if (lastPos == "X") {
@@ -566,7 +566,7 @@ function processInput(input) {
 		}
 	}
 	
-	var action = input[input_spec_action];
+	const action = input[input_spec_action];
 	switch (action) {
 		case "EDF":
 			output[output_base] = 0;

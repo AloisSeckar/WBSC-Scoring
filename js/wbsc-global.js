@@ -1,7 +1,7 @@
 window.onload = function() {
 	init();
   
-	var downloadLink = document.getElementById('download-link');
+	const downloadLink = document.getElementById('download-link');
 	downloadLink.addEventListener('click', function(ev) {
 		downloadLink.href = canvas.toDataURL();
 		downloadLink.download = "wbsc-scoring.png";

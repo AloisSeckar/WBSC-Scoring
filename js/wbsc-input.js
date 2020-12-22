@@ -1,36 +1,36 @@
 function renderActionButtons() {
-	var actionButtonsContainer = document.createElement("div");
+	const actionButtonsContainer = document.createElement("div");
 	actionButtonsContainer.setAttribute('id', div_tools);
 	actionButtonsContainer.setAttribute('class', "wbsc-buttons");
 	
-	var renderBatterButton = renderInputsButton(input_b, null);
+	const renderBatterButton = renderInputsButton(input_b, null);
 	actionButtonsContainer.appendChild(renderBatterButton);
 	
-	var renderRunner1Button = renderInputsButton(input_r1, null);
+	const renderRunner1Button = renderInputsButton(input_r1, null);
 	actionButtonsContainer.appendChild(renderRunner1Button);
 	
-	var renderRunner2Button = renderInputsButton(input_r2, null);
+	const renderRunner2Button = renderInputsButton(input_r2, null);
 	actionButtonsContainer.appendChild(renderRunner2Button);
 	
-	var renderRunner3Button = renderInputsButton(input_r3, null);
+	const renderRunner3Button = renderInputsButton(input_r3, null);
 	actionButtonsContainer.appendChild(renderRunner3Button);
 	
 	actionButtonsContainer.appendChild(document.createElement("br"));
 	
-	var generateButton = renderInputsButton(input_generate, null);
+	const generateButton = renderInputsButton(input_generate, null);
 	generateButton.setAttribute('class', "btn btn-primary wbsc-action-button");
 	actionButtonsContainer.appendChild(generateButton);
 	
-	var clearButton = renderInputsButton(input_clear, null);
+	const clearButton = renderInputsButton(input_clear, null);
 	clearButton.setAttribute('class', "btn btn-primary wbsc-clear-button");
 	actionButtonsContainer.appendChild(clearButton);
 	
-	var container = document.getElementById(div_input);
+	const container = document.getElementById(div_input);
 	container.appendChild(actionButtonsContainer);
 }
 
 function renderInputsButton(group, parentDiv) {
-	var renderInputsButton = document.createElement("button");
+	const renderInputsButton = document.createElement("button");
 	renderInputsButton.setAttribute('id', "button-" + group);
 	renderInputsButton.setAttribute('type', "button");
 	renderInputsButton.setAttribute('class', "btn btn-info wbsc-render-button");
@@ -63,7 +63,7 @@ function clearInputs() {
 }
 
 function renderInputs(group, parentDiv) {
-	var renderButton = document.getElementById("button-" + group);
+	const renderButton = document.getElementById("button-" + group);
 	if (renderButton.innerHTML.includes("+")) {
 		showInputs(group, parentDiv);
 	} else {
@@ -72,23 +72,23 @@ function renderInputs(group, parentDiv) {
 }
 
 function showInputs(group, parentDiv) {
-	var inputsContainer = document.createElement("div");
+	const inputsContainer = document.createElement("div");
 	inputsContainer.setAttribute('id', group);
 	
 	if (parentDiv == null) {
 		inputsContainer.setAttribute('class', class_wbsc);
 		
-		var container = document.getElementById(div_input);
-		var hook = getProperLocationForInputs(group);
+		const container = document.getElementById(div_input);
+		const hook = getProperLocationForInputs(group);
 		container.insertBefore(inputsContainer, hook);
 	} else {
-		var parentDiv = getParentDiv(group, true);
-		var container = document.getElementById(parentDiv);
+		const parentDiv = getParentDiv(group, true);
+		const container = document.getElementById(parentDiv);
 		container.appendChild(inputsContainer);
 	}
 	
 	if (parentDiv == null) {
-		var batterLabel = document.createElement("label");
+		const batterLabel = document.createElement("label");
 		batterLabel.innerHTML = getLabelForInputGroup(group);
 		inputsContainer.appendChild(batterLabel);
 		inputsContainer.appendChild(document.createElement("br"));
@@ -98,11 +98,11 @@ function showInputs(group, parentDiv) {
 		renderBaseSelection(group);
 	}
 	
-	var actionLabel = document.createElement("label");
+	const actionLabel = document.createElement("label");
 	actionLabel.innerHTML = "Action:";
 	inputsContainer.appendChild(actionLabel);
 	
-	var baseActionSelect = document.createElement("select");
+	const baseActionSelect = document.createElement("select");
 	baseActionSelect.setAttribute('id', group + input_base_action);
 	baseActionSelect.setAttribute('class', 'wbsc-base-action-select form-control');
 	baseActionSelect.addEventListener('click', function(){
@@ -128,7 +128,7 @@ function showInputs(group, parentDiv) {
 	}
 	inputsContainer.appendChild(baseActionSelect);
 	
-	var specificActionSelect = document.createElement("select");
+	const specificActionSelect = document.createElement("select");
 	specificActionSelect.setAttribute('id', group + input_spec_action);
 	specificActionSelect.setAttribute('class', 'wbsc-specific-action-select form-control');
 	specificActionSelect.addEventListener('click', function(){
@@ -140,16 +140,14 @@ function showInputs(group, parentDiv) {
 	
 	renderPosSelection(group);
 	
-	
-	var additionalInputsGroup = getAdditionalInputsGroup(group);
+	const additionalInputsGroup = getAdditionalInputsGroup(group);
 	if (additionalInputsGroup != null) {
-		var renderExtraButton = renderInputsButton(additionalInputsGroup, inputsContainer);
+		const renderExtraButton = renderInputsButton(additionalInputsGroup, inputsContainer);
 		inputsContainer.appendChild(renderExtraButton);
 		inputsContainer.appendChild(document.createElement("br"));
 	}
 	
-	
-	var renderButton = document.getElementById("button-" + group);
+	const renderButton = document.getElementById("button-" + group);
 	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_unrender);
 	renderButton.innerHTML = getLabelForRenderButton(group, false);
 	
@@ -157,14 +155,14 @@ function showInputs(group, parentDiv) {
 }
 	
 function hideInputs(group) {
-	var parentDiv = getParentDiv(group, false);
-	var container = document.getElementById(parentDiv);
-	var inputsContainer = document.getElementById(group);
+	const parentDiv = getParentDiv(group, false);
+	const container = document.getElementById(parentDiv);
+	const inputsContainer = document.getElementById(group);
 	if (inputsContainer != null) {
 		container.removeChild(inputsContainer);
 	}
 	
-	var renderButton = document.getElementById("button-" + group);
+	const renderButton = document.getElementById("button-" + group);
 	renderButton.setAttribute('class', "btn btn-info " + class_wbsc_b_render);
 	renderButton.innerHTML = getLabelForRenderButton(group, true);
 	
@@ -172,11 +170,11 @@ function hideInputs(group) {
 }
 
 function getProperLocationForInputs(group) {
-	var hook = document.getElementById(div_tools);
+	let hook = document.getElementById(div_tools);
 	
-	var r1inputs = document.getElementById(input_r1);
-	var r2inputs = document.getElementById(input_r2);
-	var r3inputs = document.getElementById(input_r3);
+	const r1inputs = document.getElementById(input_r1);
+	const r2inputs = document.getElementById(input_r2);
+	const r3inputs = document.getElementById(input_r3);
 	
 	switch (group) {
 		case input_b:
@@ -212,7 +210,7 @@ function getProperLocationForInputs(group) {
 }
 
 function getLabelForInputGroup(group) {
-	var label = "<strong>";
+	let label = "<strong>";
 	
 	switch (group) {
 		case input_b:
@@ -235,7 +233,7 @@ function getLabelForInputGroup(group) {
 }
 
 function getLabelForRenderButton(group, render) {
-	var label = "";
+	let label = "";
 	
 	switch (group) {
 		case input_generate:
@@ -270,16 +268,16 @@ function getLabelForRenderButton(group, render) {
 }
 
 function renderBaseSelection(group) {
-	var inputsContainer = document.getElementById(group);
+	const inputsContainer = document.getElementById(group);
 	
 	if (group == input_r1 || group == input_r2) {
-		var baseTIECheck = document.createElement("input");
+		const baseTIECheck = document.createElement("input");
 		baseTIECheck.type = "checkbox";
 		baseTIECheck.setAttribute('class', 'wbsc-select');
 		baseTIECheck.setAttribute('id', group + input_tie);
 		inputsContainer.appendChild(baseTIECheck);
 		
-		var baseTIELabel = document.createElement("label");
+		const baseTIELabel = document.createElement("label");
 		if (group == input_r1) {
 			baseTIELabel.innerHTML = "Tiebreak (baseball)";
 		} else {
@@ -290,11 +288,11 @@ function renderBaseSelection(group) {
 		inputsContainer.appendChild(document.createElement("br"));
 	}
 	
-	var baseLabel = document.createElement("label");
+	const baseLabel = document.createElement("label");
 	baseLabel.innerHTML = "Base:";
 	inputsContainer.appendChild(baseLabel);
 	
-	var baseSelect = document.createElement("select");
+	const baseSelect = document.createElement("select");
 	baseSelect.setAttribute('id', group + input_base);
 	
 	switch (group) {
@@ -321,20 +319,16 @@ function renderBaseSelection(group) {
 }
 
 function renderPosSelection(group) {
+	const groupID = group + input_position;
 	
-	var groupID = group + input_position;
-	
-	var inputsContainer = document.createElement("div");
+	const inputsContainer = document.createElement("div");
 	inputsContainer.setAttribute('id', groupID);
 	
-	var involvedLabel = document.createElement("label");
+	const involvedLabel = document.createElement("label");
 	involvedLabel.innerHTML = "Involved:";
 	inputsContainer.appendChild(involvedLabel);
 	
-	//var posItem1 = getPosSelectionSelect(group, 1);
-	//inputsContainer.appendChild(posItem1);
-	
-	var addItemButton = document.createElement("button");
+	const addItemButton = document.createElement("button");
 	addItemButton.setAttribute('id', groupID + input_add);
 	addItemButton.setAttribute('type', "button");
 	addItemButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button " + class_wbsc_b_render);
@@ -345,7 +339,7 @@ function renderPosSelection(group) {
 	addItemButton.innerHTML = "+P";
 	inputsContainer.appendChild(addItemButton);
 	
-	var removeItemButton = document.createElement("button");
+	const removeItemButton = document.createElement("button");
 	removeItemButton.setAttribute('id', groupID + input_remove);
 	removeItemButton.setAttribute('type', "button");
 	removeItemButton.setAttribute('class', "btn btn-sm btn-info wbsc-small-button " + class_wbsc_b_unrender);
@@ -356,23 +350,21 @@ function renderPosSelection(group) {
 	removeItemButton.innerHTML = "-P";
 	inputsContainer.appendChild(removeItemButton);
 	
-	var container = document.getElementById(group);
+	const container = document.getElementById(group);
 	container.appendChild(document.createElement("br"));
 	container.appendChild(inputsContainer);
 }
 
 function renderPosSelectItem(group) {
-	var groupID = group + input_position;
-	var container = document.getElementById(groupID);
-	var renderButton = document.getElementById(groupID + input_add);
-	var unRenderButton = document.getElementById(groupID + input_remove);
+	const groupID = group + input_position;
+	const container = document.getElementById(groupID);
+	const renderButton = document.getElementById(groupID + input_add);
+	const unRenderButton = document.getElementById(groupID + input_remove);
 	
-	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	if (itemsCreated < maxPosItems[group]) {
 		itemsCreated++;
-		
-		var posItemN = getPosSelectionSelect(group, itemsCreated);
-		
+		const posItemN = getPosSelectionSelect(group, itemsCreated);		
 		container.insertBefore(posItemN, renderButton);
 	}
 	
@@ -381,17 +373,15 @@ function renderPosSelectItem(group) {
 }
 
 function unRenderPosSelectItem(group) {
-	var groupID = group + input_position;
-	var container = document.getElementById(groupID);
-	var renderButton = document.getElementById(groupID + input_add);
-	var unRenderButton = document.getElementById(groupID + input_remove);
+	const groupID = group + input_position;
+	const container = document.getElementById(groupID);
+	const renderButton = document.getElementById(groupID + input_add);
+	const unRenderButton = document.getElementById(groupID + input_remove);
 	
-	var itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+	let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
 	if (itemsCreated > minPosItems[group]) {
-		var posItemN = document.getElementById(groupID + itemsCreated);
-		
-		container.removeChild(posItemN);
-		
+		const posItemN = document.getElementById(groupID + itemsCreated);	
+		container.removeChild(posItemN);	
         itemsCreated--;
 	}
 	
@@ -400,9 +390,9 @@ function unRenderPosSelectItem(group) {
 }
 
 function getPosSelectionSelect(group, ord) {
-	var groupID = group + input_position;
+	const groupID = group + input_position;
 	
-	var posItem = document.createElement("select");
+	const posItem = document.createElement("select");
 	posItem.setAttribute('id', groupID + ord);
 	posItem.setAttribute('class', class_wbsc_pos);
 	posItem.innerHTML = renderPlayerOptions();
@@ -419,7 +409,7 @@ function getPosSelectionSelect(group, ord) {
 }
 
 function disableParentExtraInput(group, disable) {
-	var parentExtraButtonId = null;
+	let parentExtraButtonId = null;
 	switch (group) {
 		case input_b2:
 			parentExtraButtonId = input_b1;
@@ -432,13 +422,13 @@ function disableParentExtraInput(group, disable) {
 			break;
 	}
 	if (parentExtraButtonId != null) {
-		var parentExtraButton = document.getElementById("button-" + parentExtraButtonId);
+		const parentExtraButton = document.getElementById("button-" + parentExtraButtonId);
 		parentExtraButton.disabled = disable;
 	}
 }
 
 function getParentDiv(group, show) {
-	var parentDiv;
+	let parentDiv;
 	switch (group) {
 		case input_b1:
 		case input_b2:
@@ -459,7 +449,7 @@ function getParentDiv(group, show) {
 }
 
 function getAdditionalInputsGroup(group) {
-	var additionalInputsGroup;
+	let additionalInputsGroup;
 	switch (group) {
 		case input_b:
 			additionalInputsGroup = input_b1;
@@ -486,7 +476,7 @@ function getAdditionalInputsGroup(group) {
 }
 
 function renderPlayerOptions() {
-	var options = [];
+	const options = [];
 	options.push('<option value=""></option>');
 	options.push('<option value="1">P</option>');
 	options.push('<option value="2">C</option>');
@@ -501,7 +491,7 @@ function renderPlayerOptions() {
 }
 
 function renderHitLocationOptions() {
-	var options = renderPlayerOptions();
+	const options = renderPlayerOptions();
 	options.push('<option value="LL">LL</option>');
 	options.push('<option value="LS">LS</option>');
 	options.push('<option value="LC">LC</option>');
@@ -513,7 +503,7 @@ function renderHitLocationOptions() {
 }
 
 function renderFCLocationOptions() {
-	var options = [];
+	const options = [];
 	options.push('<option value="X">2nd</option>');
 	options.push('<option value="Y">3rd</option>');
 	options.push('<option value="Z">HP</option>');
@@ -521,7 +511,7 @@ function renderFCLocationOptions() {
 }
 
 function renderBaseOptions(base) {
-	var options = [];
+	const options = [];
 	if (base < 2) {
 		if (base == 1) {
 			options.push('<option value="2" selected>2nd</option>');
@@ -545,7 +535,7 @@ function renderBaseOptions(base) {
 }
 
 function renderBatterActionOptions() {
-	var options = [];
+	const options = [];
 	options.push('<option value=""></option>');
 	options.push('<option value="StrikeOut">Strike out</option>');
 	options.push('<option value="GroundOut">Ground out</option>');
@@ -561,7 +551,7 @@ function renderBatterActionOptions() {
 }
 
 function renderBatterRunnerActionOptions() {
-	var options = [];
+	const options = [];
 	options.push('<option value=""></option>');
 	options.push('<option value="fdc">Fielder\'s choice</option>');
 	options.push('<option value="err">Error</option>');
@@ -571,7 +561,7 @@ function renderBatterRunnerActionOptions() {
 }
 
 function renderRunnerActionOptions() {
-	var options = [];
+	const options = [];
 	options.push('<option value=""></option>');
 	options.push('<option value="adv">Advanced by batter</option>');
 	options.push('<option value="exbb">Extra base (batter)</option>');

@@ -1,24 +1,24 @@
 function renderAction() {
-	var bInput = getInput(input_b);
-	var b1Input = getInput(input_b1);
-	var b2Input = getInput(input_b2);
-	var b3Input = getInput(input_b3);
-	var r1Input = getInput(input_r1);
-	var r1aInput = getInput(input_r1a);
-	var r1bInput = getInput(input_r1b);
-	var r2Input = getInput(input_r2);
-	var r2aInput = getInput(input_r2a);
-	var r3Input = getInput(input_r3);
+	const bInput = getInput(input_b);
+	const b1Input = getInput(input_b1);
+	const b2Input = getInput(input_b2);
+	const b3Input = getInput(input_b3);
+	const r1Input = getInput(input_r1);
+	const r1aInput = getInput(input_r1a);
+	const r1bInput = getInput(input_r1b);
+	const r2Input = getInput(input_r2);
+	const r2aInput = getInput(input_r2a);
+	const r3Input = getInput(input_r3);
 	
-	var playersInvolved = 0;
-	var validation = "";
+	let playersInvolved = 0;
+	let validation = "";
 	
     if (bInput != null) {
 		playersInvolved++;
 		validation += attachValidation(validation, bInput[input_validation]);
 	}
 	
-	var extraBatterInput = [];
+	const extraBatterInput = [];
 	if (b1Input != null) {
 		validation += attachValidation(validation, b1Input[input_validation]);
 		extraBatterInput.push(b1Input);
@@ -37,7 +37,7 @@ function renderAction() {
 		validation += attachValidation(validation, r1Input[input_validation]);
 	}
 	
-	var extraR1Input = [];
+	const extraR1Input = [];
     if (r1aInput != null) {
 		validation += attachValidation(validation, r1aInput[input_validation]);
 		extraR1Input.push(r1aInput);
@@ -52,7 +52,7 @@ function renderAction() {
 		validation += attachValidation(validation, r2Input[input_validation]);
 	}
 	
-	var extraR2Input = [];
+	const extraR2Input = [];
     if (r2aInput != null) {
 		validation += attachValidation(validation, r2aInput[input_validation]);
 		extraR2Input.push(r2aInput);
@@ -75,7 +75,7 @@ function renderAction() {
 			window.batter = playersInvolved;
 		}
 		
-		var displayed = 1;
+		let displayed = 1;
 		if (r3Input != null) {
 			r3Input[input_origBase] = 3;
 			drawAction(displayed++, r3Input, null, true);
@@ -106,19 +106,17 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
 	}
 	
 	if (mainInput[input_origBase] != null) {
-		
-		output = [];
-		output[output_base] = mainInput[input_origBase];
+		let prevOutput = [];
+		prevOutput[output_base] = mainInput[input_origBase];
 		if (mainInput[input_tie] == true) {
-			output[output_text_1] = "TIE";
+			prevOutput[output_text_1] = "TIE";
 		} else {
-			output[output_text_1] = "*";
+			prevOutput[output_text_1] = "*";
 		}
-		
-		drawAdvance(output);
+		drawAdvance(prevOutput);
 	}
 	
-	var output = processInput(mainInput);
+	const output = processInput(mainInput);
 	if (output[output_out] == true) {
 		drawOut(output);
 	} else {
@@ -232,9 +230,9 @@ function drawConnector(base1, base2) {
 		ctx.lineWidth = 5;
 		ctx.strokeStyle = 'black';
 		
-		var gap = 16;
-		var length = 35;
-		var arc = 20;
+		let gap = 16;
+		let length = 35;
+		let arc = 20;
 		
 		ctx.beginPath();
 		switch (base1) {
@@ -276,13 +274,13 @@ function drawConnector(base1, base2) {
 }
 
 function writeSituation(output) {
-    text1 = output[output_text_1];
-	text2 = output[output_text_2];
-	out = output[output_out];
-	hit = output[output_hit];
-	sub = output[output_sub];
-	sup = output[output_sup];
-	num = output[output_num];
+    let text1 = output[output_text_1];
+	let text2 = output[output_text_2];
+	let out = output[output_out];
+	let hit = output[output_hit];
+	let sub = output[output_sub];
+	let sup = output[output_sup];
+	let num = output[output_num];
 	
 	if (text1 == "*") {
 		ctx.fillStyle = "red";
