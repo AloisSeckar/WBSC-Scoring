@@ -554,7 +554,7 @@ function processInput(input) {
     output[output_out] = false;
     output[output_hit] = false;
     
-    const pos = input[input_position];
+    let pos = input[input_position];
     if (pos !== null) {
         lastPos = pos[pos.length - 1];
         if (lastPos === 'X') {
