@@ -1,3 +1,5 @@
+// triggered when user hits 'generate action'
+// get current inputs, process them and display the output
 function renderAction() {
     const bInput = getInput(input_b);
     const b1Input = getInput(input_b1);
@@ -104,6 +106,11 @@ function renderAction() {
     }
 }
 
+// processing the output
+//   battingOrder - number displayed at the left side (1-4)
+//   mainInput - 1st action to be displayed
+//   extraInput - possible concecutive actions (0-3)
+//   clear - true, if previous content should be ereased
 function drawAction(battingOrder, mainInput, extraInput, clear) {
     if (clear) {
         drawBackground(battingOrder);
@@ -135,6 +142,8 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
     }
 }
 
+// prepare empty scoresheet element (blue square)
+//   battingOrder - number displayed at the left side (1-4)
 function drawBackground(battingOrder) {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0 + vOffset, w + hOffset, h);
@@ -168,6 +177,7 @@ function drawBackground(battingOrder) {
     ctx.stroke();
 }
 
+// draw circle with 'out' action inside it
 function drawOut(output) {
     ctx.lineWidth = 7;
     ctx.strokeStyle = 'black';
@@ -201,11 +211,13 @@ function drawOut(output) {
     writeSituation(output);
 }
 
+// draw advance line and 'safe' action
 function drawAdvance(output) {
     drawAdvanceLine(output[output_base]);
     writeSituation(output);
 }
 
+// draw advance line from HP to given base (1-4)
 function drawAdvanceLine(base) {
     ctx.lineWidth = 8;
     ctx.strokeStyle = 'black';
@@ -227,6 +239,8 @@ function drawAdvanceLine(base) {
     ctx.stroke();
 }
 
+// draw narrow connection line between given two bases
+// to join two or more consecutive actions
 function drawConnector(base1, base2) {
     if (base1 < 1 || base1 > 3 || base2 < 1 || base2 > 4 || base1 >= base2) {
         alert('Invalid input for consecutive action!');
@@ -277,6 +291,7 @@ function drawConnector(base1, base2) {
     }
 }
 
+// draw the actual output of selected action
 function writeSituation(output) {
     let text1 = output[output_text_1];
     let text2 = output[output_text_2];
@@ -613,6 +628,7 @@ function writeSituation(output) {
     }
 }
 
+// draw hit symbol at specified base (1-3)
 function drawHitSymbol(base) {
     ctx.lineWidth = 6;
     ctx.beginPath();

@@ -1,3 +1,4 @@
+// create bar with action buttons
 function renderActionButtons() {
     const actionButtonsContainer = document.createElement('div');
     actionButtonsContainer.setAttribute('id', div_tools);
@@ -29,6 +30,10 @@ function renderActionButtons() {
     container.appendChild(actionButtonsContainer);
 }
 
+// create action button
+//   group - new element's DOM id
+//   parentDiv - null for buttons on action bar
+//             - inputs group for button to add/remove additional inputs for consecutive actions 
 function renderInputsButton(group, parentDiv) {
     const renderButton = document.createElement('button');
     renderButton.setAttribute('id', 'button-' + group);
@@ -51,6 +56,7 @@ function renderInputsButton(group, parentDiv) {
     return renderButton;
 }
 
+// clear all user inputs and reset default state
 function clearInputs() {
     hideInputs(input_b);
     hideInputs(input_r1);
@@ -62,6 +68,9 @@ function clearInputs() {
     window.posSelection = [];
 }
 
+// show or hide given input group
+//   group - DOM id of encapsulating div
+//   parentDiv - ancestor of encapsulating div in DOM hieararchy
 function renderInputs(group, parentDiv) {
     const renderButton = document.getElementById('button-' + group);
     if (renderButton.innerHTML.includes('+')) {
@@ -71,6 +80,10 @@ function renderInputs(group, parentDiv) {
     }
 }
 
+// show given input group
+// fuction renders all required inputs and places them into new div
+//   group - DOM id of encapsulating div
+//   parentDiv - ancestor of encapsulating div in DOM hieararchy
 function showInputs(group, parentDiv) {
     const inputsContainer = document.createElement('div');
     inputsContainer.setAttribute('id', group);
@@ -153,7 +166,10 @@ function showInputs(group, parentDiv) {
     
     disableParentExtraInput(group, true);
 }
-    
+
+// hide given input group
+// function removes div with all contents from document
+//   group - DOM id of encapsulating div
 function hideInputs(group) {
     const parentDiv = getParentDiv(group, false);
     const container = document.getElementById(parentDiv);
@@ -169,6 +185,7 @@ function hideInputs(group) {
     disableParentExtraInput(group, false);
 }
 
+// helps maintaining correct order of input groups (HP - 1B - 2B - 3B)
 function getProperLocationForInputs(group) {
     let hook = document.getElementById(div_tools);
     
@@ -209,6 +226,7 @@ function getProperLocationForInputs(group) {
     return hook;
 }
 
+// title for given input group
 function getLabelForInputGroup(group) {
     let label = '<strong>';
     
@@ -232,6 +250,7 @@ function getLabelForInputGroup(group) {
     return label;
 }
 
+// text for given action button
 function getLabelForRenderButton(group, render) {
     let label = '';
     
@@ -267,6 +286,9 @@ function getLabelForRenderButton(group, render) {
     return label;
 }
 
+// render select with target base where the action happened
+// + possible TIE checker
+// inside given input group
 function renderBaseSelection(group) {
     const inputsContainer = document.getElementById(group);
     
@@ -318,6 +340,8 @@ function renderBaseSelection(group) {
     inputsContainer.appendChild(document.createElement('br'));
 }
 
+// render selects and buttons to adjust involved players/positions
+// inside given input group
 function renderPosSelection(group) {
     const groupID = group + input_position;
     
@@ -355,6 +379,8 @@ function renderPosSelection(group) {
     container.appendChild(inputsContainer);
 }
 
+// render one new select for players/locations inside given group
+// select is added at the end if possible
 function renderPosSelectItem(group) {
     const groupID = group + input_position;
     const container = document.getElementById(groupID);
@@ -372,6 +398,8 @@ function renderPosSelectItem(group) {
     unRenderButton.disabled = itemsCreated <= minPosItems[group];
 }
 
+// removes one select for players/locations from given group
+// select is removed from the end if possible
 function unRenderPosSelectItem(group) {
     const groupID = group + input_position;
     const container = document.getElementById(groupID);
@@ -389,6 +417,9 @@ function unRenderPosSelectItem(group) {
     unRenderButton.disabled = itemsCreated <= minPosItems[group];
 }
 
+// physically creates new select for players/locations
+//   group - target inputs group
+//   ord - position inside the group
 function getPosSelectionSelect(group, ord) {
     const groupID = group + input_position;
     
@@ -408,6 +439,11 @@ function getPosSelectionSelect(group, ord) {
     return posItem;
 }
 
+// when there is more input groups for consecutive actions for one base
+// (possible only for B or R1), only the last group can be removed
+// therefore other removal buttons have to be disabled when new input group is added
+//   group - target inputs group
+//   disable - state of the button (true for 'disabled')
 function disableParentExtraInput(group, disable) {
     let parentExtraButtonId = null;
     switch (group) {
@@ -427,6 +463,9 @@ function disableParentExtraInput(group, disable) {
     }
 }
 
+// find encapsulating div when showing/hiding input groups
+//   group - given input group
+//   show - triggering action (showing or hiding)
 function getParentDiv(group, show) {
     let parentDiv;
     switch (group) {
@@ -448,6 +487,8 @@ function getParentDiv(group, show) {
     return parentDiv;
 }
 
+// find the next available input subgroup for consecutive actions
+//   group - given input group
 function getAdditionalInputsGroup(group) {
     let additionalInputsGroup;
     switch (group) {
@@ -475,6 +516,7 @@ function getAdditionalInputsGroup(group) {
     return additionalInputsGroup;
 }
 
+// existing player positions / basic field locations
 function renderPlayerOptions() {
     const options = [];
     options.push('<option value=""></option>');
@@ -490,6 +532,7 @@ function renderPlayerOptions() {
     return options;
 }
 
+// extra field locations to describe hits
 function renderHitLocationOptions() {
     const options = renderPlayerOptions();
     options.push('<option value="LL">LL</option>');
@@ -502,6 +545,7 @@ function renderHitLocationOptions() {
     return options;
 }
 
+// target bases for fielder's choice
 function renderFCLocationOptions() {
     const options = [];
     options.push('<option value="X">2nd</option>');
@@ -510,6 +554,8 @@ function renderFCLocationOptions() {
     return options;
 }
 
+// available advances
+//   base - original base
 function renderBaseOptions(base) {
     const options = [];
     if (base < 2) {
@@ -534,6 +580,7 @@ function renderBaseOptions(base) {
     return options;
 }
 
+// list of basic actions for the batter
 function renderBatterActionOptions() {
     const options = [];
     options.push('<option value=""></option>');
@@ -550,6 +597,7 @@ function renderBatterActionOptions() {
     return options;
 }
 
+// list of basic actions for the running batter
 function renderBatterRunnerActionOptions() {
     const options = [];
     options.push('<option value=""></option>');
@@ -560,6 +608,7 @@ function renderBatterRunnerActionOptions() {
     return options;
 }
 
+// list of basic actions for the runner
 function renderRunnerActionOptions() {
     const options = [];
     options.push('<option value=""></option>');

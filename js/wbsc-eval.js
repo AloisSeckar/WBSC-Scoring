@@ -1,3 +1,4 @@
+// triggered when user selects from 'base' action
 function changeBaseAction(group) {
     if (group === input_b) {
         changeBatterBaseAction();
@@ -6,6 +7,7 @@ function changeBaseAction(group) {
     }
 }
 
+// triggered when user selects from 'specific' action
 function changeSpecificAction(group) {
     if (group === input_b) {
         changeBatterSpecificAction();
@@ -14,8 +16,8 @@ function changeSpecificAction(group) {
     }
 }
 
+// ajdust 'specific' action according to selected 'base' action
 function changeBatterBaseAction() {
-    
     const actionOptions = [];
     let specificActionDisabled = false;
 
@@ -79,7 +81,7 @@ function changeBatterBaseAction() {
             actionOptions.push('<optgroup label="Batter is safe">');
             actionOptions.push('<option value="SHE">Sacrifice bunt with fielding error</option>');
             actionOptions.push('<option value="SHET">Sacrifice bunt with throwing error</option>');
-            actionOptions.push('<option value="SHEF">Sacrifice bunt with dropped fly</option>');        // code ends with "F" for easier output transformation
+            actionOptions.push('<option value="SHEF">Sacrifice bunt with dropped fly</option>'); // code ends with "F" for easier output transformation
             actionOptions.push('<option value="SHFC">Sacrifice bunt with FC</option>');
             actionOptions.push('<option value="SFE">Sacrifice fly with error</option>');
             actionOptions.push('<option value="SFO">Dropped sacrifice fly + forced out</option>');
@@ -101,8 +103,8 @@ function changeBatterBaseAction() {
             break;
         case 'Advance':
             actionOptions.push('<optgroup label="Batter is safe">');
-            actionOptions.push('<option value="BB1">Base on balls</option>');                            // "1" indicates the numbering should be included in output
-            actionOptions.push('<option value="IBB1">Intentional base on balls</option>');                // "1" indicates the numbering should be included in output
+            actionOptions.push('<option value="BB1">Base on balls</option>');              // "1" indicates the numbering should be included in output
+            actionOptions.push('<option value="IBB1">Intentional base on balls</option>'); // "1" indicates the numbering should be included in output
             actionOptions.push('<option value="HP">Hit by pitch</option>');
             actionOptions.push('</optgroup>');
             break;
@@ -135,6 +137,7 @@ function changeBatterBaseAction() {
     changeBatterSpecificAction();
 }
 
+// adjust 'involved' inputs according to selected 'specific' action
 function changeBatterSpecificAction() {
     let fc = false;
     let hit = false;
@@ -268,6 +271,7 @@ function changeBatterSpecificAction() {
     }
 }
 
+// ajdust 'specific' action according to selected 'base' action
 function changeRunnerBaseAction(group) {
     const actionOptions = [];
     let specificActionDisabled = false;
@@ -359,6 +363,7 @@ function changeRunnerBaseAction(group) {
     changeRunnerSpecificAction(group);
 }
 
+// adjust 'involved' inputs according to selected 'specific' action
 function changeRunnerSpecificAction(group) {
     let throwing = false;
     let minPosItems = 1;
@@ -454,6 +459,7 @@ function changeRunnerSpecificAction(group) {
     }
 }
 
+// get current value from 'base' select for given input group
 function getBaseSelection(group) {
     let base = '1';
     
@@ -465,6 +471,7 @@ function getBaseSelection(group) {
     return base;
 }
 
+// get current value from 'tiebreak' checker for given input group
 function getTIESelection(group) {
     let tie = false;
     
@@ -476,6 +483,7 @@ function getTIESelection(group) {
     return tie;
 }
 
+// get current values from 'involved' selects for given input group
 function getPosSelection(group) {
     let selection = [];
     
@@ -490,6 +498,7 @@ function getPosSelection(group) {
     return selection.join('');
 }
 
+// validates given 'involved' sequence
 function checkPosSelection(selection) {
     let validation = '';
     
@@ -515,6 +524,7 @@ function checkPosSelection(selection) {
     return validation;
 }
 
+// get and wrap current user input for given input group
 function getInput(group) {
     let values = null;
     
@@ -532,8 +542,8 @@ function getInput(group) {
     return values;
 }
 
-function attachValidation(input, validation) {
-    
+// attach new part of validation message to previous contents
+function attachValidation(input, validation) {  
     if (input !== '') {
         input += '\n';
     }
@@ -547,6 +557,7 @@ function attachValidation(input, validation) {
     return input;
 }
 
+// transform user's input into output instructions
 function processInput(input) {
     let output = [];
     

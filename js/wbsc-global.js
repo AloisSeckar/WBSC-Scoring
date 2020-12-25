@@ -1,14 +1,35 @@
 window.onload = function() {
     init();
   
-    const downloadLink = document.getElementById('download-link');
-    downloadLink.addEventListener('click', function(ev) {
-        downloadLink.href = canvas.toDataURL();
-        downloadLink.download = 'wbsc-scoring.png';
+    // button for saving output as PNG
+    const downloadButton = document.getElementById('download-link');
+    downloadButton.addEventListener('click', function(ev) {
+        downloadButton.href = canvas.toDataURL();
+        downloadButton.download = 'wbsc-scoring.png';
     }, false);
 };
 
+// prepare environment and render default state
 function init() {
+    setInputVariables();
+    setOutputVariables();
+    setTextConstants();
+    
+    renderActionButtons();
+    renderInputs(input_b);
+    drawBackground(1);
+}
+
+// initial declaring of arrays used to collect user input
+function setInputVariables() {
+    window.minPosItems = [];
+    window.targetPosItems = [];
+    window.maxPosItems = [];
+    window.posSelection = [];
+}
+
+// setting affecting placement of texts in situation rendering
+function setOutputVariables() {
     window.canvas = document.getElementById('canvas');
     window.ctx = canvas.getContext('2d');
     
@@ -23,15 +44,10 @@ function init() {
     window.h3 = h / 3;
     window.h4 = h / 4;
     window.h5 = h / 5;
-    
-    setVariables();
-    
-    renderActionButtons();
-    renderInputs(input_b);
-    drawBackground(1);
 }
 
-function setVariables() {
+// values used for identifying the DOM elements
+function setTextConstants() {
     window.div_input = 'wbsc-inputs';
     window.div_tools = 'wbsc-toolbar';
     
@@ -71,9 +87,4 @@ function setVariables() {
     window.output_sub = 'sub';
     window.output_sup = 'sup';
     window.output_num = 'num';
-    
-    window.minPosItems = [];
-    window.targetPosItems = [];
-    window.maxPosItems = [];
-    window.posSelection = [];
 }
