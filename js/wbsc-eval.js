@@ -327,10 +327,10 @@ function processInput(input) {
             break;
         case 'SH':
         case 'FSF':
+            output[output_text_2] = pos;
         case 'LT':
             output[output_base] = 0;
             output[output_text_1] = action;
-            output[output_text_2] = pos;
             output[output_out] = true;
             break;
         case 'OBR1_':
