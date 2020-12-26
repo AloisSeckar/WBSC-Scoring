@@ -276,7 +276,9 @@ function renderBatterSpecificActionOptions(action) {
 }
 
 // list of specific actions based on selected base action for runner
-function renderRunnerSpecificActionOptions(action) {
+//   action - selected base action
+//   group - invoking input group
+function renderRunnerSpecificActionOptions(action, group) {
     const options = [];
     switch (action) {
         case 'adv':

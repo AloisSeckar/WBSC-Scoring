@@ -171,7 +171,7 @@ function changeBatterSpecificAction() {
 // ajdust 'specific' action according to selected 'base' action
 function changeRunnerBaseAction(group) {
     const runnerBaseAction = document.getElementById(group + input_base_action);
-    const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value);
+    const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value, group);
     const specificActionDisabled = actionOptions === [];
 
     const specificAction = document.getElementById(group + input_spec_action);
