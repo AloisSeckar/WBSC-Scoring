@@ -263,8 +263,8 @@ function writeSituation(output) {
                     if (text2.length > 3) {
                         ctx.font = 'bold 60px Verdana';
                         offset = 60;
-                    } else if (text2.length > 2) {
-                        ctx.font = 'bold 72px Verdana';
+                    } else if (text2.length > 2 || text1.length > 2) {
+                        ctx.font = 'bold 75px Verdana';
                         offset = 65;
                     } else {
                         ctx.font = 'bold 90px Verdana';
@@ -379,11 +379,17 @@ function writeSituation(output) {
                         ctx.font = 'bold 32px Verdana';
                         offset = 26;
                     } else if (text1.length > 3) {
-                        ctx.font = 'bold 40px Verdana';
+                        ctx.font = 'bold 42px Verdana';
                         offset = 23;
+                    } else if (text1.length > 2) {
+                        ctx.font = 'bold 52px Verdana';
+                        offset = 20;
+                    } else {
+                        ctx.font = 'bold 60px Verdana';
+                        offset = 17;
                     }
                     ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset);
-                    }
+                }
             } else {
                 if (text2 !== null && text2 !== undefined) {
                     row1font = 'bold 40px Verdana';
@@ -404,14 +410,14 @@ function writeSituation(output) {
                     ctx.font = row2font;
                     ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset);
                 } else {
-                    if (text1.length > 5) {
-                        ctx.font = 'bold 32px Verdana';
+                    if (text1.length > 4) {
+                        ctx.font = 'bold 28px Verdana';
                         offset = 12;
-                    } else if (text1.length > 4) {
-                        ctx.font = 'bold 40px Verdana';
+                    } else if (text1.length > 3) {
+                        ctx.font = 'bold 35px Verdana';
                         offset = 14;
                     } else {
-                        ctx.font = 'bold 48px Verdana';
+                        ctx.font = 'bold 40px Verdana';
                         offset = 18;
                     }
                     ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
@@ -494,11 +500,11 @@ function writeSituation(output) {
                     ctx.font = row2font;
                     ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 0.5 + row2offset + vOffset);
                 } else {
-                    if (text1.length > 5) {
-                        ctx.font = 'bold 32px Verdana';
+                    if (text1.length > 4) {
+                        ctx.font = 'bold 28px Verdana';
                         offset = 12;
-                    } else if (text1.length > 4) {
-                        ctx.font = 'bold 40px Verdana';
+                    } else if (text1.length > 3) {
+                        ctx.font = 'bold 36px Verdana';
                         offset = 14;
                     } else {
                         ctx.font = 'bold 48px Verdana';
