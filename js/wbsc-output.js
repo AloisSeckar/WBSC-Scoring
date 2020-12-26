@@ -1,6 +1,6 @@
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
-function renderAction() {
+function processAction() {
     const bInput = getInput(input_b);
     const b1Input = getInput(input_b1);
     const b2Input = getInput(input_b2);
@@ -81,24 +81,24 @@ function renderAction() {
         if (r3Input !== null) {
             r3Input[input_origBase] = 3;
             displayed += 1;
-            drawAction(displayed, r3Input, null, true);
+            renderAction(displayed, r3Input, null, true);
             window.vOffset += h - 8;
         }
         if (r2Input !== null) {
             r2Input[input_origBase] = 2;
             displayed += 1;
-            drawAction(displayed, r2Input, extraR2Input, true);
+            renderAction(displayed, r2Input, extraR2Input, true);
             window.vOffset += h - 8;
         }
         if (r1Input !== null) {
             r1Input[input_origBase] = 1;
             displayed += 1;
-            drawAction(displayed, r1Input, extraR1Input, true);
+            renderAction(displayed, r1Input, extraR1Input, true);
             window.vOffset += h - 8;
         }
         if (bInput !== null) {
             displayed += 1;
-            drawAction(displayed, bInput, extraBatterInput, true);
+            renderAction(displayed, bInput, extraBatterInput, true);
             window.vOffset += h - 8;
         }
     } else {
@@ -111,7 +111,7 @@ function renderAction() {
 //   mainInput - 1st action to be displayed
 //   extraInput - possible concecutive actions (0-3)
 //   clear - true, if previous content should be ereased
-function drawAction(battingOrder, mainInput, extraInput, clear) {
+function renderAction(battingOrder, mainInput, extraInput, clear) {
     if (clear) {
         drawBackground(battingOrder);
     }
@@ -124,22 +124,34 @@ function drawAction(battingOrder, mainInput, extraInput, clear) {
         } else {
             prevOutput[output_text_1] = '*';
         }
-        drawAdvance(prevOutput);
+        renderAdvance(prevOutput);
     }
     
     const output = processInput(mainInput);
     if (output[output_out] === true) {
-        drawOut(output);
+        renderOut(output);
     } else {
-        drawAdvance(output);
+        renderAdvance(output);
         
         if (extraInput !== null) {
             for (i = 0; i < extraInput.length; i += 1) {
-                drawAction(battingOrder, extraInput[i], null, false);
+                renderAction(battingOrder, extraInput[i], null, false);
                 drawConnector(parseInt(mainInput[input_base]), parseInt(extraInput[i][input_base]));
             }
         }
     }
+}
+
+// process 'safe' situation
+function renderAdvance(output) {
+    drawAdvanceLine(output[output_base]);
+    writeSituation(output);
+}
+
+// process 'out' situation
+function renderOut(output) {
+    drawOutCircle(output[output_base]);
+    writeSituation(output);
 }
 
 // prepare empty scoresheet element (blue square)
@@ -177,13 +189,13 @@ function drawBackground(battingOrder) {
     ctx.stroke();
 }
 
-// draw circle with 'out' action inside it
-function drawOut(output) {
+// draw circle at given base (0-4)
+function drawOutCircle(base) {
     ctx.lineWidth = 7;
     ctx.strokeStyle = 'black';
     
     ctx.beginPath();
-    switch (output[output_base]) {
+    switch (base) {
         case 0:
         case 1:
             if (output[output_text_1] !== 'LT') {
@@ -207,14 +219,6 @@ function drawOut(output) {
             break;
     }
     ctx.stroke();
-    
-    writeSituation(output);
-}
-
-// draw advance line and 'safe' action
-function drawAdvance(output) {
-    drawAdvanceLine(output[output_base]);
-    writeSituation(output);
 }
 
 // draw advance line from HP to given base (1-4)
@@ -289,6 +293,39 @@ function drawConnector(base1, base2) {
         }
         ctx.stroke();
     }
+}
+
+// draw hit symbol at specified base (1-3)
+function drawHitSymbol(base) {
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    switch (base) {
+        case 1:
+            ctx.moveTo(w2 + 25 + hOffset, h - 35 + vOffset);
+            ctx.lineTo(w2 + 50 + hOffset, h2 + 25 + vOffset);
+            ctx.moveTo(w2 + 30 + hOffset, h2 + 40 + vOffset);
+            ctx.lineTo(w2 + 58 + hOffset, h2 + 45 + vOffset);
+            break;
+        case 2:
+            ctx.moveTo(w2 + 25 + hOffset, h2 - 35 + vOffset);
+            ctx.lineTo(w2 + 50 + hOffset, 25 + vOffset);
+            ctx.moveTo(w2 + 30 + hOffset, 35 + vOffset);
+            ctx.lineTo(w2 + 58 + hOffset, 40 + vOffset);
+            ctx.moveTo(w2 + 28 + hOffset, 45 + vOffset);
+            ctx.lineTo(w2 + 56 + hOffset, 50 + vOffset);
+            break;
+        case 3:
+            ctx.moveTo(20 + hOffset, h2 - 35 + vOffset);
+            ctx.lineTo(45 + hOffset, 25 + vOffset);
+            ctx.moveTo(25 + hOffset, 35 + vOffset);
+            ctx.lineTo(53 + hOffset, 40 + vOffset);
+            ctx.moveTo(23 + hOffset, 45 + vOffset);
+            ctx.lineTo(51 + hOffset, 50 + vOffset);
+            ctx.moveTo(21 + hOffset, 55 + vOffset);
+            ctx.lineTo(49 + hOffset, 60 + vOffset);
+            break;
+    }
+    ctx.stroke();
 }
 
 // draw the actual output of selected action
@@ -626,37 +663,4 @@ function writeSituation(output) {
             }
             break;
     }
-}
-
-// draw hit symbol at specified base (1-3)
-function drawHitSymbol(base) {
-    ctx.lineWidth = 6;
-    ctx.beginPath();
-    switch (base) {
-        case 1:
-            ctx.moveTo(w2 + 25 + hOffset, h - 35 + vOffset);
-            ctx.lineTo(w2 + 50 + hOffset, h2 + 25 + vOffset);
-            ctx.moveTo(w2 + 30 + hOffset, h2 + 40 + vOffset);
-            ctx.lineTo(w2 + 58 + hOffset, h2 + 45 + vOffset);
-            break;
-        case 2:
-            ctx.moveTo(w2 + 25 + hOffset, h2 - 35 + vOffset);
-            ctx.lineTo(w2 + 50 + hOffset, 25 + vOffset);
-            ctx.moveTo(w2 + 30 + hOffset, 35 + vOffset);
-            ctx.lineTo(w2 + 58 + hOffset, 40 + vOffset);
-            ctx.moveTo(w2 + 28 + hOffset, 45 + vOffset);
-            ctx.lineTo(w2 + 56 + hOffset, 50 + vOffset);
-            break;
-        case 3:
-            ctx.moveTo(20 + hOffset, h2 - 35 + vOffset);
-            ctx.lineTo(45 + hOffset, 25 + vOffset);
-            ctx.moveTo(25 + hOffset, 35 + vOffset);
-            ctx.lineTo(53 + hOffset, 40 + vOffset);
-            ctx.moveTo(23 + hOffset, 45 + vOffset);
-            ctx.lineTo(51 + hOffset, 50 + vOffset);
-            ctx.moveTo(21 + hOffset, 55 + vOffset);
-            ctx.lineTo(49 + hOffset, 60 + vOffset);
-            break;
-    }
-    ctx.stroke();
 }

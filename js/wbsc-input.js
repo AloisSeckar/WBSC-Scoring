@@ -42,7 +42,7 @@ function renderInputsButton(group, parentDiv) {
     renderButton.addEventListener('click', function(){
         switch (group) {
             case input_generate:
-                renderAction();
+                processAction();
                 break;
             case input_clear:
                 clearInputs();
