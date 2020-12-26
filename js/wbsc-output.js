@@ -1,112 +1,9 @@
-// triggered when user hits 'generate action'
-// get current inputs, process them and display the output
-function processAction() {
-    const bInput = getInput(input_b);
-    const b1Input = getInput(input_b1);
-    const b2Input = getInput(input_b2);
-    const b3Input = getInput(input_b3);
-    const r1Input = getInput(input_r1);
-    const r1aInput = getInput(input_r1a);
-    const r1bInput = getInput(input_r1b);
-    const r2Input = getInput(input_r2);
-    const r2aInput = getInput(input_r2a);
-    const r3Input = getInput(input_r3);
-    
-    let playersInvolved = 0;
-    let validation = '';
-    
-    if (bInput !== null) {
-        playersInvolved += 1;
-        validation += attachValidation(validation, bInput[input_validation]);
-    }
-    
-    const extraBatterInput = [];
-    if (b1Input !== null) {
-        validation += attachValidation(validation, b1Input[input_validation]);
-        extraBatterInput.push(b1Input);
-    }
-    if (b2Input !== null) {
-        validation += attachValidation(validation, b2Input[input_validation]);
-        extraBatterInput.push(b2Input);
-    }
-    if (b3Input !== null) {
-        validation += attachValidation(validation, b3Input[input_validation]);
-        extraBatterInput.push(b3Input);
-    }
-    
-    if (r1Input !== null) {
-        playersInvolved += 1;
-        validation += attachValidation(validation, r1Input[input_validation]);
-    }
-    
-    const extraR1Input = [];
-    if (r1aInput !== null) {
-        validation += attachValidation(validation, r1aInput[input_validation]);
-        extraR1Input.push(r1aInput);
-    }
-    if (r1bInput !== null) {
-        validation += attachValidation(validation, r1bInput[input_validation]);
-        extraR1Input.push(r1bInput);
-    }
-    
-    if (r2Input !== null) {
-        playersInvolved += 1;
-        validation += attachValidation(validation, r2Input[input_validation]);
-    }
-    
-    const extraR2Input = [];
-    if (r2aInput !== null) {
-        validation += attachValidation(validation, r2aInput[input_validation]);
-        extraR2Input.push(r2aInput);
-    }
-    
-    if (r3Input !== null) {
-        playersInvolved += 1;
-        validation += attachValidation(validation, r3Input[input_validation]);
-    }
-    
-    if (validation === '') {
-        window.vOffset = 0;
-        window.hOffset = 75;
-        
-        window.canvas.height = playersInvolved * h - ((playersInvolved - 1) * 8);
-        
-        if (bInput === null) {
-            window.batter = playersInvolved + 1;
-        } else {
-            window.batter = playersInvolved;
-        }
-        
-        let displayed = 0;
-        if (r3Input !== null) {
-            r3Input[input_origBase] = 3;
-            displayed += 1;
-            renderAction(displayed, r3Input, null, true);
-            window.vOffset += h - 8;
-        }
-        if (r2Input !== null) {
-            r2Input[input_origBase] = 2;
-            displayed += 1;
-            renderAction(displayed, r2Input, extraR2Input, true);
-            window.vOffset += h - 8;
-        }
-        if (r1Input !== null) {
-            r1Input[input_origBase] = 1;
-            displayed += 1;
-            renderAction(displayed, r1Input, extraR1Input, true);
-            window.vOffset += h - 8;
-        }
-        if (bInput !== null) {
-            displayed += 1;
-            renderAction(displayed, bInput, extraBatterInput, true);
-            window.vOffset += h - 8;
-        }
-    } else {
-        alert('The given input is invalid:\n' + validation);
-    }
-}
+/* *************************************** */
+/* wbsc-output.js                          */
+/* Final rendering based on user's input   */
+/* *************************************** */
 
-// processing the output
+// rendering the output
 //   battingOrder - number displayed at the left side (1-4)
 //   mainInput - 1st action to be displayed
 //   extraInput - possible concecutive actions (0-3)
@@ -150,7 +47,9 @@ function renderAdvance(output) {
 
 // process 'out' situation
 function renderOut(output) {
-    drawOutCircle(output[output_base]);
+    if (output[output_text_1] !== 'LT') {
+        drawOutCircle(output[output_base]);
+    }
     writeSituation(output);
 }
 
@@ -198,9 +97,7 @@ function drawOutCircle(base) {
     switch (base) {
         case 0:
         case 1:
-            if (output[output_text_1] !== 'LT') {
-                ctx.arc(h2 + hOffset, h2 + vOffset, h2 - 15, 0, 2 * Math.PI);
-            }
+            ctx.arc(h2 + hOffset, h2 + vOffset, h2 - 15, 0, 2 * Math.PI);
             break;
         case 2:
             drawAdvanceLine(1);

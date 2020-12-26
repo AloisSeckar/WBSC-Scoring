@@ -1,3 +1,8 @@
+/* *************************************** */
+/* wbsc-input.js                           */
+/* Preparing and adjusting user inputs     */
+/* *************************************** */
+
 // create bar with action buttons
 function renderActionButtons() {
     const actionButtonsContainer = document.createElement('div');
@@ -183,107 +188,6 @@ function hideInputs(group) {
     renderButton.innerHTML = getLabelForRenderButton(group, true);
     
     disableParentExtraInput(group, false);
-}
-
-// helps maintaining correct order of input groups (HP - 1B - 2B - 3B)
-function getProperLocationForInputs(group) {
-    let hook = document.getElementById(div_tools);
-    
-    const r1inputs = document.getElementById(input_r1);
-    const r2inputs = document.getElementById(input_r2);
-    const r3inputs = document.getElementById(input_r3);
-    
-    switch (group) {
-        case input_b:
-        case input_b1:
-        case input_b2:
-        case input_b3:
-            if (r1inputs !== null) {
-                hook = r1inputs;
-            } else if (r2inputs !== null) {
-                hook = r2inputs;
-            } else if (r3inputs !== null) {
-                hook = r3inputs;
-            }
-            break;
-        case input_r1:
-        case input_r1a:
-        case input_r1b:
-            if (r2inputs !== null) {
-                hook = r2inputs;
-            } else if (r3inputs !== null) {
-                hook = r3inputs;
-            }
-            break;
-        case input_r2:
-        case input_r2a:
-            if (r3inputs !== null) {
-                hook = r3inputs;
-            }
-            break;
-    }
-    
-    return hook;
-}
-
-// title for given input group
-function getLabelForInputGroup(group) {
-    let label = '<strong>';
-    
-    switch (group) {
-        case input_b:
-            label += 'Batter';
-            break;
-        case input_r1:
-            label += 'Runner at 1st';
-            break;
-        case input_r2:
-            label += 'Runner at 2nd';
-            break;
-        case input_r3:
-            label += 'Runner at 3rd';
-            break;
-    }
-    
-    label += '</strong>';
-    
-    return label;
-}
-
-// text for given action button
-function getLabelForRenderButton(group, render) {
-    let label = '';
-    
-    switch (group) {
-        case input_generate:
-            label = 'Generate action';
-            break;
-        case input_clear:
-            label = 'Clear';
-            break;
-        default:
-            if (render === true) {
-                label += '+';
-            } else {
-                label += '-';
-            }
-            switch (group) {
-                case input_b:
-                    label += 'B';
-                    break;
-                case input_r1:
-                    label += 'R1';
-                    break;
-                case input_r2:
-                    label += 'R2';
-                    break;
-                case input_r3:
-                    label += 'R3';
-                    break;
-            }
-    }
-    
-    return label;
 }
 
 // render select with target base where the action happened
@@ -516,109 +420,43 @@ function getAdditionalInputsGroup(group) {
     return additionalInputsGroup;
 }
 
-// existing player positions / basic field locations
-function renderPlayerOptions() {
-    const options = [];
-    options.push('<option value=""></option>');
-    options.push('<option value="1">P</option>');
-    options.push('<option value="2">C</option>');
-    options.push('<option value="3">1B</option>');
-    options.push('<option value="4">2B</option>');
-    options.push('<option value="5">3B</option>');
-    options.push('<option value="6">SS</option>');
-    options.push('<option value="7">LF</option>');
-    options.push('<option value="8">CF</option>');
-    options.push('<option value="9">RF</option>');
-    return options;
-}
-
-// extra field locations to describe hits
-function renderHitLocationOptions() {
-    const options = renderPlayerOptions();
-    options.push('<option value="LL">LL</option>');
-    options.push('<option value="LS">LS</option>');
-    options.push('<option value="LC">LC</option>');
-    options.push('<option value="MI">MI</option>');
-    options.push('<option value="RC">RC</option>');
-    options.push('<option value="RS">RS</option>');
-    options.push('<option value="RL">RL</option>');
-    return options;
-}
-
-// target bases for fielder's choice
-function renderFCLocationOptions() {
-    const options = [];
-    options.push('<option value="X">2nd</option>');
-    options.push('<option value="Y">3rd</option>');
-    options.push('<option value="Z">HP</option>');
-    return options;
-}
-
-// available advances
-//   base - original base
-function renderBaseOptions(base) {
-    const options = [];
-    if (base < 2) {
-        if (base === 1) {
-            options.push('<option value="2" selected>2nd</option>');
-        } else {
-            options.push('<option value="2">2nd</option>');
-        }
+// helps maintaining correct order of input groups (HP - 1B - 2B - 3B)
+function getProperLocationForInputs(group) {
+    let hook = document.getElementById(div_tools);
+    
+    const r1inputs = document.getElementById(input_r1);
+    const r2inputs = document.getElementById(input_r2);
+    const r3inputs = document.getElementById(input_r3);
+    
+    switch (group) {
+        case input_b:
+        case input_b1:
+        case input_b2:
+        case input_b3:
+            if (r1inputs !== null) {
+                hook = r1inputs;
+            } else if (r2inputs !== null) {
+                hook = r2inputs;
+            } else if (r3inputs !== null) {
+                hook = r3inputs;
+            }
+            break;
+        case input_r1:
+        case input_r1a:
+        case input_r1b:
+            if (r2inputs !== null) {
+                hook = r2inputs;
+            } else if (r3inputs !== null) {
+                hook = r3inputs;
+            }
+            break;
+        case input_r2:
+        case input_r2a:
+            if (r3inputs !== null) {
+                hook = r3inputs;
+            }
+            break;
     }
-    if (base < 3) {
-        if (base === 2) {
-            options.push('<option value="3" selected>3rd</option>');
-        } else {
-            options.push('<option value="3">3rd</option>');
-        }
-    }
-    if (base === 3) {
-        options.push('<option value="4" selected>Home</option>');
-    } else {
-        options.push('<option value="4">Home</option>');
-    }
-    return options;
-}
-
-// list of basic actions for the batter
-function renderBatterActionOptions() {
-    const options = [];
-    options.push('<option value=""></option>');
-    options.push('<option value="StrikeOut">Strike out</option>');
-    options.push('<option value="GroundOut">Ground out</option>');
-    options.push('<option value="FlyOut">Fly out</option>');
-    options.push('<option value="Hit">Hit</option>');
-    options.push('<option value="Sacrifice">Sacrifice</option>');
-    options.push('<option value="FC">Fielder\'s choice</option>');
-    options.push('<option value="Error">Error</option>');
-    options.push('<option value="Advance">Advance to 1st</option>');
-    options.push('<option value="OBR">Out by rule</option>');
-    options.push('<option value="Other">Other out</option>');
-    return options;
-}
-
-// list of basic actions for the running batter
-function renderBatterRunnerActionOptions() {
-    const options = [];
-    options.push('<option value=""></option>');
-    options.push('<option value="fdc">Fielder\'s choice</option>');
-    options.push('<option value="err">Error</option>');
-    options.push('<option value="out">Out</option>');
-    options.push('<option value="obr">Out by rule</option>');
-    return options;
-}
-
-// list of basic actions for the runner
-function renderRunnerActionOptions() {
-    const options = [];
-    options.push('<option value=""></option>');
-    options.push('<option value="adv">Advanced by batter</option>');
-    options.push('<option value="exbb">Extra base (batter)</option>');
-    options.push('<option value="exb">Extra base (runner)</option>');
-    options.push('<option value="ste">Steal</option>');
-    options.push('<option value="fdc">Fielder\'s choice</option>');
-    options.push('<option value="err">Error</option>');
-    options.push('<option value="out">Out</option>');
-    options.push('<option value="obr">Out by rule</option>');
-    return options;
+    
+    return hook;
 }

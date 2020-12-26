@@ -1,6 +1,7 @@
 v.08
 ====
 * "Same error" advances 
+* Refactoring (files and functions comments + optimized organization)
 * Bugfixing: #23
 
 

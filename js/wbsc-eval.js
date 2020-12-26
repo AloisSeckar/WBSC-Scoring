@@ -1,3 +1,8 @@
+/* *************************************** */
+/* wbsc-eval.js                            */
+/* CORE file with input evaluation methods */
+/* *************************************** */
+
 // triggered when user selects from 'base' action
 function changeBaseAction(group) {
     if (group === input_b) {
@@ -18,118 +23,10 @@ function changeSpecificAction(group) {
 
 // ajdust 'specific' action according to selected 'base' action
 function changeBatterBaseAction() {
-    const actionOptions = [];
-    let specificActionDisabled = false;
-
     const baseAction = document.getElementById(input_b + input_base_action);
-    const baseActionValue = baseAction.value;
-    switch (baseActionValue) {
-        case 'StrikeOut':
-            actionOptions.push('<optgroup label="Batter is out">');
-            actionOptions.push('<option value="KS">Swinging</option>');
-            actionOptions.push('<option value="KL">Looking</option>');
-            actionOptions.push('<option value="KSO">Swinging with tag/throw out</option>');
-            actionOptions.push('<option value="KLO">Looking with tag/throw out</option>');
-            actionOptions.push('</optgroup>');
-            actionOptions.push('<optgroup label="Batter is safe">');
-            actionOptions.push('<option value="KSET">Swinging with throwing error</option>');
-            actionOptions.push('<option value="KSE">Swinging with fielding error</option>');
-            actionOptions.push('<option value="KSWP">Swinging with wild pitch</option>');
-            actionOptions.push('<option value="KSPB">Swinging with passed ball</option>');
-            actionOptions.push('<option value="KSFC">Swinging with putting out runner</option>');
-            actionOptions.push('<option value="KLET">Looking with throwing error</option>');
-            actionOptions.push('<option value="KLE">Looking with fielding error</option>');
-            actionOptions.push('<option value="KLWP">Looking with wild pitch</option>');
-            actionOptions.push('<option value="KLPB">Looking with passed ball</option>');
-            actionOptions.push('<option value="KLFC">Looking with putting out runner</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'GroundOut':
-            actionOptions.push('<optgroup label="Batter is out">');
-            actionOptions.push('<option value="GO">Ground out</option>');
-            actionOptions.push('<option value="GOB">Ground out - bunt</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'FlyOut':
-            actionOptions.push('<optgroup label="Batter is out">');
-            actionOptions.push('<option value="F">Fly out</option>');
-            actionOptions.push('<option value="P">Pop out</option>');
-            actionOptions.push('<option value="L">Line out</option>');
-            actionOptions.push('<option value="FF">Fouled fly out</option>');
-            actionOptions.push('<option value="FP">Fouled pop out</option>');
-            actionOptions.push('<option value="FL">Fouled line out</option>');
-            actionOptions.push('<option value="IF">Infield fly</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'Hit':
-            actionOptions.push('<optgroup label="Batter is safe">');
-            actionOptions.push('<option value="1B">Single</option>');
-            actionOptions.push('<option value="2B">Double</option>');
-            actionOptions.push('<option value="3B">Triple</option>');
-            actionOptions.push('<option value="HR">Homerun</option>');
-            actionOptions.push('<option value="1BB">Single - bunt</option>');
-            actionOptions.push('<option value="2BG">Double - ground rule</option>');
-            actionOptions.push('<option value="IHR">Homerun - inside the park</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'Sacrifice':
-            actionOptions.push('<optgroup label="Batter is out">');
-            actionOptions.push('<option value="SH">Sacrifice bunt</option>');
-            actionOptions.push('<option value="SF">Sacrifice fly</option>');
-            actionOptions.push('<option value="FSF">Sacrifice fly in foul territory</option>');
-            actionOptions.push('</optgroup>');
-            actionOptions.push('<optgroup label="Batter is safe">');
-            actionOptions.push('<option value="SHE">Sacrifice bunt with fielding error</option>');
-            actionOptions.push('<option value="SHET">Sacrifice bunt with throwing error</option>');
-            actionOptions.push('<option value="SHEF">Sacrifice bunt with dropped fly</option>'); // code ends with "F" for easier output transformation
-            actionOptions.push('<option value="SHFC">Sacrifice bunt with FC</option>');
-            actionOptions.push('<option value="SFE">Sacrifice fly with error</option>');
-            actionOptions.push('<option value="SFO">Dropped sacrifice fly + forced out</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'FC':
-            actionOptions.push('<optgroup label="Batter is safe">');
-            actionOptions.push('<option value="O">Occupied</option>');
-            actionOptions.push('<option value="FC">Fielder\'s choice</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'Error':
-            actionOptions.push('<optgroup label="Batter is safe">');
-            actionOptions.push('<option value="EF">Fielding error</option>');
-            actionOptions.push('<option value="ET">Throwing error</option>');
-            actionOptions.push('<option value="ED">Dropped fly</option>');
-            actionOptions.push('<option value="EDF">Dropped foul</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'Advance':
-            actionOptions.push('<optgroup label="Batter is safe">');
-            actionOptions.push('<option value="BB1">Base on balls</option>');              // "1" indicates the numbering should be included in output
-            actionOptions.push('<option value="IBB1">Intentional base on balls</option>'); // "1" indicates the numbering should be included in output
-            actionOptions.push('<option value="HP">Hit by pitch</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'OBR':
-            actionOptions.push('<optgroup label="Batter is out">');
-            actionOptions.push('<option value="OBR1_">1 - Illegally batted ball</option>');
-            actionOptions.push('<option value="OBR2_">2 - Bunting foul third strike</option>');
-            actionOptions.push('<option value="OBR3_">3 - Touched by own batted ball</option>');
-            actionOptions.push('<option value="OBR4_">4 - Interfering with the catcher</option>');
-            actionOptions.push('<option value="OBR5_">5 - Failing to bat in proper turn</option>');
-            actionOptions.push('<option value="OBR6_">6 - Refusing to touch 1st base</option>');
-            actionOptions.push('<option value="OBR8_">8 - Infield Fly that is not caught</option>');
-            actionOptions.push('<option value="OBR14_">14 - Interference by a preceding runner</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'Other':
-            actionOptions.push('<optgroup label="Batter is out">');
-            actionOptions.push('<option value="A">Appeal play</option>');
-            actionOptions.push('<option value="LT">Lost turn</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        default:
-            specificActionDisabled = true;    
-    }
-    
+    const actionOptions = renderBatterSpecificActionOptions(baseAction.value);
+    const specificActionDisabled = actionOptions === [];
+
     const specificAction = document.getElementById(input_b + input_spec_action);
     specificAction.innerHTML = actionOptions;
     specificAction.disabled = specificActionDisabled;
@@ -273,92 +170,13 @@ function changeBatterSpecificAction() {
 
 // ajdust 'specific' action according to selected 'base' action
 function changeRunnerBaseAction(group) {
-    const actionOptions = [];
-    let specificActionDisabled = false;
-    
     const runnerBaseAction = document.getElementById(group + input_base_action);
-    switch (runnerBaseAction.value) {
-        case 'adv':
-            actionOptions.push('<optgroup label="Runner is safe">');
-            actionOptions.push('<option value="ADV">Advanced by batter</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'exbb':
-            actionOptions.push('<optgroup label="Runner is safe">');
-            actionOptions.push('<option value="bb">Base on balls</option>');
-            actionOptions.push('<option value="ibb">Intentional base on balls</option>');
-            actionOptions.push('<option value="hp">Hit by pitch</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'exb':
-            actionOptions.push('<optgroup label="Runner is safe">');
-            actionOptions.push('<option value="WP">Wild pitch</option>');
-            actionOptions.push('<option value="PB">Passed ball</option>');
-            actionOptions.push('<option value="BK">Balk</option>');
-            actionOptions.push('<option value="IP">Illegal pitch</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'ste':
-            actionOptions.push('<optgroup label="Runner is safe">');
-            actionOptions.push('<option value="SB">Stolen base</option>');
-            actionOptions.push('<option value="CSE">Caught stealing with fielding error</option>');
-            actionOptions.push('<option value="CSET">Caught stealing with throwing error</option>');
-            actionOptions.push('<option value="POE">Picked off with (throwing) error</option>');
-            actionOptions.push('</optgroup>');
-            actionOptions.push('<optgroup label="Runner is out">');
-            actionOptions.push('<option value="CSO">Caught stealing</option>');
-            actionOptions.push('<option value="PO">Picked off</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'fdc':
-            actionOptions.push('<optgroup label="Runner is safe">');
-            actionOptions.push('<option value="T">On the throw</option>');
-            actionOptions.push('<option value="O/">Indifference</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'err':
-            actionOptions.push('<optgroup label="Runner is safe">');
-            actionOptions.push('<option value="EF">Decessive fielding</option>');
-            actionOptions.push('<option value="ET">Decessive throwing</option>');
-            actionOptions.push('<option value="eF">Extra base fielding</option>');
-            actionOptions.push('<option value="eT">Extra base throwing</option>');
-            actionOptions.push('<option value="se0">Same error (Batter)</option>');
-            if (!(group.includes('1'))) {
-                actionOptions.push('<option value="se1">Same error (Runner at 1st)</option>');
-            }
-            if (!(group.includes('2'))) {
-                actionOptions.push('<option value="se2">Same error (Runner at 2nd)</option>');
-            }
-            if (!(group.includes('3'))) {
-                actionOptions.push('<option value="se3">Same error (Runner at 3rd)</option>');
-            }
-            actionOptions.push('</optgroup>');
-            break;
-        case 'out':
-            actionOptions.push('<optgroup label="Runner is out">');
-            actionOptions.push('<option value="GO">Force out</option>');
-            actionOptions.push('<option value="GO">Tag out</option>');
-            actionOptions.push('<option value="A">Appeal play</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        case 'obr':
-            actionOptions.push('<optgroup label="Runner is out">');
-            actionOptions.push('<option value="OBR7_">7 - Refusing to advance from 3rd base to HP</option>');
-            actionOptions.push('<option value="OBR9_">9 - Touched by a fair ball</option>');
-            actionOptions.push('<option value="OBR10_">10 - Running out of line to avoid being tagged</option>');
-            actionOptions.push('<option value="OBR11_">11 - Passing another runner</option>');
-            actionOptions.push('<option value="OBR12_">12 - Running the bases in reverse order</option>');
-            actionOptions.push('<option value="OBR13_">13 - Interfered with a fielder</option>');
-            actionOptions.push('<option value="OBR15_">15 - Runner left early</option>');
-            actionOptions.push('</optgroup>');
-            break;
-        default:
-            specificActionDisabled = true;
-    }
-    
-    const runnerSpecificAction = document.getElementById(group + input_spec_action);
-    runnerSpecificAction.innerHTML = actionOptions;
-    runnerSpecificAction.disabled = specificActionDisabled;
+    const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value);
+    const specificActionDisabled = actionOptions === [];
+
+    const specificAction = document.getElementById(group + input_spec_action);
+    specificAction.innerHTML = actionOptions;
+    specificAction.disabled = specificActionDisabled;
     
     changeRunnerSpecificAction(group);
 }
@@ -457,104 +275,6 @@ function changeRunnerSpecificAction(group) {
             posItem2.value = posSelection[groupID][1];    
         }
     }
-}
-
-// get current value from 'base' select for given input group
-function getBaseSelection(group) {
-    let base = '1';
-    
-    const baseSelect = document.getElementById(group + input_base);
-    if (baseSelect !== null) {
-        base = baseSelect.value;
-    }
-    
-    return base;
-}
-
-// get current value from 'tiebreak' checker for given input group
-function getTIESelection(group) {
-    let tie = false;
-    
-    const tieCheck = document.getElementById(group + input_tie);
-    if (tieCheck !== null) {
-        tie = tieCheck.checked;
-    }
-    
-    return tie;
-}
-
-// get current values from 'involved' selects for given input group
-function getPosSelection(group) {
-    let selection = [];
-    
-    const container = document.getElementById(group + input_position);
-    const posCount = container.getElementsByClassName(class_wbsc_pos);
-    for (let i = 0; i < posCount.length; i += 1) {
-        selection[i] = posCount.item(i).value;
-    }
-    
-    posSelection[group + input_position] = selection;
-    
-    return selection.join('');
-}
-
-// validates given 'involved' sequence
-function checkPosSelection(selection) {
-    let validation = '';
-    
-    if (selection.length > 1) {
-        if (!selection.endsWith('LL') && selection[selection.length - 2] === selection[selection.length - 1]) {
-            validation = 'A player cannot assist directly to self';
-        }
-    }
-    if (selection.length > 2) {
-        let alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false];
-        for (let i = 0; i < selection.length - 1; i += 1) {
-            if (alreadyEncounteredPositions[selection.substr(i,1)] === true) {
-                if (validation !== '') {
-                    validation += '\n- ';
-                }
-                validation += 'A player cannot have more than 1 assist in a play';
-                break;
-            }
-            alreadyEncounteredPositions[selection.substr(i,i+1)] = true;
-        }
-    }
-    
-    return validation;
-}
-
-// get and wrap current user input for given input group
-function getInput(group) {
-    let values = null;
-    
-    const container = document.getElementById(group);
-    if (container !== null) {
-        values = [];
-        values[input_base_action] = document.getElementById(group + input_base_action).value;
-        values[input_spec_action] = document.getElementById(group + input_spec_action).value;
-        values[input_tie] = getTIESelection(group);
-        values[input_base] = getBaseSelection(group);
-        values[input_position] = getPosSelection(group);
-        values[input_validation] = checkPosSelection(values[input_position]);
-    }
-    
-    return values;
-}
-
-// attach new part of validation message to previous contents
-function attachValidation(input, validation) {  
-    if (input !== '') {
-        input += '\n';
-    }
-    
-    if (validation !== '') {
-        input += '- ';
-    }
-    
-    input += validation;
-    
-    return input;
 }
 
 // transform user's input into output instructions

@@ -1,3 +1,8 @@
+/* *************************************** */
+/* wbsc-global.js                          */
+/* Variable declarations + setting-up      */
+/* *************************************** */
+
 window.onload = function() {
     init();
   
