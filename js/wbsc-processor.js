@@ -187,7 +187,7 @@ function checkPosSelection(selection) {
                 validation += 'A player cannot have more than 1 assist in a play';
                 break;
             }
-            alreadyEncounteredPositions[selection.substr(i, i + 1)] = true;
+            alreadyEncounteredPositions[selection.substr(i, 1)] = true;
         }
     }
 
