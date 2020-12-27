@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'none'; child-src 'none'; object-src 'self'; style-src 'self' https://stackpath.bootstrapcdn.com; script-src 'self';">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+	<meta name="description" content="JavaScript-based tool for visualisation of WBSC scoring system">
+	<meta name="keywords" content="baseball, softball, wbsc, scoring, scorekeeper, scoresheet">
+	<meta name="author" content="Alois Seckar">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/wbsc.css">
+	
+	<title>WBSC Scoring Creator - Project overview</title>
+</head>
+
+<body class="text-center">
+
+<h1>WBSC Scoring Creator - Project overview</h1>
+
+<div class="container wbsc-paragraph"></div>
+
+<h2>DESCRIPTION</h2>
+
+<div class="container wbsc-paragraph">
+	<div class="row">
+		<div class="col-12">
+			<p>WHY and HOW? (TODO)</p>
+		</div>
+	</div>
+</div>
+
+<h2>DONE</h2>
+<h3>(what you can find here)</h3>
+
+<div class="container wbsc-paragraph">
+	<div class="row">
+		<div class="col-12">
+			<p>TODO</p>
+		</div>
+	</div>
+</div>
+
+<h2>TO-DO list</h2>
+<h3>(hopefully will be implemented in next few releases)</h3>
+
+<div class="container wbsc-paragraph">
+	<div class="row">
+		<div class="col-12">
+			<p>This is what I have scheduled to add or improve:</p>
+			<ul>
+				<li>More input validations</li>
+				<li>Earned/unearned runs switchers</li>
+				<li>Double and Triple plays</li>
+				<li>"Same error" advances</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h2>Limitations</h2>
+<h3>(not planned to be implemented soon)</h3>
+
+<div class="container wbsc-paragraph">
+	<div class="row">
+		<div class="col-12">
+			<p>There are several features of WBSC scoring system that are currently not covered by this program. They may be included in some future releases.</p>
+			<ul>
+				<li>It is not possible to specify actions leading to runners appearing on bases (except TIE)</li>
+				<li>It is not possible to specify batting order of the batter and previous runners</li>
+				<li>It is not possible to get different number of Ks and BBs than 1</li>
+				<li>Actions are limited to up to 3 assists (followed by an out or an error)</li>
+				<li>No 10th player (additional outfielder) for slowpitch</li>
+				<li>Not covering possible Baseball5 features</li>
+				<li>Not covering substitutions and statistic outputs</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h2>History</h2>
+
+<div class="container wbsc-paragraph">
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.7</strong> (2020-12-08)</p>
+			<ul>
+				<li>New actions supported:
+					<ul>
+						<li>PO - pick off</li>
+						<li>LT - lost turn</li>
+						<li>A - appeal play</li>
+						<li>OBR - out by rule</li>
+						<li>SH with throwing/dropped fly error</li>
+						<li>CS with throwing error</li>
+					</ul>
+				</li>
+				<li>Fixed actions:
+					<ul>
+						<li>"Muffled throws" removed (not official WBSC scoring term)</li>
+						<li>Batter indicator for CS, PO and O/ situations added</li>
+					</ul>
+				</li>
+				<li>Improved player selection inputs rendering and handling</li>
+				<li>Improved consecutive actions handling</li>
+				<li>Improved GUI and CSS form design</li>
+				<li>Download button to save outcome as PNG</li>
+				<li>Unlicense was officially included to declare this SW free of use</li>
+				<li>Various bugfixes and corrections</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.6</strong> (2020-10-11)</p>
+			<ul>
+				<li>New actions supported:
+					<ul>
+						<li>Sacrifice hit/fly</li>
+						<li>Infield fly</li>
+						<li>Bunt hit/out</li>
+						<li>Strikeout with occupied ball</li>
+						<li>TIE</li>
+					</ul>
+				</li>
+				<li>Strikouts and base-on-balls are numbered according to the manual</li>
+				<li>Added option groups to help user determine if safe our out will occcur</li>
+				<li>GUI inputs now render in correct order</li>
+				<li>Advances to 3rd and HP now render correctly</li>
+				<li>CSP implemented in order to increase web security</li>
+				<li>Various bugfixes and corrections</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.5</strong> (2020-06-13)</p>
+			<ul>
+				<li>Batting order (1-4) is now considered</li>
+				<li>New actions supported:
+					<ul>
+						<li>Numerous strike out variants</li>
+						<li>Extra base advances - BB, IBB, HP, WP, PB, O/</li>
+						<li>SB and CS situations</li>
+						<li>Various plays with errors</li>
+					</ul>
+				</li>
+				<li>Rendering improved and corrected for currently supported actions</li>
+				<li>Due to rendering issues situations are now allowed only with 0-3 assists (followed by an out or an error)</li>
+				<li>Various bugfixes and corrections</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.4</strong> (2020-06-09)</p>
+			<ul>
+				<li>Inputs reworked using dynamic JavaScript for displaying and hidding input fields</li>
+				<li>With broadened options it is now possible to:
+					<ul>
+						<li>Set up situations ranging from 0 to 4 assists (followed by an out or an error)</li>
+						<li>Set up some consecutive actions for runners on 1st, 2nd and/or 3rd base</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.3</strong> (2020-03-15)</p>
+			<ul>
+				<li>Fixed error in displaying "Inside-the-park homerun"</li>
+				<li>Code for rendering action inputs moved from HTML to JavaScript</li>
+				<li>Introduced possibility to add consecutive action after batter reaches first. Available are:
+					<ul>
+						<li>Safe advance on the throw</li>
+						<li>Safe advance on error (either decisive or extra-base)</li>
+						<li>Out after defensive play</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.2</strong> (2020-01-13)</p>
+			<p>Newly supported batter's actions:</p>
+			<ul>
+				<li>Fielder's choice and occupied ball</li>
+				<li>Errors</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p><strong>Version 0.1</strong> (2019-12-23)</p>
+			<p>First version recorded and launched. Basic website with inputs to generate situation for one batter. Output can be saved as an image.</p>
+			<p>Supported batter's actions:</p>
+			<ul>
+				<li>Strikeout looking and swinging</li>
+				<li>Simple ground outs with 1 or 2 fielders involved</li>
+				<li>Full spectrum of fly outs</li>
+				<li>Full spectrum of hits including named locations</li>
+				<li>Ground rule doubles and inside the park homeruns</li>
+				<li>BB, IBB and HP</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<a class="btn btn-secondary" href="#" role="button">Back to top</a>
+<a class="btn btn-primary" href="index.html" role="button">Back to homepage</a>
+
+<div class="container wbsc-paragraph"></div>
+
+<footer class="page-footer wbsc-footer">
+	Created and maintained by <a href="http://alois-seckar.cz">Alois Sečkár</a> (2019-2020)
+</footer>
+
+</body>
+
+</html>
