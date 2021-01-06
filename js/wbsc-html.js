@@ -122,6 +122,15 @@ function renderBaseOptions(base) {
     return options;
 }
 
+// list of possible run types
+function renderRunTypeOptions() {
+    const options = [];
+    options.push('<option value="e">Earned</option>');
+    options.push('<option value="ue">Unearned</option>');
+    options.push('<option value="tu">Team unearned</option>');
+    return options;
+}
+
 // list of basic actions for the batter
 function renderBatterActionOptions() {
     const options = [];

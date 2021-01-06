@@ -80,6 +80,7 @@ function setTextConstants() {
     window.input_tie = '-tie';
     window.input_origBase = '-orig-base';
     window.input_position = '-pos';
+    window.input_runtype = '-run';
     window.input_validation = '-validation';
     window.input_add = '-add';
     window.input_remove = '-remove';
@@ -92,4 +93,5 @@ function setTextConstants() {
     window.output_sub = 'sub';
     window.output_sup = 'sup';
     window.output_num = 'num';
+    window.output_run = 'run';
 }

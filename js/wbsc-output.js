@@ -564,6 +564,33 @@ function writeSituation(output) {
                 ctx.lineTo(hOffset + 8, h2 + 25 + vOffset);
                 ctx.stroke();
             }
+
+            const runType = output[output_run];
+            switch (runType) {
+                case 'e':
+                    // the diamond is filled
+                    ctx.beginPath();
+                    ctx.moveTo(w2 + hOffset, h - h3 + vOffset);
+                    ctx.lineTo(w - w3 + hOffset, h2 + vOffset);
+                    ctx.lineTo(w2 + hOffset, h3 + vOffset);
+                    ctx.lineTo(w3 + hOffset, h2 + vOffset);
+                    ctx.lineTo(w2 + 3 + hOffset, h - h3 + 3 + vOffset);
+                    ctx.closePath();
+                    ctx.fill();
+                    break;
+                case 'tu':
+                    // the diamond is crossed
+                    ctx.moveTo(w2 + hOffset, h - h3 + vOffset);
+                    ctx.lineTo(w2 + hOffset, h3 + vOffset);
+                    ctx.moveTo(w - w3 + hOffset, h2 + vOffset);
+                    ctx.lineTo(w3 + hOffset, h2 + vOffset);
+                    ctx.stroke();
+                    break;
+                case 'ue':
+                    // leave the diamond empty
+                    break;
+            }
+
             break;
     }
 }

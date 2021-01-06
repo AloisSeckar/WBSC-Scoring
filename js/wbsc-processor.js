@@ -135,6 +135,19 @@ function getTIESelection(group) {
     return tie;
 }
 
+
+// get current value from 'run' select for given input group
+function getRunTypeSelection(group) {
+    let run = 'e';
+    
+    const runtypeSelect = document.getElementById(group + input_runtype);
+    if (runtypeSelect !== null) {
+        run = runtypeSelect.value;
+    }
+    
+    return run;
+}
+
 // get current values from 'involved' selects for given input group
 function getPosSelection(group) {
     let selection = [];
@@ -161,6 +174,7 @@ function getInput(group) {
         values[input_spec_action] = document.getElementById(group + input_spec_action).value;
         values[input_tie] = getTIESelection(group);
         values[input_base] = getBaseSelection(group);
+        values[input_runtype] = getRunTypeSelection(group);
         values[input_position] = getPosSelection(group);
         values[input_validation] = checkPosSelection(values[input_position]);
     }

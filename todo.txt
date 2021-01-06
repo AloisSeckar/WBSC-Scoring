@@ -1,6 +1,7 @@
 v.08
 ====
 * "Same error" advances 
+* Earned/Unearned runs
 * Refactoring (files and functions comments + optimized organization)
 * Enhanced HTML structure
 * Bugfixing: #23, #24, #25, #26
@@ -9,5 +10,4 @@ v.08
 TODO
 ====
 More validations
-Earned/Unearned runs
 Double and Triple plays

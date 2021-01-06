@@ -114,6 +114,17 @@ function showInputs(group, parentDiv) {
     
     if (group !== input_b) {
         renderBaseSelection(group);
+    } else {
+        const runTypeLabel = document.createElement('label');
+        runTypeLabel.innerHTML = 'Run:';
+        inputsContainer.appendChild(runTypeLabel);
+
+        const runTypeSelect = document.createElement('select');
+        runTypeSelect.setAttribute('id', input_b + input_runtype);
+        runTypeSelect.innerHTML = renderRunTypeOptions();
+        runTypeSelect.disabled = true;
+        inputsContainer.appendChild(runTypeSelect);
+        inputsContainer.appendChild(document.createElement('br'));
     }
     
     const actionLabel = document.createElement('label');
@@ -218,9 +229,9 @@ function renderBaseSelection(group) {
     baseLabel.innerHTML = 'Base:';
     inputsContainer.appendChild(baseLabel);
     
+    let runTypeSelectDisabled = true;
     const baseSelect = document.createElement('select');
     baseSelect.setAttribute('id', group + input_base);
-    
     switch (group) {
         case input_b1:
         case input_r1:
@@ -236,10 +247,23 @@ function renderBaseSelection(group) {
         case input_r2a:
         case input_r3:
             baseSelect.innerHTML = renderBaseOptions(3);
+            runTypeSelectDisabled = false;
             break;
     }
-    
+    baseSelect.addEventListener('click', function(){
+        changeBase(group);
+    });
     inputsContainer.appendChild(baseSelect);
+
+    const runTypeLabel = document.createElement('label');
+    runTypeLabel.innerHTML = '&nbsp;Run:';
+    inputsContainer.appendChild(runTypeLabel);
+
+    const runTypeSelect = document.createElement('select');
+    runTypeSelect.setAttribute('id', group + input_runtype);
+    runTypeSelect.innerHTML = renderRunTypeOptions();
+    runTypeSelect.disabled = runTypeSelectDisabled;
+    inputsContainer.appendChild(runTypeSelect);
     
     inputsContainer.appendChild(document.createElement('br'));
 }

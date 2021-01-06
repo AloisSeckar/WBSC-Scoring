@@ -41,6 +41,7 @@ function changeBatterSpecificAction() {
     let minPosItems = 1;
     let targetPosItems = 1;
     let maxPosItems = 4;
+    let runTypeSelectDisabled = true;
     
     const specificAction = document.getElementById(input_b + input_spec_action);
     const specificActionValue = specificAction.value;
@@ -68,13 +69,14 @@ function changeBatterSpecificAction() {
         case 'LT':
             minPosItems = targetPosItems = maxPosItems = 0;
             break;
+        case 'HR':
+        case 'IHR':
+            runTypeSelectDisabled = false;
         case '1B':
         case '2B':
         case '3B':
-        case 'HR':
         case '1BB':
         case '2BG':
-        case 'IHR':
             hit = true;
             minPosItems = targetPosItems = maxPosItems = 1;
             break;
@@ -166,6 +168,9 @@ function changeBatterSpecificAction() {
             posItem2.value = posSelection[groupID][1];
         }
     }
+
+    const runTypeSelect = document.getElementById(input_b + input_runtype);
+    runTypeSelect.disabled = runTypeSelectDisabled;
 }
 
 // ajdust 'specific' action according to selected 'base' action
@@ -277,11 +282,21 @@ function changeRunnerSpecificAction(group) {
     }
 }
 
+// allows to select run type when home base is selected
+function changeBase(group) {
+    const baseSelect = document.getElementById(group + input_base);
+    const baseSelectValue = baseSelect.value;
+    
+    const runTypeSelect = document.getElementById(group + input_runtype);
+    runTypeSelect.disabled = baseSelectValue !== '4';
+}
+
 // transform user's input into output instructions
 function processInput(input) {
     let output = [];
     
     output[output_base] = parseInt(input[input_base]);
+    output[output_run] = input[input_runtype];
     output[output_out] = false;
     output[output_hit] = false;
     
