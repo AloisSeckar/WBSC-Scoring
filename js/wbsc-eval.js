@@ -228,6 +228,7 @@ function changeRunnerSpecificAction(group) {
             minPosItems = targetPosItems = 2;
             break;
         case 'CSE':
+        case 'CSN':
         case 'CSO':
         case 'GO':
             minPosItems = 1;
@@ -237,7 +238,10 @@ function changeRunnerSpecificAction(group) {
         case 'eF':
         case 'ET':
         case 'eT':
+        case 'ENF':
+        case 'ENT':
         case 'CSET':
+        case 'CSNT':
         case 'OBR10_':
         case 'OBR13_':
         case 'A':
@@ -299,6 +303,7 @@ function processInput(input) {
     output[output_run] = input[input_runtype];
     output[output_out] = false;
     output[output_hit] = false;
+    output[output_na] = false;
     
     let pos = input[input_position];
     if (pos !== null) {
@@ -317,6 +322,7 @@ function processInput(input) {
         case 'EDF':
             output[output_base] = 0;
             output[output_text_1] = 'E' + pos + ' DF';
+            output[output_na] = true;
             break;
         case 'KSO':
         case 'KLO':
@@ -513,6 +519,10 @@ function processInput(input) {
             output[output_out] = true;
             output[output_num] = true;
             break;
+        case 'CSN':
+        case 'CSNT':
+            output[output_na] = true;
+            output[output_base] -= 1;
         case 'CSE':
         case 'CSET':
             output[output_text_1] = action.substring(0, 2);
@@ -543,6 +553,10 @@ function processInput(input) {
             output[output_out] = true;
             output[output_sup] = action.substring(3, action.indexOf('_'));
             break;
+        case 'ENT':
+        case 'ENF':
+                output[output_na] = true;
+                output[output_base] -= 1;
         case 'EF':
         case 'ET':
         case 'EM':
@@ -551,7 +565,7 @@ function processInput(input) {
         case 'eT':
             output[output_text_1] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
             if (!action.endsWith('F')) {
-                output[output_text_1] += action.substring(1);
+                output[output_text_1] += action.substring(action.length - 1);
             }
             break;
     }
