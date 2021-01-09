@@ -315,6 +315,17 @@ function writeSituation(output) {
                 locHOffset = (text1.length - 3) * 6;
                 ctx.fillStyle = '#303030';
                 ctx.fillText(text1, w2 * 1.5 + 20 - locHOffset + hOffset, h2 + 24 + vOffset);
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.strokeStyle = '#303030';
+                    ctx.fillText(window.batter, w + hOffset - 16, h2 - 4 + vOffset);
+                    
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(w + hOffset - 26, h2 - 2 + vOffset);
+                    ctx.lineTo(w + hOffset - 26, h2 - 22 + vOffset);
+                    ctx.lineTo(w + hOffset - 8, h2 - 22 + vOffset);
+                    ctx.stroke();
+                }
             } else {
                 if (hit) {
                     drawHitSymbol(1);
@@ -361,21 +372,23 @@ function writeSituation(output) {
             break;
         case 2:
             if (na) {
-                text1 += text2;
-                if (text1.length > 5) {
-                    ctx.font = '17px Verdana';
-                    offset = 25;
-                } else if (text1.length > 4) {
-                    ctx.font = '21px Verdana';
-                    offset = 28;
-                } else if (text1.length > 3) {
-                    ctx.font = '26px Verdana';
-                    offset = 30;
-                } else {
-                    ctx.font = '33px Verdana';
-                    offset = 35;
+                if (text2 !== null && text2 !== undefined) {
+                    text1 += text2;
                 }
-                ctx.fillText(text1, w2 + hOffset, offset + vOffset);
+                ctx.font = '26px Verdana';
+                ctx.fillStyle = '#303030';
+                ctx.fillText(text1, w2 + hOffset, offset + 10 + vOffset);
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.strokeStyle = '#303030';
+                    ctx.fillText(window.batter, w + hOffset - 16, 26 + vOffset);
+                    
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(w + hOffset - 26, 8 + vOffset);
+                    ctx.lineTo(w + hOffset - 26, 31 + vOffset);
+                    ctx.lineTo(w + hOffset - 8, 31 + vOffset);
+                    ctx.stroke();
+                }
             } else {
                 if (hit) {
                     drawHitSymbol(1);
@@ -469,21 +482,24 @@ function writeSituation(output) {
             break;
         case 3:
             if (na) {
-                text1 += text2;
-                if (text1.length > 5) {
-                    ctx.font = '17px Verdana';
-                    offset = 5;
-                } else if (text1.length > 4) {
-                    ctx.font = '21px Verdana';
-                    offset = 8;
-                } else if (text1.length > 3) {
-                    ctx.font = '26px Verdana';
-                    offset = 10;
-                } else {
-                    ctx.font = '33px Verdana';
-                    offset = 12;
+                if (text2 !== null && text2 !== undefined) {
+                    text1 += text2;
                 }
-                ctx.fillText(text1, w2 * 0.5 - 20 + hOffset, h2 + offset + vOffset);
+                ctx.font = '26px Verdana';
+                locHOffset = (text1.length - 3) * 6;
+                ctx.fillStyle = '#303030';
+                ctx.fillText(text1, w2 * 0.5 - 20 + locHOffset + hOffset, h2 - 8 + vOffset);
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.strokeStyle = '#303030';
+                    ctx.fillText(window.batter, hOffset + 15, h2 + 20 + vOffset);
+                
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(hOffset + 26, h2 + 2 + vOffset);
+                    ctx.lineTo(hOffset + 26, h2 + 25 + vOffset);
+                    ctx.lineTo(hOffset + 8, h2 + 25 + vOffset);
+                    ctx.stroke();
+                }
             } else {
                 if (hit) {
                     drawHitSymbol(1);
