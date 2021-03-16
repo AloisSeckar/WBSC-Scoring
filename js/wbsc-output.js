@@ -502,7 +502,7 @@ function writeSituation(output) {
                 }
             } else {
                 if (hit) {
-                    drawHitSymbol(2);
+                    drawHitSymbol(3);
                     hitOffset = 20;
                 } else {
                     hitOffset = 0;
