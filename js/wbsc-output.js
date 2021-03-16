@@ -120,7 +120,7 @@ function drawOutCircle(base) {
 
 // draw advance line from HP to given base (1-4)
 function drawAdvanceLine(base) {
-    ctx.lineWidth = 8;
+    ctx.lineWidth = 5;
     ctx.strokeStyle = 'black';
     
     ctx.beginPath();
@@ -135,7 +135,7 @@ function drawAdvanceLine(base) {
         ctx.lineTo(w3 + hOffset, h2 + vOffset);
     }
     if (base > 3) {
-        ctx.lineTo(w2 + 3 + hOffset, h - h3 + 3 + vOffset);
+        ctx.lineTo(w2 + 2 + hOffset, h - h3 + 2 + vOffset);
     }
     ctx.stroke();
 }
@@ -234,6 +234,7 @@ function writeSituation(output) {
     let sub = output[output_sub];
     let sup = output[output_sup];
     let num = output[output_num];
+    let na = output[output_na];
     
     if (text1 === '*') {
         ctx.fillStyle = 'red';
@@ -246,7 +247,7 @@ function writeSituation(output) {
     
     switch (output[output_base]) {
         case 0:
-            if (text1.endsWith('DF')) {
+            if (na) {
                 ctx.font = 'bold 20px Verdana';
                 ctx.fillText(text1, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset);
             } else {
@@ -306,226 +307,288 @@ function writeSituation(output) {
             }
             break;
         case 1:
-            if (hit) {
-                drawHitSymbol(1);
-                hitOffset = 15;
-            } else {
-                hitOffset = -2;
-            }
-            if (text2 !== null && text2 !== undefined) {
-                offset = -5;
-                ctx.fillText(text1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
-                
-                if (text2.length > 4) {
-                    ctx.font = 'bold 28px Verdana';
-                    offset = 36;
-                } else if (text2.length > 3) {
-                    ctx.font = 'bold 36px Verdana';
-                    offset = 38;
-                } else {
-                    offset = 40;
+            if (na) {
+                if (text2 !== null && text2 !== undefined) {
+                    text1 += text2;
                 }
-                ctx.fillText(text2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+                ctx.font = '26px Verdana';
+                locHOffset = (text1.length - 3) * 6;
+                ctx.fillStyle = '#303030';
+                ctx.fillText(text1, w2 * 1.5 + 20 - locHOffset + hOffset, h2 + 24 + vOffset);
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.strokeStyle = '#303030';
+                    ctx.fillText(window.batter, w + hOffset - 16, h2 - 4 + vOffset);
+                    
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(w + hOffset - 26, h2 - 2 + vOffset);
+                    ctx.lineTo(w + hOffset - 26, h2 - 22 + vOffset);
+                    ctx.lineTo(w + hOffset - 8, h2 - 22 + vOffset);
+                    ctx.stroke();
+                }
             } else {
-                if (text1.length > 5) {
-                    ctx.font = 'bold 24px Verdana';
-                    offset = 12;
-                } else if (text1.length > 4) {
+                if (hit) {
+                    drawHitSymbol(1);
+                    hitOffset = 15;
+                } else {
+                    hitOffset = -2;
+                }
+                if (text2 !== null && text2 !== undefined) {
+                    offset = -5;
+                    ctx.fillText(text1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+                    
+                    if (text2.length > 4) {
+                        ctx.font = 'bold 28px Verdana';
+                        offset = 36;
+                    } else if (text2.length > 3) {
+                        ctx.font = 'bold 36px Verdana';
+                        offset = 38;
+                    } else {
+                        offset = 40;
+                    }
+                    ctx.fillText(text2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
+                } else {
+                    if (text1.length > 5) {
+                        ctx.font = 'bold 24px Verdana';
+                        offset = 12;
+                    } else if (text1.length > 4) {
+                        ctx.font = 'bold 30px Verdana';
+                        offset = 16;
+                    } else if (text1.length > 3 || (hit && text1.length > 1) || text1 === 'IBB') {
+                        ctx.font = 'bold 38px Verdana';
+                        offset = 18;
+                    }
+                    ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 1.5 + offset + vOffset);
+                }
+                if (sub !== null && sub !== undefined) {
                     ctx.font = 'bold 30px Verdana';
-                    offset = 16;
-                } else if (text1.length > 3 || (hit && text1.length > 1) || text1 === 'IBB') {
-                    ctx.font = 'bold 38px Verdana';
-                    offset = 18;
-                }
-                ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 1.5 + offset + vOffset);
-            }
-            if (sub !== null && sub !== undefined) {
-                ctx.font = 'bold 30px Verdana';
-                if (text1.startsWith('K')) {
-                    ctx.fillText(sub, w + hOffset - 20, h - 62 + vOffset);
-                } else {
-                    ctx.fillText(sub, w + hOffset - 18, h - 33 + vOffset);
+                    if (text1.startsWith('K')) {
+                        ctx.fillText(sub, w + hOffset - 20, h - 62 + vOffset);
+                    } else {
+                        ctx.fillText(sub, w + hOffset - 18, h - 33 + vOffset);
+                    }
                 }
             }
             break;
         case 2:
-            if (hit) {
-                drawHitSymbol(2);
-                hitOffset = 20;
-            } else {
-                hitOffset = 0;
-            }
-            if (out) {
+            if (na) {
                 if (text2 !== null && text2 !== undefined) {
-                    row1font = 'bold 56px Verdana';
-                    row2font = 'bold 56px Verdana';
-                    row1offset = 45;
-                    row2offset = 6;
-                    if (text2.length > 3) {
-                        row1offset = 35;
-                        row2offset = 2;
-                        row2font = 'bold 28px Verdana';
-                    } else if (text2.length > 2) {
-                        row1offset = 40;
-                        row2offset = 4;
-                        row2font = 'bold 36px Verdana';
-                    }
-                    ctx.font = row1font;
-                    ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - row1offset + vOffset);
-                    ctx.font = row2font;
-                    ctx.fillText(text2, w2 * 0.7 + hOffset, h2 + row2offset + vOffset);
-                } else {
-                    if (text1.length > 4) {
-                        ctx.font = 'bold 32px Verdana';
-                        offset = 26;
-                    } else if (text1.length > 3) {
-                        ctx.font = 'bold 42px Verdana';
-                        offset = 23;
-                    } else if (text1.length > 2) {
-                        ctx.font = 'bold 52px Verdana';
-                        offset = 20;
-                    } else {
-                        ctx.font = 'bold 60px Verdana';
-                        offset = 17;
-                    }
-                    ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset);
+                    text1 += text2;
+                }
+                ctx.font = '26px Verdana';
+                ctx.fillStyle = '#303030';
+                ctx.fillText(text1, w2 + hOffset, offset + 10 + vOffset);
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.strokeStyle = '#303030';
+                    ctx.fillText(window.batter, w + hOffset - 16, 26 + vOffset);
+                    
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(w + hOffset - 26, 8 + vOffset);
+                    ctx.lineTo(w + hOffset - 26, 31 + vOffset);
+                    ctx.lineTo(w + hOffset - 8, 31 + vOffset);
+                    ctx.stroke();
                 }
             } else {
-                if (text2 !== null && text2 !== undefined) {
-                    row1font = 'bold 40px Verdana';
-                    row1offset = 8;
-                    row2font = 'bold 40px Verdana';
-                    row2offset = 30;
-                    if (text2.length > 4) {
-                        row1offset = 3;
-                        row2offset = 26;
-                        row2font = 'bold 24px Verdana';
-                    } else if (text2.length > 3) {
-                        row1offset = 5;
-                        row2offset = 28;
-                        row2font = 'bold 30px Verdana';
-                    }
-                    ctx.font = row1font;
-                    ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 - row1offset + vOffset);
-                    ctx.font = row2font;
-                    ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset);
+                if (hit) {
+                    drawHitSymbol(2);
+                    hitOffset = 20;
                 } else {
-                    if (text1.length > 4) {
-                        ctx.font = 'bold 28px Verdana';
-                        offset = 12;
-                    } else if (text1.length > 3) {
-                        ctx.font = 'bold 35px Verdana';
-                        offset = 14;
-                    } else {
-                        ctx.font = 'bold 40px Verdana';
-                        offset = 18;
-                    }
-                    ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
+                    hitOffset = 0;
                 }
-            }
-            if (sup !== null && sup !== undefined) {
-                ctx.font = 'bold 28px Verdana';
-                ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset);
-            }
-            if (num) {
-                ctx.font = 'bold 20px Verdana';
-                ctx.fillText(window.batter, w + hOffset - 16, 26 + vOffset);
-                
-                ctx.lineWidth = 3;
-                ctx.moveTo(w + hOffset - 26, 8 + vOffset);
-                ctx.lineTo(w + hOffset - 26, 31 + vOffset);
-                ctx.lineTo(w + hOffset - 8, 31 + vOffset);
-                ctx.stroke();
+                if (out) {
+                    if (text2 !== null && text2 !== undefined) {
+                        row1font = 'bold 56px Verdana';
+                        row2font = 'bold 56px Verdana';
+                        row1offset = 45;
+                        row2offset = 6;
+                        if (text2.length > 3) {
+                            row1offset = 35;
+                            row2offset = 2;
+                            row2font = 'bold 28px Verdana';
+                        } else if (text2.length > 2) {
+                            row1offset = 40;
+                            row2offset = 4;
+                            row2font = 'bold 36px Verdana';
+                        }
+                        ctx.font = row1font;
+                        ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - row1offset + vOffset);
+                        ctx.font = row2font;
+                        ctx.fillText(text2, w2 * 0.7 + hOffset, h2 + row2offset + vOffset);
+                    } else {
+                        if (text1.length > 4) {
+                            ctx.font = 'bold 32px Verdana';
+                            offset = 26;
+                        } else if (text1.length > 3) {
+                            ctx.font = 'bold 42px Verdana';
+                            offset = 23;
+                        } else if (text1.length > 2) {
+                            ctx.font = 'bold 52px Verdana';
+                            offset = 20;
+                        } else {
+                            ctx.font = 'bold 60px Verdana';
+                            offset = 17;
+                        }
+                        ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset);
+                    }
+                } else {
+                    if (text2 !== null && text2 !== undefined) {
+                        row1font = 'bold 40px Verdana';
+                        row1offset = 8;
+                        row2font = 'bold 40px Verdana';
+                        row2offset = 30;
+                        if (text2.length > 4) {
+                            row1offset = 3;
+                            row2offset = 26;
+                            row2font = 'bold 24px Verdana';
+                        } else if (text2.length > 3) {
+                            row1offset = 5;
+                            row2offset = 28;
+                            row2font = 'bold 30px Verdana';
+                        }
+                        ctx.font = row1font;
+                        ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 - row1offset + vOffset);
+                        ctx.font = row2font;
+                        ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset);
+                    } else {
+                        if (text1.length > 4) {
+                            ctx.font = 'bold 28px Verdana';
+                            offset = 12;
+                        } else if (text1.length > 3) {
+                            ctx.font = 'bold 35px Verdana';
+                            offset = 14;
+                        } else {
+                            ctx.font = 'bold 40px Verdana';
+                            offset = 18;
+                        }
+                        ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
+                    }
+                }
+                if (sup !== null && sup !== undefined) {
+                    ctx.font = 'bold 28px Verdana';
+                    ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset);
+                }
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.fillText(window.batter, w + hOffset - 16, 26 + vOffset);
+                    
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(w + hOffset - 26, 8 + vOffset);
+                    ctx.lineTo(w + hOffset - 26, 31 + vOffset);
+                    ctx.lineTo(w + hOffset - 8, 31 + vOffset);
+                    ctx.stroke();
+                }
             }
             break;
         case 3:
-            if (hit) {
-                drawHitSymbol(3);
-                hitOffset = 20;
-            } else {
-                hitOffset = 0;
-            }
-            if (out) {
+            if (na) {
                 if (text2 !== null && text2 !== undefined) {
-                    row1font = 'bold 40px Verdana';
-                    row2font = 'bold 40px Verdana';
-                    row1offset = 5;
-                    row2offset = 35;
-                    if (text2.length > 3) {
-                        row1offset = 4;
-                        row2offset = 26;
-                        row2font = 'bold 28px Verdana';
-                    } else if (text2.length > 2) {
-                        row1offset = 3;
-                        row2offset = 28;
-                        row2font = 'bold 34px Verdana';
-                    }
-                    ctx.font = row1font;
-                    ctx.fillText(text1, w2 * 0.5 + hOffset, h2 - offset + vOffset);
-                    ctx.font = row2font;
-                    ctx.fillText(text2, w2 * 0.5 + hOffset, h2 + row2offset + vOffset);
-                } else {
-                    if (text1.length > 4) {
-                        ctx.font = 'bold 24px Verdana';
-                        offset = 10;
-                    } else if (text1.length > 3) {
-                        ctx.font = 'bold 30px Verdana';
-                        offset = 12;
-                    } else if (text1.length > 2) {
-                        ctx.font = 'bold 36px Verdana';
-                        offset = 14;
-                    } else {
-                        ctx.font = 'bold 42px Verdana';
-                        offset = 18;
-                    }
-                    ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset);
+                    text1 += text2;
                 }
-            } else {
-                if (text2 !== null && text2 !== undefined) {
-                    row1font = 'bold 40px Verdana';
-                    row1offset = 8;
-                    row2font = 'bold 40px Verdana';
-                    row2offset = 30;
-                    if (text2.length > 4) {
-                        row1offset = 3;
-                        row2offset = 26;
-                        row2font = 'bold 24px Verdana';
-                    } else if (text2.length > 3) {
-                        row1offset = 5;
-                        row2offset = 28;
-                        row2font = 'bold 30px Verdana';
-                    }
-                    ctx.font = row1font;
-                    ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 0.5 - offset + vOffset);
-                    ctx.font = row2font;
-                    ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 0.5 + row2offset + vOffset);
-                } else {
-                    if (text1.length > 4) {
-                        ctx.font = 'bold 28px Verdana';
-                        offset = 12;
-                    } else if (text1.length > 3) {
-                        ctx.font = 'bold 36px Verdana';
-                        offset = 14;
-                    } else {
-                        ctx.font = 'bold 42px Verdana';
-                        offset = 18;
-                    }
-                    ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
-                }
-            }
-            if (sup !== null && sup !== undefined) {
-                ctx.font = 'bold 28px Verdana';
-                ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset);
-            }
-            if (num) {
-                ctx.font = 'bold 20px Verdana';
-                ctx.fillText(window.batter, hOffset + 15, 26 + vOffset);
+                ctx.font = '26px Verdana';
+                locHOffset = (text1.length - 3) * 6;
+                ctx.fillStyle = '#303030';
+                ctx.fillText(text1, w2 * 0.5 - 20 + locHOffset + hOffset, h2 - 8 + vOffset);
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.strokeStyle = '#303030';
+                    ctx.fillText(window.batter, hOffset + 15, h2 + 20 + vOffset);
                 
-                ctx.lineWidth = 3;
-                ctx.moveTo(hOffset + 26, 8 + vOffset);
-                ctx.lineTo(hOffset + 26, 31 + vOffset);
-                ctx.lineTo(hOffset + 8, 31 + vOffset);
-                ctx.stroke();
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(hOffset + 26, h2 + 2 + vOffset);
+                    ctx.lineTo(hOffset + 26, h2 + 25 + vOffset);
+                    ctx.lineTo(hOffset + 8, h2 + 25 + vOffset);
+                    ctx.stroke();
+                }
+            } else {
+                if (hit) {
+                    drawHitSymbol(2);
+                    hitOffset = 20;
+                } else {
+                    hitOffset = 0;
+                }
+                if (out) {
+                    if (text2 !== null && text2 !== undefined) {
+                        row1font = 'bold 40px Verdana';
+                        row2font = 'bold 40px Verdana';
+                        row1offset = 5;
+                        row2offset = 35;
+                        if (text2.length > 3) {
+                            row1offset = 4;
+                            row2offset = 26;
+                            row2font = 'bold 28px Verdana';
+                        } else if (text2.length > 2) {
+                            row1offset = 3;
+                            row2offset = 28;
+                            row2font = 'bold 34px Verdana';
+                        }
+                        ctx.font = row1font;
+                        ctx.fillText(text1, w2 * 0.5 + hOffset, h2 - offset + vOffset);
+                        ctx.font = row2font;
+                        ctx.fillText(text2, w2 * 0.5 + hOffset, h2 + row2offset + vOffset);
+                    } else {
+                        if (text1.length > 4) {
+                            ctx.font = 'bold 24px Verdana';
+                            offset = 10;
+                        } else if (text1.length > 3) {
+                            ctx.font = 'bold 30px Verdana';
+                            offset = 12;
+                        } else if (text1.length > 2) {
+                            ctx.font = 'bold 36px Verdana';
+                            offset = 14;
+                        } else {
+                            ctx.font = 'bold 42px Verdana';
+                            offset = 18;
+                        }
+                        ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset);
+                    }
+                } else {
+                    if (text2 !== null && text2 !== undefined) {
+                        row1font = 'bold 40px Verdana';
+                        row1offset = 8;
+                        row2font = 'bold 40px Verdana';
+                        row2offset = 30;
+                        if (text2.length > 4) {
+                            row1offset = 3;
+                            row2offset = 26;
+                            row2font = 'bold 24px Verdana';
+                        } else if (text2.length > 3) {
+                            row1offset = 5;
+                            row2offset = 28;
+                            row2font = 'bold 30px Verdana';
+                        }
+                        ctx.font = row1font;
+                        ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 0.5 - offset + vOffset);
+                        ctx.font = row2font;
+                        ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 0.5 + row2offset + vOffset);
+                    } else {
+                        if (text1.length > 4) {
+                            ctx.font = 'bold 28px Verdana';
+                            offset = 12;
+                        } else if (text1.length > 3) {
+                            ctx.font = 'bold 36px Verdana';
+                            offset = 14;
+                        } else {
+                            ctx.font = 'bold 42px Verdana';
+                            offset = 18;
+                        }
+                        ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
+                    }
+                }
+                if (sup !== null && sup !== undefined) {
+                    ctx.font = 'bold 28px Verdana';
+                    ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset);
+                }
+                if (num) {
+                    ctx.font = 'bold 20px Verdana';
+                    ctx.fillText(window.batter, hOffset + 15, 26 + vOffset);
+                    
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(hOffset + 26, 8 + vOffset);
+                    ctx.lineTo(hOffset + 26, 31 + vOffset);
+                    ctx.lineTo(hOffset + 8, 31 + vOffset);
+                    ctx.stroke();
+                }
             }
             break;
         case 4:
@@ -590,7 +653,6 @@ function writeSituation(output) {
                     // leave the diamond empty
                     break;
             }
-
             break;
     }
 }

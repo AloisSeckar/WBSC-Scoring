@@ -315,6 +315,8 @@ function renderRunnerSpecificActionOptions(action, group) {
             options.push('<option value="SB">Stolen base</option>');
             options.push('<option value="CSE">Caught stealing with fielding error</option>');
             options.push('<option value="CSET">Caught stealing with throwing error</option>');
+            options.push('<option value="CSN">Caught stealing with fielding error (no advance)</option>');
+            options.push('<option value="CSNT">Caught stealing with throwing error (no advance)</option>');
             options.push('<option value="POE">Picked off with (throwing) error</option>');
             options.push('</optgroup>');
             options.push('<optgroup label="Runner is out">');
@@ -344,6 +346,8 @@ function renderRunnerSpecificActionOptions(action, group) {
             if (!(group.includes('3'))) {
                 options.push('<option value="se3">Same error (Runner at 3rd)</option>');
             }
+            options.push('<option value="ENF">Decessive fielding (no advance)</option>');
+            options.push('<option value="ENT">Decessive throwing (no advance)</option>');
             options.push('</optgroup>');
             break;
         case 'out':

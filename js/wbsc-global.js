@@ -94,4 +94,5 @@ function setTextConstants() {
     window.output_sup = 'sup';
     window.output_num = 'num';
     window.output_run = 'run';
+    window.output_na = 'no-advance';
 }
