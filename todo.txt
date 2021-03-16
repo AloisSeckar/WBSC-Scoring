@@ -1,10 +1,11 @@
 v.08
 ====
 * "Same error" advances 
+* "No advance" situations
 * Earned/Unearned runs
 * Refactoring (files and functions comments + optimized organization)
 * Enhanced HTML structure
-* Bugfixing: #23, #24, #25, #26
+* Bugfixing: #23, #24, #25, #26, #27, #28
 
 
 TODO
