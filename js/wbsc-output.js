@@ -391,8 +391,8 @@ function writeSituation(output) {
                 }
             } else {
                 if (hit) {
-                    drawHitSymbol(1);
-                    hitOffset = 15;
+                    drawHitSymbol(2);
+                    hitOffset = 20;
                 } else {
                     hitOffset = 0;
                 }
@@ -502,8 +502,8 @@ function writeSituation(output) {
                 }
             } else {
                 if (hit) {
-                    drawHitSymbol(1);
-                    hitOffset = 15;
+                    drawHitSymbol(2);
+                    hitOffset = 20;
                 } else {
                     hitOffset = 0;
                 }
@@ -534,10 +534,10 @@ function writeSituation(output) {
                             ctx.font = 'bold 30px Verdana';
                             offset = 12;
                         } else if (text1.length > 2) {
-                            ctx.font = 'bold 38px Verdana';
+                            ctx.font = 'bold 36px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 48px Verdana';
+                            ctx.font = 'bold 42px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset);
@@ -569,7 +569,7 @@ function writeSituation(output) {
                             ctx.font = 'bold 36px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 48px Verdana';
+                            ctx.font = 'bold 42px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
