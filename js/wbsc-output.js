@@ -33,7 +33,9 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
         if (extraInput !== null) {
             for (i = 0; i < extraInput.length; i += 1) {
                 renderAction(battingOrder, extraInput[i], null, false);
-                drawConnector(parseInt(mainInput[input_base]), parseInt(extraInput[i][input_base]));
+                if (!extraInput[i][input_spec_action].includes("N")) {
+                    drawConnector(parseInt(mainInput[input_base]), parseInt(extraInput[i][input_base]));
+                }
             }
         }
     }
