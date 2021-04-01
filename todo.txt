@@ -1,14 +1,11 @@
-v.08
+v.09
 ====
-* "Same error" advances 
-* "No advance" situations
-* Earned/Unearned runs
-* Refactoring (files and functions comments + optimized organization)
-* Enhanced HTML structure
-* Bugfixing: #23, #24, #25, #26, #27, #28
 
 
 TODO
 ====
 More validations
+Obstruction and interference
 Double and Triple plays
+Concurrent plays
+Help section on website

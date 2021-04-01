@@ -1,15 +1,16 @@
 # WBSC Scoring
 Visualisation tool for WBSC scoring system
 
-Live demo (currently v0.7) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
+Live demo (currently v0.8) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
 
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
 
 ## TO-DO list (to be implemented in next few releases)
 - More input validations
-- Earned/unearned runs switchers
+- Obstruction and interference
 - Double and Triple plays
-- "Same error" advances
+- Concurrent plays
+- Help section on website
 
 ## Limitations (not planned to be implemented soon)
 - It is not possible to specify actions leading to runners appearing on bases (except TIE)
@@ -20,6 +21,15 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 0.8 (2021-04-01)
+- Same error advances
+- "No advance" situations
+- Earned/Unearned runs
+- Extra bases with more runners (GitHub issue #10)
+- Refactoring (files and functions comments + optimized organization)
+- Enhanced HTML structure
+- Bugfixing - GitHub issues #23, #24, #25, #26, #27, #28 + various minor and unreported
 
 ### Version 0.7 (2020-12-08)
 - New actions supported: PO - pick off, LT - lost turn, A - appeal play, OBR - out by rule, SH with throwing/dropped fly error, CS with throwing error
