@@ -71,6 +71,9 @@ function processAction() {
     }
     
     if (validation === '') {
+        const inputArr = [r3Input, r2aInput, r2Input, r1bInput, r1aInput, r1Input];
+        checkMultipleRunnerAdvances(inputArr);
+
         window.vOffset = 0;
         window.hOffset = 75;
         
@@ -206,6 +209,24 @@ function checkPosSelection(selection) {
     }
 
     return validation;
+}
+
+// helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/10
+function checkMultipleRunnerAdvances(inputArr) {
+    // first encountered will be uppercase, possible others lowercase
+    let wpOrPbEncountered = false;
+    for (let i = 0; i < inputArr.length; i += 1) {
+        const current = inputArr[i];
+        if (current != null) {
+            if (current[input_spec_action] === "WP" || current[input_spec_action] === "PB"
+             || current[input_spec_action] === "BK" || current[input_spec_action] === "IP") {
+                if (wpOrPbEncountered) {
+                    current[input_spec_action] = current[input_spec_action].toLowerCase();
+                }
+                wpOrPbEncountered = true;
+            }
+        }
+    }
 }
 
 // helper to attach new part of validation message to previous contents

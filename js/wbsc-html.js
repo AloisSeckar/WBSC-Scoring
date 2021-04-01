@@ -164,8 +164,7 @@ function renderRunnerActionOptions() {
     const options = [];
     options.push('<option value=""></option>');
     options.push('<option value="adv">Advanced by batter</option>');
-    options.push('<option value="exbb">Extra base (batter)</option>');
-    options.push('<option value="exb">Extra base (runner)</option>');
+    options.push('<option value="exb">Extra base</option>');
     options.push('<option value="ste">Steal</option>');
     options.push('<option value="fdc">Fielder\'s choice</option>');
     options.push('<option value="err">Error</option>');
@@ -293,13 +292,6 @@ function renderRunnerSpecificActionOptions(action, group) {
         case 'adv':
             options.push('<optgroup label="Runner is safe">');
             options.push('<option value="ADV">Advanced by batter</option>');
-            options.push('</optgroup>');
-            break;
-        case 'exbb':
-            options.push('<optgroup label="Runner is safe">');
-            options.push('<option value="bb">Base on balls</option>');
-            options.push('<option value="ibb">Intentional base on balls</option>');
-            options.push('<option value="hp">Hit by pitch</option>');
             options.push('</optgroup>');
             break;
         case 'exb':

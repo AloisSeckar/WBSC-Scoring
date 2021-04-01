@@ -197,9 +197,6 @@ function changeRunnerSpecificAction(group) {
     const runnerSpecificActionValue = runnerSpecificAction.value;
     switch (runnerSpecificActionValue) {
         case 'ADV':
-        case 'bb':
-        case 'ibb':
-        case 'hp':
         case 'WP':
         case 'PB':
         case 'BK':
@@ -464,15 +461,16 @@ function processInput(input) {
                 output[output_text_1] = action;
             }
             break;
-        case 'bb':
-        case 'ibb':
-        case 'hp':
         case 'WP':
+        case 'wp':
         case 'PB':
+        case 'pb':
         case 'BK':
+        case 'bk':
         case 'IP':
+        case 'ip':
         case 'SB':
-            output[output_text_1] = action.toUpperCase() + window.batter;
+            output[output_text_1] = action + window.batter;
             break;
         case 'ADV':
             output[output_text_1] = window.batter;
