@@ -434,7 +434,7 @@ function processInput(input) {
             output[output_base] = 2;
             output[output_text_1] = pos;
             if (action.endsWith('G')) {
-                output[output_text_2] += 'GR';
+                output[output_text_2] = 'GR';
             }
             output[output_hit] = true;
             break;
