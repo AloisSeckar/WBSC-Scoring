@@ -561,7 +561,7 @@ function processInput(input) {
         case 'ED':
         case 'eF':
         case 'eT':
-            output[output_text_1] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
+            output[output_text_1] = pos.substring(0, pos.length - 1) + action.substring(0, 1) + pos.substring(pos.length - 1);
             if (!action.endsWith('F')) {
                 output[output_text_1] += action.substring(action.length - 1);
             }
