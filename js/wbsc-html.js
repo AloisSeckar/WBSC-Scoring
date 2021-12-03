@@ -212,6 +212,8 @@ function renderBatterSpecificActionOptions(action) {
             options.push('<option value="FP">Fouled pop out</option>');
             options.push('<option value="FL">Fouled line out</option>');
             options.push('<option value="IF">Infield fly</option>');
+            options.push('<option value="FB">Fly out - bunt</option>');
+            options.push('<option value="FFB">Fouled fly out - bunt</option>');
             options.push('</optgroup>');
             break;
         case 'Hit':

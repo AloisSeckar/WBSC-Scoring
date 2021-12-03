@@ -116,6 +116,8 @@ function changeBatterSpecificAction() {
         case 'FF':
         case 'FP':
         case 'FL':
+        case 'FB':
+        case 'FFB':
         case 'EF':
         case 'ET':
         case 'SHE':
@@ -341,6 +343,16 @@ function processInput(input) {
         case 'SF':
             output[output_base] = 0;
             output[output_text_1] = action + pos;
+            output[output_out] = true;
+            break;
+        case 'FB':
+        case 'FFB':
+            let pref = 'F';
+            if (action.includes('FF')) {
+                pref += 'F';
+            }
+            output[output_text_1] = pref + pos + 'B';
+            output[output_base] = 0;
             output[output_out] = true;
             break;
         case 'SH':
