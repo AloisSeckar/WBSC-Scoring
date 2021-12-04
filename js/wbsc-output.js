@@ -27,6 +27,7 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
     const output = processInput(mainInput);
     if (output[output_out] === true) {
         renderOut(output);
+        window.outs.push({batter:battingOrder, base:output[output_base]})
     } else {
         renderAdvance(output);
         
@@ -664,5 +665,69 @@ function writeSituation(output) {
                 }
             }
             break;
+    }
+}
+
+// processed AFTER all sitations were rendered
+// if plays result into more than one out
+// out circles has to be connected together to mark down double (triple) play
+function connectOutsIfNeeded() {
+    if (window.outs.length > 1) {
+        for (let i = 0; i < window.outs.length - 1; i += 1) {
+            let start = window.outs[i];
+            let end = window.outs[i + 1];
+
+            const lineHOffset = 20;
+            const vOffsetStart = (h - 8) * (start.batter - 1);
+            const vOffsetEnd = (h - 8) * (end.batter - 1);
+
+            let startX = 0;
+            let startY = 0;
+            let endX = 0;
+            let endY = 0;
+            switch (start.base) {
+                case 4:
+                    startX = hOffset + lineHOffset;
+                    startY = h - 36 + vOffsetStart;
+                    switch (end.base) {
+                        case 3:
+                            endX = hOffset + lineHOffset;
+                            endY = h2 - 25 + vOffsetEnd;
+                            break;
+                        case 2:
+                            endX = hOffset + lineHOffset;
+                            endY = h2 / 2 + vOffsetEnd;
+                            break;
+                        case 0:
+                            endX = hOffset + lineHOffset;
+                            endY = h2 - 30 + vOffsetEnd;
+                            break;
+                    }
+                    break;
+                case 3:
+                    startX = hOffset + lineHOffset;
+                    startY = h2 + 25 + vOffsetStart;
+                    if (end.base === 2) {
+                        endX = hOffset + lineHOffset;
+                        endY = h2 / 2 + vOffsetEnd;
+                    } else {
+                        endX = hOffset + lineHOffset;
+                        endY = h2 - 30 + vOffsetEnd;
+                    }
+                    break;
+                case 2:
+                    startX = hOffset + lineHOffset;
+                    startY = h2 - 13 + vOffsetStart;
+                    endX = hOffset + lineHOffset;
+                    endY = h2 - 30 + vOffsetEnd;
+                    break;
+            }
+
+            ctx.lineWidth = 6;
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+
+        }
     }
 }
