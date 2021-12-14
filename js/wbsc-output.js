@@ -24,7 +24,7 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
         renderAdvance(prevOutput);
     }
     
-    const output = processInput(mainInput);
+    const output = processInput(mainInput, battingOrder);
     if (output[output_out] === true) {
         renderOut(output);
         window.outs.push({batter:battingOrder, base:output[output_base]})
@@ -730,4 +730,117 @@ function connectOutsIfNeeded() {
 
         }
     }
+}
+
+// processed AFTER all sitations were rendered
+// if play contains 2 or more actions that has to be marked as "concurrent"
+// (e.g. KS+SB, BB+WP or SB+SB)
+// we need to link them with double-sided arrow connector
+function connectConcurrentPlaysIfNeeded() {
+    if (window.concurrentPlays.length > 1) {
+        for (let i = 0; i < window.concurrentPlays.length - 1; i += 1) {
+            let start = window.concurrentPlays[i];
+            let end = window.concurrentPlays[i + 1];
+
+            const lineHOffset = 25;
+            const vOffsetStart = (h - 8) * (start.batter - 1);
+            const vOffsetEnd = (h - 8) * (end.batter - 1);
+
+            let startX = 0;
+            let startY = 0;
+            let endX = 0;
+            let endY = 0;
+            switch (start.base) {
+                case 4:
+                    startY = h - 25 + vOffsetStart;
+                    switch (end.base) {
+                        case 3:
+                            startX = hOffset + lineHOffset;
+                            endX = hOffset + lineHOffset;
+                            endY = 25 + vOffsetEnd;
+                            break;
+                        case 2:
+                            startX = hOffset + (h2 - lineHOffset);
+                            endX = hOffset + h2 + lineHOffset;
+                            endY = 25 + vOffsetEnd;
+                            break;
+                        case 1:
+                            startX = hOffset + h2/2;
+                            endX = hOffset + h2 + lineHOffset;
+                            endY = h2 + 25 + vOffsetEnd;
+                            break;
+                        case 0:
+                            startX = hOffset + lineHOffset;
+                            endX = hOffset + lineHOffset;
+                            endY = 25 + vOffsetEnd;
+                            break;
+                    }
+                    break;
+                case 3:
+                    startY = h2 - 25 + vOffsetStart;
+                    switch (end.base) {
+                        case 2:
+                            startX = hOffset + h2/2;
+                            endX = hOffset + h2 + lineHOffset;
+                            endY = 25 + vOffsetEnd;
+                            break;
+                        case 1:
+                            startX = hOffset + h2/2;
+                            endX = hOffset + h2 + lineHOffset;
+                            endY = h2 + 25 + vOffsetEnd;
+                            break;
+                        case 0:
+                            startX = hOffset + lineHOffset;
+                            endX = hOffset + lineHOffset;
+                            endY = 25 + vOffsetEnd;
+                            break;
+                    }
+                    break;
+                case 2:
+                    startX = hOffset + (h - lineHOffset);
+                    startY = h2 - 25 + vOffsetStart;
+                    switch (end.base) {
+                        case 1:
+                            endX = hOffset + (h - lineHOffset);
+                            endY = h2 + 25 + vOffsetEnd;
+                            break;
+                        case 0:
+                            endX = hOffset + (h - lineHOffset);
+                            endY = 25 + vOffsetEnd;
+                            break;
+                    }
+                    break;
+            }
+
+            ctx.lineWidth = 6;
+            ctx.strokeStyle = 'red';
+            drawArrow(startX, startY, endX, endY);
+            drawArrow(endX, endY, startX, startY);
+
+        }
+    }
+}
+
+// helper function to render an arrow
+// from http://masf-html5.blogspot.com/2016/04/path-drawing-mode-lines-circles-arcs.html
+function drawArrow(fromx, fromy, tox, toy) {
+    
+    const headlen = 10;
+    const angle = Math.atan2(toy-fromy,tox-fromx);
+ 
+    ctx.beginPath();
+    ctx.moveTo(fromx, fromy);
+    ctx.lineTo(tox, toy);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(tox, toy);
+    ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
+               toy-headlen*Math.sin(angle-Math.PI/7));
+    ctx.lineTo(tox-headlen*Math.cos(angle+Math.PI/7),
+               toy-headlen*Math.sin(angle+Math.PI/7));
+    ctx.lineTo(tox, toy);
+    ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
+               toy-headlen*Math.sin(angle-Math.PI/7));
+    ctx.stroke();
 }

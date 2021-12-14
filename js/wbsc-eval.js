@@ -295,7 +295,7 @@ function changeBase(group) {
 }
 
 // transform user's input into output instructions
-function processInput(input) {
+function processInput(input, batter) {
     let output = [];
     
     output[output_base] = parseInt(input[input_base]);
@@ -316,6 +316,7 @@ function processInput(input) {
         }
     }
     
+    let possibleConcurrentPlay = false;
     const action = input[input_spec_action];
     switch (action) {
         case 'EDF':
@@ -332,6 +333,7 @@ function processInput(input) {
             output[output_text_1] = action.substring(0, 2);
             output[output_sub] = '1';
             output[output_out] = true;
+            possibleConcurrentPlay = true;
             break;
         case 'F':
         case 'P':
@@ -414,10 +416,12 @@ function processInput(input) {
             output[output_text_1] = action.substring(0, 2);
             output[output_text_2] = action.substring(2);
             output[output_sub] = '1';
+            possibleConcurrentPlay = true;
             break;
         case 'KSFC':    
         case 'KLFC':
             output[output_sub] = '1';
+            possibleConcurrentPlay = true;
         case 'SHFC':
         case 'SFO':
             output[output_base] = 1;
@@ -429,6 +433,7 @@ function processInput(input) {
         case 'KLET':
         case 'KLE':
             output[output_sub] = '1';
+            possibleConcurrentPlay = true;
         case 'SHE':
         case 'SHET':
         case 'SHEF':
@@ -472,16 +477,18 @@ function processInput(input) {
             } else {
                 output[output_text_1] = action;
             }
+            possibleConcurrentPlay = true;
             break;
         case 'WP':
-        case 'wp':
         case 'PB':
+        case 'SB':
+            possibleConcurrentPlay = true;
+        case 'wp':
         case 'pb':
         case 'BK':
         case 'bk':
         case 'IP':
         case 'ip':
-        case 'SB':
             output[output_text_1] = action + window.batter;
             break;
         case 'ADV':
@@ -519,6 +526,7 @@ function processInput(input) {
             break;
         case 'O/':
             output[output_num] = true;
+            possibleConcurrentPlay = true;
         case 'T':
             output[output_text_1] = action + pos;
             break;
@@ -528,6 +536,7 @@ function processInput(input) {
             output[output_text_2] = pos;
             output[output_out] = true;
             output[output_num] = true;
+            possibleConcurrentPlay = true;
             break;
         case 'CSN':
         case 'CSNT':
@@ -541,11 +550,13 @@ function processInput(input) {
                 output[output_text_2] += 'T';
             }
             output[output_num] = true;
+            possibleConcurrentPlay = true;
             break;
         case 'POE':
             output[output_text_1] = action.substring(0, 2);
             output[output_text_2] = 'e' + pos + 'T';
             output[output_num] = true;
+            possibleConcurrentPlay = true;
             break;
         case 'OBR7_':
         case 'OBR9_':
@@ -578,6 +589,19 @@ function processInput(input) {
                 output[output_text_1] += action.substring(action.length - 1);
             }
             break;
+    }
+
+    if (possibleConcurrentPlay) {
+        let notAddedYet = true;
+        for (let i = 0; i < window.concurrentPlays.length; i += 1) {
+            if (window.concurrentPlays[i].batter === batter) {
+                notAddedYet = false;
+                break;
+            }
+        }
+        if (notAddedYet) {
+            window.concurrentPlays.push({batter:batter, base:output[output_base]});
+        }
     }
     
     return output;

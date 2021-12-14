@@ -86,6 +86,8 @@ function processAction() {
         }
         
         window.outs = [];
+        window.concurrentPlays = [];
+
         let displayed = 0;
         if (r3Input !== null) {
             r3Input[input_origBase] = 3;
@@ -110,7 +112,10 @@ function processAction() {
             renderAction(displayed, bInput, extraBatterInput, true);
             window.vOffset += h - 8;
         }
-        connectOutsIfNeeded(window.outs);
+
+        connectOutsIfNeeded();
+        connectConcurrentPlaysIfNeeded();
+
     } else {
         alert('The given input is invalid:\n' + validation);
     }
