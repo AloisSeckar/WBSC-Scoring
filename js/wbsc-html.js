@@ -165,7 +165,7 @@ function renderRunnerActionOptions() {
     options.push('<option value=""></option>');
     options.push('<option value="adv">Advanced by batter</option>');
     options.push('<option value="exb">Extra base</option>');
-    options.push('<option value="ste">Steal</option>');
+    options.push('<option value="ste">Steal / CS</option>');
     options.push('<option value="fdc">Fielder\'s choice</option>');
     options.push('<option value="err">Error</option>');
     options.push('<option value="out">Out</option>');
