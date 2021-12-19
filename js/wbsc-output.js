@@ -230,14 +230,14 @@ function drawHitSymbol(base) {
 
 // draw the actual output of selected action
 function writeSituation(output) {
+    const out = output[output_out];
+    const hit = output[output_hit];
+    const sub = output[output_sub];
+    const sup = output[output_sup];
+    const na = output[output_na];
+
     let text1 = output[output_text_1];
     let text2 = output[output_text_2];
-    let out = output[output_out];
-    let hit = output[output_hit];
-    let sub = output[output_sub];
-    let sup = output[output_sup];
-    let num = output[output_num];
-    let na = output[output_na];
     
     if (text1 === '*') {
         ctx.fillStyle = 'red';
@@ -248,7 +248,8 @@ function writeSituation(output) {
     ctx.font = 'bold 45px Verdana';
     offset = 20;
     
-    switch (output[output_base]) {
+    let base = output[output_base];
+    switch (base) {
         case 0:
             if (na) {
                 ctx.font = 'bold 20px Verdana';
@@ -318,17 +319,6 @@ function writeSituation(output) {
                 locHOffset = (text1.length - 3) * 6;
                 ctx.fillStyle = '#303030';
                 ctx.fillText(text1, w2 * 1.5 + 20 - locHOffset + hOffset, h2 + 24 + vOffset);
-                if (num) {
-                    ctx.font = 'bold 20px Verdana';
-                    ctx.strokeStyle = '#303030';
-                    ctx.fillText(window.batter, w + hOffset - 16, h2 - 4 + vOffset);
-                    
-                    ctx.lineWidth = 3;
-                    ctx.moveTo(w + hOffset - 26, h2 - 2 + vOffset);
-                    ctx.lineTo(w + hOffset - 26, h2 - 22 + vOffset);
-                    ctx.lineTo(w + hOffset - 8, h2 - 22 + vOffset);
-                    ctx.stroke();
-                }
             } else {
                 if (hit) {
                     drawHitSymbol(1);
@@ -381,17 +371,6 @@ function writeSituation(output) {
                 ctx.font = '26px Verdana';
                 ctx.fillStyle = '#303030';
                 ctx.fillText(text1, w2 + hOffset, offset + 10 + vOffset);
-                if (num) {
-                    ctx.font = 'bold 20px Verdana';
-                    ctx.strokeStyle = '#303030';
-                    ctx.fillText(window.batter, w + hOffset - 16, 26 + vOffset);
-                    
-                    ctx.lineWidth = 3;
-                    ctx.moveTo(w + hOffset - 26, 8 + vOffset);
-                    ctx.lineTo(w + hOffset - 26, 31 + vOffset);
-                    ctx.lineTo(w + hOffset - 8, 31 + vOffset);
-                    ctx.stroke();
-                }
             } else {
                 if (hit) {
                     drawHitSymbol(2);
@@ -434,6 +413,8 @@ function writeSituation(output) {
                         }
                         ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset);
                     }
+                    // if batter indicator should be displayed, put it into top-left corner
+                    base = 3;
                 } else {
                     if (text2 !== null && text2 !== undefined) {
                         row1font = 'bold 40px Verdana';
@@ -471,16 +452,6 @@ function writeSituation(output) {
                     ctx.font = 'bold 28px Verdana';
                     ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset);
                 }
-                if (num) {
-                    ctx.font = 'bold 20px Verdana';
-                    ctx.fillText(window.batter, w + hOffset - 16, 26 + vOffset);
-                    
-                    ctx.lineWidth = 3;
-                    ctx.moveTo(w + hOffset - 26, 8 + vOffset);
-                    ctx.lineTo(w + hOffset - 26, 31 + vOffset);
-                    ctx.lineTo(w + hOffset - 8, 31 + vOffset);
-                    ctx.stroke();
-                }
             }
             break;
         case 3:
@@ -492,17 +463,6 @@ function writeSituation(output) {
                 locHOffset = (text1.length - 3) * 6;
                 ctx.fillStyle = '#303030';
                 ctx.fillText(text1, w2 * 0.5 - 20 + locHOffset + hOffset, h2 - 8 + vOffset);
-                if (num) {
-                    ctx.font = 'bold 20px Verdana';
-                    ctx.strokeStyle = '#303030';
-                    ctx.fillText(window.batter, hOffset + 15, h2 + 20 + vOffset);
-                
-                    ctx.lineWidth = 3;
-                    ctx.moveTo(hOffset + 26, h2 + 2 + vOffset);
-                    ctx.lineTo(hOffset + 26, h2 + 25 + vOffset);
-                    ctx.lineTo(hOffset + 8, h2 + 25 + vOffset);
-                    ctx.stroke();
-                }
             } else {
                 if (hit) {
                     drawHitSymbol(3);
@@ -585,16 +545,6 @@ function writeSituation(output) {
                     ctx.font = 'bold 28px Verdana';
                     ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset);
                 }
-                if (num) {
-                    ctx.font = 'bold 20px Verdana';
-                    ctx.fillText(window.batter, hOffset + 15, 26 + vOffset);
-                    
-                    ctx.lineWidth = 3;
-                    ctx.moveTo(hOffset + 26, 8 + vOffset);
-                    ctx.lineTo(hOffset + 26, 31 + vOffset);
-                    ctx.lineTo(hOffset + 8, 31 + vOffset);
-                    ctx.stroke();
-                }
             }
             break;
         case 4:
@@ -626,16 +576,6 @@ function writeSituation(output) {
                 ctx.font = 'bold 28px Verdana';
                 ctx.fillText(sup, w2 * 1.5 + 2, h2 + 20 + vOffset);
             }
-            if (num) {
-                ctx.font = 'bold 20px Verdana';
-                ctx.fillText(window.batter, hOffset + 15, h2 + 20 + vOffset);
-                
-                ctx.lineWidth = 3;
-                ctx.moveTo(hOffset + 26, h2 + 2 + vOffset);
-                ctx.lineTo(hOffset + 26, h2 + 25 + vOffset);
-                ctx.lineTo(hOffset + 8, h2 + 25 + vOffset);
-                ctx.stroke();
-            }
 
             if (output[output_out] === false) {
                 const runType = output[output_run];
@@ -666,6 +606,52 @@ function writeSituation(output) {
             }
             break;
     }
+
+    if (output[output_num]) {
+        writeBatterIndicator(base);
+    }
+
+}
+
+// small boxed number in corner to indicate batting order 
+// at the moment the action occured
+function writeBatterIndicator(base) {
+    let coords = [];
+    switch (base) {
+        case 1:
+            coords.push({x: w + hOffset - 16, y: h2 -  4 + vOffset});
+            coords.push({x: w + hOffset - 26, y: h2 -  2 + vOffset});
+            coords.push({x: w + hOffset - 26, y: h2 - 22 + vOffset});
+            coords.push({x: w + hOffset -  8, y: h2 - 22 + vOffset});
+            break;
+        case 2:
+            coords.push({x: w + hOffset - 16, y: 26 + vOffset});
+            coords.push({x: w + hOffset - 26, y:  8 + vOffset});
+            coords.push({x: w + hOffset - 26, y: 31 + vOffset});
+            coords.push({x: w + hOffset -  8, y: 31 + vOffset});
+            break;
+        case 3:
+            coords.push({x: hOffset + 15, y: 26 + vOffset});
+            coords.push({x: hOffset + 26, y:  8 + vOffset});
+            coords.push({x: hOffset + 26, y: 31 + vOffset});
+            coords.push({x: hOffset +  8, y: 31 + vOffset});
+            break;
+        case 4:
+            coords.push({x: hOffset + 15, y: h2 + 20 + vOffset});
+            coords.push({x: hOffset + 26, y: h2 +  2 + vOffset});
+            coords.push({x: hOffset + 26, y: h2 + 25 + vOffset});
+            coords.push({x: hOffset +  8, y: h2 + 25 + vOffset});
+            break;
+    }
+
+    ctx.font = 'bold 20px Verdana';
+    ctx.fillText(window.batter, coords[0].x, coords[0].y);
+
+    ctx.lineWidth = 3;
+    ctx.moveTo(coords[1].x, coords[1].y);
+    ctx.lineTo(coords[2].x, coords[2].y);
+    ctx.lineTo(coords[3].x, coords[3].y);
+    ctx.stroke();
 }
 
 // processed AFTER all sitations were rendered
