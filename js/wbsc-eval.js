@@ -304,6 +304,7 @@ function processInput(input, batter) {
     output[output_out] = false;
     output[output_hit] = false;
     output[output_na] = false;
+    output[output_text_1] = ""; // to avoid undefined refference later
     
     let pos = input[input_position];
     if (pos !== null) {
