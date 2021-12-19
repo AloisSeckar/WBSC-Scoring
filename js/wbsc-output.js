@@ -586,6 +586,7 @@ function writeSituation(output) {
                         break;
                     case 'tu':
                         // the diamond is crossed
+                        ctx.beginPath();
                         ctx.moveTo(w2 + hOffset, h - h3 + vOffset);
                         ctx.lineTo(w2 + hOffset, h3 + vOffset);
                         ctx.moveTo(w - w3 + hOffset, h2 + vOffset);
@@ -653,6 +654,7 @@ function writeBatterIndicator(base) {
     ctx.fillText(window.batter, coords[0].x, coords[0].y);
 
     ctx.lineWidth = 3;
+    ctx.beginPath();
     ctx.moveTo(coords[1].x, coords[1].y);
     ctx.lineTo(coords[2].x, coords[2].y);
     ctx.lineTo(coords[3].x, coords[3].y);
@@ -684,12 +686,14 @@ function connectOutsIfNeeded() {
                         case 3:
                             startX = hOffset + h2/2;
                             startY = h - 15 + vOffsetStart;
-                            endX = hOffset + + h2/2;
+                            endX = hOffset + h2/2;
                             endY = h2 - 47 + vOffsetEnd;
                             break;
                         case 2:
-                            endX = hOffset + lineHOffset;
-                            endY = h2 / 2 + vOffsetEnd;
+                            startX += 15;
+                            startY += 15;
+                            endX = hOffset + lineHOffset + 15;
+                            endY = 37 + vOffsetEnd;
                             break;
                         case 0:
                             endX = hOffset + lineHOffset;
@@ -717,6 +721,7 @@ function connectOutsIfNeeded() {
             }
 
             ctx.lineWidth = 6;
+            ctx.beginPath();
             ctx.moveTo(startX, startY);
             ctx.lineTo(endX, endY);
             ctx.stroke();
@@ -835,7 +840,7 @@ function connectConcurrentPlaysIfNeeded() {
                         }
                         break;
                 }
-
+                
                 ctx.lineWidth = 6;
                 drawArrow(startX, startY, endX, endY);
                 drawArrow(endX, endY, startX, startY);
@@ -847,7 +852,7 @@ function connectConcurrentPlaysIfNeeded() {
 // helper function to render an arrow
 // from http://masf-html5.blogspot.com/2016/04/path-drawing-mode-lines-circles-arcs.html
 function drawArrow(fromx, fromy, tox, toy) {
-    
+
     const headlen = 10;
     const angle = Math.atan2(toy-fromy,tox-fromx);
  
