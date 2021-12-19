@@ -114,6 +114,7 @@ function processAction() {
         }
 
         connectOutsIfNeeded();
+        removeDuplicateConnectors();
         connectConcurrentPlaysIfNeeded();
 
     } else {
@@ -236,6 +237,39 @@ function checkMultipleRunnerAdvances(inputArr) {
     }
 }
 
+// helper for concurrent plays
+// in situations with mupltiple outs some of the connectors may become obsolete
+// as the situations were already bind together with multiple-out marker
+// known cases: 
+// - ahead runner out at 3rd/Home + following runner advances to 2nd/3rd + batter out
+function removeDuplicateConnectors() {
+    let runner23Out = false;
+    let runner12Advance = false;
+    let batterOut = false;
+    for (let i = 0; i < window.outs.length; i += 1) {
+        const base = window.outs[i].base;
+        if (base === 4 || base === 3) {
+            runner23Out = true;
+        }
+        if (base === 0) { 
+            batterOut = true;
+        }
+    }
+    for (let i = 0; i < window.concurrentPlays.length; i += 1) {
+        const base = window.concurrentPlays[i].base;
+        const out = window.concurrentPlays[i].out;
+        if ((base === 3 || base === 2) && !out) {
+            runner12Advance = true;
+        }
+    }
+
+    // if conditions are met, remove the first connector 
+    // (evaluation always goes from most ahead runner)
+    if (runner23Out === true && runner12Advance === true && batterOut === true) {
+        window.concurrentPlays.shift();
+    }
+}
+
 // helper to attach new part of validation message to previous contents
 function attachValidation(input, validation) {
     if (input !== '') {
@@ -250,3 +284,4 @@ function attachValidation(input, validation) {
 
     return input;
 }
+

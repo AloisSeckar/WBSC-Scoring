@@ -600,7 +600,7 @@ function processInput(input, batter) {
             }
         }
         if (notAddedYet) {
-            window.concurrentPlays.push({batter:batter, base:output[output_base]});
+            window.concurrentPlays.push({batter:batter, base:output[output_base], out:output[output_out]});
         }
     }
     
