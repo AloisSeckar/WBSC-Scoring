@@ -746,6 +746,9 @@ function connectConcurrentPlaysIfNeeded() {
                 const vOffsetEnd = (h - 8) * (end.batter - 1);
                 const out = start.out === true;
 
+                const startNa = start.na === true;
+                const endNa = end.na === true;
+
                 let startX = 0;
                 let startY = 0;
                 let endX = 0;
@@ -795,18 +798,18 @@ function connectConcurrentPlaysIfNeeded() {
                             startY = h2 * 1.5 + vOffsetStart;
                             xHOffset = h2/4;
                         } else {
-                            startY = h2 - 25 + vOffsetStart;
+                            startY = h2 - (startNa ? -5 : 25) + vOffsetStart;
                         }
                         switch (end.base) {
                             case 2:
                                 startX = hOffset + h2/2 + xHOffset;
-                                endX = hOffset + h2 + lineHOffset;
-                                endY = 25 + vOffsetEnd;
+                                endX = hOffset + h2 + (endNa ? 0 : lineHOffset);
+                                endY = (endNa ? 0 : 25) + vOffsetEnd;
                                 break;
                             case 1:
                                 startX = hOffset + h2/2 + xHOffset;
-                                endX = hOffset + h2 + lineHOffset;
-                                endY = h2 + 25 + vOffsetEnd;
+                                endX = hOffset + h2 +  (endNa ? h2/2 : lineHOffset);
+                                endY = h2 + (endNa ? -5 : 25) + vOffsetEnd;
                                 break;
                             case 0:
                                 startX = hOffset + lineHOffset;
@@ -820,8 +823,13 @@ function connectConcurrentPlaysIfNeeded() {
                             startX = hOffset + (h2 - lineHOffset);
                             startY = h2 + 45 + vOffsetStart;
                         } else {
-                            startX = hOffset + (h - lineHOffset);
-                            startY = h2 - 25 + vOffsetStart;
+                            if (startNa) {
+                                startX = hOffset + h2;
+                                startY = 45 + vOffsetStart;
+                            } else {
+                                startX = hOffset + (h - lineHOffset);
+                                startY = h2 - 25 + vOffsetStart;
+                            }
                         }
                         switch (end.base) {
                             case 1:
@@ -829,8 +837,13 @@ function connectConcurrentPlaysIfNeeded() {
                                     endX = hOffset + h2 + lineHOffset;
                                     endY = h2 + 25 + vOffsetEnd;
                                 } else {
-                                    endX = hOffset + (h - lineHOffset);
-                                    endY = h2 + 25 + vOffsetEnd;
+                                    if (startNa) {
+                                        endX = hOffset + (h - h2/2);
+                                        endY = h2 + (endNa ? -5 : 15) + vOffsetEnd;
+                                    } else {
+                                        endX = hOffset + (h - (endNa ? h2/2 : lineHOffset));
+                                        endY = h2 + (endNa ? -5 : 25) + vOffsetEnd;
+                                    }
                                 }
                                 break;
                             case 0:
