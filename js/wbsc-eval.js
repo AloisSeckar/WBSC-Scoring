@@ -209,6 +209,7 @@ function changeRunnerSpecificAction(group) {
         case 'se1':
         case 'se2':
         case 'se3':
+        case 'NADV':
             minPosItems = targetPosItems = maxPosItems = 0;
             break;
         case 'O/':
@@ -588,6 +589,10 @@ function processInput(input, batter) {
             if (!action.endsWith('F')) {
                 output[output_text_1] += action.substring(action.length - 1);
             }
+            break;
+        case 'NADV':
+            output[output_text_1] = "*";
+            output[output_base] -= 1;
             break;
     }
 

@@ -164,6 +164,7 @@ function renderRunnerActionOptions() {
     const options = [];
     options.push('<option value=""></option>');
     options.push('<option value="adv">Advanced by batter</option>');
+    options.push('<option value="nadv">No advance</option>');
     options.push('<option value="exb">Extra base</option>');
     options.push('<option value="ste">Steal / CS</option>');
     options.push('<option value="fdc">Fielder\'s choice</option>');
@@ -296,6 +297,11 @@ function renderRunnerSpecificActionOptions(action, group) {
             options.push('<option value="ADV">Advanced by batter</option>');
             options.push('</optgroup>');
             break;
+        case 'nadv':
+                options.push('<optgroup label="Runner stays">');
+                options.push('<option value="NADV">No advance</option>');
+                options.push('</optgroup>');
+                break;
         case 'exb':
             options.push('<optgroup label="Runner is safe">');
             options.push('<option value="WP">Wild pitch</option>');

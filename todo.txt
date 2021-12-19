@@ -4,12 +4,13 @@ v.09
 Flyout with bunt
 Concurrent plays
 Double and tripple play connectors
+Explicit no-advance of batter
+Help section on website
 
-Bugfixing: #35
+Bugfixing: #35, #38
 
 
 TODO
 ====
 More validations
 Obstruction and interferences
-Help section on website
