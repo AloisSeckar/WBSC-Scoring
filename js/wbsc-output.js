@@ -239,14 +239,7 @@ function writeSituation(output) {
     let text1 = output[output_text_1];
     let text2 = output[output_text_2];
     
-    if (text1 === '*') {
-        ctx.fillStyle = 'red';
-    } else {
-        ctx.fillStyle = 'black';
-    }
-    
-    ctx.font = 'bold 45px Verdana';
-    offset = 20;
+    initCtx(text1);
     
     let base = output[output_base];
     switch (base) {
@@ -611,6 +604,18 @@ function writeSituation(output) {
         writeBatterIndicator(base);
     }
 
+}
+
+// prepare ctx for drawing
+function initCtx(text) {
+    if (text === '*') {
+        ctx.fillStyle = 'red';
+    } else {
+        ctx.fillStyle = 'black';
+    }
+    
+    ctx.font = 'bold 45px Verdana';
+    offset = 20;
 }
 
 // small boxed number in corner to indicate batting order 
