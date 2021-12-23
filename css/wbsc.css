@@ -11,12 +11,20 @@ h2 {
 	margin-top: 10px;
 }
 
+h3 {
+	margin-top: 10px;
+}
+
 p {
 	padding: 0 2px;
 }
 
 label {
 	padding-right: 5px;
+}
+
+img {
+	margin-bottom: 10px;
 }
 
 .demo {
@@ -71,7 +79,8 @@ label {
 
 .wbsc-paragraph {
 	text-align: justify;
-	padding-bottom: 40px;
+	padding-top: 10px;
+	padding-bottom: 30px;
 	font-size: 14px;
 }
 
