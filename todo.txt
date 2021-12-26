@@ -1,6 +1,7 @@
 v.09
 ====
 
+Obstruction and interferences
 Flyout with bunt
 Concurrent plays
 Double and tripple play connectors
@@ -13,4 +14,3 @@ Bugfixing: #35, #38
 TODO
 ====
 More validations
-Obstruction and interferences

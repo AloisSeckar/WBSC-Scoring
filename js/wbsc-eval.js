@@ -60,6 +60,7 @@ function changeBatterSpecificAction() {
         case 'KL':
         case 'KLWP':
         case 'KLPB':
+        case 'INT':
         case 'OBR1_':
         case 'OBR2_':
         case 'OBR3_':
@@ -85,6 +86,7 @@ function changeBatterSpecificAction() {
         case 'O':
         case 'ED':
         case 'EDF':
+        case 'OB':
         case 'SHEF':
         case 'SF':
         case 'SFE':
@@ -214,6 +216,7 @@ function changeRunnerSpecificAction(group) {
             break;
         case 'O/':
         case 'POE':
+        case 'ob':
         case 'OBR9_':
         case 'OBR11_':
         case 'OBR12_':
@@ -448,6 +451,10 @@ function processInput(input, batter) {
                 output[output_text_2] += action.substring(3);
             }
             break;
+        case 'INT':
+            output[output_base] = 1;
+            output[output_text_1] = action;
+            break;
         case '2B':
         case '2BG':
             output[output_base] = 2;
@@ -530,6 +537,8 @@ function processInput(input, batter) {
             output[output_num] = true;
             possibleConcurrentPlay = true;
         case 'T':
+        case 'OB':
+        case 'ob':
             output[output_text_1] = action + pos;
             break;
         case 'CSO':

@@ -255,6 +255,8 @@ function renderBatterSpecificActionOptions(action) {
             options.push('<option value="ET">Throwing error</option>');
             options.push('<option value="ED">Dropped fly</option>');
             options.push('<option value="EDF">Dropped foul</option>');
+            options.push('<option value="INT">Catcher\'s interference</option>');
+            options.push('<option value="OB">Obstruction</option>');
             options.push('</optgroup>');
             break;
         case 'Advance':
@@ -348,6 +350,7 @@ function renderRunnerSpecificActionOptions(action, group) {
             }
             options.push('<option value="ENF">Decessive fielding (no advance)</option>');
             options.push('<option value="ENT">Decessive throwing (no advance)</option>');
+            options.push('<option value="ob">Obstruction</option>');
             options.push('</optgroup>');
             break;
         case 'out':
