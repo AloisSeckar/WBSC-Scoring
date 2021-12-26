@@ -18,58 +18,59 @@ function processAction() {
     const r3Input = getInput(input_r3);
     
     let playersInvolved = 0;
-    let validation = '';
+    const inputs = [];
     
     if (bInput !== null) {
         playersInvolved += 1;
-        validation += attachValidation(validation, bInput[input_validation]);
+        inputs.push(bInput);
     }
     
     const extraBatterInput = [];
     if (b1Input !== null) {
-        validation += attachValidation(validation, b1Input[input_validation]);
+        inputs.push(b1Input);
         extraBatterInput.push(b1Input);
     }
     if (b2Input !== null) {
-        validation += attachValidation(validation, b2Input[input_validation]);
+        inputs.push(b2Input);
         extraBatterInput.push(b2Input);
     }
     if (b3Input !== null) {
-        validation += attachValidation(validation, b3Input[input_validation]);
+        inputs.push(b3Input);
         extraBatterInput.push(b3Input);
     }
     
     if (r1Input !== null) {
         playersInvolved += 1;
-        validation += attachValidation(validation, r1Input[input_validation]);
+        inputs.push(r1Input);
     }
     
     const extraR1Input = [];
     if (r1aInput !== null) {
-        validation += attachValidation(validation, r1aInput[input_validation]);
+        inputs.push(r1aInput);
         extraR1Input.push(r1aInput);
     }
     if (r1bInput !== null) {
-        validation += attachValidation(validation, r1bInput[input_validation]);
+        inputs.push(r1bInput);
         extraR1Input.push(r1bInput);
     }
     
     if (r2Input !== null) {
         playersInvolved += 1;
-        validation += attachValidation(validation, r2Input[input_validation]);
+        inputs.push(r2Input);
     }
     
     const extraR2Input = [];
     if (r2aInput !== null) {
-        validation += attachValidation(validation, r2aInput[input_validation]);
+        inputs.push(r2aInput);
         extraR2Input.push(r2aInput);
     }
-    
+  
     if (r3Input !== null) {
         playersInvolved += 1;
-        validation += attachValidation(validation, r3Input[input_validation]);
+        inputs.push(r3Input);
     }
     
+    const validation = checkUserInput(inputs);
     if (validation === '') {
         const inputArr = [r3Input, r2aInput, r2Input, r1bInput, r1aInput, r1Input];
         checkMultipleRunnerAdvances(inputArr);
@@ -187,36 +188,9 @@ function getInput(group) {
         values[input_base] = getBaseSelection(group);
         values[input_runtype] = getRunTypeSelection(group);
         values[input_position] = getPosSelection(group);
-        values[input_validation] = checkPosSelection(values[input_position]);
     }
     
     return values;
-}
-
-// validates given 'involved' sequence
-function checkPosSelection(selection) {
-    let validation = '';
-
-    if (selection.length > 1) {
-        if (!selection.endsWith('LL') && selection[selection.length - 2] === selection[selection.length - 1]) {
-            validation = 'A player cannot assist directly to self';
-        }
-    }
-    if (selection.length > 2) {
-        let alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false];
-        for (let i = 0; i < selection.length - 1; i += 1) {
-            if (alreadyEncounteredPositions[selection.substr(i, 1)] === true) {
-                if (validation !== '') {
-                    validation += '\n- ';
-                }
-                validation += 'A player cannot have more than 1 assist in a play';
-                break;
-            }
-            alreadyEncounteredPositions[selection.substr(i, 1)] = true;
-        }
-    }
-
-    return validation;
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/10
@@ -268,20 +242,5 @@ function removeDuplicateConnectors() {
     if (runner23Out === true && runner12Advance === true && batterOut === true) {
         window.concurrentPlays.shift();
     }
-}
-
-// helper to attach new part of validation message to previous contents
-function attachValidation(input, validation) {
-    if (input !== '') {
-        input += '\n';
-    }
-
-    if (validation !== '') {
-        input += '- ';
-    }
-
-    input += validation;
-
-    return input;
 }
 
