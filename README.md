@@ -1,6 +1,6 @@
 # WBSC Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system.
-Live demo (currently v0.9) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/). Reffer to [manual](http://alois-seckar.cz/wbsc/help.html) to get usage instructions.
+Live demo (currently v0.91) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/). Reffer to [manual](http://alois-seckar.cz/wbsc/help.html) to get usage instructions.
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
 
 ## TO-DO list (to be implemented in next few releases)
@@ -19,6 +19,10 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 0.91 (2021-12-27)
+- Bugfixing - GitHub issues #42
+- GitHub Actions auto-deployment
 
 ### Version 0.9 (2021-12-27)
 - New actions supported: OB/ob - obstruction, INT - interference, F.B/FF.B - flyout with bunt, explicit 'no-advance' of runner
