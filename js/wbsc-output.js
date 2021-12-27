@@ -151,7 +151,7 @@ function drawConnector(base1, base2) {
         ctx.lineWidth = 5;
         ctx.strokeStyle = 'black';
         
-        let gap = 16;
+        let gap = 13;
         let length = 35;
         let arc = 20;
         
