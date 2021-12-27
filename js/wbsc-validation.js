@@ -17,6 +17,7 @@ function checkUserInput(inputs) {
 
     // 2) validations over all inputs
     validation = attachValidation(validation, checkMaxOuts(inputs));
+    validation = attachValidation(validation, checkOutcome(inputs));
     
     return validation;
 }
@@ -66,9 +67,44 @@ function checkMaxOuts(inputs) {
 
 // runner cannot overtake his precessor
 // runners cannot end on the same base
+// when the runner is out, he cannot advance further
 function checkOutcome(inputs) {
-    // TODO
-    return '';
+    let validation = '';
+
+    let lastOrigBase = -1;
+    let playerWasOut = false;
+    let reachedBases = [];
+
+    for (let i = 0; i < inputs.length; i += 1) {
+        if (lastOrigBase === inputs[i]) {
+            if (inputs[i][output_out]) {
+                if (playerWasOut) {
+                    validation = attachValidation(validation, 'One player cannot be out more than once');
+                } else {
+                    playerWasOut = true;
+                }
+            }
+        } else {
+            lastOrigBase = inputs[i][input_origBase];
+            playerWasOut = inputs[i][output_out];
+            reachedBases.push(inputs[i][output_base]);
+        }
+    }
+
+    for (let i = 0; i < reachedBases.length - 1; i += 1) {
+        const reachedBase1 = reachedBases[i];
+        const reachedBase2 = reachedBases[i+1];
+
+        if (reachedBase2 > reachedBase1) {
+            validation = attachValidation(validation, 'Player cannot pass another runner');
+        }
+        
+        if (reachedBase1 !== 4 && reachedBase1 === reachedBase2) {
+            validation = attachValidation(validation, 'Two players cannot finish on the same base');
+        }
+    }
+    
+    return validation;
 }
 
 // helper to attach new part of validation message to previous contents

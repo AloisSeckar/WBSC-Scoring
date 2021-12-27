@@ -6,7 +6,8 @@ Flyout with bunt
 Concurrent plays
 Double and tripple play connectors
 Explicit no-advance of batter
-Help section on website
+Help section on websit
+Basic validations
 
 Bugfixing: #35, #38
 
