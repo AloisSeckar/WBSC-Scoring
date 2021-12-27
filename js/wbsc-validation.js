@@ -52,11 +52,13 @@ function checkMaxOuts(inputs) {
     let outs = 0;
 
     for (let i = 0; i < inputs.length; i += 1) {
-        // TODO
+        if (inputs[i][output_out] === true) {
+            outs++;
+        }
     }
 
     if (outs > 3) {
-        return 'A player cannot have more than 1 assist in a play';
+        return 'There cannot be more than 3 outs in one play';
     } else {
         return '';
     }
