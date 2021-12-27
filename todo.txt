@@ -2,6 +2,7 @@ v.0.10
 ====
 
 Features:
+- GitHub Actions auto-deployment
 
 Bugfixing:
 
