@@ -496,13 +496,13 @@ function processInput(input, batter) {
         case 'bk':
         case 'IP':
         case 'ip':
-            input[output_text_1] = action + window.batter;
+            input[output_text_1] = action + '#b#';
             break;
         case 'ADV':
-            input[output_text_1] = window.batter;
+            input[output_text_1] = '#b#';
             break;
         case 'se0':
-            input[output_text_1] = '(' + window.batter + ')' ;
+            input[output_text_1] = '(' + '#b#' + ')' ;
             break;
         case 'se1':
             battingOrder = 1;

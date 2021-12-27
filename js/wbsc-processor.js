@@ -100,6 +100,13 @@ function processAction() {
             window.batter = playersInvolved;
         }
 
+        // current batter is not known in the time of input evaluation (we don't forsee number of players involved)
+        // therefore placeholder is being used and here is replaced with actual number
+        for (let i = 0; i < inputs.length; i += 1) {
+            inputs[i][output_text_1] = inputs[i][output_text_1].replace('#b#', window.batter);
+        }
+
+        // render situations one by one
         let displayed = 0;
         if (r3Input !== null) {
             r3Input[input_origBase] = 3;
