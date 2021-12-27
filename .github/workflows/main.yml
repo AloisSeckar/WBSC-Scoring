@@ -17,6 +17,7 @@ jobs:
         username: w115172
         password: ${{ secrets.ftp_password }}
         server-dir: www/wbsc/
+        state-name: .ftp-sync.json
         exclude: |
           **/.git*
           **/.git*/**
