@@ -33,8 +33,6 @@ function processAction() {
     // runner 2
     if (r2Input !== null) {
         playersInvolved += 1;
-        processInput(r2Input, playersInvolved);
-        inputs.push(r2Input);
     }
     const extraR2Input = [];
     if (r2aInput !== null) {
@@ -42,46 +40,54 @@ function processAction() {
         inputs.push(r2aInput);
         extraR2Input.push(r2aInput);
     }
+    if (r2Input !== null) {
+        processInput(r2Input, playersInvolved);
+        inputs.push(r2Input);
+    }
 
     // runner 1
     if (r1Input !== null) {
         playersInvolved += 1;
-        processInput(r1Input, playersInvolved);
-        inputs.push(r1Input);
     }
     const extraR1Input = [];
-    if (r1aInput !== null) {
-        processInput(r1aInput, playersInvolved);
-        inputs.push(r1aInput);
-        extraR1Input.push(r1aInput);
-    }
     if (r1bInput !== null) {
         processInput(r1bInput, playersInvolved);
         inputs.push(r1bInput);
         extraR1Input.push(r1bInput);
     }
+    if (r1aInput !== null) {
+        processInput(r1aInput, playersInvolved);
+        inputs.push(r1aInput);
+        extraR1Input.push(r1aInput);
+    }
+    if (r1Input !== null) {
+        processInput(r1Input, playersInvolved);
+        inputs.push(r1Input);
+    }
 
     // batter
     if (bInput !== null) {
         playersInvolved += 1;
-        processInput(bInput, playersInvolved);
-        inputs.push(bInput);
     }
     const extraBatterInput = [];
-    if (b1Input !== null) {
-        processInput(b1Input, playersInvolved);
-        inputs.push(b1Input);
-        extraBatterInput.push(b1Input);
+    if (b3Input !== null) {
+        processInput(b3Input, playersInvolved);
+        inputs.push(b3Input);
+        extraBatterInput.push(b3Input);
     }
     if (b2Input !== null) {
         processInput(b2Input, playersInvolved);
         inputs.push(b2Input);
         extraBatterInput.push(b2Input);
     }
-    if (b3Input !== null) {
-        processInput(b3Input, playersInvolved);
-        inputs.push(b3Input);
-        extraBatterInput.push(b3Input);
+    if (b1Input !== null) {
+        processInput(b1Input, playersInvolved);
+        inputs.push(b1Input);
+        extraBatterInput.push(b1Input);
+    }
+    if (bInput !== null) {
+        processInput(bInput, playersInvolved);
+        inputs.push(bInput);
     }
     
     const validation = checkUserInput(inputs);

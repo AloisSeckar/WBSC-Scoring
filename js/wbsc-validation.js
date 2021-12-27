@@ -12,6 +12,7 @@ function checkUserInput(inputs) {
 
     // 1) validations to be run over each input separately
     for (let i = 0; i < inputs.length; i += 1) {
+        console.log(inputs[i]);
         validation = attachValidation(validation, checkPosSelection(inputs[i][input_position]));
     }
 
@@ -67,25 +68,32 @@ function checkMaxOuts(inputs) {
 
 // runner cannot overtake his precessor
 // runners cannot end on the same base
+// extra actions for same runner must happen in order
 // when the runner is out, he cannot advance further
 function checkOutcome(inputs) {
     let validation = '';
 
-    let lastOrigBase = -1;
+    let currentPlayer = -1;
     let playerWasOut = false;
     let reachedBases = [];
 
     for (let i = 0; i < inputs.length; i += 1) {
-        if (lastOrigBase === inputs[i]) {
+        if (currentPlayer === inputs[i][output_player]) {
             if (inputs[i][output_out]) {
                 if (playerWasOut) {
                     validation = attachValidation(validation, 'One player cannot be out more than once');
                 } else {
                     playerWasOut = true;
+                    validation = attachValidation(validation, 'Player cannot advance further after being out');
                 }
             }
+            const maxReachedBase = reachedBases[reachedBases.length - 1];
+            const currentReachedBase = inputs[i][output_base];
+            if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && inputs[i][output_na] === false)) {
+                validation = attachValidation(validation, 'Extra advances of one player must happen in order');
+            }
         } else {
-            lastOrigBase = inputs[i][input_origBase];
+            currentPlayer = inputs[i][output_player];
             playerWasOut = inputs[i][output_out];
             reachedBases.push(inputs[i][output_base]);
         }
