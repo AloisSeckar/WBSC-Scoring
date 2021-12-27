@@ -16,7 +16,7 @@ jobs:
         server: 115172.w72.wedos.net
         username: w115172
         password: ${{ secrets.ftp_password }}
-        server-dir: www/wbsc
+        server-dir: www/wbsc/
         exclude: |
           **/.git*
           **/.git*/**
