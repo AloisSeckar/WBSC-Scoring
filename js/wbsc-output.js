@@ -24,12 +24,11 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
         renderAdvance(prevOutput);
     }
     
-    const output = processInput(mainInput, battingOrder);
-    if (output[output_out] === true) {
-        renderOut(output);
-        window.outs.push({batter:battingOrder, base:output[output_base]})
+    if (mainInput[output_out] === true) {
+        renderOut(mainInput);
+        window.outs.push({batter:battingOrder, base:mainInput[output_base]})
     } else {
-        renderAdvance(output);
+        renderAdvance(mainInput);
         
         if (extraInput !== null) {
             for (i = 0; i < extraInput.length; i += 1) {

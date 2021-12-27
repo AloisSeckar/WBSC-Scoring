@@ -298,16 +298,14 @@ function changeBase(group) {
     runTypeSelect.disabled = baseSelectValue !== '4';
 }
 
-// transform user's input into output instructions
+// enhance user's input with output instructions
 function processInput(input, batter) {
-    let output = [];
-    
-    output[output_base] = parseInt(input[input_base]);
-    output[output_run] = input[input_runtype];
-    output[output_out] = false;
-    output[output_hit] = false;
-    output[output_na] = false;
-    output[output_text_1] = ""; // to avoid undefined refference later
+    input[output_base] = parseInt(input[input_base]);
+    input[output_run] = input[input_runtype];
+    input[output_out] = false;
+    input[output_hit] = false;
+    input[output_na] = false;
+    input[output_text_1] = ""; // to avoid undefined refference later
     
     let pos = input[input_position];
     if (pos !== null) {
@@ -325,19 +323,19 @@ function processInput(input, batter) {
     const action = input[input_spec_action];
     switch (action) {
         case 'EDF':
-            output[output_base] = 0;
-            output[output_text_1] = 'E' + pos + ' DF';
-            output[output_na] = true;
+            input[output_base] = 0;
+            input[output_text_1] = 'E' + pos + ' DF';
+            input[output_na] = true;
             break;
         case 'KSO':
         case 'KLO':
-            output[output_text_2] = pos;
+            input[output_text_2] = pos;
         case 'KS':
         case 'KL':
-            output[output_base] = 0;
-            output[output_text_1] = action.substring(0, 2);
-            output[output_sub] = '1';
-            output[output_out] = true;
+            input[output_base] = 0;
+            input[output_text_1] = action.substring(0, 2);
+            input[output_sub] = '1';
+            input[output_out] = true;
             possibleConcurrentPlay = true;
             break;
         case 'F':
@@ -348,9 +346,9 @@ function processInput(input, batter) {
         case 'FL':
         case 'IF':
         case 'SF':
-            output[output_base] = 0;
-            output[output_text_1] = action + pos;
-            output[output_out] = true;
+            input[output_base] = 0;
+            input[output_text_1] = action + pos;
+            input[output_out] = true;
             break;
         case 'FB':
         case 'FFB':
@@ -358,133 +356,133 @@ function processInput(input, batter) {
             if (action.includes('FF')) {
                 pref += 'F';
             }
-            output[output_text_1] = pref + pos + 'B';
-            output[output_base] = 0;
-            output[output_out] = true;
+            input[output_text_1] = pref + pos + 'B';
+            input[output_base] = 0;
+            input[output_out] = true;
             break;
         case 'SH':
         case 'FSF':
-            output[output_text_2] = pos;
+            input[output_text_2] = pos;
         case 'LT':
-            output[output_base] = 0;
-            output[output_text_1] = action;
-            output[output_out] = true;
+            input[output_base] = 0;
+            input[output_text_1] = action;
+            input[output_out] = true;
             break;
         case 'OBR1_':
         case 'OBR2_':
         case 'OBR3_':
         case 'OBR4_':
         case 'OBR6_':
-            output[output_base] = 0;
-            output[output_text_1] = 'OBR';
+            input[output_base] = 0;
+            input[output_text_1] = 'OBR';
             if (action.includes('2')) {
-                output[output_text_2] = 'KS';
-                output[output_sub] = '1';
+                input[output_text_2] = 'KS';
+                input[output_sub] = '1';
             } else {
-                output[output_text_2] = '2';
+                input[output_text_2] = '2';
             }
-            output[output_out] = true;
-            output[output_sup] = action.substring(3, action.indexOf('_'));
+            input[output_out] = true;
+            input[output_sup] = action.substring(3, action.indexOf('_'));
             break;
         case 'OBR5_':    
         case 'OBR8_':
         case 'OBR14_':
-            output[output_base] = 0;
-            output[output_text_1] = 'OBR';
+            input[output_base] = 0;
+            input[output_text_1] = 'OBR';
             if (pos === '') {
-                output[output_text_2] = '2';
+                input[output_text_2] = '2';
             } else {
-                output[output_text_2] = pos;
+                input[output_text_2] = pos;
             }
-            output[output_out] = true;
-            output[output_sup] = action.substring(3, action.indexOf('_'));
+            input[output_out] = true;
+            input[output_sup] = action.substring(3, action.indexOf('_'));
             break;
         case '1B':
         case '1BB':
-            output[output_base] = 1;
-            output[output_text_1] = pos;
+            input[output_base] = 1;
+            input[output_text_1] = pos;
             if (action.endsWith('BB')) {
-                output[output_text_1] += 'B';
+                input[output_text_1] += 'B';
             }
-            output[output_hit] = true;
+            input[output_hit] = true;
             break;
         case 'O':
         case 'FC':
-            output[output_base] = 1;
-            output[output_text_1] = action + pos;
+            input[output_base] = 1;
+            input[output_text_1] = action + pos;
             break;
         case 'KSWP':
         case 'KSPB':
         case 'KLWP':
         case 'KLPB':
-            output[output_base] = 1;
-            output[output_text_1] = action.substring(0, 2);
-            output[output_text_2] = action.substring(2);
-            output[output_sub] = '1';
+            input[output_base] = 1;
+            input[output_text_1] = action.substring(0, 2);
+            input[output_text_2] = action.substring(2);
+            input[output_sub] = '1';
             possibleConcurrentPlay = true;
             break;
         case 'KSFC':    
         case 'KLFC':
-            output[output_sub] = '1';
+            input[output_sub] = '1';
             possibleConcurrentPlay = true;
         case 'SHFC':
         case 'SFO':
-            output[output_base] = 1;
-            output[output_text_1] = action.substring(0, 2);
-            output[output_text_2] = action.substring(2) + pos;
+            input[output_base] = 1;
+            input[output_text_1] = action.substring(0, 2);
+            input[output_text_2] = action.substring(2) + pos;
             break;
         case 'KSET':
         case 'KSE':
         case 'KLET':
         case 'KLE':
-            output[output_sub] = '1';
+            input[output_sub] = '1';
             possibleConcurrentPlay = true;
         case 'SHE':
         case 'SHET':
         case 'SHEF':
         case 'SFE':
         case 'SFO':
-            output[output_base] = 1;
-            output[output_text_1] = action.substring(0, 2);
-            output[output_text_2] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
+            input[output_base] = 1;
+            input[output_text_1] = action.substring(0, 2);
+            input[output_text_2] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
             if (action.length > 3) {
-                output[output_text_2] += action.substring(3);
+                input[output_text_2] += action.substring(3);
             }
             break;
         case 'INT':
-            output[output_base] = 1;
-            output[output_text_1] = action;
+            input[output_base] = 1;
+            input[output_text_1] = action;
             break;
         case '2B':
         case '2BG':
-            output[output_base] = 2;
-            output[output_text_1] = pos;
+            input[output_base] = 2;
+            input[output_text_1] = pos;
             if (action.endsWith('G')) {
-                output[output_text_2] = 'GR';
+                input[output_text_2] = 'GR';
             }
-            output[output_hit] = true;
+            input[output_hit] = true;
             break;
         case '3B':
-            output[output_base] = 3;
-            output[output_text_1] = pos;
-            output[output_hit] = true;
+            input[output_base] = 3;
+            input[output_text_1] = pos;
+            input[output_hit] = true;
             break;
         case 'HR':
         case 'IHR':
-            output[output_base] = 4;
-            output[output_text_1] = action;
-            output[output_text_2] = pos;
-            output[output_hit] = true;
+            input[output_base] = 4;
+            input[output_text_1] = action;
+            input[output_text_2] = pos;
+            input[output_hit] = true;
             break;
         case 'BB1':
         case 'IBB1':
-            output[output_sub] = '1';
+            input[output_sub] = '1';
         case 'HP':
-            output[output_base] = 1;
+            input[output_base] = 1;
             if (action.length > 2) {
-                output[output_text_1] = action.substring(0, action.length - 1);
+                input[output_text_1] = action.substring(0, action.length - 1);
             } else {
-                output[output_text_1] = action;
+                input[output_text_1] = action;
             }
             possibleConcurrentPlay = true;
             break;
@@ -498,75 +496,75 @@ function processInput(input, batter) {
         case 'bk':
         case 'IP':
         case 'ip':
-            output[output_text_1] = action + window.batter;
+            input[output_text_1] = action + window.batter;
             break;
         case 'ADV':
-            output[output_text_1] = window.batter;
+            input[output_text_1] = window.batter;
             break;
         case 'se0':
-            output[output_text_1] = '(' + window.batter + ')' ;
+            input[output_text_1] = '(' + window.batter + ')' ;
             break;
         case 'se1':
             battingOrder = 1;
             battingOrder += document.getElementById(input_r2) !== null ? 1 : 0;
             battingOrder += document.getElementById(input_r3) !== null ? 1 : 0;
-            output[output_text_1] = '(' + battingOrder + ')' ;
+            input[output_text_1] = '(' + battingOrder + ')' ;
             break;
         case 'se2':
             battingOrder = 1;
             battingOrder += document.getElementById(input_r3) !== null ? 1 : 0;
-            output[output_text_1] = '(' + battingOrder + ')' ;
+            input[output_text_1] = '(' + battingOrder + ')' ;
         case 'se3':
-            output[output_text_1] = '(1)' ;
+            input[output_text_1] = '(1)' ;
             break;
         case 'GO':
         case 'GOB':
         case 'A':
-            if (output[output_base] === 1) {
-                output[output_base] = 0;
+            if (input[output_base] === 1) {
+                input[output_base] = 0;
             }
-            output[output_text_1] = pos;
+            input[output_text_1] = pos;
             if (action.startsWith('A')) {
-                output[output_text_1] = 'A' + pos;
+                input[output_text_1] = 'A' + pos;
             } else if (action.endsWith('B')) {
-                output[output_text_1] += 'B';
+                input[output_text_1] += 'B';
             }
-            output[output_out] = true;
+            input[output_out] = true;
             break;
         case 'O/':
-            output[output_num] = true;
+            input[output_num] = true;
             possibleConcurrentPlay = true;
         case 'T':
         case 'OB':
         case 'ob':
-            output[output_text_1] = action + pos;
+            input[output_text_1] = action + pos;
             break;
         case 'CSO':
         case 'PO':
-            output[output_text_1] = action.substring(0, 2);
-            output[output_text_2] = pos;
-            output[output_out] = true;
-            output[output_num] = true;
+            input[output_text_1] = action.substring(0, 2);
+            input[output_text_2] = pos;
+            input[output_out] = true;
+            input[output_num] = true;
             possibleConcurrentPlay = true;
             break;
         case 'CSN':
         case 'CSNT':
-            output[output_na] = true;
-            output[output_base] -= 1;
+            input[output_na] = true;
+            input[output_base] -= 1;
         case 'CSE':
         case 'CSET':
-            output[output_text_1] = action.substring(0, 2);
-            output[output_text_2] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
+            input[output_text_1] = action.substring(0, 2);
+            input[output_text_2] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
             if (action.endsWith('T')) {
-                output[output_text_2] += 'T';
+                input[output_text_2] += 'T';
             }
-            output[output_num] = true;
+            input[output_num] = true;
             possibleConcurrentPlay = true;
             break;
         case 'POE':
-            output[output_text_1] = action.substring(0, 2);
-            output[output_text_2] = 'e' + pos + 'T';
-            output[output_num] = true;
+            input[output_text_1] = action.substring(0, 2);
+            input[output_text_2] = 'e' + pos + 'T';
+            input[output_num] = true;
             possibleConcurrentPlay = true;
             break;
         case 'OBR7_':
@@ -576,33 +574,33 @@ function processInput(input, batter) {
         case 'OBR12_':
         case 'OBR13_':
         case 'OBR15_':
-            output[output_text_1] = 'OBR';
+            input[output_text_1] = 'OBR';
             if (action.includes('7')) {
-                output[output_text_2] = '2';
+                input[output_text_2] = '2';
             } else {
-                output[output_text_2] = pos;
+                input[output_text_2] = pos;
             }
-            output[output_out] = true;
-            output[output_sup] = action.substring(3, action.indexOf('_'));
+            input[output_out] = true;
+            input[output_sup] = action.substring(3, action.indexOf('_'));
             break;
         case 'ENT':
         case 'ENF':
-                output[output_na] = true;
-                output[output_base] -= 1;
+                input[output_na] = true;
+                input[output_base] -= 1;
         case 'EF':
         case 'ET':
         case 'EM':
         case 'ED':
         case 'eF':
         case 'eT':
-            output[output_text_1] = pos.substring(0, pos.length - 1) + action.substring(0, 1) + pos.substring(pos.length - 1);
+            input[output_text_1] = pos.substring(0, pos.length - 1) + action.substring(0, 1) + pos.substring(pos.length - 1);
             if (!action.endsWith('F')) {
-                output[output_text_1] += action.substring(action.length - 1);
+                input[output_text_1] += action.substring(action.length - 1);
             }
             break;
         case 'NADV':
-            output[output_text_1] = "*";
-            output[output_base] -= 1;
+            input[output_text_1] = "*";
+            input[output_base] -= 1;
             break;
     }
 
@@ -615,9 +613,7 @@ function processInput(input, batter) {
             }
         }
         if (notAddedYet) {
-            window.concurrentPlays.push({batter:batter, base:output[output_base], out:output[output_out], na:output[output_na]});
+            window.concurrentPlays.push({batter:batter, base:input[output_base], out:input[output_out], na:input[output_na]});
         }
     }
-    
-    return output;
 }

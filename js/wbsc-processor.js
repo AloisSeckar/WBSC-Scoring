@@ -19,55 +19,69 @@ function processAction() {
     
     let playersInvolved = 0;
     const inputs = [];
-    
-    if (bInput !== null) {
+        
+    window.outs = [];
+    window.concurrentPlays = [];
+
+    // runner 3
+    if (r3Input !== null) {
         playersInvolved += 1;
-        inputs.push(bInput);
+        processInput(r3Input, playersInvolved);
+        inputs.push(r3Input);
     }
     
-    const extraBatterInput = [];
-    if (b1Input !== null) {
-        inputs.push(b1Input);
-        extraBatterInput.push(b1Input);
+    // runner 2
+    if (r2Input !== null) {
+        playersInvolved += 1;
+        processInput(r2Input, playersInvolved);
+        inputs.push(r2Input);
     }
-    if (b2Input !== null) {
-        inputs.push(b2Input);
-        extraBatterInput.push(b2Input);
+    const extraR2Input = [];
+    if (r2aInput !== null) {
+        processInput(r2aInput, playersInvolved);
+        inputs.push(r2aInput);
+        extraR2Input.push(r2aInput);
     }
-    if (b3Input !== null) {
-        inputs.push(b3Input);
-        extraBatterInput.push(b3Input);
-    }
-    
+
+    // runner 1
     if (r1Input !== null) {
         playersInvolved += 1;
+        processInput(r1Input, playersInvolved);
         inputs.push(r1Input);
     }
-    
     const extraR1Input = [];
     if (r1aInput !== null) {
+        processInput(r1aInput, playersInvolved);
         inputs.push(r1aInput);
         extraR1Input.push(r1aInput);
     }
     if (r1bInput !== null) {
+        processInput(r1bInput, playersInvolved);
         inputs.push(r1bInput);
         extraR1Input.push(r1bInput);
     }
-    
-    if (r2Input !== null) {
+
+    // batter
+    if (bInput !== null) {
         playersInvolved += 1;
-        inputs.push(r2Input);
+        processInput(bInput, playersInvolved);
+        inputs.push(bInput);
     }
-    
-    const extraR2Input = [];
-    if (r2aInput !== null) {
-        inputs.push(r2aInput);
-        extraR2Input.push(r2aInput);
+    const extraBatterInput = [];
+    if (b1Input !== null) {
+        processInput(b1Input, playersInvolved);
+        inputs.push(b1Input);
+        extraBatterInput.push(b1Input);
     }
-  
-    if (r3Input !== null) {
-        playersInvolved += 1;
-        inputs.push(r3Input);
+    if (b2Input !== null) {
+        processInput(b2Input, playersInvolved);
+        inputs.push(b2Input);
+        extraBatterInput.push(b2Input);
+    }
+    if (b3Input !== null) {
+        processInput(b3Input, playersInvolved);
+        inputs.push(b3Input);
+        extraBatterInput.push(b3Input);
     }
     
     const validation = checkUserInput(inputs);
@@ -85,9 +99,6 @@ function processAction() {
         } else {
             window.batter = playersInvolved;
         }
-        
-        window.outs = [];
-        window.concurrentPlays = [];
 
         let displayed = 0;
         if (r3Input !== null) {
