@@ -300,6 +300,7 @@ function changeBase(group) {
 
 // enhance user's input with output instructions
 function processInput(input, batter) {
+    input[output_player] = batter;
     input[output_base] = parseInt(input[input_base]);
     input[output_run] = input[input_runtype];
     input[output_out] = false;
