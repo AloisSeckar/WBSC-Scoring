@@ -1,17 +1,15 @@
-v.09
+v.0.10
 ====
 
-Obstruction and interferences
-Flyout with bunt
-Concurrent plays
-Double and tripple play connectors
-Explicit no-advance of batter
-Help section on websit
-Basic validations
+Features:
 
-Bugfixing: #35, #38
+Bugfixing:
 
 
 TODO
 ====
-More validations
+Grounded into double-play situation (#31)
+Fix errors with multi-base advances (#30)
+Output generation refactoring (unify font-sizes - #39, #41)
+More input validations
+Bugfixing and output corrections

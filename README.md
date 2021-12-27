@@ -1,16 +1,14 @@
-# WBSC Scoring
-Visualisation tool for WBSC scoring system
-
-Live demo (currently v0.8) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/)
-
+# WBSC Scoring Creator
+JavaScript-based visualisation tool for WBSC scoring system.
+Live demo (currently v0.9) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/). Reffer to [manual](http://alois-seckar.cz/wbsc/help.html) to get usage instructions.
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
 
 ## TO-DO list (to be implemented in next few releases)
+- Grounded into double-play situation (#31)
+- Fix errors with multi-base advances (#30)
+- Output generation refactoring (unify font-sizes - #39, #41)
 - More input validations
-- Obstruction and interference
-- Double and Triple plays
-- Concurrent plays
-- Help section on website
+- Bugfixing and output corrections
 
 ## Limitations (not planned to be implemented soon)
 - It is not possible to specify actions leading to runners appearing on bases (except TIE)
@@ -21,6 +19,14 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 0.9 (2021-12-27)
+- New actions supported: OB/ob - obstruction, INT - interference, F.B/FF.B - flyout with bunt, explicit 'no-advance' of runner
+- Double and tripple play connectors
+- Concurrent plays (e.g. double-steal) connectors
+- Help section on website
+- Validations (refactoring + couple of new input validations)
+- Bugfixing - GitHub issues #35, #38
 
 ### Version 0.8 (2021-04-01)
 - Same error advances
