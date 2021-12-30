@@ -253,8 +253,10 @@ function renderBatterSpecificActionOptions(action) {
             options.push('<optgroup label="Batter is safe">');
             options.push('<option value="EF">Fielding error</option>');
             options.push('<option value="ET">Throwing error</option>');
-            options.push('<option value="ED">Dropped fly</option>');
-            options.push('<option value="EDF">Dropped foul</option>');
+            options.push('<option value="EDF">Dropped fly</option>');
+            options.push('<option value="EDL">Dropped fly - line</option>');
+            options.push('<option value="EDP">Dropped fly - pop</option>');
+            options.push('<option value="EDFB">Dropped foul</option>');
             options.push('<option value="INT">Catcher\'s interference</option>');
             options.push('<option value="OB">Obstruction</option>');
             options.push('</optgroup>');

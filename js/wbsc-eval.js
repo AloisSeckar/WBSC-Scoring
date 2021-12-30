@@ -84,8 +84,10 @@ function changeBatterSpecificAction() {
         case 'KSFC':
         case 'KLFC':
         case 'O':
-        case 'ED':
         case 'EDF':
+        case 'EDL':
+        case 'EDP':
+        case 'EDFB':
         case 'OB':
         case 'SHEF':
         case 'SF':
@@ -323,7 +325,7 @@ function processInput(input, batter) {
     let possibleConcurrentPlay = false;
     const action = input[input_spec_action];
     switch (action) {
-        case 'EDF':
+        case 'EDFB':
             input[output_base] = 0;
             input[output_text_1] = 'E' + pos + ' DF';
             input[output_na] = true;
@@ -591,13 +593,17 @@ function processInput(input, batter) {
         case 'EF':
         case 'ET':
         case 'EM':
-        case 'ED':
         case 'eF':
         case 'eT':
             input[output_text_1] = pos.substring(0, pos.length - 1) + action.substring(0, 1) + pos.substring(pos.length - 1);
             if (!action.endsWith('F')) {
                 input[output_text_1] += action.substring(action.length - 1);
             }
+            break;
+        case 'EDF':
+        case 'EDL':
+        case 'EDP':
+            input[output_text_1] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1) + action.substring(action.length - 1);
             break;
         case 'NADV':
             input[output_text_1] = "*";
