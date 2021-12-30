@@ -410,9 +410,13 @@ function processInput(input, batter) {
             input[output_hit] = true;
             break;
         case 'O':
-        case 'FC':
             input[output_base] = 1;
             input[output_text_1] = action + pos;
+            break;
+        case 'FC':
+            input[output_base] = 1;
+            input[output_text_1] = action;
+            input[output_text_2] = pos;
             break;
         case 'KSWP':
         case 'KSPB':

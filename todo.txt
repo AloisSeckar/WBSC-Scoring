@@ -4,7 +4,7 @@ v.0.10
 Features:
 - GitHub Actions auto-deployment
 
-Bugfixing:
+Bugfixing: #47, #48
 
 
 TODO
