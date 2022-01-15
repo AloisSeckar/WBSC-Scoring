@@ -19,6 +19,7 @@ function checkUserInput(inputs) {
     // 2) validations over all inputs
     validation = attachValidation(validation, checkMaxOuts(inputs));
     validation = attachValidation(validation, checkOutcome(inputs));
+    validation = attachValidation(validation, checkGDP(inputs));
     
     return validation;
 }
@@ -112,6 +113,33 @@ function checkOutcome(inputs) {
         }
     }
     
+    return validation;
+}
+
+// if GDP (GDPE) is selected for batter
+// there has to be at least 1 correspondig out/decessive error situatuon for runners
+function checkGDP(inputs) {
+    let validation = '';
+
+    let gdpSelected = false;
+    let gdpOut = false;
+
+    for (let i = 0; i < inputs.length; i += 1) {
+        if (inputs[i][output_text_1] === 'GDP' || inputs[i][output_text_1] === 'GDPE') {
+            gdpSelected = true;
+        } else {
+            if (inputs[i][output_out] === true || inputs[i][output_text_1].includes('E') || 
+            (inputs[i][output_text_2] !== undefined && inputs[i][output_text_2].includes('E'))) {
+                gdpOut = true;
+            }
+        }
+    }
+
+    if (gdpSelected === true && gdpOut === false) {
+        validation = attachValidation(validation, 'GDP is selected, but corresponding out/decessive error is missing');
+    }
+
+
     return validation;
 }
 

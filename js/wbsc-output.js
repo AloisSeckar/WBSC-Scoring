@@ -319,7 +319,13 @@ function writeSituation(output) {
                     hitOffset = -2;
                 }
                 if (text2 !== null && text2 !== undefined) {
-                    offset = -5;
+                   
+                    if (text1.length > 2) {
+                        ctx.font = 'bold 36px Verdana';
+                        offset = 0;
+                    } else {
+                        offset = -5;
+                    }
                     ctx.fillText(text1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
                     
                     if (text2.length > 4) {

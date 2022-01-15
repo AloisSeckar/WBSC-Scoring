@@ -2,14 +2,13 @@ v.0.10
 ====
 
 Features:
-- GitHub Actions auto-deployment
+- Grounded into double-play situation (#31)
 
 Bugfixing: #47, #48, #49
 
 
 TODO
 ====
-Grounded into double-play situation (#31)
 Fix errors with multi-base advances (#30)
 Output generation refactoring (unify font-sizes - #39, #41)
 More input validations

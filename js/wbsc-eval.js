@@ -100,6 +100,8 @@ function changeBatterSpecificAction() {
             break;
         case 'GO':
         case 'GOB':
+        case 'GDP':
+        case 'GDPE':
         case 'SH':
         case 'A':
             minPosItems = 1;
@@ -363,6 +365,7 @@ function processInput(input, batter) {
             input[output_base] = 0;
             input[output_out] = true;
             break;
+        case 'GDP':
         case 'SH':
         case 'FSF':
             input[output_text_2] = pos;
@@ -528,7 +531,6 @@ function processInput(input, batter) {
         case 'GOB':
         case 'A':
             if (input[output_base] === 1) {
-                input[output_base] = 0;
             }
             input[output_text_1] = pos;
             if (action.startsWith('A')) {
@@ -608,6 +610,10 @@ function processInput(input, batter) {
         case 'EDL':
         case 'EDP':
             input[output_text_1] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1) + action.substring(action.length - 1);
+            break;
+        case 'GDPE':
+            input[output_text_1] = "GDP";
+            input[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);
             break;
         case 'NADV':
             input[output_text_1] = "*";

@@ -202,6 +202,10 @@ function renderBatterSpecificActionOptions(action) {
             options.push('<optgroup label="Batter is out">');
             options.push('<option value="GO">Ground out</option>');
             options.push('<option value="GOB">Ground out - bunt</option>');
+            options.push('<option value="GDP">Grounded into double play</option>');
+            options.push('</optgroup>');
+            options.push('<optgroup label="Batter is safe">');
+            options.push('<option value="GDPE">GDP with error</option>');
             options.push('</optgroup>');
             break;
         case 'FlyOut':
