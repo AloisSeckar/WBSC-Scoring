@@ -182,20 +182,20 @@ function renderBatterSpecificActionOptions(action) {
             options.push('<optgroup label="Batter is out">');
             options.push('<option value="KS">Swinging</option>');
             options.push('<option value="KL">Looking</option>');
-            options.push('<option value="KSO">Swinging with tag/throw out</option>');
-            options.push('<option value="KLO">Looking with tag/throw out</option>');
+            options.push('<option value="KST">Swinging with tag/throw out</option>');
+            options.push('<option value="KLT">Looking with tag/throw out</option>');
             options.push('</optgroup>');
             options.push('<optgroup label="Batter is safe">');
             options.push('<option value="KSET">Swinging with throwing error</option>');
             options.push('<option value="KSE">Swinging with fielding error</option>');
             options.push('<option value="KSWP">Swinging with wild pitch</option>');
             options.push('<option value="KSPB">Swinging with passed ball</option>');
-            options.push('<option value="KSFC">Swinging with putting out runner</option>');
+            options.push('<option value="KSO">Swinging with putting out runner</option>');
             options.push('<option value="KLET">Looking with throwing error</option>');
             options.push('<option value="KLE">Looking with fielding error</option>');
             options.push('<option value="KLWP">Looking with wild pitch</option>');
             options.push('<option value="KLPB">Looking with passed ball</option>');
-            options.push('<option value="KLFC">Looking with putting out runner</option>');
+            options.push('<option value="KLO">Looking with putting out runner</option>');
             options.push('</optgroup>');
             break;
         case 'GroundOut':

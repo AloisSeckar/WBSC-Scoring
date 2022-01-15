@@ -81,8 +81,8 @@ function changeBatterSpecificAction() {
             hit = true;
             minPosItems = targetPosItems = maxPosItems = 1;
             break;
-        case 'KSFC':
-        case 'KLFC':
+        case 'KSO':
+        case 'KLO':
         case 'O':
         case 'EDF':
         case 'EDL':
@@ -112,8 +112,8 @@ function changeBatterSpecificAction() {
         case 'KLE':
         case 'KSET':
         case 'KLET':
-        case 'KSO':
-        case 'KLO':
+        case 'KST':
+        case 'KLT':
         case 'F':
         case 'P':
         case 'L':
@@ -330,8 +330,8 @@ function processInput(input, batter) {
             input[output_text_1] = 'E' + pos + ' DF';
             input[output_na] = true;
             break;
-        case 'KSO':
-        case 'KLO':
+        case 'KST':
+        case 'KLT':
             input[output_text_2] = pos;
         case 'KS':
         case 'KL':
@@ -428,8 +428,8 @@ function processInput(input, batter) {
             input[output_sub] = '1';
             possibleConcurrentPlay = true;
             break;
-        case 'KSFC':    
-        case 'KLFC':
+        case 'KSO':    
+        case 'KLO':
             input[output_sub] = '1';
             possibleConcurrentPlay = true;
         case 'SHFC':
