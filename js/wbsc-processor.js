@@ -92,7 +92,7 @@ function processAction() {
     
     const validation = checkUserInput(inputs);
     if (validation === '') {
-        const inputArr = [r3Input, r2aInput, r2Input, r1bInput, r1aInput, r1Input];
+        const inputArr = [r3Input, r2aInput, r2Input, r1bInput, r1aInput, r1Input, b3Input, b2Input, b1Input];
         checkMultipleRunnerAdvances(inputArr);
 
         window.vOffset = 0;

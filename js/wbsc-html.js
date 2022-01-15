@@ -152,6 +152,7 @@ function renderBatterActionOptions() {
 function renderBatterRunnerActionOptions() {
     const options = [];
     options.push('<option value=""></option>');
+    options.push('<option value="exb">Extra base</option>');
     options.push('<option value="fdc">Fielder\'s choice</option>');
     options.push('<option value="err">Error</option>');
     options.push('<option value="out">Out</option>');
@@ -314,8 +315,11 @@ function renderRunnerSpecificActionOptions(action, group) {
             options.push('<optgroup label="Runner is safe">');
             options.push('<option value="WP">Wild pitch</option>');
             options.push('<option value="PB">Passed ball</option>');
-            options.push('<option value="BK">Balk</option>');
-            options.push('<option value="IP">Illegal pitch</option>');
+            if ((group.includes('-r'))) {
+                // only for runners, not the running batter
+                options.push('<option value="BK">Balk</option>');
+                options.push('<option value="IP">Illegal pitch</option>');
+            }
             options.push('</optgroup>');
             break;
         case 'ste':

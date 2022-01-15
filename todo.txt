@@ -3,6 +3,7 @@ v.0.10
 
 Features:
 - Grounded into double-play situation (#31)
+- extra WP/PB for batter after BB/KS play (#46)
 
 Bugfixing: #47, #48, #49
 
