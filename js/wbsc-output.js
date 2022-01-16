@@ -434,13 +434,16 @@ function writeSituation(output) {
                         ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset);
                     } else {
                         if (text1.length > 4) {
-                            ctx.font = 'bold 28px Verdana';
-                            offset = 12;
+                            ctx.font = 'bold 24px Verdana';
+                            offset = 10;
                         } else if (text1.length > 3) {
-                            ctx.font = 'bold 35px Verdana';
+                            ctx.font = 'bold 30px Verdana';
+                            offset = 12;
+                        } else if (text1.length > 2) {
+                            ctx.font = 'bold 38px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 40px Verdana';
+                            ctx.font = 'bold 45px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
@@ -498,7 +501,7 @@ function writeSituation(output) {
                             ctx.font = 'bold 38px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 48px Verdana';
+                            ctx.font = 'bold 45px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset);
@@ -533,7 +536,7 @@ function writeSituation(output) {
                             ctx.font = 'bold 38px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 48px Verdana';
+                            ctx.font = 'bold 45px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
@@ -565,7 +568,7 @@ function writeSituation(output) {
                     ctx.font = 'bold 38px Verdana';
                     offset = 14;
                 } else {
-                    ctx.font = 'bold 48px Verdana';
+                    ctx.font = 'bold 45px Verdana';
                     offset = 18;
                 }
                 ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
