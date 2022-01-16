@@ -382,6 +382,9 @@ function writeSituation(output) {
                         row2font = 'bold 56px Verdana';
                         row1offset = 45;
                         row2offset = 6;
+                        if (text1.length > 2) {
+                            row1font = 'bold 45px Verdana';
+                        }
                         if (text2.length > 3) {
                             row1offset = 35;
                             row2offset = 2;
@@ -477,6 +480,9 @@ function writeSituation(output) {
                         row2font = 'bold 40px Verdana';
                         row1offset = 5;
                         row2offset = 35;
+                        if (text1.length > 2) {
+                            row1font = 'bold 34px Verdana';
+                        }
                         if (text2.length > 3) {
                             row1offset = 4;
                             row2offset = 26;
@@ -550,7 +556,11 @@ function writeSituation(output) {
             break;
         case 4:
             if (text2 !== null && text2 !== undefined) {
-                ctx.font = 'bold 32px Verdana';
+                if (out && text1.length > 2) {
+                    ctx.font = 'bold 28px Verdana';
+                } else {
+                    ctx.font = 'bold 32px Verdana';
+                }
                 offset = 32;
                 ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset);
                 if (text2.length > 3) {
