@@ -5,12 +5,11 @@ Features:
 - Grounded into double-play situation (#31)
 - extra WP/PB for batter after BB/KS play (#46)
 
-Bugfixing: #47, #48, #49
+Bugfixing: #10, #39, #41, #43, #47, #48, #49
 
 
 TODO
 ====
 Fix errors with multi-base advances (#30)
-Output generation refactoring (unify font-sizes - #39, #41)
 More input validations
 Bugfixing and output corrections
