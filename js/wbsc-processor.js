@@ -6,20 +6,31 @@
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
 function processAction() {
-    const bInput = getInput(input_b);
-    const b1Input = getInput(input_b1);
-    const b2Input = getInput(input_b2);
-    const b3Input = getInput(input_b3);
-    const r1Input = getInput(input_r1);
-    const r1aInput = getInput(input_r1a);
-    const r1bInput = getInput(input_r1b);
-    const r2Input = getInput(input_r2);
-    const r2aInput = getInput(input_r2a);
-    const r3Input = getInput(input_r3);
-    
-    let playersInvolved = 0;
     const inputs = [];
-        
+    const r3Input = getInput(input_r3);
+    inputs.push(r3Input);
+    const r2aInput = getInput(input_r2a);
+    inputs.push(r2aInput);
+    const r2Input = getInput(input_r2);
+    inputs.push(r2Input);
+    const r1bInput = getInput(input_r1b);
+    inputs.push(r1bInput);
+    const r1aInput = getInput(input_r1a);
+    inputs.push(r1aInput);
+    const r1Input = getInput(input_r1);
+    inputs.push(r1Input);
+    const b3Input = getInput(input_b3);
+    inputs.push(b3Input);
+    const b2Input = getInput(input_b2);
+    inputs.push(b2Input);
+    const b1Input = getInput(input_b1);
+    inputs.push(b1Input);
+    const bInput = getInput(input_b);
+    inputs.push(bInput);
+
+    checkMultipleRunnerAdvances(inputs);
+
+    let playersInvolved = 0;
     window.outs = [];
     window.concurrentPlays = [];
 
@@ -27,7 +38,6 @@ function processAction() {
     if (r3Input !== null) {
         playersInvolved += 1;
         processInput(r3Input, playersInvolved);
-        inputs.push(r3Input);
     }
     
     // runner 2
@@ -37,12 +47,10 @@ function processAction() {
     const extraR2Input = [];
     if (r2aInput !== null) {
         processInput(r2aInput, playersInvolved);
-        inputs.push(r2aInput);
         extraR2Input.push(r2aInput);
     }
     if (r2Input !== null) {
         processInput(r2Input, playersInvolved);
-        inputs.push(r2Input);
     }
 
     // runner 1
@@ -52,17 +60,14 @@ function processAction() {
     const extraR1Input = [];
     if (r1bInput !== null) {
         processInput(r1bInput, playersInvolved);
-        inputs.push(r1bInput);
         extraR1Input.push(r1bInput);
     }
     if (r1aInput !== null) {
         processInput(r1aInput, playersInvolved);
-        inputs.push(r1aInput);
         extraR1Input.push(r1aInput);
     }
     if (r1Input !== null) {
         processInput(r1Input, playersInvolved);
-        inputs.push(r1Input);
     }
 
     // batter
@@ -72,29 +77,22 @@ function processAction() {
     const extraBatterInput = [];
     if (b3Input !== null) {
         processInput(b3Input, playersInvolved);
-        inputs.push(b3Input);
         extraBatterInput.push(b3Input);
     }
     if (b2Input !== null) {
         processInput(b2Input, playersInvolved);
-        inputs.push(b2Input);
         extraBatterInput.push(b2Input);
     }
     if (b1Input !== null) {
         processInput(b1Input, playersInvolved);
-        inputs.push(b1Input);
         extraBatterInput.push(b1Input);
     }
     if (bInput !== null) {
         processInput(bInput, playersInvolved);
-        inputs.push(bInput);
     }
     
     const validation = checkUserInput(inputs);
     if (validation === '') {
-        const inputArr = [r3Input, r2aInput, r2Input, r1bInput, r1aInput, r1Input, b3Input, b2Input, b1Input];
-        checkMultipleRunnerAdvances(inputArr);
-
         window.vOffset = 0;
         window.hOffset = 75;
         
@@ -109,7 +107,9 @@ function processAction() {
         // current batter is not known in the time of input evaluation (we don't forsee number of players involved)
         // therefore placeholder is being used and here is replaced with actual number
         for (let i = 0; i < inputs.length; i += 1) {
-            inputs[i][output_text_1] = inputs[i][output_text_1].replace('#b#', window.batter);
+            if (inputs[i] != null) {
+                inputs[i][output_text_1] = inputs[i][output_text_1].replace('#b#', window.batter);
+            }
         }
 
         // render situations one by one
@@ -220,16 +220,16 @@ function getInput(group) {
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/10
 function checkMultipleRunnerAdvances(inputArr) {
     // first encountered will be uppercase, possible others lowercase
-    let wpOrPbEncountered = false;
+    let advanceEncountered = false;
     for (let i = 0; i < inputArr.length; i += 1) {
         const current = inputArr[i];
         if (current != null) {
             if (current[input_spec_action] === "WP" || current[input_spec_action] === "PB"
              || current[input_spec_action] === "BK" || current[input_spec_action] === "IP") {
-                if (wpOrPbEncountered) {
+                if (advanceEncountered) {
                     current[input_spec_action] = current[input_spec_action].toLowerCase();
                 }
-                wpOrPbEncountered = true;
+                advanceEncountered = true;
             }
         }
     }
