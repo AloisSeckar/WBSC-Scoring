@@ -531,6 +531,7 @@ function processInput(input, batter) {
         case 'GOB':
         case 'A':
             if (input[output_base] === 1) {
+                input[output_base] = 0; 
             }
             input[output_text_1] = pos;
             if (action.startsWith('A')) {
