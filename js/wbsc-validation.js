@@ -13,7 +13,6 @@ function checkUserInput(inputs) {
     // 1) validations to be run over each input separately
     for (let i = 0; i < inputs.length; i += 1) {
         if (inputs[i] != null) {
-            console.log(inputs[i]);
             validation = attachValidation(validation, checkPosSelection(inputs[i][input_position]));
         }
     }

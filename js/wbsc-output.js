@@ -9,13 +9,16 @@
 //   extraInput - possible concecutive actions (0-3)
 //   clear - true, if previous content should be ereased
 function renderAction(battingOrder, mainInput, extraInput, clear) {
+
+    // console.log(mainInput);
+
     if (clear) {
         drawBackground(battingOrder);
     }
     
-    if (mainInput[input_origBase] !== null) {
+    if (mainInput[output_origBase] !== null && mainInput[output_origBase] > 0) {
         let prevOutput = [];
-        prevOutput[output_base] = mainInput[input_origBase];
+        prevOutput[output_base] = mainInput[output_origBase];
         if (mainInput[input_tie] === true) {
             prevOutput[output_text_1] = 'TIE';
         } else {

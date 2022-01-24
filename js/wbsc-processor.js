@@ -37,7 +37,7 @@ function processAction() {
     // runner 3
     if (r3Input !== null) {
         playersInvolved += 1;
-        processInput(r3Input, playersInvolved);
+        processInput(r3Input, playersInvolved, 3);
     }
     
     // runner 2
@@ -46,11 +46,11 @@ function processAction() {
     }
     const extraR2Input = [];
     if (r2aInput !== null) {
-        processInput(r2aInput, playersInvolved);
+        processInput(r2aInput, playersInvolved, 3);
         extraR2Input.push(r2aInput);
     }
     if (r2Input !== null) {
-        processInput(r2Input, playersInvolved);
+        processInput(r2Input, playersInvolved, 2);
     }
 
     // runner 1
@@ -59,15 +59,15 @@ function processAction() {
     }
     const extraR1Input = [];
     if (r1bInput !== null) {
-        processInput(r1bInput, playersInvolved);
+        processInput(r1bInput, playersInvolved, 3);
         extraR1Input.push(r1bInput);
     }
     if (r1aInput !== null) {
-        processInput(r1aInput, playersInvolved);
+        processInput(r1aInput, playersInvolved, 2); // TODO - not always true (if r1 goes from 1 to 3)
         extraR1Input.push(r1aInput);
     }
     if (r1Input !== null) {
-        processInput(r1Input, playersInvolved);
+        processInput(r1Input, playersInvolved, 1);
     }
 
     // batter
@@ -76,19 +76,19 @@ function processAction() {
     }
     const extraBatterInput = [];
     if (b3Input !== null) {
-        processInput(b3Input, playersInvolved);
+        processInput(b3Input, playersInvolved, 3);
         extraBatterInput.push(b3Input);
     }
     if (b2Input !== null) {
-        processInput(b2Input, playersInvolved);
+        processInput(b2Input, playersInvolved, 2); // TODO - not always true (if b1 goes from 1 to 3)
         extraBatterInput.push(b2Input);
     }
     if (b1Input !== null) {
-        processInput(b1Input, playersInvolved);
+        processInput(b1Input, playersInvolved, 1);
         extraBatterInput.push(b1Input);
     }
     if (bInput !== null) {
-        processInput(bInput, playersInvolved);
+        processInput(bInput, playersInvolved, 0);
     }
     
     const validation = checkUserInput(inputs);
@@ -115,19 +115,16 @@ function processAction() {
         // render situations one by one
         let displayed = 0;
         if (r3Input !== null) {
-            r3Input[input_origBase] = 3;
             displayed += 1;
             renderAction(displayed, r3Input, null, true);
             window.vOffset += h - 8;
         }
         if (r2Input !== null) {
-            r2Input[input_origBase] = 2;
             displayed += 1;
             renderAction(displayed, r2Input, extraR2Input, true);
             window.vOffset += h - 8;
         }
         if (r1Input !== null) {
-            r1Input[input_origBase] = 1;
             displayed += 1;
             renderAction(displayed, r1Input, extraR1Input, true);
             window.vOffset += h - 8;
