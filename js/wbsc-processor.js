@@ -46,7 +46,7 @@ function processAction() {
     }
     const extraR2Input = [];
     if (r2aInput !== null) {
-        processInput(r2aInput, playersInvolved, 3);
+        processInput(r2aInput, playersInvolved, null);
         extraR2Input.push(r2aInput);
     }
     if (r2Input !== null) {
@@ -59,11 +59,11 @@ function processAction() {
     }
     const extraR1Input = [];
     if (r1bInput !== null) {
-        processInput(r1bInput, playersInvolved, 3);
+        processInput(r1bInput, playersInvolved, null);
         extraR1Input.push(r1bInput);
     }
     if (r1aInput !== null) {
-        processInput(r1aInput, playersInvolved, 2); // TODO - not always true (if r1 goes from 1 to 3)
+        processInput(r1aInput, playersInvolved, null);
         extraR1Input.push(r1aInput);
     }
     if (r1Input !== null) {
@@ -76,15 +76,15 @@ function processAction() {
     }
     const extraBatterInput = [];
     if (b3Input !== null) {
-        processInput(b3Input, playersInvolved, 3);
+        processInput(b3Input, playersInvolved, null);
         extraBatterInput.push(b3Input);
     }
     if (b2Input !== null) {
-        processInput(b2Input, playersInvolved, 2); // TODO - not always true (if b1 goes from 1 to 3)
+        processInput(b2Input, playersInvolved, null);
         extraBatterInput.push(b2Input);
     }
     if (b1Input !== null) {
-        processInput(b1Input, playersInvolved, 1);
+        processInput(b1Input, playersInvolved, null);
         extraBatterInput.push(b1Input);
     }
     if (bInput !== null) {
