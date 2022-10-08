@@ -91,7 +91,7 @@ function checkOutcome(inputs) {
                     }
                 }
                 const maxReachedBase = reachedBases[reachedBases.length - 1];
-                const currentReachedBase = inputs[i][output_base];
+                const currentReachedBase = Math.max(inputs[i][output_base], inputs[i][output_errorTarget]);
                 if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && inputs[i][output_na] === false)) {
                     validation = attachValidation(validation, 'Extra advances of one player must happen in order');
                 }

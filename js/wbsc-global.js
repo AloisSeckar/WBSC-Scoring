@@ -87,6 +87,7 @@ function setTextConstants() {
     window.output_origBase = 'orig-base';
     window.output_player = 'player';
     window.output_base = 'base';
+    window.output_errorTarget = 'error-target';
     window.output_text_1 = 'text-1';
     window.output_text_2 = 'text-2';
     window.output_out = 'out';

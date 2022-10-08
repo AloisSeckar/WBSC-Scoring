@@ -32,6 +32,10 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
         window.outs.push({batter:battingOrder, base:mainInput[output_base]})
     } else {
         renderAdvance(mainInput);
+
+        if (mainInput[output_errorTarget] !== null) {
+            drawExtraErrorAdvanceIfNeeded(mainInput[output_base], mainInput[output_errorTarget]);
+        }
         
         if (extraInput !== null) {
             for (i = 0; i < extraInput.length; i += 1) {
@@ -46,7 +50,7 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
 
 // process 'safe' situation
 function renderAdvance(output) {
-    drawAdvanceLine(output[output_base]);
+    drawAdvanceLine(Math.max(output[output_base], output[output_errorTarget]));
     writeSituation(output);
 }
 
@@ -905,4 +909,87 @@ function drawArrow(fromx, fromy, tox, toy) {
     ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
                toy-headlen*Math.sin(angle-Math.PI/7));
     ctx.stroke();
+}
+
+// if there is multiple error advance,
+// the "E" mark is made to first base reached on error
+// and the extra advance is visualized with an arrow
+function drawExtraErrorAdvanceIfNeeded(origBase, targetBase) {
+    if (targetBase > origBase) {
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = 'black';
+        
+        switch (origBase) {
+            case 1:
+                drawExtraErrorAdvanceTo2B(targetBase == 2) 
+                if (targetBase > 2) {
+                    drawExtraErrorAdvanceTo3B(false, targetBase == 3) 
+                }
+                if (targetBase > 3) {
+                    drawExtraErrorAdvanceToHP(false) 
+                }
+                break;
+            case 2:
+                drawExtraErrorAdvanceTo3B(true, targetBase == 3) 
+                if (targetBase > 3) {
+                    drawExtraErrorAdvanceToHP(false) 
+                }
+                break;
+            case 3:
+                drawExtraErrorAdvanceToHP(true) 
+                break;
+        }
+    }
+}
+
+function drawExtraErrorAdvanceTo2B(endsAt2B) {
+    const gap = w2/2;
+    const length = 35;
+    const arc = 30;
+
+    ctx.beginPath();
+    ctx.moveTo(w - gap + hOffset, h2 + length + vOffset);
+    ctx.lineTo(w - gap + hOffset, h2 - length + vOffset);
+    ctx.stroke();
+
+    if (endsAt2B) {
+        drawArrow(w - gap + hOffset, h2 - length + vOffset, w - gap + hOffset, h2 - length - 20 + vOffset);
+    } else {
+        ctx.beginPath();
+        ctx.arc(w - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5*Math.PI, 0);
+        ctx.stroke();
+    }
+}
+
+function drawExtraErrorAdvanceTo3B(startsAt2B, endsAt3B) {
+    const gap = w2/2;
+    const length = 35;
+    const arc = 30;
+    const shift = startsAt2B ? 10 : 0;
+
+    ctx.beginPath();
+    ctx.moveTo(w2 + length + hOffset - shift, gap + vOffset);
+    ctx.lineTo(w2 - length + hOffset, gap + vOffset);
+    ctx.stroke();
+
+    if (endsAt3B) {
+        drawArrow(w2 - length + hOffset, gap + vOffset, w2 - length - 20 + hOffset, gap + vOffset);
+    } else {
+        ctx.beginPath();
+        ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5*Math.PI);
+        ctx.stroke();
+    }
+}
+
+function drawExtraErrorAdvanceToHP(startsAt3B) {
+    const gap = w2/2;
+    const length = 35;
+    const shift = startsAt3B ? 10 : 0;
+
+    ctx.beginPath();
+    ctx.moveTo(gap + hOffset, h2 - length + shift + vOffset);
+    ctx.lineTo(gap + hOffset, h2 + length);
+    ctx.stroke();
+    
+    drawArrow(gap + hOffset, h2 + length, gap + hOffset,  h2 + length + 20);
 }

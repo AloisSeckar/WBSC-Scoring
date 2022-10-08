@@ -23,9 +23,17 @@ function processAction() {
     inputs.push(b3Input);
     const b2Input = getInput(input_b2);
     inputs.push(b2Input);
-    const b1Input = getInput(input_b1);
-    inputs.push(b1Input);
+    let b1Input = getInput(input_b1);
     const bInput = getInput(input_b);
+    // possible special case for "extra advance on the same error"
+    if (b1Input && b1Input[input_spec_action] === 'se0') {
+        if (bInput) {
+            bInput[input_base] = b1Input[input_base];
+        }
+        b1Input = null;
+    } else {
+        inputs.push(b1Input);
+    }
     inputs.push(bInput);
 
     checkMultipleRunnerAdvances(inputs);
@@ -46,7 +54,7 @@ function processAction() {
     }
     const extraR2Input = [];
     if (r2aInput !== null) {
-        processInput(r2aInput, playersInvolved, null);
+        processInput(r2aInput, playersInvolved, 3);
         extraR2Input.push(r2aInput);
     }
     if (r2Input !== null) {
@@ -59,11 +67,12 @@ function processAction() {
     }
     const extraR1Input = [];
     if (r1bInput !== null) {
-        processInput(r1bInput, playersInvolved, null);
+        processInput(r1bInput, playersInvolved, 3);
         extraR1Input.push(r1bInput);
     }
     if (r1aInput !== null) {
-        processInput(r1aInput, playersInvolved, null);
+        const r1orig = r1Input !== null ? r1Input[output_base] : 2;
+        processInput(r1aInput, playersInvolved, r1orig);
         extraR1Input.push(r1aInput);
     }
     if (r1Input !== null) {
@@ -76,15 +85,17 @@ function processAction() {
     }
     const extraBatterInput = [];
     if (b3Input !== null) {
-        processInput(b3Input, playersInvolved, null);
+        processInput(b3Input, playersInvolved, 3);
         extraBatterInput.push(b3Input);
     }
     if (b2Input !== null) {
-        processInput(b2Input, playersInvolved, null);
+        const b2orig = b1Input !== null ? b1Input[output_base] : 2;
+        processInput(b2Input, playersInvolved, b2orig);
         extraBatterInput.push(b2Input);
     }
     if (b1Input !== null) {
-        processInput(b1Input, playersInvolved, null);
+        const b1orig = bInput !== null ? bInput[output_base] : 1;
+        processInput(b1Input, playersInvolved, b1orig);
         extraBatterInput.push(b1Input);
     }
     if (bInput !== null) {

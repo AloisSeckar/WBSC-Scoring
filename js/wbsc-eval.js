@@ -311,6 +311,7 @@ function processInput(input, batter, origBase) {
     input[output_out] = false;
     input[output_hit] = false;
     input[output_na] = false;
+    input[output_errorTarget] = null;
     input[output_text_1] = ""; // to avoid undefined refference later
     
     let pos = input[input_position];
@@ -459,6 +460,8 @@ function processInput(input, batter, origBase) {
             if (action.length > 3) {
                 input[output_text_2] += action.substring(3);
             }
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             break;
         case 'INT':
             input[output_base] = 1;
@@ -570,12 +573,16 @@ function processInput(input, batter, origBase) {
                 input[output_text_2] += 'T';
             }
             input[output_num] = true;
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             possibleConcurrentPlay = true;
             break;
         case 'POE':
             input[output_text_1] = action.substring(0, 2);
             input[output_text_2] = 'e' + pos + 'T';
             input[output_num] = true;
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             possibleConcurrentPlay = true;
             break;
         case 'OBR7_':
@@ -607,15 +614,21 @@ function processInput(input, batter, origBase) {
             if (!action.endsWith('F')) {
                 input[output_text_1] += action.substring(action.length - 1);
             }
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             break;
         case 'EDF':
         case 'EDL':
         case 'EDP':
             input[output_text_1] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1) + action.substring(action.length - 1);
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             break;
         case 'GDPE':
             input[output_text_1] = "GDP";
-            input[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);
+            input[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);          
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             break;
         case 'NADV':
             input[output_text_1] = "*";
