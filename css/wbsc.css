@@ -45,6 +45,7 @@ img {
 	width: 400px;
 	display: inline;
 	margin-bottom: 3px;
+	z-index: 100;
 }
 
 .wbsc-pos-select {
