@@ -122,3 +122,15 @@ img {
 .wbsc-select {
 	margin-right: 3px;
 }
+
+@media only screen and (max-width: 470px) {
+	.wbsc-specific-action-select {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 250px) {
+	.wbsc-base-action-select {
+		width: 100%;
+	}
+}

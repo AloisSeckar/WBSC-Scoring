@@ -20,6 +20,9 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
+### Version 0.92 (2022-10-10)
+- Bugfixing - GitHub issue #40 (select box max-width problem)
+
 ### Version 0.91 (2021-12-27)
 - Bugfixing - GitHub issues #42
 - GitHub Actions auto-deployment
