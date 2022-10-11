@@ -156,6 +156,12 @@ function showInputs(group, parentDiv) {
             break;
     }
     inputsContainer.appendChild(baseActionSelect);
+
+    inputsContainer.appendChild((document.createElement('br')));
+    
+    const specActionLabel = document.createElement('label');
+    specActionLabel.innerHTML = 'Spec:';
+    inputsContainer.appendChild(specActionLabel);
     
     const specificActionSelect = document.createElement('select');
     specificActionSelect.setAttribute('id', group + input_spec_action);
