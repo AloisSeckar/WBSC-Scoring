@@ -38,13 +38,13 @@ img {
 .wbsc-base-action-select {
 	width: 200px;
 	display: inline;
-	margin-bottom: 3px;
+	margin: 5px;
 }
 
 .wbsc-specific-action-select {
 	width: 400px;
 	display: inline;
-	margin-bottom: 3px;
+	margin: 5px;
 	z-index: 100;
 }
 
