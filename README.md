@@ -1,6 +1,6 @@
 # WBSC Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system.
-Live demo (currently v0.91) available at [http://alois-seckar.cz/wbsc/](http://alois-seckar.cz/wbsc/). Reffer to [manual](http://alois-seckar.cz/wbsc/help.html) to get usage instructions.
+Live demo (currently v0.94) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Reffer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
 
 ## TO-DO list (to be implemented in next few releases)
@@ -19,6 +19,15 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 0.94 (2022-11-08)
+- Bugfixing - GitHub issue #50 finally fixed
+
+### Version 0.93 (2022-11-04)
+- Demo auto-deployment to [Netlify](https://app.netlify.com/)
+
+### Version 0.92 (2022-10-10)
+- Bugfixing - GitHub issue #50 (unsuccessful attempt to fix)
 
 ### Version 0.91 (2021-12-27)
 - Bugfixing - GitHub issues #42
