@@ -133,7 +133,7 @@ function showInputs(group, parentDiv) {
     
     const baseActionSelect = document.createElement('select');
     baseActionSelect.setAttribute('id', group + input_base_action);
-    baseActionSelect.setAttribute('class', 'wbsc-base-action-select form-control');
+    baseActionSelect.setAttribute('class', 'wbsc-base-action-select');
     baseActionSelect.addEventListener('click', function(){
         changeBaseAction(group);
     });
@@ -165,7 +165,7 @@ function showInputs(group, parentDiv) {
     
     const specificActionSelect = document.createElement('select');
     specificActionSelect.setAttribute('id', group + input_spec_action);
-    specificActionSelect.setAttribute('class', 'wbsc-specific-action-select form-control');
+    specificActionSelect.setAttribute('class', 'wbsc-specific-action-select');
     specificActionSelect.addEventListener('click', function(){
         changeSpecificAction(group);
     });
