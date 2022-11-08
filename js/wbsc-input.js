@@ -133,8 +133,8 @@ function showInputs(group, parentDiv) {
     
     const baseActionSelect = document.createElement('select');
     baseActionSelect.setAttribute('id', group + input_base_action);
-    baseActionSelect.setAttribute('class', 'wbsc-base-action-select');
-    baseActionSelect.addEventListener('click', function(){
+    baseActionSelect.setAttribute('class', 'wbsc-base-action-select form-control');
+    baseActionSelect.addEventListener('change', function(){
         changeBaseAction(group);
     });
     switch (group) {
@@ -156,17 +156,11 @@ function showInputs(group, parentDiv) {
             break;
     }
     inputsContainer.appendChild(baseActionSelect);
-
-    inputsContainer.appendChild((document.createElement('br')));
-    
-    const specActionLabel = document.createElement('label');
-    specActionLabel.innerHTML = 'Spec:';
-    inputsContainer.appendChild(specActionLabel);
     
     const specificActionSelect = document.createElement('select');
     specificActionSelect.setAttribute('id', group + input_spec_action);
-    specificActionSelect.setAttribute('class', 'wbsc-specific-action-select');
-    specificActionSelect.addEventListener('click', function(){
+    specificActionSelect.setAttribute('class', 'wbsc-specific-action-select form-control');
+    specificActionSelect.addEventListener('change', function(){
         changeSpecificAction(group);
     });
     specificActionSelect.innerHTML = '<option class="blank" />';
@@ -256,7 +250,7 @@ function renderBaseSelection(group) {
             runTypeSelectDisabled = false;
             break;
     }
-    baseSelect.addEventListener('click', function(){
+    baseSelect.addEventListener('change', function(){
         changeBase(group);
     });
     inputsContainer.appendChild(baseSelect);

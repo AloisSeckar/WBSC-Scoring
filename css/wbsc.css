@@ -38,15 +38,13 @@ img {
 .wbsc-base-action-select {
 	width: 200px;
 	display: inline;
-	margin-top: 5px;
-	margin-bottom: 10px;
+	margin-bottom: 3px;
 }
 
 .wbsc-specific-action-select {
 	width: 400px;
 	display: inline;
-	margin-top: 5px;
-	margin-bottom: 10px;
+	margin-bottom: 3px;
 }
 
 .wbsc-pos-select {
