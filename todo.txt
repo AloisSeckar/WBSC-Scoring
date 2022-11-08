@@ -1,15 +1,11 @@
-v.0.10
-====
+v.0.11
+======
 
 Features:
-- Errors with extra base advances (#30)
-- Grounded into double-play situation (#31)
-- extra WP/PB for batter after BB/KS play (#46)
-
-Bugfixing: #10, #39, #41, #43, #47, #48, #49
 
 
 TODO
 ====
+Cover most possible situations
 More input validations
 Bugfixing and output corrections
