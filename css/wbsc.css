@@ -106,7 +106,7 @@ img {
 	margin-bottom: 5px;
 	padding: 3px;
 	width: 96%;
-	max-width: 800px;
+	max-width: 600px;
 	text-align: center;
 }
 
@@ -116,9 +116,21 @@ img {
 	margin: 0px auto;
 	padding: 5px;
 	width: 96%;
-	max-width: 800px;
+	max-width: 600px;
 }
 
 .wbsc-select {
 	margin-right: 3px;
+}
+
+@media only screen and (max-width: 470px) {
+	.wbsc-specific-action-select {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 250px) {
+	.wbsc-base-action-select {
+		width: 100%;
+	}
 }
