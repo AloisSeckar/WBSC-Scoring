@@ -81,11 +81,13 @@ function changeBatterSpecificAction() {
             hit = true;
             minPosItems = targetPosItems = maxPosItems = 1;
             break;
-        case 'KSFC':
-        case 'KLFC':
+        case 'KSO':
+        case 'KLO':
         case 'O':
-        case 'ED':
         case 'EDF':
+        case 'EDL':
+        case 'EDP':
+        case 'EDFB':
         case 'OB':
         case 'SHEF':
         case 'SF':
@@ -98,6 +100,8 @@ function changeBatterSpecificAction() {
             break;
         case 'GO':
         case 'GOB':
+        case 'GDP':
+        case 'GDPE':
         case 'SH':
         case 'A':
             minPosItems = 1;
@@ -110,8 +114,8 @@ function changeBatterSpecificAction() {
         case 'KLE':
         case 'KSET':
         case 'KLET':
-        case 'KSO':
-        case 'KLO':
+        case 'KST':
+        case 'KLT':
         case 'F':
         case 'P':
         case 'L':
@@ -299,13 +303,15 @@ function changeBase(group) {
 }
 
 // enhance user's input with output instructions
-function processInput(input, batter) {
+function processInput(input, batter, origBase) {
+    input[output_origBase] = origBase;
     input[output_player] = batter;
     input[output_base] = parseInt(input[input_base]);
     input[output_run] = input[input_runtype];
     input[output_out] = false;
     input[output_hit] = false;
     input[output_na] = false;
+    input[output_errorTarget] = null;
     input[output_text_1] = ""; // to avoid undefined refference later
     
     let pos = input[input_position];
@@ -323,13 +329,13 @@ function processInput(input, batter) {
     let possibleConcurrentPlay = false;
     const action = input[input_spec_action];
     switch (action) {
-        case 'EDF':
+        case 'EDFB':
             input[output_base] = 0;
             input[output_text_1] = 'E' + pos + ' DF';
             input[output_na] = true;
             break;
-        case 'KSO':
-        case 'KLO':
+        case 'KST':
+        case 'KLT':
             input[output_text_2] = pos;
         case 'KS':
         case 'KL':
@@ -361,6 +367,7 @@ function processInput(input, batter) {
             input[output_base] = 0;
             input[output_out] = true;
             break;
+        case 'GDP':
         case 'SH':
         case 'FSF':
             input[output_text_2] = pos;
@@ -408,9 +415,13 @@ function processInput(input, batter) {
             input[output_hit] = true;
             break;
         case 'O':
-        case 'FC':
             input[output_base] = 1;
             input[output_text_1] = action + pos;
+            break;
+        case 'FC':
+            input[output_base] = 1;
+            input[output_text_1] = action;
+            input[output_text_2] = pos;
             break;
         case 'KSWP':
         case 'KSPB':
@@ -422,8 +433,8 @@ function processInput(input, batter) {
             input[output_sub] = '1';
             possibleConcurrentPlay = true;
             break;
-        case 'KSFC':    
-        case 'KLFC':
+        case 'KSO':    
+        case 'KLO':
             input[output_sub] = '1';
             possibleConcurrentPlay = true;
         case 'SHFC':
@@ -449,6 +460,8 @@ function processInput(input, batter) {
             if (action.length > 3) {
                 input[output_text_2] += action.substring(3);
             }
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             break;
         case 'INT':
             input[output_base] = 1;
@@ -522,7 +535,7 @@ function processInput(input, batter) {
         case 'GOB':
         case 'A':
             if (input[output_base] === 1) {
-                input[output_base] = 0;
+                input[output_base] = 0; 
             }
             input[output_text_1] = pos;
             if (action.startsWith('A')) {
@@ -560,12 +573,16 @@ function processInput(input, batter) {
                 input[output_text_2] += 'T';
             }
             input[output_num] = true;
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             possibleConcurrentPlay = true;
             break;
         case 'POE':
             input[output_text_1] = action.substring(0, 2);
             input[output_text_2] = 'e' + pos + 'T';
             input[output_num] = true;
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             possibleConcurrentPlay = true;
             break;
         case 'OBR7_':
@@ -591,13 +608,27 @@ function processInput(input, batter) {
         case 'EF':
         case 'ET':
         case 'EM':
-        case 'ED':
         case 'eF':
         case 'eT':
             input[output_text_1] = pos.substring(0, pos.length - 1) + action.substring(0, 1) + pos.substring(pos.length - 1);
             if (!action.endsWith('F')) {
                 input[output_text_1] += action.substring(action.length - 1);
             }
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
+            break;
+        case 'EDF':
+        case 'EDL':
+        case 'EDP':
+            input[output_text_1] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1) + action.substring(action.length - 1);
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
+            break;
+        case 'GDPE':
+            input[output_text_1] = "GDP";
+            input[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);          
+            input[output_errorTarget] = input[output_base];
+            input[output_base] = input[output_origBase] + 1;
             break;
         case 'NADV':
             input[output_text_1] = "*";

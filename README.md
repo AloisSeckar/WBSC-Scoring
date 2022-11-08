@@ -1,12 +1,9 @@
 # WBSC Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system.
-Live demo (currently v0.94) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Reffer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
+Live demo (currently v0.10) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Reffer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms)
 
 ## TO-DO list (to be implemented in next few releases)
-- Grounded into double-play situation (#31)
-- Fix errors with multi-base advances (#30)
-- Output generation refactoring (unify font-sizes - #39, #41)
 - More input validations
 - Bugfixing and output corrections
 
@@ -20,16 +17,22 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
-### Version 0.94 (2022-11-08)
+### Version 0.10 (2022-11-08)
+- Errors with extra base advances (#30)
+- Grounded into double-play situation (#31)
+- extra WP/PB for batter after BB/KS play (#46)
+- Bugfixing - GitHub issues #10, #39, #41, #43, #47, #48, #49
+
+### Version 0.9.4 (2022-11-08)
 - Bugfixing - GitHub issue #50 finally fixed
 
-### Version 0.93 (2022-11-04)
+### Version 0.9.3 (2022-11-04)
 - Demo auto-deployment to [Netlify](https://app.netlify.com/)
 
-### Version 0.92 (2022-10-10)
+### Version 0.9.2 (2022-10-10)
 - Bugfixing - GitHub issue #50 (unsuccessful attempt to fix)
 
-### Version 0.91 (2021-12-27)
+### Version 0.9.1 (2021-12-27)
 - Bugfixing - GitHub issues #42
 - GitHub Actions auto-deployment
 

@@ -6,28 +6,46 @@
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
 function processAction() {
-    const bInput = getInput(input_b);
-    const b1Input = getInput(input_b1);
-    const b2Input = getInput(input_b2);
-    const b3Input = getInput(input_b3);
-    const r1Input = getInput(input_r1);
-    const r1aInput = getInput(input_r1a);
-    const r1bInput = getInput(input_r1b);
-    const r2Input = getInput(input_r2);
-    const r2aInput = getInput(input_r2a);
-    const r3Input = getInput(input_r3);
-    
-    let playersInvolved = 0;
     const inputs = [];
-        
+    const r3Input = getInput(input_r3);
+    inputs.push(r3Input);
+    const r2aInput = getInput(input_r2a);
+    inputs.push(r2aInput);
+    const r2Input = getInput(input_r2);
+    inputs.push(r2Input);
+    const r1bInput = getInput(input_r1b);
+    inputs.push(r1bInput);
+    const r1aInput = getInput(input_r1a);
+    inputs.push(r1aInput);
+    const r1Input = getInput(input_r1);
+    inputs.push(r1Input);
+    const b3Input = getInput(input_b3);
+    inputs.push(b3Input);
+    const b2Input = getInput(input_b2);
+    inputs.push(b2Input);
+    let b1Input = getInput(input_b1);
+    const bInput = getInput(input_b);
+    // possible special case for "extra advance on the same error"
+    if (b1Input && b1Input[input_spec_action] === 'se0') {
+        if (bInput) {
+            bInput[input_base] = b1Input[input_base];
+        }
+        b1Input = null;
+    } else {
+        inputs.push(b1Input);
+    }
+    inputs.push(bInput);
+
+    checkMultipleRunnerAdvances(inputs);
+
+    let playersInvolved = 0;
     window.outs = [];
     window.concurrentPlays = [];
 
     // runner 3
     if (r3Input !== null) {
         playersInvolved += 1;
-        processInput(r3Input, playersInvolved);
-        inputs.push(r3Input);
+        processInput(r3Input, playersInvolved, 3);
     }
     
     // runner 2
@@ -36,13 +54,11 @@ function processAction() {
     }
     const extraR2Input = [];
     if (r2aInput !== null) {
-        processInput(r2aInput, playersInvolved);
-        inputs.push(r2aInput);
+        processInput(r2aInput, playersInvolved, 3);
         extraR2Input.push(r2aInput);
     }
     if (r2Input !== null) {
-        processInput(r2Input, playersInvolved);
-        inputs.push(r2Input);
+        processInput(r2Input, playersInvolved, 2);
     }
 
     // runner 1
@@ -51,18 +67,16 @@ function processAction() {
     }
     const extraR1Input = [];
     if (r1bInput !== null) {
-        processInput(r1bInput, playersInvolved);
-        inputs.push(r1bInput);
+        processInput(r1bInput, playersInvolved, 3);
         extraR1Input.push(r1bInput);
     }
     if (r1aInput !== null) {
-        processInput(r1aInput, playersInvolved);
-        inputs.push(r1aInput);
+        const r1orig = r1Input !== null ? r1Input[output_base] : 2;
+        processInput(r1aInput, playersInvolved, r1orig);
         extraR1Input.push(r1aInput);
     }
     if (r1Input !== null) {
-        processInput(r1Input, playersInvolved);
-        inputs.push(r1Input);
+        processInput(r1Input, playersInvolved, 1);
     }
 
     // batter
@@ -71,30 +85,25 @@ function processAction() {
     }
     const extraBatterInput = [];
     if (b3Input !== null) {
-        processInput(b3Input, playersInvolved);
-        inputs.push(b3Input);
+        processInput(b3Input, playersInvolved, 3);
         extraBatterInput.push(b3Input);
     }
     if (b2Input !== null) {
-        processInput(b2Input, playersInvolved);
-        inputs.push(b2Input);
+        const b2orig = b1Input !== null ? b1Input[output_base] : 2;
+        processInput(b2Input, playersInvolved, b2orig);
         extraBatterInput.push(b2Input);
     }
     if (b1Input !== null) {
-        processInput(b1Input, playersInvolved);
-        inputs.push(b1Input);
+        const b1orig = bInput !== null ? bInput[output_base] : 1;
+        processInput(b1Input, playersInvolved, b1orig);
         extraBatterInput.push(b1Input);
     }
     if (bInput !== null) {
-        processInput(bInput, playersInvolved);
-        inputs.push(bInput);
+        processInput(bInput, playersInvolved, 0);
     }
     
     const validation = checkUserInput(inputs);
     if (validation === '') {
-        const inputArr = [r3Input, r2aInput, r2Input, r1bInput, r1aInput, r1Input];
-        checkMultipleRunnerAdvances(inputArr);
-
         window.vOffset = 0;
         window.hOffset = 75;
         
@@ -109,25 +118,24 @@ function processAction() {
         // current batter is not known in the time of input evaluation (we don't forsee number of players involved)
         // therefore placeholder is being used and here is replaced with actual number
         for (let i = 0; i < inputs.length; i += 1) {
-            inputs[i][output_text_1] = inputs[i][output_text_1].replace('#b#', window.batter);
+            if (inputs[i] != null) {
+                inputs[i][output_text_1] = inputs[i][output_text_1].replace('#b#', window.batter);
+            }
         }
 
         // render situations one by one
         let displayed = 0;
         if (r3Input !== null) {
-            r3Input[input_origBase] = 3;
             displayed += 1;
             renderAction(displayed, r3Input, null, true);
             window.vOffset += h - 8;
         }
         if (r2Input !== null) {
-            r2Input[input_origBase] = 2;
             displayed += 1;
             renderAction(displayed, r2Input, extraR2Input, true);
             window.vOffset += h - 8;
         }
         if (r1Input !== null) {
-            r1Input[input_origBase] = 1;
             displayed += 1;
             renderAction(displayed, r1Input, extraR1Input, true);
             window.vOffset += h - 8;
@@ -220,16 +228,16 @@ function getInput(group) {
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/10
 function checkMultipleRunnerAdvances(inputArr) {
     // first encountered will be uppercase, possible others lowercase
-    let wpOrPbEncountered = false;
+    let advanceEncountered = false;
     for (let i = 0; i < inputArr.length; i += 1) {
         const current = inputArr[i];
         if (current != null) {
             if (current[input_spec_action] === "WP" || current[input_spec_action] === "PB"
              || current[input_spec_action] === "BK" || current[input_spec_action] === "IP") {
-                if (wpOrPbEncountered) {
+                if (advanceEncountered) {
                     current[input_spec_action] = current[input_spec_action].toLowerCase();
                 }
-                wpOrPbEncountered = true;
+                advanceEncountered = true;
             }
         }
     }

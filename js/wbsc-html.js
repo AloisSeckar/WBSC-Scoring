@@ -152,6 +152,7 @@ function renderBatterActionOptions() {
 function renderBatterRunnerActionOptions() {
     const options = [];
     options.push('<option value=""></option>');
+    options.push('<option value="exb">Extra base</option>');
     options.push('<option value="fdc">Fielder\'s choice</option>');
     options.push('<option value="err">Error</option>');
     options.push('<option value="out">Out</option>');
@@ -182,26 +183,30 @@ function renderBatterSpecificActionOptions(action) {
             options.push('<optgroup label="Batter is out">');
             options.push('<option value="KS">Swinging</option>');
             options.push('<option value="KL">Looking</option>');
-            options.push('<option value="KSO">Swinging with tag/throw out</option>');
-            options.push('<option value="KLO">Looking with tag/throw out</option>');
+            options.push('<option value="KST">Swinging with tag/throw out</option>');
+            options.push('<option value="KLT">Looking with tag/throw out</option>');
             options.push('</optgroup>');
             options.push('<optgroup label="Batter is safe">');
             options.push('<option value="KSET">Swinging with throwing error</option>');
             options.push('<option value="KSE">Swinging with fielding error</option>');
             options.push('<option value="KSWP">Swinging with wild pitch</option>');
             options.push('<option value="KSPB">Swinging with passed ball</option>');
-            options.push('<option value="KSFC">Swinging with putting out runner</option>');
+            options.push('<option value="KSO">Swinging with putting out runner</option>');
             options.push('<option value="KLET">Looking with throwing error</option>');
             options.push('<option value="KLE">Looking with fielding error</option>');
             options.push('<option value="KLWP">Looking with wild pitch</option>');
             options.push('<option value="KLPB">Looking with passed ball</option>');
-            options.push('<option value="KLFC">Looking with putting out runner</option>');
+            options.push('<option value="KLO">Looking with putting out runner</option>');
             options.push('</optgroup>');
             break;
         case 'GroundOut':
             options.push('<optgroup label="Batter is out">');
             options.push('<option value="GO">Ground out</option>');
             options.push('<option value="GOB">Ground out - bunt</option>');
+            options.push('<option value="GDP">Grounded into double play</option>');
+            options.push('</optgroup>');
+            options.push('<optgroup label="Batter is safe">');
+            options.push('<option value="GDPE">GDP with error</option>');
             options.push('</optgroup>');
             break;
         case 'FlyOut':
@@ -253,8 +258,10 @@ function renderBatterSpecificActionOptions(action) {
             options.push('<optgroup label="Batter is safe">');
             options.push('<option value="EF">Fielding error</option>');
             options.push('<option value="ET">Throwing error</option>');
-            options.push('<option value="ED">Dropped fly</option>');
-            options.push('<option value="EDF">Dropped foul</option>');
+            options.push('<option value="EDF">Dropped fly</option>');
+            options.push('<option value="EDL">Dropped fly - line</option>');
+            options.push('<option value="EDP">Dropped fly - pop</option>');
+            options.push('<option value="EDFB">Dropped foul</option>');
             options.push('<option value="INT">Catcher\'s interference</option>');
             options.push('<option value="OB">Obstruction</option>');
             options.push('</optgroup>');
@@ -308,8 +315,11 @@ function renderRunnerSpecificActionOptions(action, group) {
             options.push('<optgroup label="Runner is safe">');
             options.push('<option value="WP">Wild pitch</option>');
             options.push('<option value="PB">Passed ball</option>');
-            options.push('<option value="BK">Balk</option>');
-            options.push('<option value="IP">Illegal pitch</option>');
+            if ((group.includes('-r'))) {
+                // only for runners, not the running batter
+                options.push('<option value="BK">Balk</option>');
+                options.push('<option value="IP">Illegal pitch</option>');
+            }
             options.push('</optgroup>');
             break;
         case 'ste':

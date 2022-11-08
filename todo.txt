@@ -1,15 +1,11 @@
-v.0.10
-====
+v.0.11
+======
 
 Features:
-
-Bugfixing:
 
 
 TODO
 ====
-Grounded into double-play situation (#31)
-Fix errors with multi-base advances (#30)
-Output generation refactoring (unify font-sizes - #39, #41)
+Cover most possible situations
 More input validations
 Bugfixing and output corrections

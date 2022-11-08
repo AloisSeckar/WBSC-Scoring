@@ -9,13 +9,16 @@
 //   extraInput - possible concecutive actions (0-3)
 //   clear - true, if previous content should be ereased
 function renderAction(battingOrder, mainInput, extraInput, clear) {
+
+    // console.log(mainInput);
+
     if (clear) {
         drawBackground(battingOrder);
     }
     
-    if (mainInput[input_origBase] !== null) {
+    if (mainInput[output_origBase] !== null && mainInput[output_origBase] > 0) {
         let prevOutput = [];
-        prevOutput[output_base] = mainInput[input_origBase];
+        prevOutput[output_base] = mainInput[output_origBase];
         if (mainInput[input_tie] === true) {
             prevOutput[output_text_1] = 'TIE';
         } else {
@@ -29,12 +32,16 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
         window.outs.push({batter:battingOrder, base:mainInput[output_base]})
     } else {
         renderAdvance(mainInput);
+
+        if (mainInput[output_errorTarget] !== null) {
+            drawExtraErrorAdvanceIfNeeded(mainInput[output_base], mainInput[output_errorTarget]);
+        }
         
         if (extraInput !== null) {
             for (i = 0; i < extraInput.length; i += 1) {
                 renderAction(battingOrder, extraInput[i], null, false);
                 if (!extraInput[i][input_spec_action].includes("N")) {
-                    drawConnector(parseInt(mainInput[input_base]), parseInt(extraInput[i][input_base]));
+                    drawConnector(parseInt(mainInput[output_base]), parseInt(extraInput[i][output_base]));
                 }
             }
         }
@@ -43,7 +50,7 @@ function renderAction(battingOrder, mainInput, extraInput, clear) {
 
 // process 'safe' situation
 function renderAdvance(output) {
-    drawAdvanceLine(output[output_base]);
+    drawAdvanceLine(Math.max(output[output_base], output[output_errorTarget]));
     writeSituation(output);
 }
 
@@ -319,7 +326,13 @@ function writeSituation(output) {
                     hitOffset = -2;
                 }
                 if (text2 !== null && text2 !== undefined) {
-                    offset = -5;
+                   
+                    if (text1.length > 2) {
+                        ctx.font = 'bold 36px Verdana';
+                        offset = 0;
+                    } else {
+                        offset = -5;
+                    }
                     ctx.fillText(text1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset);
                     
                     if (text2.length > 4) {
@@ -376,6 +389,9 @@ function writeSituation(output) {
                         row2font = 'bold 56px Verdana';
                         row1offset = 45;
                         row2offset = 6;
+                        if (text1.length > 2) {
+                            row1font = 'bold 45px Verdana';
+                        }
                         if (text2.length > 3) {
                             row1offset = 35;
                             row2offset = 2;
@@ -428,13 +444,16 @@ function writeSituation(output) {
                         ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset);
                     } else {
                         if (text1.length > 4) {
-                            ctx.font = 'bold 28px Verdana';
-                            offset = 12;
+                            ctx.font = 'bold 24px Verdana';
+                            offset = 10;
                         } else if (text1.length > 3) {
-                            ctx.font = 'bold 35px Verdana';
+                            ctx.font = 'bold 30px Verdana';
+                            offset = 12;
+                        } else if (text1.length > 2) {
+                            ctx.font = 'bold 38px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 40px Verdana';
+                            ctx.font = 'bold 45px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
@@ -468,6 +487,9 @@ function writeSituation(output) {
                         row2font = 'bold 40px Verdana';
                         row1offset = 5;
                         row2offset = 35;
+                        if (text1.length > 2) {
+                            row1font = 'bold 34px Verdana';
+                        }
                         if (text2.length > 3) {
                             row1offset = 4;
                             row2offset = 26;
@@ -492,7 +514,7 @@ function writeSituation(output) {
                             ctx.font = 'bold 38px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 48px Verdana';
+                            ctx.font = 'bold 45px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset);
@@ -527,7 +549,7 @@ function writeSituation(output) {
                             ctx.font = 'bold 38px Verdana';
                             offset = 14;
                         } else {
-                            ctx.font = 'bold 48px Verdana';
+                            ctx.font = 'bold 45px Verdana';
                             offset = 18;
                         }
                         ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset);
@@ -541,7 +563,11 @@ function writeSituation(output) {
             break;
         case 4:
             if (text2 !== null && text2 !== undefined) {
-                ctx.font = 'bold 32px Verdana';
+                if (out && text1.length > 2) {
+                    ctx.font = 'bold 28px Verdana';
+                } else {
+                    ctx.font = 'bold 32px Verdana';
+                }
                 offset = 32;
                 ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset);
                 if (text2.length > 3) {
@@ -559,7 +585,7 @@ function writeSituation(output) {
                     ctx.font = 'bold 38px Verdana';
                     offset = 14;
                 } else {
-                    ctx.font = 'bold 48px Verdana';
+                    ctx.font = 'bold 45px Verdana';
                     offset = 18;
                 }
                 ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset);
@@ -883,4 +909,87 @@ function drawArrow(fromx, fromy, tox, toy) {
     ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
                toy-headlen*Math.sin(angle-Math.PI/7));
     ctx.stroke();
+}
+
+// if there is multiple error advance,
+// the "E" mark is made to first base reached on error
+// and the extra advance is visualized with an arrow
+function drawExtraErrorAdvanceIfNeeded(origBase, targetBase) {
+    if (targetBase > origBase) {
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = 'black';
+        
+        switch (origBase) {
+            case 1:
+                drawExtraErrorAdvanceTo2B(targetBase == 2) 
+                if (targetBase > 2) {
+                    drawExtraErrorAdvanceTo3B(false, targetBase == 3) 
+                }
+                if (targetBase > 3) {
+                    drawExtraErrorAdvanceToHP(false) 
+                }
+                break;
+            case 2:
+                drawExtraErrorAdvanceTo3B(true, targetBase == 3) 
+                if (targetBase > 3) {
+                    drawExtraErrorAdvanceToHP(false) 
+                }
+                break;
+            case 3:
+                drawExtraErrorAdvanceToHP(true) 
+                break;
+        }
+    }
+}
+
+function drawExtraErrorAdvanceTo2B(endsAt2B) {
+    const gap = w2/2;
+    const length = 35;
+    const arc = 30;
+
+    ctx.beginPath();
+    ctx.moveTo(w - gap + hOffset, h2 + length + vOffset);
+    ctx.lineTo(w - gap + hOffset, h2 - length + vOffset);
+    ctx.stroke();
+
+    if (endsAt2B) {
+        drawArrow(w - gap + hOffset, h2 - length + vOffset, w - gap + hOffset, h2 - length - 20 + vOffset);
+    } else {
+        ctx.beginPath();
+        ctx.arc(w - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5*Math.PI, 0);
+        ctx.stroke();
+    }
+}
+
+function drawExtraErrorAdvanceTo3B(startsAt2B, endsAt3B) {
+    const gap = w2/2;
+    const length = 35;
+    const arc = 30;
+    const shift = startsAt2B ? 10 : 0;
+
+    ctx.beginPath();
+    ctx.moveTo(w2 + length + hOffset - shift, gap + vOffset);
+    ctx.lineTo(w2 - length + hOffset, gap + vOffset);
+    ctx.stroke();
+
+    if (endsAt3B) {
+        drawArrow(w2 - length + hOffset, gap + vOffset, w2 - length - 20 + hOffset, gap + vOffset);
+    } else {
+        ctx.beginPath();
+        ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5*Math.PI);
+        ctx.stroke();
+    }
+}
+
+function drawExtraErrorAdvanceToHP(startsAt3B) {
+    const gap = w2/2;
+    const length = 35;
+    const shift = startsAt3B ? 10 : 0;
+
+    ctx.beginPath();
+    ctx.moveTo(gap + hOffset, h2 - length + shift + vOffset);
+    ctx.lineTo(gap + hOffset, h2 + length);
+    ctx.stroke();
+    
+    drawArrow(gap + hOffset, h2 + length, gap + hOffset,  h2 + length + 20);
 }

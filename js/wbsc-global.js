@@ -78,15 +78,16 @@ function setTextConstants() {
     window.input_spec_action = '-spec-action';
     window.input_base = '-base';
     window.input_tie = '-tie';
-    window.input_origBase = '-orig-base';
     window.input_position = '-pos';
     window.input_runtype = '-run';
     window.input_validation = '-validation';
     window.input_add = '-add';
     window.input_remove = '-remove';
     
+    window.output_origBase = 'orig-base';
     window.output_player = 'player';
     window.output_base = 'base';
+    window.output_errorTarget = 'error-target';
     window.output_text_1 = 'text-1';
     window.output_text_2 = 'text-2';
     window.output_out = 'out';

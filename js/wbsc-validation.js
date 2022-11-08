@@ -12,13 +12,15 @@ function checkUserInput(inputs) {
 
     // 1) validations to be run over each input separately
     for (let i = 0; i < inputs.length; i += 1) {
-        console.log(inputs[i]);
-        validation = attachValidation(validation, checkPosSelection(inputs[i][input_position]));
+        if (inputs[i] != null) {
+            validation = attachValidation(validation, checkPosSelection(inputs[i][input_position]));
+        }
     }
 
     // 2) validations over all inputs
     validation = attachValidation(validation, checkMaxOuts(inputs));
     validation = attachValidation(validation, checkOutcome(inputs));
+    validation = attachValidation(validation, checkGDP(inputs));
     
     return validation;
 }
@@ -54,7 +56,7 @@ function checkMaxOuts(inputs) {
     let outs = 0;
 
     for (let i = 0; i < inputs.length; i += 1) {
-        if (inputs[i][output_out] === true) {
+        if (inputs[i] != null && inputs[i][output_out] === true) {
             outs++;
         }
     }
@@ -78,24 +80,26 @@ function checkOutcome(inputs) {
     let reachedBases = [];
 
     for (let i = 0; i < inputs.length; i += 1) {
-        if (currentPlayer === inputs[i][output_player]) {
-            if (inputs[i][output_out]) {
-                if (playerWasOut) {
-                    validation = attachValidation(validation, 'One player cannot be out more than once');
-                } else {
-                    playerWasOut = true;
-                    validation = attachValidation(validation, 'Player cannot advance further after being out');
+        if (inputs[i] != null) {
+            if (currentPlayer === inputs[i][output_player]) {
+                if (inputs[i][output_out]) {
+                    if (playerWasOut) {
+                        validation = attachValidation(validation, 'One player cannot be out more than once');
+                    } else {
+                        playerWasOut = true;
+                        validation = attachValidation(validation, 'Player cannot advance further after being out');
+                    }
                 }
+                const maxReachedBase = reachedBases[reachedBases.length - 1];
+                const currentReachedBase = Math.max(inputs[i][output_base], inputs[i][output_errorTarget]);
+                if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && inputs[i][output_na] === false)) {
+                    validation = attachValidation(validation, 'Extra advances of one player must happen in order');
+                }
+            } else {
+                currentPlayer = inputs[i][output_player];
+                playerWasOut = inputs[i][output_out];
+                reachedBases.push(inputs[i][output_base]);
             }
-            const maxReachedBase = reachedBases[reachedBases.length - 1];
-            const currentReachedBase = inputs[i][output_base];
-            if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && inputs[i][output_na] === false)) {
-                validation = attachValidation(validation, 'Extra advances of one player must happen in order');
-            }
-        } else {
-            currentPlayer = inputs[i][output_player];
-            playerWasOut = inputs[i][output_out];
-            reachedBases.push(inputs[i][output_base]);
         }
     }
 
@@ -112,6 +116,35 @@ function checkOutcome(inputs) {
         }
     }
     
+    return validation;
+}
+
+// if GDP (GDPE) is selected for batter
+// there has to be at least 1 correspondig out/decessive error situatuon for runners
+function checkGDP(inputs) {
+    let validation = '';
+
+    let gdpSelected = false;
+    let gdpOut = false;
+
+    for (let i = 0; i < inputs.length; i += 1) {
+        if (inputs[i] != null) {
+            if (inputs[i][output_text_1] === 'GDP' || inputs[i][output_text_1] === 'GDPE') {
+                gdpSelected = true;
+            } else {
+                if (inputs[i][output_out] === true || inputs[i][output_text_1].includes('E') || 
+                (inputs[i][output_text_2] !== undefined && inputs[i][output_text_2].includes('E'))) {
+                    gdpOut = true;
+                }
+            }
+        }
+    }
+
+    if (gdpSelected === true && gdpOut === false) {
+        validation = attachValidation(validation, 'GDP is selected, but corresponding out/decessive error is missing');
+    }
+
+
     return validation;
 }
 
