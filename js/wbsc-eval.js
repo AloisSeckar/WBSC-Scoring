@@ -407,7 +407,6 @@ function processInput(input, batter, origBase) {
             break;
         case '1B':
         case '1BB':
-            input[output_base] = 1;
             input[output_text_1] = pos;
             if (action.endsWith('BB')) {
                 input[output_text_1] += 'B';
@@ -415,11 +414,9 @@ function processInput(input, batter, origBase) {
             input[output_hit] = true;
             break;
         case 'O':
-            input[output_base] = 1;
             input[output_text_1] = action + pos;
             break;
         case 'FC':
-            input[output_base] = 1;
             input[output_text_1] = action;
             input[output_text_2] = pos;
             break;
@@ -427,7 +424,6 @@ function processInput(input, batter, origBase) {
         case 'KSPB':
         case 'KLWP':
         case 'KLPB':
-            input[output_base] = 1;
             input[output_text_1] = action.substring(0, 2);
             input[output_text_2] = action.substring(2);
             input[output_sub] = '1';
@@ -439,7 +435,6 @@ function processInput(input, batter, origBase) {
             possibleConcurrentPlay = true;
         case 'SHFC':
         case 'SFO':
-            input[output_base] = 1;
             input[output_text_1] = action.substring(0, 2);
             input[output_text_2] = action.substring(2) + pos;
             break;
@@ -454,7 +449,6 @@ function processInput(input, batter, origBase) {
         case 'SHEF':
         case 'SFE':
         case 'SFO':
-            input[output_base] = 1;
             input[output_text_1] = action.substring(0, 2);
             input[output_text_2] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
             if (action.length > 3) {
@@ -464,7 +458,6 @@ function processInput(input, batter, origBase) {
             input[output_base] = input[output_origBase] + 1;
             break;
         case 'INT':
-            input[output_base] = 1;
             input[output_text_1] = action;
             break;
         case '2B':
@@ -492,7 +485,6 @@ function processInput(input, batter, origBase) {
         case 'IBB1':
             input[output_sub] = '1';
         case 'HP':
-            input[output_base] = 1;
             if (action.length > 2) {
                 input[output_text_1] = action.substring(0, action.length - 1);
             } else {
