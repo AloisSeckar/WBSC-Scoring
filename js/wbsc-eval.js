@@ -244,7 +244,7 @@ function changeRunnerSpecificAction(group) {
         case 'EF':
         case 'eF':
         case 'ET':
-        case 'eT':
+        case 'et':
         case 'ENF':
         case 'ENT':
         case 'CSET':
@@ -601,7 +601,7 @@ function processInput(input, batter, origBase) {
         case 'ET':
         case 'EM':
         case 'eF':
-        case 'eT':
+        case 'et':
             input[output_text_1] = pos.substring(0, pos.length - 1) + action.substring(0, 1) + pos.substring(pos.length - 1);
             if (!action.endsWith('F')) {
                 input[output_text_1] += action.substring(action.length - 1);

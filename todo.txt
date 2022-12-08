@@ -3,9 +3,12 @@ v.0.11
 
 Features:
 
+Fixed displaying of extra base throwing error (e.t)
+Bugfixing - #53
 
 TODO
 ====
+New set of OBRs - according to most recent manual
 Cover most possible situations
 More input validations
 Bugfixing and output corrections
