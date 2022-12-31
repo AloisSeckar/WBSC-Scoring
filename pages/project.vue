@@ -1,0 +1,281 @@
+<template>
+    <div>
+        <h2>DESCRIPTION</h2>
+
+        <div class="pt-2 text-justify">
+            <p>
+                <strong>WBSC Scoring Creator</strong> is a JavaScript-based program allows selecting combination
+                of plays that may occur in baseball/softball game to visualize the way of scoring such play in
+                <a href="https://www.wbsc.org/">WBSC</a> scoring system. It is meant both for individual scorers
+                for learning and revising and for tutors to help them build up educational materials for
+                clinics.
+            </p>
+            <p>
+                For more information about how to use the program, see <a href="help.html">User manual</a>.
+            </p>
+            <p>
+                The project is maintained and developed voluntarily by a dedicated scorer who happen to know a
+                thing or two about programming as well. However, it will take long before it reaches ideal
+                shape, if ever. Shall you encounter any incorrect or odd behaviour or something that is missing
+                and should be also included, don't hesitate to contact the author - either directly via 
+                <a href="mailto:ellrohir@seznam.cz">email</a> or you can use 
+                <a href="https://github.com/AloisSeckar/WBSC-Scoring/issues">GitHub interface</a> for creating
+                new report/question/suggestion directly there. If you do so, try to describe your issue, so it
+                can be adressed. Screenshots are useful to see what is happening.
+            </p>
+            <p>
+                The program is sitll evolving. Visit <a href="project.html#todo">"TO-DO" section</a> in Project
+                overview to check what is yet planned to be implemented. Reffer to <a href="project.html#todo">
+                "Limitations" list</a> to see what is certainly not possible atm.
+            </p>
+            <p>
+                This is an <a href="https://unlicense.org/">Unlicensed</a> open-source that can be found 
+                <a href="https://github.com/AloisSeckar/WBSC-Scoring">HERE</a>. Any help with further
+                development would be appreciated, but you can as well take the source code and do whatever you
+                want with it yourself.
+            </p>
+        </div>
+
+        <h2>DONE</h2>
+        <h3>(what you can find here)</h3>
+
+        <div>
+            <p><em>List will be included upon v1.0 release.</em></p>
+        </div>
+
+        <a id="todo"></a>
+        <h2>TO-DO list</h2>
+        <h3>(hopefully will be implemented in next few releases)</h3>
+
+        <div>
+            <p>This is what I have scheduled to add or improve:</p>
+            <ul class="list-disc">
+                <li>Cover most possible situations</li>
+                <li>More input validations</li>
+                <li>Output corrections and fixes</li>
+            </ul>
+        </div>
+
+        <a id="limitations"></a>
+        <h2>Limitations</h2>
+        <h3>(not planned to be implemented soon)</h3>
+
+        <div>
+            <p>
+                There are several features of WBSC scoring system that are currently not covered by this program.
+                They may be included in some future releases.
+            </p>
+            <ul class="list-disc">
+                <li>It is not possible to specify actions leading to runners appearing on bases (except TIE)</li>
+                <li>It is not possible to specify batting order of the batter and previous runners</li>
+                <li>It is not possible to get different number of Ks and BBs than 1</li>
+                <li>Actions are limited to up to 3 assists (followed by an out or an error)</li>
+                <li>No 10th player (additional outfielder) for slowpitch</li>
+                <li>Not covering possible Baseball5 features</li>
+                <li>Not covering substitutions and statistic outputs</li>
+            </ul>
+        </div>
+
+        <a id="history"></a>
+        <h2>History</h2>
+
+        <div class="mb-2">
+            <p><strong>Version 0.10</strong> (2022-11-08)</p>
+            <ul class="list-disc">
+                <li>New actions supported:
+                    <ul class="list-disc">
+                        <li>Grounded into double play</li>
+                        <li>Extra WP/PB for batter after BB/KS play</li>
+                        <li>Errors with extra base advances</li>
+                    </ul>
+                </li>
+                <li>Various bugfixes and corrections</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.9.4</strong> (2022-11-08)</p>
+            <ul class="list-disc">
+                <li>Finally fixed the bug preventing from selecting specific action on mobile screens</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.9.3</strong> (2022-11-04)</p>
+            <ul class="list-disc">
+                <li>Demo auto-deplyoment to <a href="https://app.netlify.com/">Netlify</a></li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.9.2</strong> (2022-10-10)</p>
+            <ul class="list-disc">
+                <li>Trying to fix severe bug preventing from select from GUI element on mobile screens</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.9.1</strong> (2021-12-27)</p>
+            <ul class="list-disc">
+                <li>Fixed severe bug with validations</li>
+                <li>Auto-deployment to website included</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.9</strong> (2021-12-27)</p>
+            <ul class="list-disc">
+                <li>New actions supported:
+                    <ul class="list-disc">
+                        <li>Obstruction and interference</li>
+                        <li>Flyout with bunt</li>
+                        <li>Explicit 'no-advance'</li>
+                    </ul>
+                </li>
+                <li>Output improvements:
+                    <ul class="list-disc">
+                        <li>Double and tripple play connectors</li>
+                        <li>Concurrent plays (e.g. double-steal) connectors</li>
+                    </ul>
+                </li>
+                <li>Help section (manual) was added on website</li>
+                <li>Input validations refactored and enhanced</li>
+                <li>Various bugfixes and corrections</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.8</strong> (2021-04-01)</p>
+            <ul class="list-disc">
+                <li>New actions supported:
+                    <ul class="list-disc">
+                        <li>Same error advances</li>
+                        <li>No-advance plays</li>
+                        <li>Earned/unearned runs selection</li>
+                    </ul>
+                </li>
+                <li>Fixed actions:
+                    <ul class="list-disc">
+                        <li>Extra bases with more runners (uppercase/lowercase fixed))</li>
+                    </ul>
+                </li>
+                <li>Enhanced HTML structure</li>
+                <li>Significant code refactoring</li>
+                <li>Various bugfixes and corrections</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.7</strong> (2020-12-08)</p>
+            <ul class="list-disc">
+                <li>New actions supported:
+                    <ul class="list-disc">
+                        <li>PO - pick off</li>
+                        <li>LT - lost turn</li>
+                        <li>A - appeal play</li>
+                        <li>OBR - out by rule</li>
+                        <li>SH with throwing/dropped fly error</li>
+                        <li>CS with throwing error</li>
+                    </ul>
+                </li>
+                <li>Fixed actions:
+                    <ul class="list-disc">
+                        <li>"Muffled throws" removed (not official WBSC scoring term)</li>
+                        <li>Batter indicator for CS, PO and O/ situations added</li>
+                    </ul>
+                </li>
+                <li>Improved player selection inputs rendering and handling</li>
+                <li>Improved consecutive actions handling</li>
+                <li>Improved GUI and CSS form design</li>
+                <li>Download button to save outcome as PNG</li>
+                <li>Unlicense was officially included to declare this SW free of use</li>
+                <li>Various bugfixes and corrections</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.6</strong> (2020-10-11)</p>
+            <ul class="list-disc">
+                <li>New actions supported:
+                    <ul class="list-disc">
+                        <li>Sacrifice hit/fly</li>
+                        <li>Infield fly</li>
+                        <li>Bunt hit/out</li>
+                        <li>Strikeout with occupied ball</li>
+                        <li>TIE</li>
+                    </ul>
+                </li>
+                <li>Strikouts and base-on-balls are numbered according to the manual</li>
+                <li>Added option groups to help user determine if safe our out will occcur</li>
+                <li>GUI inputs now render in correct order</li>
+                <li>Advances to 3rd and HP now render correctly</li>
+                <li>CSP implemented in order to increase web security</li>
+                <li>Various bugfixes and corrections</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.5</strong> (2020-06-13)</p>
+            <ul class="list-disc">
+                <li>Batting order (1-4) is now considered</li>
+                <li>New actions supported:
+                    <ul class="list-disc">
+                        <li>Numerous strike out variants</li>
+                        <li>Extra base advances - BB, IBB, HP, WP, PB, O/</li>
+                        <li>SB and CS situations</li>
+                        <li>Various plays with errors</li>
+                    </ul>
+                </li>
+                <li>Rendering improved and corrected for currently supported actions</li>
+                <li>Due to rendering issues situations are now allowed only with 0-3 assists (followed by an out
+                    or an error)</li>
+                <li>Various bugfixes and corrections</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.4</strong> (2020-06-09)</p>
+            <ul class="list-disc">
+                <li>Inputs reworked using dynamic JavaScript for displaying and hidding input fields</li>
+                <li>With broadened options it is now possible to:
+                    <ul class="list-disc">
+                        <li>Set up situations ranging from 0 to 4 assists (followed by an out or an error)</li>
+                        <li>Set up some consecutive actions for runners on 1st, 2nd and/or 3rd base</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.3</strong> (2020-03-15)</p>
+            <ul class="list-disc">
+                <li>Fixed error in displaying "Inside-the-park homerun"</li>
+                <li>Code for rendering action inputs moved from HTML to JavaScript</li>
+                <li>Introduced possibility to add consecutive action after batter reaches first. Available are:
+                    <ul class="list-disc">
+                        <li>Safe advance on the throw</li>
+                        <li>Safe advance on error (either decisive or extra-base)</li>
+                        <li>Out after defensive play</li>
+                    </ul>
+                </li>
+            </ul>
+    </div>
+        <div class="mb-2">
+            <p><strong>Version 0.2</strong> (2020-01-13)</p>
+            <p>Newly supported batter's actions:</p>
+            <ul class="list-disc">
+                <li>Fielder's choice and occupied ball</li>
+                <li>Errors</li>
+            </ul>
+        </div>
+        <div class="mb-2">
+            <p><strong>Version 0.1</strong> (2019-12-23)</p>
+            <p>First version recorded and launched. Basic website with inputs to generate situation for one
+                batter. Output can be saved as an image.</p>
+            <p>Supported batter's actions:</p>
+            <ul class="list-disc">
+                <li>Strikeout looking and swinging</li>
+                <li>Simple ground outs with 1 or 2 fielders involved</li>
+                <li>Full spectrum of fly outs</li>
+                <li>Full spectrum of hits including named locations</li>
+                <li>Ground rule doubles and inside the park homeruns</li>
+                <li>BB, IBB and HP</li>
+            </ul>
+        </div>
+
+        <div class="mt-6">
+            <NuxtLink class="btn btn-top" to="#">Back to top</NuxtLink>
+            <NuxtLink class="btn btn-home" to="/">Back to homepage</NuxtLink>
+        </div>
+
+    </div>
+</template>

@@ -1,3 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	h1 {
+		@apply text-wbsc-blue text-4xl font-bold font-header
+	}
+	h2 {
+		@apply mt-4 text-wbsc-blue text-3xl font-bold
+	}
+	h3 {
+		@apply mb-2 text-xl font-bold
+	}
+
+	p {
+		@apply mb-2
+	}
+
+	.list-disc {
+		@apply ml-6
+	}
+
+	.btn {
+		@apply border border-black rounded mr-1 px-2 pt-1 pb-2
+	}
+	.btn-top {
+		@apply bg-gray-400 hover:bg-gray-200
+	}
+	.btn-home {
+		@apply bg-wbsc-blue hover:bg-sky-300
+	}
+
+	.demo {
+		@apply text-red-500
+	}
+}
+
+/*
 :root {
   --wbsc-blue: #00a7d7;
 }
@@ -134,3 +173,4 @@ img {
 		width: 100%;
 	}
 }
+*/
