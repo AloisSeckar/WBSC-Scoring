@@ -641,3 +641,7 @@ function processInput(input, batter, origBase) {
         }
     }
 }
+
+export {
+    changeBaseAction, changeSpecificAction, changeBase, processInput
+}

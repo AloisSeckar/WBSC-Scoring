@@ -17,6 +17,10 @@
 		@apply mb-2
 	}
 
+	img {
+		@apply mb-4
+	}
+
 	.list-disc {
 		@apply ml-6
 	}
@@ -27,8 +31,11 @@
 	.btn-top {
 		@apply bg-gray-400 hover:bg-gray-200
 	}
-	.btn-home {
+	.btn-link {
 		@apply bg-wbsc-blue hover:bg-sky-300
+	}
+	.btn-download {
+		@apply bg-emerald-400 hover:bg-emerald-300
 	}
 
 	.demo {

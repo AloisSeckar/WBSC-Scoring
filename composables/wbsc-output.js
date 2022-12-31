@@ -993,3 +993,7 @@ function drawExtraErrorAdvanceToHP(startsAt3B) {
     
     drawArrow(gap + hOffset, h2 + length, gap + hOffset,  h2 + length + 20);
 }
+
+export {
+    drawBackground, renderAction
+}

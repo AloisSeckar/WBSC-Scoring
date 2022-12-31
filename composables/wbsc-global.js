@@ -3,19 +3,8 @@
 /* Variable declarations + setting-up      */
 /* *************************************** */
 
-window.onload = function() {
-    init();
-  
-    // button for saving output as PNG
-    const downloadButton = document.getElementById('download-link');
-    downloadButton.addEventListener('click', function(ev) {
-        downloadButton.href = canvas.toDataURL();
-        downloadButton.download = 'wbsc-scoring.png';
-    }, false);
-};
-
 // prepare environment and render default state
-function init() {
+export default function init() {
     setInputVariables();
     setOutputVariables();
     setTextConstants();
@@ -23,6 +12,13 @@ function init() {
     renderActionButtons();
     renderInputs(input_b);
     drawBackground(1);
+    
+    // button for saving output as PNG
+    const downloadButton = document.getElementById('download-link');
+    downloadButton.addEventListener('click', function(ev) {
+        downloadButton.href = canvas.toDataURL();
+        downloadButton.download = 'wbsc-scoring.png';
+    }, false);
 }
 
 // initial declaring of arrays used to collect user input

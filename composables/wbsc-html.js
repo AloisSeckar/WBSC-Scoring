@@ -384,3 +384,10 @@ function renderRunnerSpecificActionOptions(action, group) {
     }
     return options;
 }
+
+export {
+    getLabelForInputGroup, getLabelForRenderButton, renderPlayerOptions, renderHitLocationOptions, 
+    renderFCLocationOptions, renderBaseOptions, renderRunTypeOptions, renderBatterActionOptions, 
+    renderBatterRunnerActionOptions, renderRunnerActionOptions, renderBatterSpecificActionOptions,
+    renderRunnerSpecificActionOptions
+}

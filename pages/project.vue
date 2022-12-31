@@ -80,6 +80,16 @@
         <h2>History</h2>
 
         <div class="mb-2">
+            <p><strong>Version 0.11</strong> (ongoing development)</p>
+            <ul class="list-disc">
+                <li>
+                    Source converted into Nuxt 3 project with TypeScript, since it become hard, 
+                    if not impossible, to maintain and change plain JavaScript code.
+                </li>
+                <li>Various bugfixes and corrections</li>
+            </ul>
+        </div>
+        <div class="mb-2">
             <p><strong>Version 0.10</strong> (2022-11-08)</p>
             <ul class="list-disc">
                 <li>New actions supported:
@@ -272,10 +282,7 @@
             </ul>
         </div>
 
-        <div class="mt-6">
-            <NuxtLink class="btn btn-top" to="#">Back to top</NuxtLink>
-            <NuxtLink class="btn btn-home" to="/">Back to homepage</NuxtLink>
-        </div>
+        <NavButtons />
 
     </div>
 </template>

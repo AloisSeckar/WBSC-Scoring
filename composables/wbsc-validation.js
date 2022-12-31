@@ -162,3 +162,7 @@ function attachValidation(input, validation) {
 
     return input;
 }
+
+export {
+    checkUserInput
+}

@@ -484,3 +484,7 @@ function getProperLocationForInputs(group) {
     
     return hook;
 }
+    
+export {
+    renderActionButtons, renderInputs
+}

@@ -3,6 +3,10 @@ export {}
 declare global {
   const abortNavigation: typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']
   const addRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']
+  const changeBase: typeof import('../../composables/wbsc-eval')['changeBase']
+  const changeBaseAction: typeof import('../../composables/wbsc-eval')['changeBaseAction']
+  const changeSpecificAction: typeof import('../../composables/wbsc-eval')['changeSpecificAction']
+  const checkUserInput: typeof import('../../composables/wbsc-validation')['checkUserInput']
   const clearError: typeof import('../../node_modules/nuxt/dist/app')['clearError']
   const clearNuxtData: typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']
   const computed: typeof import('vue')['computed']
@@ -16,10 +20,13 @@ declare global {
   const defineNuxtPlugin: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtPlugin']
   const defineNuxtRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtRouteMiddleware']
   const definePageMeta: typeof import('../../node_modules/nuxt/dist/pages/runtime/composables')['definePageMeta']
+  const drawBackground: typeof import('../../composables/wbsc-output')['drawBackground']
   const effect: typeof import('vue')['effect']
   const effectScope: typeof import('vue')['effectScope']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getLabelForInputGroup: typeof import('../../composables/wbsc-html')['getLabelForInputGroup']
+  const getLabelForRenderButton: typeof import('../../composables/wbsc-html')['getLabelForRenderButton']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isNuxtError: typeof import('../../node_modules/nuxt/dist/app')['isNuxtError']
@@ -54,12 +61,27 @@ declare global {
   const preloadComponents: typeof import('../../node_modules/nuxt/dist/app')['preloadComponents']
   const preloadPayload: typeof import('../../node_modules/nuxt/dist/app')['preloadPayload']
   const preloadRouteComponents: typeof import('../../node_modules/nuxt/dist/app')['preloadRouteComponents']
+  const processAction: typeof import('../../composables/wbsc-processor')['processAction']
+  const processInput: typeof import('../../composables/wbsc-eval')['processInput']
   const provide: typeof import('vue')['provide']
   const proxyRefs: typeof import('vue')['proxyRefs']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
   const refreshNuxtData: typeof import('../../node_modules/nuxt/dist/app')['refreshNuxtData']
+  const renderAction: typeof import('../../composables/wbsc-output')['renderAction']
+  const renderActionButtons: typeof import('../../composables/wbsc-input')['renderActionButtons']
+  const renderBaseOptions: typeof import('../../composables/wbsc-html')['renderBaseOptions']
+  const renderBatterActionOptions: typeof import('../../composables/wbsc-html')['renderBatterActionOptions']
+  const renderBatterRunnerActionOptions: typeof import('../../composables/wbsc-html')['renderBatterRunnerActionOptions']
+  const renderBatterSpecificActionOptions: typeof import('../../composables/wbsc-html')['renderBatterSpecificActionOptions']
+  const renderFCLocationOptions: typeof import('../../composables/wbsc-html')['renderFCLocationOptions']
+  const renderHitLocationOptions: typeof import('../../composables/wbsc-html')['renderHitLocationOptions']
+  const renderInputs: typeof import('../../composables/wbsc-input')['renderInputs']
+  const renderPlayerOptions: typeof import('../../composables/wbsc-html')['renderPlayerOptions']
+  const renderRunTypeOptions: typeof import('../../composables/wbsc-html')['renderRunTypeOptions']
+  const renderRunnerActionOptions: typeof import('../../composables/wbsc-html')['renderRunnerActionOptions']
+  const renderRunnerSpecificActionOptions: typeof import('../../composables/wbsc-html')['renderRunnerSpecificActionOptions']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const setPageLayout: typeof import('../../node_modules/nuxt/dist/app')['setPageLayout']
   const setResponseStatus: typeof import('../../node_modules/nuxt/dist/app')['setResponseStatus']
@@ -96,6 +118,7 @@ declare global {
   const useTransitionState: typeof import('vue')['useTransitionState']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
+  const wbscGlobal: typeof import('../../composables/wbsc-global')['default']
   const withCtx: typeof import('vue')['withCtx']
   const withDirectives: typeof import('vue')['withDirectives']
   const withKeys: typeof import('vue')['withKeys']
@@ -109,6 +132,10 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']>
+    readonly changeBase: UnwrapRef<typeof import('../../composables/wbsc-eval')['changeBase']>
+    readonly changeBaseAction: UnwrapRef<typeof import('../../composables/wbsc-eval')['changeBaseAction']>
+    readonly changeSpecificAction: UnwrapRef<typeof import('../../composables/wbsc-eval')['changeSpecificAction']>
+    readonly checkUserInput: UnwrapRef<typeof import('../../composables/wbsc-validation')['checkUserInput']>
     readonly clearError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -122,10 +149,13 @@ declare module 'vue' {
     readonly defineNuxtPlugin: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtPlugin']>
     readonly defineNuxtRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtRouteMiddleware']>
     readonly definePageMeta: UnwrapRef<typeof import('../../node_modules/nuxt/dist/pages/runtime/composables')['definePageMeta']>
+    readonly drawBackground: UnwrapRef<typeof import('../../composables/wbsc-output')['drawBackground']>
     readonly effect: UnwrapRef<typeof import('vue')['effect']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getLabelForInputGroup: UnwrapRef<typeof import('../../composables/wbsc-html')['getLabelForInputGroup']>
+    readonly getLabelForRenderButton: UnwrapRef<typeof import('../../composables/wbsc-html')['getLabelForRenderButton']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isNuxtError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['isNuxtError']>
@@ -160,12 +190,27 @@ declare module 'vue' {
     readonly preloadComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadComponents']>
     readonly preloadPayload: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadPayload']>
     readonly preloadRouteComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadRouteComponents']>
+    readonly processAction: UnwrapRef<typeof import('../../composables/wbsc-processor')['processAction']>
+    readonly processInput: UnwrapRef<typeof import('../../composables/wbsc-eval')['processInput']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly proxyRefs: UnwrapRef<typeof import('vue')['proxyRefs']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly refreshNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['refreshNuxtData']>
+    readonly renderAction: UnwrapRef<typeof import('../../composables/wbsc-output')['renderAction']>
+    readonly renderActionButtons: UnwrapRef<typeof import('../../composables/wbsc-input')['renderActionButtons']>
+    readonly renderBaseOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderBaseOptions']>
+    readonly renderBatterActionOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderBatterActionOptions']>
+    readonly renderBatterRunnerActionOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderBatterRunnerActionOptions']>
+    readonly renderBatterSpecificActionOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderBatterSpecificActionOptions']>
+    readonly renderFCLocationOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderFCLocationOptions']>
+    readonly renderHitLocationOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderHitLocationOptions']>
+    readonly renderInputs: UnwrapRef<typeof import('../../composables/wbsc-input')['renderInputs']>
+    readonly renderPlayerOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderPlayerOptions']>
+    readonly renderRunTypeOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderRunTypeOptions']>
+    readonly renderRunnerActionOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderRunnerActionOptions']>
+    readonly renderRunnerSpecificActionOptions: UnwrapRef<typeof import('../../composables/wbsc-html')['renderRunnerSpecificActionOptions']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly setPageLayout: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['setPageLayout']>
     readonly setResponseStatus: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['setResponseStatus']>
@@ -202,6 +247,7 @@ declare module 'vue' {
     readonly useTransitionState: UnwrapRef<typeof import('vue')['useTransitionState']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
+    readonly wbscGlobal: UnwrapRef<typeof import('../../composables/wbsc-global')['default']>
     readonly withCtx: UnwrapRef<typeof import('vue')['withCtx']>
     readonly withDirectives: UnwrapRef<typeof import('vue')['withDirectives']>
     readonly withKeys: UnwrapRef<typeof import('vue')['withKeys']>
