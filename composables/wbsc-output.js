@@ -65,35 +65,42 @@ function renderOut(output) {
 // prepare empty scoresheet element (blue square)
 //   battingOrder - number displayed at the left side (1-4)
 function drawBackground(battingOrder) {
+
+    const store = useGraphicsStore()
+
+    const canvas = store.canvasInfo.canvas
+    const ctx = store.canvasInfo.ctx
+    const info = store.graphicsInfo
+
     ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0 + vOffset, w + hOffset, h);
+    ctx.fillRect(0, 0 + info.vOffset, info.w + info.hOffset, info.h);
     
     ctx.lineWidth = 8;
     ctx.strokeStyle = '#00a7d7';
     
-    ctx.strokeRect(4, 4 + vOffset, hOffset, h - 8);
+    ctx.strokeRect(4, 4 + info.vOffset, info.hOffset, info.h - 8);
     
     ctx.font = 'bold 60px Verdana';
     ctx.textAlign = 'center';
     ctx.fillStyle = '#00a7d7';
-    ctx.fillText(battingOrder, 40,  h2 + 25 + vOffset);
+    ctx.fillText(battingOrder, 40,  info.h2 + 25 + info.vOffset);
     
-    ctx.strokeRect(4 + hOffset, 4 + vOffset, w - 8, h - 8);
+    ctx.strokeRect(4 + info.hOffset, 4 + info.vOffset, info.w - 8, info.h - 8);
     
     ctx.lineWidth = 4;
     
     ctx.beginPath();
-    ctx.moveTo(w2 + hOffset, 0 + vOffset);
-    ctx.lineTo(w2 + hOffset, h3 + vOffset);
+    ctx.moveTo(info.w2 + info.hOffset, 0 + info.vOffset);
+    ctx.lineTo(info.w2 + info.hOffset, info.h3 + info.vOffset);
     ctx.stroke();
-    ctx.moveTo(w2 + hOffset, h + vOffset);
-    ctx.lineTo(w2 + hOffset, h - h3 + vOffset);
+    ctx.moveTo(info.w2 + info.hOffset, info.h + info.vOffset);
+    ctx.lineTo(info.w2 + info.hOffset, info.h - info.h3 + info.vOffset);
     ctx.stroke();
-    ctx.moveTo(0 + hOffset, h2 + vOffset);
-    ctx.lineTo(w3 + hOffset, h2 + vOffset);
+    ctx.moveTo(0 + info.hOffset, info.h2 + info.vOffset);
+    ctx.lineTo(info.w3 + info.hOffset, info.h2 + info.vOffset);
     ctx.stroke();
-    ctx.moveTo(w + hOffset, h2 + vOffset);
-    ctx.lineTo(w - h3 + hOffset, h2 + vOffset);
+    ctx.moveTo(info.w + info.hOffset, info.h2 + info.vOffset);
+    ctx.lineTo(info.w - info.h3 + info.hOffset, info.h2 + info.vOffset);
     ctx.stroke();
 }
 

@@ -31,6 +31,8 @@ function setInputVariables() {
 
 // setting affecting placement of texts in situation rendering
 function setOutputVariables() {
+    useGraphicsStore().setCanvasInfo()
+
     window.canvas = document.getElementById('canvas');
     window.ctx = canvas.getContext('2d');
     

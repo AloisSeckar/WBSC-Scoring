@@ -16,7 +16,6 @@
         <canvas id="canvas" class="mx-auto my-4" width="325" height="250"></canvas>
 
         <div class="mx-auto mb-8 w-48">
-            <!-- TODO downloading broken now -->
             <a id="download-link" class="btn btn-download">Download image</a>
         </div>
 
