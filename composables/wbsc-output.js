@@ -66,11 +66,10 @@ function renderOut(output) {
 //   battingOrder - number displayed at the left side (1-4)
 function drawBackground(battingOrder) {
 
-    const store = useGraphicsStore()
+    const store = useCanvasStore()
 
-    const canvas = store.canvasInfo.canvas
-    const ctx = store.canvasInfo.ctx
-    const info = store.graphicsInfo
+    const canvas = store.canvas
+    const ctx = store.ctx
 
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0 + info.vOffset, info.w + info.hOffset, info.h);

@@ -3,8 +3,12 @@
 /* CORE file with input evaluation methods */
 /* *************************************** */
 
+import { useEvalStore } from './useEvalStore';
+import { WBSCInput } from './useInputStore';
+import { WBSCOutput } from './useOutputStore';
+
 // triggered when user selects from 'base' action
-function changeBaseAction(group) {
+function changeBaseAction(group: string) {
     if (group === input_b) {
         changeBatterBaseAction();
     } else {
@@ -13,7 +17,7 @@ function changeBaseAction(group) {
 }
 
 // triggered when user selects from 'specific' action
-function changeSpecificAction(group) {
+function changeSpecificAction(group: string) {
     if (group === input_b) {
         changeBatterSpecificAction();
     } else {
@@ -23,12 +27,12 @@ function changeSpecificAction(group) {
 
 // ajdust 'specific' action according to selected 'base' action
 function changeBatterBaseAction() {
-    const baseAction = document.getElementById(input_b + input_base_action);
+    const baseAction = document.getElementById(input_b + input_base_action) as HTMLInputElement;
     const actionOptions = renderBatterSpecificActionOptions(baseAction.value);
-    const specificActionDisabled = actionOptions === [];
+    const specificActionDisabled = actionOptions.length < 1;
 
-    const specificAction = document.getElementById(input_b + input_spec_action);
-    specificAction.innerHTML = actionOptions;
+    const specificAction = document.getElementById(input_b + input_spec_action) as HTMLInputElement;
+    specificAction.innerHTML = actionOptions.join();
     specificAction.disabled = specificActionDisabled;
     
     changeBatterSpecificAction();
@@ -43,7 +47,7 @@ function changeBatterSpecificAction() {
     let maxPosItems = 4;
     let runTypeSelectDisabled = true;
     
-    const specificAction = document.getElementById(input_b + input_spec_action);
+    const specificAction = document.getElementById(input_b + input_spec_action) as HTMLInputElement;
     const specificActionValue = specificAction.value;
     switch (specificActionValue) {
         case 'FC':
@@ -135,73 +139,82 @@ function changeBatterSpecificAction() {
             minPosItems = targetPosItems = maxPosItems = 0;
     }
     
-    window.minPosItems[input_b] = minPosItems;
-    window.targetPosItems[input_b] = targetPosItems;
-    window.maxPosItems[input_b] = maxPosItems;
+    useEvalStore().minPosItems.push({inputGroup: input_b, limit: minPosItems})
+    useEvalStore().targetPosItems.push({inputGroup: input_b, limit: targetPosItems})
+    useEvalStore().maxPosItems.push({inputGroup: input_b, limit: maxPosItems})
     
     const groupID = input_b + input_position;
     
     const container = document.getElementById(groupID);
-    const addItemButton = document.getElementById(groupID + input_add);
-    const removeItemButton = document.getElementById(groupID + input_remove);
-    
-    let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-    while (itemsCreated > 0) {
-        const posItemN = document.getElementById(groupID + itemsCreated); 
-        container.removeChild(posItemN);
-        itemsCreated -= 1;
-    }
-    
-    while (itemsCreated < targetPosItems) {
-        itemsCreated += 1;
-        const posItemN = getPosSelectionSelect(input_b, itemsCreated);
-        container.insertBefore(posItemN, addItemButton);
-    }
-    
-    addItemButton.disabled = itemsCreated >= maxPosItems;
-    removeItemButton.disabled = itemsCreated <= minPosItems;
-    
-    if (hit === true) {
-        const posItem1 = document.getElementById(groupID + '1');
-        posItem1.innerHTML = renderHitLocationOptions();
-        if (posSelection[groupID]) {
-            posItem1.value = posSelection[groupID][0];
-        }
-    }
-    
-    if (fc === true) {
-        const posItem2 = document.getElementById(groupID + '2');
-        posItem2.innerHTML = renderFCLocationOptions();
-        if (posSelection[groupID]) {
-            posItem2.value = posSelection[groupID][1];
-        }
-    }
+    if (container) {
+        
+        const addItemButton = document.getElementById(groupID + input_add) as HTMLInputElement;
+        const removeItemButton = document.getElementById(groupID + input_remove) as HTMLInputElement;
 
-    const runTypeSelect = document.getElementById(input_b + input_runtype);
-    runTypeSelect.disabled = runTypeSelectDisabled;
+        let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+        if (itemsCreated) {
+            while (itemsCreated > 0) {
+                const posItemN = document.getElementById(groupID + itemsCreated);
+                if (posItemN) {
+                    container.removeChild(posItemN);
+                    itemsCreated -= 1;
+                }
+            }
+            
+            while (itemsCreated < targetPosItems) {
+                itemsCreated += 1;
+                const posItemN = getPosSelectionSelect(input_b, itemsCreated);
+                container.insertBefore(posItemN, addItemButton);
+            }
+        }
+    
+        addItemButton.disabled = itemsCreated >= maxPosItems;
+        removeItemButton.disabled = itemsCreated <= minPosItems;
+        
+        if (hit === true) {
+            const posItem1 = document.getElementById(groupID + '1') as HTMLInputElement;
+            if (posItem1) {
+                posItem1.innerHTML = renderHitLocationOptions().join();
+                posItem1.value = useEvalStore().getPosSelection(groupID)[0];
+            }
+        }
+        
+        if (fc === true) {
+            const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement;
+            if (posItem2) {
+                posItem2.innerHTML = renderFCLocationOptions().join();
+                posItem2.value = useEvalStore().getPosSelection(groupID)[1];
+            }
+        }
+
+        const runTypeSelect = document.getElementById(input_b + input_runtype) as HTMLInputElement;
+        if (runTypeSelect) {
+            runTypeSelect.disabled = runTypeSelectDisabled;
+        }
+    }
 }
 
 // ajdust 'specific' action according to selected 'base' action
-function changeRunnerBaseAction(group) {
-    const runnerBaseAction = document.getElementById(group + input_base_action);
+function changeRunnerBaseAction(group: string) {
+    const runnerBaseAction = document.getElementById(group + input_base_action) as HTMLInputElement;
     const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value, group);
-    const specificActionDisabled = actionOptions === [];
+    const specificActionDisabled = actionOptions.length < 1;;
 
-    const specificAction = document.getElementById(group + input_spec_action);
-    specificAction.innerHTML = actionOptions;
+    const specificAction = document.getElementById(group + input_spec_action) as HTMLInputElement;
+    specificAction.innerHTML = actionOptions.join();
     specificAction.disabled = specificActionDisabled;
     
     changeRunnerSpecificAction(group);
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeRunnerSpecificAction(group) {
+function changeRunnerSpecificAction(group: string) {
     let throwing = false;
     let minPosItems = 1;
     let targetPosItems = 1;
     let maxPosItems = 4;
     
-    const runnerSpecificAction = document.getElementById(group + input_spec_action);
+    const runnerSpecificAction = document.getElementById(group + input_spec_action) as HTMLInputElement;
     const runnerSpecificActionValue = runnerSpecificAction.value;
     switch (runnerSpecificActionValue) {
         case 'ADV':
@@ -257,62 +270,66 @@ function changeRunnerSpecificAction(group) {
         default:
             maxPosItems = 1;
     }
-    
-    window.minPosItems[group] = minPosItems;
-    window.targetPosItems[group] = targetPosItems;
-    window.maxPosItems[group] = maxPosItems;
+
+    useEvalStore().minPosItems.push({inputGroup: input_b, limit: minPosItems})
+    useEvalStore().targetPosItems.push({inputGroup: input_b, limit: targetPosItems})
+    useEvalStore().maxPosItems.push({inputGroup: input_b, limit: maxPosItems})
     
     const groupID = group + input_position;
     
     const container = document.getElementById(groupID);
-    const addItemButton = document.getElementById(groupID + input_add);
-    const removeItemButton = document.getElementById(groupID + input_remove);
-    
-    let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-    while (itemsCreated > 0) {
-        const posItemN = document.getElementById(groupID + itemsCreated); 
-        container.removeChild(posItemN);
-        itemsCreated -= 1;
-    }
-    
-    while (itemsCreated < targetPosItems) {
-        itemsCreated += 1;
-        const posItemN = getPosSelectionSelect(group, itemsCreated);
-        container.insertBefore(posItemN, addItemButton);
-    }
-    
-    addItemButton.disabled = itemsCreated >= maxPosItems;
-    removeItemButton.disabled = itemsCreated <= minPosItems;
-    
-    if (throwing === true) {
-        const posItem2 = document.getElementById(groupID + '2');
-        posItem2.innerHTML = renderFCLocationOptions();
-        if (posSelection[groupID]) {
-            posItem2.value = posSelection[groupID][1];    
+    if (container) {
+
+        const addItemButton = document.getElementById(groupID + input_add) as HTMLInputElement;
+        const removeItemButton = document.getElementById(groupID + input_remove) as HTMLInputElement;
+        
+        let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
+        while (itemsCreated > 0) {
+            const posItemN = document.getElementById(groupID + itemsCreated); 
+            if (posItemN) {
+                container.removeChild(posItemN);
+                itemsCreated -= 1;
+            }
+        }
+        
+        while (itemsCreated < targetPosItems) {
+            itemsCreated += 1;
+            const posItemN = getPosSelectionSelect(group, itemsCreated);
+            container.insertBefore(posItemN, addItemButton);
+        }
+        
+        addItemButton.disabled = itemsCreated >= maxPosItems;
+        removeItemButton.disabled = itemsCreated <= minPosItems;
+        
+        if (throwing === true) {
+            const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement;
+            posItem2.innerHTML = renderFCLocationOptions().join();
+            posItem2.value = useEvalStore().getPosSelection(groupID)[1];
         }
     }
 }
 
 // allows to select run type when home base is selected
-function changeBase(group) {
-    const baseSelect = document.getElementById(group + input_base);
+function changeBase(group: string) {
+    const baseSelect = document.getElementById(group + input_base) as HTMLInputElement;
     const baseSelectValue = baseSelect.value;
     
-    const runTypeSelect = document.getElementById(group + input_runtype);
+    const runTypeSelect = document.getElementById(group + input_runtype) as HTMLInputElement;
     runTypeSelect.disabled = baseSelectValue !== '4';
 }
 
 // enhance user's input with output instructions
-function processInput(input, batter, origBase) {
-    input[output_origBase] = origBase;
-    input[output_player] = batter;
-    input[output_base] = parseInt(input[input_base]);
-    input[output_run] = input[input_runtype];
-    input[output_out] = false;
-    input[output_hit] = false;
-    input[output_na] = false;
-    input[output_errorTarget] = null;
-    input[output_text_1] = ""; // to avoid undefined refference later
+function processInput(input: WBSCInput, batter: string, origBase: number) {
+    const output: WBSCOutput = {}
+    output.origBase = origBase;
+    output.player = batter;
+    output.base = parseInt(input.base ? input.base : '-1');
+    output.run = input.runtype;
+    output.out = false;
+    output.hit = false;
+    output.na = false;
+    output.errorTarget = null;
+    output.text1 = ''; // to avoid undefined refference later
     
     let pos = input[input_position];
     if (pos !== null) {

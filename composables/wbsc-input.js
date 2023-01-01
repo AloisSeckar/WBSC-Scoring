@@ -486,5 +486,5 @@ function getProperLocationForInputs(group) {
 }
     
 export {
-    renderActionButtons, renderInputs
+    renderActionButtons, renderInputs, getPosSelectionSelect
 }
