@@ -74,19 +74,19 @@ function drawBackground(battingOrder: number) {
         const vOffset = useCanvasStore().vOffset;
 
         ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0 + vOffset, w + hOffset, h);
+        ctx.fillRect(0, 0 + vOffset, w1 + hOffset, h1);
         
         ctx.lineWidth = 8;
         ctx.strokeStyle = '#00a7d7';
         
-        ctx.strokeRect(4, 4 + vOffset, hOffset, h - 8);
+        ctx.strokeRect(4, 4 + vOffset, hOffset, h1 - 8);
         
         ctx.font = 'bold 60px Verdana';
         ctx.textAlign = 'center';
         ctx.fillStyle = '#00a7d7';
         ctx.fillText(battingOrder.toString(), 40,  h2 + 25 + vOffset);
         
-        ctx.strokeRect(4 + hOffset, 4 + vOffset, w - 8, h - 8);
+        ctx.strokeRect(4 + hOffset, 4 + vOffset, w1 - 8, h1 - 8);
         
         ctx.lineWidth = 4;
         
@@ -94,14 +94,14 @@ function drawBackground(battingOrder: number) {
         ctx.moveTo(w2 + hOffset, 0 + vOffset);
         ctx.lineTo(w2 + hOffset, h3 + vOffset);
         ctx.stroke();
-        ctx.moveTo(w2 + hOffset, h + vOffset);
-        ctx.lineTo(w2 + hOffset, h - h3 + vOffset);
+        ctx.moveTo(w2 + hOffset, h1 + vOffset);
+        ctx.lineTo(w2 + hOffset, h1 - h3 + vOffset);
         ctx.stroke();
         ctx.moveTo(0 + hOffset, h2 + vOffset);
         ctx.lineTo(w3 + hOffset, h2 + vOffset);
         ctx.stroke();
-        ctx.moveTo(w + hOffset, h2 + vOffset);
-        ctx.lineTo(w - h3 + hOffset, h2 + vOffset);
+        ctx.moveTo(w1 + hOffset, h2 + vOffset);
+        ctx.lineTo(w1 - h3 + hOffset, h2 + vOffset);
         ctx.stroke();
     } else {
         createError("Canvas context not defined")
@@ -158,8 +158,8 @@ function drawAdvanceLine(base: number) {
         
         ctx.beginPath();
         if (base > 0) {
-            ctx.moveTo(w2 + hOffset, h - h3 + vOffset);
-            ctx.lineTo(w - w3 + hOffset, h2 + vOffset);
+            ctx.moveTo(w2 + hOffset, h1 - h3 + vOffset);
+            ctx.lineTo(w1 - w3 + hOffset, h2 + vOffset);
         }
         if (base > 1) {
             ctx.lineTo(w2 + hOffset, h3 + vOffset);
@@ -168,7 +168,7 @@ function drawAdvanceLine(base: number) {
             ctx.lineTo(w3 + hOffset, h2 + vOffset);
         }
         if (base > 3) {
-            ctx.lineTo(w2 + 2 + hOffset, h - h3 + 2 + vOffset);
+            ctx.lineTo(w2 + 2 + hOffset, h1 - h3 + 2 + vOffset);
         }
         ctx.stroke();
     } else {
@@ -197,13 +197,13 @@ function drawConnector(base1: number, base2: number) {
             ctx.beginPath();
             switch (base1) {
                 case 1:
-                    ctx.moveTo(w - gap + hOffset, h2 + length + vOffset);
-                    ctx.lineTo(w - gap + hOffset, h2 - length + vOffset);
+                    ctx.moveTo(w1 - gap + hOffset, h2 + length + vOffset);
+                    ctx.lineTo(w1 - gap + hOffset, h2 - length + vOffset);
                     if (base2 > 2) {
-                        ctx.lineTo(w - gap + hOffset, gap + vOffset + arc);
-                        ctx.moveTo(w - gap + hOffset - arc, gap + vOffset);
+                        ctx.lineTo(w1 - gap + hOffset, gap + vOffset + arc);
+                        ctx.moveTo(w1 - gap + hOffset - arc, gap + vOffset);
                         ctx.lineTo(w2 - length + hOffset, gap + vOffset);
-                        ctx.arc(w - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5*Math.PI, 0);
+                        ctx.arc(w1 - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5*Math.PI, 0);
                     }
                     if (base2 > 3) {
                         ctx.moveTo(w2 - length + hOffset, gap + vOffset);
@@ -248,7 +248,7 @@ function drawHitSymbol(base: number) {
         ctx.beginPath();
         switch (base) {
             case 1:
-                ctx.moveTo(w2 + 25 + hOffset, h - 35 + vOffset);
+                ctx.moveTo(w2 + 25 + hOffset, h1 - 35 + vOffset);
                 ctx.lineTo(w2 + 50 + hOffset, h2 + 25 + vOffset);
                 ctx.moveTo(w2 + 30 + hOffset, h2 + 40 + vOffset);
                 ctx.lineTo(w2 + 58 + hOffset, h2 + 45 + vOffset);
@@ -361,15 +361,15 @@ function writeSituation(output: WBSCOutput) {
                 }
                 if (sub !== null && sub !== undefined) {
                     ctx.font = 'bold 40px Verdana';
-                    ctx.fillText(sub, w + hOffset - 30, h - 20 + vOffset);
+                    ctx.fillText(sub, w1 + hOffset - 30, h1 - 20 + vOffset);
                 }
                 if (sup !== null && sup !== undefined) {
                     if (sup === '14') {
                         ctx.font = 'bold 28px Verdana';
-                        ctx.fillText(sup, w + hOffset - 32, 38 + vOffset);
+                        ctx.fillText(sup, w1 + hOffset - 32, 38 + vOffset);
                     } else {
                         ctx.font = 'bold 40px Verdana';
-                        ctx.fillText(sup, w + hOffset - 30, 42 + vOffset);
+                        ctx.fillText(sup, w1 + hOffset - 30, 42 + vOffset);
                     }
                 }
                 break;
@@ -425,9 +425,9 @@ function writeSituation(output: WBSCOutput) {
                     if (sub !== null && sub !== undefined) {
                         ctx.font = 'bold 30px Verdana';
                         if (text1.startsWith('K')) {
-                            ctx.fillText(sub, w + hOffset - 20, h - 62 + vOffset);
+                            ctx.fillText(sub, w1 + hOffset - 20, h1 - 62 + vOffset);
                         } else {
-                            ctx.fillText(sub, w + hOffset - 18, h - 33 + vOffset);
+                            ctx.fillText(sub, w1 + hOffset - 18, h1 - 33 + vOffset);
                         }
                     }
                 }
@@ -665,20 +665,20 @@ function writeSituation(output: WBSCOutput) {
                         case 'e':
                             // the diamond is filled
                             ctx.beginPath();
-                            ctx.moveTo(w2 + hOffset, h - h3 + vOffset);
-                            ctx.lineTo(w - w3 + hOffset, h2 + vOffset);
+                            ctx.moveTo(w2 + hOffset, h1 - h3 + vOffset);
+                            ctx.lineTo(w1 - w3 + hOffset, h2 + vOffset);
                             ctx.lineTo(w2 + hOffset, h3 + vOffset);
                             ctx.lineTo(w3 + hOffset, h2 + vOffset);
-                            ctx.lineTo(w2 + 3 + hOffset, h - h3 + 3 + vOffset);
+                            ctx.lineTo(w2 + 3 + hOffset, h1 - h3 + 3 + vOffset);
                             ctx.closePath();
                             ctx.fill();
                             break;
                         case 'tu':
                             // the diamond is crossed
                             ctx.beginPath();
-                            ctx.moveTo(w2 + hOffset, h - h3 + vOffset);
+                            ctx.moveTo(w2 + hOffset, h1 - h3 + vOffset);
                             ctx.lineTo(w2 + hOffset, h3 + vOffset);
-                            ctx.moveTo(w - w3 + hOffset, h2 + vOffset);
+                            ctx.moveTo(w1 - w3 + hOffset, h2 + vOffset);
                             ctx.lineTo(w3 + hOffset, h2 + vOffset);
                             ctx.stroke();
                             break;
@@ -706,16 +706,16 @@ function writeBatterIndicator(base: number) {
     let coords = [];
     switch (base) {
         case 1:
-            coords.push({x: w + hOffset - 16, y: h2 -  4 + vOffset});
-            coords.push({x: w + hOffset - 26, y: h2 -  2 + vOffset});
-            coords.push({x: w + hOffset - 26, y: h2 - 22 + vOffset});
-            coords.push({x: w + hOffset -  8, y: h2 - 22 + vOffset});
+            coords.push({x: w1 + hOffset - 16, y: h2 -  4 + vOffset});
+            coords.push({x: w1 + hOffset - 26, y: h2 -  2 + vOffset});
+            coords.push({x: w1 + hOffset - 26, y: h2 - 22 + vOffset});
+            coords.push({x: w1 + hOffset -  8, y: h2 - 22 + vOffset});
             break;
         case 2:
-            coords.push({x: w + hOffset - 16, y: 26 + vOffset});
-            coords.push({x: w + hOffset - 26, y:  8 + vOffset});
-            coords.push({x: w + hOffset - 26, y: 31 + vOffset});
-            coords.push({x: w + hOffset -  8, y: 31 + vOffset});
+            coords.push({x: w1 + hOffset - 16, y: 26 + vOffset});
+            coords.push({x: w1 + hOffset - 26, y:  8 + vOffset});
+            coords.push({x: w1 + hOffset - 26, y: 31 + vOffset});
+            coords.push({x: w1 + hOffset -  8, y: 31 + vOffset});
             break;
         case 3:
             coords.push({x: hOffset + 15, y: 26 + vOffset});
@@ -758,8 +758,8 @@ function connectOutsIfNeeded() {
 
             const hOffset = useCanvasStore().hOffset;
             const lineHOffset = 20;
-            const vOffsetStart = (h - 8) * (start.batter - 1);
-            const vOffsetEnd = (h - 8) * (end.batter - 1);
+            const vOffsetStart = (h1 - 8) * (start.batter - 1);
+            const vOffsetEnd = (h1 - 8) * (end.batter - 1);
 
             let startX = 0;
             let startY = 0;
@@ -768,11 +768,11 @@ function connectOutsIfNeeded() {
             switch (start.base) {
                 case 4:
                     startX = hOffset + lineHOffset;
-                    startY = h - 36 + vOffsetStart;
+                    startY = h1 - 36 + vOffsetStart;
                     switch (end.base) {
                         case 3:
                             startX = hOffset + h2/2;
-                            startY = h - 15 + vOffsetStart;
+                            startY = h1 - 15 + vOffsetStart;
                             endX = hOffset + h2/2;
                             endY = h2 - 47 + vOffsetEnd;
                             break;
@@ -835,8 +835,8 @@ function connectConcurrentPlaysIfNeeded() {
             if (start.out === false || end.out === false) {
                 const hOffset = useCanvasStore().hOffset;
                 const lineHOffset = 30;
-                const vOffsetStart = (h - 8) * (start.batter - 1);
-                const vOffsetEnd = (h - 8) * (end.batter - 1);
+                const vOffsetStart = (h1 - 8) * (start.batter - 1);
+                const vOffsetEnd = (h1 - 8) * (end.batter - 1);
                 const out = start.out === true;
 
                 const startNa = start.na === true;
@@ -848,7 +848,7 @@ function connectConcurrentPlaysIfNeeded() {
                 let endY = 0;
                 switch (start.base) {
                     case 4:
-                        startY = h - 20 + vOffsetStart;
+                        startY = h1 - 20 + vOffsetStart;
                         switch (end.base) {
                             case 3:
                                 if (out) {
@@ -920,7 +920,7 @@ function connectConcurrentPlaysIfNeeded() {
                                 startX = hOffset + h2;
                                 startY = 45 + vOffsetStart;
                             } else {
-                                startX = hOffset + (h - lineHOffset);
+                                startX = hOffset + (h1 - lineHOffset);
                                 startY = h2 - 25 + vOffsetStart;
                             }
                         }
@@ -931,16 +931,16 @@ function connectConcurrentPlaysIfNeeded() {
                                     endY = h2 + 25 + vOffsetEnd;
                                 } else {
                                     if (startNa) {
-                                        endX = hOffset + (h - h2/2);
+                                        endX = hOffset + (h1 - h2/2);
                                         endY = h2 + (endNa ? -5 : 15) + vOffsetEnd;
                                     } else {
-                                        endX = hOffset + (h - (endNa ? h2/2 : lineHOffset));
+                                        endX = hOffset + (h1 - (endNa ? h2/2 : lineHOffset));
                                         endY = h2 + (endNa ? -5 : 25) + vOffsetEnd;
                                     }
                                 }
                                 break;
                             case 0:
-                                endX = hOffset + (h - lineHOffset);
+                                endX = hOffset + (h1 - lineHOffset);
                                 endY = 25 + vOffsetEnd;
                                 break;
                         }
@@ -1026,22 +1026,22 @@ function drawExtraErrorAdvanceTo2B(endsAt2B: boolean) {
     const gap = w2/2;
     const length = 35;
     const arc = 30;
-    
+
     const ctx = useCanvasStore().ctx
     if (ctx) {
         const hOffset = useCanvasStore().hOffset;
         const vOffset = useCanvasStore().vOffset;
 
         ctx.beginPath();
-        ctx.moveTo(w - gap + hOffset, h2 + length + vOffset);
-        ctx.lineTo(w - gap + hOffset, h2 - length + vOffset);
+        ctx.moveTo(w1 - gap + hOffset, h2 + length + vOffset);
+        ctx.lineTo(w1 - gap + hOffset, h2 - length + vOffset);
         ctx.stroke();
 
         if (endsAt2B) {
-            drawArrow(w - gap + hOffset, h2 - length + vOffset, w - gap + hOffset, h2 - length - 20 + vOffset);
+            drawArrow(w1 - gap + hOffset, h2 - length + vOffset, w1 - gap + hOffset, h2 - length - 20 + vOffset);
         } else {
             ctx.beginPath();
-            ctx.arc(w - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5*Math.PI, 0);
+            ctx.arc(w1 - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5*Math.PI, 0);
             ctx.stroke();
         }
     } else {

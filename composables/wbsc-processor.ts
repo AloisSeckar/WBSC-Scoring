@@ -129,7 +129,7 @@ function processAction() {
         useCanvasStore().vOffset = 0;
         
         const canvas = useCanvasStore().canvas as HTMLCanvasElement
-        canvas.height = playersInvolved * h - ((playersInvolved - 1) * 8);
+        canvas.height = playersInvolved * h1 - ((playersInvolved - 1) * 8);
         
         if (bInput === null) {
             useEvalStore().batter = playersInvolved + 1;
@@ -151,22 +151,22 @@ function processAction() {
         if (r3Input !== null) {
             displayed += 1;
             renderAction(displayed, r3Input, null, true);
-            useCanvasStore().vOffset += h - 8;
+            useCanvasStore().vOffset += h1 - 8;
         }
         if (r2Input !== null) {
             displayed += 1;
             renderAction(displayed, r2Input, extraR2Input, true);
-            useCanvasStore().vOffset += h - 8;
+            useCanvasStore().vOffset += h1 - 8;
         }
         if (r1Input !== null) {
             displayed += 1;
             renderAction(displayed, r1Input, extraR1Input, true);
-            useCanvasStore().vOffset += h - 8;
+            useCanvasStore().vOffset += h1 - 8;
         }
         if (bInput !== null) {
             displayed += 1;
             renderAction(displayed, bInput, extraBatterInput, true);
-            useCanvasStore().vOffset += h - 8;
+            useCanvasStore().vOffset += h1 - 8;
         }
 
         connectOutsIfNeeded();

@@ -446,7 +446,6 @@ function processInput(input: WBSCInput, batter: number, origBase: number): WBSCO
         case 'SHET':
         case 'SHEF':
         case 'SFE':
-        case 'SFO':
             output.text1 = action.substring(0, 2);
             output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1);
             if (action.length > 3) {

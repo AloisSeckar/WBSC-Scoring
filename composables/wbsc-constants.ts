@@ -35,12 +35,12 @@ export const input_remove: string = '-remove';
 
 const dim = 250
 
-export const w: number = dim;
+export const w1: number = dim;
 export const w2: number = dim / 2;
 export const w3: number = dim / 3;
 export const w4: number = dim / 4;
 
-export const h: number = dim;
+export const h1: number = dim;
 export const h2: number = dim / 2;
 export const h3: number = dim / 3;
 export const h4: number = dim / 4;
