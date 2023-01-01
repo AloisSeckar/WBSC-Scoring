@@ -4,7 +4,7 @@
 /* *************************************** */
 
 // displayed title for given input group
-function getLabelForInputGroup(group) {
+function getLabelForInputGroup(group: string) {
     let label = '<strong>';
     switch (group) {
         case input_b:
@@ -25,7 +25,7 @@ function getLabelForInputGroup(group) {
 }
 
 // displayed text for given action button
-function getLabelForRenderButton(group, render) {
+function getLabelForRenderButton(group: string, render: boolean) {
     let label = '';
     switch (group) {
         case input_generate:
@@ -98,7 +98,7 @@ function renderFCLocationOptions() {
 
 // list of available advances
 //   base - original base
-function renderBaseOptions(base) {
+function renderBaseOptions(base: number) {
     const options = [];
     if (base < 2) {
         if (base === 1) {
@@ -176,7 +176,7 @@ function renderRunnerActionOptions() {
 }
 
 // list of specific actions based on selected base action for batter
-function renderBatterSpecificActionOptions(action) {
+function renderBatterSpecificActionOptions(action: string) {
     const options = [];
     switch (action) {
         case 'StrikeOut':
@@ -298,7 +298,7 @@ function renderBatterSpecificActionOptions(action) {
 // list of specific actions based on selected base action for runner
 //   action - selected base action
 //   group - invoking input group
-function renderRunnerSpecificActionOptions(action, group) {
+function renderRunnerSpecificActionOptions(action: string, group: string) {
     const options = [];
     switch (action) {
         case 'adv':

@@ -1,7 +1,10 @@
 export const useCanvasStore = defineStore({
     id: 'canvas-store',
     state: () => {
-        const item: CanvasInfo = {}
+        const item: CanvasInfo = {
+            hOffset: 75,
+            vOffset: 0,
+        }
         return item
     },
     actions: {
@@ -20,4 +23,6 @@ export const useCanvasStore = defineStore({
 export type CanvasInfo = {
     canvas?: HTMLCanvasElement,
     ctx?: CanvasRenderingContext2D,
+    hOffset: number,
+    vOffset: number,
 }

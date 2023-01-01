@@ -3,35 +3,37 @@
 /* Preparing and adjusting user inputs     */
 /* *************************************** */
 
+import { WBSCInput, WBSCOutput } from "./useInputStore";
+
 // create bar with action buttons
 function renderActionButtons() {
     const actionButtonsContainer = document.createElement('div');
     actionButtonsContainer.setAttribute('id', div_tools);
     actionButtonsContainer.setAttribute('class', 'wbsc-buttons');
     
-    const renderBatterButton = renderInputsButton(input_b, null);
+    const renderBatterButton = renderInputsButton(input_b);
     actionButtonsContainer.appendChild(renderBatterButton);
     
-    const renderRunner1Button = renderInputsButton(input_r1, null);
+    const renderRunner1Button = renderInputsButton(input_r1);
     actionButtonsContainer.appendChild(renderRunner1Button);
     
-    const renderRunner2Button = renderInputsButton(input_r2, null);
+    const renderRunner2Button = renderInputsButton(input_r2);
     actionButtonsContainer.appendChild(renderRunner2Button);
     
-    const renderRunner3Button = renderInputsButton(input_r3, null);
+    const renderRunner3Button = renderInputsButton(input_r3);
     actionButtonsContainer.appendChild(renderRunner3Button);
     
     actionButtonsContainer.appendChild(document.createElement('br'));
     
-    const generateButton = renderInputsButton(input_generate, null);
+    const generateButton = renderInputsButton(input_generate);
     generateButton.setAttribute('class', 'btn btn-primary wbsc-action-button');
     actionButtonsContainer.appendChild(generateButton);
     
-    const clearButton = renderInputsButton(input_clear, null);
+    const clearButton = renderInputsButton(input_clear);
     clearButton.setAttribute('class', 'btn btn-primary wbsc-clear-button');
     actionButtonsContainer.appendChild(clearButton);
     
-    const container = document.getElementById(div_input);
+    const container = document.getElementById(div_input) as HTMLElement;
     container.appendChild(actionButtonsContainer);
 }
 
@@ -39,7 +41,7 @@ function renderActionButtons() {
 //   group - new element's DOM id
 //   parentDiv - null for buttons on action bar
 //             - inputs group for button to add/remove additional inputs for consecutive actions 
-function renderInputsButton(group, parentDiv) {
+function renderInputsButton(group: string, parentDiv?: HTMLElement) {
     const renderButton = document.createElement('button');
     renderButton.setAttribute('id', 'button-' + group);
     renderButton.setAttribute('type', 'button');
@@ -70,14 +72,14 @@ function clearInputs() {
     
     showInputs(input_b);
     
-    window.posSelection = [];
+    useEvalStore().posSelection = [];
 }
 
 // show or hide given input group
 //   group - DOM id of encapsulating div
 //   parentDiv - ancestor of encapsulating div in DOM hieararchy
-function renderInputs(group, parentDiv) {
-    const renderButton = document.getElementById('button-' + group);
+function renderInputs(group: string, parentDiv?: HTMLElement) {
+    const renderButton = document.getElementById('button-' + group) as HTMLElement;
     if (renderButton.innerHTML.includes('+')) {
         showInputs(group, parentDiv);
     } else {
@@ -89,19 +91,19 @@ function renderInputs(group, parentDiv) {
 // fuction renders all required inputs and places them into new div
 //   group - DOM id of encapsulating div
 //   parentDiv - ancestor of encapsulating div in DOM hieararchy
-function showInputs(group, parentDiv) {
+function showInputs(group: string, parentDiv?: HTMLElement) {
     const inputsContainer = document.createElement('div');
     inputsContainer.setAttribute('id', group);
     
     if (parentDiv === null || parentDiv === undefined) {
         inputsContainer.setAttribute('class', class_wbsc);
         
-        const container = document.getElementById(div_input);
+        const container = document.getElementById(div_input) as HTMLElement;;
         const hook = getProperLocationForInputs(group);
         container.insertBefore(inputsContainer, hook);
     } else {
         const parentDiv = getParentDiv(group, true);
-        const container = document.getElementById(parentDiv);
+        const container = document.getElementById(parentDiv) as HTMLElement;;
         container.appendChild(inputsContainer);
     }
     
@@ -121,7 +123,7 @@ function showInputs(group, parentDiv) {
 
         const runTypeSelect = document.createElement('select');
         runTypeSelect.setAttribute('id', input_b + input_runtype);
-        runTypeSelect.innerHTML = renderRunTypeOptions();
+        runTypeSelect.innerHTML = renderRunTypeOptions().join();
         runTypeSelect.disabled = true;
         inputsContainer.appendChild(runTypeSelect);
         inputsContainer.appendChild(document.createElement('br'));
@@ -139,12 +141,12 @@ function showInputs(group, parentDiv) {
     });
     switch (group) {
         case input_b:
-            baseActionSelect.innerHTML = renderBatterActionOptions();
+            baseActionSelect.innerHTML = renderBatterActionOptions().join();
             break;
         case input_b1:
         case input_b2:
         case input_b3:
-            baseActionSelect.innerHTML = renderBatterRunnerActionOptions();
+            baseActionSelect.innerHTML = renderBatterRunnerActionOptions().join();
             break;
         case input_r1:
         case input_r1a:
@@ -152,7 +154,7 @@ function showInputs(group, parentDiv) {
         case input_r2:
         case input_r2a:
         case input_r3:
-            baseActionSelect.innerHTML = renderRunnerActionOptions();
+            baseActionSelect.innerHTML = renderRunnerActionOptions().join();
             break;
     }
     inputsContainer.appendChild(baseActionSelect);
@@ -176,7 +178,7 @@ function showInputs(group, parentDiv) {
         inputsContainer.appendChild(document.createElement('br'));
     }
     
-    const renderButton = document.getElementById('button-' + group);
+    const renderButton = document.getElementById('button-' + group) as HTMLInputElement;
     renderButton.setAttribute('class', 'btn btn-info ' + class_wbsc_b_unrender);
     renderButton.innerHTML = getLabelForRenderButton(group, false);
     
@@ -186,15 +188,15 @@ function showInputs(group, parentDiv) {
 // hide given input group
 // function removes div with all contents from document
 //   group - DOM id of encapsulating div
-function hideInputs(group) {
+function hideInputs(group: string) {
     const parentDiv = getParentDiv(group, false);
-    const container = document.getElementById(parentDiv);
+    const container = document.getElementById(parentDiv) as HTMLElement;
     const inputsContainer = document.getElementById(group);
     if (inputsContainer !== null) {
         container.removeChild(inputsContainer);
     }
     
-    const renderButton = document.getElementById('button-' + group);
+    const renderButton = document.getElementById('button-' + group) as HTMLInputElement;
     renderButton.setAttribute('class', 'btn btn-info ' + class_wbsc_b_render);
     renderButton.innerHTML = getLabelForRenderButton(group, true);
     
@@ -204,8 +206,8 @@ function hideInputs(group) {
 // render select with target base where the action happened
 // + possible TIE checker
 // inside given input group
-function renderBaseSelection(group) {
-    const inputsContainer = document.getElementById(group);
+function renderBaseSelection(group: string) {
+    const inputsContainer = document.getElementById(group) as HTMLElement;
     
     if (group === input_r1 || group === input_r2) {
         const baseTIECheck = document.createElement('input');
@@ -235,18 +237,18 @@ function renderBaseSelection(group) {
     switch (group) {
         case input_b1:
         case input_r1:
-            baseSelect.innerHTML = renderBaseOptions(1);
+            baseSelect.innerHTML = renderBaseOptions(1).join();
             break;
         case input_b2:
         case input_r1a:
         case input_r2:
-            baseSelect.innerHTML = renderBaseOptions(2);
+            baseSelect.innerHTML = renderBaseOptions(2).join();
             break;
         case input_b3:
         case input_r1b:
         case input_r2a:
         case input_r3:
-            baseSelect.innerHTML = renderBaseOptions(3);
+            baseSelect.innerHTML = renderBaseOptions(3).join();
             runTypeSelectDisabled = false;
             break;
     }
@@ -261,7 +263,7 @@ function renderBaseSelection(group) {
 
     const runTypeSelect = document.createElement('select');
     runTypeSelect.setAttribute('id', group + input_runtype);
-    runTypeSelect.innerHTML = renderRunTypeOptions();
+    runTypeSelect.innerHTML = renderRunTypeOptions().join();
     runTypeSelect.disabled = runTypeSelectDisabled;
     inputsContainer.appendChild(runTypeSelect);
     
@@ -270,7 +272,7 @@ function renderBaseSelection(group) {
 
 // render selects and buttons to adjust involved players/positions
 // inside given input group
-function renderPosSelection(group) {
+function renderPosSelection(group: string) {
     const groupID = group + input_position;
     
     const inputsContainer = document.createElement('div');
@@ -302,62 +304,63 @@ function renderPosSelection(group) {
     removeItemButton.innerHTML = '-P';
     inputsContainer.appendChild(removeItemButton);
     
-    const container = document.getElementById(group);
+    const container = document.getElementById(group) as HTMLElement;
     container.appendChild(document.createElement('br'));
     container.appendChild(inputsContainer);
 }
 
 // render one new select for players/locations inside given group
 // select is added at the end if possible
-function renderPosSelectItem(group) {
+function renderPosSelectItem(group: string) {
     const groupID = group + input_position;
-    const container = document.getElementById(groupID);
-    const renderButton = document.getElementById(groupID + input_add);
-    const unRenderButton = document.getElementById(groupID + input_remove);
+    const container = document.getElementById(groupID) as HTMLElement;
+    const renderButton = document.getElementById(groupID + input_add) as HTMLInputElement;
+    const unRenderButton = document.getElementById(groupID + input_remove) as HTMLInputElement;
     
     let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-    if (itemsCreated < maxPosItems[group]) {
+    if (itemsCreated < useEvalStore().getMaxPosItems(group)) {
         itemsCreated += 1;
         const posItemN = getPosSelectionSelect(group, itemsCreated);        
         container.insertBefore(posItemN, renderButton);
     }
     
-    renderButton.disabled = itemsCreated >= maxPosItems[group];
-    unRenderButton.disabled = itemsCreated <= minPosItems[group];
+    renderButton.disabled = itemsCreated >= useEvalStore().getMaxPosItems(group);
+    unRenderButton.disabled = itemsCreated <= useEvalStore().getMinPosItems(group);
 }
 
 // removes one select for players/locations from given group
 // select is removed from the end if possible
-function unRenderPosSelectItem(group) {
+function unRenderPosSelectItem(group: string) {
     const groupID = group + input_position;
-    const container = document.getElementById(groupID);
-    const renderButton = document.getElementById(groupID + input_add);
-    const unRenderButton = document.getElementById(groupID + input_remove);
+    const container = document.getElementById(groupID) as HTMLElement;
+    const renderButton = document.getElementById(groupID + input_add) as HTMLInputElement;
+    const unRenderButton = document.getElementById(groupID + input_remove) as HTMLInputElement;
     
     let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-    if (itemsCreated > minPosItems[group]) {
-        const posItemN = document.getElementById(groupID + itemsCreated);    
+    if (itemsCreated > useEvalStore().getMinPosItems(group)) {
+        const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement;   
         container.removeChild(posItemN);    
         itemsCreated--;
     }
     
-    renderButton.disabled = itemsCreated >= maxPosItems[group];
-    unRenderButton.disabled = itemsCreated <= minPosItems[group];
+    renderButton.disabled = itemsCreated >= useEvalStore().getMaxPosItems(group);
+    unRenderButton.disabled = itemsCreated <= useEvalStore().getMinPosItems(group);
 }
 
 // physically creates new select for players/locations
 //   group - target inputs group
 //   ord - position inside the group
-function getPosSelectionSelect(group, ord) {
+function getPosSelectionSelect(group: string, ord: number) {
     const groupID = group + input_position;
     
     const posItem = document.createElement('select');
     posItem.setAttribute('id', groupID + ord);
     posItem.setAttribute('class', class_wbsc_pos);
-    posItem.innerHTML = renderPlayerOptions();
+    posItem.innerHTML = renderPlayerOptions().join();
     
-    if (posSelection[groupID]) {
-        posItem.value = posSelection[groupID][ord - 1];
+    const posSelection = useEvalStore().getPosSelection(groupID)
+    if (posSelection.length > ord - 1) {
+        posItem.value = posSelection[ord - 1];
     }
     
     posItem.addEventListener('change', function() {
@@ -372,7 +375,7 @@ function getPosSelectionSelect(group, ord) {
 // therefore other removal buttons have to be disabled when new input group is added
 //   group - target inputs group
 //   disable - state of the button (true for 'disabled')
-function disableParentExtraInput(group, disable) {
+function disableParentExtraInput(group: string, disable: boolean) {
     let parentExtraButtonId = null;
     switch (group) {
         case input_b2:
@@ -386,7 +389,7 @@ function disableParentExtraInput(group, disable) {
             break;
     }
     if (parentExtraButtonId !== null) {
-        const parentExtraButton = document.getElementById('button-' + parentExtraButtonId);
+        const parentExtraButton = document.getElementById('button-' + parentExtraButtonId) as HTMLInputElement;
         parentExtraButton.disabled = disable;
     }
 }
@@ -394,7 +397,7 @@ function disableParentExtraInput(group, disable) {
 // find encapsulating div when showing/hiding input groups
 //   group - given input group
 //   show - triggering action (showing or hiding)
-function getParentDiv(group, show) {
+function getParentDiv(group: string, show: boolean) {
     let parentDiv;
     switch (group) {
         case input_b1:
@@ -417,7 +420,7 @@ function getParentDiv(group, show) {
 
 // find the next available input subgroup for consecutive actions
 //   group - given input group
-function getAdditionalInputsGroup(group) {
+function getAdditionalInputsGroup(group: string) {
     let additionalInputsGroup;
     switch (group) {
         case input_b:
@@ -445,7 +448,7 @@ function getAdditionalInputsGroup(group) {
 }
 
 // helps maintaining correct order of input groups (HP - 1B - 2B - 3B)
-function getProperLocationForInputs(group) {
+function getProperLocationForInputs(group: string) {
     let hook = document.getElementById(div_tools);
     
     const r1inputs = document.getElementById(input_r1);
@@ -484,7 +487,41 @@ function getProperLocationForInputs(group) {
     
     return hook;
 }
+
+function getEmptyInput(): WBSCInput {
+    const input: WBSCInput = {
+        baseAction: '',
+        specAction: '',
+        base: 0,
+        tie: false,
+        pos: null,
+        runtype: null,
+        validation: '',
+        output: getEmptyOutput(),
+        extraInput: null,
+    }
+    return input
+}
+
+function getEmptyOutput(): WBSCOutput {
+    const output: WBSCOutput = {
+        batter: 0,
+        origBase: 0,
+        base: 0,
+        text1: '',
+        text2: null,
+        out: false,
+        hit: false,
+        sub: null,
+        sup: null,
+        run: null,
+        num: false,
+        errorTarget: 0,
+        na: false,
+    }
+    return output
+}
     
 export {
-    renderActionButtons, renderInputs, getPosSelectionSelect
+    renderActionButtons, renderInputs, getPosSelectionSelect, getEmptyInput, getEmptyOutput
 }

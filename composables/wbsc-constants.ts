@@ -35,9 +35,6 @@ export const input_remove: string = '-remove';
 
 const dim = 250
 
-export const vOffset: number = 0;
-export const hOffset: number = 75;
-
 export const w: number = dim;
 export const w2: number = dim / 2;
 export const w3: number = dim / 3;
