@@ -8,7 +8,7 @@ import { WBSCInput, WBSCOutput } from "./useInputStore";
 // create bar with action buttons
 function renderActionButtons() {
     const actionButtonsContainer = document.createElement('div');
-    actionButtonsContainer.setAttribute('id', div_tools);
+    actionButtonsContainer.setAttribute('id', class_tools);
     actionButtonsContainer.setAttribute('class', 'wbsc-buttons');
     
     const renderBatterButton = renderInputsButton(input_b);
@@ -26,14 +26,14 @@ function renderActionButtons() {
     actionButtonsContainer.appendChild(document.createElement('br'));
     
     const generateButton = renderInputsButton(input_generate);
-    generateButton.setAttribute('class', 'btn btn-primary wbsc-action-button');
+    generateButton.setAttribute('class', 'btn btn-generate');
     actionButtonsContainer.appendChild(generateButton);
     
     const clearButton = renderInputsButton(input_clear);
-    clearButton.setAttribute('class', 'btn btn-primary wbsc-clear-button');
+    clearButton.setAttribute('class', 'btn btn-clear');
     actionButtonsContainer.appendChild(clearButton);
     
-    const container = document.getElementById(div_input) as HTMLElement;
+    const container = document.getElementById(class_wbsc) as HTMLElement;
     container.appendChild(actionButtonsContainer);
 }
 
@@ -45,8 +45,8 @@ function renderInputsButton(group: string, parentDiv?: HTMLElement) {
     const renderButton = document.createElement('button');
     renderButton.setAttribute('id', 'button-' + group);
     renderButton.setAttribute('type', 'button');
-    renderButton.setAttribute('class', 'btn btn-info wbsc-render-button');
-    renderButton.addEventListener('click', function(){
+    renderButton.setAttribute('class', 'btn btn-add');
+    renderButton.addEventListener('click', function() {
         switch (group) {
             case input_generate:
                 processAction();
@@ -98,7 +98,7 @@ function showInputs(group: string, parentDiv?: HTMLElement) {
     if (parentDiv === null || parentDiv === undefined) {
         inputsContainer.setAttribute('class', class_wbsc);
         
-        const container = document.getElementById(div_input) as HTMLElement;;
+        const container = document.getElementById(class_wbsc) as HTMLElement;;
         const hook = getProperLocationForInputs(group);
         container.insertBefore(inputsContainer, hook);
     } else {
@@ -179,7 +179,7 @@ function showInputs(group: string, parentDiv?: HTMLElement) {
     }
     
     const renderButton = document.getElementById('button-' + group) as HTMLInputElement;
-    renderButton.setAttribute('class', 'btn btn-info ' + class_wbsc_b_unrender);
+    renderButton.setAttribute('class', 'btn btn-remove');
     renderButton.innerHTML = getLabelForRenderButton(group, false);
     
     disableParentExtraInput(group, true);
@@ -197,7 +197,7 @@ function hideInputs(group: string) {
     }
     
     const renderButton = document.getElementById('button-' + group) as HTMLInputElement;
-    renderButton.setAttribute('class', 'btn btn-info ' + class_wbsc_b_render);
+    renderButton.setAttribute('class', 'btn btn-add');
     renderButton.innerHTML = getLabelForRenderButton(group, true);
     
     disableParentExtraInput(group, false);
@@ -285,8 +285,8 @@ function renderPosSelection(group: string) {
     const addItemButton = document.createElement('button');
     addItemButton.setAttribute('id', groupID + input_add);
     addItemButton.setAttribute('type', 'button');
-    addItemButton.setAttribute('class', 'btn btn-sm btn-info wbsc-small-button ' + class_wbsc_b_render);
-    addItemButton.addEventListener('click', function(){
+    addItemButton.setAttribute('class', 'btn btn-add');
+    addItemButton.addEventListener('click', function() {
         renderPosSelectItem(group);
     });
     addItemButton.disabled = true;
@@ -296,8 +296,8 @@ function renderPosSelection(group: string) {
     const removeItemButton = document.createElement('button');
     removeItemButton.setAttribute('id', groupID + input_remove);
     removeItemButton.setAttribute('type', 'button');
-    removeItemButton.setAttribute('class', 'btn btn-sm btn-info wbsc-small-button ' + class_wbsc_b_unrender);
-    removeItemButton.addEventListener('click', function(){
+    removeItemButton.setAttribute('class', 'btn btn-remove');
+    removeItemButton.addEventListener('click', function() {
         unRenderPosSelectItem(group);
     });
     removeItemButton.disabled = true;
@@ -413,7 +413,7 @@ function getParentDiv(group: string, show: boolean) {
             parentDiv = input_r2;
             break;
         default:
-            parentDiv = show ? group : div_input;
+            parentDiv = show ? group : class_wbsc;
     }
     return parentDiv;
 }
@@ -449,7 +449,7 @@ function getAdditionalInputsGroup(group: string) {
 
 // helps maintaining correct order of input groups (HP - 1B - 2B - 3B)
 function getProperLocationForInputs(group: string) {
-    let hook = document.getElementById(div_tools);
+    let hook = document.getElementById(class_tools);
     
     const r1inputs = document.getElementById(input_r1);
     const r2inputs = document.getElementById(input_r2);

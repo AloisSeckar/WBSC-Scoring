@@ -1,12 +1,8 @@
 // DOM elements selectors
 
-export const div_input: string = 'wbsc-inputs';
-export const div_tools: string = 'wbsc-toolbar';
-    
 export const class_wbsc: string = 'wbsc-inputs';
-export const class_wbsc_b_render: string = 'wbsc-render-button';
-export const class_wbsc_b_unrender: string = 'wbsc-unrender-button';
-export const class_wbsc_pos: string = 'wbsc-pos-select form-control';
+export const class_wbsc_pos: string = 'wbsc-pos-select';
+export const class_tools: string = 'wbsc-toolbar';
     
 export const input_generate: string = 'input-generate';
 export const input_clear : string = 'input-clear';
