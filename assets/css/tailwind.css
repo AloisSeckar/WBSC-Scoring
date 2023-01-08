@@ -43,10 +43,10 @@
 		@apply bg-emerald-500 hover:bg-emerald-300
 	}
 	.btn-add {
-		@apply w-12 bg-green-500 hover:bg-green-300
+		@apply w-12 bg-green-500 hover:bg-green-300 disabled:bg-gray-400 disabled:text-gray-700
 	}
 	.btn-remove {
-		@apply w-12 bg-red-600 hover:bg-red-400
+		@apply w-12 bg-red-600 hover:bg-red-400 disabled:bg-gray-400 disabled:text-gray-700
 	}
 	.btn-generate {
 		@apply bg-wbsc-blue hover:bg-sky-300
