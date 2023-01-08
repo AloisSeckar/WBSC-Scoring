@@ -118,7 +118,7 @@ function showInputs(group: string, parentDiv?: HTMLElement) {
         renderBaseSelection(group);
     } else {
         const runTypeLabel = document.createElement('label');
-        runTypeLabel.innerHTML = 'Run:';
+        runTypeLabel.innerHTML = 'Run:&nbsp;';
         inputsContainer.appendChild(runTypeLabel);
 
         const runTypeSelect = document.createElement('select');
@@ -130,7 +130,7 @@ function showInputs(group: string, parentDiv?: HTMLElement) {
     }
     
     const actionLabel = document.createElement('label');
-    actionLabel.innerHTML = 'Action:';
+    actionLabel.innerHTML = 'Action:&nbsp;';
     inputsContainer.appendChild(actionLabel);
     
     const baseActionSelect = document.createElement('select');
@@ -218,9 +218,9 @@ function renderBaseSelection(group: string) {
         
         const baseTIELabel = document.createElement('label');
         if (group === input_r1) {
-            baseTIELabel.innerHTML = 'Tiebreak (baseball)';
+            baseTIELabel.innerHTML = '&nbsp;Tiebreak (baseball)';
         } else {
-            baseTIELabel.innerHTML = 'Tiebreak (baseball/softball)';
+            baseTIELabel.innerHTML = '&nbsp;Tiebreak (baseball/softball)';
         }
         inputsContainer.appendChild(baseTIELabel);
         
@@ -228,7 +228,7 @@ function renderBaseSelection(group: string) {
     }
     
     const baseLabel = document.createElement('label');
-    baseLabel.innerHTML = 'Base:';
+    baseLabel.innerHTML = 'Base:&nbsp;';
     inputsContainer.appendChild(baseLabel);
     
     let runTypeSelectDisabled = true;
@@ -258,7 +258,7 @@ function renderBaseSelection(group: string) {
     inputsContainer.appendChild(baseSelect);
 
     const runTypeLabel = document.createElement('label');
-    runTypeLabel.innerHTML = '&nbsp;Run:';
+    runTypeLabel.innerHTML = '&nbsp;Run:&nbsp;';
     inputsContainer.appendChild(runTypeLabel);
 
     const runTypeSelect = document.createElement('select');
@@ -279,7 +279,7 @@ function renderPosSelection(group: string) {
     inputsContainer.setAttribute('id', groupID);
     
     const involvedLabel = document.createElement('label');
-    involvedLabel.innerHTML = 'Involved:';
+    involvedLabel.innerHTML = 'Involved:&nbsp;';
     inputsContainer.appendChild(involvedLabel);
     
     const addItemButton = document.createElement('button');
