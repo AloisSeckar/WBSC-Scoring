@@ -505,6 +505,7 @@ function getEmptyInput(): WBSCInput {
 
 function getEmptyOutput(): WBSCOutput {
     const output: WBSCOutput = {
+        previousAdvance: false,
         batter: 0,
         origBase: 0,
         base: 0,

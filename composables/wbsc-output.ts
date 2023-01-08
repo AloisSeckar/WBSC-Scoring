@@ -12,7 +12,7 @@ import { WBSCInput, WBSCOutput } from "./useInputStore";
 //   clear - true, if previous content should be ereased
 function renderAction(battingOrder: number, mainInput: WBSCInput, extraInput: WBSCInput[] | null, clear: boolean) {
 
-    // console.log(mainInput);
+    console.log(mainInput);
 
     if (clear) {
         drawBackground(battingOrder);
@@ -22,10 +22,12 @@ function renderAction(battingOrder: number, mainInput: WBSCInput, extraInput: WB
     if (output.origBase && output.origBase > 0) {
         let prevOutput: WBSCOutput = getEmptyOutput();
         prevOutput.base = output.origBase;
-        if (mainInput.tie === true) {
-            prevOutput.text1 = 'TIE';
-        } else {
-            prevOutput.text1 = '*';
+        if (output.previousAdvance) {
+            if (mainInput.tie === true) {
+                prevOutput.text1 = 'TIE';
+            } else {
+                prevOutput.text1 = '*';
+            }
         }
         renderAdvance(prevOutput);
     }

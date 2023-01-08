@@ -24,6 +24,7 @@ export type WBSCInput = {
 }
 
 export type WBSCOutput = {
+    previousAdvance: boolean,
     batter: number,
     origBase: number,
     base: number,

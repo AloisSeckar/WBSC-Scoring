@@ -22,12 +22,12 @@ function processAction() {
         inputs.push(r2Input);
     }
     const r1bInput = getInput(input_r1b);
-    if (r3Input) {
-        inputs.push(r3Input);
+    if (r1bInput) {
+        inputs.push(r1bInput);
     }
     const r1aInput = getInput(input_r1a);
-    if (r3Input) {
-        inputs.push(r3Input);
+    if (r1aInput) {
+        inputs.push(r1aInput);
     }
     const r1Input = getInput(input_r1);
     if (r1Input) {
@@ -68,6 +68,7 @@ function processAction() {
     if (r3Input) {
         playersInvolved += 1;
         r3Input.output = processInput(r3Input, playersInvolved, 3);
+        r3Input.output.previousAdvance = true
     }
     
     // runner 2
@@ -81,6 +82,7 @@ function processAction() {
     }
     if (r2Input) {
         r2Input.output = processInput(r2Input, playersInvolved, 2);
+        r2Input.output.previousAdvance = true
     }
 
     // runner 1
@@ -99,6 +101,7 @@ function processAction() {
     }
     if (r1Input) {
         r1Input.output = processInput(r1Input, playersInvolved, 1);
+        r1Input.output.previousAdvance = true
     }
 
     // batter
