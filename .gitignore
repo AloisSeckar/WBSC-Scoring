@@ -1,2 +1,4 @@
 .nuxt
+.output
+.vite
 node_modules
