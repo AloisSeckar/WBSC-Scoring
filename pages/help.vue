@@ -38,13 +38,13 @@
         <h3>Basics</h3>
         <div class="mb-2">
             <p>When you enter the site, you'll see a basic input prepared to put in batter's action:</p>
-            <img src="@/01-basic-input.png" width="800" height="auto" />
+            <img src="/01-basic-input.png" width="800" height="auto" />
 
             <p>
                 Underneath there is basic output form consisting of empty scoresheet element and a "Download
                 image" button:
             </p>
-            <img src="@/02-basic-output.png" width="300" height="auto" />
+            <img src="/02-basic-output.png" width="300" height="auto" />
         </div>
 
         <h3>Entering first play</h3>
@@ -57,13 +57,13 @@
                 You start by picking an option from first <strong>Action</strong> combobox containing groups of
                 possible situations. Internally this is called a "base action":
             </p>
-            <img src="@/03-base-action.png" width="200" height="auto" />
+            <img src="/03-base-action.png" width="200" height="auto" />
 
             <p>
                 Based on the selection the second combobox become active and being filled with concrete plays.
                 This is called a "specific action". The options are grouped into "safe" and "out" situations:
             </p>
-            <img src="@/04-specific-action.png" width="400" height="auto" />
+            <img src="/04-specific-action.png" width="400" height="auto" />
 
             <p>
                 Third element of every action is called <strong>Involved</strong>. This means defensive player
@@ -73,19 +73,19 @@
                 new inputs with green "+P" button and remove them with red "-P" button. When it is not possible
                 to add/remove inputs, the buttons are not enabled.
             </p>
-            <img src="@/05-involved.png" width="auto" height="50" />
+            <img src="/05-involved.png" width="auto" height="50" />
 
             <p>Once you are ready to render the output of your play, hit blue "Generate action" button:</p>
-            <img src="@/06-generate.png" width="auto" height="50" />
+            <img src="/06-generate.png" width="auto" height="50" />
 
             <p>Outcome will be printed into scoresheet:</p>
-            <img src="@/07-result.png" width="300" height="auto" />
+            <img src="/07-result.png" width="300" height="auto" />
 
             <p>
                 You can download the result to preserve it either by right clicking it and pick up from the
                 context menu or by green "Download image" button:
             </p>
-            <img src="@/08-download.png" width="auto" height="50" />
+            <img src="/08-download.png" width="auto" height="50" />
         </div>
 
         <h3>Advanced - Runners</h3>
@@ -95,7 +95,7 @@
                 Actions are not limited to batter only. There is a toolbar that allows you picking up which
                 players were involved:
             </p>
-            <img src="@/09-pick-players.png" width="auto" height="50" />
+            <img src="/09-pick-players.png" width="auto" height="50" />
 
             <p>
                 The buttons are labeled "B" for the batter and "R1-R3" for the runners starting at respective
@@ -104,7 +104,7 @@
                 that position is currently not used. Clicking on any of the buttons will alter its state. Eg.
                 clicking on "+R1" will result into:
             </p>
-            <img src="@/10-runner-input.png" width="800" height="auto" />
+            <img src="/10-runner-input.png" width="800" height="auto" />
 
             <p>
                 Another click will hide it again. You can choose any combination with or without the batter and
@@ -132,7 +132,7 @@
                 context, but here we always score just one separate action. "Run" is also possible for the
                 batter, but only for "Hit - Homerun" plays.
             </p>
-            <img src="@/11-type-of-run.png" width="auto" height="100" />
+            <img src="/11-type-of-run.png" width="auto" height="100" />
         </div>
 
         <h3>Advanced - Extra inputs</h3>
@@ -142,13 +142,13 @@
                 If needed, there can be more than one situation chained together with the initial action. You can
                 use green "+" button under "Involved" section to render new group of inputs:
             </p>
-            <img src="@/12-plus-action.png" width="auto" height="50" />
+            <img src="/12-plus-action.png" width="auto" height="50" />
 
             <p>The box with new inputs renders directy below:</p>
-            <img src="@/13-extra-input.png" width="800" height="auto" />
+            <img src="/13-extra-input.png" width="800" height="auto" />
 
             <p>If you change your mind, you hide and thus disable extra inputs with red "-" button:</p>
-            <img src="@/14-minus-action.png" width="auto" height="50" />
+            <img src="/14-minus-action.png" width="auto" height="50" />
 
             <p>
                 For the batter there can be up to 3 extra inputs (one situation at each base). If you decide to
@@ -165,7 +165,7 @@
         <div class="mb-2">
             <p>You can use yellow "Clear" button to quickly reset inputs into initial state with simple batter's
                 action input only and everything cleared.</p>
-            <img src="@/15-clear.png" width="auto" height="50" />
+            <img src="/15-clear.png" width="auto" height="50" />
         </div>
 
         <NavButtons />
