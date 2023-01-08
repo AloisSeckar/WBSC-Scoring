@@ -138,9 +138,9 @@ function changeBatterSpecificAction() {
             minPosItems = targetPosItems = maxPosItems = 0;
     }
     
-    useEvalStore().minPosItems.push({inputGroup: input_b, limit: minPosItems})
-    useEvalStore().targetPosItems.push({inputGroup: input_b, limit: targetPosItems})
-    useEvalStore().maxPosItems.push({inputGroup: input_b, limit: maxPosItems})
+    useEvalStore().setMinPosItems(input_b, minPosItems);
+    useEvalStore().setTargetPosItems(input_b, targetPosItems);
+    useEvalStore().setMaxPosItems(input_b, maxPosItems);
     
     const groupID = input_b + input_position;
     
@@ -149,18 +149,16 @@ function changeBatterSpecificAction() {
     const removeItemButton = document.getElementById(groupID + input_remove) as HTMLInputElement;
 
     let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
-    if (itemsCreated) {
-        while (itemsCreated > 0) {
-            const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement;
-            container.removeChild(posItemN);
-            itemsCreated -= 1;
-        }
-        
-        while (itemsCreated < targetPosItems) {
-            itemsCreated += 1;
-            const posItemN = getPosSelectionSelect(input_b, itemsCreated);
-            container.insertBefore(posItemN, addItemButton);
-        }
+    while (itemsCreated > 0) {
+        const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement;
+        container.removeChild(posItemN);
+        itemsCreated -= 1;
+    }
+    
+    while (itemsCreated < targetPosItems) {
+        itemsCreated += 1;
+        const posItemN = getPosSelectionSelect(input_b, itemsCreated);
+        container.insertBefore(posItemN, addItemButton);
     }
 
     addItemButton.disabled = itemsCreated >= maxPosItems;
@@ -258,10 +256,10 @@ function changeRunnerSpecificAction(group: string) {
         default:
             maxPosItems = 1;
     }
-
-    useEvalStore().minPosItems.push({inputGroup: input_b, limit: minPosItems})
-    useEvalStore().targetPosItems.push({inputGroup: input_b, limit: targetPosItems})
-    useEvalStore().maxPosItems.push({inputGroup: input_b, limit: maxPosItems})
+    
+    useEvalStore().setMinPosItems(input_b, minPosItems);
+    useEvalStore().setTargetPosItems(input_b, targetPosItems);
+    useEvalStore().setMaxPosItems(input_b, maxPosItems);
     
     const groupID = group + input_position;
     

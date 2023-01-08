@@ -13,9 +13,22 @@ export const useEvalStore = defineStore({
         return data
     },
     actions: {
+        // TODO try to optimize with higher order function...
+        setMinPosItems(inputGroup: string, limit: number) {
+            this.minPosItems = this.minPosItems.filter(i => i.inputGroup !== inputGroup);
+            this.minPosItems.push({inputGroup, limit});
+        },
+        setTargetPosItems(inputGroup: string, limit: number) {
+            this.targetPosItems = this.targetPosItems.filter(i => i.inputGroup !== inputGroup);
+            this.targetPosItems.push({inputGroup, limit});
+        },
+        setMaxPosItems(inputGroup: string, limit: number) {
+            this.maxPosItems = this.maxPosItems.filter(i => i.inputGroup !== inputGroup);
+            this.maxPosItems.push({inputGroup, limit});
+        },
         setPosSelection(inputGroup: string, selection: string) {
-            const allOthers = this.posSelection.filter(i => i.inputGroup !== inputGroup);
-            allOthers.push({inputGroup, selection});
+            this.posSelection = this.posSelection.filter(i => i.inputGroup !== inputGroup);
+            this.posSelection.push({inputGroup, selection});
         }
     },
     getters: {
