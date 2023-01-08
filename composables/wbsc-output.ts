@@ -12,7 +12,8 @@ import { WBSCInput, WBSCOutput } from "./useInputStore";
 //   clear - true, if previous content should be ereased
 function renderAction(battingOrder: number, mainInput: WBSCInput, extraInput: WBSCInput[] | null, clear: boolean) {
 
-    console.log(mainInput);
+    console.debug("WBSC - rendering action for input:");
+    console.debug(mainInput);
 
     if (clear) {
         drawBackground(battingOrder);
