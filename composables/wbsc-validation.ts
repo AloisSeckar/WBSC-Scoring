@@ -4,20 +4,25 @@
 /* that are clearly impossible.             */
 /* **************************************** */
 
-// validation sequence to be run over given inputs
+import { WBSCInput, WBSCOutput } from "./useInputStore";
+
+// validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)
 // (called from wbsc-processor.processAction())
-function checkUserInput(inputs) {
+function checkUserInput(inputs: WBSCInput[]) {
     let validation = '';
 
     // 1) validations to be run over each input separately
     for (let i = 0; i < inputs.length; i += 1) {
         if (inputs[i] != null) {
-            validation = attachValidation(validation, checkPosSelection(inputs[i][input_position]));
+            const posSelection = inputs[i].pos;
+            if (posSelection) {
+                validation = attachValidation(validation, checkPosSelection(posSelection));
+            }
         }
     }
 
-    // 2) validations over all inputs
+    // 2) validations over all outputs
     validation = attachValidation(validation, checkMaxOuts(inputs));
     validation = attachValidation(validation, checkOutcome(inputs));
     validation = attachValidation(validation, checkGDP(inputs));
@@ -26,7 +31,7 @@ function checkUserInput(inputs) {
 }
 
 // validates given 'involved' sequence
-function checkPosSelection(selection) {
+function checkPosSelection(selection: string) {
     let validation = '';
 
     if (selection.length > 1) {
@@ -37,14 +42,15 @@ function checkPosSelection(selection) {
     if (selection.length > 2) {
         let alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false];
         for (let i = 0; i < selection.length - 1; i += 1) {
-            if (alreadyEncounteredPositions[selection.substr(i, 1)] === true) {
+            const current = parseInt(selection[i])
+            if (alreadyEncounteredPositions[current] === true) {
                 if (validation !== '') {
                     validation += '\n- ';
                 }
                 validation += 'A player cannot have more than 1 assist in a play';
                 break;
             }
-            alreadyEncounteredPositions[selection.substr(i, 1)] = true;
+            alreadyEncounteredPositions[current] = true;
         }
     }
 
@@ -52,11 +58,12 @@ function checkPosSelection(selection) {
 }
 
 // there cannot be more than 3 outs
-function checkMaxOuts(inputs) {
+function checkMaxOuts(inputs: WBSCInput[]) {
     let outs = 0;
 
     for (let i = 0; i < inputs.length; i += 1) {
-        if (inputs[i] != null && inputs[i][output_out] === true) {
+        const output = inputs[i].output
+        if (output && output.out === true) {
             outs++;
         }
     }
@@ -72,17 +79,18 @@ function checkMaxOuts(inputs) {
 // runners cannot end on the same base
 // extra actions for same runner must happen in order
 // when the runner is out, he cannot advance further
-function checkOutcome(inputs) {
+function checkOutcome(inputs: WBSCInput[]) {
     let validation = '';
 
-    let currentPlayer = -1;
+    let currentBatter = -1;
     let playerWasOut = false;
     let reachedBases = [];
 
     for (let i = 0; i < inputs.length; i += 1) {
-        if (inputs[i] != null) {
-            if (currentPlayer === inputs[i][output_player]) {
-                if (inputs[i][output_out]) {
+        const output = inputs[i].output
+        if (output) {
+            if (currentBatter === output.batter) {
+                if (output.out) {
                     if (playerWasOut) {
                         validation = attachValidation(validation, 'One player cannot be out more than once');
                     } else {
@@ -91,14 +99,14 @@ function checkOutcome(inputs) {
                     }
                 }
                 const maxReachedBase = reachedBases[reachedBases.length - 1];
-                const currentReachedBase = Math.max(inputs[i][output_base], inputs[i][output_errorTarget]);
-                if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && inputs[i][output_na] === false)) {
+                const currentReachedBase = Math.max(output.base, output.errorTarget);
+                if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && output.na === false)) {
                     validation = attachValidation(validation, 'Extra advances of one player must happen in order');
                 }
             } else {
-                currentPlayer = inputs[i][output_player];
-                playerWasOut = inputs[i][output_out];
-                reachedBases.push(inputs[i][output_base]);
+                currentBatter = output.batter;
+                playerWasOut = output.out;
+                reachedBases.push(output.base);
             }
         }
     }
@@ -121,19 +129,20 @@ function checkOutcome(inputs) {
 
 // if GDP (GDPE) is selected for batter
 // there has to be at least 1 correspondig out/decessive error situatuon for runners
-function checkGDP(inputs) {
+function checkGDP(inputs: WBSCInput[]) {
     let validation = '';
 
     let gdpSelected = false;
     let gdpOut = false;
 
     for (let i = 0; i < inputs.length; i += 1) {
-        if (inputs[i] != null) {
-            if (inputs[i][output_text_1] === 'GDP' || inputs[i][output_text_1] === 'GDPE') {
+        const output = inputs[i].output
+        if (output) {
+            if (output.text1 === 'GDP' || output.text1 === 'GDPE') {
                 gdpSelected = true;
             } else {
-                if (inputs[i][output_out] === true || inputs[i][output_text_1].includes('E') || 
-                (inputs[i][output_text_2] !== undefined && inputs[i][output_text_2].includes('E'))) {
+                if (output.out === true || output.text1.includes('E') || 
+                (output.text2 && output.text2.includes('E'))) {
                     gdpOut = true;
                 }
             }
@@ -149,16 +158,20 @@ function checkGDP(inputs) {
 }
 
 // helper to attach new part of validation message to previous contents
-function attachValidation(input, validation) {
-    if (input !== '') {
-        input += '\n';
-    }
-
+function attachValidation(validation: string, newMessage: string) {
     if (validation !== '') {
-        input += '- ';
+        validation += '\n';
     }
 
-    input += validation;
+    if (newMessage !== '') {
+        validation += '- ';
+    }
 
-    return input;
+    validation += newMessage;
+
+    return validation;
+}
+
+export {
+    checkUserInput
 }

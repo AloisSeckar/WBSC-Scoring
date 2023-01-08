@@ -3,8 +3,11 @@
 /* CORE file with input evaluation methods */
 /* *************************************** */
 
+import { useEvalStore } from './useEvalStore';
+import { WBSCInput, WBSCOutput } from './useInputStore';
+
 // triggered when user selects from 'base' action
-function changeBaseAction(group) {
+function changeBaseAction(group: string) {
     if (group === input_b) {
         changeBatterBaseAction();
     } else {
@@ -13,7 +16,7 @@ function changeBaseAction(group) {
 }
 
 // triggered when user selects from 'specific' action
-function changeSpecificAction(group) {
+function changeSpecificAction(group: string) {
     if (group === input_b) {
         changeBatterSpecificAction();
     } else {
@@ -23,12 +26,12 @@ function changeSpecificAction(group) {
 
 // ajdust 'specific' action according to selected 'base' action
 function changeBatterBaseAction() {
-    const baseAction = document.getElementById(input_b + input_base_action);
+    const baseAction = document.getElementById(input_b + input_base_action) as HTMLInputElement;
     const actionOptions = renderBatterSpecificActionOptions(baseAction.value);
-    const specificActionDisabled = actionOptions === [];
+    const specificActionDisabled = actionOptions.length < 1;
 
-    const specificAction = document.getElementById(input_b + input_spec_action);
-    specificAction.innerHTML = actionOptions;
+    const specificAction = document.getElementById(input_b + input_spec_action) as HTMLInputElement;
+    specificAction.innerHTML = actionOptions.join();
     specificAction.disabled = specificActionDisabled;
     
     changeBatterSpecificAction();
@@ -43,7 +46,7 @@ function changeBatterSpecificAction() {
     let maxPosItems = 4;
     let runTypeSelectDisabled = true;
     
-    const specificAction = document.getElementById(input_b + input_spec_action);
+    const specificAction = document.getElementById(input_b + input_spec_action) as HTMLInputElement;
     const specificActionValue = specificAction.value;
     switch (specificActionValue) {
         case 'FC':
@@ -135,19 +138,19 @@ function changeBatterSpecificAction() {
             minPosItems = targetPosItems = maxPosItems = 0;
     }
     
-    window.minPosItems[input_b] = minPosItems;
-    window.targetPosItems[input_b] = targetPosItems;
-    window.maxPosItems[input_b] = maxPosItems;
+    useEvalStore().setMinPosItems(input_b, minPosItems);
+    useEvalStore().setTargetPosItems(input_b, targetPosItems);
+    useEvalStore().setMaxPosItems(input_b, maxPosItems);
     
     const groupID = input_b + input_position;
     
-    const container = document.getElementById(groupID);
-    const addItemButton = document.getElementById(groupID + input_add);
-    const removeItemButton = document.getElementById(groupID + input_remove);
-    
+    const container = document.getElementById(groupID) as HTMLElement;
+    const addItemButton = document.getElementById(groupID + input_add) as HTMLInputElement;
+    const removeItemButton = document.getElementById(groupID + input_remove) as HTMLInputElement;
+
     let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
     while (itemsCreated > 0) {
-        const posItemN = document.getElementById(groupID + itemsCreated); 
+        const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement;
         container.removeChild(posItemN);
         itemsCreated -= 1;
     }
@@ -157,51 +160,47 @@ function changeBatterSpecificAction() {
         const posItemN = getPosSelectionSelect(input_b, itemsCreated);
         container.insertBefore(posItemN, addItemButton);
     }
-    
+
     addItemButton.disabled = itemsCreated >= maxPosItems;
     removeItemButton.disabled = itemsCreated <= minPosItems;
     
     if (hit === true) {
-        const posItem1 = document.getElementById(groupID + '1');
-        posItem1.innerHTML = renderHitLocationOptions();
-        if (posSelection[groupID]) {
-            posItem1.value = posSelection[groupID][0];
-        }
+        const posItem1 = document.getElementById(groupID + '1') as HTMLInputElement;
+        posItem1.innerHTML = renderHitLocationOptions().join();
+        posItem1.value = useEvalStore().getPosSelection(groupID)[0];
     }
     
     if (fc === true) {
-        const posItem2 = document.getElementById(groupID + '2');
-        posItem2.innerHTML = renderFCLocationOptions();
-        if (posSelection[groupID]) {
-            posItem2.value = posSelection[groupID][1];
-        }
+        const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement;
+        posItem2.innerHTML = renderFCLocationOptions().join();
+        posItem2.value = useEvalStore().getPosSelection(groupID)[1];
     }
 
-    const runTypeSelect = document.getElementById(input_b + input_runtype);
+    const runTypeSelect = document.getElementById(input_b + input_runtype) as HTMLInputElement;
     runTypeSelect.disabled = runTypeSelectDisabled;
 }
 
 // ajdust 'specific' action according to selected 'base' action
-function changeRunnerBaseAction(group) {
-    const runnerBaseAction = document.getElementById(group + input_base_action);
+function changeRunnerBaseAction(group: string) {
+    const runnerBaseAction = document.getElementById(group + input_base_action) as HTMLInputElement;
     const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value, group);
-    const specificActionDisabled = actionOptions === [];
+    const specificActionDisabled = actionOptions.length < 1;;
 
-    const specificAction = document.getElementById(group + input_spec_action);
-    specificAction.innerHTML = actionOptions;
+    const specificAction = document.getElementById(group + input_spec_action) as HTMLInputElement;
+    specificAction.innerHTML = actionOptions.join();
     specificAction.disabled = specificActionDisabled;
     
     changeRunnerSpecificAction(group);
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeRunnerSpecificAction(group) {
+function changeRunnerSpecificAction(group: string) {
     let throwing = false;
     let minPosItems = 1;
     let targetPosItems = 1;
     let maxPosItems = 4;
     
-    const runnerSpecificAction = document.getElementById(group + input_spec_action);
+    const runnerSpecificAction = document.getElementById(group + input_spec_action) as HTMLInputElement;
     const runnerSpecificActionValue = runnerSpecificAction.value;
     switch (runnerSpecificActionValue) {
         case 'ADV':
@@ -258,19 +257,19 @@ function changeRunnerSpecificAction(group) {
             maxPosItems = 1;
     }
     
-    window.minPosItems[group] = minPosItems;
-    window.targetPosItems[group] = targetPosItems;
-    window.maxPosItems[group] = maxPosItems;
+    useEvalStore().setMinPosItems(input_b, minPosItems);
+    useEvalStore().setTargetPosItems(input_b, targetPosItems);
+    useEvalStore().setMaxPosItems(input_b, maxPosItems);
     
     const groupID = group + input_position;
     
-    const container = document.getElementById(groupID);
-    const addItemButton = document.getElementById(groupID + input_add);
-    const removeItemButton = document.getElementById(groupID + input_remove);
+    const container = document.getElementById(groupID) as HTMLElement;
+    const addItemButton = document.getElementById(groupID + input_add) as HTMLInputElement;
+    const removeItemButton = document.getElementById(groupID + input_remove) as HTMLInputElement;
     
     let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length;
     while (itemsCreated > 0) {
-        const posItemN = document.getElementById(groupID + itemsCreated); 
+        const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement; 
         container.removeChild(posItemN);
         itemsCreated -= 1;
     }
@@ -285,38 +284,33 @@ function changeRunnerSpecificAction(group) {
     removeItemButton.disabled = itemsCreated <= minPosItems;
     
     if (throwing === true) {
-        const posItem2 = document.getElementById(groupID + '2');
-        posItem2.innerHTML = renderFCLocationOptions();
-        if (posSelection[groupID]) {
-            posItem2.value = posSelection[groupID][1];    
-        }
+        const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement;
+        posItem2.innerHTML = renderFCLocationOptions().join();
+        posItem2.value = useEvalStore().getPosSelection(groupID)[1];
     }
 }
 
 // allows to select run type when home base is selected
-function changeBase(group) {
-    const baseSelect = document.getElementById(group + input_base);
+function changeBase(group: string) {
+    const baseSelect = document.getElementById(group + input_base) as HTMLInputElement;
     const baseSelectValue = baseSelect.value;
     
-    const runTypeSelect = document.getElementById(group + input_runtype);
+    const runTypeSelect = document.getElementById(group + input_runtype) as HTMLInputElement;
     runTypeSelect.disabled = baseSelectValue !== '4';
 }
 
 // enhance user's input with output instructions
-function processInput(input, batter, origBase) {
-    input[output_origBase] = origBase;
-    input[output_player] = batter;
-    input[output_base] = parseInt(input[input_base]);
-    input[output_run] = input[input_runtype];
-    input[output_out] = false;
-    input[output_hit] = false;
-    input[output_na] = false;
-    input[output_errorTarget] = null;
-    input[output_text_1] = ""; // to avoid undefined refference later
+function processInput(input: WBSCInput, batter: number, origBase: number): WBSCOutput {
+    const output: WBSCOutput = getEmptyOutput();
+    output.batter = batter;
+    output.origBase = origBase;
+    output.base = input.base;
+    output.run = input.runtype;
+    output.errorTarget = input.base;
     
-    let pos = input[input_position];
-    if (pos !== null) {
-        lastPos = pos[pos.length - 1];
+    let pos = input.pos;
+    if (pos) {
+        const lastPos = pos[pos.length - 1];
         if (lastPos === 'X') {
             pos = pos.substring(0, pos.length - 1) + '4';
         } else if (lastPos === 'Y') {
@@ -324,25 +318,27 @@ function processInput(input, batter, origBase) {
         } else if (lastPos === 'Z') {
             pos = pos.substring(0, pos.length - 1) + '2';
         }
+    } else {
+        pos = ''
     }
     
     let possibleConcurrentPlay = false;
-    const action = input[input_spec_action];
+    const action = input.specAction;
     switch (action) {
         case 'EDFB':
-            input[output_base] = 0;
-            input[output_text_1] = 'E' + pos + ' DF';
-            input[output_na] = true;
+            output.base = 0;
+            output.text1 = 'E' + pos + ' DF';
+            output.na = true;
             break;
         case 'KST':
         case 'KLT':
-            input[output_text_2] = pos;
+            output.text2 = pos;
         case 'KS':
         case 'KL':
-            input[output_base] = 0;
-            input[output_text_1] = action.substring(0, 2);
-            input[output_sub] = '1';
-            input[output_out] = true;
+            output.base = 0;
+            output.text1 = action.substring(0, 2);
+            output.sub = '1';
+            output.out = true;
             possibleConcurrentPlay = true;
             break;
         case 'F':
@@ -353,9 +349,9 @@ function processInput(input, batter, origBase) {
         case 'FL':
         case 'IF':
         case 'SF':
-            input[output_base] = 0;
-            input[output_text_1] = action + pos;
-            input[output_out] = true;
+            output.base = 0;
+            output.text1 = action + pos;
+            output.out = true;
             break;
         case 'FB':
         case 'FFB':
@@ -363,132 +359,131 @@ function processInput(input, batter, origBase) {
             if (action.includes('FF')) {
                 pref += 'F';
             }
-            input[output_text_1] = pref + pos + 'B';
-            input[output_base] = 0;
-            input[output_out] = true;
+            output.text1 = pref + pos + 'B';
+            output.base = 0;
+            output.out = true;
             break;
         case 'GDP':
         case 'SH':
         case 'FSF':
-            input[output_text_2] = pos;
+            output.text2 = pos;
         case 'LT':
-            input[output_base] = 0;
-            input[output_text_1] = action;
-            input[output_out] = true;
+            output.base = 0;
+            output.text1 = action;
+            output.out = true;
             break;
         case 'OBR1_':
         case 'OBR2_':
         case 'OBR3_':
         case 'OBR4_':
         case 'OBR6_':
-            input[output_base] = 0;
-            input[output_text_1] = 'OBR';
+            output.base = 0;
+            output.text1 = 'OBR';
             if (action.includes('2')) {
-                input[output_text_2] = 'KS';
-                input[output_sub] = '1';
+                output.text2 = 'KS';
+                output.sub = '1';
             } else {
-                input[output_text_2] = '2';
+                output.text2 = '2';
             }
-            input[output_out] = true;
-            input[output_sup] = action.substring(3, action.indexOf('_'));
+            output.out = true;
+            output.sup = action.substring(3, action.indexOf('_'));
             break;
         case 'OBR5_':    
         case 'OBR8_':
         case 'OBR14_':
-            input[output_base] = 0;
-            input[output_text_1] = 'OBR';
+            output.base = 0;
+            output.text1 = 'OBR';
             if (pos === '') {
-                input[output_text_2] = '2';
+                output.text2 = '2';
             } else {
-                input[output_text_2] = pos;
+                output.text2 = pos;
             }
-            input[output_out] = true;
-            input[output_sup] = action.substring(3, action.indexOf('_'));
+            output.out = true;
+            output.sup = action.substring(3, action.indexOf('_'));
             break;
         case '1B':
         case '1BB':
-            input[output_text_1] = pos;
+            output.text1 = pos;
             if (action.endsWith('BB')) {
-                input[output_text_1] += 'B';
+                output.text1 += 'B';
             }
-            input[output_hit] = true;
+            output.hit = true;
             break;
         case 'O':
-            input[output_text_1] = action + pos;
+            output.text1 = action + pos;
             break;
         case 'FC':
-            input[output_text_1] = action;
-            input[output_text_2] = pos;
+            output.text1 = action;
+            output.text2 = pos;
             break;
         case 'KSWP':
         case 'KSPB':
         case 'KLWP':
         case 'KLPB':
-            input[output_text_1] = action.substring(0, 2);
-            input[output_text_2] = action.substring(2);
-            input[output_sub] = '1';
+            output.text1 = action.substring(0, 2);
+            output.text2 = action.substring(2);
+            output.sub = '1';
             possibleConcurrentPlay = true;
             break;
         case 'KSO':    
         case 'KLO':
-            input[output_sub] = '1';
+            output.sub = '1';
             possibleConcurrentPlay = true;
         case 'SHFC':
         case 'SFO':
-            input[output_text_1] = action.substring(0, 2);
-            input[output_text_2] = action.substring(2) + pos;
+            output.text1 = action.substring(0, 2);
+            output.text2 = action.substring(2) + pos;
             break;
         case 'KSET':
         case 'KSE':
         case 'KLET':
         case 'KLE':
-            input[output_sub] = '1';
+            output.sub = '1';
             possibleConcurrentPlay = true;
         case 'SHE':
         case 'SHET':
         case 'SHEF':
         case 'SFE':
-        case 'SFO':
-            input[output_text_1] = action.substring(0, 2);
-            input[output_text_2] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
+            output.text1 = action.substring(0, 2);
+            output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1);
             if (action.length > 3) {
-                input[output_text_2] += action.substring(3);
+                output.text2 += action.substring(3);
             }
-            input[output_errorTarget] = input[output_base];
-            input[output_base] = input[output_origBase] + 1;
+            output.errorTarget = output.base;
+            output.base = output.origBase + 1;
             break;
         case 'INT':
-            input[output_text_1] = action;
+            output.text1 = action;
             break;
         case '2B':
         case '2BG':
-            input[output_base] = 2;
-            input[output_text_1] = pos;
+            output.base = 2;
+            output.text1 = pos;
             if (action.endsWith('G')) {
-                input[output_text_2] = 'GR';
+                output.text2 = 'GR';
             }
-            input[output_hit] = true;
+            output.hit = true;
             break;
         case '3B':
-            input[output_base] = 3;
-            input[output_text_1] = pos;
-            input[output_hit] = true;
+            output.base = 3;
+            output.text1 = pos;
+            output.hit = true;
             break;
         case 'HR':
         case 'IHR':
-            input[output_base] = 4;
-            input[output_text_1] = action;
-            input[output_text_2] = pos;
-            input[output_hit] = true;
+            output.base = 4;
+            output.text1 = action;
+            output.text2 = pos;
+            output.hit = true;
             break;
         case 'BB1':
         case 'IBB1':
-            input[output_sub] = '1';
+            output.sub = '1';
         case 'HP':
             if (action.length > 2) {
-                input[output_text_1] = action.substring(0, action.length - 1);
+                output.text1 = action.substring(0, action.length - 1);
             } else {
-                input[output_text_1] = action;
+                output.text1 = action;
             }
             possibleConcurrentPlay = true;
             break;
@@ -502,79 +497,81 @@ function processInput(input, batter, origBase) {
         case 'bk':
         case 'IP':
         case 'ip':
-            input[output_text_1] = action + '#b#';
+            output.text1 = action + '#b#';
             break;
         case 'ADV':
-            input[output_text_1] = '#b#';
+            output.text1 = '#b#';
             break;
         case 'se0':
-            input[output_text_1] = '(' + '#b#' + ')' ;
+            output.text1 = '(' + '#b#' + ')' ;
             break;
         case 'se1':
-            battingOrder = 1;
+            let battingOrder = 1;
             battingOrder += document.getElementById(input_r2) !== null ? 1 : 0;
             battingOrder += document.getElementById(input_r3) !== null ? 1 : 0;
-            input[output_text_1] = '(' + battingOrder + ')' ;
+            output.text1 = '(' + battingOrder + ')' ;
             break;
         case 'se2':
             battingOrder = 1;
             battingOrder += document.getElementById(input_r3) !== null ? 1 : 0;
-            input[output_text_1] = '(' + battingOrder + ')' ;
+            output.text1 = '(' + battingOrder + ')' ;
         case 'se3':
-            input[output_text_1] = '(1)' ;
+            output.text1 = '(1)' ;
             break;
         case 'GO':
         case 'GOB':
         case 'A':
-            if (input[output_base] === 1) {
-                input[output_base] = 0; 
+            if (output.base === 1) {
+                output.base = 0; 
             }
-            input[output_text_1] = pos;
+            output.text1 = pos;
             if (action.startsWith('A')) {
-                input[output_text_1] = 'A' + pos;
+                output.text1 = 'A' + pos;
             } else if (action.endsWith('B')) {
-                input[output_text_1] += 'B';
+                output.text1 += 'B';
             }
-            input[output_out] = true;
+            output.out = true;
             break;
         case 'O/':
-            input[output_num] = true;
+            output.num = true;
             possibleConcurrentPlay = true;
         case 'T':
         case 'OB':
         case 'ob':
-            input[output_text_1] = action + pos;
+            output.text1 = action + pos;
             break;
         case 'CSO':
         case 'PO':
-            input[output_text_1] = action.substring(0, 2);
-            input[output_text_2] = pos;
-            input[output_out] = true;
-            input[output_num] = true;
+            output.text1 = action.substring(0, 2);
+            output.text2 = pos;
+            output.out = true;
+            output.num = true;
             possibleConcurrentPlay = true;
             break;
         case 'CSN':
         case 'CSNT':
-            input[output_na] = true;
-            input[output_base] -= 1;
+            output.na = true;
+            if (output.base) {
+                output.base -= 1;
+            }
         case 'CSE':
         case 'CSET':
-            input[output_text_1] = action.substring(0, 2);
-            input[output_text_2] = pos.substring(0, pos.length - 1) + 'E' + pos.substring(pos.length - 1);
+            output.text1 = action.substring(0, 2);
+            output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1);
             if (action.endsWith('T')) {
-                input[output_text_2] += 'T';
+                output.text2 += 'T';
             }
-            input[output_num] = true;
-            input[output_errorTarget] = input[output_base];
-            input[output_base] = input[output_origBase] + 1;
+            output.num = true;
+            output.errorTarget = output.base;
+            output.base = output.origBase + 1;
             possibleConcurrentPlay = true;
             break;
         case 'POE':
-            input[output_text_1] = action.substring(0, 2);
-            input[output_text_2] = 'e' + pos + 'T';
-            input[output_num] = true;
-            input[output_errorTarget] = input[output_base];
-            input[output_base] = input[output_origBase] + 1;
+            output.text1 = action.substring(0, 2);
+            output.text2 = 'e' + pos + 'T';
+            output.num = true;
+            output.errorTarget = output.base;
+            output.base = output.origBase + 1;
             possibleConcurrentPlay = true;
             break;
         case 'OBR7_':
@@ -584,60 +581,71 @@ function processInput(input, batter, origBase) {
         case 'OBR12_':
         case 'OBR13_':
         case 'OBR15_':
-            input[output_text_1] = 'OBR';
+            output.text1 = 'OBR';
             if (action.includes('7')) {
-                input[output_text_2] = '2';
+                output.text2 = '2';
             } else {
-                input[output_text_2] = pos;
+                output.text2 = pos;
             }
-            input[output_out] = true;
-            input[output_sup] = action.substring(3, action.indexOf('_'));
+            output.out = true;
+            output.sup = action.substring(3, action.indexOf('_'));
             break;
         case 'ENT':
         case 'ENF':
-                input[output_na] = true;
-                input[output_base] -= 1;
+                output.na = true;
+                if (output.base) {
+                    output.base -= 1;
+                }
         case 'EF':
         case 'ET':
         case 'EM':
         case 'eF':
         case 'et':
-            input[output_text_1] = pos.substring(0, pos.length - 1) + action.substring(0, 1) + pos.substring(pos.length - 1);
+            output.text1 = pos?.substring(0, pos.length - 1) + action.substring(0, 1) + pos?.substring(pos.length - 1);
             if (!action.endsWith('F')) {
-                input[output_text_1] += action.substring(action.length - 1);
+                output.text1 += action.substring(action.length - 1);
             }
-            input[output_errorTarget] = input[output_base];
-            input[output_base] = input[output_origBase] + 1;
+            output.errorTarget = output.base;
+            output.base = output.origBase + 1;
             break;
         case 'EDF':
         case 'EDL':
         case 'EDP':
-            input[output_text_1] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1) + action.substring(action.length - 1);
-            input[output_errorTarget] = input[output_base];
-            input[output_base] = input[output_origBase] + 1;
+            output.text1 = pos?.substring(0, pos.length - 1) + "E" + pos?.substring(pos.length - 1) + action.substring(action.length - 1);
+            output.errorTarget = output.base;
+            output.base = output.origBase + 1;
             break;
         case 'GDPE':
-            input[output_text_1] = "GDP";
-            input[output_text_2] = pos.substring(0, pos.length - 1) + "E" + pos.substring(pos.length - 1);          
-            input[output_errorTarget] = input[output_base];
-            input[output_base] = input[output_origBase] + 1;
+            output.text1 = "GDP";
+            output.text2 = pos?.substring(0, pos.length - 1) + "E" + pos?.substring(pos.length - 1);          
+            output.errorTarget = output.base;
+            output.base = output.origBase + 1;
             break;
         case 'NADV':
-            input[output_text_1] = "*";
-            input[output_base] -= 1;
+            output.text1 = "*";
+            if (output.base) {
+                output.base -= 1;
+            }
             break;
     }
 
     if (possibleConcurrentPlay) {
         let notAddedYet = true;
-        for (let i = 0; i < window.concurrentPlays.length; i += 1) {
-            if (window.concurrentPlays[i].batter === batter) {
+        const concurrentPlays = useEvalStore().concurrentPlays;
+        for (let i = 0; i < concurrentPlays.length; i += 1) {
+            if (concurrentPlays[i].batter === batter) {
                 notAddedYet = false;
                 break;
             }
         }
         if (notAddedYet) {
-            window.concurrentPlays.push({batter:batter, base:input[output_base], out:input[output_out], na:input[output_na]});
+            concurrentPlays.push({...output});
         }
     }
+
+    return output;
+}
+
+export {
+    changeBaseAction, changeSpecificAction, changeBase, processInput
 }
