@@ -356,11 +356,16 @@ function getPosSelectionSelect(group: string, ord: number) {
     const posItem = document.createElement('select');
     posItem.setAttribute('id', groupID + ord);
     posItem.setAttribute('class', class_wbsc_pos);
-    posItem.innerHTML = renderPlayerOptions().join();
-    
+
     const posSelection = useEvalStore().getPosSelection(groupID)
-    if (posSelection.length > ord - 1) {
-        posItem.value = posSelection[ord - 1];
+    const baseAction = document.getElementById(input_b + input_base_action) as HTMLInputElement;
+
+    // hit evals later, so only deal with all other options
+    if (baseAction.value !== 'Hit') { 
+        posItem.innerHTML = renderPlayerOptions().join();
+        if (posSelection.length > ord - 1) {
+            posItem.value = posSelection[ord - 1];
+        }
     }
     
     posItem.addEventListener('change', function() {

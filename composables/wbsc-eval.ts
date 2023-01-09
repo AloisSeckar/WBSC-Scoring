@@ -167,7 +167,13 @@ function changeBatterSpecificAction() {
     if (hit === true) {
         const posItem1 = document.getElementById(groupID + '1') as HTMLInputElement;
         posItem1.innerHTML = renderHitLocationOptions().join();
-        posItem1.value = useEvalStore().getPosSelection(groupID)[0];
+        
+        const posSelection = useEvalStore().getPosSelection(groupID)
+        if (isNaN(Number(posSelection[0]))) {
+            posItem1.value = posSelection;
+        } else {
+            posItem1.value = posSelection[0];
+        }
     }
     
     if (fc === true) {
