@@ -123,7 +123,7 @@ function showInputs(group: string, parentDiv?: HTMLElement) {
 
         const runTypeSelect = document.createElement('select');
         runTypeSelect.setAttribute('id', input_b + input_runtype);
-        runTypeSelect.innerHTML = renderRunTypeOptions().join();
+        runTypeSelect.innerHTML = renderRunTypeOptions().join(" ");
         runTypeSelect.disabled = true;
         inputsContainer.appendChild(runTypeSelect);
         inputsContainer.appendChild(document.createElement('br'));
@@ -141,12 +141,12 @@ function showInputs(group: string, parentDiv?: HTMLElement) {
     });
     switch (group) {
         case input_b:
-            baseActionSelect.innerHTML = renderBatterActionOptions().join();
+            baseActionSelect.innerHTML = renderBatterActionOptions().join(" ");
             break;
         case input_b1:
         case input_b2:
         case input_b3:
-            baseActionSelect.innerHTML = renderBatterRunnerActionOptions().join();
+            baseActionSelect.innerHTML = renderBatterRunnerActionOptions().join(" ");
             break;
         case input_r1:
         case input_r1a:
@@ -154,7 +154,7 @@ function showInputs(group: string, parentDiv?: HTMLElement) {
         case input_r2:
         case input_r2a:
         case input_r3:
-            baseActionSelect.innerHTML = renderRunnerActionOptions().join();
+            baseActionSelect.innerHTML = renderRunnerActionOptions().join(" ");
             break;
     }
     inputsContainer.appendChild(baseActionSelect);
@@ -237,18 +237,18 @@ function renderBaseSelection(group: string) {
     switch (group) {
         case input_b1:
         case input_r1:
-            baseSelect.innerHTML = renderBaseOptions(1).join();
+            baseSelect.innerHTML = renderBaseOptions(1).join(" ");
             break;
         case input_b2:
         case input_r1a:
         case input_r2:
-            baseSelect.innerHTML = renderBaseOptions(2).join();
+            baseSelect.innerHTML = renderBaseOptions(2).join(" ");
             break;
         case input_b3:
         case input_r1b:
         case input_r2a:
         case input_r3:
-            baseSelect.innerHTML = renderBaseOptions(3).join();
+            baseSelect.innerHTML = renderBaseOptions(3).join(" ");
             runTypeSelectDisabled = false;
             break;
     }
@@ -263,7 +263,7 @@ function renderBaseSelection(group: string) {
 
     const runTypeSelect = document.createElement('select');
     runTypeSelect.setAttribute('id', group + input_runtype);
-    runTypeSelect.innerHTML = renderRunTypeOptions().join();
+    runTypeSelect.innerHTML = renderRunTypeOptions().join(" ");
     runTypeSelect.disabled = runTypeSelectDisabled;
     inputsContainer.appendChild(runTypeSelect);
     
@@ -362,7 +362,7 @@ function getPosSelectionSelect(group: string, ord: number) {
 
     // hit evals later, so only deal with all other options
     if (baseAction.value !== 'Hit') { 
-        posItem.innerHTML = renderPlayerOptions().join();
+        posItem.innerHTML = renderPlayerOptions().join(" ");
         if (posSelection.length > ord - 1) {
             posItem.value = posSelection[ord - 1];
         }

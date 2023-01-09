@@ -31,7 +31,7 @@ function changeBatterBaseAction() {
     const specificActionDisabled = actionOptions.length < 1;
 
     const specificAction = document.getElementById(input_b + input_spec_action) as HTMLInputElement;
-    specificAction.innerHTML = actionOptions.join();
+    specificAction.innerHTML = actionOptions.join(" ");
     specificAction.disabled = specificActionDisabled;
     
     changeBatterSpecificAction();
@@ -166,8 +166,8 @@ function changeBatterSpecificAction() {
     
     if (hit === true) {
         const posItem1 = document.getElementById(groupID + '1') as HTMLInputElement;
-        posItem1.innerHTML = renderHitLocationOptions().join();
-        
+        posItem1.innerHTML = renderHitLocationOptions().join(" ");
+
         const posSelection = useEvalStore().getPosSelection(groupID)
         if (isNaN(Number(posSelection[0]))) {
             posItem1.value = posSelection;
@@ -178,7 +178,7 @@ function changeBatterSpecificAction() {
     
     if (fc === true) {
         const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement;
-        posItem2.innerHTML = renderFCLocationOptions().join();
+        posItem2.innerHTML = renderFCLocationOptions().join(" ");
         posItem2.value = useEvalStore().getPosSelection(groupID)[1];
     }
 
@@ -193,7 +193,7 @@ function changeRunnerBaseAction(group: string) {
     const specificActionDisabled = actionOptions.length < 1;;
 
     const specificAction = document.getElementById(group + input_spec_action) as HTMLInputElement;
-    specificAction.innerHTML = actionOptions.join();
+    specificAction.innerHTML = actionOptions.join(" ");
     specificAction.disabled = specificActionDisabled;
     
     changeRunnerSpecificAction(group);
@@ -291,7 +291,7 @@ function changeRunnerSpecificAction(group: string) {
     
     if (throwing === true) {
         const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement;
-        posItem2.innerHTML = renderFCLocationOptions().join();
+        posItem2.innerHTML = renderFCLocationOptions().join(" ");
         posItem2.value = useEvalStore().getPosSelection(groupID)[1];
     }
 }
