@@ -10,6 +10,7 @@ export const useInputStore = defineStore({
 })
 
 export type WBSCInput = {
+    group: string,
     baseAction: string,
     specAction: string,
     base: number,

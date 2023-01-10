@@ -495,6 +495,7 @@ function getProperLocationForInputs(group: string) {
 
 function getEmptyInput(): WBSCInput {
     const input: WBSCInput = {
+        group: '',
         baseAction: '',
         specAction: '',
         base: 0,

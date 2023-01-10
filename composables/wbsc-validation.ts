@@ -4,7 +4,7 @@
 /* that are clearly impossible.             */
 /* **************************************** */
 
-import { WBSCInput, WBSCOutput } from "./useInputStore";
+import { WBSCInput } from "./useInputStore";
 
 // validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)
@@ -15,9 +15,14 @@ function checkUserInput(inputs: WBSCInput[]) {
     // 1) validations to be run over each input separately
     for (let i = 0; i < inputs.length; i += 1) {
         if (inputs[i] != null) {
+            const minPosItems = useEvalStore().getMinPosItems(inputs[i].group);
             const posSelection = inputs[i].pos;
-            if (posSelection) {
-                validation = attachValidation(validation, checkPosSelection(posSelection));
+            if (minPosItems > 0 && (!posSelection || posSelection.length < minPosItems)) {
+                validation = attachValidation(validation, `At least ${minPosItems} involved positions must be selected for current action`)
+            } else {
+                if (posSelection) {
+                    validation = attachValidation(validation, checkPosSelection(posSelection));
+                }
             }
         }
     }

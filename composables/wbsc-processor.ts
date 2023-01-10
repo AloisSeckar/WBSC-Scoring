@@ -244,6 +244,7 @@ function getInput(group: string): WBSCInput | null {
         const specAction = document.getElementById(group + input_spec_action) as HTMLInputElement
 
         input = getEmptyInput();
+        input.group = group;
         input.baseAction = baseAction.value;
         input.specAction = specAction.value;
         input.tie = getTIESelection(group);
