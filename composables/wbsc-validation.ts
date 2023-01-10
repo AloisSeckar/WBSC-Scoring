@@ -50,7 +50,7 @@ function checkPosSelection(selection: string) {
             const current = parseInt(selection[i])
             if (alreadyEncounteredPositions[current] === true) {
                 if (validation !== '') {
-                    validation += '\n- ';
+                    validation += '\n';
                 }
                 validation += 'A player cannot have more than 1 assist in a play';
                 break;
@@ -167,14 +167,7 @@ function attachValidation(validation: string, newMessage: string) {
     if (validation !== '') {
         validation += '\n';
     }
-
-    if (newMessage !== '') {
-        validation += '- ';
-    }
-
-    validation += newMessage;
-
-    return validation;
+    return validation + newMessage;
 }
 
 export {

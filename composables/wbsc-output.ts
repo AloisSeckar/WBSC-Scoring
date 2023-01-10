@@ -183,7 +183,7 @@ function drawAdvanceLine(base: number) {
 // to join two or more consecutive actions
 function drawConnector(base1: number, base2: number) {
     if (base1 < 1 || base1 > 3 || base2 < 1 || base2 > 4 || base1 >= base2) {
-        alert('Invalid input for consecutive action!');
+        useEvalStore().setError('Invalid input for consecutive action!');
     } else {
         const ctx = useCanvasStore().ctx
         if (ctx) {

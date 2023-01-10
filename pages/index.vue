@@ -7,8 +7,10 @@
                 Only limited range of situations available so far
             </div>
             <div id="wbsc-inputs" class="mb-2">
-
+                <!-- inputs are dynamically rendered here -->
             </div>
+            <!-- modal window triggerred by validation errors -->
+            <ValidationModal v-show="useEvalStore().errorShow" />
         </div>
 
         <h2>Output</h2>

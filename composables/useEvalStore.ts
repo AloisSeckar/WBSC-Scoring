@@ -2,6 +2,8 @@ export const useEvalStore = defineStore({
     id: 'eval-store',
     state: () => {
         const data: WBSCEval = {
+            errorShow: false,
+            errorText: '',
             batter: 1,
             minPosItems: [],
             targetPosItems: [],
@@ -13,6 +15,10 @@ export const useEvalStore = defineStore({
         return data
     },
     actions: {
+        setError(errorText: string) {
+            this.errorText = errorText;
+            this.errorShow = true;
+        },
         // TODO try to optimize with higher order function...
         setMinPosItems(inputGroup: string, limit: number) {
             this.minPosItems = this.minPosItems.filter(i => i.inputGroup !== inputGroup);
@@ -66,6 +72,8 @@ export const useEvalStore = defineStore({
 })
 
 export type WBSCEval = {
+    errorShow: boolean,
+    errorText: string,
     batter: number,
     minPosItems: PosSelectionLimit[],
     targetPosItems: PosSelectionLimit[],

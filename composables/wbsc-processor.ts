@@ -177,7 +177,7 @@ function processAction() {
         connectConcurrentPlaysIfNeeded();
 
     } else {
-        alert('The given input is invalid:\n' + validation);
+        useEvalStore().setError(validation);
     }
 }
 

@@ -22,7 +22,7 @@ function extendDownloadButton() {
             downloadButton.download = 'wbsc-scoring.png';
         } else {
             console.error("Canvas not defined")
-            alert("Canvas not defined")
+            useEvalStore().setError("Canvas not defined")
         }
     }, false);
 }
