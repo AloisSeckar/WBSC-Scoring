@@ -9,7 +9,7 @@
         <footer class="fixed bottom-0 left-0 w-full p-1 bg-wbsc-blue text-black">
             Created and maintained by 
             <a href="http://alois-seckar.cz" class="text-white hover:text-yellow-300">Alois Sečkár</a> 
-            (2019-2022)
+            (2019-2023)
         </footer>
     </div>
 </template>

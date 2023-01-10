@@ -86,6 +86,8 @@
                     Source converted into Nuxt 3 project with TypeScript, since it become hard, 
                     if not impossible, to maintain and change plain JavaScript code.
                 </li>
+                <li>Validation info - plain alerts replaced with nice-looking modal window</li>
+                <li>New validations - empty input</li>
                 <li>Various bugfixes and corrections</li>
             </ul>
         </div>

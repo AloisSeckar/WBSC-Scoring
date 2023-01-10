@@ -4,9 +4,11 @@ v.0.11
 Features:
 
 Source converted into Nuxt 3 project with TypeScript, since it become hard, if not impossible, to maintain and change plain JavaScript code.
+Validation info - plain alerts replaced with nice-looking modal window
+New validations - empty input
 
 Fixed displaying of extra base throwing error (e.t)
-Bugfixing - #53
+Bugfixing - #53, #61
 
 TODO
 ====
