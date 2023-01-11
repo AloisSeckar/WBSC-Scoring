@@ -20,7 +20,7 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 ### Version 0.11 (ongoing development)
 - Source converted into Nuxt 3 project with TypeScript
 - Validation modal window
-- New validations - empty input (#59)
+- New validations - empty action, empty pos select (#59)
 - Bugfixing - e.t displaying + GitHub issues #53, #61
 
 ### Version 0.10 (2022-11-08)
