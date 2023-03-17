@@ -76,6 +76,7 @@ function changeBatterSpecificAction () {
     case 'HR':
     case 'IHR':
       runTypeSelectDisabled = false
+      // falls through
     case '1B':
     case '2B':
     case '3B':
@@ -339,6 +340,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'KST':
     case 'KLT':
       output.text2 = pos
+      // falls through
     case 'KS':
     case 'KL':
       output.base = 0
@@ -360,7 +362,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       output.out = true
       break
     case 'FB':
-    case 'FFB':
+    case 'FFB': {
       let pref = 'F'
       if (action.includes('FF')) {
         pref += 'F'
@@ -368,11 +370,13 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       output.text1 = pref + pos + 'B'
       output.base = 0
       output.out = true
+    }
       break
     case 'GDP':
     case 'SH':
     case 'FSF':
       output.text2 = pos
+      // falls through
     case 'LT':
       output.base = 0
       output.text1 = action
@@ -435,6 +439,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'KLO':
       output.sub = '1'
       possibleConcurrentPlay = true
+      // falls through
     case 'SHFC':
     case 'SFO':
       output.text1 = action.substring(0, 2)
@@ -446,6 +451,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'KLE':
       output.sub = '1'
       possibleConcurrentPlay = true
+      // falls through
     case 'SHE':
     case 'SHET':
     case 'SHEF':
@@ -485,6 +491,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'BB1':
     case 'IBB1':
       output.sub = '1'
+      // falls through
     case 'HP':
       if (action.length > 2) {
         output.text1 = action.substring(0, action.length - 1)
@@ -497,6 +504,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'PB':
     case 'SB':
       possibleConcurrentPlay = true
+      // falls through
     case 'wp':
     case 'pb':
     case 'BK':
@@ -511,16 +519,19 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'se0':
       output.text1 = '(' + '#b#' + ')'
       break
-    case 'se1':
+    case 'se1': {
       let battingOrder = 1
       battingOrder += document.getElementById(inputR2) !== null ? 1 : 0
       battingOrder += document.getElementById(inputR3) !== null ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
+    }
       break
-    case 'se2':
-      battingOrder = 1
+    case 'se2': {
+      let battingOrder = 1
       battingOrder += document.getElementById(inputR3) !== null ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
+    }
+    // falls through
     case 'se3':
       output.text1 = '(1)'
       break
@@ -541,6 +552,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'O/':
       output.num = true
       possibleConcurrentPlay = true
+      // falls through
     case 'T':
     case 'OB':
     case 'ob':
@@ -560,6 +572,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       if (output.base) {
         output.base -= 1
       }
+      // falls through
     case 'CSE':
     case 'CSET':
       output.text1 = action.substring(0, 2)
@@ -602,6 +615,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       if (output.base) {
         output.base -= 1
       }
+      // falls through
     case 'EF':
     case 'ET':
     case 'EM':
