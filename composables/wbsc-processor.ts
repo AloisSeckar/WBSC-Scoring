@@ -9,40 +9,40 @@ import { WBSCInput } from './useInputStore'
 // get current inputs, process them and display the output
 function processAction () {
   const inputs = [] as WBSCInput[]
-  const r3Input = getInput(input_r3)
+  const r3Input = getInput(inputR3)
   if (r3Input) {
     inputs.push(r3Input)
   }
-  const r2aInput = getInput(input_r2a)
+  const r2aInput = getInput(inputR2a)
   if (r2aInput) {
     inputs.push(r2aInput)
   }
-  const r2Input = getInput(input_r2)
+  const r2Input = getInput(inputR2)
   if (r2Input) {
     inputs.push(r2Input)
   }
-  const r1bInput = getInput(input_r1b)
+  const r1bInput = getInput(inputR1b)
   if (r1bInput) {
     inputs.push(r1bInput)
   }
-  const r1aInput = getInput(input_r1a)
+  const r1aInput = getInput(inputR1a)
   if (r1aInput) {
     inputs.push(r1aInput)
   }
-  const r1Input = getInput(input_r1)
+  const r1Input = getInput(inputR1)
   if (r1Input) {
     inputs.push(r1Input)
   }
-  const b3Input = getInput(input_b3)
+  const b3Input = getInput(inputB3)
   if (b3Input) {
     inputs.push(b3Input)
   }
-  const b2Input = getInput(input_b2)
+  const b2Input = getInput(inputB2)
   if (b2Input) {
     inputs.push(b2Input)
   }
-  let b1Input = getInput(input_b1)
-  const bInput = getInput(input_b)
+  let b1Input = getInput(inputB1)
+  const bInput = getInput(inputB)
   // possible special case for "extra advance on the same error"
   if (b1Input && b1Input.specAction === 'se0') {
     if (bInput) {
@@ -182,7 +182,7 @@ function processAction () {
 function getBaseSelection (group: string): number {
   let base = 1
 
-  const baseSelect = document.getElementById(group + input_base) as HTMLInputElement
+  const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
   if (baseSelect) {
     base = parseInt(baseSelect.value)
   }
@@ -194,7 +194,7 @@ function getBaseSelection (group: string): number {
 function getTIESelection (group: string): boolean {
   let tie = false
 
-  const tieCheck = document.getElementById(group + input_tie) as HTMLInputElement
+  const tieCheck = document.getElementById(group + inputTie) as HTMLInputElement
   if (tieCheck) {
     tie = tieCheck.checked
   }
@@ -206,7 +206,7 @@ function getTIESelection (group: string): boolean {
 function getRunTypeSelection (group: string): string {
   let run = 'e'
 
-  const runtypeSelect = document.getElementById(group + input_runtype) as HTMLInputElement
+  const runtypeSelect = document.getElementById(group + inputRuntype) as HTMLInputElement
   if (runtypeSelect) {
     run = runtypeSelect.value
   }
@@ -218,14 +218,14 @@ function getRunTypeSelection (group: string): string {
 function getPosSelection (group: string) {
   let selection = ''
 
-  const container = document.getElementById(group + input_position) as HTMLElement
-  const posCount = container.getElementsByClassName(class_wbsc_pos)
+  const container = document.getElementById(group + inputPosition) as HTMLElement
+  const posCount = container.getElementsByClassName(classWbscPos)
   for (let i = 0; i < posCount.length; i += 1) {
     const item = posCount.item(i) as HTMLInputElement
     selection += item.value
   }
 
-  useEvalStore().setPosSelection(group + input_position, selection)
+  useEvalStore().setPosSelection(group + inputPosition, selection)
 
   return selection
 }
@@ -236,8 +236,8 @@ function getInput (group: string): WBSCInput | null {
 
   const container = document.getElementById(group)
   if (container) {
-    const baseAction = document.getElementById(group + input_base_action) as HTMLInputElement
-    const specAction = document.getElementById(group + input_spec_action) as HTMLInputElement
+    const baseAction = document.getElementById(group + inputBaseAction) as HTMLInputElement
+    const specAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
 
     input = getEmptyInput()
     input.group = group

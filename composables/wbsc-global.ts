@@ -7,7 +7,7 @@
 export default function init () {
   useCanvasStore().init()
   renderActionButtons()
-  renderInputs(input_b)
+  renderInputs(inputB)
   drawBackground(1)
   extendDownloadButton()
 }

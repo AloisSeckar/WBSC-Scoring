@@ -8,32 +8,32 @@ import { WBSCInput, WBSCOutput } from './useInputStore'
 // create bar with action buttons
 function renderActionButtons () {
   const actionButtonsContainer = document.createElement('div')
-  actionButtonsContainer.setAttribute('id', class_tools)
+  actionButtonsContainer.setAttribute('id', classTools)
   actionButtonsContainer.setAttribute('class', 'wbsc-buttons')
 
-  const renderBatterButton = renderInputsButton(input_b)
+  const renderBatterButton = renderInputsButton(inputB)
   actionButtonsContainer.appendChild(renderBatterButton)
 
-  const renderRunner1Button = renderInputsButton(input_r1)
+  const renderRunner1Button = renderInputsButton(inputR1)
   actionButtonsContainer.appendChild(renderRunner1Button)
 
-  const renderRunner2Button = renderInputsButton(input_r2)
+  const renderRunner2Button = renderInputsButton(inputR2)
   actionButtonsContainer.appendChild(renderRunner2Button)
 
-  const renderRunner3Button = renderInputsButton(input_r3)
+  const renderRunner3Button = renderInputsButton(inputR3)
   actionButtonsContainer.appendChild(renderRunner3Button)
 
   actionButtonsContainer.appendChild(document.createElement('br'))
 
-  const generateButton = renderInputsButton(input_generate)
+  const generateButton = renderInputsButton(inputGenerate)
   generateButton.setAttribute('class', 'btn btn-generate')
   actionButtonsContainer.appendChild(generateButton)
 
-  const clearButton = renderInputsButton(input_clear)
+  const clearButton = renderInputsButton(inpuClear)
   clearButton.setAttribute('class', 'btn btn-clear')
   actionButtonsContainer.appendChild(clearButton)
 
-  const container = document.getElementById(class_wbsc) as HTMLElement
+  const container = document.getElementById(classWbsc) as HTMLElement
   container.appendChild(actionButtonsContainer)
 }
 
@@ -48,10 +48,10 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
   renderButton.setAttribute('class', 'btn btn-add')
   renderButton.addEventListener('click', function () {
     switch (group) {
-      case input_generate:
+      case inputGenerate:
         processAction()
         break
-      case input_clear:
+      case inpuClear:
         clearInputs()
         break
       default:
@@ -65,12 +65,12 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
 
 // clear all user inputs and reset default state
 function clearInputs () {
-  hideInputs(input_b)
-  hideInputs(input_r1)
-  hideInputs(input_r2)
-  hideInputs(input_r3)
+  hideInputs(inputB)
+  hideInputs(inputR1)
+  hideInputs(inputR2)
+  hideInputs(inputR3)
 
-  showInputs(input_b)
+  showInputs(inputB)
 
   useEvalStore().posSelection = []
 }
@@ -96,9 +96,9 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
   inputsContainer.setAttribute('id', group)
 
   if (parentDiv === null || parentDiv === undefined) {
-    inputsContainer.setAttribute('class', class_wbsc)
+    inputsContainer.setAttribute('class', classWbsc)
 
-    const container = document.getElementById(class_wbsc) as HTMLElement
+    const container = document.getElementById(classWbsc) as HTMLElement
     const hook = getProperLocationForInputs(group)
     container.insertBefore(inputsContainer, hook)
   } else {
@@ -114,7 +114,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
     inputsContainer.appendChild(document.createElement('br'))
   }
 
-  if (group !== input_b) {
+  if (group !== inputB) {
     renderBaseSelection(group)
   } else {
     const runTypeLabel = document.createElement('label')
@@ -122,7 +122,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
     inputsContainer.appendChild(runTypeLabel)
 
     const runTypeSelect = document.createElement('select')
-    runTypeSelect.setAttribute('id', input_b + input_runtype)
+    runTypeSelect.setAttribute('id', inputB + inputRuntype)
     runTypeSelect.innerHTML = renderRunTypeOptions().join(' ')
     runTypeSelect.disabled = true
     inputsContainer.appendChild(runTypeSelect)
@@ -134,33 +134,33 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
   inputsContainer.appendChild(actionLabel)
 
   const baseActionSelect = document.createElement('select')
-  baseActionSelect.setAttribute('id', group + input_base_action)
+  baseActionSelect.setAttribute('id', group + inputBaseAction)
   baseActionSelect.setAttribute('class', 'wbsc-base-action-select form-control')
   baseActionSelect.addEventListener('change', function () {
     changeBaseAction(group)
   })
   switch (group) {
-    case input_b:
+    case inputB:
       baseActionSelect.innerHTML = renderBatterActionOptions().join(' ')
       break
-    case input_b1:
-    case input_b2:
-    case input_b3:
+    case inputB1:
+    case inputB2:
+    case inputB3:
       baseActionSelect.innerHTML = renderBatterRunnerActionOptions().join(' ')
       break
-    case input_r1:
-    case input_r1a:
-    case input_r1b:
-    case input_r2:
-    case input_r2a:
-    case input_r3:
+    case inputR1:
+    case inputR1a:
+    case inputR1b:
+    case inputR2:
+    case inputR2a:
+    case inputR3:
       baseActionSelect.innerHTML = renderRunnerActionOptions().join(' ')
       break
   }
   inputsContainer.appendChild(baseActionSelect)
 
   const specificActionSelect = document.createElement('select')
-  specificActionSelect.setAttribute('id', group + input_spec_action)
+  specificActionSelect.setAttribute('id', group + inputSpecAction)
   specificActionSelect.setAttribute('class', 'wbsc-specific-action-select form-control')
   specificActionSelect.addEventListener('change', function () {
     changeSpecificAction(group)
@@ -209,15 +209,15 @@ function hideInputs (group: string) {
 function renderBaseSelection (group: string) {
   const inputsContainer = document.getElementById(group) as HTMLElement
 
-  if (group === input_r1 || group === input_r2) {
+  if (group === inputR1 || group === inputR2) {
     const baseTIECheck = document.createElement('input')
     baseTIECheck.type = 'checkbox'
     baseTIECheck.setAttribute('class', 'wbsc-select')
-    baseTIECheck.setAttribute('id', group + input_tie)
+    baseTIECheck.setAttribute('id', group + inputTie)
     inputsContainer.appendChild(baseTIECheck)
 
     const baseTIELabel = document.createElement('label')
-    if (group === input_r1) {
+    if (group === inputR1) {
       baseTIELabel.innerHTML = '&nbsp;Tiebreak (baseball)'
     } else {
       baseTIELabel.innerHTML = '&nbsp;Tiebreak (baseball/softball)'
@@ -233,21 +233,21 @@ function renderBaseSelection (group: string) {
 
   let runTypeSelectDisabled = true
   const baseSelect = document.createElement('select')
-  baseSelect.setAttribute('id', group + input_base)
+  baseSelect.setAttribute('id', group + inputBase)
   switch (group) {
-    case input_b1:
-    case input_r1:
+    case inputB1:
+    case inputR1:
       baseSelect.innerHTML = renderBaseOptions(1).join(' ')
       break
-    case input_b2:
-    case input_r1a:
-    case input_r2:
+    case inputB2:
+    case inputR1a:
+    case inputR2:
       baseSelect.innerHTML = renderBaseOptions(2).join(' ')
       break
-    case input_b3:
-    case input_r1b:
-    case input_r2a:
-    case input_r3:
+    case inputB3:
+    case inputR1b:
+    case inputR2a:
+    case inputR3:
       baseSelect.innerHTML = renderBaseOptions(3).join(' ')
       runTypeSelectDisabled = false
       break
@@ -262,7 +262,7 @@ function renderBaseSelection (group: string) {
   inputsContainer.appendChild(runTypeLabel)
 
   const runTypeSelect = document.createElement('select')
-  runTypeSelect.setAttribute('id', group + input_runtype)
+  runTypeSelect.setAttribute('id', group + inputRuntype)
   runTypeSelect.innerHTML = renderRunTypeOptions().join(' ')
   runTypeSelect.disabled = runTypeSelectDisabled
   inputsContainer.appendChild(runTypeSelect)
@@ -273,7 +273,7 @@ function renderBaseSelection (group: string) {
 // render selects and buttons to adjust involved players/positions
 // inside given input group
 function renderPosSelection (group: string) {
-  const groupID = group + input_position
+  const groupID = group + inputPosition
 
   const inputsContainer = document.createElement('div')
   inputsContainer.setAttribute('id', groupID)
@@ -283,7 +283,7 @@ function renderPosSelection (group: string) {
   inputsContainer.appendChild(involvedLabel)
 
   const addItemButton = document.createElement('button')
-  addItemButton.setAttribute('id', groupID + input_add)
+  addItemButton.setAttribute('id', groupID + inputAdd)
   addItemButton.setAttribute('type', 'button')
   addItemButton.setAttribute('class', 'btn btn-add')
   addItemButton.addEventListener('click', function () {
@@ -294,7 +294,7 @@ function renderPosSelection (group: string) {
   inputsContainer.appendChild(addItemButton)
 
   const removeItemButton = document.createElement('button')
-  removeItemButton.setAttribute('id', groupID + input_remove)
+  removeItemButton.setAttribute('id', groupID + inputRemove)
   removeItemButton.setAttribute('type', 'button')
   removeItemButton.setAttribute('class', 'btn btn-remove')
   removeItemButton.addEventListener('click', function () {
@@ -312,12 +312,12 @@ function renderPosSelection (group: string) {
 // render one new select for players/locations inside given group
 // select is added at the end if possible
 function renderPosSelectItem (group: string) {
-  const groupID = group + input_position
+  const groupID = group + inputPosition
   const container = document.getElementById(groupID) as HTMLElement
-  const renderButton = document.getElementById(groupID + input_add) as HTMLInputElement
-  const unRenderButton = document.getElementById(groupID + input_remove) as HTMLInputElement
+  const renderButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
+  const unRenderButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
 
-  let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length
+  let itemsCreated = container.getElementsByClassName(classWbscPos).length
   if (itemsCreated < useEvalStore().getMaxPosItems(group)) {
     itemsCreated += 1
     const posItemN = getPosSelectionSelect(group, itemsCreated)
@@ -331,12 +331,12 @@ function renderPosSelectItem (group: string) {
 // removes one select for players/locations from given group
 // select is removed from the end if possible
 function unRenderPosSelectItem (group: string) {
-  const groupID = group + input_position
+  const groupID = group + inputPosition
   const container = document.getElementById(groupID) as HTMLElement
-  const renderButton = document.getElementById(groupID + input_add) as HTMLInputElement
-  const unRenderButton = document.getElementById(groupID + input_remove) as HTMLInputElement
+  const renderButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
+  const unRenderButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
 
-  let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length
+  let itemsCreated = container.getElementsByClassName(classWbscPos).length
   if (itemsCreated > useEvalStore().getMinPosItems(group)) {
     const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement
     container.removeChild(posItemN)
@@ -351,14 +351,14 @@ function unRenderPosSelectItem (group: string) {
 //   group - target inputs group
 //   ord - position inside the group
 function getPosSelectionSelect (group: string, ord: number) {
-  const groupID = group + input_position
+  const groupID = group + inputPosition
 
   const posItem = document.createElement('select')
   posItem.setAttribute('id', groupID + ord)
-  posItem.setAttribute('class', class_wbsc_pos)
+  posItem.setAttribute('class', classWbscPos)
 
   const posSelection = useEvalStore().getPosSelection(groupID)
-  const baseAction = document.getElementById(input_b + input_base_action) as HTMLInputElement
+  const baseAction = document.getElementById(inputB + inputBaseAction) as HTMLInputElement
 
   // hit evals later, so only deal with all other options
   if (baseAction.value !== 'Hit') {
@@ -383,14 +383,14 @@ function getPosSelectionSelect (group: string, ord: number) {
 function disableParentExtraInput (group: string, disable: boolean) {
   let parentExtraButtonId = null
   switch (group) {
-    case input_b2:
-      parentExtraButtonId = input_b1
+    case inputB2:
+      parentExtraButtonId = inputB1
       break
-    case input_b3:
-      parentExtraButtonId = input_b2
+    case inputB3:
+      parentExtraButtonId = inputB2
       break
-    case input_r1b:
-      parentExtraButtonId = input_r1a
+    case inputR1b:
+      parentExtraButtonId = inputR1a
       break
   }
   if (parentExtraButtonId !== null) {
@@ -405,20 +405,20 @@ function disableParentExtraInput (group: string, disable: boolean) {
 function getParentDiv (group: string, show: boolean) {
   let parentDiv
   switch (group) {
-    case input_b1:
-    case input_b2:
-    case input_b3:
-      parentDiv = input_b
+    case inputB1:
+    case inputB2:
+    case inputB3:
+      parentDiv = inputB
       break
-    case input_r1a:
-    case input_r1b:
-      parentDiv = input_r1
+    case inputR1a:
+    case inputR1b:
+      parentDiv = inputR1
       break
-    case input_r2a:
-      parentDiv = input_r2
+    case inputR2a:
+      parentDiv = inputR2
       break
     default:
-      parentDiv = show ? group : class_wbsc
+      parentDiv = show ? group : classWbsc
   }
   return parentDiv
 }
@@ -428,23 +428,23 @@ function getParentDiv (group: string, show: boolean) {
 function getAdditionalInputsGroup (group: string) {
   let additionalInputsGroup
   switch (group) {
-    case input_b:
-      additionalInputsGroup = input_b1
+    case inputB:
+      additionalInputsGroup = inputB1
       break
-    case input_b1:
-      additionalInputsGroup = input_b2
+    case inputB1:
+      additionalInputsGroup = inputB2
       break
-    case input_b2:
-      additionalInputsGroup = input_b3
+    case inputB2:
+      additionalInputsGroup = inputB3
       break
-    case input_r1:
-      additionalInputsGroup = input_r1a
+    case inputR1:
+      additionalInputsGroup = inputR1a
       break
-    case input_r1a:
-      additionalInputsGroup = input_r1b
+    case inputR1a:
+      additionalInputsGroup = inputR1b
       break
-    case input_r2:
-      additionalInputsGroup = input_r2a
+    case inputR2:
+      additionalInputsGroup = inputR2a
       break
     default:
       additionalInputsGroup = null
@@ -454,17 +454,17 @@ function getAdditionalInputsGroup (group: string) {
 
 // helps maintaining correct order of input groups (HP - 1B - 2B - 3B)
 function getProperLocationForInputs (group: string) {
-  let hook = document.getElementById(class_tools)
+  let hook = document.getElementById(classTools)
 
-  const r1inputs = document.getElementById(input_r1)
-  const r2inputs = document.getElementById(input_r2)
-  const r3inputs = document.getElementById(input_r3)
+  const r1inputs = document.getElementById(inputR1)
+  const r2inputs = document.getElementById(inputR2)
+  const r3inputs = document.getElementById(inputR3)
 
   switch (group) {
-    case input_b:
-    case input_b1:
-    case input_b2:
-    case input_b3:
+    case inputB:
+    case inputB1:
+    case inputB2:
+    case inputB3:
       if (r1inputs !== null) {
         hook = r1inputs
       } else if (r2inputs !== null) {
@@ -473,17 +473,17 @@ function getProperLocationForInputs (group: string) {
         hook = r3inputs
       }
       break
-    case input_r1:
-    case input_r1a:
-    case input_r1b:
+    case inputR1:
+    case inputR1a:
+    case inputR1b:
       if (r2inputs !== null) {
         hook = r2inputs
       } else if (r3inputs !== null) {
         hook = r3inputs
       }
       break
-    case input_r2:
-    case input_r2a:
+    case inputR2:
+    case inputR2a:
       if (r3inputs !== null) {
         hook = r3inputs
       }

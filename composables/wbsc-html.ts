@@ -7,16 +7,16 @@
 function getLabelForInputGroup (group: string) {
   let label = '<strong>'
   switch (group) {
-    case input_b:
+    case inputB:
       label += 'Batter'
       break
-    case input_r1:
+    case inputR1:
       label += 'Runner at 1st'
       break
-    case input_r2:
+    case inputR2:
       label += 'Runner at 2nd'
       break
-    case input_r3:
+    case inputR3:
       label += 'Runner at 3rd'
       break
   }
@@ -28,10 +28,10 @@ function getLabelForInputGroup (group: string) {
 function getLabelForRenderButton (group: string, render: boolean) {
   let label = ''
   switch (group) {
-    case input_generate:
+    case inputGenerate:
       label = 'Generate action'
       break
-    case input_clear:
+    case inpuClear:
       label = 'Clear'
       break
     default:
@@ -41,16 +41,16 @@ function getLabelForRenderButton (group: string, render: boolean) {
         label += '-'
       }
       switch (group) {
-        case input_b:
+        case inputB:
           label += 'B'
           break
-        case input_r1:
+        case inputR1:
           label += 'R1'
           break
-        case input_r2:
+        case inputR2:
           label += 'R2'
           break
-        case input_r3:
+        case inputR3:
           label += 'R3'
           break
       }

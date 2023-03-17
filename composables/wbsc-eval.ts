@@ -8,7 +8,7 @@ import { WBSCInput, WBSCOutput } from './useInputStore'
 
 // triggered when user selects from 'base' action
 function changeBaseAction (group: string) {
-  if (group === input_b) {
+  if (group === inputB) {
     changeBatterBaseAction()
   } else {
     changeRunnerBaseAction(group)
@@ -17,7 +17,7 @@ function changeBaseAction (group: string) {
 
 // triggered when user selects from 'specific' action
 function changeSpecificAction (group: string) {
-  if (group === input_b) {
+  if (group === inputB) {
     changeBatterSpecificAction()
   } else {
     changeRunnerSpecificAction(group)
@@ -26,11 +26,11 @@ function changeSpecificAction (group: string) {
 
 // ajdust 'specific' action according to selected 'base' action
 function changeBatterBaseAction () {
-  const baseAction = document.getElementById(input_b + input_base_action) as HTMLInputElement
+  const baseAction = document.getElementById(inputB + inputBaseAction) as HTMLInputElement
   const actionOptions = renderBatterSpecificActionOptions(baseAction.value)
   const specificActionDisabled = actionOptions.length < 1
 
-  const specificAction = document.getElementById(input_b + input_spec_action) as HTMLInputElement
+  const specificAction = document.getElementById(inputB + inputSpecAction) as HTMLInputElement
   specificAction.innerHTML = actionOptions.join(' ')
   specificAction.disabled = specificActionDisabled
 
@@ -46,7 +46,7 @@ function changeBatterSpecificAction () {
   let maxPosItems = 4
   let runTypeSelectDisabled = true
 
-  const specificAction = document.getElementById(input_b + input_spec_action) as HTMLInputElement
+  const specificAction = document.getElementById(inputB + inputSpecAction) as HTMLInputElement
   const specificActionValue = specificAction.value
   switch (specificActionValue) {
     case 'FC':
@@ -138,17 +138,17 @@ function changeBatterSpecificAction () {
       minPosItems = targetPosItems = maxPosItems = 0
   }
 
-  useEvalStore().setMinPosItems(input_b, minPosItems)
-  useEvalStore().setTargetPosItems(input_b, targetPosItems)
-  useEvalStore().setMaxPosItems(input_b, maxPosItems)
+  useEvalStore().setMinPosItems(inputB, minPosItems)
+  useEvalStore().setTargetPosItems(inputB, targetPosItems)
+  useEvalStore().setMaxPosItems(inputB, maxPosItems)
 
-  const groupID = input_b + input_position
+  const groupID = inputB + inputPosition
 
   const container = document.getElementById(groupID) as HTMLElement
-  const addItemButton = document.getElementById(groupID + input_add) as HTMLInputElement
-  const removeItemButton = document.getElementById(groupID + input_remove) as HTMLInputElement
+  const addItemButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
+  const removeItemButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
 
-  let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length
+  let itemsCreated = container.getElementsByClassName(classWbscPos).length
   while (itemsCreated > 0) {
     const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement
     container.removeChild(posItemN)
@@ -157,7 +157,7 @@ function changeBatterSpecificAction () {
 
   while (itemsCreated < targetPosItems) {
     itemsCreated += 1
-    const posItemN = getPosSelectionSelect(input_b, itemsCreated)
+    const posItemN = getPosSelectionSelect(inputB, itemsCreated)
     container.insertBefore(posItemN, addItemButton)
   }
 
@@ -182,17 +182,17 @@ function changeBatterSpecificAction () {
     posItem2.value = useEvalStore().getPosSelection(groupID)[1]
   }
 
-  const runTypeSelect = document.getElementById(input_b + input_runtype) as HTMLInputElement
+  const runTypeSelect = document.getElementById(inputB + inputRuntype) as HTMLInputElement
   runTypeSelect.disabled = runTypeSelectDisabled
 }
 
 // ajdust 'specific' action according to selected 'base' action
 function changeRunnerBaseAction (group: string) {
-  const runnerBaseAction = document.getElementById(group + input_base_action) as HTMLInputElement
+  const runnerBaseAction = document.getElementById(group + inputBaseAction) as HTMLInputElement
   const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value, group)
   const specificActionDisabled = actionOptions.length < 1
 
-  const specificAction = document.getElementById(group + input_spec_action) as HTMLInputElement
+  const specificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
   specificAction.innerHTML = actionOptions.join(' ')
   specificAction.disabled = specificActionDisabled
 
@@ -206,7 +206,7 @@ function changeRunnerSpecificAction (group: string) {
   let targetPosItems = 1
   let maxPosItems = 4
 
-  const runnerSpecificAction = document.getElementById(group + input_spec_action) as HTMLInputElement
+  const runnerSpecificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
   const runnerSpecificActionValue = runnerSpecificAction.value
   switch (runnerSpecificActionValue) {
     case 'ADV':
@@ -263,17 +263,17 @@ function changeRunnerSpecificAction (group: string) {
       maxPosItems = 1
   }
 
-  useEvalStore().setMinPosItems(input_b, minPosItems)
-  useEvalStore().setTargetPosItems(input_b, targetPosItems)
-  useEvalStore().setMaxPosItems(input_b, maxPosItems)
+  useEvalStore().setMinPosItems(inputB, minPosItems)
+  useEvalStore().setTargetPosItems(inputB, targetPosItems)
+  useEvalStore().setMaxPosItems(inputB, maxPosItems)
 
-  const groupID = group + input_position
+  const groupID = group + inputPosition
 
   const container = document.getElementById(groupID) as HTMLElement
-  const addItemButton = document.getElementById(groupID + input_add) as HTMLInputElement
-  const removeItemButton = document.getElementById(groupID + input_remove) as HTMLInputElement
+  const addItemButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
+  const removeItemButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
 
-  let itemsCreated = container.getElementsByClassName(class_wbsc_pos).length
+  let itemsCreated = container.getElementsByClassName(classWbscPos).length
   while (itemsCreated > 0) {
     const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement
     container.removeChild(posItemN)
@@ -298,10 +298,10 @@ function changeRunnerSpecificAction (group: string) {
 
 // allows to select run type when home base is selected
 function changeBase (group: string) {
-  const baseSelect = document.getElementById(group + input_base) as HTMLInputElement
+  const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
   const baseSelectValue = baseSelect.value
 
-  const runTypeSelect = document.getElementById(group + input_runtype) as HTMLInputElement
+  const runTypeSelect = document.getElementById(group + inputRuntype) as HTMLInputElement
   runTypeSelect.disabled = baseSelectValue !== '4'
 }
 
@@ -513,13 +513,13 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       break
     case 'se1':
       let battingOrder = 1
-      battingOrder += document.getElementById(input_r2) !== null ? 1 : 0
-      battingOrder += document.getElementById(input_r3) !== null ? 1 : 0
+      battingOrder += document.getElementById(inputR2) !== null ? 1 : 0
+      battingOrder += document.getElementById(inputR3) !== null ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
       break
     case 'se2':
       battingOrder = 1
-      battingOrder += document.getElementById(input_r3) !== null ? 1 : 0
+      battingOrder += document.getElementById(inputR3) !== null ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
     case 'se3':
       output.text1 = '(1)'
