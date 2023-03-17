@@ -1,26 +1,30 @@
 <!-- derived from https://github.com/Emodot/Creating-Modal-Components project -->
 
 <template>
-    <transition name="modal-fade">
-        <div class="modal-overlay" @click="invalidate()">
-            <div :class="divMain" @click.stop>
-                <div :class="divHeader">Invalid input</div>
-                <p>{{ useEvalStore().errorText }}</p>
-                <div :class="divButton" @click="invalidate()">OK</div>
-            </div>
+  <transition name="modal-fade">
+    <div class="modal-overlay" @click="invalidate()">
+      <div :class="divMain" @click.stop>
+        <div :class="divHeader">
+          Invalid input
         </div>
-    </transition>
+        <p>{{ useEvalStore().errorText }}</p>
+        <div :class="divButton" @click="invalidate()">
+          OK
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
-const divMain = "mt-[10%] w-1/3 h-fit border border-black rounded bg-white";
-const divHeader = "py-4 text-3xl font-bold";
-const divButton = "mx-auto my-4 p-2 w-16 border border-black rounded bg-wbsc-blue hover:bg-sky-300" 
-                + " text-white hover:text-gray-700 font-bold cursor-pointer";
+const divMain = 'mt-[10%] w-1/3 h-fit border border-black rounded bg-white'
+const divHeader = 'py-4 text-3xl font-bold'
+const divButton = 'mx-auto my-4 p-2 w-16 border border-black rounded bg-wbsc-blue hover:bg-sky-300' +
+                ' text-white hover:text-gray-700 font-bold cursor-pointer'
 
-function invalidate() {
-    useEvalStore().errorShow = false;
-    useEvalStore().errorText = '';
+function invalidate () {
+  useEvalStore().errorShow = false
+  useEvalStore().errorText = ''
 }
 </script>
 

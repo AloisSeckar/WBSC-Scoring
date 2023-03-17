@@ -1,28 +1,13 @@
 export const useInputStore = defineStore({
-    id: 'input-store',
-    state: () => {
-        return getEmptyInput()
-    },
-    actions: {
-    },
-    getters: {
-    }
+  id: 'input-store',
+  state: () => {
+    return getEmptyInput()
+  },
+  actions: {
+  },
+  getters: {
+  }
 })
-
-export type WBSCInput = {
-    group: string,
-    baseAction: string,
-    specAction: string,
-    base: number,
-    tie: boolean,
-    pos: string | null,
-    runtype: string | null,
-    validation: string,
-
-    output: WBSCOutput,
-
-    extraInput: WBSCInput[] | null,
-}
 
 export type WBSCOutput = {
     previousAdvance: boolean,
@@ -39,4 +24,19 @@ export type WBSCOutput = {
     num: boolean,
     errorTarget: number,
     na: boolean,
+}
+
+export type WBSCInput = {
+    group: string,
+    baseAction: string,
+    specAction: string,
+    base: number,
+    tie: boolean,
+    pos: string | null,
+    runtype: string | null,
+    validation: string,
+
+    output: WBSCOutput,
+
+    extraInput: WBSCInput[] | null,
 }
