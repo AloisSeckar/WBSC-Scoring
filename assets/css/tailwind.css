@@ -4,67 +4,67 @@
 
 @layer components {
 	h1 {
-		@apply text-wbsc-blue text-4xl font-bold font-header
+		@apply text-wbsc-blue text-4xl font-bold font-header;
 	}
 	h2 {
-		@apply mt-4 text-wbsc-blue text-3xl font-bold
+		@apply mt-4 text-wbsc-blue text-3xl font-bold;
 	}
 	h3 {
-		@apply mb-2 text-xl font-bold
+		@apply mb-2 text-xl font-bold;
 	}
 
 	p {
-		@apply mb-2
+		@apply mb-2;
 	}
 
 	img {
-		@apply mb-4
+		@apply mb-4;
 	}
 
 	.demo {
-		@apply text-red-500
+		@apply text-red-500;
 	}
 
 	.list-disc {
-		@apply ml-6
+		@apply ml-6;
 	}
 
 	.btn {
 		@apply border border-black rounded m-1 px-2 pt-1 pb-1.5 
-			text-white hover:text-gray-700 font-bold 
+			text-white hover:text-gray-700 font-bold;
 	}
 	.btn-top {
-		@apply bg-gray-400 hover:bg-gray-200
+		@apply bg-gray-400 hover:bg-gray-200;
 	}
 	.btn-link {
-		@apply bg-wbsc-blue hover:bg-sky-300
+		@apply bg-wbsc-blue hover:bg-sky-300;
 	}
 	.btn-download {
-		@apply bg-emerald-500 hover:bg-emerald-300
+		@apply bg-emerald-500 hover:bg-emerald-300;
 	}
 	.btn-add {
-		@apply w-12 bg-green-500 hover:bg-green-300 disabled:bg-gray-400 disabled:text-gray-700
+		@apply w-12 bg-green-500 hover:bg-green-300 disabled:bg-gray-400 disabled:text-gray-700;
 	}
 	.btn-remove {
-		@apply w-12 bg-red-600 hover:bg-red-400 disabled:bg-gray-400 disabled:text-gray-700
+		@apply w-12 bg-red-600 hover:bg-red-400 disabled:bg-gray-400 disabled:text-gray-700;
 	}
 	.btn-generate {
-		@apply bg-wbsc-blue hover:bg-sky-300
+		@apply bg-wbsc-blue hover:bg-sky-300;
 	}
 	.btn-clear {
-		@apply bg-amber-500 hover:bg-amber-300
+		@apply bg-amber-500 hover:bg-amber-300;
 	}
 
 	.wbsc-buttons {
-		@apply mx-auto py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-lime-400
+		@apply mx-auto py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-lime-400;
 	}
 
 	.wbsc-inputs {
-		@apply mx-auto mb-2 py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-blue-200
+		@apply mx-auto mb-2 py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-blue-200;
 	}
 
 	select {
-		@apply m-1 p-1 h-8 min-w-[50px] rounded
+		@apply m-1 p-1 h-8 min-w-[50px] rounded;
 	}
 
 }
