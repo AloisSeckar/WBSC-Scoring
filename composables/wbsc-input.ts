@@ -358,14 +358,9 @@ function getPosSelectionSelect (group: string, ord: number) {
   posItem.setAttribute('class', classWbscPos)
 
   const posSelection = useEvalStore().getPosSelection(groupID)
-  const baseAction = document.getElementById(inputB + inputBaseAction) as HTMLInputElement
-
-  // hit evals later, so only deal with all other options
-  if (baseAction.value !== 'Hit') {
-    posItem.innerHTML = renderPlayerOptions().join(' ')
-    if (posSelection.length > ord - 1) {
-      posItem.value = posSelection[ord - 1]
-    }
+  posItem.innerHTML = renderPlayerOptions().join(' ')
+  if (posSelection.length > ord - 1) {
+    posItem.value = posSelection[ord - 1]
   }
 
   posItem.addEventListener('change', function () {
