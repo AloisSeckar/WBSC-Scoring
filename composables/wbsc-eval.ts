@@ -264,9 +264,9 @@ function changeRunnerSpecificAction (group: string) {
       maxPosItems = 1
   }
 
-  useEvalStore().setMinPosItems(inputB, minPosItems)
-  useEvalStore().setTargetPosItems(inputB, targetPosItems)
-  useEvalStore().setMaxPosItems(inputB, maxPosItems)
+  useEvalStore().setMinPosItems(group, minPosItems)
+  useEvalStore().setTargetPosItems(group, targetPosItems)
+  useEvalStore().setMaxPosItems(group, maxPosItems)
 
   const groupID = group + inputPosition
 
