@@ -189,9 +189,8 @@ function drawConnector (base1: number, base2: number) {
       ctx.lineWidth = 5
       ctx.strokeStyle = 'black'
 
-      const gap = 13
-      const length = 35
-      const arc = 20
+      const gap = 15
+      const length = 30
 
       ctx.beginPath()
       switch (base1) {
@@ -199,33 +198,25 @@ function drawConnector (base1: number, base2: number) {
           ctx.moveTo(w1 - gap + hOffset, h2 + length + vOffset)
           ctx.lineTo(w1 - gap + hOffset, h2 - length + vOffset)
           if (base2 > 2) {
-            ctx.lineTo(w1 - gap + hOffset, gap + vOffset + arc)
-            ctx.moveTo(w1 - gap + hOffset - arc, gap + vOffset)
+            ctx.moveTo(w2 + length + hOffset, gap + vOffset)
             ctx.lineTo(w2 - length + hOffset, gap + vOffset)
-            ctx.arc(w1 - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5 * Math.PI, 0)
           }
           if (base2 > 3) {
-            ctx.moveTo(w2 - length + hOffset, gap + vOffset)
-            ctx.lineTo(gap + hOffset + arc, gap + vOffset)
-            ctx.moveTo(gap + hOffset, gap + vOffset + arc)
-            ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset)
-            ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5 * Math.PI)
+            ctx.moveTo(gap + hOffset, h2 - length + vOffset)
+            ctx.lineTo(gap + hOffset, h2 + length + vOffset)
           }
           break
         case 2:
           ctx.moveTo(w2 + length + hOffset, gap + vOffset)
           ctx.lineTo(w2 - length + hOffset, gap + vOffset)
           if (base2 > 3) {
-            ctx.moveTo(w2 - length + hOffset, gap + vOffset)
-            ctx.lineTo(gap + hOffset + arc, gap + vOffset)
-            ctx.moveTo(gap + hOffset, gap + vOffset + arc)
-            ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset)
-            ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5 * Math.PI)
+            ctx.moveTo(gap + hOffset, h2 - length + vOffset)
+            ctx.lineTo(gap + hOffset, h2 + length + vOffset)
           }
           break
         case 3:
           ctx.moveTo(gap + hOffset, h2 - length + vOffset)
-          ctx.lineTo(gap + hOffset, h2 + length - 10 + vOffset)
+          ctx.lineTo(gap + hOffset, h2 + length + vOffset)
           break
       }
       ctx.stroke()
