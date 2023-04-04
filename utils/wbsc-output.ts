@@ -1030,7 +1030,7 @@ function drawExtraErrorAdvanceTo3B (startsAt2B: boolean, endsAt3B: boolean) {
   const gap = w2 / 2
   const length = 35
   const arc = 30
-  const shift = startsAt2B ? 10 : 0
+  const shift = startsAt2B ? 15 : 0
 
   const ctx = useCanvasStore().ctx
   if (ctx) {
@@ -1057,7 +1057,7 @@ function drawExtraErrorAdvanceTo3B (startsAt2B: boolean, endsAt3B: boolean) {
 function drawExtraErrorAdvanceToHP (startsAt3B: boolean) {
   const gap = w2 / 2
   const length = 35
-  const shift = startsAt3B ? 10 : 0
+  const shift = startsAt3B ? 15 : 0
 
   const ctx = useCanvasStore().ctx
   if (ctx) {
