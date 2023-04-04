@@ -3,7 +3,7 @@
 /* Transform and process user's input      */
 /* *************************************** */
 
-import { WBSCInput } from '../composables/useInputStore'
+import { WBSCInput } from '@/composables/useInputStore'
 
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
@@ -43,11 +43,9 @@ function processAction () {
   }
   let b1Input = getInput(inputB1)
   const bInput = getInput(inputB)
-  // possible special case for "extra advance on the same error"
+  let bErrorTarget = 0
   if (b1Input && b1Input.specAction === 'se0') {
-    if (bInput) {
-      bInput.base = b1Input.base
-    }
+    bErrorTarget = b1Input.base
     b1Input = null
   } else if (b1Input) {
     inputs.push(b1Input)
@@ -123,6 +121,9 @@ function processAction () {
   }
   if (bInput) {
     bInput.output = processInput(bInput, playersInvolved, 0)
+    if (bErrorTarget > 0) {
+      bInput.output.errorTarget = bErrorTarget
+    }
   }
 
   const validation = checkUserInput(inputs)

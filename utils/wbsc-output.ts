@@ -36,7 +36,7 @@ function renderAction (battingOrder: number, mainInput: WBSCInput, extraInput: W
     renderAdvance(output)
 
     if (output.errorTarget !== null) {
-      drawExtraErrorAdvanceIfNeeded(mainInput.base, output.errorTarget)
+      drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget)
     }
 
     if (extraInput !== null) {
