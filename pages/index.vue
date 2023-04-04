@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import init from '@/composables/wbsc-global'
+import init from '@/utils/wbsc-global.js'
 
 onMounted(() => init())
 </script>

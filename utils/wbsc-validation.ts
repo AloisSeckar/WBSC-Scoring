@@ -4,7 +4,7 @@
 /* that are clearly impossible.             */
 /* **************************************** */
 
-import { WBSCInput } from './useInputStore'
+import { WBSCInput } from '@/composables/useInputStore'
 
 // validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)

@@ -3,7 +3,7 @@
 /* Transform and process user's input      */
 /* *************************************** */
 
-import { WBSCInput } from './useInputStore'
+import { WBSCInput } from '../composables/useInputStore'
 
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output

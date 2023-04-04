@@ -3,8 +3,7 @@
 /* CORE file with input evaluation methods */
 /* *************************************** */
 
-import { useEvalStore } from './useEvalStore'
-import { WBSCInput, WBSCOutput } from './useInputStore'
+import { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // triggered when user selects from 'base' action
 function changeBaseAction (group: string) {
