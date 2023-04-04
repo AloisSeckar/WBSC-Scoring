@@ -36,7 +36,7 @@ function renderAction (battingOrder: number, mainInput: WBSCInput, extraInput: W
     renderAdvance(output)
 
     if (output.errorTarget !== null) {
-      drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget)
+      drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
     }
 
     if (extraInput !== null) {
@@ -965,7 +965,7 @@ function drawArrow (fromx: number, fromy: number, tox: number, toy: number) {
 // if there is multiple error advance,
 // the "E" mark is made to first base reached on error
 // and the extra advance is visualized with an arrow
-function drawExtraErrorAdvanceIfNeeded (origBase: number, targetBase: number) {
+function drawExtraErrorAdvanceIfNeeded (origBase: number, targetBase: number, twoLineText: boolean) {
   if (targetBase > origBase) {
     const ctx = useCanvasStore().ctx
     if (ctx) {
@@ -977,7 +977,7 @@ function drawExtraErrorAdvanceIfNeeded (origBase: number, targetBase: number) {
 
     switch (origBase) {
       case 1:
-        drawExtraErrorAdvanceTo2B(targetBase === 2)
+        drawExtraErrorAdvanceTo2B(targetBase === 2, twoLineText)
         if (targetBase > 2) {
           drawExtraErrorAdvanceTo3B(false, targetBase === 3)
         }
@@ -998,9 +998,10 @@ function drawExtraErrorAdvanceIfNeeded (origBase: number, targetBase: number) {
   }
 }
 
-function drawExtraErrorAdvanceTo2B (endsAt2B: boolean) {
+function drawExtraErrorAdvanceTo2B (endsAt2B: boolean, twoLineText: boolean) {
   const gap = w2 / 2
   const length = 35
+  const xHOffset = twoLineText ? 18 : 0
   const arc = 30
 
   const ctx = useCanvasStore().ctx
@@ -1009,7 +1010,7 @@ function drawExtraErrorAdvanceTo2B (endsAt2B: boolean) {
     const vOffset = useCanvasStore().vOffset
 
     ctx.beginPath()
-    ctx.moveTo(w1 - gap + hOffset, h2 + length + vOffset)
+    ctx.moveTo(w1 - gap + hOffset, h2 + length - xHOffset + vOffset)
     ctx.lineTo(w1 - gap + hOffset, h2 - length + vOffset)
     ctx.stroke()
 
