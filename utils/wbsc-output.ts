@@ -43,7 +43,7 @@ function renderAction (battingOrder: number, mainInput: WBSCInput, extraInput: W
       for (let i = 0; i < extraInput.length; i += 1) {
         renderAction(battingOrder, extraInput[i], null, false)
         if (!extraInput[i].specAction.includes('N')) {
-          drawConnector(output.base, extraInput[i].base)
+          drawConnector(output.base, extraInput[i].output.base)
         }
       }
     }
