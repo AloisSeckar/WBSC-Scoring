@@ -8,7 +8,7 @@ Validation info - plain alerts replaced with nice-looking modal window
 New validations - empty action, empty pos select
 
 Fixed displaying of extra base throwing error (e.t)
-Bugfixing - #53, #61, #67
+Bugfixing - #53, #55, #61, #67, #71
 
 TODO
 ====

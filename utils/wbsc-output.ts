@@ -752,6 +752,12 @@ function connectOutsIfNeeded () {
           startX = hOffset + lineHOffset
           startY = h1 - 36 + vOffsetStart
           switch (end.base) {
+            case 4:
+              startX = hOffset + h2 / 4
+              startY = h1 - 25 + vOffsetStart
+              endX = hOffset + h2 / 4
+              endY = h2 + 25 + vOffsetEnd
+              break
             case 3:
               startX = hOffset + h2 / 2
               startY = h1 - 15 + vOffsetStart
