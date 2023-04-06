@@ -113,7 +113,9 @@ function checkOutcome (inputs: WBSCInput[]) {
       } else {
         currentBatter = output.batter
         playerWasOut = output.out
-        reachedBases.push(output.base)
+        if (!playerWasOut) {
+          reachedBases.push(output.base)
+        }
       }
     }
   }
