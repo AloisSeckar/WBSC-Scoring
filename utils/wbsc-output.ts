@@ -784,14 +784,14 @@ function connectOutsIfNeeded () {
             endY = h2 / 2 + vOffsetEnd
           } else {
             endX = hOffset + lineHOffset
-            endY = h2 - 30 + vOffsetEnd
+            endY = h2 - 25 + vOffsetEnd
           }
           break
         case 2:
           startX = hOffset + lineHOffset
           startY = h2 - 13 + vOffsetStart
           endX = hOffset + lineHOffset
-          endY = h2 - 30 + vOffsetEnd
+          endY = h2 / 2 + vOffsetEnd
           break
       }
 
