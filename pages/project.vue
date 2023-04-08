@@ -80,7 +80,7 @@
     <h2>History</h2>
 
     <div class="mb-2">
-      <p><strong>Version 0.11</strong> (ongoing development)</p>
+      <p><strong>Version 0.11</strong> (2023-04-08)</p>
       <ul class="list-disc">
         <li>
           Source converted into Nuxt 3 project with TypeScript, since it become hard,
