@@ -80,6 +80,12 @@
     <h2>History</h2>
 
     <div class="mb-2">
+      <p><strong>Version 0.12</strong> (ongoing development)</p>
+      <ul class="list-disc">
+        <li>Various bugfixes and corrections</li>
+      </ul>
+    </div>
+    <div class="mb-2">
       <p><strong>Version 0.11</strong> (2023-04-08)</p>
       <ul class="list-disc">
         <li>

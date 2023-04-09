@@ -19,6 +19,9 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
+### Version 0.12 (ongoing development)
+- Bugfixing - GitHub issues #73
+
 ### Version 0.11 (2023-04-08)
 - Source converted into Nuxt 3 project with TypeScript
 - Validation modal window

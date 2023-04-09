@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <h2>Situation editor v0.11</h2>
+    <h2>Situation editor v0.12</h2>
 
     <div class="container">
       <div class="mb-2">

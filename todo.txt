@@ -2,8 +2,7 @@ v.0.12
 ======
 
 Features:
-
-...
+- Bugfixing: #73
 
 TODO
 ====

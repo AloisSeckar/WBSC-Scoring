@@ -111,6 +111,13 @@ function checkOutcome (inputs: WBSCInput[]) {
           validation = attachValidation(validation, 'Extra advances of one player must happen in order')
         }
       } else {
+        // special case for "batter + same error"
+        if (inputs[i].group === inputB) {
+          if (output.base === 0 && output.errorTarget > 1) {
+            playerWasOut = true
+            validation = attachValidation(validation, 'Player cannot advance further after being out')
+          }
+        }
         currentBatter = output.batter
         playerWasOut = output.out
         if (!playerWasOut) {
