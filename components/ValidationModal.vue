@@ -7,7 +7,11 @@
         <div :class="divHeader">
           Invalid input
         </div>
-        <p>{{ useEvalStore().errorText }}</p>
+        <ul>
+          <li v-for="row in validationRows" :key="row">
+            {{ row }}
+          </li>
+        </ul>
         <div :class="divButton" @click="invalidate()">
           OK
         </div>
@@ -17,10 +21,14 @@
 </template>
 
 <script setup lang="ts">
-const divMain = 'mt-[10%] w-1/3 h-fit border border-black rounded bg-white'
+const divMain = 'mt-[10%] px-4 w-1/3 h-fit border border-black rounded bg-white'
 const divHeader = 'py-4 text-3xl font-bold'
 const divButton = 'mx-auto my-4 p-2 w-16 border border-black rounded bg-wbsc-blue hover:bg-sky-300' +
                 ' text-white hover:text-gray-700 font-bold cursor-pointer'
+
+const validationRows = computed((): string[] => {
+  return useEvalStore().errorText?.split('\n')
+})
 
 function invalidate () {
   useEvalStore().errorShow = false
