@@ -32,6 +32,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   // 2) validations over all outputs
   validation = attachValidation(validation, checkMaxOuts(inputs))
   validation = attachValidation(validation, checkOutcome(inputs))
+  validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
 
   return validation
@@ -138,6 +139,42 @@ function checkOutcome (inputs: WBSCInput[]) {
     if (reachedBase1 !== 4 && reachedBase1 === reachedBase2) {
       validation = attachValidation(validation, 'Two players cannot finish on the same base')
     }
+  }
+
+  return validation
+}
+
+// if there is O/FC is selected for batter
+// there has to be at least 1 correspondig situatuon for runners
+// FC => advance by batter, O => out/decessive error
+function checkFC (inputs: WBSCInput[]) {
+  let validation = ''
+
+  let oSituation = false
+  let oPlay = false
+  let fcSituation = false
+  let fcPlay = false
+
+  for (let i = inputs.length - 1; i >= 0; i -= 1) {
+    const input = inputs[i]
+    const output = input.output
+    if (input.group === inputB) {
+      if (input.specAction === 'O' || input.specAction === 'KSO' || input.specAction === 'KLO' || input.specAction === 'SFO') {
+        oSituation = true
+      } else if (input.specAction === 'FC' || input.specAction === 'SHFC') {
+        fcSituation = true
+      }
+    } else if (oSituation && (output.out || output.text1.includes('E') || output.text2?.includes('E'))) {
+      oPlay = true
+    } else if (fcSituation && input.specAction === 'ADV') {
+      fcPlay = true
+    }
+  }
+
+  if (oSituation && !oPlay) {
+    validation = attachValidation(validation, 'FC - occupied is selected, but corresponding out/decessive error is missing')
+  } else if (fcSituation && !fcPlay) {
+    validation = attachValidation(validation, 'FC is selected, but corresponding runner advance is missing')
   }
 
   return validation

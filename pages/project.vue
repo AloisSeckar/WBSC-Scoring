@@ -82,6 +82,7 @@
     <div class="mb-2">
       <p><strong>Version 0.12</strong> (ongoing development)</p>
       <ul class="list-disc">
+        <li>Improved validation</li>
         <li>Various bugfixes and corrections</li>
       </ul>
     </div>

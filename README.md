@@ -20,6 +20,7 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 ## History
 
 ### Version 0.12 (ongoing development)
+- Validations - GitHub issues #72
 - Bugfixing - GitHub issues #73
 
 ### Version 0.11 (2023-04-08)
