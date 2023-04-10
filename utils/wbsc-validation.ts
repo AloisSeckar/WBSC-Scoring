@@ -190,17 +190,14 @@ function checkGDP (inputs: WBSCInput[]) {
 
   for (let i = 0; i < inputs.length; i += 1) {
     const output = inputs[i].output
-    if (output) {
-      if (output.text1 === 'GDP' || output.text1 === 'GDPE') {
-        gdpSelected = true
-      } else if (output.out === true || output.text1.includes('E') ||
-                (output.text2 && output.text2.includes('E'))) {
-        gdpOut = true
-      }
+    if (output.text1 === 'GDP' || output.text1 === 'GDPE') {
+      gdpSelected = true
+    } else if (output.out || output.text1.includes('E') || output.text2?.includes('E')) {
+      gdpOut = true
     }
   }
 
-  if (gdpSelected === true && gdpOut === false) {
+  if (gdpSelected && !gdpOut) {
     validation = attachValidation(validation, 'GDP is selected, but corresponding out/decessive error is missing')
   }
 
