@@ -59,16 +59,20 @@ function changeBatterSpecificAction () {
     case 'KS':
     case 'KSWP':
     case 'KSPB':
+    case 'KSR':
+    case 'KSB':
+    case 'KSI':
     case 'KL':
     case 'KLWP':
     case 'KLPB':
+    case 'KLR':
+    case 'KLI':
     case 'INT':
-    case 'OBR1_':
-    case 'OBR2_':
-    case 'OBR3_':
-    case 'OBR4_':
-    case 'OBR6_':
-    case 'OBR7_':
+    case 'OBR_BOB':
+    case 'OBR_BIA':
+    case 'OBR_TBB':
+    case 'OBR_BIC':
+    case 'OBR_RTA':
     case 'LT':
       minPosItems = targetPosItems = maxPosItems = 0
       break
@@ -98,7 +102,7 @@ function changeBatterSpecificAction () {
     case 'SFO':
     case 'FSF':
     case 'IF':
-    case 'OBR8_':
+    case 'OBR_DIF':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'GO':
@@ -109,9 +113,6 @@ function changeBatterSpecificAction () {
     case 'A':
       minPosItems = 1
       targetPosItems = 2
-      break
-    case 'OBR5_':
-      minPosItems = targetPosItems = 0
       break
     case 'KSE':
     case 'KLE':
@@ -131,7 +132,9 @@ function changeBatterSpecificAction () {
     case 'ET':
     case 'SHE':
     case 'SHET':
-    case 'OBR14_':
+    case 'OBR_BOO':
+    case 'OBR_BIN':
+    case 'OBR_OIN':
       // no adjustments
       break
     default:
@@ -215,7 +218,7 @@ function changeRunnerSpecificAction (group: string) {
     case 'BK':
     case 'IP':
     case 'SB':
-    case 'OBR7_':
+    case 'OBR_rta':
     case 'se0':
     case 'se1':
     case 'se2':
@@ -226,10 +229,10 @@ function changeRunnerSpecificAction (group: string) {
     case 'O/':
     case 'POE':
     case 'ob':
-    case 'OBR9_':
-    case 'OBR11_':
-    case 'OBR12_':
-    case 'OBR15_':
+    case 'OBR_hbb':
+    case 'OBR_ppr':
+    case 'OBR_rle':
+    case 'OBR_rhe':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'T':
@@ -254,8 +257,8 @@ function changeRunnerSpecificAction (group: string) {
     case 'ENT':
     case 'CSET':
     case 'CSNT':
-    case 'OBR10_':
-    case 'OBR13_':
+    case 'OBR_rol':
+    case 'OBR_rin':
     case 'A':
       // no adjustments
       break
@@ -342,8 +345,13 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       // falls through
     case 'KS':
     case 'KL':
+    case 'KSR':
+    case 'KLR':
+    case 'KSB':
+    case 'KSI':
+    case 'KLI':
       output.base = 0
-      output.text1 = action.substring(0, 2)
+      output.text1 = action.endsWith('T') ? action.substring(0, 2) : action
       output.sub = '1'
       output.out = true
       possibleConcurrentPlay = true
@@ -381,34 +389,21 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       output.text1 = action
       output.out = true
       break
-    case 'OBR1_':
-    case 'OBR2_':
-    case 'OBR3_':
-    case 'OBR4_':
-    case 'OBR6_':
+    case 'OBR_BOO':
+    case 'OBR_DIF':
+    case 'OBR_BIN':
+    case 'OBR_OIN':
+      output.text2 = pos
+      // falls through
+    case 'OBR_BOB':
+    case 'OBR_BIA':
+    case 'OBR_TBB':
+    case 'OBR_BIC':
+    case 'OBR_RTA':
+      output.text1 = action.substring(4)
       output.base = 0
-      output.text1 = 'OBR'
-      if (action.includes('2')) {
-        output.text2 = 'KS'
-        output.sub = '1'
-      } else {
-        output.text2 = '2'
-      }
       output.out = true
-      output.sup = action.substring(3, action.indexOf('_'))
-      break
-    case 'OBR5_':
-    case 'OBR8_':
-    case 'OBR14_':
-      output.base = 0
-      output.text1 = 'OBR'
-      if (pos === '') {
-        output.text2 = '2'
-      } else {
-        output.text2 = pos
-      }
-      output.out = true
-      output.sup = action.substring(3, action.indexOf('_'))
+      possibleConcurrentPlay = true
       break
     case '1B':
     case '1BB':
@@ -592,21 +587,17 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       output.base = output.origBase + 1
       possibleConcurrentPlay = true
       break
-    case 'OBR7_':
-    case 'OBR9_':
-    case 'OBR10_':
-    case 'OBR11_':
-    case 'OBR12_':
-    case 'OBR13_':
-    case 'OBR15_':
-      output.text1 = 'OBR'
-      if (action.includes('7')) {
-        output.text2 = '2'
-      } else {
-        output.text2 = pos
-      }
+    case 'OBR_rta':
+    case 'OBR_hbb':
+    case 'OBR_rol':
+    case 'OBR_ppr':
+    case 'OBR_rro':
+    case 'OBR_rin':
+    case 'OBR_rle':
+    case 'OBR_rhe':
+      output.text1 = action.substring(4).toUpperCase()
+      output.text2 = pos || '2'
       output.out = true
-      output.sup = action.substring(3, action.indexOf('_'))
       break
     case 'ENT':
     case 'ENF':

@@ -2,12 +2,12 @@ v.0.12
 ======
 
 Features:
+- New set of OBRs - according to 2019 manual
 - Validations: #72
 - Bugfixing: #73
 
 TODO
 ====
-New set of OBRs - according to most recent manual
 Cover most possible situations
 More input validations
 Refactoring

@@ -185,6 +185,11 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('<option value="KL">Looking</option>')
       options.push('<option value="KST">Swinging with tag/throw out</option>')
       options.push('<option value="KLT">Looking with tag/throw out</option>')
+      options.push('<option value="KSR">Swinging - out by Rule</option>')
+      options.push('<option value="KLR">Looking - out by Rule</option>')
+      options.push('<option value="KSB">Swinging - Bunting foul third strike</option>')
+      options.push('<option value="KSI">Swinging - offensive Interference</option>')
+      options.push('<option value="KLI">Looking - offensive Interference</option>')
       options.push('</optgroup>')
       options.push('<optgroup label="Batter is safe">')
       options.push('<option value="KSET">Swinging with throwing error</option>')
@@ -275,14 +280,15 @@ function renderBatterSpecificActionOptions (action: string) {
       break
     case 'OBR':
       options.push('<optgroup label="Batter is out">')
-      options.push('<option value="OBR1_">1 - Illegally batted ball</option>')
-      options.push('<option value="OBR2_">2 - Bunting foul third strike</option>')
-      options.push('<option value="OBR3_">3 - Touched by own batted ball</option>')
-      options.push('<option value="OBR4_">4 - Interfering with the catcher</option>')
-      options.push('<option value="OBR5_">5 - Failing to bat in proper turn</option>')
-      options.push('<option value="OBR6_">6 - Refusing to touch 1st base</option>')
-      options.push('<option value="OBR8_">8 - Infield Fly that is not caught</option>')
-      options.push('<option value="OBR14_">14 - Interference by a preceding runner</option>')
+      options.push('<option value="OBR_BOB">Batter Out of the Box</option>')
+      options.push('<option value="OBR_BIA">Batter\'s Illegal Action</option>')
+      options.push('<option value="OBR_TBB">Touched by Batted Ball</option>')
+      options.push('<option value="OBR_BIC">Batter Interfering with the Catcher</option>')
+      options.push('<option value="OBR_BOO">Batting Out of Order</option>')
+      options.push('<option value="OBR_RTA">Refusing To Advance</option>')
+      options.push('<option value="OBR_DIF">Dropped Infield Fly</option>')
+      options.push('<option value="OBR_BIN">Batter Interference</option>')
+      options.push('<option value="OBR_OIN">Other Interference</option>')
       options.push('</optgroup>')
       break
     case 'Other':
@@ -372,13 +378,14 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       break
     case 'obr':
       options.push('<optgroup label="Runner is out">')
-      options.push('<option value="OBR7_">7 - Refusing to advance from 3rd base to HP</option>')
-      options.push('<option value="OBR9_">9 - Touched by a fair ball</option>')
-      options.push('<option value="OBR10_">10 - Running out of line to avoid being tagged</option>')
-      options.push('<option value="OBR11_">11 - Passing another runner</option>')
-      options.push('<option value="OBR12_">12 - Running the bases in reverse order</option>')
-      options.push('<option value="OBR13_">13 - Interfered with a fielder</option>')
-      options.push('<option value="OBR15_">15 - Runner left early</option>')
+      options.push('<option value="OBR_rta">Refusing To Advance</option>')
+      options.push('<option value="OBR_hbb">Hit by fair Batted Ball</option>')
+      options.push('<option value="OBR_rol">Running Out of Line</option>')
+      options.push('<option value="OBR_ppr">Passing a Preceding Runner</option>')
+      options.push('<option value="OBR_rro">Running the bases in Reverse Order</option>')
+      options.push('<option value="OBR_rin">Runner Interference</option>')
+      options.push('<option value="OBR_rle">Runner Left Early (softball)</option>')
+      options.push('<option value="OBR_rhe">Removal of Helmet (softball)</option>')
       options.push('</optgroup>')
       break
   }
