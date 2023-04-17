@@ -323,8 +323,8 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push('<option value="PB">Passed ball</option>')
       if ((group.includes('-r'))) {
         // only for runners, not the running batter
-        options.push('<option value="BK">Balk</option>')
-        options.push('<option value="IP">Illegal pitch</option>')
+        options.push('<option value="BK">Balk (baseball)</option>')
+        options.push('<option value="IP">Illegal pitch (softball)</option>')
       }
       options.push('</optgroup>')
       break
