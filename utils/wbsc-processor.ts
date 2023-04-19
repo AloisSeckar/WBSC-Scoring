@@ -152,22 +152,22 @@ function processAction () {
     let displayed = 0
     if (r3Input) {
       displayed += 1
-      renderAction(displayed, r3Input, null, true)
+      renderAction(displayed, true, r3Input)
       useCanvasStore().vOffset += h1 - 8
     }
     if (r2Input) {
       displayed += 1
-      renderAction(displayed, r2Input, extraR2Input, true)
+      renderAction(displayed, true, r2Input, extraR2Input)
       useCanvasStore().vOffset += h1 - 8
     }
     if (r1Input) {
       displayed += 1
-      renderAction(displayed, r1Input, extraR1Input, true)
+      renderAction(displayed, true, r1Input, extraR1Input)
       useCanvasStore().vOffset += h1 - 8
     }
     if (bInput) {
       displayed += 1
-      renderAction(displayed, bInput, extraBatterInput, true)
+      renderAction(displayed, true, bInput, extraBatterInput)
       useCanvasStore().vOffset += h1 - 8
     }
 

@@ -7,10 +7,10 @@ import { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // rendering the output
 //   battingOrder - number displayed at the left side (1-4)
+//   clear - true, if previous content should be ereased
 //   mainInput - 1st action to be displayed
 //   extraInput - possible concecutive actions (0-3)
-//   clear - true, if previous content should be ereased
-function renderAction (battingOrder: number, mainInput: WBSCInput, extraInput: WBSCInput[] | null, clear: boolean) {
+function renderAction (battingOrder: number, clear: boolean, mainInput: WBSCInput, extraInput?: WBSCInput[]) {
   if (clear) {
     drawBackground(battingOrder)
   }
@@ -41,7 +41,7 @@ function renderAction (battingOrder: number, mainInput: WBSCInput, extraInput: W
 
     if (extraInput) {
       for (let i = 0; i < extraInput.length; i += 1) {
-        renderAction(battingOrder, extraInput[i], null, false)
+        renderAction(battingOrder, false, extraInput[i])
         if (!extraInput[i].specAction.includes('N')) {
           drawConnector(output.base, extraInput[i].output.base)
         }
