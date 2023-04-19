@@ -9,7 +9,7 @@
       <div id="wbsc-inputs" class="mb-2">
         <!-- inputs are dynamically rendered here -->
       </div>
-      <!-- modal window triggerred by validation errors -->
+      <!-- modal window triggered by validation errors -->
       <ValidationModal v-show="useEvalStore().errorShow" />
     </div>
 

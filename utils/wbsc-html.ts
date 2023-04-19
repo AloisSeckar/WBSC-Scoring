@@ -31,7 +31,7 @@ function getLabelForRenderButton (group: string, render: boolean) {
     case inputGenerate:
       label = 'Generate action'
       break
-    case inpuClear:
+    case inputClear:
       label = 'Clear'
       break
     default:
@@ -232,10 +232,10 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('<option value="1B">Single</option>')
       options.push('<option value="2B">Double</option>')
       options.push('<option value="3B">Triple</option>')
-      options.push('<option value="HR">Homerun</option>')
+      options.push('<option value="HR">Home run</option>')
       options.push('<option value="1BB">Single - bunt</option>')
       options.push('<option value="2BG">Double - ground rule</option>')
-      options.push('<option value="IHR">Homerun - inside the park</option>')
+      options.push('<option value="IHR">Home run - inside the park</option>')
       options.push('</optgroup>')
       break
     case 'Sacrifice':
@@ -350,8 +350,8 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       break
     case 'err':
       options.push('<optgroup label="Runner is safe">')
-      options.push('<option value="EF">Decessive fielding</option>')
-      options.push('<option value="ET">Decessive throwing</option>')
+      options.push('<option value="EF">Decisive fielding</option>')
+      options.push('<option value="ET">Decisive throwing</option>')
       options.push('<option value="eF">Extra base fielding</option>')
       options.push('<option value="et">Extra base throwing</option>')
       options.push('<option value="se0">Same error (Batter)</option>')
@@ -364,8 +364,8 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       if (!(group.includes('3'))) {
         options.push('<option value="se3">Same error (Runner at 3rd)</option>')
       }
-      options.push('<option value="ENF">Decessive fielding (no advance)</option>')
-      options.push('<option value="ENT">Decessive throwing (no advance)</option>')
+      options.push('<option value="ENF">Decisive fielding (no advance)</option>')
+      options.push('<option value="ENT">Decisive throwing (no advance)</option>')
       options.push('<option value="ob">Obstruction</option>')
       options.push('</optgroup>')
       break

@@ -5,7 +5,7 @@ export const classWbscPos = 'wbsc-pos-select'
 export const classTools = 'wbsc-toolbar'
 
 export const inputGenerate = 'input-generate'
-export const inpuClear = 'input-clear'
+export const inputClear = 'input-clear'
 export const inputB = 'input-b'
 export const inputB1 = 'input-b1'
 export const inputB2 = 'input-b2'

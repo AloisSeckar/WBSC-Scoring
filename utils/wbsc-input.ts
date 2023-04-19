@@ -29,7 +29,7 @@ function renderActionButtons () {
   generateButton.setAttribute('class', 'btn btn-generate')
   actionButtonsContainer.appendChild(generateButton)
 
-  const clearButton = renderInputsButton(inpuClear)
+  const clearButton = renderInputsButton(inputClear)
   clearButton.setAttribute('class', 'btn btn-clear')
   actionButtonsContainer.appendChild(clearButton)
 
@@ -51,7 +51,7 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
       case inputGenerate:
         processAction()
         break
-      case inpuClear:
+      case inputClear:
         clearInputs()
         break
       default:

@@ -21,11 +21,11 @@
         <a href="mailto:ellrohir@seznam.cz">email</a> or you can use
         <a href="https://github.com/AloisSeckar/WBSC-Scoring/issues">GitHub interface</a> for creating
         new report/question/suggestion directly there. If you do so, try to describe your issue, so it
-        can be adressed. Screenshots are useful to see what is happening.
+        can be addressed. Screenshots are useful to see what is happening.
       </p>
       <p>
-        The program is sitll evolving. Visit <a href="project.html#todo">"TO-DO" section</a> in Project
-        overview to check what is yet planned to be implemented. Reffer to <a href="project.html#todo">
+        The program is still evolving. Visit <a href="project.html#todo">"TO-DO" section</a> in Project
+        overview to check what is yet planned to be implemented. Refer to <a href="project.html#todo">
           "Limitations" list</a> to see what is certainly not possible atm.
       </p>
       <p>
@@ -121,7 +121,7 @@
     <div class="mb-2">
       <p><strong>Version 0.9.3</strong> (2022-11-04)</p>
       <ul class="list-disc">
-        <li>Demo auto-deplyoment to <a href="https://app.netlify.com/">Netlify</a></li>
+        <li>Demo auto-deployment to <a href="https://app.netlify.com/">Netlify</a></li>
       </ul>
     </div>
     <div class="mb-2">
@@ -151,7 +151,7 @@
         <li>
           Output improvements:
           <ul class="list-disc">
-            <li>Double and tripple play connectors</li>
+            <li>Double and triple play connectors</li>
             <li>Concurrent plays (e.g. double-steal) connectors</li>
           </ul>
         </li>
@@ -224,8 +224,8 @@
             <li>TIE</li>
           </ul>
         </li>
-        <li>Strikouts and base-on-balls are numbered according to the manual</li>
-        <li>Added option groups to help user determine if safe our out will occcur</li>
+        <li>Strikeouts and base-on-balls are numbered according to the manual</li>
+        <li>Added option groups to help user determine if safe our out will occur</li>
         <li>GUI inputs now render in correct order</li>
         <li>Advances to 3rd and HP now render correctly</li>
         <li>CSP implemented in order to increase web security</li>
@@ -256,7 +256,7 @@
     <div class="mb-2">
       <p><strong>Version 0.4</strong> (2020-06-09)</p>
       <ul class="list-disc">
-        <li>Inputs reworked using dynamic JavaScript for displaying and hidding input fields</li>
+        <li>Inputs reworked using dynamic JavaScript for displaying and hiding input fields</li>
         <li>
           With broadened options it is now possible to:
           <ul class="list-disc">
@@ -269,7 +269,7 @@
     <div class="mb-2">
       <p><strong>Version 0.3</strong> (2020-03-15)</p>
       <ul class="list-disc">
-        <li>Fixed error in displaying "Inside-the-park homerun"</li>
+        <li>Fixed error in displaying "Inside-the-park home run"</li>
         <li>Code for rendering action inputs moved from HTML to JavaScript</li>
         <li>
           Introduced possibility to add consecutive action after batter reaches first. Available are:
@@ -301,7 +301,7 @@
         <li>Simple ground outs with 1 or 2 fielders involved</li>
         <li>Full spectrum of fly outs</li>
         <li>Full spectrum of hits including named locations</li>
-        <li>Ground rule doubles and inside the park homeruns</li>
+        <li>Ground rule doubles and inside the park home runs</li>
         <li>BB, IBB and HP</li>
       </ul>
     </div>

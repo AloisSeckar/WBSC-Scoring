@@ -20,9 +20,9 @@
           same pitch (or the same time between pitches). You cannot follow the flow of a game.
         </li>
         <li>
-          Due to the above runner being placed on base is indicated with red astrisk mark. This is no
-          offical scoring abbreviation, it is just to indicate there was SOME play, but we don't cover
-          it and don't care about it. The only exception from this is a potentional tiebreaker (TIE)
+          Due to the above runner being placed on base is indicated with red asterisk mark. This is no
+          official scoring abbreviation, it is just to indicate there was SOME play, but we don't cover
+          it and don't care about it. The only exception from this is a potential tiebreaker (TIE)
           run.
         </li>
         <li>
@@ -50,17 +50,17 @@
     <h3>Entering first play</h3>
     <div class="mb-2">
       <p>
-        Note you cannot select from <strong>Run</strong> combobox by default, because it requires a play
+        Note you cannot select from <strong>Run</strong> combo-box by default, because it requires a play
         that ends up safe at home base. This option will be covered later in more advanced topics.
       </p>
       <p>
-        You start by picking an option from first <strong>Action</strong> combobox containing groups of
+        You start by picking an option from first <strong>Action</strong> combo-box containing groups of
         possible situations. Internally this is called a "base action":
       </p>
       <img src="/03-base-action.png" width="200" height="auto">
 
       <p>
-        Based on the selection the second combobox become active and being filled with concrete plays.
+        Based on the selection the second combo-box become active and being filled with concrete plays.
         This is called a "specific action". The options are grouped into "safe" and "out" situations:
       </p>
       <img src="/04-specific-action.png" width="400" height="auto">
@@ -111,7 +111,7 @@
         with or without the runners. The only requirement is to have at least one player selected.
       </p>
       <p>
-        Runner's input is slightly different from the batter's and there are also minor differencies
+        Runner's input is slightly different from the batter's and there are also minor differences
         between the bases. The selection of base and specific actions is adjusted to show relevant
         plays.
       </p>
@@ -121,16 +121,16 @@
         tiebreaker runners).
       </p>
       <p>
-        From the "Base" combobox you pick the base, that runner gains with current action. Obviously, the
+        From the "Base" combo-box you pick the base, that runner gains with current action. Obviously, the
         options are adjusted depending on which base we are currently on. If you need runner to stay on
         current base, you don't do it here, but instead you pick "No advance" from "Action" menu.
       </p>
       <p>
-        If play that results into safe situation at home plate is selected, combobox "Run" becomes
-        active. Then you pick from "Earned" / "Unearned" / "Team unearned" options. This featuere is
-        here just to show differencies between each variant. During the game it depends on broader
+        If play that results into safe situation at home plate is selected, combo-box "Run" becomes
+        active. Then you pick from "Earned" / "Unearned" / "Team unearned" options. This feature is
+        here just to show differences between each variant. During the game it depends on broader
         context, but here we always score just one separate action. "Run" is also possible for the
-        batter, but only for "Hit - Homerun" plays.
+        batter, but only for "Hit - Home run" plays.
       </p>
       <img src="/11-type-of-run.png" width="auto" height="100">
     </div>
@@ -144,7 +144,7 @@
       </p>
       <img src="/12-plus-action.png" width="auto" height="50">
 
-      <p>The box with new inputs renders directy below:</p>
+      <p>The box with new inputs renders directly below:</p>
       <img src="/13-extra-input.png" width="800" height="auto">
 
       <p>If you change your mind, you hide and thus disable extra inputs with red "-" button:</p>

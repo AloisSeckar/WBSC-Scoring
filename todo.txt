@@ -4,11 +4,11 @@ v.0.12
 Features:
 - New set of OBRs - according to 2019 manual
 - Validations: #72
-- Bugfixing: #73
+- Bug-fixing: #73
 
 TODO
 ====
 Cover most possible situations
 More input validations
 Refactoring
-Bugfixing and output corrections
+Bug-fixing and output corrections
