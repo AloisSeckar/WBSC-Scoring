@@ -5,6 +5,8 @@ Features:
 - New set of OBRs - according to 2019 manual
 - Validations: #72
 - Bug-fixing: #73
+- Refactoring: #75
+
 
 TODO
 ====

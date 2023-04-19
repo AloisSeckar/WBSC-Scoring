@@ -495,11 +495,8 @@ function getEmptyInput (): WBSCInput {
     specAction: '',
     base: 0,
     tie: false,
-    pos: null,
-    runtype: null,
     validation: '',
-    output: getEmptyOutput(),
-    extraInput: null
+    output: getEmptyOutput()
   }
   return input
 }
@@ -511,12 +508,8 @@ function getEmptyOutput (): WBSCOutput {
     origBase: 0,
     base: 0,
     text1: '',
-    text2: null,
     out: false,
     hit: false,
-    sub: null,
-    sup: null,
-    run: null,
     num: false,
     errorTarget: 0,
     na: false
