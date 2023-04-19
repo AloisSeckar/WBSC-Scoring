@@ -133,7 +133,7 @@ function processAction () {
     const canvas = useCanvasStore().canvas as HTMLCanvasElement
     canvas.height = playersInvolved * h1 - ((playersInvolved - 1) * 8)
 
-    if (bInput === null) {
+    if (!bInput) {
       useEvalStore().batter = playersInvolved + 1
     } else {
       useEvalStore().batter = playersInvolved
@@ -150,22 +150,22 @@ function processAction () {
 
     // render situations one by one
     let displayed = 0
-    if (r3Input !== null) {
+    if (r3Input) {
       displayed += 1
       renderAction(displayed, r3Input, null, true)
       useCanvasStore().vOffset += h1 - 8
     }
-    if (r2Input !== null) {
+    if (r2Input) {
       displayed += 1
       renderAction(displayed, r2Input, extraR2Input, true)
       useCanvasStore().vOffset += h1 - 8
     }
-    if (r1Input !== null) {
+    if (r1Input) {
       displayed += 1
       renderAction(displayed, r1Input, extraR1Input, true)
       useCanvasStore().vOffset += h1 - 8
     }
-    if (bInput !== null) {
+    if (bInput) {
       displayed += 1
       renderAction(displayed, bInput, extraBatterInput, true)
       useCanvasStore().vOffset += h1 - 8
@@ -259,14 +259,12 @@ function checkMultipleRunnerAdvances (inputArr: WBSCInput[]) {
   let advanceEncountered = false
   for (let i = 0; i < inputArr.length; i += 1) {
     const current = inputArr[i]
-    if (current != null) {
-      const action = current.specAction
-      if (action === 'WP' || action === 'PB' || action === 'BK' || action === 'IP') {
-        if (advanceEncountered) {
-          current.specAction = action.toLowerCase()
-        }
-        advanceEncountered = true
+    const action = current?.specAction
+    if (action === 'WP' || action === 'PB' || action === 'BK' || action === 'IP') {
+      if (advanceEncountered) {
+        current.specAction = action.toLowerCase()
       }
+      advanceEncountered = true
     }
   }
 }

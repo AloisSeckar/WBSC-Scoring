@@ -95,7 +95,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
   const inputsContainer = document.createElement('div')
   inputsContainer.setAttribute('id', group)
 
-  if (parentDiv === null || parentDiv === undefined) {
+  if (!parentDiv) {
     inputsContainer.setAttribute('class', classWbsc)
 
     const container = document.getElementById(classWbsc) as HTMLElement
@@ -107,7 +107,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
     container.appendChild(inputsContainer)
   }
 
-  if (parentDiv === null || parentDiv === undefined) {
+  if (!parentDiv) {
     const batterLabel = document.createElement('label')
     batterLabel.innerHTML = getLabelForInputGroup(group)
     inputsContainer.appendChild(batterLabel)
@@ -172,7 +172,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
   renderPosSelection(group)
 
   const additionalInputsGroup = getAdditionalInputsGroup(group)
-  if (additionalInputsGroup !== null) {
+  if (additionalInputsGroup) {
     const renderExtraButton = renderInputsButton(additionalInputsGroup, inputsContainer)
     inputsContainer.appendChild(renderExtraButton)
     inputsContainer.appendChild(document.createElement('br'))
@@ -192,7 +192,7 @@ function hideInputs (group: string) {
   const parentDiv = getParentDiv(group, false)
   const container = document.getElementById(parentDiv) as HTMLElement
   const inputsContainer = document.getElementById(group)
-  if (inputsContainer !== null) {
+  if (inputsContainer) {
     container.removeChild(inputsContainer)
   }
 
@@ -388,7 +388,7 @@ function disableParentExtraInput (group: string, disable: boolean) {
       parentExtraButtonId = inputR1a
       break
   }
-  if (parentExtraButtonId !== null) {
+  if (parentExtraButtonId) {
     const parentExtraButton = document.getElementById('button-' + parentExtraButtonId) as HTMLInputElement
     parentExtraButton.disabled = disable
   }
@@ -460,26 +460,26 @@ function getProperLocationForInputs (group: string) {
     case inputB1:
     case inputB2:
     case inputB3:
-      if (r1inputs !== null) {
+      if (r1inputs) {
         hook = r1inputs
-      } else if (r2inputs !== null) {
+      } else if (r2inputs) {
         hook = r2inputs
-      } else if (r3inputs !== null) {
+      } else if (r3inputs) {
         hook = r3inputs
       }
       break
     case inputR1:
     case inputR1a:
     case inputR1b:
-      if (r2inputs !== null) {
+      if (r2inputs) {
         hook = r2inputs
-      } else if (r3inputs !== null) {
+      } else if (r3inputs) {
         hook = r3inputs
       }
       break
     case inputR2:
     case inputR2a:
-      if (r3inputs !== null) {
+      if (r3inputs) {
         hook = r3inputs
       }
       break

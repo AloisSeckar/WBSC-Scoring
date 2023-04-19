@@ -35,11 +35,11 @@ function renderAction (battingOrder: number, mainInput: WBSCInput, extraInput: W
   } else {
     renderAdvance(output)
 
-    if (output.errorTarget !== null) {
+    if (output.errorTarget) {
       drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
     }
 
-    if (extraInput !== null) {
+    if (extraInput) {
       for (let i = 0; i < extraInput.length; i += 1) {
         renderAction(battingOrder, extraInput[i], null, false)
         if (!extraInput[i].specAction.includes('N')) {
@@ -306,7 +306,7 @@ function writeSituation (output: WBSCOutput) {
         if (na) {
           ctx.font = 'bold 20px Verdana'
           ctx.fillText(text1, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset)
-        } else if (text2 !== null && text2 !== undefined) {
+        } else if (text2) {
           if (text1.length > 2) {
             ctx.font = 'bold 75px Verdana'
             offset = -4
@@ -346,11 +346,11 @@ function writeSituation (output: WBSCOutput) {
           }
           ctx.fillText(text1, w2 + hOffset, h2 + offset + vOffset)
         }
-        if (sub !== null && sub !== undefined) {
+        if (sub) {
           ctx.font = 'bold 40px Verdana'
           ctx.fillText(sub, w1 + hOffset - 30, h1 - 20 + vOffset)
         }
-        if (sup !== null && sup !== undefined) {
+        if (sup) {
           if (sup === '14') {
             ctx.font = 'bold 28px Verdana'
             ctx.fillText(sup, w1 + hOffset - 32, 38 + vOffset)
@@ -362,7 +362,7 @@ function writeSituation (output: WBSCOutput) {
         break
       case 1:
         if (na) {
-          if (text2 !== null && text2 !== undefined) {
+          if (text2) {
             text1 += text2
           }
           ctx.font = '26px Verdana'
@@ -376,7 +376,7 @@ function writeSituation (output: WBSCOutput) {
           } else {
             hitOffset = -2
           }
-          if (text2 !== null && text2 !== undefined) {
+          if (text2) {
             if (text1.length > 2) {
               ctx.font = 'bold 36px Verdana'
               offset = 0
@@ -408,7 +408,7 @@ function writeSituation (output: WBSCOutput) {
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 1.5 + offset + vOffset)
           }
-          if (sub !== null && sub !== undefined) {
+          if (sub) {
             ctx.font = 'bold 30px Verdana'
             if (text1.startsWith('K')) {
               ctx.fillText(sub, w1 + hOffset - 20, h1 - 62 + vOffset)
@@ -420,7 +420,7 @@ function writeSituation (output: WBSCOutput) {
         break
       case 2:
         if (na) {
-          if (text2 !== null && text2 !== undefined) {
+          if (text2) {
             text1 += text2
           }
           ctx.font = '26px Verdana'
@@ -434,7 +434,7 @@ function writeSituation (output: WBSCOutput) {
             hitOffset = 0
           }
           if (out) {
-            if (text2 !== null && text2 !== undefined) {
+            if (text2) {
               row1font = 'bold 56px Verdana'
               row2font = 'bold 56px Verdana'
               row1offset = 45
@@ -473,7 +473,7 @@ function writeSituation (output: WBSCOutput) {
             }
             // if batter indicator should be displayed, put it into top-left corner
             base = 3
-          } else if (text2 !== null && text2 !== undefined) {
+          } else if (text2) {
             row1font = 'bold 40px Verdana'
             row1offset = 8
             row2font = 'bold 40px Verdana'
@@ -507,7 +507,7 @@ function writeSituation (output: WBSCOutput) {
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
-          if (sup !== null && sup !== undefined) {
+          if (sup) {
             ctx.font = 'bold 28px Verdana'
             ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset)
           }
@@ -515,7 +515,7 @@ function writeSituation (output: WBSCOutput) {
         break
       case 3:
         if (na) {
-          if (text2 !== null && text2 !== undefined) {
+          if (text2) {
             text1 += text2
           }
           ctx.font = '26px Verdana'
@@ -530,7 +530,7 @@ function writeSituation (output: WBSCOutput) {
             hitOffset = 0
           }
           if (out) {
-            if (text2 !== null && text2 !== undefined) {
+            if (text2) {
               row1font = 'bold 40px Verdana'
               row2font = 'bold 40px Verdana'
               row1offset = 5
@@ -567,7 +567,7 @@ function writeSituation (output: WBSCOutput) {
               }
               ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset)
             }
-          } else if (text2 !== null && text2 !== undefined) {
+          } else if (text2) {
             row1font = 'bold 40px Verdana'
             row1offset = 8
             row2font = 'bold 40px Verdana'
@@ -601,14 +601,14 @@ function writeSituation (output: WBSCOutput) {
             }
             ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
-          if (sup !== null && sup !== undefined) {
+          if (sup) {
             ctx.font = 'bold 28px Verdana'
             ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset)
           }
         }
         break
       case 4:
-        if (text2 !== null && text2 !== undefined) {
+        if (text2) {
           if (out && text1.length > 2) {
             ctx.font = 'bold 28px Verdana'
           } else {
@@ -636,7 +636,7 @@ function writeSituation (output: WBSCOutput) {
           }
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
         }
-        if (sup !== null && sup !== undefined) {
+        if (sup) {
           ctx.font = 'bold 28px Verdana'
           ctx.fillText(sup, w2 * 1.5 + 2, h2 + 20 + vOffset)
         }
