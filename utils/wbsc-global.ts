@@ -5,10 +5,9 @@
 
 // prepare environment and render default state
 export default function init () {
-  useCanvasStore().init()
   renderActionButtons()
   renderInputs(inputB)
-  drawBackground(1)
+  useCanvasStore().init()
   extendDownloadButton()
 }
 

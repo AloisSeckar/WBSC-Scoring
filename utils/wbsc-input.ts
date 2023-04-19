@@ -72,7 +72,9 @@ function clearInputs () {
 
   showInputs(inputB)
 
-  useEvalStore().posSelection = []
+  useEvalStore().$reset()
+  useInputStore().$reset()
+  useCanvasStore().init()
 }
 
 // show or hide given input group
