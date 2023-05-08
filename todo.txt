@@ -5,7 +5,7 @@ Features:
 - New set of OBRs - according to 2019 manual
 - 'Clear' button clears output too
 - Validations: #72
-- Bug-fixing: #73
+- Bug-fixing: #73, #78
 - Refactoring: #75
 
 

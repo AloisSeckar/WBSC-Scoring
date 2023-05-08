@@ -635,6 +635,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       output.text1 = '*'
       if (output.base) {
         output.base -= 1
+        output.errorTarget -= 1
       }
       break
   }
