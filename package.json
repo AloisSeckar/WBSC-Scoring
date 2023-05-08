@@ -12,7 +12,7 @@
     "@pinia/nuxt": "0.4.8",
     "eslint": "8.38.0",
     "nuxt": "3.4.1",
-    "pinia": "2.0.34",
+    "pinia": "2.0.35",
     "tailwindcss": "3.3.1"
   }
 }
