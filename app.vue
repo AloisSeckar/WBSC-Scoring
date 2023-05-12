@@ -17,3 +17,17 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+useHead({
+  title: 'WBSC Scoring Creator'
+})
+useServerSeoMeta({
+  title: 'WBSC Scoring Creator',
+  ogTitle: 'WBSC Scoring Creator',
+  description: 'Visualisation for WBSC Scoring System',
+  ogDescription: 'Visualisation for WBSC Scoring System',
+  ogImage: 'https://wbsc-scoring.netlify.app/demo.png',
+  twitterCard: 'summary_large_image'
+})
+</script>
