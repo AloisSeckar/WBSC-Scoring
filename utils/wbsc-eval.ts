@@ -563,9 +563,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'CSN':
     case 'CSNT':
       output.na = true
-      if (output.base) {
-        output.base -= 1
-      }
+      output.base -= 1
       // falls through
     case 'CSE':
     case 'CSET':
@@ -576,7 +574,6 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       }
       output.num = true
       output.errorTarget = output.base
-      output.base = output.origBase + 1
       possibleConcurrentPlay = true
       break
     case 'POE':
@@ -602,9 +599,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'ENT':
     case 'ENF':
       output.na = true
-      if (output.base) {
-        output.base -= 1
-      }
+      output.base -= 1
       // falls through
     case 'EF':
     case 'ET':
@@ -616,7 +611,6 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
         output.text1 += action.substring(action.length - 1)
       }
       output.errorTarget = output.base
-      output.base = output.origBase + 1
       break
     case 'EDF':
     case 'EDL':
