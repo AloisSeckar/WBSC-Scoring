@@ -64,8 +64,7 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
         alert('comming soon')
         break
       case inputExport:
-        console.log('comming soon')
-        alert('comming soon')
+        exportInputAsJSON()
         break
       case inputClear:
         clearInputs()
@@ -506,16 +505,20 @@ function getProperLocationForInputs (group: string) {
   return hook
 }
 
-function getEmptyInput (): WBSCInput {
+function getEmptyInput (plain: boolean): WBSCInput {
   const input: WBSCInput = {
     group: '',
     baseAction: '',
     specAction: '',
     base: 0,
-    tie: false,
-    validation: '',
-    output: getEmptyOutput()
+    tie: false
   }
+
+  if (!plain) {
+    input.validation = ''
+    input.output = getEmptyOutput()
+  }
+
   return input
 }
 

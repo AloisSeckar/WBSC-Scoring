@@ -232,7 +232,7 @@ function getPosSelection (group: string) {
 }
 
 // get and wrap current user input for given input group
-function getInput (group: string): WBSCInput | null {
+function getInput (group: string, plain?: boolean): WBSCInput | null {
   let input = null
 
   const container = document.getElementById(group)
@@ -240,7 +240,7 @@ function getInput (group: string): WBSCInput | null {
     const baseAction = document.getElementById(group + inputBaseAction) as HTMLInputElement
     const specAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
 
-    input = getEmptyInput()
+    input = getEmptyInput(!!plain)
     input.group = group
     input.baseAction = baseAction.value
     input.specAction = specAction.value
@@ -303,5 +303,5 @@ function removeDuplicateConnectors () {
 }
 
 export {
-  processAction, getPosSelection
+  processAction, getPosSelection, getInput
 }

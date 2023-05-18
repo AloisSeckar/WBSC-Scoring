@@ -1,7 +1,7 @@
 export const useInputStore = defineStore({
   id: 'input-store',
   state: () => {
-    return getEmptyInput()
+    return getEmptyInput(false)
   },
   actions: {
   },
@@ -34,9 +34,9 @@ export type WBSCInput = {
     tie: boolean,
     pos?: string,
     runtype?: string,
-    validation: string,
 
-    output: WBSCOutput,
+    validation?: string,
+    output?: WBSCOutput,
 
     extraInput?: WBSCInput[],
 }
