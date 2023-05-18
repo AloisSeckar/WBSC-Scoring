@@ -29,6 +29,14 @@ function renderActionButtons () {
   generateButton.setAttribute('class', 'btn btn-generate')
   actionButtonsContainer.appendChild(generateButton)
 
+  const importButton = renderInputsButton(inputImport)
+  importButton.setAttribute('class', 'btn btn-json')
+  actionButtonsContainer.appendChild(importButton)
+
+  const exportButton = renderInputsButton(inputExport)
+  exportButton.setAttribute('class', 'btn btn-json')
+  actionButtonsContainer.appendChild(exportButton)
+
   const clearButton = renderInputsButton(inputClear)
   clearButton.setAttribute('class', 'btn btn-clear')
   actionButtonsContainer.appendChild(clearButton)
@@ -50,6 +58,14 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
     switch (group) {
       case inputGenerate:
         processAction()
+        break
+      case inputImport:
+        console.log('comming soon')
+        alert('comming soon')
+        break
+      case inputExport:
+        console.log('comming soon')
+        alert('comming soon')
         break
       case inputClear:
         clearInputs()

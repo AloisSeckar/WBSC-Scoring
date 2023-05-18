@@ -40,7 +40,7 @@
 		@apply bg-wbsc-blue hover:bg-sky-300;
 	}
 	.btn-download {
-		@apply bg-emerald-500 hover:bg-emerald-300;
+		@apply bg-emerald-500 hover:bg-emerald-300 cursor-pointer;
 	}
 	.btn-add {
 		@apply w-12 bg-green-500 hover:bg-green-300 disabled:bg-gray-400 disabled:text-gray-700;
@@ -50,6 +50,9 @@
 	}
 	.btn-generate {
 		@apply bg-wbsc-blue hover:bg-sky-300;
+	}
+	.btn-json {
+		@apply bg-violet-400 hover:bg-violet-200;
 	}
 	.btn-clear {
 		@apply bg-amber-500 hover:bg-amber-300;
