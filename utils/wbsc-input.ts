@@ -3,6 +3,7 @@
 /* Preparing and adjusting user inputs     */
 /* *************************************** */
 
+import { importInputFromJSON } from './wbsc-json'
 import { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // create bar with action buttons
@@ -33,6 +34,15 @@ function renderActionButtons () {
   importButton.setAttribute('class', 'btn btn-json')
   actionButtonsContainer.appendChild(importButton)
 
+  const jsonFileInput = document.createElement('input') as HTMLInputElement
+  jsonFileInput.id = inputImportFile
+  jsonFileInput.type = 'file'
+  jsonFileInput.style.display = 'none'
+  jsonFileInput.addEventListener('change', () => {
+    importInputFromJSON()
+  })
+  actionButtonsContainer.appendChild(jsonFileInput)
+
   const exportButton = renderInputsButton(inputExport)
   exportButton.setAttribute('class', 'btn btn-json')
   actionButtonsContainer.appendChild(exportButton)
@@ -60,8 +70,9 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
         processAction()
         break
       case inputImport:
-        console.log('comming soon')
-        alert('comming soon')
+        clearInputs()
+        renderInputs(inputB)
+        document.getElementById(inputImportFile)?.click()
         break
       case inputExport:
         exportInputAsJSON()

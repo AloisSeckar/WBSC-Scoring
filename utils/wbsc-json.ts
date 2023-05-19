@@ -73,3 +73,47 @@ function getRawInputs (): WBSCInput[] {
 
   return inputs
 }
+
+export function importInputFromJSON () {
+  const fileInput = document.getElementById(inputImportFile) as HTMLInputElement
+  const file = fileInput?.files?.[0]
+
+  if (file) {
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      const fileData = event.target?.result
+      if (fileData) {
+        const jsonData: WBSCInput[] = JSON.parse(fileData.toString())
+        jsonData?.reverse().forEach((input) => {
+          console.log(input)
+          let parentDiv
+          if (input.group.match(/b\d$/)) {
+            parentDiv = document.getElementById(inputB)
+          } else if (input.group.endsWith('a') || input.group.endsWith('b')) {
+            parentDiv = document.getElementById(input.group.slice(0, -1))
+          }
+          renderInputs(input.group, parentDiv || undefined)
+
+          const selectBaseAction = document.getElementById(input.group + inputBaseAction) as HTMLSelectElement
+          selectBaseAction.value = input.baseAction
+          selectBaseAction.dispatchEvent(new Event('change'))
+          const selectSpecAction = document.getElementById(input.group + inputSpecAction) as HTMLSelectElement
+          selectSpecAction.value = input.specAction
+          if (input.pos) {
+            // TODO fill pos selections
+          }
+          if (input.runtype) {
+            const selectRuntype = document.getElementById(input.group + inputRuntype) as HTMLSelectElement
+            selectRuntype.value = input.runtype
+          }
+          if (input.group === inputR1 || input.group === inputR2) {
+            const checkTie = document.getElementById(input.group + inputTie) as HTMLInputElement
+            checkTie.checked = input.tie
+          }
+        })
+      }
+      // Perform operations on the file data
+    }
+    reader.readAsText(file)
+  }
+}
