@@ -162,7 +162,7 @@ function checkFC (inputs: WBSCInput[]) {
       } else if (input.specAction === 'FC' || input.specAction === 'SHFC') {
         fcSituation = true
       }
-    } else if (oSituation && (output.out || output.text1.includes('E') || output.text2?.includes('E'))) {
+    } else if (oSituation && (output?.out || output?.text1.includes('E') || output?.text2?.includes('E'))) {
       oPlay = true
     } else if (fcSituation && input.specAction === 'ADV') {
       fcPlay = true
@@ -188,9 +188,9 @@ function checkGDP (inputs: WBSCInput[]) {
 
   for (let i = 0; i < inputs.length; i += 1) {
     const output = inputs[i].output
-    if (output.text1 === 'GDP' || output.text1 === 'GDPE') {
+    if (output?.text1 === 'GDP' || output?.text1 === 'GDPE') {
       gdpSelected = true
-    } else if (output.out || output.text1.includes('E') || output.text2?.includes('E')) {
+    } else if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
       gdpOut = true
     }
   }

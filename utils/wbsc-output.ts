@@ -16,34 +16,36 @@ function renderAction (battingOrder: number, clear: boolean, mainInput: WBSCInpu
   }
 
   const output = mainInput.output
-  if (output.origBase && output.origBase > 0) {
-    const prevOutput: WBSCOutput = getEmptyOutput()
-    prevOutput.base = output.origBase
-    if (output.previousAdvance) {
-      if (mainInput.tie === true) {
-        prevOutput.text1 = 'TIE'
-      } else {
-        prevOutput.text1 = '*'
+  if (output) {
+    if (output.origBase && output.origBase > 0) {
+      const prevOutput: WBSCOutput = getEmptyOutput()
+      prevOutput.base = output.origBase
+      if (output.previousAdvance) {
+        if (mainInput.tie === true) {
+          prevOutput.text1 = 'TIE'
+        } else {
+          prevOutput.text1 = '*'
+        }
       }
-    }
-    renderAdvance(prevOutput)
-  }
-
-  if (output.out === true) {
-    renderOut(output)
-    useEvalStore().outs.push({ batter: battingOrder, base: mainInput.base })
-  } else {
-    renderAdvance(output)
-
-    if (output.errorTarget) {
-      drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
+      renderAdvance(prevOutput)
     }
 
-    if (extraInput) {
-      for (let i = 0; i < extraInput.length; i += 1) {
-        renderAction(battingOrder, false, extraInput[i])
-        if (!extraInput[i].specAction.includes('N')) {
-          drawConnector(output.base, extraInput[i].output.base)
+    if (output.out === true) {
+      renderOut(output)
+      useEvalStore().outs.push({ batter: battingOrder, base: mainInput.base })
+    } else {
+      renderAdvance(output)
+
+      if (output.errorTarget) {
+        drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
+      }
+
+      if (extraInput) {
+        for (let i = 0; i < extraInput.length; i += 1) {
+          renderAction(battingOrder, false, extraInput[i])
+          if (!extraInput[i].specAction.includes('N')) {
+            drawConnector(output.base, extraInput[i].output!.base)
+          }
         }
       }
     }
