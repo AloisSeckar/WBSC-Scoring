@@ -112,11 +112,15 @@ function setInputs (input: WBSCInput) {
   selectSpecAction.value = input.specAction
   if (pos) {
     if (pos.match(/^\d/)) {
+      useEvalStore().setMaxPosItems(group, pos.length) // for some reason it is not triggering upon selecting spec value
       for (let i = 0; i < pos.length; i++) {
         let posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
         if (!posSelection) {
           renderPosSelectItem(group)
           posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
+          if (pos.match(/[XYZ]$/)) {
+            posSelection.innerHTML = renderFCLocationOptions().join(' ') // default are player positions
+          }
         }
         posSelection.value = pos[i]
       }
