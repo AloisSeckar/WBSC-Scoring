@@ -94,41 +94,43 @@ export function importInputFromJSON () {
 }
 
 function setInputs (input: WBSCInput) {
-  console.log(input)
-  let parentDiv
-  if (input.group.match(/b\d$/)) {
-    parentDiv = document.getElementById(inputB)
-  } else if (input.group.endsWith('a') || input.group.endsWith('b')) {
-    parentDiv = document.getElementById(input.group.slice(0, -1))
-  }
-  renderInputs(input.group, parentDiv || undefined)
+  const group = input.group
+  const pos = input.pos
 
-  const selectBaseAction = document.getElementById(input.group + inputBaseAction) as HTMLSelectElement
+  let parentDiv
+  if (group.match(/b\d$/)) {
+    parentDiv = document.getElementById(inputB)
+  } else if (group.endsWith('a') || group.endsWith('b')) {
+    parentDiv = document.getElementById(group.slice(0, -1))
+  }
+  renderInputs(group, parentDiv || undefined)
+
+  const selectBaseAction = document.getElementById(group + inputBaseAction) as HTMLSelectElement
   selectBaseAction.value = input.baseAction
   selectBaseAction.dispatchEvent(new Event('change'))
-  const selectSpecAction = document.getElementById(input.group + inputSpecAction) as HTMLSelectElement
+  const selectSpecAction = document.getElementById(group + inputSpecAction) as HTMLSelectElement
   selectSpecAction.value = input.specAction
-  if (input.pos) {
-    if (input.pos.match(/^\d/)) {
-      for (let i = 0; i < input.pos.length; i++) {
-        let posSelection = document.getElementById(input.group + inputPosition + (i + 1)) as HTMLSelectElement
+  if (pos) {
+    if (pos.match(/^\d/)) {
+      for (let i = 0; i < pos.length; i++) {
+        let posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
         if (!posSelection) {
-          renderPosSelectItem(input.group)
-          posSelection = document.getElementById(input.group + inputPosition + (i + 1)) as HTMLSelectElement
+          renderPosSelectItem(group)
+          posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
         }
-        posSelection.value = input.pos[i]
+        posSelection.value = pos[i]
       }
     } else {
-      const hitSelection = document.getElementById(input.group + inputPosition + '1') as HTMLSelectElement
-      hitSelection.value = input.pos
+      const hitSelection = document.getElementById(group + inputPosition + '1') as HTMLSelectElement
+      hitSelection.value = pos
     }
   }
   if (input.runtype) {
-    const selectRuntype = document.getElementById(input.group + inputRuntype) as HTMLSelectElement
+    const selectRuntype = document.getElementById(group + inputRuntype) as HTMLSelectElement
     selectRuntype.value = input.runtype
   }
-  if (input.group === inputR1 || input.group === inputR2) {
-    const checkTie = document.getElementById(input.group + inputTie) as HTMLInputElement
+  if (group === inputR1 || group === inputR2) {
+    const checkTie = document.getElementById(group + inputTie) as HTMLInputElement
     checkTie.checked = input.tie
   }
 }
