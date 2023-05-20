@@ -3,7 +3,6 @@
 /* Preparing and adjusting user inputs     */
 /* *************************************** */
 
-import { importInputFromJSON } from './wbsc-json'
 import { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // create bar with action buttons
@@ -97,6 +96,8 @@ function clearInputs () {
   hideInputs(inputR3)
 
   showInputs(inputB)
+
+  clearJSONInput()
 
   useEvalStore().$reset()
   useInputStore().$reset()
@@ -547,6 +548,15 @@ function getEmptyOutput (): WBSCOutput {
     na: false
   }
   return output
+}
+
+// reset JSON file import button
+function clearJSONInput () {
+  const jsonInput = document.getElementById(inputImportFile) as HTMLInputElement
+  if (jsonInput) {
+    jsonInput.files = null
+    jsonInput.value = ''
+  }
 }
 
 export {
