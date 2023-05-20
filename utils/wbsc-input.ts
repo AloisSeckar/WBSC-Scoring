@@ -550,5 +550,5 @@ function getEmptyOutput (): WBSCOutput {
 }
 
 export {
-  renderActionButtons, renderInputs, getPosSelectionSelect, getEmptyInput, getEmptyOutput
+  renderActionButtons, renderInputs, renderPosSelectItem, getPosSelectionSelect, getEmptyInput, getEmptyOutput
 }

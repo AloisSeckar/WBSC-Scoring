@@ -109,7 +109,19 @@ function setInputs (input: WBSCInput) {
   const selectSpecAction = document.getElementById(input.group + inputSpecAction) as HTMLSelectElement
   selectSpecAction.value = input.specAction
   if (input.pos) {
-    // TODO fill pos selections
+    if (input.pos.match(/^\d/)) {
+      for (let i = 0; i < input.pos.length; i++) {
+        let posSelection = document.getElementById(input.group + inputPosition + (i + 1)) as HTMLSelectElement
+        if (!posSelection) {
+          renderPosSelectItem(input.group)
+          posSelection = document.getElementById(input.group + inputPosition + (i + 1)) as HTMLSelectElement
+        }
+        posSelection.value = input.pos[i]
+      }
+    } else {
+      const hitSelection = document.getElementById(input.group + inputPosition + '1') as HTMLSelectElement
+      hitSelection.value = input.pos
+    }
   }
   if (input.runtype) {
     const selectRuntype = document.getElementById(input.group + inputRuntype) as HTMLSelectElement
