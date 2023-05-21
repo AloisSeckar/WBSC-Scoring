@@ -69,8 +69,6 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
         processAction()
         break
       case inputImport:
-        clearInputs()
-        renderInputs(inputB)
         document.getElementById(inputImportFile)?.click()
         break
       case inputExport:
@@ -560,5 +558,5 @@ function clearJSONInput () {
 }
 
 export {
-  renderActionButtons, renderInputs, renderPosSelectItem, getPosSelectionSelect, getEmptyInput, getEmptyOutput
+  renderActionButtons, renderInputs, clearInputs, renderPosSelectItem, getPosSelectionSelect, getEmptyInput, getEmptyOutput
 }

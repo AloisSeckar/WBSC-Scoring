@@ -83,6 +83,8 @@ export function importInputFromJSON () {
     reader.onload = (event) => {
       const fileData = event.target?.result
       if (fileData) {
+        clearInputs()
+        renderInputs(inputB)
         const jsonData: WBSCInput[] = JSON.parse(fileData.toString())
         jsonData?.reverse().forEach((input) => {
           setInputs(input)
