@@ -87,6 +87,7 @@ export function importInputFromJSON () {
         jsonData?.reverse().forEach((input) => {
           setInputs(input)
         })
+        processAction()
       }
     }
     reader.readAsText(file)
