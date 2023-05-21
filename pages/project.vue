@@ -82,7 +82,9 @@
     <div class="mb-2">
       <p><strong>Version 0.12</strong> (ongoing development)</p>
       <ul class="list-disc">
-        <li>Improved validation</li>
+        <li>New set of OBRs - according to 2019 manual</li>
+        <li>New feature - import/export inputs in JSON format</li>
+        <li>Improved validations</li>
         <li>Various bugfixes and corrections</li>
       </ul>
     </div>

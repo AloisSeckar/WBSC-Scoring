@@ -20,8 +20,12 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 ## History
 
 ### Version 0.12 (ongoing development)
+- New actions - new set of OBRs - according to 2019 manual
+- New feature - 'Clear' button clears current output too
+- New feature - import/export inputs in JSON format
 - Validations - GitHub issues #72
-- Bug-fixing - GitHub issues #73
+- Bug-fixing - GitHub issues #73, #78, #79
+- Refactoring- GitHub issues #75
 
 ### Version 0.11 (2023-04-08)
 - Source converted into Nuxt 3 project with TypeScript

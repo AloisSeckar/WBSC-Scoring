@@ -170,6 +170,21 @@
       <img src="/15-clear.png" width="auto" height="50">
     </div>
 
+    <h3>Advanced - Import/Export input selection</h3>
+
+    <div class="mb-2">
+      <p>
+        You can use purple "Export selection" button to save the current selection and store it for later re-use. The file will be exported in <strong>.json</strong> format. Inputs can be exported anytime regardless the validity.
+      </p>
+      <img src="/16-export.png" width="auto" height="50">
+    </div>
+    <div class="mb-2">
+      <p>
+        Using the second purple "Import selection" button you can upload previously exported <strong>.json</strong> file. Providing it is a valid file, it will be parsed and transferred into corresponding input selection and the situation will be re-generated. Validation error may be triggered.
+      </p>
+      <img src="/17-import.png" width="auto" height="50">
+    </div>
+
     <NavButtons />
   </div>
 </template>
