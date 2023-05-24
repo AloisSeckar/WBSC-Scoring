@@ -32,6 +32,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkOutcome(inputs))
   validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
+  validation = attachValidation(validation, checkSHSF(inputs))
 
   return validation
 }
@@ -197,6 +198,48 @@ function checkGDP (inputs: WBSCInput[]) {
 
   if (gdpSelected && !gdpOut) {
     validation = attachValidation(validation, 'GDP is selected, but corresponding out/decessive error is missing')
+  }
+
+  return validation
+}
+
+// if SH is selected for batter, there has to be at least 1 correspondig "advance by batter" runner action
+// if SF is selected for the batter, there has to be at least 1 corresponding "advance by batter" runner who scored
+function checkSHSF (inputs: WBSCInput[]) {
+  let validation = ''
+
+  let shSelected = false
+  let sfSelected = false
+  let advanceByBatter = false
+  let runScored = false
+
+  for (let i = 0; i < inputs.length; i += 1) {
+    const input = inputs[i]
+    if (input?.specAction.startsWith('SH')) {
+      shSelected = true
+    } else if (input?.specAction.startsWith('SF') || input?.specAction === 'FSF') {
+      sfSelected = true
+    } else if (input?.specAction === 'ADV') {
+      advanceByBatter = true
+      if (input?.base === 4) {
+        runScored = true
+      }
+    } else {
+      // TODO check for forced out
+      // there cannot be forced out + SH play
+    }
+  }
+
+  if (shSelected && !advanceByBatter) {
+    validation = attachValidation(validation, 'SH is selected, but no runner advanced by batter')
+  }
+  if (sfSelected) {
+    if (!advanceByBatter) {
+      validation = attachValidation(validation, 'SF is selected, but no runner advanced by batter')
+    }
+    if (!runScored) {
+      validation = attachValidation(validation, 'SF is selected, but no runner scored')
+    }
   }
 
   return validation
