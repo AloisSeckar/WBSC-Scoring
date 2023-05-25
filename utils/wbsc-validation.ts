@@ -20,7 +20,13 @@ function checkUserInput (inputs: WBSCInput[]) {
       if (minPosItems > 0 && (!posSelection || posSelection.length < minPosItems)) {
         validation = attachValidation(validation, `At least ${minPosItems} involved positions must be selected for current action`)
       } else if (posSelection) {
-        validation = attachValidation(validation, checkPosSelection(posSelection))
+        const container = document.getElementById(inputs[i].group) as HTMLElement
+        const posSelectionItems = container.getElementsByClassName(classWbscPos).length
+        if (posSelectionItems > posSelection.length) {
+          validation = attachValidation(validation, 'All positions must be selected')
+        } else {
+          validation = attachValidation(validation, checkPosSelection(posSelection))
+        }
       }
     } else {
       validation = attachValidation(validation, 'Action must be properly defined')
