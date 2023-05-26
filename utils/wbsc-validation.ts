@@ -13,14 +13,14 @@ function checkUserInput (inputs: WBSCInput[]) {
   let validation = ''
 
   // 1) validations to be run over each input separately
-  for (let i = 0; i < inputs.length; i += 1) {
-    if (inputs[i] && inputs[i].baseAction && inputs[i].specAction) {
-      const minPosItems = useEvalStore().getMinPosItems(inputs[i].group)
-      const posSelection = inputs[i].pos
+  inputs.forEach((input) => {
+    if (input && input.baseAction && input.specAction) {
+      const minPosItems = useEvalStore().getMinPosItems(input.group)
+      const posSelection = input.pos
       if (minPosItems > 0 && (!posSelection || posSelection.length < minPosItems)) {
         validation = attachValidation(validation, `At least ${minPosItems} involved positions must be selected for current action`)
       } else if (posSelection) {
-        const container = document.getElementById(inputs[i].group) as HTMLElement
+        const container = document.getElementById(input.group) as HTMLElement
         const posSelectionItems = container.getElementsByClassName(classWbscPos).length
         if (posSelectionItems > posSelection.length) {
           validation = attachValidation(validation, 'All positions must be selected')
@@ -31,7 +31,7 @@ function checkUserInput (inputs: WBSCInput[]) {
     } else {
       validation = attachValidation(validation, 'Action must be properly defined')
     }
-  }
+  })
 
   // 2) validations over all outputs
   validation = attachValidation(validation, checkMaxOuts(inputs))
@@ -75,12 +75,12 @@ function checkPosSelection (selection: string) {
 function checkMaxOuts (inputs: WBSCInput[]) {
   let outs = 0
 
-  for (let i = 0; i < inputs.length; i += 1) {
-    const output = inputs[i].output
+  inputs.forEach((input) => {
+    const output = input.output
     if (output && output.out === true) {
       outs++
     }
-  }
+  })
 
   if (outs > 3) {
     return 'There cannot be more than 3 outs in one play'
@@ -98,10 +98,10 @@ function checkOutcome (inputs: WBSCInput[]) {
 
   let currentBatter = -1
   let playerWasOut = false
-  const reachedBases = []
+  const reachedBases: number[] = []
 
-  for (let i = 0; i < inputs.length; i += 1) {
-    const output = inputs[i].output
+  inputs.forEach((input) => {
+    const output = input.output
     if (output) {
       if (currentBatter === output.batter) {
         if (output.out) {
@@ -119,7 +119,7 @@ function checkOutcome (inputs: WBSCInput[]) {
         }
       } else {
         // special case for "batter + same error"
-        if (inputs[i].group === inputB) {
+        if (input.group === inputB) {
           if (output.base === 0 && output.errorTarget > 1) {
             playerWasOut = true
             validation = attachValidation(validation, 'Player cannot advance further after being out')
@@ -132,7 +132,7 @@ function checkOutcome (inputs: WBSCInput[]) {
         }
       }
     }
-  }
+  })
 
   for (let i = 0; i < reachedBases.length - 1; i += 1) {
     const reachedBase1 = reachedBases[i]
@@ -160,8 +160,7 @@ function checkHit (inputs: WBSCInput[]) {
   let forceOut = false
   let appealPlay = false
 
-  for (let i = inputs.length - 1; i >= 0; i -= 1) {
-    const input = inputs[i]
+  inputs.reverse().forEach((input) => {
     switch (input.group) {
       case inputB:
         if (hitActions.includes(input.specAction)) {
@@ -178,7 +177,7 @@ function checkHit (inputs: WBSCInput[]) {
         }
         break
     }
-  }
+  })
 
   if (hitPlay && forceOut) {
     validation = attachValidation(validation, 'It is not possible to score a HIT, if there is a forced out. Use \'FC - Occupied\' instead.')
@@ -200,8 +199,7 @@ function checkFC (inputs: WBSCInput[]) {
   let fcSituation = false
   let fcPlay = false
 
-  for (let i = inputs.length - 1; i >= 0; i -= 1) {
-    const input = inputs[i]
+  inputs.reverse().forEach((input) => {
     const output = input.output
     if (input.group === inputB) {
       if (input.specAction === 'O' || input.specAction === 'KSO' || input.specAction === 'KLO' || input.specAction === 'SFO') {
@@ -214,7 +212,7 @@ function checkFC (inputs: WBSCInput[]) {
     } else if (fcSituation && input.specAction === 'ADV') {
       fcPlay = true
     }
-  }
+  })
 
   if (oSituation && !oPlay) {
     validation = attachValidation(validation, 'FC - occupied is selected, but corresponding out/decessive error is missing')
@@ -233,14 +231,14 @@ function checkGDP (inputs: WBSCInput[]) {
   let gdpSelected = false
   let gdpOut = false
 
-  for (let i = 0; i < inputs.length; i += 1) {
-    const output = inputs[i].output
+  inputs.forEach((input) => {
+    const output = input.output
     if (output?.text1 === 'GDP' || output?.text1 === 'GDPE') {
       gdpSelected = true
     } else if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
       gdpOut = true
     }
-  }
+  })
 
   if (gdpSelected && !gdpOut) {
     validation = attachValidation(validation, 'GDP is selected, but corresponding out/decessive error is missing')
@@ -259,8 +257,7 @@ function checkSHSF (inputs: WBSCInput[]) {
   let advanceByBatter = false
   let runScored = false
 
-  for (let i = 0; i < inputs.length; i += 1) {
-    const input = inputs[i]
+  inputs.forEach((input) => {
     if (input?.specAction.startsWith('SH')) {
       shSelected = true
     } else if (input?.specAction.startsWith('SF') || input?.specAction === 'FSF') {
@@ -274,7 +271,7 @@ function checkSHSF (inputs: WBSCInput[]) {
       // TODO check for forced out
       // there cannot be forced out + SH play
     }
-  }
+  })
 
   if (shSelected && !advanceByBatter) {
     validation = attachValidation(validation, 'SH is selected, but no runner advanced by batter')
