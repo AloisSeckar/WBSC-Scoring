@@ -36,6 +36,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   // 2) validations over all outputs
   validation = attachValidation(validation, checkMaxOuts(inputs))
   validation = attachValidation(validation, checkOutcome(inputs))
+  validation = attachValidation(validation, checkHit(inputs))
   validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
   validation = attachValidation(validation, checkSHSF(inputs))
@@ -144,6 +145,45 @@ function checkOutcome (inputs: WBSCInput[]) {
     if (reachedBase1 !== 4 && reachedBase1 === reachedBase2) {
       validation = attachValidation(validation, 'Two players cannot finish on the same base')
     }
+  }
+
+  return validation
+}
+
+// HIT can only be credited to batter, if there is no forced out
+function checkHit (inputs: WBSCInput[]) {
+  let validation = ''
+
+  const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
+
+  let hitPlay = false
+  let forceOut = false
+  let appealPlay = false
+
+  for (let i = inputs.length - 1; i >= 0; i -= 1) {
+    const input = inputs[i]
+    switch (input.group) {
+      case inputB:
+        if (hitActions.includes(input.specAction)) {
+          hitPlay = true
+        }
+        break
+      case inputR1:
+      case inputR2:
+      case inputR3:
+        if (input.specAction === 'GO') {
+          forceOut = true
+        } else if (input.specAction === 'A') {
+          appealPlay = true
+        }
+        break
+    }
+  }
+
+  if (hitPlay && forceOut) {
+    validation = attachValidation(validation, 'It is not possible to score a HIT, if there is a forced out. Use \'FC - Occupied\' instead.')
+  } else if (hitPlay && appealPlay) {
+    validation = attachValidation(validation, 'It is not possible to score a HIT, if there is an appeal play. Use \'FC - Occupied\' instead.')
   }
 
   return validation
