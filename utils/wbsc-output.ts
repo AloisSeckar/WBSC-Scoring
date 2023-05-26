@@ -772,6 +772,7 @@ function connectOutsIfNeeded () {
               endX = hOffset + lineHOffset + 15
               endY = 37 + vOffsetEnd
               break
+            case 1:
             case 0:
               endX = hOffset + lineHOffset
               endY = h2 - 30 + vOffsetEnd
@@ -786,14 +787,14 @@ function connectOutsIfNeeded () {
             endY = h2 / 2 + vOffsetEnd
           } else {
             endX = hOffset + lineHOffset
-            endY = h2 - 25 + vOffsetEnd
+            endY = h2 - 30 + vOffsetEnd
           }
           break
         case 2:
           startX = hOffset + lineHOffset
           startY = h2 - 13 + vOffsetStart
           endX = hOffset + lineHOffset
-          endY = h2 / 2 + vOffsetEnd
+          endY = h2 - 30 + vOffsetEnd
           break
       }
 
