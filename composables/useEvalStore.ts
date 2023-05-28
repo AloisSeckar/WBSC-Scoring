@@ -53,22 +53,17 @@ export const useEvalStore = defineStore({
       this.errorText = errorText
       this.errorShow = true
     },
-    // TODO try to optimize with higher order function...
     setMinPosItems (inputGroup: string, limit: number) {
-      this.minPosItems = this.minPosItems.filter(i => i.inputGroup !== inputGroup)
-      this.minPosItems.push({ inputGroup, limit })
+      this.minPosItems = resetItemInArray(this.minPosItems, { inputGroup, limit })
     },
     setTargetPosItems (inputGroup: string, limit: number) {
-      this.targetPosItems = this.targetPosItems.filter(i => i.inputGroup !== inputGroup)
-      this.targetPosItems.push({ inputGroup, limit })
+      this.targetPosItems = resetItemInArray(this.targetPosItems, { inputGroup, limit })
     },
     setMaxPosItems (inputGroup: string, limit: number) {
-      this.maxPosItems = this.maxPosItems.filter(i => i.inputGroup !== inputGroup)
-      this.maxPosItems.push({ inputGroup, limit })
+      this.maxPosItems = resetItemInArray(this.maxPosItems, { inputGroup, limit })
     },
     setPosSelection (inputGroup: string, selection: string) {
-      this.posSelection = this.posSelection.filter(i => i.inputGroup !== inputGroup)
-      this.posSelection.push({ inputGroup, selection })
+      this.posSelection = resetItemInArray(this.posSelection, { inputGroup, selection })
     }
   },
   getters: {
@@ -104,3 +99,9 @@ export const useEvalStore = defineStore({
     }
   }
 })
+
+function resetItemInArray (arr: any[], item: PosSelectionLimit | PosSelection): any[] {
+  arr = arr.filter(i => i.inputGroup !== item.inputGroup)
+  arr.push(item)
+  return arr
+}
