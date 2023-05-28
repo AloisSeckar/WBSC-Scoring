@@ -40,6 +40,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
   validation = attachValidation(validation, checkSHSF(inputs))
+  validation = attachValidation(validation, checkSameError(inputs))
 
   return validation
 }
@@ -283,6 +284,66 @@ function checkSHSF (inputs: WBSCInput[]) {
     if (!runScored) {
       validation = attachValidation(validation, 'SF is selected, but no runner scored')
     }
+  }
+
+  return validation
+}
+
+// HIT can only be credited to batter, if there is no forced out
+function checkSameError (inputs: WBSCInput[]) {
+  let validation = ''
+
+  const errorActions = [
+    'EF', 'ET', 'eF', 'eT', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
+    'GDPE', 'SHE', 'SHET', 'SHEF', 'SHFC', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
+  ]
+
+  // TODO some other computations may be also optimized like this?
+  const seB = inputs.some(i => i.specAction === 'se0')
+  const seR1 = inputs.some(i => i.specAction === 'se1')
+  const seR2 = inputs.some(i => i.specAction === 'se2')
+  const seR3 = inputs.some(i => i.specAction === 'se3')
+
+  let errB = false
+  let errR1 = false
+  let errR2 = false
+  let errR3 = false
+  inputs.forEach((input) => {
+    if (errorActions.includes(input.specAction)) {
+      switch (input.group) {
+        case inputB:
+        case inputB1:
+        case inputB2:
+        case inputB3:
+          errB = true
+          break
+        case inputR1:
+        case inputR1a:
+        case inputR1b:
+          errR1 = true
+          break
+        case inputR2:
+        case inputR2a:
+          errR2 = true
+          break
+        case inputR3:
+          errR3 = true
+          break
+      }
+    }
+  })
+
+  if (seB && !errB) {
+    validation = attachValidation(validation, 'Advance by \'Same error (Batter)\' is selected, \nbut no corresponding error play was given')
+  }
+  if (seR1 && !errR1) {
+    validation = attachValidation(validation, 'Advance by \'Same error (Runner at 1st)\' is selected, \nbut no corresponding error play was given')
+  }
+  if (seR2 && !errR2) {
+    validation = attachValidation(validation, 'Advance by \'Same error (Runner at 2nd)\' is selected, \nbut no corresponding error play was given')
+  }
+  if (seR3 && !errR3) {
+    validation = attachValidation(validation, 'Advance by \'Same error (Runner at 3rd)\' is selected, \nbut no corresponding error play was given')
   }
 
   return validation
