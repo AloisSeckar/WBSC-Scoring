@@ -6,6 +6,13 @@
 
 import { WBSCInput } from '@/composables/useInputStore'
 
+const firstRunnerActions = [inputR1, inputR2, inputR3]
+const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
+const errorActions = [
+  'EF', 'ET', 'eF', 'eT', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
+  'GDPE', 'SHE', 'SHET', 'SHEF', 'SHFC', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
+]
+
 // validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)
 // (called from wbsc-processor.processAction())
@@ -40,6 +47,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
   validation = attachValidation(validation, checkSHSF(inputs))
+  validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
   validation = attachValidation(validation, checkSameError(inputs))
 
   return validation
@@ -154,8 +162,6 @@ function checkOutcome (inputs: WBSCInput[]) {
 // HIT can only be credited to batter, if there is no forced out
 function checkHit (inputs: WBSCInput[]) {
   let validation = ''
-
-  const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
 
   let hitPlay = false
   let forceOut = false
@@ -289,14 +295,73 @@ function checkSHSF (inputs: WBSCInput[]) {
   return validation
 }
 
+// WP/PB cannot occur after another play
+//   => must be the first runner play
+// possible exceptions:
+//   - SB can be followed by WP/PB
+//   - there can be advance because of BB and then WP/PB
+//     (not IBB or HP, because it is dead-ball)
+// IP/BK may only be the first (and only) runner play (because it is dead-ball)
+function checkExtraBaseAdvances (inputs: WBSCInput[]) {
+  let validation = ''
+
+  let invalidWP = false
+  let invalidPB = false
+  let invalidIP = false
+  let invalidBK = false
+
+  inputs.forEach((input) => {
+    const isWP = input.specAction === 'WP'
+    if (isWP && !firstRunnerActions.includes(input.group)) {
+      if (!isAfterBB(inputs) && !isAfterSB(inputs)) {
+        invalidWP = true
+      }
+    }
+
+    const isPB = input.specAction === 'PB'
+    if (isPB && !firstRunnerActions.includes(input.group)) {
+      if (!isAfterBB(inputs) && !isAfterSB(inputs)) {
+        invalidPB = true
+      }
+    }
+
+    const isIP = input.specAction === 'IP'
+    if (isIP && !firstRunnerActions.includes(input.group)) {
+      invalidIP = true
+    }
+
+    const isBK = input.specAction === 'BK'
+    if (isBK && !firstRunnerActions.includes(input.group)) {
+      invalidBK = true
+    }
+  })
+
+  if (invalidWP) {
+    validation = attachValidation(validation, 'WP cannot happen after another play (except SB and BB)')
+  }
+  if (invalidPB) {
+    validation = attachValidation(validation, 'WP cannot happen after another play (except SB and BB)')
+  }
+  if (invalidIP) {
+    validation = attachValidation(validation, 'IP must be the only runner play at the moment')
+  }
+  if (invalidBK) {
+    validation = attachValidation(validation, 'BK must be the only runner play at the moment')
+  }
+
+  return validation
+}
+
+function isAfterBB (inputs: WBSCInput[]) {
+  return inputs.some(i => i.group === inputB && i.specAction === 'BB1')
+}
+function isAfterSB (inputs: WBSCInput[]) {
+  return inputs.some(i => firstRunnerActions.includes(i.group) && i.specAction === 'SB')
+}
+
 // HIT can only be credited to batter, if there is no forced out
 function checkSameError (inputs: WBSCInput[]) {
   let validation = ''
-
-  const errorActions = [
-    'EF', 'ET', 'eF', 'eT', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
-    'GDPE', 'SHE', 'SHET', 'SHEF', 'SHFC', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
-  ]
 
   // TODO some other computations may be also optimized like this?
   const seB = inputs.some(i => i.specAction === 'se0')
