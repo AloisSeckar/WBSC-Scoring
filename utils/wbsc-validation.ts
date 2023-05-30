@@ -206,7 +206,7 @@ function checkFC (inputs: WBSCInput[]) {
   let fcSituation = false
   let fcPlay = false
 
-  inputs.reverse().forEach((input) => {
+  inputs.forEach((input) => {
     const output = input.output
     if (input.group === inputB) {
       if (input.specAction === 'O' || input.specAction === 'KSO' || input.specAction === 'KLO' || input.specAction === 'SFO') {
@@ -214,10 +214,12 @@ function checkFC (inputs: WBSCInput[]) {
       } else if (input.specAction === 'FC' || input.specAction === 'SHFC') {
         fcSituation = true
       }
-    } else if (oSituation && (output?.out || output?.text1.includes('E') || output?.text2?.includes('E'))) {
-      oPlay = true
-    } else if (fcSituation && input.specAction === 'ADV') {
-      fcPlay = true
+    } else if (firstRunnerActions.includes(input.group)) {
+      if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
+        oPlay = true
+      } else if (input.specAction === 'ADV') {
+        fcPlay = true
+      }
     }
   })
 

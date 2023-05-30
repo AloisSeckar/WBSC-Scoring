@@ -24,7 +24,7 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - New feature - 'Clear' button clears current output too
 - New feature - import/export inputs in JSON format
 - Validations - GitHub issues #54, #57, #62, #72, #77, #86
-- Bug-fixing - GitHub issues #73, #78, #79
+- Bug-fixing - GitHub issues #73, #78, #79, #88
 - Refactoring- GitHub issues #75
 
 ### Version 0.11 (2023-04-08)
