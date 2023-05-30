@@ -361,13 +361,13 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push('<option value="eF">Extra base fielding</option>')
       options.push('<option value="et">Extra base throwing</option>')
       options.push('<option value="se0">Same error (Batter)</option>')
-      if (!(group.includes('1'))) {
+      if (!(group.includes('r1'))) {
         options.push('<option value="se1">Same error (Runner at 1st)</option>')
       }
-      if (!(group.includes('2'))) {
+      if (!(group.includes('r2'))) {
         options.push('<option value="se2">Same error (Runner at 2nd)</option>')
       }
-      if (!(group.includes('3'))) {
+      if (!(group.includes('r3'))) {
         options.push('<option value="se3">Same error (Runner at 3rd)</option>')
       }
       options.push('<option value="ENF">Decisive fielding (no advance)</option>')
