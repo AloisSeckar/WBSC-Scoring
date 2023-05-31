@@ -6,6 +6,7 @@ export const classTools = 'wbsc-toolbar'
 
 export const inputGenerate = 'input-generate'
 export const inputImport = 'input-import'
+export const inputImportLib = 'input-import-lib'
 export const inputImportFile = 'input-import-file'
 export const inputExport = 'input-export'
 export const inputClear = 'input-clear'

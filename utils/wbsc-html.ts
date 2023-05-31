@@ -32,7 +32,10 @@ function getLabelForRenderButton (group: string, render: boolean) {
       label = 'Generate action'
       break
     case inputImport:
-      label = '&#8664; Import selection'
+      label = '&#8664; Import from file'
+      break
+    case inputImportLib:
+      label = '&#8664; Import from library'
       break
     case inputExport:
       label = 'Export selection &#8663;'

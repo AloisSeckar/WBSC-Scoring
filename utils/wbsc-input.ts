@@ -29,6 +29,12 @@ function renderActionButtons () {
   generateButton.setAttribute('class', 'btn btn-generate')
   actionButtonsContainer.appendChild(generateButton)
 
+  const clearButton = renderInputsButton(inputClear)
+  clearButton.setAttribute('class', 'btn btn-clear')
+  actionButtonsContainer.appendChild(clearButton)
+
+  actionButtonsContainer.appendChild(document.createElement('br'))
+
   const importButton = renderInputsButton(inputImport)
   importButton.setAttribute('class', 'btn btn-json')
   actionButtonsContainer.appendChild(importButton)
@@ -42,13 +48,13 @@ function renderActionButtons () {
   })
   actionButtonsContainer.appendChild(jsonFileInput)
 
+  const importLibButton = renderInputsButton(inputImportLib)
+  importLibButton.setAttribute('class', 'btn btn-json')
+  actionButtonsContainer.appendChild(importLibButton)
+
   const exportButton = renderInputsButton(inputExport)
   exportButton.setAttribute('class', 'btn btn-json')
   actionButtonsContainer.appendChild(exportButton)
-
-  const clearButton = renderInputsButton(inputClear)
-  clearButton.setAttribute('class', 'btn btn-clear')
-  actionButtonsContainer.appendChild(clearButton)
 
   const container = document.getElementById(classWbsc) as HTMLElement
   container.appendChild(actionButtonsContainer)
@@ -70,6 +76,10 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
         break
       case inputImport:
         document.getElementById(inputImportFile)?.click()
+        break
+      case inputImportLib:
+        // TODO import from lib
+        alert('Coming soon!')
         break
       case inputExport:
         exportInputAsJSON()
