@@ -21,6 +21,7 @@ export type ConcurrentPlay = {
 }
 
 export type WBSCEval = {
+    importShow: boolean,
     errorShow: boolean,
     errorText: string,
     batter: number,
@@ -36,6 +37,7 @@ export const useEvalStore = defineStore({
   id: 'eval-store',
   state: () => {
     const data: WBSCEval = {
+      importShow: false,
       errorShow: false,
       errorText: '',
       batter: 1,

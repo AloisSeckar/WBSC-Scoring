@@ -78,8 +78,7 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
         document.getElementById(inputImportFile)?.click()
         break
       case inputImportLib:
-        // TODO import from lib
-        alert('Coming soon!')
+        useEvalStore().importShow = true
         break
       case inputExport:
         exportInputAsJSON()

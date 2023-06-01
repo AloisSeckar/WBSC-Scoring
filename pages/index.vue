@@ -11,6 +11,8 @@
       </div>
       <!-- modal window triggered by validation errors -->
       <ValidationModal v-show="useEvalStore().errorShow" />
+      <!-- modal window triggered by "import from library" -->
+      <ImportModal v-show="useEvalStore().importShow" />
     </div>
 
     <h2>Output</h2>
