@@ -39,7 +39,7 @@ const divButton = 'mx-2 my-4 p-2 w-24 inline-block border border-black rounded b
 function importFromLib () {
   const libFileSelect = document.getElementById(libFileId) as HTMLInputElement
   const libFileValue = libFileSelect.value
-  console.log(libFileValue)
+  importInputFromLib(libFileValue)
   close()
 }
 

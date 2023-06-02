@@ -81,18 +81,31 @@ export function importInputFromJSON () {
   if (file) {
     const reader = new FileReader()
     reader.onload = (event) => {
-      const fileData = event.target?.result
-      if (fileData) {
-        clearInputs()
-        renderInputs(inputB)
-        const jsonData: WBSCInput[] = JSON.parse(fileData.toString())
-        jsonData?.reverse().forEach((input) => {
-          setInputs(input)
-        })
-        processAction()
-      }
+      processFile(event.target?.result)
     }
     reader.readAsText(file)
+  }
+  // TODO we may want to log errors...
+}
+
+export function importInputFromLib (fileName: string) {
+  fetch('/json/' + fileName)
+    .then(response => response.json())
+    .then((fileData) => {
+      processFile(JSON.stringify(fileData))
+    })
+    // TODO we may want to log errors...
+}
+
+function processFile (fileData: string | ArrayBuffer | null | undefined) {
+  if (fileData) {
+    clearInputs()
+    renderInputs(inputB)
+    const jsonData: WBSCInput[] = JSON.parse(fileData.toString())
+    jsonData?.reverse().forEach((input) => {
+      setInputs(input)
+    })
+    processAction()
   }
 }
 
