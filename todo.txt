@@ -2,7 +2,7 @@ v.0.12
 ======
 
 Features:
-- New feature - import/export inputs in JSON format
+- New feature - import/export inputs in JSON format + a library of prepared actions
 - New set of OBRs - according to 2019 manual
 - 'Clear' button clears output too
 - Validations: #54, #57, #62, #72, #77, #86

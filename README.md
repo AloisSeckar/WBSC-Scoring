@@ -22,7 +22,7 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 ### Version 0.12 (ongoing development)
 - New actions - new set of OBRs - according to 2019 manual
 - New feature - 'Clear' button clears current output too
-- New feature - import/export inputs in JSON format
+- New feature - import/export inputs in JSON format + a library of prepared actions
 - Validations - GitHub issues #54, #57, #62, #72, #77, #86
 - Bug-fixing - GitHub issues #73, #78, #79, #88
 - Refactoring- GitHub issues #75

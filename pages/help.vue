@@ -180,9 +180,15 @@
     </div>
     <div class="mb-2">
       <p>
-        Using the second purple "Import selection" button you can upload previously exported <strong>.json</strong> file. Providing it is a valid file, it will be parsed and transferred into corresponding input selection and the situation will be re-generated. Validation error may be triggered.
+        Using the purple "Import selection" button you can upload previously exported <strong>.json</strong> file. Providing it is a valid file, it will be parsed and transferred into corresponding input selection and the situation will be re-generated. Validation error may be triggered.
       </p>
       <img src="/17-import.png" width="auto" height="50">
+    </div>
+    <div class="mb-2">
+      <p>
+        With the last purple "Import from library" button you can pick from our ever-growing collection of prepared situations. They are stored <strong>.json</strong> files, similar to custom user inputs/outputs. Upon selection it will be parsed and transferred into corresponding input selection and the situation will be re-generated. This feature is meant to speed up the process of generating new images, if needed, and also to help new users to better understand what is possible to achieve.
+      </p>
+      <img src="/18-import-lib.png" width="auto" height="50">
     </div>
 
     <NavButtons />
