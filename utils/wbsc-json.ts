@@ -145,6 +145,10 @@ function setInputs (input: WBSCInput) {
       hitSelection.value = pos
     }
   }
+  if (group !== inputB) {
+    const selectBase = document.getElementById(group + inputBase) as HTMLSelectElement
+    selectBase.value = input.base?.toString()
+  }
   if (input.runtype) {
     const selectRuntype = document.getElementById(group + inputRuntype) as HTMLSelectElement
     selectRuntype.value = input.runtype
