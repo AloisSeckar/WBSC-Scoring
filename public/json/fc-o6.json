@@ -1,0 +1,1 @@
+[{"group":"input-r1","baseAction":"out","specAction":"GO","base":2,"tie":false,"runtype":"e","pos":"64"},{"group":"input-b","baseAction":"FC","specAction":"O","base":1,"tie":false,"runtype":"e","pos":"6"}]
