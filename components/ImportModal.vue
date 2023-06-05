@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { libItems } from '@/public/json/_lib'
+import { libItems } from '@/library/_lib'
 
 const libFileId = 'lib-items'
 
