@@ -4,6 +4,14 @@ export const libItems = [
     name: 'Ground out - SS to 1B'
   },
   {
+    file: 'out-f4',
+    name: 'Fly out - 2B'
+  },
+  {
+    file: 'out-ff4',
+    name: 'Fly out (foul) - 3B'
+  },
+  {
     file: 'k-swinging',
     name: 'Strike out - swinging'
   },
@@ -50,5 +58,9 @@ export const libItems = [
   {
     file: 'gdp-643',
     name: 'Grounded into DP - SS to 2B to 1B'
+  },
+  {
+    file: 'out-if6',
+    name: 'Infield fly - SS'
   }
 ]
