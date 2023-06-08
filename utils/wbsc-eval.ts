@@ -610,7 +610,8 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       if (!action.endsWith('F')) {
         output.text1 += action.substring(action.length - 1)
       }
-      output.errorTarget = output.base
+      output.base = output.origBase + 1
+      output.errorTarget = input.base
       break
     case 'EDF':
     case 'EDL':
