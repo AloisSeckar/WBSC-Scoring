@@ -934,8 +934,8 @@ function connectConcurrentPlaysIfNeeded () {
             break
         }
 
-        drawArrow(startX, startY, endX, endY)
-        drawArrow(endX, endY, startX, startY)
+        drawArrow(startX, startY, endX, endY, 6)
+        drawArrow(endX, endY, startX, startY, 6)
       }
     }
   }
@@ -943,13 +943,13 @@ function connectConcurrentPlaysIfNeeded () {
 
 // helper function to render an arrow
 // from http://masf-html5.blogspot.com/2016/04/path-drawing-mode-lines-circles-arcs.html
-function drawArrow (fromx: number, fromy: number, tox: number, toy: number) {
+function drawArrow (fromx: number, fromy: number, tox: number, toy: number, width: number) {
   const headlen = 10
   const angle = Math.atan2(toy - fromy, tox - fromx)
 
   const ctx = useCanvasStore().ctx
   if (ctx) {
-    ctx.lineWidth = 6
+    ctx.lineWidth = width
 
     ctx.beginPath()
     ctx.moveTo(fromx, fromy)
@@ -1024,7 +1024,7 @@ function drawExtraErrorAdvanceTo2B (endsAt2B: boolean, twoLineText: boolean) {
     ctx.stroke()
 
     if (endsAt2B) {
-      drawArrow(w1 - gap + hOffset, h2 - length + vOffset, w1 - gap + hOffset, h2 - length - 20 + vOffset)
+      drawArrow(w1 - gap + hOffset, h2 - length + vOffset, w1 - gap + hOffset, h2 - length - 20 + vOffset, 5)
     } else {
       ctx.beginPath()
       ctx.arc(w1 - gap + hOffset - arc, gap + vOffset + arc, arc, 1.5 * Math.PI, 0)
@@ -1052,7 +1052,7 @@ function drawExtraErrorAdvanceTo3B (startsAt2B: boolean, endsAt3B: boolean) {
     ctx.stroke()
 
     if (endsAt3B) {
-      drawArrow(w2 - length + hOffset, gap + vOffset, w2 - length - 20 + hOffset, gap + vOffset)
+      drawArrow(w2 - length + hOffset, gap + vOffset, w2 - length - 20 + hOffset, gap + vOffset, 5)
     } else {
       ctx.beginPath()
       ctx.arc(gap + hOffset + arc, gap + vOffset + arc, arc, Math.PI, 1.5 * Math.PI)
@@ -1075,10 +1075,10 @@ function drawExtraErrorAdvanceToHP (startsAt3B: boolean) {
 
     ctx.beginPath()
     ctx.moveTo(gap + hOffset, h2 - length + shift + vOffset)
-    ctx.lineTo(gap + hOffset, h2 + length)
+    ctx.lineTo(gap + hOffset, h2 + length + vOffset)
     ctx.stroke()
 
-    drawArrow(gap + hOffset, h2 + length, gap + hOffset, h2 + length + 20)
+    drawArrow(gap + hOffset, h2 + length + vOffset, gap + hOffset, h2 + length + vOffset + 20, 5)
   } else {
     createError('Canvas context not defined')
   }
