@@ -430,6 +430,38 @@ function disableParentExtraInput (group: string, disable: boolean) {
   }
 }
 
+// when specific action results into an out, we want to disable further action generating
+// therefore we may disable the corresponding extra inputs render button
+function disableExtraInput (group: string, disable: boolean) {
+  let extraButtonId = null
+  switch (group) {
+    case inputB:
+      extraButtonId = inputB1
+      break
+    case inputB1:
+      extraButtonId = inputB2
+      break
+    case inputB2:
+      extraButtonId = inputB3
+      break
+    case inputR1:
+      extraButtonId = inputR1a
+      break
+    case inputR1a:
+      extraButtonId = inputR1b
+      break
+    case inputR2:
+      extraButtonId = inputR2a
+      break
+  }
+  if (extraButtonId) {
+    const extraButton = document.getElementById('button-' + extraButtonId) as HTMLInputElement
+    if (extraButton.innerText === '+') {
+      extraButton.disabled = disable
+    }
+  }
+}
+
 // find encapsulating div when showing/hiding input groups
 //   group - given input group
 //   show - triggering action (showing or hiding)
@@ -567,5 +599,5 @@ function clearJSONInput () {
 }
 
 export {
-  renderActionButtons, renderInputs, clearInputs, renderPosSelectItem, getPosSelectionSelect, getEmptyInput, getEmptyOutput
+  renderActionButtons, renderInputs, clearInputs, renderPosSelectItem, getPosSelectionSelect, disableExtraInput, getEmptyInput, getEmptyOutput
 }

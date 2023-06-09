@@ -40,6 +40,7 @@ function changeBatterBaseAction () {
 function changeBatterSpecificAction () {
   let fc = false
   let hit = false
+  let out = false
   let minPosItems = 1
   let targetPosItems = 1
   let maxPosItems = 4
@@ -53,27 +54,29 @@ function changeBatterSpecificAction () {
       fc = true
       minPosItems = targetPosItems = maxPosItems = 2
       break
-    case 'BB1':
-    case 'IBB1':
-    case 'HP':
     case 'KS':
-    case 'KSWP':
-    case 'KSPB':
+    case 'KL':
     case 'KSR':
     case 'KSB':
     case 'KSI':
-    case 'KL':
-    case 'KLWP':
-    case 'KLPB':
     case 'KLR':
     case 'KLI':
-    case 'INT':
     case 'OBR_BOB':
     case 'OBR_BIA':
     case 'OBR_TBB':
     case 'OBR_BIC':
     case 'OBR_RTA':
-    case 'LT':
+    case 'LT': // note - here it only means "no further action possible", not an actual out
+      out = true
+      // falls through
+    case 'BB1':
+    case 'IBB1':
+    case 'HP':
+    case 'KSWP':
+    case 'KSPB':
+    case 'KLWP':
+    case 'KLPB':
+    case 'INT':
       minPosItems = targetPosItems = maxPosItems = 0
       break
     case 'HR':
@@ -88,29 +91,33 @@ function changeBatterSpecificAction () {
       hit = true
       minPosItems = targetPosItems = maxPosItems = 1
       break
+    case 'SF':
+    case 'FSF':
+    case 'IF':
+    case 'OBR_DIF':
+      out = true
+      // falls through
+    case 'O':
     case 'KSO':
     case 'KLO':
-    case 'O':
+    case 'SFO':
     case 'EDF':
     case 'EDL':
     case 'EDP':
     case 'EDFB':
     case 'OB':
     case 'SHEF':
-    case 'SF':
     case 'SFE':
-    case 'SFO':
-    case 'FSF':
-    case 'IF':
-    case 'OBR_DIF':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'GO':
     case 'GOB':
     case 'GDP':
-    case 'GDPE':
     case 'SH':
     case 'A':
+      out = true
+      // falls through
+    case 'GDPE':
       minPosItems = 1
       targetPosItems = 2
       break
@@ -118,6 +125,10 @@ function changeBatterSpecificAction () {
     case 'KLE':
     case 'KSET':
     case 'KLET':
+    case 'EF':
+    case 'ET':
+    case 'SHE':
+    case 'SHET':
     case 'KST':
     case 'KLT':
     case 'F':
@@ -128,14 +139,11 @@ function changeBatterSpecificAction () {
     case 'FL':
     case 'FB':
     case 'FFB':
-    case 'EF':
-    case 'ET':
-    case 'SHE':
-    case 'SHET':
     case 'OBR_BOO':
     case 'OBR_BIN':
     case 'OBR_OIN':
-      // no adjustments
+      out = true
+      // no other adjustments
       break
     default:
       minPosItems = targetPosItems = maxPosItems = 0
@@ -187,6 +195,8 @@ function changeBatterSpecificAction () {
 
   const runTypeSelect = document.getElementById(inputB + inputRuntype) as HTMLInputElement
   runTypeSelect.disabled = runTypeSelectDisabled
+
+  disableExtraInput(inputB, out === true)
 }
 
 // ajdust 'specific' action according to selected 'base' action
@@ -204,6 +214,7 @@ function changeRunnerBaseAction (group: string) {
 
 // adjust 'involved' inputs according to selected 'specific' action
 function changeRunnerSpecificAction (group: string) {
+  let out = false
   let throwing = false
   let minPosItems = 1
   let targetPosItems = 1
@@ -218,21 +229,23 @@ function changeRunnerSpecificAction (group: string) {
     case 'BK':
     case 'IP':
     case 'SB':
-    case 'OBR_rta':
     case 'se0':
     case 'se1':
     case 'se2':
     case 'se3':
+    case 'OBR_rta':
     case 'NADV':
       minPosItems = targetPosItems = maxPosItems = 0
       break
-    case 'O/':
-    case 'POE':
-    case 'ob':
     case 'OBR_hbb':
     case 'OBR_ppr':
     case 'OBR_rle':
     case 'OBR_rhe':
+      out = true
+      // falls through
+    case 'POE':
+    case 'O/':
+    case 'ob':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'T':
@@ -240,27 +253,33 @@ function changeRunnerSpecificAction (group: string) {
       throwing = true
       break
     case 'PO':
+      out = true
       minPosItems = targetPosItems = 2
       break
-    case 'CSE':
-    case 'CSN':
     case 'CSO':
     case 'GO':
+      out = true
+      // falls through
+    case 'CSE':
+    case 'CSN':
       minPosItems = 1
       targetPosItems = 2
       break
+      break
+    case 'OBR_rol':
+    case 'OBR_rin':
+    case 'A':
+      out = true
+      // falls through
     case 'EF':
-    case 'eF':
     case 'ET':
-    case 'et':
     case 'ENF':
     case 'ENT':
     case 'CSET':
     case 'CSNT':
-    case 'OBR_rol':
-    case 'OBR_rin':
-    case 'A':
-      // no adjustments
+    case 'eF':
+    case 'et':
+      // no other adjustments
       break
     default:
       maxPosItems = 1
@@ -297,6 +316,8 @@ function changeRunnerSpecificAction (group: string) {
     posItem2.innerHTML = renderFCLocationOptions().join(' ')
     posItem2.value = useEvalStore().getPosSelection(groupID)[1]
   }
+
+  disableExtraInput(group, out === true)
 }
 
 // allows to select run type when home base is selected
