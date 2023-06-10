@@ -10,7 +10,7 @@ const firstRunnerActions = [inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
 const errorActions = [
   'EF', 'ET', 'eF', 'eT', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
-  'GDPE', 'SHE', 'SHET', 'SHEF', 'SHFC', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
+  'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
 ]
 
 // validation sequence to be run over given outputs
