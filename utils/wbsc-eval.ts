@@ -121,14 +121,6 @@ function changeBatterSpecificAction () {
       minPosItems = 1
       targetPosItems = 2
       break
-    case 'KSE':
-    case 'KLE':
-    case 'KSET':
-    case 'KLET':
-    case 'EF':
-    case 'ET':
-    case 'SHE':
-    case 'SHET':
     case 'KST':
     case 'KLT':
     case 'F':
@@ -143,6 +135,15 @@ function changeBatterSpecificAction () {
     case 'OBR_BIN':
     case 'OBR_OIN':
       out = true
+      // falls through
+    case 'KSE':
+    case 'KLE':
+    case 'KSET':
+    case 'KLET':
+    case 'EF':
+    case 'ET':
+    case 'SHE':
+    case 'SHET':
       // no other adjustments
       break
     default:
