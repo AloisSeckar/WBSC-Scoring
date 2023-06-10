@@ -8,10 +8,11 @@ import { WBSCInput } from '@/composables/useInputStore'
 
 const firstRunnerActions = [inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
-const errorActions = [
-  'EF', 'ET', 'eF', 'eT', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
+const decisiveErrorActions = [
+  'EF', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
   'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
 ]
+const errorActions = [...decisiveErrorActions, 'eF', 'eT']
 
 // validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)
@@ -50,6 +51,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkSHSF(inputs))
   validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
   validation = attachValidation(validation, checkSameError(inputs))
+  validation = attachValidation(validation, checkEarnedRuns(inputs))
 
   return validation
 }
@@ -372,12 +374,14 @@ function checkSameError (inputs: WBSCInput[]) {
   const seR2 = inputs.some(i => i.specAction === 'se2')
   const seR3 = inputs.some(i => i.specAction === 'se3')
 
+  // error action happened
   let errB = false
   let errR1 = false
   let errR2 = false
   let errR3 = false
+
   inputs.forEach((input) => {
-    if (errorActions.includes(input.specAction)) {
+    if (isError(input, errorActions)) {
       switch (input.group) {
         case inputB:
         case inputB1:
@@ -415,6 +419,92 @@ function checkSameError (inputs: WBSCInput[]) {
   }
 
   return validation
+}
+
+// RUN cannot be marked as "earned" once there was a decessive error
+function checkEarnedRuns (inputs: WBSCInput[]) {
+  let validation = ''
+
+  // run marked as earned
+  let bER = false
+  let r1ER = false
+  let r2ER = false
+  let r3ER = false
+  // decessive error action happenend
+  let errB = false
+  let errR1 = false
+  let errR2 = false
+  let errR3 = false
+
+  inputs.forEach((input) => {
+    const err = isError(input, decisiveErrorActions)
+    const earned = isEarnedRun(input)
+
+    switch (input.group) {
+      case inputB:
+      case inputB1:
+      case inputB2:
+      case inputB3:
+        if (err) {
+          errB = true
+        }
+        if (earned) {
+          bER = true
+        }
+        break
+      case inputR1:
+      case inputR1a:
+      case inputR1b:
+        if (err) {
+          errR1 = true
+        }
+        if (earned) {
+          r1ER = true
+        }
+        break
+      case inputR2:
+      case inputR2a:
+        if (err) {
+          errR2 = true
+        }
+        if (earned) {
+          r2ER = true
+        }
+        break
+      case inputR3:
+        if (err) {
+          errR3 = true
+        }
+        if (earned) {
+          r3ER = true
+        }
+        break
+    }
+  })
+
+  if (bER && errB) {
+    validation = attachValidation(validation, 'Earned run is selected (Batter), \nbut this is not possible with a decisive error')
+  }
+  if (r1ER && errR1) {
+    validation = attachValidation(validation, 'Earned run is selected (Runner at 1st), \nbut this is not possible with a decisive error')
+  }
+  if (r2ER && errR2) {
+    validation = attachValidation(validation, 'Earned run is selected (Runner at 2nd), \nbut this is not possible with a decisive error')
+  }
+  if (r3ER && errR3) {
+    validation = attachValidation(validation, 'Earned run is selected (Runner at 3rd), \nbut this is not possible with a decisive error')
+  }
+
+  return validation
+}
+
+// helper to decide whether there is an error action in current input
+function isError (input: WBSCInput, actionList: string[]): boolean {
+  return actionList.includes(input?.specAction)
+}
+// helper to decide whether there is an earned run in current input
+function isEarnedRun (input: WBSCInput): boolean {
+  return (input?.output?.base === 4 || input?.output?.errorTarget === 4) && input?.output?.run === 'e'
 }
 
 // helper to attach new part of validation message to previous contents

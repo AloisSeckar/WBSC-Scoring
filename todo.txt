@@ -6,7 +6,7 @@ Features:
 - New set of OBRs - according to 2019 manual
 - 'Clear' button clears output too
 - When action results into an out, further actions cannot be rendered
-- Validations: #54, #57, #62, #72, #77, #86
+- Validations: #54, #57, #62, #70, #72, #77, #86
 - Bug-fixing: #73, #78, #79, #88
 - Refactoring: #75
 

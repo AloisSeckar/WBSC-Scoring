@@ -44,8 +44,10 @@ function processAction () {
   let b1Input = getInput(inputB1)
   const bInput = getInput(inputB)
   let bErrorTarget = 0
+  let bRunType = 'e'
   if (b1Input && b1Input.specAction === 'se0') {
     bErrorTarget = b1Input.base
+    bRunType = b1Input.runtype || 'e'
     b1Input = null
   } else if (b1Input) {
     inputs.push(b1Input)
@@ -123,6 +125,7 @@ function processAction () {
     bInput.output = processInput(bInput, playersInvolved, 0)
     if (bErrorTarget > 0) {
       bInput.output.errorTarget = bErrorTarget
+      bInput.output.run = bRunType
     }
   }
 
