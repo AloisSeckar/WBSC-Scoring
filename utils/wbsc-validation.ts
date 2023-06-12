@@ -201,6 +201,7 @@ function checkHit (inputs: WBSCInput[]) {
 // if there is O/FC is selected for batter
 // there has to be at least 1 correspondig situatuon for runners
 // FC => advance by batter, O => out/decessive error
+// special case: K+FC must be toghether with PB
 function checkFC (inputs: WBSCInput[]) {
   let validation = ''
 
@@ -208,6 +209,8 @@ function checkFC (inputs: WBSCInput[]) {
   let oPlay = false
   let fcSituation = false
   let fcPlay = false
+  let kfcSituation = false
+  let kfcPlay = false
 
   inputs.forEach((input) => {
     const output = input.output
@@ -216,20 +219,28 @@ function checkFC (inputs: WBSCInput[]) {
         oSituation = true
       } else if (input.specAction === 'FC' || input.specAction === 'SHFC') {
         fcSituation = true
+      } else if (input.specAction === 'KSFC' || input.specAction === 'KLFC') {
+        kfcSituation = true
       }
     } else if (firstRunnerActions.includes(input.group)) {
       if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
         oPlay = true
       } else if (input.specAction === 'ADV') {
         fcPlay = true
+      } else if (input.specAction === 'PB') {
+        kfcPlay = true
       }
     }
   })
 
   if (oSituation && !oPlay) {
     validation = attachValidation(validation, 'FC - occupied is selected, but corresponding out/decessive error is missing')
-  } else if (fcSituation && !fcPlay) {
+  }
+  if (fcSituation && !fcPlay) {
     validation = attachValidation(validation, 'FC is selected, but corresponding runner advance is missing')
+  }
+  if (kfcSituation && !kfcPlay) {
+    validation = attachValidation(validation, 'If strikeout with FC is selected, there must be a passed ball')
   }
 
   return validation

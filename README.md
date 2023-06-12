@@ -20,7 +20,7 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 ## History
 
 ### Version 0.12 (ongoing development)
-- New actions - new set of OBRs - according to 2019 manual
+- New actions supported: new set of OBRs according to 2019 manual, KS + FC, KL + FC
 - New feature - 'Clear' button clears current output too
 - New feature - import/export inputs in JSON format + a library of prepared actions
 - New feature - when action results into an out, further actions cannot be rendered

@@ -51,6 +51,8 @@ function changeBatterSpecificAction () {
   switch (specificActionValue) {
     case 'FC':
     case 'SHFC':
+    case 'KSFC':
+    case 'KLFC':
       fc = true
       minPosItems = targetPosItems = maxPosItems = 2
       break
@@ -444,10 +446,15 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       break
     case 'KSWP':
     case 'KSPB':
+    case 'KSFC':
     case 'KLWP':
     case 'KLPB':
+    case 'KLFC':
       output.text1 = action.substring(0, 2)
       output.text2 = action.substring(2)
+      if (action.includes('FC')) {
+        output.text2 += ' ' + pos
+      }
       output.sub = '1'
       possibleConcurrentPlay = true
       break
