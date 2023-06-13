@@ -261,6 +261,7 @@ function changeRunnerSpecificAction (group: string) {
       break
     case 'CSO':
     case 'GO':
+    case 'GOT':
       out = true
       // falls through
     case 'CSE':
@@ -559,6 +560,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       output.text1 = '(1)'
       break
     case 'GO':
+    case 'GOT':
     case 'GOB':
     case 'A':
       if (output.base === 1) {

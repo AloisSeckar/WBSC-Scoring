@@ -383,7 +383,7 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
     case 'out':
       options.push('<optgroup label="Runner is out">')
       options.push('<option value="GO">Force out</option>')
-      options.push('<option value="GO">Tag out</option>')
+      options.push('<option value="GOT">Tag out</option>')
       options.push('<option value="A">Appeal play</option>')
       options.push('</optgroup>')
       break
