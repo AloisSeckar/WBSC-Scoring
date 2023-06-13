@@ -140,7 +140,7 @@ function checkOutcome (inputs: WBSCInput[]) {
         currentBatter = output.batter
         playerWasOut = output.out
         if (!playerWasOut) {
-          reachedBases.push(output.base)
+          reachedBases.push(Math.max(output.base, output.errorTarget))
         }
       }
     }
