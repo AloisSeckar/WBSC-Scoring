@@ -22,9 +22,9 @@
 useHead({
   title: 'WBSC Scoring Creator',
   meta: [
-    { property: 'ogTitle', content: 'WBSC Scoring Creator' },
-    { property: 'ogDescription', content: 'Visualisation for WBSC Scoring System' },
-    { property: 'ogImage', content: 'https://wbsc-scoring.netlify.app/demo.png' }
+    { property: 'og:title', content: 'WBSC Scoring Creator' },
+    { property: 'og:description', content: 'Visualisation for WBSC Scoring System' },
+    { property: 'og:image', content: 'https://wbsc-scoring.netlify.app/demo.png' }
   ]
 })
 /*
