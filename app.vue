@@ -19,6 +19,15 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  title: 'WBSC Scoring Creator',
+  meta: [
+    { property: 'ogTitle', content: 'WBSC Scoring Creator' },
+    { property: 'ogDescription', content: 'Visualisation for WBSC Scoring System' },
+    { property: 'ogImage', content: 'https://wbsc-scoring.netlify.app/demo.png' }
+  ]
+})
+/*
 useSeoMeta({
   title: 'WBSC Scoring Creator',
   ogTitle: 'WBSC Scoring Creator',
@@ -27,4 +36,5 @@ useSeoMeta({
   ogImage: 'https://wbsc-scoring.netlify.app/demo.png',
   twitterCard: 'summary_large_image'
 })
+*/
 </script>
