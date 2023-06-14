@@ -19,10 +19,7 @@
 </template>
 
 <script setup lang="ts">
-useHead({
-  title: 'WBSC Scoring Creator'
-})
-useServerSeoMeta({
+useSeoMeta({
   title: 'WBSC Scoring Creator',
   ogTitle: 'WBSC Scoring Creator',
   description: 'Visualisation for WBSC Scoring System',
