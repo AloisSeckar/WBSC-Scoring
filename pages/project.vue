@@ -80,11 +80,12 @@
     <h2>History</h2>
 
     <div class="mb-2">
-      <p><strong>Version 0.12</strong> (ongoing development)</p>
+      <p><strong>Version 0.12</strong> (2023-06-15)</p>
       <ul class="list-disc">
         <li>New set of OBRs - according to 2019 manual</li>
+        <li>New actions - KS+FC and KL+FC</li>
         <li>New feature - import/export inputs in JSON format + a library of prepared actions</li>
-        <li>Improved old + many new input validations</li>
+        <li>Improved old + added many new input validations</li>
         <li>Various bugfixes and corrections</li>
       </ul>
     </div>

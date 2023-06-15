@@ -7,7 +7,7 @@ Features:
 - New actions - KS+FC and KL+FC
 - 'Clear' button clears output too
 - When action results into an out, further actions cannot be rendered
-- Validations: #54, #57, #62, #70, #72, #77, #86
+- Validations: #54, #57, #62, #70, #72, #77, #86, #87
 - Bug-fixing: #73, #78, #79, #88
 - Refactoring: #75
 

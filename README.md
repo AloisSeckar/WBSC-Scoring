@@ -4,7 +4,7 @@ Live demo (currently v0.11) available at [https://wbsc-scoring.netlify.app/](htt
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms).
 
 ## TO-DO list (to be implemented in next few releases)
-- Actions from updated version of WBSC scoring manual - e.g. new shorthands for out-by-rules
+- Actions from updated version of WBSC scoring manual
 - More input validations
 - Deeper refactoring after switching to Nuxt 3
 - Bug-fixing and output corrections
@@ -19,12 +19,12 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
-### Version 0.12 (ongoing development)
+### Version 0.12 (2023-06-15)
 - New actions supported: new set of OBRs according to 2019 manual, KS + FC, KL + FC
 - New feature - 'Clear' button clears current output too
 - New feature - import/export inputs in JSON format + a library of prepared actions
 - New feature - when action results into an out, further actions cannot be rendered
-- Validations - GitHub issues #54, #57, #62, #70, #72, #77, #86
+- Validations - GitHub issues #54, #57, #62, #70, #72, #77, #86, #87
 - Bug-fixing - GitHub issues #73, #78, #79, #88
 - Refactoring- GitHub issues #75
 
