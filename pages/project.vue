@@ -80,6 +80,13 @@
     <h2>History</h2>
 
     <div class="mb-2">
+      <p><strong>Version 0.13</strong> (ongoing development)</p>
+      <ul class="list-disc">
+        <li>Coming soon</li>
+      </ul>
+    </div>
+
+    <div class="mb-2">
       <p><strong>Version 0.12</strong> (2023-06-15)</p>
       <ul class="list-disc">
         <li>New set of OBRs - according to 2019 manual</li>

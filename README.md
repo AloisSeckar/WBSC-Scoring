@@ -19,6 +19,9 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
+### Version 0.13 (ongoing development)
+- Coming soon
+
 ### Version 0.12 (2023-06-15)
 - New actions supported: new set of OBRs according to 2019 manual, KS + FC, KL + FC
 - New feature - 'Clear' button clears current output too

@@ -1,10 +1,10 @@
 <template>
   <div class="text-center">
-    <h2>Situation editor v0.12</h2>
+    <h2>Situation editor v0.13</h2>
 
     <div class="container">
       <div class="mb-2">
-        Only limited range of situations available so far
+        We're closing in, but this site is still being developed, not all scoring features are possible
       </div>
       <div id="wbsc-inputs" class="mb-2">
         <!-- inputs are dynamically rendered here -->
