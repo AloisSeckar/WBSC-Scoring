@@ -3,6 +3,8 @@
     <Head>
       <Title>WBSC Scoring Creator</Title>
       <Meta property="description" content="Visualisation for WBSC Scoring System" />
+      <Meta property="og:type" content="website" />
+      <Meta property="og:url" content="https://wbsc-scoring.netlify.app" />
       <Meta property="og:title" content="WBSC Scoring Creator" />
       <Meta property="og:description" content="Visualisation for WBSC Scoring System" />
       <Meta property="og:image" content="https://wbsc-scoring.netlify.app/demo.png" />
