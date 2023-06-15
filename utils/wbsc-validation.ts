@@ -46,6 +46,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkMaxOuts(inputs))
   validation = attachValidation(validation, checkOutcome(inputs))
   validation = attachValidation(validation, checkHit(inputs))
+  validation = attachValidation(validation, checkFO(inputs))
   validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
   validation = attachValidation(validation, checkSHSF(inputs))
@@ -193,6 +194,72 @@ function checkHit (inputs: WBSCInput[]) {
     validation = attachValidation(validation, 'It is not possible to score a HIT, if there is a forced out. Use \'FC - Occupied\' instead.')
   } else if (hitPlay && appealPlay) {
     validation = attachValidation(validation, 'It is not possible to score a HIT, if there is an appeal play. Use \'FC - Occupied\' instead.')
+  }
+
+  return validation
+}
+
+// forced out may only happen if runner is being forced to run by runners behind him
+function checkFO (inputs: WBSCInput[]) {
+  let validation = ''
+
+  const givenFO = [false, false, false]
+  const possibleFO = [false, false, false]
+  let impossibleFO = false
+
+  inputs.forEach((input) => {
+    switch (input.group) {
+      case inputB:
+        possibleFO[0] = true // runner at 1st may be forced out at 2nd
+        break
+      case inputR1:
+        possibleFO[1] = true // runner at 2nd may be forced out at 3rd
+        if (input.specAction === 'GO') {
+          if (input.output?.base === 2) {
+            givenFO[0] = true
+          } else {
+            impossibleFO = true
+          }
+        }
+        break
+      case inputR2:
+        possibleFO[2] = true // runner at 3rd may be forced out at HP
+        if (input.specAction === 'GO') {
+          if (input.output?.base === 3) {
+            givenFO[1] = true
+          } else {
+            impossibleFO = true
+          }
+        }
+        break
+      case inputR3:
+        if (input.specAction === 'GO') {
+          if (input.output?.base === 4) {
+            givenFO[2] = true
+          } else {
+            impossibleFO = true
+          }
+        }
+        break
+      default:
+        if (input.specAction === 'GO') {
+          impossibleFO = true
+        }
+    }
+  })
+
+  if (givenFO[0] && !possibleFO[0]) {
+    validation = attachValidation(validation, 'Force out at 2nd is not possible, because the runner from 1st is not forced to advance')
+  }
+  if (givenFO[1] && !possibleFO[1]) {
+    validation = attachValidation(validation, 'Force out at 3rd is not possible, because the runner from 2nd is not forced to advance')
+  }
+  if (givenFO[2] && !possibleFO[2]) {
+    validation = attachValidation(validation, 'Force out at Home is not possible, because the runner from 3rd is not forced to advance')
+  }
+
+  if (impossibleFO) {
+    validation = attachValidation(validation, 'Force out is only possible at the closest base to advance on')
   }
 
   return validation
