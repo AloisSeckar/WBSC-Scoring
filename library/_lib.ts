@@ -62,5 +62,29 @@ export const libItems = [
   {
     file: 'out-if6',
     name: 'Infield fly - SS'
+  },
+  {
+    file: 'sb-single',
+    name: 'Stolen base - 2nd'
+  },
+  {
+    file: 'sb-double',
+    name: 'Stolen base - 2nd + 3rd'
+  },
+  {
+    file: 'sb-e2t',
+    name: 'Stolen base + throwing error by C'
+  },
+  {
+    file: 'cs-26',
+    name: 'Caught stealing - C to SS'
+  },
+  {
+    file: 'cs-25-o',
+    name: 'Caught stealing - C to 3B + O/2 to 2nd'
+  },
+  {
+    file: 'cs-2e6',
+    name: 'Caught stealing - C to SS (fielding error)'
   }
 ]

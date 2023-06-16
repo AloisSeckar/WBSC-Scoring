@@ -1,8 +1,9 @@
 v0.13
 ======
 - Features:
+- - Actions library - SB/CS situations
 - Validations: 
-- Bug-fixing: #100
+- Bug-fixing: #100, #104
 - Refactoring: 
 
 
