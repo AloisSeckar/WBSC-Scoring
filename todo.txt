@@ -2,7 +2,7 @@ v0.13
 ======
 - Features:
 - Validations: 
-- Bug-fixing: 
+- Bug-fixing: #100
 - Refactoring: 
 
 

@@ -418,6 +418,11 @@ function writeSituation (output: WBSCOutput) {
               ctx.fillText(sub, w1 + hOffset - 18, h1 - 33 + vOffset)
             }
           }
+
+          // maybe the runner got home on error?
+          if (output.errorTarget === 4) {
+            drawRunType(output.run)
+          }
         }
         break
       case 2:
@@ -513,6 +518,11 @@ function writeSituation (output: WBSCOutput) {
             ctx.font = 'bold 28px Verdana'
             ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset)
           }
+
+          // maybe the runner got home on error?
+          if (output.errorTarget === 4) {
+            drawRunType(output.run)
+          }
         }
         break
       case 3:
@@ -607,6 +617,11 @@ function writeSituation (output: WBSCOutput) {
             ctx.font = 'bold 28px Verdana'
             ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset)
           }
+
+          // maybe the runner got home on error?
+          if (output.errorTarget === 4) {
+            drawRunType(output.run)
+          }
         }
         break
       case 4:
@@ -644,32 +659,7 @@ function writeSituation (output: WBSCOutput) {
         }
 
         if (output.out === false) {
-          const runType = output.run
-          switch (runType) {
-            case 'e':
-              // the diamond is filled
-              ctx.beginPath()
-              ctx.moveTo(w2 + hOffset, h1 - h3 + vOffset)
-              ctx.lineTo(w1 - w3 + hOffset, h2 + vOffset)
-              ctx.lineTo(w2 + hOffset, h3 + vOffset)
-              ctx.lineTo(w3 + hOffset, h2 + vOffset)
-              ctx.lineTo(w2 + 3 + hOffset, h1 - h3 + 3 + vOffset)
-              ctx.closePath()
-              ctx.fill()
-              break
-            case 'tu':
-              // the diamond is crossed
-              ctx.beginPath()
-              ctx.moveTo(w2 + hOffset, h1 - h3 + vOffset)
-              ctx.lineTo(w2 + hOffset, h3 + vOffset)
-              ctx.moveTo(w1 - w3 + hOffset, h2 + vOffset)
-              ctx.lineTo(w3 + hOffset, h2 + vOffset)
-              ctx.stroke()
-              break
-            case 'ue':
-              // leave the diamond empty
-              break
-          }
+          drawRunType(output.run)
         }
         break
     }
@@ -679,6 +669,38 @@ function writeSituation (output: WBSCOutput) {
     }
   } else {
     createError('Canvas context not defined')
+  }
+}
+
+// run type - earned = filled, unearned = empty, team unearned = cross
+function drawRunType (runType: string | undefined) {
+  const ctx = useCanvasStore().ctx!
+  const hOffset = useCanvasStore().hOffset
+  const vOffset = useCanvasStore().vOffset
+  switch (runType) {
+    case 'e':
+      // the diamond is filled
+      ctx.beginPath()
+      ctx.moveTo(w2 + hOffset, h1 - h3 + vOffset)
+      ctx.lineTo(w1 - w3 + hOffset, h2 + vOffset)
+      ctx.lineTo(w2 + hOffset, h3 + vOffset)
+      ctx.lineTo(w3 + hOffset, h2 + vOffset)
+      ctx.lineTo(w2 + 3 + hOffset, h1 - h3 + 3 + vOffset)
+      ctx.closePath()
+      ctx.fill()
+      break
+    case 'tu':
+      // the diamond is crossed
+      ctx.beginPath()
+      ctx.moveTo(w2 + hOffset, h1 - h3 + vOffset)
+      ctx.lineTo(w2 + hOffset, h3 + vOffset)
+      ctx.moveTo(w1 - w3 + hOffset, h2 + vOffset)
+      ctx.lineTo(w3 + hOffset, h2 + vOffset)
+      ctx.stroke()
+      break
+    case 'ue':
+      // leave the diamond empty
+      break
   }
 }
 
