@@ -126,9 +126,9 @@ function setInputs (input: WBSCInput) {
   selectBaseAction.dispatchEvent(new Event('change'))
   const selectSpecAction = document.getElementById(group + inputSpecAction) as HTMLSelectElement
   selectSpecAction.value = input.specAction
+  selectSpecAction.dispatchEvent(new Event('change'))
   if (pos) {
     if (pos.match(/^\d/)) {
-      useEvalStore().setMaxPosItems(group, pos.length) // for some reason it is not triggering upon selecting spec value
       for (let i = 0; i < pos.length; i++) {
         let posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
         if (!posSelection) {
