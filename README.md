@@ -21,6 +21,7 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ### Version 0.13 (ongoing development)
 - Actions library - SB/CS situations
+- [BackstopJS](https://github.com/garris/BackstopJS) visual testing
 - Bug-fixing - GitHub issues #100, #104
 
 ### Version 0.12 (2023-06-15)
