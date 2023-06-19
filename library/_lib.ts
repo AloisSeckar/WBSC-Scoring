@@ -56,6 +56,18 @@ export const libItems = [
     name: 'Error - fielding by 1B, assited by 2B'
   },
   {
+    file: 'error-sh-e5t',
+    name: 'SH with throwing error by 3B'
+  },
+  {
+    file: 'error-sh-5e4',
+    name: 'SH with fielding error by 2B, assisted by 3B'
+  },
+  {
+    file: 'error-sf-e8',
+    name: 'SF with dropped fly error by CF'
+  },
+  {
     file: 'gdp-643',
     name: 'Grounded into DP - SS to 2B to 1B'
   },
