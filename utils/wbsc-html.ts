@@ -144,16 +144,16 @@ function renderRunTypeOptions () {
 function renderBatterActionOptions () {
   const options = []
   options.push('<option value=""></option>')
-  options.push('<option id="b-action-k" value="StrikeOut">Strike out</option>')
-  options.push('<option id="b-action-go" value="GroundOut">Ground out</option>')
-  options.push('<option id="b-action-fp" value="FlyOut">Fly out</option>')
-  options.push('<option id="b-action-hit" value="Hit">Hit</option>')
-  options.push('<option id="b-action-sac" value="Sacrifice">Sacrifice</option>')
-  options.push('<option id="b-action-fc" value="FC">Fielder\'s choice</option>')
-  options.push('<option id="b-action-e" value="Error">Error</option>')
-  options.push('<option id="b-action-adv" value="Advance">Advance to 1st</option>')
-  options.push('<option id="b-action-obr" value="OBR">Out by rule</option>')
-  options.push('<option id="b-action-other" value="Other">Other out</option>')
+  options.push('<option value="StrikeOut">Strike out</option>')
+  options.push('<option value="GroundOut">Ground out</option>')
+  options.push('<option value="FlyOut">Fly out</option>')
+  options.push('<option value="Hit">Hit</option>')
+  options.push('<option value="Sacrifice">Sacrifice</option>')
+  options.push('<option value="FC">Fielder\'s choice</option>')
+  options.push('<option value="Error">Error</option>')
+  options.push('<option value="Advance">Advance to 1st</option>')
+  options.push('<option value="OBR">Out by rule</option>')
+  options.push('<option value="Other">Other out</option>')
   return options
 }
 
