@@ -10,6 +10,7 @@
     "@nuxtjs/eslint-config-typescript": "12.0.0",
     "@nuxtjs/tailwindcss": "6.7.0",
     "@pinia/nuxt": "0.4.11",
+    "backstopjs": "6.2.2",
     "eslint": "8.42.0",
     "nuxt": "3.5.3",
     "pinia": "2.1.3",

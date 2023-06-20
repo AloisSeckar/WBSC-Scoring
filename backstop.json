@@ -28,6 +28,11 @@
       "label": "WBSC Scoring Homepage - click",
       "url": "https://wbsc-scoring.netlify.app/",
       "clickSelector": "#button-input-generate"
+    },
+    {
+      "label": "WBSC Scoring Homepage - base action",
+      "url": "https://wbsc-scoring.netlify.app/",
+      "onReadyScript": "puppet/scenarios/baseActionSelect.js"
     }
   ],
   "paths": {
