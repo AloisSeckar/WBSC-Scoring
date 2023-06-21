@@ -33,6 +33,11 @@
       "label": "WBSC Scoring Homepage - base action",
       "url": "https://wbsc-scoring.netlify.app/",
       "onReadyScript": "puppet/scenarios/baseActionSelect.js"
+    },
+    {
+      "label": "WBSC Scoring Homepage - import from lib",
+      "url": "https://wbsc-scoring.netlify.app/",
+      "onReadyScript": "puppet/scenarios/importFromLib.js"
     }
   ],
   "paths": {
