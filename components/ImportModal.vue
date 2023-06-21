@@ -14,10 +14,10 @@
           </option>
         </select>
         <div class="mx-auto">
-          <div :class="divButton" @click="importFromLib()">
+          <div id="lib-select" :class="divButton" @click="importFromLib()">
             Import
           </div>
-          <div :class="divButton" @click="close()">
+          <div id="lib-cancel" :class="divButton" @click="close()">
             Cancel
           </div>
         </div>
