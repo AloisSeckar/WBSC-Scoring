@@ -1,18 +1,18 @@
 {
-  "id": "backstop_default",
+  "id": "wbsc",
   "viewports": [
     {
-      "label": "phone",
+      "label": "s",
       "width": 320,
       "height": 480
     },
     {
-      "label": "tablet",
+      "label": "m",
       "width": 1024,
       "height": 768
     },
     {
-      "label": "screen",
+      "label": "l",
       "width": 1920,
       "height": 1080
     }
@@ -21,23 +21,23 @@
   "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
-      "label": "WBSC Scoring Homepage - visit",
-      "url": "https://wbsc-scoring.netlify.app/"
+      "label": "01-visit",
+      "url": "http://localhost:3000"
     },
     {
-      "label": "WBSC Scoring Homepage - click",
-      "url": "https://wbsc-scoring.netlify.app/",
+      "label": "02-generate",
+      "url": "http://localhost:3000",
       "clickSelector": "#button-input-generate"
     },
     {
-      "label": "WBSC Scoring Homepage - base action",
-      "url": "https://wbsc-scoring.netlify.app/",
-      "onReadyScript": "puppet/scenarios/baseActionSelect.js"
+      "label": "03-base-action",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/baseAction.js"
     },
     {
-      "label": "WBSC Scoring Homepage - import from lib",
-      "url": "https://wbsc-scoring.netlify.app/",
-      "onReadyScript": "puppet/scenarios/importFromLib.js"
+      "label": "04-import",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/import.js"
     }
   ],
   "paths": {
@@ -55,5 +55,6 @@
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 50,
   "debug": false,
-  "debugWindow": false
+  "debugWindow": false,
+  "fileNameTemplate": "{scenarioLabel}_{viewportLabel}"
 }
