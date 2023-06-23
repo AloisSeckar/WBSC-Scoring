@@ -1,4 +1,4 @@
-// BackstopJS test scenario 03
+// BackstopJS test scenario 005
 module.exports = async (page) => {
   // pick "base action = Strike out"
   await page.waitForSelector('#input-b-base-action')

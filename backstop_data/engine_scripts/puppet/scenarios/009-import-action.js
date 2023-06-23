@@ -1,4 +1,4 @@
-// BackstopJS test scenario 04
+// BackstopJS test scenario 007
 module.exports = async (page) => {
   // import from library
   await page.waitForSelector('#button-input-import-lib')

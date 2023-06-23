@@ -21,23 +21,46 @@
   "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
-      "label": "01-visit",
+      "label": "001-visit-index",
       "url": "http://localhost:3000"
     },
     {
-      "label": "02-generate",
+      "label": "002-visit-project",
+      "url": "http://localhost:3000/project"
+    },
+    {
+      "label": "003-visit-help",
+      "url": "http://localhost:3000/help"
+    },
+    {
+      "label": "004-generate-err",
       "url": "http://localhost:3000",
       "clickSelector": "#button-input-generate"
     },
     {
-      "label": "03-base-action",
+      "label": "005-generate-ok",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/baseAction.js"
+      "onReadyScript": "puppet/scenarios/005-generate-ok.js"
     },
     {
-      "label": "04-import",
+      "label": "006-no-inputs",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/import.js"
+      "onReadyScript": "puppet/scenarios/006-no-inputs.js"
+    },
+    {
+      "label": "007-all-inputs",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/007-all-inputs.js"
+    },
+    {
+      "label": "008-show-import",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/008-show-import.js"
+    },
+    {
+      "label": "009-import-action",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/009-import-action.js"
     }
   ],
   "paths": {
@@ -50,7 +73,8 @@
   "report": ["browser"],
   "engine": "puppeteer",
   "engineOptions": {
-    "args": ["--no-sandbox"]
+    "args": ["--no-sandbox"],
+    "headless": "new"
   },
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 50,
