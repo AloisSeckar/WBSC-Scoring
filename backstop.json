@@ -58,9 +58,14 @@
       "onReadyScript": "puppet/scenarios/008-show-import.js"
     },
     {
-      "label": "009-import-action",
+      "label": "009-action-63",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/009-import-action.js"
+      "onReadyScript": "puppet/scenarios/009-action-63.js"
+    },
+    {
+      "label": "010-action-f4",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/010-action-f4.js"
     }
   ],
   "paths": {
