@@ -53,19 +53,134 @@
       "onReadyScript": "puppet/scenarios/inputs-all.js"
     },
     {
-      "label": "show-import",
+      "label": "lib-show",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/show-import.js"
+      "clickSelector": "#button-input-import-lib"
     },
     {
       "label": "action-63",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/action-63.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js"
     },
     {
-      "label": "action-f4",
+      "label": "action-out-f4",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/action-f4.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-out-ff5",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-k-swinging",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-1b-lf",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-hr-rc-4rbi",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-sh-54",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-sf-8",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-fc-o6",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-fc-64",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-error-5",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-error-6t",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-error-7f",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-error-4e3",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-error-sh-e5t",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-error-sh-5e4",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-error-sf-e8",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-gdp-643",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-out-if6",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-sb-single",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-sb-double",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-sb-e2t",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-cs-26",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-cs-25-o",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-cs-2e6",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
     }
   ],
   "paths": {

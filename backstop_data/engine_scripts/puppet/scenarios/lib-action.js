@@ -1,4 +1,5 @@
-module.exports = async (page, action) => {
+module.exports = async (page, scenario) => {
+  const action = scenario.label.substring(7)
   // import from library
   await page.waitForSelector('#button-input-import-lib')
   await page.click('#button-input-import-lib')
@@ -8,5 +9,5 @@ module.exports = async (page, action) => {
   // select (and wait for generate action)
   await page.waitForSelector('#lib-select')
   await page.click('#lib-select')
-  await page.waitForTimeout(1000)
+  await page.waitForTimeout(400)
 }
