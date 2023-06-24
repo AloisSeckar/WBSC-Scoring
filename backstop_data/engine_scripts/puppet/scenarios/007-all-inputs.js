@@ -1,4 +1,3 @@
-// BackstopJS test scenario 007
 module.exports = async (page) => {
   await page.waitForSelector('#button-input-b')
   // render all batter's inputs
