@@ -21,51 +21,51 @@
   "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
-      "label": "001-visit-index",
+      "label": "visit-index",
       "url": "http://localhost:3000"
     },
     {
-      "label": "002-visit-project",
+      "label": "visit-project",
       "url": "http://localhost:3000/project"
     },
     {
-      "label": "003-visit-help",
+      "label": "visit-help",
       "url": "http://localhost:3000/help"
     },
     {
-      "label": "004-generate-err",
+      "label": "generate-err",
       "url": "http://localhost:3000",
       "clickSelector": "#button-input-generate"
     },
     {
-      "label": "005-generate-ok",
+      "label": "generate-ok",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/005-generate-ok.js"
+      "onReadyScript": "puppet/scenarios/generate-ok.js"
     },
     {
-      "label": "006-no-inputs",
+      "label": "inputs-none",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/006-no-inputs.js"
+      "onReadyScript": "puppet/scenarios/inputs-none.js"
     },
     {
-      "label": "007-all-inputs",
+      "label": "inputs-all",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/007-all-inputs.js"
+      "onReadyScript": "puppet/scenarios/inputs-all.js"
     },
     {
-      "label": "008-show-import",
+      "label": "show-import",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/008-show-import.js"
+      "onReadyScript": "puppet/scenarios/show-import.js"
     },
     {
-      "label": "009-action-63",
+      "label": "action-63",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/009-action-63.js"
+      "onReadyScript": "puppet/scenarios/action-63.js"
     },
     {
-      "label": "010-action-f4",
+      "label": "action-f4",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/010-action-f4.js"
+      "onReadyScript": "puppet/scenarios/action-f4.js"
     }
   ],
   "paths": {
