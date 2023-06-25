@@ -60,172 +60,240 @@
     {
       "label": "action-63",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-out-f4",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-out-ff5",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-k-swinging",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-1b-lf",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-2b-ll",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-2b-8gr",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-3b-rc",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-hr-8",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-hr-8ue",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-hr-8tu",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-hr-rl-i",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-hr-rc-4rbi",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-sh-54",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-sf-8",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-fc-o6",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-fc-64",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-error-5",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-error-6t",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-error-7f",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-error-4e3",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-1b-9-e9",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-1b-9-e9t",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-error-sh-e5t",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-error-sh-5e4",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-error-sf-e8",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-gdp-643",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-out-if6",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-sb-single",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-sb-double",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-sb-e2t",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-cs-26",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-cs-25-o",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
       "label": "action-cs-2e6",
       "url": "http://localhost:3000",
-      "onReadyScript": "puppet/scenarios/lib-action.js"
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     }
   ],
   "paths": {
