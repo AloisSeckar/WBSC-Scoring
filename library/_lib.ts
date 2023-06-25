@@ -20,6 +20,38 @@ export const libItems = [
     name: 'Single to LF'
   },
   {
+    file: '2b-ll',
+    name: 'Double to LL'
+  },
+  {
+    file: '2b-8gr',
+    name: 'Double to CF - ground rule'
+  },
+  {
+    file: '3b-rc',
+    name: 'Triple to RC'
+  },
+  {
+    file: 'hr-8',
+    name: 'Home run to CF'
+  },
+  {
+    file: 'hr-8ue',
+    name: 'Home run to CF - unearned'
+  },
+  {
+    file: 'hr-8tu',
+    name: 'Home run to CF - team unearned'
+  },
+  {
+    file: 'hr-rl-i',
+    name: 'Home run to RL - inside-the-park'
+  },
+  {
+    file: 'hr-rc-4rbi',
+    name: 'Home run to RC - 4 RBI'
+  },
+  {
     file: 'hr-rc-4rbi',
     name: 'Home run to RC - 4 RBI'
   },
@@ -54,6 +86,14 @@ export const libItems = [
   {
     file: 'error-4e3',
     name: 'Error - fielding by 1B, assited by 2B'
+  },
+  {
+    file: '1b-9-e9',
+    name: 'Single to RF + extra base fielding error'
+  },
+  {
+    file: '1b-9-e9t',
+    name: 'Single to RF + extra base throwing error'
   },
   {
     file: 'error-sh-e5t',

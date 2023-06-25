@@ -83,6 +83,41 @@
       "onReadyScript": "puppet/scenarios/lib-action.js"
     },
     {
+      "label": "action-2b-ll",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-2b-8gr",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-3b-rc",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-hr-8",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-hr-8ue",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-hr-8tu",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-hr-rl-i",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
       "label": "action-hr-rc-4rbi",
       "url": "http://localhost:3000",
       "onReadyScript": "puppet/scenarios/lib-action.js"
@@ -124,6 +159,16 @@
     },
     {
       "label": "action-error-4e3",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-1b-9-e9",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js"
+    },
+    {
+      "label": "action-1b-9-e9t",
       "url": "http://localhost:3000",
       "onReadyScript": "puppet/scenarios/lib-action.js"
     },
