@@ -79,7 +79,49 @@
       "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     },
     {
-      "label": "action-k-swinging",
+      "label": "action-ks",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-kl",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-ks-2",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-kl-23",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-ksb",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-ksr",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-ksi",
       "url": "http://localhost:3000",
       "onReadyScript": "puppet/scenarios/lib-action.js",
       "selectors": ["#canvas"],

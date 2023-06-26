@@ -12,8 +12,32 @@ export const libItems = [
     name: 'Fly out (foul) - 3B'
   },
   {
-    file: 'k-swinging',
+    file: 'ks',
     name: 'Strike out - swinging'
+  },
+  {
+    file: 'kl',
+    name: 'Strike out - looking'
+  },
+  {
+    file: 'ks-2',
+    name: 'Strike out (S) - tag by C'
+  },
+  {
+    file: 'kl-23',
+    name: 'Strike out (L) - C to 1B'
+  },
+  {
+    file: 'ksb',
+    name: 'Strike out (S) - bunt 3rd'
+  },
+  {
+    file: 'ksr',
+    name: 'Strike out (S) - by rule'
+  },
+  {
+    file: 'ksi',
+    name: 'Strike out (S) - interference'
   },
   {
     file: '1b-lf',
