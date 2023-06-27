@@ -40,6 +40,30 @@ export const libItems = [
     name: 'Strike out (S) - interference'
   },
   {
+    file: 'ks-wp',
+    name: 'Strike out (S) + WP'
+  },
+  {
+    file: 'ks-e2t',
+    name: 'Strike out (S) + E2T'
+  },
+  {
+    file: 'ks-2e3',
+    name: 'Strike out (S) + 2E3'
+  },
+  {
+    file: 'kso',
+    name: 'Strike out (S) + C to P out at HP'
+  },
+  {
+    file: 'ksfc',
+    name: 'Strike out (S) + FC C to 3B'
+  },
+  {
+    file: 'kl-pb',
+    name: 'Strike out (L) + PB'
+  },
+  {
     file: '1b-lf',
     name: 'Single to LF'
   },
