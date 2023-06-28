@@ -378,6 +378,20 @@
       "onReadyScript": "puppet/scenarios/lib-action.js",
       "selectors": ["#canvas"],
       "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-a-13",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-lt",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
     }
   ],
   "paths": {

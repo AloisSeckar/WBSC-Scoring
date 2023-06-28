@@ -186,5 +186,13 @@ export const libItems = [
   {
     file: 'cs-2e6',
     name: 'Caught stealing - C to SS (fielding error)'
+  },
+  {
+    file: 'a-13',
+    name: 'Appeal play - P to 1B (batter)'
+  },
+  {
+    file: 'lt',
+    name: 'Lost turn at bat'
   }
 ]
