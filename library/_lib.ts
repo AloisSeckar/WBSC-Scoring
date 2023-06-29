@@ -4,12 +4,20 @@ export const libItems = [
     name: 'Ground out - SS to 1B'
   },
   {
+    file: 'out-54b',
+    name: 'Ground out - 3B to 2B, bunt'
+  },
+  {
     file: 'out-f4',
     name: 'Fly out - 2B'
   },
   {
     file: 'out-ff5',
     name: 'Fly out (foul) - 3B'
+  },
+  {
+    file: 'out-ff2b',
+    name: 'Fly out (foul) - C, bunt'
   },
   {
     file: 'ks',
@@ -66,6 +74,10 @@ export const libItems = [
   {
     file: '1b-lf',
     name: 'Single to LF'
+  },
+  {
+    file: '1b-1b',
+    name: 'Single to P, bunt'
   },
   {
     file: '2b-ll',
@@ -158,6 +170,10 @@ export const libItems = [
   {
     file: 'gdp-643',
     name: 'Grounded into DP - SS to 2B to 1B'
+  },
+  {
+    file: 'gdp-64e3',
+    name: 'Grounded into DP - SS to 2B + 1B fielding error'
   },
   {
     file: 'out-if6',

@@ -58,7 +58,14 @@
       "clickSelector": "#button-input-import-lib"
     },
     {
-      "label": "action-63",
+      "label": "action-out-63",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-out-54b",
       "url": "http://localhost:3000",
       "onReadyScript": "puppet/scenarios/lib-action.js",
       "selectors": ["#canvas"],
@@ -73,6 +80,13 @@
     },
     {
       "label": "action-out-ff5",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-out-ff2b",
       "url": "http://localhost:3000",
       "onReadyScript": "puppet/scenarios/lib-action.js",
       "selectors": ["#canvas"],
@@ -171,6 +185,13 @@
     },
     {
       "label": "action-1b-lf",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-1b-1b",
       "url": "http://localhost:3000",
       "onReadyScript": "puppet/scenarios/lib-action.js",
       "selectors": ["#canvas"],
@@ -325,6 +346,13 @@
     },
     {
       "label": "action-gdp-643",
+      "url": "http://localhost:3000",
+      "onReadyScript": "puppet/scenarios/lib-action.js",
+      "selectors": ["#canvas"],
+      "viewports": [ { "label": "m", "width": 1024, "height": 768 } ]
+    },
+    {
+      "label": "action-gdp-64e3",
       "url": "http://localhost:3000",
       "onReadyScript": "puppet/scenarios/lib-action.js",
       "selectors": ["#canvas"],
