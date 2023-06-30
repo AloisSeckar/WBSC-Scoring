@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "test": "backstop test --config=backstop.config.js",
+    "test-approve": "backstop approve"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "12.0.0",
