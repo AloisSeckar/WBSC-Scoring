@@ -28,7 +28,7 @@ function getImportScenarioCfg () {
 
 function getImportScenarios () {
   const scenarios = []
-  const library = require('./public/json/_library.json')
+  const library = require('./assets/json/library.json')
   library.forEach(json => scenarios.push({ label: 'action-' + json.file, ...getImportScenarioCfg() }))
   return scenarios
 }
