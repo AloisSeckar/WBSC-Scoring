@@ -80,6 +80,10 @@
     "name": "Single to P, bunt"
   },
   {
+    "file": "1b-9-916",
+    "name": "Single to RF + 916 out at 2nd"
+  },
+  {
     "file": "2b-ll",
     "name": "Double to LL"
   },
@@ -120,8 +124,12 @@
     "name": "Sacrifice fly to CF"
   },
   {
-    "file": "fc-o6",
+    "file": "fc-o6-r1-64",
     "name": "Fielder's choice - occuped - SS to 2B"
+  },
+  {
+    "file": "fc-o3-r3-32",
+    "name": "Fielder's choice - occuped - 1B to C"
   },
   {
     "file": "fc-64",
@@ -150,6 +158,10 @@
   {
     "file": "1b-9-e9t",
     "name": "Single to RF + extra base throwing error"
+  },
+  {
+    "file": "out-31-r1-e3t",
+    "name": "Ground out - 1B to P + runner from 1st scores (FC + e3T)"
   },
   {
     "file": "error-sh-e5t",
@@ -192,12 +204,16 @@
     "name": "Caught stealing - C to SS"
   },
   {
-    "file": "cs-25-o",
+    "file": "cs-2e6",
+    "name": "Caught stealing - C to SS (fielding error)"
+  },
+  {
+    "file": "cs-25-r1-o",
     "name": "Caught stealing - C to 3B + O/2 to 2nd"
   },
   {
-    "file": "cs-2e6",
-    "name": "Caught stealing - C to SS (fielding error)"
+    "file": "cs-2e6-r3-o",
+    "name": "Caught stealing - C to 2B (field. err.) + O/2 to HP"
   },
   {
     "file": "a-13",
