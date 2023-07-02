@@ -124,9 +124,11 @@ function setInputs (input: WBSCInput) {
   const selectBaseAction = document.getElementById(group + inputBaseAction) as HTMLSelectElement
   selectBaseAction.value = input.baseAction
   selectBaseAction.dispatchEvent(new Event('change'))
+
   const selectSpecAction = document.getElementById(group + inputSpecAction) as HTMLSelectElement
   selectSpecAction.value = input.specAction
   selectSpecAction.dispatchEvent(new Event('change'))
+
   if (pos) {
     if (pos.match(/^\d/)) {
       for (let i = 0; i < pos.length; i++) {
@@ -145,14 +147,18 @@ function setInputs (input: WBSCInput) {
       hitSelection.value = pos
     }
   }
+
   if (group !== inputB) {
     const selectBase = document.getElementById(group + inputBase) as HTMLSelectElement
     selectBase.value = input.base?.toString()
   }
+
+  const selectRuntype = document.getElementById(group + inputRuntype) as HTMLInputElement
+  selectRuntype.disabled = input.base < 4 && !input.specAction.includes('HR')
   if (input.runtype) {
-    const selectRuntype = document.getElementById(group + inputRuntype) as HTMLSelectElement
     selectRuntype.value = input.runtype
   }
+
   if (group === inputR1 || group === inputR2) {
     const checkTie = document.getElementById(group + inputTie) as HTMLInputElement
     checkTie.checked = input.tie
