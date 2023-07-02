@@ -45,12 +45,16 @@ function processAction () {
   const bInput = getInput(inputB)
   let bErrorTarget = 0
   let bRunType = 'e'
-  if (b1Input && b1Input.specAction === 'se0') {
-    bErrorTarget = b1Input.base
-    bRunType = b1Input.runtype || 'e'
-    b1Input = null
-  } else if (b1Input) {
-    inputs.push(b1Input)
+  if (b1Input) {
+    // special case 1 - extra advance on error
+    // special case 2 - multiple-base hit with later appeal play on some of the runners
+    if (b1Input.specAction === 'se0' || b1Input.specAction === 'oc') {
+      bErrorTarget = b1Input.base
+      bRunType = b1Input.runtype || 'e'
+      b1Input = null
+    } else {
+      inputs.push(b1Input)
+    }
   }
   if (bInput) {
     inputs.push(bInput)

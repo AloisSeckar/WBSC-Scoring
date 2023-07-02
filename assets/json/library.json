@@ -208,6 +208,10 @@
     "name": "Appeal play - P to 1B (batter)"
   },
   {
+    "file": "o-a",
+    "name": "Appeal play - hit (HR) + P to 3B (runner)"
+  },
+  {
     "file": "lt",
     "name": "Lost turn at bat"
   }

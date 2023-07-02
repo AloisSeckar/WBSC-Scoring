@@ -232,6 +232,7 @@ function changeRunnerSpecificAction (group: string) {
     case 'BK':
     case 'IP':
     case 'SB':
+    case 'oc':
     case 'se0':
     case 'se1':
     case 'se2':

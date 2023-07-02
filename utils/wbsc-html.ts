@@ -357,6 +357,10 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push('<optgroup label="Runner is safe">')
       options.push('<option value="T">On the throw</option>')
       options.push('<option value="O/">Indifference</option>')
+      if ((!group.includes('-r'))) {
+        // only for running batter, not the runners
+        options.push('<option value="oc">Occupied (hit with appeal play)</option>')
+      }
       options.push('</optgroup>')
       break
     case 'err':
