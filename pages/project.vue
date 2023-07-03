@@ -14,14 +14,15 @@
         For more information about how to use the program, see <a href="help.html">User manual</a>.
       </p>
       <p>
-        The project is maintained and developed voluntarily by a dedicated scorer who happen to know a
+        The project is maintained and developed voluntarily by a dedicated scorer who happens to know a
         thing or two about programming as well. However, it will take long before it reaches ideal
-        shape, if ever. Shall you encounter any incorrect or odd behaviour or something that is missing
+        shape, if ever. Shall you encounter any incorrect or odd behaviur or something that is missing
         and should be also included, don't hesitate to contact the author - either directly via
-        <a href="mailto:ellrohir@seznam.cz">email</a> or you can use
+        <a href="mailto:alois.seckar@gmail.com">my email</a> or you can use
         <a href="https://github.com/AloisSeckar/WBSC-Scoring/issues">GitHub interface</a> for creating
         new report/question/suggestion directly there. If you do so, try to describe your issue, so it
-        can be addressed. Screenshots are useful to see what is happening.
+        can be addressed. Screenshots are useful to see what is happening. You may want to check our
+        <a href="/report">reporting bug guide</a> for details.
       </p>
       <p>
         The program is still evolving. Visit <a href="project.html#todo">"TO-DO" section</a> in Project
@@ -66,13 +67,13 @@
         They may be included in some future releases.
       </p>
       <ul class="list-disc">
-        <li>It is not possible to specify actions leading to runners appearing on bases (except TIE). The actuall action is always replaced with <strong><span style="color: red">red asterisk</span></strong>.</li>
-        <li>It is not possible to specify batting order of the batter and previous runners. Output always starts from 1.</li>
+        <li>It is not possible to specify actions leading to runners appearing on bases (except TIE). The actuall action is always replaced with a <strong><span style="color: red">red asterisk</span></strong>.</li>
+        <li>It is not possible to specify the batting order of the batter and previous runners. Output always starts from 1.</li>
         <li>It is not possible to get different number of Ks and BBs than 1</li>
-        <li>Actions are limited to up to 3 assists (followed by an out or an error). This is mainly to aviod practical problems with rendering more numbers.</li>
+        <li>Actions are limited to up to 3 assists (followed by an out or an error). This is mainly to avoid practical problems with rendering more numbers.</li>
         <li>No 10th player (additional outfielder) for slowpitch. However, it is quite probable this will be eventually added.</li>
         <li>Not covering possible Baseball5 features. This is because Baseball5 system is very different and non-compatible. If you're interested, here is <a href="https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf">the official WBSC document</a> covering the Baseball5 scoring system.</li>
-        <li>Not covering substitutions and statistic outputs. It doesn't quite make sense to include them into the app mechanic. However, it is planned to add dedicated static articles covering these two topics.</li>
+        <li>Not covering substitutions and statistical outputs. It doesn't quite make sense to include them into the app mechanic. However, it is planned to add dedicated static articles covering these two topics.</li>
       </ul>
     </div>
 

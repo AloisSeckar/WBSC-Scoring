@@ -5,9 +5,9 @@
     <div class="mb-2">
       <p>
         The basic idea is pretty simple - you build up your input and when you hit "Generate action", the
-        outcome will be displayed in "Output" section. It is designed to look like (blue) WBSC paper
+        outcome will be displayed in the "Output" section. It is designed to look like (blue) WBSC paper
         scoresheet to give the most precise experience of how similar action should be written down
-        watching the game on the field. Couple of validations run above the input to avoid impossible
+        watching the game on the field. A couple of validations run above the input to avoid impossible
         plays or at least make them less probable.
       </p>
       <p>
@@ -20,15 +20,14 @@
           same pitch (or the same time between pitches). You cannot follow the flow of a game.
         </li>
         <li>
-          Due to the above runner being placed on base is indicated with red asterisk mark. This is no
-          official scoring abbreviation, it is just to indicate there was SOME play, but we don't cover
-          it and don't care about it. The only exception from this is a potential tiebreaker (TIE)
-          run.
+          Due to the above runner being placed on base is indicated with a <span style="color: red">red asterisk</span>
+          mark. This is no official scoring abbreviation, it is just to indicate there was SOME play, but we don't cover
+          it and don't care about it. The only exception from this is a potential tiebreaker (TIE) run, because this is
+          an arbitrary action.
         </li>
         <li>
-          Batting order always starts from 1. Depending on number of players involved, the output can
-          show players 1-4. It is neither possible to select different initial order, nor skip some
-          players in between.
+          Batting order always starts from 1. Depending on the  number of players involved, the output can show
+          players 1-4. It is neither possible to select different initial order, nor skip some players in between.
         </li>
       </ul>
     </div>
@@ -41,7 +40,7 @@
       <img src="/01-basic-input.png" width="800" height="auto">
 
       <p>
-        Underneath there is basic output form consisting of empty scoresheet element and a "Download
+        Underneath there is basic output form consisting of empty scoresheet element and the "Download
         image" button:
       </p>
       <img src="/02-basic-output.png" width="300" height="auto">
@@ -54,13 +53,13 @@
         that ends up safe at home base. This option will be covered later in more advanced topics.
       </p>
       <p>
-        You start by picking an option from first <strong>Action</strong> combo-box containing groups of
+        You start by picking an option from the first <strong>Action</strong> combo-box containing groups of
         possible situations. Internally this is called a "base action":
       </p>
       <img src="/03-base-action.png" width="200" height="auto">
 
       <p>
-        Based on the selection the second combo-box become active and being filled with concrete plays.
+        Based on the selection the second combo-box becomes active and being filled with concrete plays.
         This is called a "specific action". The options are grouped into "safe" and "out" situations:
       </p>
       <img src="/04-specific-action.png" width="400" height="auto">
@@ -75,15 +74,15 @@
       </p>
       <img src="/05-involved.png" width="auto" height="50">
 
-      <p>Once you are ready to render the output of your play, hit blue "Generate action" button:</p>
+      <p>Once you are ready to render the output of your play, hit the blue "Generate action" button:</p>
       <img src="/06-generate.png" width="auto" height="50">
 
-      <p>Outcome will be printed into scoresheet:</p>
+      <p>The outcome will be printed into the scoresheet:</p>
       <img src="/07-result.png" width="300" height="auto">
 
       <p>
         You can download the result to preserve it either by right clicking it and pick up from the
-        context menu or by green "Download image" button:
+        context menu or by the green "Download image" button:
       </p>
       <img src="/08-download.png" width="auto" height="50">
     </div>
@@ -101,7 +100,7 @@
         The buttons are labeled "B" for the batter and "R1-R3" for the runners starting at respective
         base. When any of the buttons is selected, it has red color and "-" before the label.
         Corresponding set of inputs is rendered. Buttons that are green with "+" before the label mean
-        that position is currently not used. Clicking on any of the buttons will alter its state. Eg.
+        that position is currently not used. Clicking on any of the buttons will alter its state. E.g.
         clicking on "+R1" will result into:
       </p>
       <img src="/10-runner-input.png" width="800" height="auto">
@@ -121,16 +120,16 @@
         tiebreaker runners).
       </p>
       <p>
-        From the "Base" combo-box you pick the base, that runner gains with current action. Obviously, the
-        options are adjusted depending on which base we are currently on. If you need runner to stay on
-        current base, you don't do it here, but instead you pick "No advance" from "Action" menu.
+        From the "Base" combo-box you pick the base that runner gains with current action. Obviously, the
+        options are adjusted depending on which base we are currently on. If you need a runner to stay on
+        the current base, you don't do it here, but instead you pick "No advance" from the "Action" menu.
       </p>
       <p>
-        If play that results into safe situation at home plate is selected, combo-box "Run" becomes
+        If a play resulting into a safe situation at home plate is selected, combo-box "Run" becomes
         active. Then you pick from "Earned" / "Unearned" / "Team unearned" options. This feature is
-        here just to show differences between each variant. During the game it depends on broader
-        context, but here we always score just one separate action. "Run" is also possible for the
-        batter, but only for "Hit - Home run" plays.
+        here just to show differences between each variant. During the game it depends on a broader
+        context, but here we always score just one separate action. "Run" is also possible directly for
+        the batter, but only for "Hit - Home run" plays.
       </p>
       <img src="/11-type-of-run.png" width="auto" height="100">
     </div>
@@ -153,8 +152,8 @@
       <p>
         For the batter there can be up to 3 extra inputs (one situation at each base). If you decide to
         remove them again, you have to start from the last (only the last "-" button is enabled). For
-        the runners, the number of possible extra inputs logically decreases as the home plate getting
-        near (0-2 for 1st base, 0-1 for 2nd base and none for 3rd base, as the first action already
+        the runners, the number of possible extra inputs logically decreases as the home plate is getting
+        closer (0-2 for 1st base, 0-1 for 2nd base and none for 3rd base, as the first action already
         moved that runner home). The selection of actions is naturally different for the batter
         (becoming batter runner) and the other runners. The other functions are the same.
       </p>
@@ -164,7 +163,7 @@
 
     <div class="mb-2">
       <p>
-        You can use yellow "Clear" button to quickly reset inputs into initial state with simple batter's
+        You can use the yellow "Clear" button to quickly reset inputs into initial state with simple batter's
         action input only and everything cleared.
       </p>
       <img src="/15-clear.png" width="auto" height="50">
@@ -174,19 +173,27 @@
 
     <div class="mb-2">
       <p>
-        You can use purple "Export selection" button to save the current selection and store it for later re-use. The file will be exported in <strong>.json</strong> format. Inputs can be exported anytime regardless the validity.
+        You can use purple "Export selection" button to save the current selection and store it for later re-use.
+        The file will be exported in <strong>.json</strong> format. Inputs can be exported anytime regardless of
+        the validity.
       </p>
       <img src="/16-export.png" width="auto" height="50">
     </div>
     <div class="mb-2">
       <p>
-        Using the purple "Import selection" button you can upload previously exported <strong>.json</strong> file. Providing it is a valid file, it will be parsed and transferred into corresponding input selection and the situation will be re-generated. Validation error may be triggered.
+        Using the purple "Import selection" button you can upload a previously exported <strong>.json</strong> file.
+        Providing it is a valid file, it will be parsed and transferred into corresponding input selection and
+        the situation will be re-generated. Validation error may be triggered.
       </p>
       <img src="/17-import.png" width="auto" height="50">
     </div>
     <div class="mb-2">
       <p>
-        With the last purple "Import from library" button you can pick from our ever-growing collection of prepared situations. They are stored <strong>.json</strong> files, similar to custom user inputs/outputs. Upon selection it will be parsed and transferred into corresponding input selection and the situation will be re-generated. This feature is meant to speed up the process of generating new images, if needed, and also to help new users to better understand what is possible to achieve.
+        With the last purple "Import from library" button you can pick from our ever-growing collection of prepared
+        situations. They are stored <strong>.json</strong> files, like the custom user inputs/outputs. Upon selection
+        it will be parsed and transferred into corresponding input selection and the situation will be re-generated.
+        This feature is meant to speed up the process of generating new images, if needed, and to help new users
+        to better understand what is possible to achieve.
       </p>
       <img src="/18-import-lib.png" width="auto" height="50">
     </div>

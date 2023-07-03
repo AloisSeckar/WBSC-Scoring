@@ -27,10 +27,10 @@
 
     <div class="mt-2 text-justify">
       <p>
-        This JavaScript-based tool provides visualisation for <b><a href="https://www.wbsc.org/">WBSC</a>
+        This JavaScript-based tool provides visualization for <b><a href="https://www.wbsc.org/">WBSC</a>
           Scoring System</b> to help new scorers adopting it. Use GUI elements to create a baseball/softball
-        game situation, then click <strong>'Generate action'</strong> button to see how it shall be scored.
-        If you want to store the result, use <strong>'Download'</strong> button. If something is wrong,
+        game situation, then click the <strong>'Generate action'</strong> button to see how it shall be scored.
+        If you want to store the result, use the <strong>'Download'</strong> button. If something is wrong,
         feel free to <a href="/report">report it</a>.
       </p>
     </div>
@@ -55,7 +55,7 @@
         appreciated :)
       </p>
       <p>
-        Also if you happen to like this thing, please spread your word about it to help it reach other
+        Also, if you happen to like this thing, please spread your word about it to help it reach other
         potential users.
       </p>
     </div>
