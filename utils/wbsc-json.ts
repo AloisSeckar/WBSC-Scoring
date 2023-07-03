@@ -130,6 +130,12 @@ function setInputs (input: WBSCInput) {
   selectSpecAction.dispatchEvent(new Event('change'))
 
   if (pos) {
+    // for some inputs there are less pos selection items then initially generated
+    let itemsCreated = document.getElementById(group)!.getElementsByClassName(classWbscPos).length
+    while (itemsCreated > pos.length) {
+      unRenderPosSelectItem(group)
+      itemsCreated--
+    }
     if (pos.match(/^\d/)) {
       for (let i = 0; i < pos.length; i++) {
         let posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement

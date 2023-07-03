@@ -599,5 +599,6 @@ function clearJSONInput () {
 }
 
 export {
-  renderActionButtons, renderInputs, clearInputs, renderPosSelectItem, getPosSelectionSelect, disableExtraInput, getEmptyInput, getEmptyOutput
+  renderActionButtons, renderInputs, clearInputs, renderPosSelectItem, unRenderPosSelectItem,
+  getPosSelectionSelect, disableExtraInput, getEmptyInput, getEmptyOutput
 }
