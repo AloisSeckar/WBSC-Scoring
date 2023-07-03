@@ -4,6 +4,14 @@
     "name": "Ground out - SS to 1B"
   },
   {
+    "file": "out-3",
+    "name": "Ground out - 1B, unassisted"
+  },
+  {
+    "file": "out-143",
+    "name": "Ground out - P to 2B to 1B"
+  },
+  {
     "file": "out-54b",
     "name": "Ground out - 3B to 2B, bunt"
   },
@@ -116,14 +124,6 @@
     "name": "Home run to RC - 4 RBI"
   },
   {
-    "file": "sh-54",
-    "name": "Sacrifice hit - 3B to 2B"
-  },
-  {
-    "file": "sf-8",
-    "name": "Sacrifice fly to CF"
-  },
-  {
     "file": "fc-o6-r1-64",
     "name": "Fielder's choice - occuped - SS to 2B"
   },
@@ -164,6 +164,10 @@
     "name": "Ground out - 1B to P + runner from 1st scores (FC + e3T)"
   },
   {
+    "file": "sh-54",
+    "name": "Sacrifice hit - 3B to 2B"
+  },
+  {
     "file": "error-sh-e5t",
     "name": "SH with throwing error by 3B"
   },
@@ -172,8 +176,20 @@
     "name": "SH with fielding error by 2B, assisted by 3B"
   },
   {
-    "file": "error-sf-e8",
+    "file": "sf-8",
+    "name": "Sacrifice fly to CF"
+  },
+  {
+    "file": "fsf-7",
+    "name": "Sacrifice fly to LF in foul territory"
+  },
+  {
+    "file": "sf-e8",
     "name": "SF with dropped fly error by CF"
+  },
+  {
+    "file": "sf-o8",
+    "name": "SF with forced out - CF to SS at 2nd"
   },
   {
     "file": "gdp-643",
