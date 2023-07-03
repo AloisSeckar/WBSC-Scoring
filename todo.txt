@@ -3,6 +3,7 @@ v0.13
 - Features:
 - - Actions library - SB/CS situations
 - - BackstopJS visual testing
+- - New "Report bug" page
 - Validations: 
 - Bug-fixing: #100, #104
 - Refactoring: 
