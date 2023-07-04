@@ -204,6 +204,54 @@
     "name": "Infield fly - SS"
   },
   {
+    "file": "wp-r1",
+    "name": "Wild pitch - runner from 1st"
+  },
+  {
+    "file": "wp-r1-r2",
+    "name": "Wild pitch - runner from 1st and 2nd"
+  },
+  {
+    "file": "wp-r1-r2-r3",
+    "name": "Wild pitch - runner from 1st, 2nd and 3rd"
+  },
+  {
+    "file": "pb-r1",
+    "name": "Passed ball - runner from 1st"
+  },
+  {
+    "file": "pb-r1-r2",
+    "name": "Passed ball - runner from 1st and 2nd"
+  },
+  {
+    "file": "pb-r1-r2-r3",
+    "name": "Passed ball - runner from 1st, 2nd and 3rd"
+  },
+  {
+    "file": "bk-r1",
+    "name": "Balk - runner from 1st"
+  },
+  {
+    "file": "bk-r1-r2",
+    "name": "Balk - runner from 1st and 2nd"
+  },
+  {
+    "file": "bk-r1-r2-r3",
+    "name": "Balk - runner from 1st, 2nd and 3rd"
+  },
+  {
+    "file": "ip-r1",
+    "name": "Illegal pitch - runner from 1st"
+  },
+  {
+    "file": "ip-r1-r2",
+    "name": "Illegal pitch - runner from 1st and 2nd"
+  },
+  {
+    "file": "ip-r1-r2-r3",
+    "name": "Illegal pitch - runner from 1st, 2nd and 3rd"
+  },
+  {
     "file": "sb-single",
     "name": "Stolen base - 2nd"
   },
