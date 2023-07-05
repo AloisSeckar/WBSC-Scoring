@@ -280,6 +280,74 @@
     "name": "Caught stealing - C to 2B (field. err.) + O/2 to HP"
   },
   {
+    "file": "obr-bob",
+    "name": "Out by rule - Batter Out of the Box"
+  },
+  {
+    "file": "obr-bia",
+    "name": "Out by rule - Batter's Illegal Action"
+  },
+  {
+    "file": "obr-tbb",
+    "name": "Out by rule - Touched by Batted Ball"
+  },
+  {
+    "file": "obr-bic",
+    "name": "Out by rule - Batter Interfering with the Catcher"
+  },
+  {
+    "file": "obr-boo",
+    "name": "Out by rule - Batting Out of Order"
+  },
+  {
+    "file": "obr-rta",
+    "name": "Out by rule - Refusing To Advance"
+  },
+  {
+    "file": "obr-dif",
+    "name": "Out by rule - Dropped Infield Fly"
+  },
+  {
+    "file": "obr-bin",
+    "name": "Out by rule - Batter Interference"
+  },
+  {
+    "file": "obr-oin",
+    "name": "Out by rule - Other Interference"
+  },
+  {
+    "file": "obr-rta-r3",
+    "name": "Out by rule - Refusing to advance (R3)"
+  },
+  {
+    "file": "obr-hbb-r1",
+    "name": "Out by rule - Hit by fair Batted Ball (R1)"
+  },
+  {
+    "file": "obr-rol-r1",
+    "name": "Out by rule - Running Out of Line (R1)"
+  },
+  {
+    "file": "obr-ppr-r1",
+    "name": "Out by rule - Passing a Preceding Runner (R1)"
+  },
+  {
+    "file": "obr-rro-r2",
+    "name": "Out by rule - Running the bases in Reverse Order (R2)"
+  },
+  {
+    "file": "obr-rin-r1",
+    "name": "Out by rule - Runner Interference (R1)"
+  },
+  {
+    "file": "obr-rle-r1",
+    "name": "Out by rule - Runner Left Early (R1)"
+  },
+  {
+    "file": "obr-rhe-r3",
+    "name": "Out by rule - Removal of Helmet (R3)"
+  },
+  {
     "file": "a-13",
     "name": "Appeal play - P to 1B (batter)"
   },
