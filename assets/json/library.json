@@ -152,6 +152,18 @@
     "name": "Error - fielding by 1B, assited by 2B"
   },
   {
+    "file": "error-int",
+    "name": "Error - catcher's interference"
+  },
+  {
+    "file": "error-ob3",
+    "name": "Error - obstruction by 1B (B)"
+  },
+  {
+    "file": "error-ob4",
+    "name": "Error - obstruction by 2B (R1)"
+  },
+  {
     "file": "1b-9-e9",
     "name": "Single to RF + extra base fielding error"
   },
