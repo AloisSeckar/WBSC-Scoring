@@ -23,7 +23,8 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Actions library - SB/CS situations
 - [BackstopJS](https://github.com/garris/BackstopJS) visual testing
 - New "Report bug" page
-- Bug-fixing - GitHub issues #100, #104
+- Validations - GitHub issues #109, #110
+- Bug-fixing - GitHub issues #100, #104 + various others unreported
 
 ### Version 0.12 (2023-06-15)
 - New actions supported: new set of OBRs according to 2019 manual, KS + FC, KL + FC
