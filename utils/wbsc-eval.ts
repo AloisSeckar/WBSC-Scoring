@@ -594,7 +594,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'CSN':
     case 'CSNT':
       output.na = true
-      output.base -= 1
+      output.base = origBase
       // falls through
     case 'CSE':
     case 'CSET':
@@ -630,7 +630,6 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'ENT':
     case 'ENF':
       output.na = true
-      output.base -= 1
       // falls through
     case 'EF':
     case 'ET':
@@ -641,8 +640,12 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
       if (!action.endsWith('F')) {
         output.text1 += action.substring(action.length - 1)
       }
-      output.base = output.origBase + 1
-      output.errorTarget = input.base
+      if (action.includes('N')) {
+        output.base = output.errorTarget = origBase
+      } else {
+        output.base = output.origBase + 1
+        output.errorTarget = input.base
+      }
       break
     case 'EDF':
     case 'EDL':
