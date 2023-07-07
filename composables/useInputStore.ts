@@ -30,6 +30,7 @@ export type WBSCInput = {
     group: string,
     baseAction: string,
     specAction: string,
+    origBase: number,
     base: number,
     tie: boolean,
     pos?: string,

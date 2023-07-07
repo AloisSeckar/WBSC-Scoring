@@ -69,7 +69,7 @@ function processAction () {
   // runner 3
   if (r3Input) {
     playersInvolved += 1
-    r3Input.output = processInput(r3Input, playersInvolved, 3)
+    r3Input.output = processInput(r3Input, playersInvolved)
     r3Input.output.previousAdvance = true
   }
 
@@ -79,11 +79,11 @@ function processAction () {
   }
   const extraR2Input = []
   if (r2aInput) {
-    r2aInput.output = processInput(r2aInput, playersInvolved, 3)
+    r2aInput.output = processInput(r2aInput, playersInvolved)
     extraR2Input.push(r2aInput)
   }
   if (r2Input) {
-    r2Input.output = processInput(r2Input, playersInvolved, 2)
+    r2Input.output = processInput(r2Input, playersInvolved)
     r2Input.output.previousAdvance = true
   }
 
@@ -93,16 +93,18 @@ function processAction () {
   }
   const extraR1Input = []
   if (r1bInput) {
-    r1bInput.output = processInput(r1bInput, playersInvolved, 3)
+    r1bInput.output = processInput(r1bInput, playersInvolved)
     extraR1Input.push(r1bInput)
   }
   if (r1aInput) {
-    const r1orig = r1Input && r1Input.base ? r1Input.base : 2
-    r1aInput.output = processInput(r1aInput, playersInvolved, r1orig)
+    if (r1Input && r1Input.base) {
+      r1aInput.origBase = r1Input.base
+    }
+    r1aInput.output = processInput(r1aInput, playersInvolved)
     extraR1Input.push(r1aInput)
   }
   if (r1Input) {
-    r1Input.output = processInput(r1Input, playersInvolved, 1)
+    r1Input.output = processInput(r1Input, playersInvolved)
     r1Input.output.previousAdvance = true
   }
 
@@ -112,21 +114,25 @@ function processAction () {
   }
   const extraBatterInput = []
   if (b3Input) {
-    b3Input.output = processInput(b3Input, playersInvolved, 3)
+    b3Input.output = processInput(b3Input, playersInvolved)
     extraBatterInput.push(b3Input)
   }
   if (b2Input) {
-    const b2orig = b1Input && b1Input.base ? b1Input.base : 2
-    b2Input.output = processInput(b2Input, playersInvolved, b2orig)
+    if (b1Input && b1Input.base) {
+      b2Input.origBase = b1Input.base
+    }
+    b2Input.output = processInput(b2Input, playersInvolved)
     extraBatterInput.push(b2Input)
   }
   if (b1Input) {
-    const b1orig = bInput && bInput.base ? bInput.base : 1
-    b1Input.output = processInput(b1Input, playersInvolved, b1orig)
+    if (bInput && bInput.base) {
+      b1Input.origBase = bInput.base
+    }
+    b1Input.output = processInput(b1Input, playersInvolved)
     extraBatterInput.push(b1Input)
   }
   if (bInput) {
-    bInput.output = processInput(bInput, playersInvolved, 0)
+    bInput.output = processInput(bInput, playersInvolved)
     if (bErrorTarget > 0) {
       bInput.output.errorTarget = bErrorTarget
       bInput.output.run = bRunType
@@ -210,6 +216,26 @@ function getTIESelection (group: string): boolean {
   return tie
 }
 
+// returns original base based on input group
+function getOrigBase (group: string): number {
+  switch (group) {
+    case inputR3:
+    case inputR2a:
+    case inputR1b:
+    case inputB3:
+      return 3
+    case inputR2:
+    case inputR1a:
+    case inputB2:
+      return 2
+    case inputR1:
+    case inputB1:
+      return 1
+    default:
+      return 0
+  }
+}
+
 // get current value from 'run' select for given input group
 function getRunTypeSelection (group: string): string {
   let run = 'e'
@@ -252,6 +278,7 @@ function getInput (group: string, plain?: boolean): WBSCInput | null {
     input.baseAction = baseAction.value
     input.specAction = specAction.value
     input.tie = getTIESelection(group)
+    input.origBase = getOrigBase(group)
     input.base = getBaseSelection(group)
     input.runtype = getRunTypeSelection(group)
     input.pos = getPosSelection(group)

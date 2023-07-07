@@ -334,10 +334,10 @@ function changeBase (group: string) {
 }
 
 // enhance user's input with output instructions
-function processInput (input: WBSCInput, batter: number, origBase: number): WBSCOutput {
+function processInput (input: WBSCInput, batter: number): WBSCOutput {
   const output: WBSCOutput = getEmptyOutput()
   output.batter = batter
-  output.origBase = origBase
+  output.origBase = input.origBase
   output.base = input.base
   output.run = input.runtype
   output.errorTarget = input.base
@@ -594,7 +594,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
     case 'CSN':
     case 'CSNT':
       output.na = true
-      output.base = origBase
+      output.base = input.origBase
       // falls through
     case 'CSE':
     case 'CSET':
@@ -641,7 +641,7 @@ function processInput (input: WBSCInput, batter: number, origBase: number): WBSC
         output.text1 += action.substring(action.length - 1)
       }
       if (action.includes('N')) {
-        output.base = output.errorTarget = origBase
+        output.base = output.errorTarget = input.origBase
       } else {
         output.base = output.origBase + 1
         output.errorTarget = input.base

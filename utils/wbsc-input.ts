@@ -561,6 +561,7 @@ function getEmptyInput (plain: boolean): WBSCInput {
     group: '',
     baseAction: '',
     specAction: '',
+    origBase: 0,
     base: 0,
     tie: false
   }
