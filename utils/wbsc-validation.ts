@@ -37,6 +37,15 @@ function checkUserInput (inputs: WBSCInput[]) {
           validation = attachValidation(validation, checkPosSelection(posSelection))
         }
       }
+      if (input.specAction.includes('EN') || input.specAction.includes('CSN')) {
+        if (input.base - input.origBase > 1) {
+          validation = attachValidation(validation, '\'No advance\' action may not result into further advance')
+        }
+      } else if (input.specAction === 'SB') {
+        if (input.base - input.origBase > 1) {
+          validation = attachValidation(validation, '\'Stolen base\' may not result into further advance')
+        }
+      }
     } else {
       validation = attachValidation(validation, 'Action must be properly defined')
     }
