@@ -605,6 +605,9 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       }
       output.num = true
       output.errorTarget = output.base
+      if (!action.includes('N')) {
+        output.base = input.origBase + 1
+      }
       possibleConcurrentPlay = true
       break
     case 'POE':
