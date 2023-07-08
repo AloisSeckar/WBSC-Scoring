@@ -367,10 +367,10 @@ function writeSituation (output: WBSCOutput) {
           if (text2) {
             text1 += text2
           }
-          ctx.font = '26px Verdana'
+          ctx.font = '22px Verdana'
           locHOffset = (text1.length - 3) * 6
           ctx.fillStyle = '#303030'
-          ctx.fillText(text1, w2 * 1.5 + 20 - locHOffset + hOffset, h2 + 24 + vOffset)
+          ctx.fillText(text1, w2 * 1.5 + 25 - locHOffset + hOffset, h2 + 24 + vOffset)
         } else {
           if (hit) {
             drawHitSymbol(1)
@@ -430,7 +430,7 @@ function writeSituation (output: WBSCOutput) {
           if (text2) {
             text1 += text2
           }
-          ctx.font = '26px Verdana'
+          ctx.font = '22px Verdana'
           ctx.fillStyle = '#303030'
           ctx.fillText(text1, w2 + hOffset, offset + 10 + vOffset)
         } else {
@@ -530,10 +530,10 @@ function writeSituation (output: WBSCOutput) {
           if (text2) {
             text1 += text2
           }
-          ctx.font = '26px Verdana'
+          ctx.font = '22px Verdana'
           locHOffset = (text1.length - 3) * 6
           ctx.fillStyle = '#303030'
-          ctx.fillText(text1, w2 * 0.5 - 20 + locHOffset + hOffset, h2 - 8 + vOffset)
+          ctx.fillText(text1, w2 * 0.5 - 25 + locHOffset + hOffset, h2 - 8 + vOffset)
         } else {
           if (hit) {
             drawHitSymbol(3)
