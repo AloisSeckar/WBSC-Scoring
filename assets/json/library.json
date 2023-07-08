@@ -152,6 +152,18 @@
     "name": "Error - fielding by 1B, assited by 2B"
   },
   {
+    "file": "error-23e4-r1-na",
+    "name": "Error - fielding by 2B, assited by C and 1B, no advance (R1)"
+  },
+  {
+    "file": "error-25e1t-r3-na",
+    "name": "Error - throwing by P, assited by C and 3B, no advance (R3)"
+  },
+  {
+    "file": "error-4e3",
+    "name": "Error - fielding by 1B, assited by 2B"
+  },
+  {
     "file": "error-int",
     "name": "Error - catcher's interference"
   },
@@ -174,6 +186,10 @@
   {
     "file": "out-31-r1-e3t",
     "name": "Ground out - 1B to P + runner from 1st scores (FC + e3T)"
+  },
+  {
+    "file": "fc-o6-r2-6e4-na",
+    "name": "FC - occupied - SS to 2B, error, no advance (R2)"
   },
   {
     "file": "sh-54",
@@ -290,6 +306,18 @@
   {
     "file": "cs-2e6-r3-o",
     "name": "Caught stealing - C to 2B (field. err.) + O/2 to HP"
+  },
+  {
+    "file": "cs-2e4-r1-na",
+    "name": "Caught stealing - C to 2B (field. err.), no advance (R1)"
+  },
+  {
+    "file": "cs-26e5t-r2-na",
+    "name": "Caught stealing - C to SS to 3B (throw. err.), no advance (R2)"
+  },
+  {
+    "file": "cs-2e1-r3-na-r1-o",
+    "name": "Caught stealing - C to P (field. err.), no advance (R3) + O/2 to 2nd"
   },
   {
     "file": "obr-bob",

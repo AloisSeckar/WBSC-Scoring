@@ -31,7 +31,7 @@ import libItems from '@/assets/json/library.json'
 
 const libFileId = 'lib-items'
 
-const divMain = 'mt-[10%] px-4 max-[500px]:w-[90%] max-[1000px]:w-[75%] w-1/2 min-[1400px]:w-1/3 h-fit ' +
+const divMain = 'mt-[10%] px-4 max-[500px]:w-[90%] max-[1200px]:w-[80%] w-1/2 min-[1600px]:w-1/3 h-fit ' +
                 'border border-black rounded bg-blue-200'
 const divHeader = 'py-4 text-3xl font-bold'
 const divSelect = 'max-[650px]:max-w-[90%]'
