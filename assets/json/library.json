@@ -80,7 +80,7 @@
     "name": "Strike out (L) + PB"
   },
   {
-    "file": "1b-lf",
+    "file": "1b-7",
     "name": "Single to LF"
   },
   {
@@ -182,6 +182,14 @@
   {
     "file": "1b-9-e9t",
     "name": "Single to RF + extra base throwing error"
+  },
+  {
+    "file": "1b-9-94e3-na",
+    "name": "Single to RF + RF to 2B to 1B, error, no advance"
+  },
+  {
+    "file": "1b-7-r1-7e5t-na",
+    "name": "Single to LF + LF to 3B, thr. error, no advance (R1)"
   },
   {
     "file": "out-31-r1-e3t",

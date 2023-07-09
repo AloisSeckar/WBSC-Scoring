@@ -13,6 +13,7 @@ const decisiveErrorActions = [
   'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
 ]
 const errorActions = [...decisiveErrorActions, 'eF', 'eT']
+const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT']
 
 // validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)
@@ -127,6 +128,7 @@ function checkOutcome (inputs: WBSCInput[]) {
     if (output) {
       if (currentBatter === output.batter) {
         if (output.out) {
+          // this is probably a dead code after #60
           if (playerWasOut) {
             validation = attachValidation(validation, 'One player cannot be out more than once')
           } else {
@@ -136,11 +138,12 @@ function checkOutcome (inputs: WBSCInput[]) {
         }
         const maxReachedBase = reachedBases[reachedBases.length - 1]
         const currentReachedBase = Math.max(output.base, output.errorTarget)
-        if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && output.na === false)) {
+        if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(input.specAction))) {
           validation = attachValidation(validation, 'Extra advances of one player must happen in order')
         }
       } else {
         // special case for "batter + same error"
+        // this is probably a dead code after #60
         if (input.group === inputB) {
           if (output.base === 0 && output.errorTarget > 1) {
             playerWasOut = true
