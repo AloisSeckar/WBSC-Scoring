@@ -621,6 +621,20 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
   return validation
 }
 
+// separate validator for batter edge-cases (see #112)
+function checkBInput (b1Action: string, bAction: string): string {
+  let validation = ''
+
+  if (b1Action === 'se0' && !decisiveErrorActions.includes(bAction)) {
+    validation = attachValidation(validation, 'Advance by \'Same error (Batter)\' is selected, \nbut no corresponding error play was given')
+  }
+  if (b1Action === 'oc' && bAction !== 'O') {
+    validation = attachValidation(validation, 'Advance after \'FC - Occupied\' is selected, \nbut no corresponding FC play was given')
+  }
+
+  return validation
+}
+
 // helper to link input to certain player
 function getRunner (group: string): string {
   switch (group) {
@@ -656,5 +670,5 @@ function attachValidation (validation: string, newMessage: string) {
 }
 
 export {
-  checkUserInput
+  checkUserInput, checkBInput
 }

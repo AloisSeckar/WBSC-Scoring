@@ -49,6 +49,12 @@ function processAction () {
     // special case 1 - extra advance on error
     // special case 2 - multiple-base hit with later appeal play on some of the runners
     if (b1Input.specAction === 'se0' || b1Input.specAction === 'oc') {
+      // extra validation required (see #112)
+      const extraValidation = checkBInput(b1Input.specAction, bInput?.specAction || '')
+      if (extraValidation !== '') {
+        useEvalStore().setError(extraValidation)
+        return
+      }
       bErrorTarget = b1Input.base
       bRunType = b1Input.runtype || 'e'
       b1Input = null
