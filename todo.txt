@@ -5,7 +5,7 @@ v0.13
 - - BackstopJS visual testing
 - - New "Report bug" page
 - Validations: #109, #110
-- Bug-fixing: #100, #104, #111 + various other unreported
+- Bug-fixing: #100, #104, #108, #111 + various other unreported
 - Refactoring: 
 
 

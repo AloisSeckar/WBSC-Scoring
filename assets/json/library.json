@@ -188,6 +188,10 @@
     "name": "Single to RF + RF to 2B to 1B, error, no advance"
   },
   {
+    "file": "1b-7-e7-r1-e",
+    "name": "Single to LF + extra base fld. err. + R1 scores on err."
+  },
+  {
     "file": "1b-7-r1-7e5t-na",
     "name": "Single to LF + LF to 3B, thr. error, no advance (R1)"
   },
@@ -400,8 +404,12 @@
     "name": "Appeal play - P to 1B (batter)"
   },
   {
-    "file": "o-a",
-    "name": "Appeal play - hit (HR) + P to 3B (runner)"
+    "file": "o-a-r3",
+    "name": "Appeal play - hit (HR) + P to 3B (R3)"
+  },
+  {
+    "file": "o-a-r1",
+    "name": "Appeal play - hit (3B) + SS (R1)"
   },
   {
     "file": "lt",

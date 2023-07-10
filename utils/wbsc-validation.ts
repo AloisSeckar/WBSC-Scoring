@@ -508,6 +508,39 @@ function checkSameError (inputs: WBSCInput[]) {
     validation = attachValidation(validation, 'Advance by \'Same error (Runner at 3rd)\' is selected, \nbut no corresponding error play was given')
   }
 
+  // there may be only one "same error" (and "same occupied") action per each runner
+  // 'oc' and 'se0 for batter' must be dealt differently, because in this case b1Input gets deleted
+  if (inputs.some(i => i.specAction === 'oc')) {
+    if (inputs.some(i => i.specAction === 'oc' && i.group !== inputB1)) {
+      validation = attachValidation(validation, 'Further advance after \'FC - Occupied\' may happen only once,\n adjust target base instead')
+    }
+  }
+  if (seB) {
+    const seBInvalid = inputs.some(i => i.specAction === 'se0' && (i.group === inputB2 || i.group === inputB3))
+    const seBActions = inputs.filter(i => i.specAction === 'se0').map(i => getRunner(i.group))
+    if (seBInvalid || seBActions.length !== new Set(seBActions).size) {
+      validation = attachValidation(validation, 'Further advance on \'Same error (B)\' may happen only once,\n adjust target base instead')
+    }
+  }
+  if (seR1) {
+    const seBActions = inputs.filter(i => i.specAction === 'se1').map(i => getRunner(i.group))
+    if (seBActions.length !== new Set(seBActions).size) {
+      validation = attachValidation(validation, 'Further advance on \'Same error (R1)\' may happen only once,\n adjust target base instead')
+    }
+  }
+  if (seR2) {
+    const seBActions = inputs.filter(i => i.specAction === 'se2').map(i => getRunner(i.group))
+    if (seBActions.length !== new Set(seBActions).size) {
+      validation = attachValidation(validation, 'Further advance on \'Same error (R2)\' may happen only once,\n adjust target base instead')
+    }
+  }
+  if (seR3) {
+    const seBActions = inputs.filter(i => i.specAction === 'se3').map(i => getRunner(i.group))
+    if (seBActions.length !== new Set(seBActions).size) {
+      validation = attachValidation(validation, 'Further advance on \'Same error (R3)\' may happen only once,\n adjust target base instead')
+    }
+  }
+
   return validation
 }
 
@@ -586,6 +619,23 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
   }
 
   return validation
+}
+
+// helper to link input to certain player
+function getRunner (group: string): string {
+  switch (group) {
+    case inputR3:
+      return 'R3'
+    case inputR2:
+    case inputR2a:
+      return 'R2'
+    case inputR1:
+    case inputR1a:
+    case inputR1b:
+      return 'R1'
+    default:
+      return 'B'
+  }
 }
 
 // helper to decide whether there is an error action in current input
