@@ -4,7 +4,7 @@ v0.13
 - - Actions library - SB/CS situations
 - - BackstopJS visual testing
 - - New "Report bug" page
-- Validations: #109, #110
+- Validations: #103, #109, #110
 - Bug-fixing: #100, #104, #108, #111, #112 + various other unreported
 - Refactoring: 
 

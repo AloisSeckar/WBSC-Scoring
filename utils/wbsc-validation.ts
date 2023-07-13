@@ -38,14 +38,14 @@ function checkUserInput (inputs: WBSCInput[]) {
           validation = attachValidation(validation, checkPosSelection(posSelection))
         }
       }
-      if (input.specAction.includes('EN') || input.specAction.includes('CSN')) {
-        if (input.base - input.origBase > 1) {
-          validation = attachValidation(validation, '\'No advance\' action may not result into further advance')
-        }
-      } else if (input.specAction === 'SB') {
-        if (input.base - input.origBase > 1) {
-          validation = attachValidation(validation, '\'Stolen base\' may not result into further advance')
-        }
+      if ((input.specAction.includes('EN') || input.specAction.includes('CSN')) && input.base - input.origBase > 1) {
+        validation = attachValidation(validation, '\'No advance\' action may not result into further advance')
+      }
+      if (input.specAction === 'SB' && input.base - input.origBase > 1) {
+        validation = attachValidation(validation, '\'Stolen base\' may not result into further advance')
+      }
+      if (['CSE', 'CSET', 'CSN', 'CSNT'].includes(input.specAction) && input.pos === '2') {
+        validation = attachValidation(validation, 'Catcher may not be credited with an error when trying to catch runner stealing, unless there is further advance due to it')
       }
     } else {
       validation = attachValidation(validation, 'Action must be properly defined')
