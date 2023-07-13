@@ -60,6 +60,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
   validation = attachValidation(validation, checkSHSF(inputs))
+  validation = attachValidation(validation, checkSBCS(inputs))
   validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
   validation = attachValidation(validation, checkSameError(inputs))
   validation = attachValidation(validation, checkEarnedRuns(inputs))
@@ -385,6 +386,29 @@ function checkSHSF (inputs: WBSCInput[]) {
     if (!runScored) {
       validation = attachValidation(validation, 'SF is selected, but no runner scored')
     }
+  }
+
+  return validation
+}
+
+// there cannot be SB and CS in the same play
+// when CS, other advances are indifference (O/)
+function checkSBCS (inputs: WBSCInput[]) {
+  let validation = ''
+
+  let sbSelected = false
+  let csSelected = false
+
+  inputs.forEach((input) => {
+    if (input?.specAction === 'SB') {
+      sbSelected = true
+    } else if (input?.specAction.startsWith('CS')) {
+      csSelected = true
+    }
+  })
+
+  if (sbSelected && csSelected) {
+    validation = attachValidation(validation, 'SB is not possible, when another runner was CS. Use FC - indifference')
   }
 
   return validation
