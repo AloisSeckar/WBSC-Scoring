@@ -1,10 +1,10 @@
 <template>
   <div class="text-center">
-    <h2>Situation editor v0.13</h2>
+    <h2>{{ $t('index.editor') }} v0.13</h2>
 
     <div class="container">
       <div class="mb-2">
-        We're closing in, but this site is still being developed, not all scoring features are possible
+        {{ $t('index.note') }}
       </div>
       <div id="wbsc-inputs" class="mb-2">
         <!-- inputs are dynamically rendered here -->
@@ -15,7 +15,7 @@
       <ImportModal v-show="useEvalStore().importShow" />
     </div>
 
-    <h2>Output</h2>
+    <h2>{{ $t('index.output') }}</h2>
 
     <canvas id="canvas" class="mx-auto my-4" width="325" height="250" />
 

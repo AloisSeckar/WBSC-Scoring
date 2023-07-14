@@ -1,0 +1,11 @@
+{
+    "hello" : "Hello",
+    "index" : {
+        "editor" : "Situation editor",
+        "note" : "We're closing in, but this site is still being developed, not all scoring features are possible",
+        "output" : "Output"
+    },
+    "footer" : {
+        "creator" : "Created and maintained by"
+    }
+}

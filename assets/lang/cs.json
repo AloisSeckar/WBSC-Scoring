@@ -1,0 +1,11 @@
+{
+    "hello" : "Ahoj",
+    "index" : {
+        "editor" : "Editor rozeher",
+        "note" : "Probíhá vývoj + překlad z angličtiny. Prosím o trpělivost.",
+        "output" : "Výsledek"
+    },
+    "footer" : {
+        "creator" : "Vytvořil a udržuje"
+    }
+}
