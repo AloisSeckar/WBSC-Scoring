@@ -11,6 +11,7 @@
     </Head>
     <div class="flex justify-center">
       <div class="mx-2 md:w-4/5">
+        <LanguageSelector />
         <div class="text-center">
           <header class="mt-1 mb-2">
             <h1>WBSC Scoring Creator <span class="demo">DEMO</span></h1>
