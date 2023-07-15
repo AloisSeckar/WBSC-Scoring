@@ -4,5 +4,7 @@ import en from '@/assets/lang/en.json'
 export default defineI18nConfig(() => ({
   legacy: false,
   locale: 'en',
-  messages: { en, cs }
+  fallbackLocale: 'en',
+  messages: { en, cs },
+  warnHtmlMessage: false
 }))

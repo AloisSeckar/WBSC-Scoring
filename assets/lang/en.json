@@ -3,7 +3,14 @@
     "index" : {
         "editor" : "Situation editor",
         "note" : "We're closing in, but this site is still being developed, not all scoring features are possible",
-        "output" : "Output"
+        "output" : "Output",
+        "about" : "About",
+        "dscr" : "This JavaScript-based tool provides visualization for <b><a href=\"https://www.wbsc.org/\">WBSC</a> Scoring System</b> to help new scorers adopting it. Use GUI elements to create a baseball/softball game situation, then click the <strong>'Generate action'</strong> button to see how it shall be scored. If you want to store the result, use the <strong>'Download'</strong> button. If something is wrong, feel free to <a href=\"/report\">report it</a>.",
+        "overview" : "Project overview",
+        "manual" : "User manual",
+        "report" : "Report bug",
+        "license" : "This software is distributed under <a href=\"http://unlicense.org/\">UNLICENSE</a>. This means the tool and its output is absolutely free to use for everyone for any purpose. You don't have to ask for any permission, nor you have to credit the author. However, if you want to, it would be appreciated :)",
+        "endorse" : "Also, if you happen to like this thing, please spread your word about it to help it reach other potential users."
     },
     "footer" : {
         "creator" : "Created and maintained by"
