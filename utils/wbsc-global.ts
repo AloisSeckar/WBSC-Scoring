@@ -4,7 +4,7 @@
 /* *************************************** */
 
 // prepare environment and render default state
-export default function init () {
+export default function initEditor () {
   renderActionButtons()
   clearInputs()
   useCanvasStore().init()

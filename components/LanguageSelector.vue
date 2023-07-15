@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import init from '@/utils/wbsc-global.js'
+import initEditor from '@/utils/wbsc-global.js'
 
 const lang = 'w-6 m-1 inline-block'
 const selectedLang = 'w-6 m-1 inline-block border-2 border-amber-300'
@@ -17,6 +17,6 @@ function setLocale (newLocale: string) {
   locale.value = newLocale
   // currently editor UI is dynamically rendered via JS functions
   // therefore it cannot keep its state and upon translation it needs to be re-generated
-  init()
+  initEditor()
 }
 </script>
