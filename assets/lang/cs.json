@@ -4,13 +4,23 @@
         "editor" : "Editor rozeher",
         "note" : "Probíhá vývoj + překlad z angličtiny. Prosím o trpělivost.",
         "output" : "Výsledek",
+        "download" : "Stáhnout obrázek",
         "about" : "O programu",
-        "dscr" : "Tento JavaScriptový nástroj slouží k vzualizaci <b>mezinárodního <a href=\"https://www.wbsc.org/\">WBSC</a> zápisu</b> a pomáhá nový zapisovatelům naučit se ho. Použijte UI ovládací prvky k vytvoření baseballové/softballové herní situace a poté klikněte na tlačítko <strong>'Generovat rozehru'</strong> pro zobrazení, jak by měla být zapsána. Pokud si chcete výsledek uložit, použijete tlačítko <strong>'Stáhnout'</strong>. POkud něco nefunguje, neváhejte <a href=\"/report\">chybu nahlásit</a>.",
+        "dscr" : "Tento JavaScriptový nástroj slouží k vzualizaci <b>mezinárodního <a href=\"https://www.wbsc.org/\">WBSC</a> zápisu</b> a pomáhá nový zapisovatelům naučit se ho. Použijte UI ovládací prvky k vytvoření baseballové/softballové herní situace a poté klikněte na tlačítko <strong>'Zapsat rozehru'</strong> pro zobrazení, jak by měla být zapsána. Pokud si chcete výsledek uložit, použijete tlačítko <strong>'Stáhnout obrázek'</strong>. POkud něco nefunguje, neváhejte <a href=\"/report\">chybu nahlásit</a>.",
         "overview" : "Přehled projektu",
         "manual" : "Uživatelská příručka",
         "report" : "Nahlásit chybu",
         "license" : "Tento software je distribuován jako <a href=\"http://unlicense.org/\">UNLICENSE</a>. To znamená, že nástroj a jeho výstupy jsou zcela volně a zdarma k dispozici komukoliv pro jakýkoliv účel. Nemusíte se ptát na žádné povolení, ani nemusíte uvádět původního autora. Ovšem pokud mě uvést chcete, budu rád :)",
         "endorse" : "Pokud se vám tento nástroj líbí, dejte o něm prosím vědět i dalším příznivcům baseballu a softballu."
+    },
+    "editor" : {
+        "batter" : "Pálkař",
+        "r1" : "Běžec na 1. metě",
+        "r2" : "Běžec na 2. metě",
+        "r3" : "Běžec na 3. metě",
+        "button" : {
+            "generate" : "Zapsat rozehru"
+        }
     },
     "footer" : {
         "creator" : "Vytvořil a udržuje"

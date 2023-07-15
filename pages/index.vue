@@ -20,7 +20,7 @@
     <canvas id="canvas" class="mx-auto my-4" width="325" height="250" />
 
     <div class="mx-auto mb-8 w-48">
-      <a id="download-link" class="btn btn-download">Download image</a>
+      <a id="download-link" class="btn btn-download">{{ $t('index.download') }}</a>
     </div>
 
     <h2>{{ $t('index.about') }}</h2>

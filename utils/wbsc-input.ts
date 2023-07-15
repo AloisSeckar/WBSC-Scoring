@@ -7,6 +7,9 @@ import { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // create bar with action buttons
 function renderActionButtons () {
+  // in case of re-init (e.g. upon translation), remove previous
+  document.getElementById(classTools)?.remove()
+
   const actionButtonsContainer = document.createElement('div')
   actionButtonsContainer.setAttribute('id', classTools)
   actionButtonsContainer.setAttribute('class', 'wbsc-buttons')

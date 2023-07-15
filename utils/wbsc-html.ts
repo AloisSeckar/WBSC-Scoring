@@ -8,16 +8,16 @@ function getLabelForInputGroup (group: string) {
   let label = '<strong>'
   switch (group) {
     case inputB:
-      label += 'Batter'
+      label += useNuxtApp().$i18n.t('editor.batter')
       break
     case inputR1:
-      label += 'Runner at 1st'
+      label += useNuxtApp().$i18n.t('editor.r1')
       break
     case inputR2:
-      label += 'Runner at 2nd'
+      label += useNuxtApp().$i18n.t('editor.r2')
       break
     case inputR3:
-      label += 'Runner at 3rd'
+      label += useNuxtApp().$i18n.t('editor.r3')
       break
   }
   label += '</strong>'
@@ -29,7 +29,7 @@ function getLabelForRenderButton (group: string, render: boolean) {
   let label = ''
   switch (group) {
     case inputGenerate:
-      label = 'Generate action'
+      label = useNuxtApp().$i18n.t('editor.button.generate')
       break
     case inputImport:
       label = '&#8664; Import from file'
