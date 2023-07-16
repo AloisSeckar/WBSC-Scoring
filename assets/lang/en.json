@@ -18,8 +18,21 @@
         "r1" : "Runner at 1st",
         "r2" : "Runner at 2nd",
         "r3" : "Runner at 3rd",
+        "base" : {
+            "base" : "Base",
+            "second" : "2nd",
+            "third" : "3rd",
+            "home" : "Home"
+        },
+        "run" : "Run",
+        "action" : "Action",
+        "involved" : "Involved",
         "button" : {
-            "generate" : "Score play"
+            "generate" : "Score play",
+            "clear" : "Clear",
+            "import" : "Import from file",
+            "importLib" : "Import from library",
+            "export" : "Export selection"
         }
     },
     "footer" : {

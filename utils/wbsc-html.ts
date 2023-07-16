@@ -31,17 +31,17 @@ function getLabelForRenderButton (group: string, render: boolean) {
     case inputGenerate:
       label = useNuxtApp().$i18n.t('editor.button.generate')
       break
+    case inputClear:
+      label = useNuxtApp().$i18n.t('editor.button.clear')
+      break
     case inputImport:
-      label = '&#8664; Import from file'
+      label = '&#8664; ' + useNuxtApp().$i18n.t('editor.button.import')
       break
     case inputImportLib:
-      label = '&#8664; Import from library'
+      label = '&#8664; ' + useNuxtApp().$i18n.t('editor.button.importLib')
       break
     case inputExport:
-      label = 'Export selection &#8663;'
-      break
-    case inputClear:
-      label = 'Clear'
+      label = useNuxtApp().$i18n.t('editor.button.export') + ' &#8663;'
       break
     default:
       if (render === true) {
@@ -110,23 +110,26 @@ function renderFCLocationOptions () {
 function renderBaseOptions (base: number) {
   const options = []
   if (base < 2) {
+    const second = useNuxtApp().$i18n.t('editor.base.second')
     if (base === 1) {
-      options.push('<option value="2" selected>2nd</option>')
+      options.push(`<option value="2" selected>${second}</option>`)
     } else {
-      options.push('<option value="2">2nd</option>')
+      options.push(`<option value="2">${second}</option>`)
     }
   }
   if (base < 3) {
+    const third = useNuxtApp().$i18n.t('editor.base.third')
     if (base === 2) {
-      options.push('<option value="3" selected>3rd</option>')
+      options.push(`<option value="3" selected>${third}</option>`)
     } else {
-      options.push('<option value="3">3rd</option>')
+      options.push(`<option value="3">${third}</option>`)
     }
   }
+  const home = useNuxtApp().$i18n.t('editor.base.home')
   if (base === 3) {
-    options.push('<option value="4" selected>Home</option>')
+    options.push(`<option value="4" selected>${home}</option>`)
   } else {
-    options.push('<option value="4">Home</option>')
+    options.push(`<option value="4">${home}</option>`)
   }
   return options
 }
@@ -134,9 +137,9 @@ function renderBaseOptions (base: number) {
 // list of possible run types
 function renderRunTypeOptions () {
   const options = []
-  options.push('<option value="e">Earned</option>')
-  options.push('<option value="ue">Unearned</option>')
-  options.push('<option value="tu">Team unearned</option>')
+  options.push('<option value="e">ER</option>')
+  options.push('<option value="ue">UE</option>')
+  options.push('<option value="tu">TU</option>')
   return options
 }
 

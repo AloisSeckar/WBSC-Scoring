@@ -18,8 +18,21 @@
         "r1" : "Běžec na 1. metě",
         "r2" : "Běžec na 2. metě",
         "r3" : "Běžec na 3. metě",
+        "base" : {
+            "base" : "Meta",
+            "second" : "2.",
+            "third" : "3.",
+            "home" : "HP"
+        },
+        "run" : "Doběh",
+        "action" : "Situace",
+        "involved" : "Pozice",
         "button" : {
-            "generate" : "Zapsat rozehru"
+            "generate" : "Zapsat rozehru",
+            "clear" : "Resetovat",
+            "import" : "Import ze souboru",
+            "importLib" : "Import z knihovny",
+            "export" : "Export rozehry"
         }
     },
     "footer" : {
