@@ -25,7 +25,59 @@
             "home" : "HP"
         },
         "run" : "Doběh",
-        "action" : "Situace",
+        "action" : {
+            "action" : "Situace",
+            "batterSafe" : "Pálkař je safe",
+            "batterOut" : "Pálkař je out",
+            "runnerSafe" : "Běžec je safe",
+            "runnerStay" : "Běžec zůstává",
+            "runnerOut" : "Běžec je out",
+            "strikeOut" : {
+                "title" : "Strike out"
+            },
+            "groundOut" : {
+                "title" : "Ground out"
+            },
+            "flyOut" : {
+                "title" : "Fly out"
+            },
+            "hit" : {
+                "title" : "Hit"
+            },
+            "sacrifice" : {
+                "title" : "Sacrifice"
+            },
+            "fc" : {
+                "title" : "Volba v obraně"
+            },
+            "error" : {
+                "title" : "Chyba"
+            },
+            "advance1st" : {
+                "title" : "Postup na 1. metu"
+            },
+            "obr" : {
+                "title" : "Technický aut"
+            },
+            "other" : {
+                "title" : "Jiný aut"
+            },
+            "advance" : {
+                "title" : "Postup"
+            },
+            "noAdvance" : {
+                "title" : "Bez postupu"
+            },
+            "extraBase" : {
+                "title" : "Meta navíc"
+            },
+            "sb" : {
+                "title" : "Krádež / Chycení"
+            },
+            "out" : {
+                "title" : "Aut"
+            }
+        },
         "involved" : "Pozice",
         "button" : {
             "generate" : "Zapsat rozehru",

@@ -147,16 +147,16 @@ function renderRunTypeOptions () {
 function renderBatterActionOptions () {
   const options = []
   options.push('<option value=""></option>')
-  options.push('<option value="StrikeOut">Strike out</option>')
-  options.push('<option value="GroundOut">Ground out</option>')
-  options.push('<option value="FlyOut">Fly out</option>')
-  options.push('<option value="Hit">Hit</option>')
-  options.push('<option value="Sacrifice">Sacrifice</option>')
-  options.push('<option value="FC">Fielder\'s choice</option>')
-  options.push('<option value="Error">Error</option>')
-  options.push('<option value="Advance">Advance to 1st</option>')
-  options.push('<option value="OBR">Out by rule</option>')
-  options.push('<option value="Other">Other out</option>')
+  options.push(`<option value="StrikeOut">${useNuxtApp().$i18n.t('editor.action.strikeOut.title')}</option>`)
+  options.push(`<option value="GroundOut">${useNuxtApp().$i18n.t('editor.action.groundOut.title')}</option>`)
+  options.push(`<option value="FlyOut">${useNuxtApp().$i18n.t('editor.action.flyOut.title')}</option>`)
+  options.push(`<option value="Hit">${useNuxtApp().$i18n.t('editor.action.hit.title')}</option>`)
+  options.push(`<option value="Sacrifice">${useNuxtApp().$i18n.t('editor.action.sacrifice.title')}</option>`)
+  options.push(`<option value="FC">${useNuxtApp().$i18n.t('editor.action.fc.title')}</option>`)
+  options.push(`<option value="Error">${useNuxtApp().$i18n.t('editor.action.error.title')}</option>`)
+  options.push(`<option value="Advance">${useNuxtApp().$i18n.t('editor.action.advance1st.title')}</option>`)
+  options.push(`<option value="OBR">${useNuxtApp().$i18n.t('editor.action.obr.title')}</option>`)
+  options.push(`<option value="Other">${useNuxtApp().$i18n.t('editor.action.other.title')}</option>`)
   return options
 }
 
@@ -164,11 +164,11 @@ function renderBatterActionOptions () {
 function renderBatterRunnerActionOptions () {
   const options = []
   options.push('<option value=""></option>')
-  options.push('<option value="exb">Extra base</option>')
-  options.push('<option value="fdc">Fielder\'s choice</option>')
-  options.push('<option value="err">Error</option>')
-  options.push('<option value="out">Out</option>')
-  options.push('<option value="obr">Out by rule</option>')
+  options.push(`<option value="exb">${useNuxtApp().$i18n.t('editor.action.extraBase.title')}</option>`)
+  options.push(`<option value="fdc">${useNuxtApp().$i18n.t('editor.action.fc.title')}</option>`)
+  options.push(`<option value="err">${useNuxtApp().$i18n.t('editor.action.error.title')}</option>`)
+  options.push(`<option value="out">${useNuxtApp().$i18n.t('editor.action.out.title')}</option>`)
+  options.push(`<option value="obr">${useNuxtApp().$i18n.t('editor.action.obr.title')}</option>`)
   return options
 }
 
@@ -176,23 +176,25 @@ function renderBatterRunnerActionOptions () {
 function renderRunnerActionOptions () {
   const options = []
   options.push('<option value=""></option>')
-  options.push('<option value="adv">Advanced by batter</option>')
-  options.push('<option value="nadv">No advance</option>')
-  options.push('<option value="exb">Extra base</option>')
-  options.push('<option value="ste">Steal / CS</option>')
-  options.push('<option value="fdc">Fielder\'s choice</option>')
-  options.push('<option value="err">Error</option>')
-  options.push('<option value="out">Out</option>')
-  options.push('<option value="obr">Out by rule</option>')
+  options.push(`<option value="adv">${useNuxtApp().$i18n.t('editor.action.advance.title')}</option>`)
+  options.push(`<option value="nadv">${useNuxtApp().$i18n.t('editor.action.noAdvance.title')}</option>`)
+  options.push(`<option value="exb">${useNuxtApp().$i18n.t('editor.action.extraBase.title')}</option>`)
+  options.push(`<option value="ste">${useNuxtApp().$i18n.t('editor.action.sb.title')}</option>`)
+  options.push(`<option value="fdc">${useNuxtApp().$i18n.t('editor.action.fc.title')}</option>`)
+  options.push(`<option value="err">${useNuxtApp().$i18n.t('editor.action.error.title')}</option>`)
+  options.push(`<option value="out">${useNuxtApp().$i18n.t('editor.action.out.title')}</option>`)
+  options.push(`<option value="obr">${useNuxtApp().$i18n.t('editor.action.obr.title')}</option>`)
   return options
 }
 
 // list of specific actions based on selected base action for batter
 function renderBatterSpecificActionOptions (action: string) {
   const options = []
+  const bSafe = useNuxtApp().$i18n.t('editor.action.batterSafe')
+  const bOut = useNuxtApp().$i18n.t('editor.action.batterOut')
   switch (action) {
     case 'StrikeOut':
-      options.push('<optgroup label="Batter is out">')
+      options.push(`<optgroup label="${bOut}">`)
       options.push('<option value="KS">Swinging</option>')
       options.push('<option value="KL">Looking</option>')
       options.push('<option value="KST">Swinging with tag/throw out</option>')
@@ -203,7 +205,7 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('<option value="KSI">Swinging - offensive Interference</option>')
       options.push('<option value="KLI">Looking - offensive Interference</option>')
       options.push('</optgroup>')
-      options.push('<optgroup label="Batter is safe">')
+      options.push(`<optgroup label="${bSafe}">`)
       options.push('<option value="KSET">Swinging with throwing error</option>')
       options.push('<option value="KSE">Swinging with fielding error</option>')
       options.push('<option value="KSWP">Swinging with wild pitch</option>')
@@ -219,17 +221,17 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('</optgroup>')
       break
     case 'GroundOut':
-      options.push('<optgroup label="Batter is out">')
+      options.push(`<optgroup label="${bOut}">`)
       options.push('<option value="GO">Ground out</option>')
       options.push('<option value="GOB">Ground out - bunt</option>')
       options.push('<option value="GDP">Grounded into double play</option>')
       options.push('</optgroup>')
-      options.push('<optgroup label="Batter is safe">')
+      options.push(`<optgroup label="${bSafe}">`)
       options.push('<option value="GDPE">GDP with error</option>')
       options.push('</optgroup>')
       break
     case 'FlyOut':
-      options.push('<optgroup label="Batter is out">')
+      options.push(`<optgroup label="${bOut}">`)
       options.push('<option value="F">Fly out</option>')
       options.push('<option value="P">Pop out</option>')
       options.push('<option value="L">Line out</option>')
@@ -242,7 +244,7 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('</optgroup>')
       break
     case 'Hit':
-      options.push('<optgroup label="Batter is safe">')
+      options.push(`<optgroup label="${bSafe}">`)
       options.push('<option value="1B">Single</option>')
       options.push('<option value="2B">Double</option>')
       options.push('<option value="3B">Triple</option>')
@@ -253,12 +255,12 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('</optgroup>')
       break
     case 'Sacrifice':
-      options.push('<optgroup label="Batter is out">')
+      options.push(`<optgroup label="${bOut}">`)
       options.push('<option value="SH">Sacrifice bunt</option>')
       options.push('<option value="SF">Sacrifice fly</option>')
       options.push('<option value="FSF">Sacrifice fly in foul territory</option>')
       options.push('</optgroup>')
-      options.push('<optgroup label="Batter is safe">')
+      options.push(`<optgroup label="${bSafe}">`)
       options.push('<option value="SHE">Sacrifice bunt with fielding error</option>')
       options.push('<option value="SHET">Sacrifice bunt with throwing error</option>')
       options.push('<option value="SHEF">Sacrifice bunt with dropped fly</option>') // code ends with "F" for easier output transformation
@@ -268,13 +270,13 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('</optgroup>')
       break
     case 'FC':
-      options.push('<optgroup label="Batter is safe">')
+      options.push(`<optgroup label="${bSafe}">`)
       options.push('<option value="O">Occupied</option>')
       options.push('<option value="FC">Fielder\'s choice</option>')
       options.push('</optgroup>')
       break
     case 'Error':
-      options.push('<optgroup label="Batter is safe">')
+      options.push(`<optgroup label="${bSafe}">`)
       options.push('<option value="EF">Fielding error</option>')
       options.push('<option value="ET">Throwing error</option>')
       options.push('<option value="EDF">Dropped fly</option>')
@@ -286,14 +288,14 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('</optgroup>')
       break
     case 'Advance':
-      options.push('<optgroup label="Batter is safe">')
+      options.push(`<optgroup label="${bSafe}">`)
       options.push('<option value="BB1">Base on balls</option>') // "1" indicates the numbering should be included in output
       options.push('<option value="IBB1">Intentional base on balls</option>') // "1" indicates the numbering should be included in output
       options.push('<option value="HP">Hit by pitch</option>')
       options.push('</optgroup>')
       break
     case 'OBR':
-      options.push('<optgroup label="Batter is out">')
+      options.push(`<optgroup label="${bOut}">`)
       options.push('<option value="OBR_BOB">Batter Out of the Box</option>')
       options.push('<option value="OBR_BIA">Batter\'s Illegal Action</option>')
       options.push('<option value="OBR_TBB">Touched by Batted Ball</option>')
@@ -306,7 +308,7 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push('</optgroup>')
       break
     case 'Other':
-      options.push('<optgroup label="Batter is out">')
+      options.push(`<optgroup label="${bOut}">`)
       options.push('<option value="A">Appeal play</option>')
       options.push('<option value="LT">Lost turn</option>')
       options.push('</optgroup>')
@@ -320,19 +322,22 @@ function renderBatterSpecificActionOptions (action: string) {
 //   group - invoking input group
 function renderRunnerSpecificActionOptions (action: string, group: string) {
   const options = []
+  const rSafe = useNuxtApp().$i18n.t('editor.action.runnerSafe')
+  const rStay = useNuxtApp().$i18n.t('editor.action.runnerStay')
+  const rOut = useNuxtApp().$i18n.t('editor.action.runnerOut')
   switch (action) {
     case 'adv':
-      options.push('<optgroup label="Runner is safe">')
+      options.push(`<optgroup label="${rSafe}">`)
       options.push('<option value="ADV">Advanced by batter</option>')
       options.push('</optgroup>')
       break
     case 'nadv':
-      options.push('<optgroup label="Runner stays">')
+      options.push(`<optgroup label="${rStay}">`)
       options.push('<option value="NADV">No advance</option>')
       options.push('</optgroup>')
       break
     case 'exb':
-      options.push('<optgroup label="Runner is safe">')
+      options.push(`<optgroup label="${rSafe}">`)
       options.push('<option value="WP">Wild pitch</option>')
       options.push('<option value="PB">Passed ball</option>')
       if ((group.includes('-r'))) {
@@ -343,7 +348,7 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push('</optgroup>')
       break
     case 'ste':
-      options.push('<optgroup label="Runner is safe">')
+      options.push(`<optgroup label="${rSafe}">`)
       options.push('<option value="SB">Stolen base</option>')
       options.push('<option value="CSE">Caught stealing with fielding error</option>')
       options.push('<option value="CSET">Caught stealing with throwing error</option>')
@@ -351,13 +356,13 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push('<option value="CSNT">Caught stealing with throwing error (no advance)</option>')
       options.push('<option value="POE">Picked off with (throwing) error</option>')
       options.push('</optgroup>')
-      options.push('<optgroup label="Runner is out">')
+      options.push(`<optgroup label="${rOut}">`)
       options.push('<option value="CSO">Caught stealing</option>')
       options.push('<option value="PO">Picked off</option>')
       options.push('</optgroup>')
       break
     case 'fdc':
-      options.push('<optgroup label="Runner is safe">')
+      options.push(`<optgroup label="${rSafe}">`)
       options.push('<option value="T">On the throw</option>')
       options.push('<option value="O/">Indifference</option>')
       if ((!group.includes('-r'))) {
@@ -367,7 +372,7 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push('</optgroup>')
       break
     case 'err':
-      options.push('<optgroup label="Runner is safe">')
+      options.push(`<optgroup label="${rSafe}">`)
       options.push('<option value="EF">Decisive fielding</option>')
       options.push('<option value="ET">Decisive throwing</option>')
       options.push('<option value="eF">Extra base fielding</option>')
@@ -388,14 +393,14 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push('</optgroup>')
       break
     case 'out':
-      options.push('<optgroup label="Runner is out">')
+      options.push(`<optgroup label="${rOut}">`)
       options.push('<option value="GO">Force out</option>')
       options.push('<option value="GOT">Tag out</option>')
       options.push('<option value="A">Appeal play</option>')
       options.push('</optgroup>')
       break
     case 'obr':
-      options.push('<optgroup label="Runner is out">')
+      options.push(`<optgroup label="${rOut}">`)
       options.push('<option value="OBR_rta">Refusing To Advance</option>')
       options.push('<option value="OBR_hbb">Hit by fair Batted Ball</option>')
       options.push('<option value="OBR_rol">Running Out of Line</option>')

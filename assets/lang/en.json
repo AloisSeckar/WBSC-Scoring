@@ -25,7 +25,59 @@
             "home" : "Home"
         },
         "run" : "Run",
-        "action" : "Action",
+        "action" : {
+            "action" : "Action",
+            "batterSafe" : "Batter is safe",
+            "batterOut" : "Batter is out",
+            "runnerSafe" : "Runner is safe",
+            "runnerStay" : "Runner stays",
+            "runnerOut" : "Runner is out",
+            "strikeOut" : {
+                "title" : "Strike out"
+            },
+            "groundOut" : {
+                "title" : "Ground out"
+            },
+            "flyOut" : {
+                "title" : "Fly out"
+            },
+            "hit" : {
+                "title" : "Hit"
+            },
+            "sacrifice" : {
+                "title" : "Sacrifice"
+            },
+            "fc" : {
+                "title" : "Fielder's choice"
+            },
+            "error" : {
+                "title" : "Error"
+            },
+            "advance1st" : {
+                "title" : "Advance to 1st"
+            },
+            "obr" : {
+                "title" : "Out by rule"
+            },
+            "other" : {
+                "title" : "Other out"
+            },
+            "advance" : {
+                "title" : "Advance"
+            },
+            "noAdvance" : {
+                "title" : "No advance"
+            },
+            "extraBase" : {
+                "title" : "Extra base"
+            },
+            "sb" : {
+                "title" : "Steal / CS"
+            },
+            "out" : {
+                "title" : "Out"
+            }
+        },
         "involved" : "Involved",
         "button" : {
             "generate" : "Score play",

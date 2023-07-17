@@ -169,7 +169,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
   }
 
   const actionLabel = document.createElement('label')
-  actionLabel.innerHTML = useNuxtApp().$i18n.t('editor.action') + ':&nbsp;'
+  actionLabel.innerHTML = useNuxtApp().$i18n.t('editor.action.action') + ':&nbsp;'
   inputsContainer.appendChild(actionLabel)
 
   const baseActionSelect = document.createElement('select')
