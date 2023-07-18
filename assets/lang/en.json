@@ -33,49 +33,154 @@
             "runnerStay" : "Runner stays",
             "runnerOut" : "Runner is out",
             "strikeOut" : {
-                "title" : "Strike out"
+                "title" : "Strike out",
+                "KS" : "Swinging",
+                "KL" : "Looking",
+                "KST" : "Swinging with tag/throw out",
+                "KLT" : "Looking with tag/throw out",
+                "KSR" : "Swinging - out by rule",
+                "KLR" : "Looking - out by rule",
+                "KSB" : "Swinging - bunting foul third strike",
+                "KSI" : "Swinging - offensive interference",
+                "KLI" : "Looking - offensive interference",
+                "KSET" : "Swinging with throwing error",
+                "KSE" : "Swinging with fielding error",
+                "KSWP" : "Swinging with wild pitch",
+                "KSPB" : "Swinging with passed ball",
+                "KSO" : "Swinging with putting out runner",
+                "KSFC" : "Swinging with fielder's choice",
+                "KLET" : "Looking with throwing error",
+                "KLE" : "Looking with fielding error",
+                "KLWP" : "Looking with wild pitch",
+                "KLPB" : "Looking with passed ball",
+                "KLO" : "Looking with putting out runner",
+                "KLFC" : "Looking with fielder's choice"
             },
             "groundOut" : {
-                "title" : "Ground out"
+                "title" : "Ground out",
+                "GO" : "Ground out",
+                "GOB" : "Ground out - bunt",
+                "GDP" : "Grounded into double play",
+                "GDPE" : "GDP with error"
             },
             "flyOut" : {
-                "title" : "Fly out"
+                "title" : "Fly out",
+                "F" : "Fly out",
+                "P" : "Pop out",
+                "L" : "Line out",
+                "FF" : "Fouled fly out",
+                "FP" : "Fouled pop out",
+                "FL" : "Fouled line out",
+                "IF" : "Infield fly",
+                "FB" : "Fly out - bunt",
+                "FFB" : "Fouled fly out - bunt"
             },
             "hit" : {
-                "title" : "Hit"
+                "title" : "Hit",
+                "1B" : "Single",
+                "2B" : "Double",
+                "3B" : "Triple",
+                "HR" : "Home run",
+                "1BB" : "Single - bunt",
+                "2BG" : "Double - ground rule",
+                "IHR" : "Home run - inside the park"
             },
             "sacrifice" : {
-                "title" : "Sacrifice"
+                "title" : "Sacrifice",
+                "SH" : "Sacrifice bunt",
+                "SF" : "Sacrifice fly",
+                "FSF" : "Sacrifice fly in foul territory",
+                "SHE" : "Sacrifice bunt with fielding error",
+                "SHET" : "Sacrifice bunt with throwing error",
+                "SHEF" : "Sacrifice bunt with dropped fly",
+                "SHFC" : "Sacrifice bunt with FC",
+                "SFE" : "Sacrifice fly with error",
+                "SFO" : "Dropped sacrifice fly + forced out"
             },
             "fc" : {
-                "title" : "Fielder's choice"
+                "title" : "Fielder's choice",
+                "O" : "Occupied",
+                "FC" : "Fielder's choice",
+                "T" : "On the throw",
+                "O/" : "Indifference",
+                "oc" : "Occupied (hit with appeal play)"
             },
             "error" : {
-                "title" : "Error"
-            },
-            "advance1st" : {
-                "title" : "Advance to 1st"
-            },
-            "obr" : {
-                "title" : "Out by rule"
-            },
-            "other" : {
-                "title" : "Other out"
+                "title" : "Error",
+                "EF" : "Fielding error",
+                "ET" : "Throwing error",
+                "EDF" : "Dropped fly",
+                "EDL" : "Dropped fly - line",
+                "EDP" : "Dropped fly - pop",
+                "EDFB" : "Dropped foul",
+                "INT" : "Catcher's interference",
+                "OB" : "Obstruction",
+                "ENF" : "Decisive fielding (no advance)",
+                "ENT" : "Decisive throwing (no advance)",
+                "eF" : "Extra base fielding",
+                "et" : "Extra base throwing",
+                "se0" : "Same error (Batter)",
+                "se1" : "Same error (Runner at 1st)",
+                "se2" : "Same error (Runner at 2nd)",
+                "se3" : "Same error (Runner at 3rd)"
             },
             "advance" : {
-                "title" : "Advance"
+                "title" : "Advance",
+                "titleN" : "No advance",
+                "title1" : "Advance to 1st",
+                "BB1" : "Base on balls",
+                "IBB1" : "Intentional base on balls",
+                "HP" : "Hit by pitch",            
+                "ADV" : "Advanced by batter",
+                "NADV" : "No advance"
             },
-            "noAdvance" : {
-                "title" : "No advance"
+            "obr" : {
+                "title" : "Out by rule",
+                "OBR_BOB" : "Batter Out of the Box",
+                "OBR_BIA" : "Batter's Illegal Action",
+                "OBR_TBB" : "Touched by Batted Ball",
+                "OBR_BIC" : "Batter Interfering with the Catcher",
+                "OBR_BOO" : "Batting Out of Order",
+                "OBR_RTA" : "Refusing To Advance",
+                "OBR_DIF" : "Dropped Infield Fly",
+                "OBR_BIN" : "Batter Interference",
+                "OBR_OIN" : "Other Interference",
+                "OBR_hbb" : "Hit by fair Batted Ball",
+                "OBR_rol" : "Running Out of Line",
+                "OBR_ppr" : "Passing a Preceding Runner",
+                "OBR_rro" : "Running the bases in Reverse Order",
+                "OBR_rin" : "Runner Interference",
+                "OBR_rle" : "Runner Left Early (softball)",
+                "OBR_rhe" : "Removal of Helmet (softball)"
+            },
+            "other" : {
+                "title" : "Other out",
+                "A" : "Appeal play",
+                "LT" : "Lost turn"
             },
             "extraBase" : {
-                "title" : "Extra base"
+                "title" : "Extra base",
+                "WP" : "Wild pitch",
+                "PB" : "Passed ball",
+                "BK" : "Balk (baseball)",
+                "IP" : "Illegal pitch (softball)"
             },
             "sb" : {
-                "title" : "Steal / CS"
+                "title" : "Steal / CS",
+                "SB" : "Stolen base",
+                "CSE" : "Caught stealing with fielding error",
+                "CSET" : "Caught stealing with throwing error",
+                "CSN" : "Caught stealing with fielding error (no advance)",
+                "CSNT" : "Caught stealing with throwing error (no advance)",
+                "POE" : "Picked off with (throwing) error",
+                "CSO" : "Caught stealing",
+                "PO" : "Picked off"
             },
             "out" : {
-                "title" : "Out"
+                "title" : "Out",
+                "GO" : "Force out",
+                "GOT" : "Tag out",
+                "A" : "Appeal play"
             }
         },
         "involved" : "Involved",
