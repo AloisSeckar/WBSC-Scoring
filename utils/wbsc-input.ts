@@ -157,7 +157,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
     renderBaseSelection(group)
   } else {
     const runTypeLabel = document.createElement('label')
-    runTypeLabel.innerHTML = useNuxtApp().$i18n.t('editor.run') + ':&nbsp;'
+    runTypeLabel.innerHTML = useT('editor.run') + ':&nbsp;'
     inputsContainer.appendChild(runTypeLabel)
 
     const runTypeSelect = document.createElement('select')
@@ -169,7 +169,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
   }
 
   const actionLabel = document.createElement('label')
-  actionLabel.innerHTML = useNuxtApp().$i18n.t('editor.action.action') + ':&nbsp;'
+  actionLabel.innerHTML = useT('editor.action.action') + ':&nbsp;'
   inputsContainer.appendChild(actionLabel)
 
   const baseActionSelect = document.createElement('select')
@@ -267,7 +267,7 @@ function renderBaseSelection (group: string) {
   }
 
   const baseLabel = document.createElement('label')
-  baseLabel.innerHTML = useNuxtApp().$i18n.t('editor.base.base') + ':&nbsp;'
+  baseLabel.innerHTML = useT('editor.base.base') + ':&nbsp;'
   inputsContainer.appendChild(baseLabel)
 
   let runTypeSelectDisabled = true
@@ -297,7 +297,7 @@ function renderBaseSelection (group: string) {
   inputsContainer.appendChild(baseSelect)
 
   const runTypeLabel = document.createElement('label')
-  runTypeLabel.innerHTML = '&nbsp;' + useNuxtApp().$i18n.t('editor.run') + ':&nbsp;'
+  runTypeLabel.innerHTML = '&nbsp;' + useT('editor.run') + ':&nbsp;'
   inputsContainer.appendChild(runTypeLabel)
 
   const runTypeSelect = document.createElement('select')
@@ -318,7 +318,7 @@ function renderPosSelection (group: string) {
   inputsContainer.setAttribute('id', groupID)
 
   const involvedLabel = document.createElement('label')
-  involvedLabel.innerHTML = useNuxtApp().$i18n.t('editor.involved') + ':&nbsp;'
+  involvedLabel.innerHTML = useT('editor.involved') + ':&nbsp;'
   inputsContainer.appendChild(involvedLabel)
 
   const addItemButton = document.createElement('button')

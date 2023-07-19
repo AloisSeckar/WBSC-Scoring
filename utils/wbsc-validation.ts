@@ -27,7 +27,7 @@ function checkUserInput (inputs: WBSCInput[]) {
       const minPosItems = useEvalStore().getMinPosItems(input.group)
       const posSelection = input.pos
       if (minPosItems > 0 && (!posSelection || posSelection.length < minPosItems)) {
-        const message = useNuxtApp().$i18n.t('editor.validation.minPositions')
+        const message = useT('editor.validation.minPositions')
         message.replace('%pos%', minPosItems.toString())
         validation = attachValidation(validation, message)
       } else if (posSelection) {
@@ -35,22 +35,22 @@ function checkUserInput (inputs: WBSCInput[]) {
         const allPosSelects = container.getElementsByClassName(classWbscPos)
         const filteredPosSelects = [...allPosSelects].filter(i => i.id.startsWith(input.group + '-'))
         if (filteredPosSelects.length > posSelection.length) {
-          validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.allPositions'))
+          validation = attachValidation(validation, useT('editor.validation.allPositions'))
         } else {
           validation = attachValidation(validation, checkPosSelection(posSelection))
         }
       }
       if ((input.specAction.includes('EN') || input.specAction.includes('CSN')) && input.base - input.origBase > 1) {
-        validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noNAAdvance'))
+        validation = attachValidation(validation, useT('editor.validation.noNAAdvance'))
       }
       if (input.specAction === 'SB' && input.base - input.origBase > 1) {
-        validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSBAdvance'))
+        validation = attachValidation(validation, useT('editor.validation.noSBAdvance'))
       }
       if (['CSE', 'CSET', 'CSN', 'CSNT'].includes(input.specAction) && input.pos === '2') {
-        validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noE2TSB'))
+        validation = attachValidation(validation, useT('editor.validation.noE2TSB'))
       }
     } else {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.properAction'))
+      validation = attachValidation(validation, useT('editor.validation.properAction'))
     }
   })
 
@@ -76,7 +76,7 @@ function checkPosSelection (selection: string) {
 
   if (selection.length > 1) {
     if (!selection.endsWith('LL') && selection[selection.length - 2] === selection[selection.length - 1]) {
-      validation = useNuxtApp().$i18n.t('editor.validation.noSelfAsist')
+      validation = useT('editor.validation.noSelfAsist')
     }
   }
   if (selection.length > 2) {
@@ -84,7 +84,7 @@ function checkPosSelection (selection: string) {
     for (let i = 0; i < selection.length - 1; i += 1) {
       const current = parseInt(selection[i])
       if (alreadyEncounteredPositions[current] === true) {
-        validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noMultipleAsist'))
+        validation = attachValidation(validation, useT('editor.validation.noMultipleAsist'))
         break
       }
       alreadyEncounteredPositions[current] = true
@@ -106,7 +106,7 @@ function checkMaxOuts (inputs: WBSCInput[]) {
   })
 
   if (outs > 3) {
-    return useNuxtApp().$i18n.t('editor.validation.max3Outs')
+    return useT('editor.validation.max3Outs')
   } else {
     return ''
   }
@@ -130,16 +130,16 @@ function checkOutcome (inputs: WBSCInput[]) {
         if (output.out) {
           // this is probably a dead code after #60
           if (playerWasOut) {
-            validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noOutAfterOut'))
+            validation = attachValidation(validation, useT('editor.validation.noOutAfterOut'))
           } else {
             playerWasOut = true
-            validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noAdvanceAfterOut'))
+            validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
           }
         }
         const maxReachedBase = reachedBases[reachedBases.length - 1]
         const currentReachedBase = Math.max(output.base, output.errorTarget)
         if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(input.specAction))) {
-          validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.advanceInOrder'))
+          validation = attachValidation(validation, useT('editor.validation.advanceInOrder'))
         }
       } else {
         // special case for "batter + same error"
@@ -147,7 +147,7 @@ function checkOutcome (inputs: WBSCInput[]) {
         if (input.group === inputB) {
           if (output.base === 0 && output.errorTarget > 1) {
             playerWasOut = true
-            validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noAdvanceAfterOut'))
+            validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
           }
         }
         currentBatter = output.batter
@@ -164,11 +164,11 @@ function checkOutcome (inputs: WBSCInput[]) {
     const reachedBase2 = reachedBases[i + 1]
 
     if (reachedBase2 > reachedBase1) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noPassingRunner'))
+      validation = attachValidation(validation, useT('editor.validation.noPassingRunner'))
     }
 
     if (reachedBase1 !== 4 && reachedBase1 === reachedBase2) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSameBase'))
+      validation = attachValidation(validation, useT('editor.validation.noSameBase'))
     }
   }
 
@@ -203,9 +203,9 @@ function checkHit (inputs: WBSCInput[]) {
   })
 
   if (hitPlay && forceOut) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noHitAndFO'))
+    validation = attachValidation(validation, useT('editor.validation.noHitAndFO'))
   } else if (hitPlay && appealPlay) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noHitAndA'))
+    validation = attachValidation(validation, useT('editor.validation.noHitAndA'))
   }
 
   return validation
@@ -261,17 +261,17 @@ function checkFO (inputs: WBSCInput[]) {
   })
 
   if (givenFO[0] && !possibleFO[0]) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.notFO2'))
+    validation = attachValidation(validation, useT('editor.validation.notFO2'))
   }
   if (givenFO[1] && !possibleFO[1]) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.notFO3'))
+    validation = attachValidation(validation, useT('editor.validation.notFO3'))
   }
   if (givenFO[2] && !possibleFO[2]) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.notFOH'))
+    validation = attachValidation(validation, useT('editor.validation.notFOH'))
   }
 
   if (impossibleFO) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noDistantFO'))
+    validation = attachValidation(validation, useT('editor.validation.noDistantFO'))
   }
 
   return validation
@@ -313,13 +313,13 @@ function checkFC (inputs: WBSCInput[]) {
   })
 
   if (oSituation && !oPlay) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingOPlay'))
+    validation = attachValidation(validation, useT('editor.validation.missingOPlay'))
   }
   if (fcSituation && !fcPlay) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingFCPlay'))
+    validation = attachValidation(validation, useT('editor.validation.missingFCPlay'))
   }
   if (kfcSituation && !kfcPlay) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingPBPlay'))
+    validation = attachValidation(validation, useT('editor.validation.missingPBPlay'))
   }
 
   return validation
@@ -343,7 +343,7 @@ function checkGDP (inputs: WBSCInput[]) {
   })
 
   if (gdpSelected && !gdpOut) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingGDPPlay'))
+    validation = attachValidation(validation, useT('editor.validation.missingGDPPlay'))
   }
 
   return validation
@@ -376,14 +376,14 @@ function checkSHSF (inputs: WBSCInput[]) {
   })
 
   if (shSelected && !advanceByBatter) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingSHPlay'))
+    validation = attachValidation(validation, useT('editor.validation.missingSHPlay'))
   }
   if (sfSelected) {
     if (!advanceByBatter) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingSFPlay'))
+      validation = attachValidation(validation, useT('editor.validation.missingSFPlay'))
     }
     if (!runScored) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingSFRun'))
+      validation = attachValidation(validation, useT('editor.validation.missingSFRun'))
     }
   }
 
@@ -407,7 +407,7 @@ function checkSBCS (inputs: WBSCInput[]) {
   })
 
   if (sbSelected && csSelected) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSBCS'))
+    validation = attachValidation(validation, useT('editor.validation.noSBCS'))
   }
 
   return validation
@@ -455,16 +455,16 @@ function checkExtraBaseAdvances (inputs: WBSCInput[]) {
   })
 
   if (invalidWP) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noWPAfterPlay'))
+    validation = attachValidation(validation, useT('editor.validation.noWPAfterPlay'))
   }
   if (invalidPB) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noPBAfterPlay'))
+    validation = attachValidation(validation, useT('editor.validation.noPBAfterPlay'))
   }
   if (invalidIP) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noPlayAfterIP'))
+    validation = attachValidation(validation, useT('editor.validation.noPlayAfterIP'))
   }
   if (invalidBK) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noPlayAfterBK'))
+    validation = attachValidation(validation, useT('editor.validation.noPlayAfterBK'))
   }
 
   return validation
@@ -519,48 +519,48 @@ function checkSameError (inputs: WBSCInput[]) {
   })
 
   if (seB && !errB) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSE0'))
+    validation = attachValidation(validation, useT('editor.validation.noSE0'))
   }
   if (seR1 && !errR1) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSE1'))
+    validation = attachValidation(validation, useT('editor.validation.noSE1'))
   }
   if (seR2 && !errR2) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSE2'))
+    validation = attachValidation(validation, useT('editor.validation.noSE2'))
   }
   if (seR3 && !errR3) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSE3'))
+    validation = attachValidation(validation, useT('editor.validation.noSE3'))
   }
 
   // there may be only one "same error" (and "same occupied") action per each runner
   // 'oc' and 'se0 for batter' must be dealt differently, because in this case b1Input gets deleted
   if (inputs.some(i => i.specAction === 'oc')) {
     if (inputs.some(i => i.specAction === 'oc' && i.group !== inputB1)) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noExAdvFC'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvFC'))
     }
   }
   if (seB) {
     const seBInvalid = inputs.some(i => i.specAction === 'se0' && (i.group === inputB2 || i.group === inputB3))
     const seBActions = inputs.filter(i => i.specAction === 'se0').map(i => getRunner(i.group))
     if (seBInvalid || seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noExAdvSE0'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE0'))
     }
   }
   if (seR1) {
     const seBActions = inputs.filter(i => i.specAction === 'se1').map(i => getRunner(i.group))
     if (seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noExAdvSE1'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE1'))
     }
   }
   if (seR2) {
     const seBActions = inputs.filter(i => i.specAction === 'se2').map(i => getRunner(i.group))
     if (seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noExAdvSE2'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE2'))
     }
   }
   if (seR3) {
     const seBActions = inputs.filter(i => i.specAction === 'se3').map(i => getRunner(i.group))
     if (seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noExAdvSE3'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE3'))
     }
   }
 
@@ -629,16 +629,16 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
   })
 
   if (bER && errB) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noER0'))
+    validation = attachValidation(validation, useT('editor.validation.noER0'))
   }
   if (r1ER && errR1) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noER1'))
+    validation = attachValidation(validation, useT('editor.validation.noER1'))
   }
   if (r2ER && errR2) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noER2'))
+    validation = attachValidation(validation, useT('editor.validation.noER2'))
   }
   if (r3ER && errR3) {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noER3'))
+    validation = attachValidation(validation, useT('editor.validation.noER3'))
   }
 
   return validation
@@ -649,10 +649,10 @@ function checkBInput (b1Action: string, bAction: string): string {
   let validation = ''
 
   if (b1Action === 'se0' && !decisiveErrorActions.includes(bAction)) {
-    validation = attachValidation(validation, attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.noSE0')))
+    validation = attachValidation(validation, attachValidation(validation, useT('editor.validation.noSE0')))
   }
   if (b1Action === 'oc' && bAction !== 'O') {
-    validation = attachValidation(validation, useNuxtApp().$i18n.t('editor.validation.missingOAdv'))
+    validation = attachValidation(validation, useT('editor.validation.missingOAdv'))
   }
 
   return validation
