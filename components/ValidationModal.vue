@@ -5,7 +5,7 @@
     <div class="modal-overlay" @click="invalidate()">
       <div :class="divMain" @click.stop>
         <div :class="divHeader">
-          Invalid input
+          {{ $t('editor.validation.window.title') }}
         </div>
         <ul>
           <li v-for="row in validationRows" :key="row">
@@ -13,7 +13,7 @@
           </li>
         </ul>
         <div :class="divButton" @click="invalidate()">
-          OK
+          {{ $t('editor.validation.window.ok') }}
         </div>
       </div>
     </div>

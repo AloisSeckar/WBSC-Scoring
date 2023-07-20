@@ -240,7 +240,17 @@
             "noER1" : "Earned run is selected (Runner at 1st), \nbut this is not possible with a decisive error.",
             "noER2" : "Earned run is selected (Runner at 2nd), \nbut this is not possible with a decisive error.",
             "noER3" : "Earned run is selected (Runner at 3rd), \nbut this is not possible with a decisive error.",
-            "missingOAdv" : "Advance after 'FC - Occupied' is selected, \nbut no corresponding FC play was given."
+            "missingOAdv" : "Advance after 'FC - Occupied' is selected, \nbut no corresponding FC play was given.",
+            "window" : {
+                "title" : "Invalid input",
+                "ok" : "OK"
+            }
+        },
+        "import" : {
+            "title" : "Select situation to import",
+            "situation" : "Situation",
+            "confirm" : "Import",
+            "cancel" : "Cancel"
         }
     },
     "report" : {
