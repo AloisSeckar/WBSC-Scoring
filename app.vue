@@ -9,7 +9,7 @@
       <Meta property="og:description" content="Visualisation for WBSC Scoring System" />
       <Meta property="og:image" content="https://wbsc-scoring.netlify.app/demo.png" />
     </Head>
-    <div class="flex justify-center">
+    <div id="top" class="flex justify-center">
       <div class="mx-2 md:w-4/5">
         <LanguageSelector />
         <div class="text-center">
