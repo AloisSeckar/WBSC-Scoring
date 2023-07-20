@@ -17,6 +17,8 @@ function setLocale (newLocale: string) {
   locale.value = newLocale
   // currently editor UI is dynamically rendered via JS functions
   // therefore it cannot keep its state and upon translation it needs to be re-generated
-  initEditor()
+  if (useRoute().path === '/') {
+    initEditor()
+  }
 }
 </script>
