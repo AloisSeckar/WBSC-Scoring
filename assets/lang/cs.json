@@ -267,7 +267,7 @@
         "manual" : {
             "title" : "Uživatelská hlášení",
             "p1" : "Pokud si nejste jisti, jak pracovat s GitHubem, můžete samozřejmě použít tradiční způsoby elektronické komunikace.",
-            "p2" : "Nejlepší způsob, jak mě zastihnout, je napsat email na <a href=\"mailto:alois.seckar@gmail.com\">alois.seckar@gmail.com</a>.",
+            "p2" : "Nejlepší způsob, jak mě zastihnout, je napsat email na <a href=\"mailto:alois.seckar{'@'}gmail.com\">alois.seckar{'@'}gmail.com</a>.",
             "p3" : "Alternativní způsoby kontaktu přes sociální sítě jsou vypsány <a href=\"http://alois-seckar.cz/\">ZDE</a>."
         },
         "howto" : {

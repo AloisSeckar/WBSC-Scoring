@@ -267,7 +267,7 @@
         "manual" : {
             "title" : "Manual reporting",
             "p1" : "If you're not sure how to deal with GitHub, you are of course welcome traditional ways of communication.",
-            "p2" : "The best option is to write me an email to <a href=\"mailto:alois.seckar@gmail.com\">alois.seckar@gmail.com</a>.",
+            "p2" : "The best option is to write me an email to <a href=\"mailto:alois.seckar{'@'}gmail.com\">alois.seckar{'@'}gmail.com</a>.",
             "p3" : "Alternative ways of contacting me via social media are listed <a href=\"http://alois-seckar.cz/\">HERE</a>."
         },
         "howto" : {
