@@ -1,5 +1,8 @@
 {
-    "hello" : "Ahoj",
+    "nav" : {
+        "top" : "Zpět nahoru",
+        "home" : "Zpět na index"
+    },
     "index" : {
         "editor" : "Editor rozeher",
         "note" : "Probíhá vývoj + překlad z angličtiny. Prosím o trpělivost.",
@@ -238,6 +241,38 @@
             "noER2" : "Je vybrán umožněný doběh (R2), ale to není možné, pokud nastal decessive error.",
             "noER3" : "Je vybrán umožněný doběh (R3), ale to není možné, pokud nastal decessive error.",
             "missingOAdv" : "Je vybrán další postup na 'FC - Occupied)', ale chybí odpovídající FC situace."
+        }
+    },
+    "report" : {
+        "title" : "HLÁŠENÍ CHYB",
+        "motto" : "V každém počítačovém programu je alespoň jedna chyba.",
+        "p1" : "Toto úsloví může být trochu přehnané, ale obecně je dost těžké udržet jakoukoliv aplikaci bezchybnou. Při vývoji \"WBSC Scoring\" dělám, co můžu, také mám slušnou porci automatizovaných testů s desítkami situací k prověření pokaždé, když něco přidám/změnímú/opravím, ale jsem si prakticky jisté, že tu pořád máme skryté chyby, které čekají na objevení. A pokud ne přímo chyby, tak může někdo z vás přijít s nějakými novými funkcemi, které mě zatím nenapadly.",
+        "p2" : "Jsem připraven na všechny vaše podněty. Na této stránce najdete detaily o procesu hlášení.",
+        "issues" : {
+            "title" : "GitHub issues",
+            "p1" : "GitHub nabízí jednoduchý a přitom plně dostačující systém sledování chyb/návrhů, který v tomto projektu používám.",
+            "p2" : "Všechny tickety tykající se \"WBSC Scoring\" můžete nalézt <a href=\"https://github.com/AloisSeckar/WBSC-Scoring/issues\">ZDE</a>. Výchozí filtr ukazuje otevřené úkoly, které jsou mi známy, ale ještě je třeba je vypořádat.",
+            "p3" : "Pokud umíte s GitHubem pracovat, neváhejte tam sami vytvořit nové hlášení. Budu se je snažit vyřídit co nejdříve."
+        },
+        "manual" : {
+            "title" : "Uživatelská hlášení",
+            "p1" : "Pokud si nejste jisti, jak pracovat s GitHubem, můžete samozřejmě použít tradiční způsoby elektronické komunikace.",
+            "p2" : "Nejlepší způsob, jak mě zastihnout, je napsat email na <a href=\"mailto:alois.seckar@gmail.com\">alois.seckar@gmail.com</a>.",
+            "p3" : "Alternativní způsoby kontaktu přes sociální sítě jsou vypsány <a href=\"http://alois-seckar.cz/\">ZDE</a>."
+        },
+        "howto" : {
+            "title" : "Co zahrnout do hlášení?",
+            "dscr" : "Abych byl schopen vysledovat zdroj probému, prosím vás o dodržení určité základní struktury hlášení a zahrnutí všech potřebných detailů. Prosím, zkuste vždy přidat následující body:",
+            "subject" : "Co je špatně?",
+            "subjectDscr" : "Stručné, ale smysluplné a jasné vysvětlení, co se zdá být rozbité/špatně fungující.",
+            "reproduction" : "Reprodukce",
+            "repoductionDscr" : "Sekvence uživatelských kroků a interakcí, která vedla k uvedené situaci. Toto je důležité, protože některé chyby závisí na přesném pořadí činností, a já bych nemusel být schopný je sám zopakovat, pokud mi neřeknete jak.",
+            "screenshots" : "Snímky obrazovky",
+            "screenshotsDscr1" : "Vizualizace problému často mluví sama za sebe. Vlastně dobrý screenshot může být cennější než samotné textové vysvětlení.",
+            "screenshotsDscr2" : "Bude mě zajímat obrázek výstupu (abych viděl, co je špatně), ale také (a HLAVNĚ) obrázek vstupů, protože příčina může být často skryta právě zde. Prosím vždy se pokuste je přiložit.",
+            "console" : "Výstup konzole",
+            "consoleDscr" : "Toto je pokročilejší téma, ale také mi může hodně pomoct. Pokud ve vašem prohlížeči (na PC) zmáčknete klávesu <strong>F12</strong>, většinou získáte přístup k nástroji zvanému \"Konzole\". Když navštívíte jakoukoliv stránku, akce vašeho prohlížeče probíhající během načítání obsahu se zde mohou projevit. Speciálně pokud dojde k nějaké chybě, může se zde objevit červený text, který dává vývojářům nápovědu o možné příčině.",
+            "consoleExample" : "Zde je příklad výstupu do konzole (poté, co jsem zvolil špatný typ souboru během importu z JSON souboru):"
         }
     },
     "footer" : {

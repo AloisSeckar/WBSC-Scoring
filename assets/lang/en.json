@@ -1,5 +1,8 @@
 {
-    "hello" : "Hello",
+    "nav" : {
+        "top" : "Back to top",
+        "home" : "Back to homepage"
+    },
     "index" : {
         "editor" : "Situation editor",
         "note" : "We're closing in, but this site is still being developed, not all scoring features are possible",
@@ -238,6 +241,38 @@
             "noER2" : "Earned run is selected (Runner at 2nd), \nbut this is not possible with a decisive error.",
             "noER3" : "Earned run is selected (Runner at 3rd), \nbut this is not possible with a decisive error.",
             "missingOAdv" : "Advance after 'FC - Occupied' is selected, \nbut no corresponding FC play was given."
+        }
+    },
+    "report" : {
+        "title" : "REPORTING BUGS",
+        "motto" : "In every computer program there is at least one bug.",
+        "p1" : "This saying might be a little exaggerated, but generally it is quite hard to keep any application error prone. I am doing my best developing \"WBSC Scoring\", also having quite solid bunch of automated tests with dozens of situations to test every time before I add/update/fix something, but basically I am sure there are still mistakes hidden around and waiting to be discovered. And if not mistakes, then you'll probably come up with some \"nice to have\" new features I haven't thought about yet.",
+        "p2" : "I am ready for all your input. Here on this page, you can find details about the reporting process.",
+        "issues" : {
+            "title" : "GitHub issues",
+            "p1" : "GitHub provides a simple, yet sufficient bug/feature tracking system, which is being used for this project.",
+            "p2" : "You can find all the issues related to \"WBSC Scoring\" <a href=\"https://github.com/AloisSeckar/WBSC-Scoring/issues\">HERE</a>. The default filter shows opened issues, that are known to me, but are about to be dealt with yet.",
+            "p3" : "If you are familiar with GitHub, feel free to open a new issue on your own. I will try to address it ASAP."
+        },
+        "manual" : {
+            "title" : "Manual reporting",
+            "p1" : "If you're not sure how to deal with GitHub, you are of course welcome traditional ways of communication.",
+            "p2" : "The best option is to write me an email to <a href=\"mailto:alois.seckar@gmail.com\">alois.seckar@gmail.com</a>.",
+            "p3" : "Alternative ways of contacting me via social media are listed <a href=\"http://alois-seckar.cz/\">HERE</a>."
+        },
+        "howto" : {
+            "title" : "What to include in the report?",
+            "dscr" : "To be able to track down the issue I urge you to keep some basic structure of the reports with all the necessary details attached. Please always try to include following points:",
+            "subject" : "What is wrong?",
+            "subjectDscr" : "A brief, yet meaningful explanation of what seems to be broken/malfunctioning.",
+            "reproduction" : "Reproduction",
+            "repoductionDscr" : "A sequence of user steps and interactions leading to the situation. This is important, because some things depend on the exact order of things, and I might not be able to do it the same way unless you tell me how.",
+            "screenshots" : "Screenshots",
+            "screenshotsDscr1" : "A visualization of the problem often speaks for itself. Actually, good screenshots may be worth more than the text explanation alone.",
+            "screenshotsDscr2" : "I would be interested in the picture of the output (to see what is wrong), but also (and MAINLY) of the inputs, because the cause may often be hidden right there. Please always try to attach them.",
+            "console" : "Console output",
+            "consoleDscr" : "This is an advanced topic, but it can also help me a lot. If you press <strong>F12</strong> in most of the browsers (on desktop), you gain access to a thing called \"Console\". As you visit any website, the actions your browser is performing during rendering the content may manifest here. Especially when some error occurs, a red text may appear here giving hints to developers about the cause.",
+            "consoleExample" : "Here is an example of console output (after I picked wrong file type during importing input):"
         }
     },
     "footer" : {

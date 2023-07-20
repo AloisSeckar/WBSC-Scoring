@@ -1,10 +1,10 @@
 <template>
   <div class="mt-6">
     <NuxtLink class="btn btn-top" to="#">
-      Back to top
+      {{ $t('nav.top') }}
     </NuxtLink>
     <NuxtLink class="btn btn-link" to="/">
-      Back to homepage
+      {{ $t('nav.home') }}
     </NuxtLink>
   </div>
 </template>
