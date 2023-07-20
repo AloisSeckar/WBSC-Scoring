@@ -27,8 +27,8 @@ function checkUserInput (inputs: WBSCInput[]) {
       const minPosItems = useEvalStore().getMinPosItems(input.group)
       const posSelection = input.pos
       if (minPosItems > 0 && (!posSelection || posSelection.length < minPosItems)) {
-        const message = useT('editor.validation.minPositions')
-        message.replace('%pos%', minPosItems.toString())
+        let message = useT('editor.validation.minPositions')
+        message = message.replace('%pos%', minPosItems.toString())
         validation = attachValidation(validation, message)
       } else if (posSelection) {
         const container = document.getElementById(input.group) as HTMLElement
