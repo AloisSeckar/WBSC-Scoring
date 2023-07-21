@@ -1,34 +1,14 @@
 <template>
   <div>
-    <h2>WORKING WITH WBSC SCORING CREATOR</h2>
+    <h2>{{ $t('help.title') }}</h2>
 
     <div class="mb-2">
-      <p>
-        The basic idea is pretty simple - you build up your input and when you hit "Generate action", the
-        outcome will be displayed in the "Output" section. It is designed to look like (blue) WBSC paper
-        scoresheet to give the most precise experience of how similar action should be written down
-        watching the game on the field. A couple of validations run above the input to avoid impossible
-        plays or at least make them less probable.
-      </p>
-      <p>
-        There are a few premises to have in mind:
-      </p>
+      <p v-html="$t('help.dscr')" />
+      <p v-html="$t('help.premises')" />
       <ul class="list-disc">
-        <li>
-          The program always renders only ONE PLAY AT ONCE. It may consist of more situations
-          (theoretically up to 10 separate actions), but all of them are meant to happen during the
-          same pitch (or the same time between pitches). You cannot follow the flow of a game.
-        </li>
-        <li>
-          Due to the above runner being placed on base is indicated with a <span style="color: red">red asterisk</span>
-          mark. This is no official scoring abbreviation, it is just to indicate there was SOME play, but we don't cover
-          it and don't care about it. The only exception from this is a potential tiebreaker (TIE) run, because this is
-          an arbitrary action.
-        </li>
-        <li>
-          Batting order always starts from 1. Depending on the  number of players involved, the output can show
-          players 1-4. It is neither possible to select different initial order, nor skip some players in between.
-        </li>
+        <li v-html="$t('help.premise1')" />
+        <li v-html="$t('help.premise2')" />
+        <li v-html="$t('help.premise3')" />
       </ul>
     </div>
 

@@ -253,6 +253,14 @@
             "cancel" : "Cancel"
         }
     },
+    "help" : {
+        "title" : "WORKING WITH WBSC SCORING CREATOR",
+        "dscr" : "The basic idea is pretty simple - you build up your input and when you hit \"Score play\", the outcome will be displayed in the \"Output\" section. It is designed to look like (blue) WBSC paper scoresheet to give the most precise experience of how similar action should be written down watching the game on the field. A couple of validations run above the input to avoid impossible plays or at least make them less probable.",
+        "premises" : "There are a few premises to have in mind:",
+        "premise1" : "The program always renders only ONE PLAY AT ONCE. It may consist of more situations (theoretically up to 10 separate actions), but all of them are meant to happen during the same pitch (or the same time between pitches). You cannot follow the flow of a game.",
+        "premise2" : "Due to the above runner being placed on base is indicated with a <span style=\"color: red\">red asterisk</span> mark. This is no official scoring abbreviation, it is just to indicate there was SOME play, but we don't cover it and don't care about it. The only exception from this is a potential tiebreaker (TIE) run, because this is an arbitrary action.",
+        "premise3" : "Batting order always starts from 1. Depending on the number of players involved, the output can show players 1-4. It is neither possible to select different initial order, nor skip some players in between."
+    },
     "report" : {
         "title" : "REPORTING BUGS",
         "motto" : "In every computer program there is at least one bug.",
