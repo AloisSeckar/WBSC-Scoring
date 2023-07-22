@@ -253,6 +253,14 @@
             "cancel" : "Zrušit"
         }
     },
+    "help" : {
+        "title" : "OVLÁDÁNÍ PROGRAMU WBSC SCORING CREATOR",
+        "dscr" : "Základní myšlenka je jednoduchá - sestavíte svůj vstup a po stisknutí tlačítka \"Zapsat rozehru\" se zápis situace zobrazí v sekci \"Výsledek\". Ten je designován tak, že vypadá jako (modrý) WBSC papírový zápis, aby byl dojem co nejbližší tomu, jak byste měli zapsat podobnou akci při sledování skutečné hry. Nad vstupem běží různé validace, které znemožnují některé nesmyslné rozehry, nebo jejich zadávání alespoň omezují.",
+        "premises" : "Je zde několik předpokladů, které je třeba mít na paměti:",
+        "premise1" : "Program vždy vykreslí POUZE JEDNU ROZEHRU. Může sestávat z více situací (teoreticky až 10 samostatných akcí), ale všechny se musí stát během jednoho nadhozu (nebo během času mezi dvěma nadhozy). Není možné sledovat průběh celého zápasu.",
+        "premise2" : "Kvůli výše uvedenému jsou umístění běžce na metu označena <span style=\"color: red\">červenou hvězdičkou</span>. Toto není žádná oficiální zkratka pro zápis, tím pouze dáváme najevo, že se stala NĚJAKÁ situace, díky které je běžec na metě, z níž začíná. Akci nechceme zapisovat a nestaráme se o ni. Jedinou výjimkou je běžec v tie-breaku (TIE), protože to je výjimečná a předem daná akce.",
+        "premise3" : "Pálkařské pořadí začíná vždy o 1. V závislosti na počtu zúčastněných hráčů může výsledek ukazovat hráče 1-4 v pálkařském pořadí. Není však možné vybrat jiné výchozí pořadí ani přeskočit některé hráče mezi."
+    },
     "report" : {
         "title" : "HLÁŠENÍ CHYB",
         "motto" : "V každém počítačovém programu je alespoň jedna chyba.",
