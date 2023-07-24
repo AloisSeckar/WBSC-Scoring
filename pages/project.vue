@@ -1,320 +1,107 @@
 <template>
   <div>
-    <h2>DESCRIPTION</h2>
+    <h2>{{ $t('project.title') }}</h2>
 
     <div class="pt-2 text-justify">
-      <p>
-        <strong>WBSC Scoring Creator</strong> is a JavaScript-based program allows selecting combination
-        of plays that may occur in baseball/softball game to visualize the way of scoring such play in
-        <a href="https://www.wbsc.org/">WBSC</a> scoring system. It is meant both for individual scorers
-        for learning and revising and for tutors to help them build up educational materials for
-        clinics.
-      </p>
-      <p>
-        For more information about how to use the program, see <a href="help.html">User manual</a>.
-      </p>
-      <p>
-        The project is maintained and developed voluntarily by a dedicated scorer who happens to know a
-        thing or two about programming as well. However, it will take long before it reaches ideal
-        shape, if ever. Shall you encounter any incorrect or odd behaviur or something that is missing
-        and should be also included, don't hesitate to contact the author - either directly via
-        <a href="mailto:alois.seckar@gmail.com">my email</a> or you can use
-        <a href="https://github.com/AloisSeckar/WBSC-Scoring/issues">GitHub interface</a> for creating
-        new report/question/suggestion directly there. If you do so, try to describe your issue, so it
-        can be addressed. Screenshots are useful to see what is happening. You may want to check our
-        <a href="/report">reporting bug guide</a> for details.
-      </p>
-      <p>
-        The program is still evolving. Visit <a href="project.html#todo">"TO-DO" section</a> in Project
-        overview to check what is yet planned to be implemented. Refer to <a href="project.html#todo">
-          "Limitations" list</a> to see what is certainly not possible atm.
-      </p>
-      <p>
-        This is an <a href="https://unlicense.org/">Unlicensed</a> open-source that can be found
-        <a href="https://github.com/AloisSeckar/WBSC-Scoring">HERE</a>. Any help with further
-        development would be appreciated, but you can as well take the source code and do whatever you
-        want with it yourself.
-      </p>
+      <p v-html="$t('project.p1')" />
+      <p v-html="$t('project.p2')" />
+      <p v-html="$t('project.p3')" />
+      <p v-html="$t('project.p4')" />
+      <p v-html="$t('project.p5')" />
     </div>
 
-    <h2>DONE</h2>
-    <h3>(what you can find here)</h3>
-
+    <h2>{{ $t('project.done.title') }}</h2>
+    <h3>{{ $t('project.done.subtitle') }}</h3>
     <div>
-      <p><em>List will be included upon v1.0 release.</em></p>
+      <p v-html="$t('project.done.dscr')" />
     </div>
 
     <a id="todo" />
-    <h2>TO-DO list</h2>
-    <h3>(hopefully will be implemented in next few releases)</h3>
-
+    <h2>{{ $t('project.todo.title') }}</h2>
+    <h3>{{ $t('project.todo.subtitle') }}</h3>
     <div>
-      <p>This is what I have scheduled to add or improve:</p>
-      <ul class="list-disc">
-        <li>Cover most possible situations</li>
-        <li>More input validations</li>
-        <li>Output corrections and fixes</li>
-      </ul>
+      <p v-html="$t('project.todo.dscr')" />
+      <ul class="list-disc" v-html="$t('project.todo.list')" />
     </div>
 
     <a id="limitations" />
-    <h2>Limitations</h2>
-    <h3>(not planned to be implemented soon)</h3>
-
+    <h2>{{ $t('project.limitations.title') }}</h2>
+    <h3>{{ $t('project.limitations.subtitle') }}</h3>
     <div>
-      <p>
-        There are several features of WBSC scoring system that are currently not covered by this program.
-        They may be included in some future releases.
-      </p>
-      <ul class="list-disc">
-        <li>It is not possible to specify actions leading to runners appearing on bases (except TIE). The actuall action is always replaced with a <strong><span style="color: red">red asterisk</span></strong>.</li>
-        <li>It is not possible to specify the batting order of the batter and previous runners. Output always starts from 1.</li>
-        <li>It is not possible to get different number of Ks and BBs than 1</li>
-        <li>Actions are limited to up to 3 assists (followed by an out or an error). This is mainly to avoid practical problems with rendering more numbers.</li>
-        <li>No 10th player (additional outfielder) for slowpitch. However, it is quite probable this will be eventually added.</li>
-        <li>Not covering possible Baseball5 features. This is because Baseball5 system is very different and non-compatible. If you're interested, here is <a href="https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf">the official WBSC document</a> covering the Baseball5 scoring system.</li>
-        <li>Not covering substitutions and statistical outputs. It doesn't quite make sense to include them into the app mechanic. However, it is planned to add dedicated static articles covering these two topics.</li>
-      </ul>
+      <p v-html="$t('project.limitations.dscr')" />
+      <ul class="list-disc" v-html="$t('project.limitations.list')" />
     </div>
 
     <a id="history" />
-    <h2>History</h2>
-
+    <h2>{{ $t('project.history.title') }}</h2>
+    <h3>{{ $t('project.history.subtitle') }}</h3>
     <div class="mb-2">
-      <p><strong>Version 0.13</strong> (ongoing development)</p>
-      <ul class="list-disc">
-        <li>Coming soon</li>
-      </ul>
-    </div>
-
-    <div class="mb-2">
-      <p><strong>Version 0.12</strong> (2023-06-15)</p>
-      <ul class="list-disc">
-        <li>New set of OBRs - according to 2019 manual</li>
-        <li>New actions - KS+FC and KL+FC</li>
-        <li>New feature - import/export inputs in JSON format + a library of prepared actions</li>
-        <li>Improved old + added many new input validations</li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-13.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-13.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.11</strong> (2023-04-08)</p>
-      <ul class="list-disc">
-        <li>
-          Source converted into Nuxt 3 project with TypeScript, since it become hard,
-          if not impossible, to maintain and change plain JavaScript code.
-        </li>
-        <li>Validation info - plain alerts replaced with nice-looking modal window</li>
-        <li>New validations - empty action, empty position select</li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-12.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-12.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.10</strong> (2022-11-08)</p>
-      <ul class="list-disc">
-        <li>
-          New actions supported:
-          <ul class="list-disc">
-            <li>Grounded into double play</li>
-            <li>Extra WP/PB for batter after BB/KS play</li>
-            <li>Errors with extra base advances</li>
-          </ul>
-        </li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-11.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-11.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.9.4</strong> (2022-11-08)</p>
-      <ul class="list-disc">
-        <li>Finally fixed the bug preventing from selecting specific action on mobile screens</li>
-      </ul>
+      <p v-html="$t('project.history.0-10.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-10.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.9.3</strong> (2022-11-04)</p>
-      <ul class="list-disc">
-        <li>Demo auto-deployment to <a href="https://app.netlify.com/">Netlify</a></li>
-      </ul>
+      <p v-html="$t('project.history.0-9-4.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-9-4.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.9.2</strong> (2022-10-10)</p>
-      <ul class="list-disc">
-        <li>Trying to fix severe bug preventing from select from GUI element on mobile screens</li>
-      </ul>
+      <p v-html="$t('project.history.0-9-3.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-9-3.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.9.1</strong> (2021-12-27)</p>
-      <ul class="list-disc">
-        <li>Fixed severe bug with validations</li>
-        <li>Auto-deployment to website included</li>
-      </ul>
+      <p v-html="$t('project.history.0-9-2.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-9-2.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.9</strong> (2021-12-27)</p>
-      <ul class="list-disc">
-        <li>
-          New actions supported:
-          <ul class="list-disc">
-            <li>Obstruction and interference</li>
-            <li>Flyout with bunt</li>
-            <li>Explicit 'no-advance'</li>
-          </ul>
-        </li>
-        <li>
-          Output improvements:
-          <ul class="list-disc">
-            <li>Double and triple play connectors</li>
-            <li>Concurrent plays (e.g. double-steal) connectors</li>
-          </ul>
-        </li>
-        <li>Help section (manual) was added on website</li>
-        <li>Input validations refactored and enhanced</li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-9-1.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-9-1.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.8</strong> (2021-04-01)</p>
-      <ul class="list-disc">
-        <li>
-          New actions supported:
-          <ul class="list-disc">
-            <li>Same error advances</li>
-            <li>No-advance plays</li>
-            <li>Earned/unearned runs selection</li>
-          </ul>
-        </li>
-        <li>
-          Fixed actions:
-          <ul class="list-disc">
-            <li>Extra bases with more runners (uppercase/lowercase fixed))</li>
-          </ul>
-        </li>
-        <li>Enhanced HTML structure</li>
-        <li>Significant code refactoring</li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-9.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-9.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.7</strong> (2020-12-08)</p>
-      <ul class="list-disc">
-        <li>
-          New actions supported:
-          <ul class="list-disc">
-            <li>PO - pick off</li>
-            <li>LT - lost turn</li>
-            <li>A - appeal play</li>
-            <li>OBR - out by rule</li>
-            <li>SH with throwing/dropped fly error</li>
-            <li>CS with throwing error</li>
-          </ul>
-        </li>
-        <li>
-          Fixed actions:
-          <ul class="list-disc">
-            <li>"Muffled throws" removed (not official WBSC scoring term)</li>
-            <li>Batter indicator for CS, PO and O/ situations added</li>
-          </ul>
-        </li>
-        <li>Improved player selection inputs rendering and handling</li>
-        <li>Improved consecutive actions handling</li>
-        <li>Improved GUI and CSS form design</li>
-        <li>Download button to save outcome as PNG</li>
-        <li>Unlicense was officially included to declare this SW free of use</li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-8.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-8.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.6</strong> (2020-10-11)</p>
-      <ul class="list-disc">
-        <li>
-          New actions supported:
-          <ul class="list-disc">
-            <li>Sacrifice hit/fly</li>
-            <li>Infield fly</li>
-            <li>Bunt hit/out</li>
-            <li>Strikeout with occupied ball</li>
-            <li>TIE</li>
-          </ul>
-        </li>
-        <li>Strikeouts and base-on-balls are numbered according to the manual</li>
-        <li>Added option groups to help user determine if safe our out will occur</li>
-        <li>GUI inputs now render in correct order</li>
-        <li>Advances to 3rd and HP now render correctly</li>
-        <li>CSP implemented in order to increase web security</li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-7.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-7.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.5</strong> (2020-06-13)</p>
-      <ul class="list-disc">
-        <li>Batting order (1-4) is now considered</li>
-        <li>
-          New actions supported:
-          <ul class="list-disc">
-            <li>Numerous strike out variants</li>
-            <li>Extra base advances - BB, IBB, HP, WP, PB, O/</li>
-            <li>SB and CS situations</li>
-            <li>Various plays with errors</li>
-          </ul>
-        </li>
-        <li>Rendering improved and corrected for currently supported actions</li>
-        <li>
-          Due to rendering issues situations are now allowed only with 0-3 assists (followed by an out
-          or an error)
-        </li>
-        <li>Various bugfixes and corrections</li>
-      </ul>
+      <p v-html="$t('project.history.0-6.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-6.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.4</strong> (2020-06-09)</p>
-      <ul class="list-disc">
-        <li>Inputs reworked using dynamic JavaScript for displaying and hiding input fields</li>
-        <li>
-          With broadened options it is now possible to:
-          <ul class="list-disc">
-            <li>Set up situations ranging from 0 to 4 assists (followed by an out or an error)</li>
-            <li>Set up some consecutive actions for runners on 1st, 2nd and/or 3rd base</li>
-          </ul>
-        </li>
-      </ul>
+      <p v-html="$t('project.history.0-5.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-5.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.3</strong> (2020-03-15)</p>
-      <ul class="list-disc">
-        <li>Fixed error in displaying "Inside-the-park home run"</li>
-        <li>Code for rendering action inputs moved from HTML to JavaScript</li>
-        <li>
-          Introduced possibility to add consecutive action after batter reaches first. Available are:
-          <ul class="list-disc">
-            <li>Safe advance on the throw</li>
-            <li>Safe advance on error (either decisive or extra-base)</li>
-            <li>Out after defensive play</li>
-          </ul>
-        </li>
-      </ul>
+      <p v-html="$t('project.history.0-4.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-4.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.2</strong> (2020-01-13)</p>
-      <p>Newly supported batter's actions:</p>
-      <ul class="list-disc">
-        <li>Fielder's choice and occupied ball</li>
-        <li>Errors</li>
-      </ul>
+      <p v-html="$t('project.history.0-3.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-3.features')" />
     </div>
     <div class="mb-2">
-      <p><strong>Version 0.1</strong> (2019-12-23)</p>
-      <p>
-        First version recorded and launched. Basic website with inputs to generate situation for one
-        batter. Output can be saved as an image.
-      </p>
-      <p>Supported batter's actions:</p>
-      <ul class="list-disc">
-        <li>Strikeout looking and swinging</li>
-        <li>Simple ground outs with 1 or 2 fielders involved</li>
-        <li>Full spectrum of fly outs</li>
-        <li>Full spectrum of hits including named locations</li>
-        <li>Ground rule doubles and inside the park home runs</li>
-        <li>BB, IBB and HP</li>
-      </ul>
+      <p v-html="$t('project.history.0-2.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-2.features')" />
+    </div>
+    <div class="mb-2">
+      <p v-html="$t('project.history.0-1.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-1.features')" />
     </div>
 
     <NavButtons />
