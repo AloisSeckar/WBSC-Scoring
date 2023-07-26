@@ -375,7 +375,7 @@
                 "p7" : "You can download the result to preserve it either by right clicking it and pick up from the context menu or by the green \"Download image\" button:"
             },
             "runners" : {
-                "title" : "Entering first play",
+                "title" : "Advanced - Runners",
                 "p1" : "Actions are not limited to batter only. There is a toolbar that allows you picking up which players were involved:",
                 "p2" : "The buttons are labeled \"B\" for the batter and \"R1-R3\" for the runners starting at respective base. When any of the buttons is selected, it has red color and \"-\" before the label. Corresponding set of inputs is rendered. Buttons that are green with \"+\" before the label mean that position is currently not used. Clicking on any of the buttons will alter its state. E.g. clicking on \"+R1\" will result into:",
                 "p3" : "Another click will hide it again. You can choose any combination with or without the batter and with or without the runners. The only requirement is to have at least one player selected.",
