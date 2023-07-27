@@ -54,7 +54,9 @@ function renderAction (battingOrder: number, clear: boolean, mainInput: WBSCInpu
 
 // process 'safe' situation
 function renderAdvance (output: WBSCOutput) {
-  drawAdvanceLine(Math.max(output.base, output.errorTarget))
+  if (!output.na) {
+    drawAdvanceLine(Math.max(output.base, output.errorTarget))
+  }
   writeSituation(output)
 }
 
