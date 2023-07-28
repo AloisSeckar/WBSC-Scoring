@@ -240,6 +240,7 @@
             "noER1" : "Je vybrán umožněný doběh (R1), ale to není možné, pokud nastal decessive error.",
             "noER2" : "Je vybrán umožněný doběh (R2), ale to není možné, pokud nastal decessive error.",
             "noER3" : "Je vybrán umožněný doběh (R3), ale to není možné, pokud nastal decessive error.",
+            "noTieER" : "Doběh běžce, který byl umístěn na metu jako TIE, musí být unearned.",
             "missingOAdv" : "Je vybrán další postup na 'FC - Occupied)', ale chybí odpovídající FC situace.",
             "window" : {
                 "title" : "Neplatný vstup",

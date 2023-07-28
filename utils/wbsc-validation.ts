@@ -582,9 +582,18 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
   let errR2 = false
   let errR3 = false
 
+  // only relevant for runners at 1st and 2nd
+  // run marked as team-unearned
+  let r1TU = false
+  let r2TU = false
+  // it was a TIE runner
+  let tieR1 = false
+  let tieR2 = false
+
   inputs.forEach((input) => {
     const err = isError(input, decisiveErrorActions)
     const earned = isEarnedRun(input)
+    const teamUnearned = isTeamUnearnedRun(input)
 
     switch (input.group) {
       case inputB:
@@ -599,6 +608,8 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
         }
         break
       case inputR1:
+        tieR1 = input.tie
+        // falls through
       case inputR1a:
       case inputR1b:
         if (err) {
@@ -607,14 +618,22 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
         if (earned) {
           r1ER = true
         }
+        if (teamUnearned) {
+          r1TU = true
+        }
         break
       case inputR2:
+        tieR2 = input.tie
+        // falls through
       case inputR2a:
         if (err) {
           errR2 = true
         }
         if (earned) {
           r2ER = true
+        }
+        if (teamUnearned) {
+          r2TU = true
         }
         break
       case inputR3:
@@ -639,6 +658,9 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
   }
   if (r3ER && errR3) {
     validation = attachValidation(validation, useT('editor.validation.noER3'))
+  }
+  if ((tieR1 && (r1ER || r1TU)) || (tieR2 && (r2ER || r2TU))) {
+    validation = attachValidation(validation, useT('editor.validation.noTieER'))
   }
 
   return validation
@@ -682,6 +704,10 @@ function isError (input: WBSCInput, actionList: string[]): boolean {
 // helper to decide whether there is an earned run in current input
 function isEarnedRun (input: WBSCInput): boolean {
   return (input?.output?.base === 4 || input?.output?.errorTarget === 4) && input?.output?.run === 'e'
+}
+// helper to decide whether there is a team unearned run in current input
+function isTeamUnearnedRun (input: WBSCInput): boolean {
+  return (input?.output?.base === 4 || input?.output?.errorTarget === 4) && input?.output?.run === 'tu'
 }
 
 // helper to attach new part of validation message to previous contents
