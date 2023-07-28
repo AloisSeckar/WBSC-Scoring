@@ -1,6 +1,6 @@
 # WBSC Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system. The app is powered by [Nuxt](https://nuxtjs.org/).
-Live demo (currently v0.11) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
+Live demo (currently v0.13) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms).
 
 ## TO-DO list (to be implemented in next few releases)
@@ -19,12 +19,13 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
-### Version 0.13 (ongoing development)
+### Version 0.13 (2023-07-28)
 - Actions library - SB/CS situations
-- [BackstopJS](https://github.com/garris/BackstopJS) visual testing
 - New "Report bug" page
-- Validations - GitHub issues #102, #103, #109, #110
-- Bug-fixing - GitHub issues #100, #104, #108, #111, #112 + various others unreported
+- Translation between EN/CS using [nuxt/i18n](https://v8.i18n.nuxtjs.org/) module
+- [BackstopJS](https://github.com/garris/BackstopJS) visual testing
+- Validations - GitHub issues #102, #103, #109, #110, #113
+- Bug-fixing - GitHub issues #100, #104, #108, #111, #112, #114 + various others unreported
 
 ### Version 0.12 (2023-06-15)
 - New actions supported: new set of OBRs according to 2019 manual, KS + FC, KL + FC

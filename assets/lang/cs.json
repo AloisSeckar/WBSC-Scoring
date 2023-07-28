@@ -283,7 +283,7 @@
             "subtitle" : "(poznámky k jednotlivým verzím)",
             "0-13" : {
                 "title" : "<strong>Verze 0.13</strong> (28.07.2023)",
-                "features" : "<li>Knh - SB/CS situations</li><li>New \"Report bug\" page</li><li>Translation between EN/CS using <a href=\"https://v8.i18n.nuxtjs.org/\">nuxt/i18n</a> module</li><li>Improved visual testing</li><li>Various bugfixes and corrections</li>"
+                "features" : "<li>Knihovna akcí - SB/CS situace</li><li>Nová stránka \"Hlášení chyb\"</li><li>Překlad mezi angličtinou a češtinou pomocí modulu <a href=\"https://v8.i18n.nuxtjs.org/\">nuxt/i18n</a></li><li>Zlepšené vizuální testování během vývoje</li><li>Menší opravy chyb a korekce</li>"
             },
             "0-12" : {
                 "title" : "<strong>Verze 0.12</strong> (15.06.2023)",
