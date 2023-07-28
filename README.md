@@ -1,6 +1,6 @@
 # WBSC Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system. The app is powered by [Nuxt](https://nuxtjs.org/).
-Live demo (currently v0.13) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
+Live demo (currently v0.14) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms).
 
 ## TO-DO list (to be implemented in next few releases)
@@ -18,6 +18,9 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 0.14 (ongoing development)
+- Coming soon
 
 ### Version 0.13 (2023-07-28)
 - Actions library - SB/CS situations

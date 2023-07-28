@@ -36,6 +36,10 @@
     <h2>{{ $t('project.history.title') }}</h2>
     <h3>{{ $t('project.history.subtitle') }}</h3>
     <div class="mb-2">
+      <p v-html="$t('project.history.0-14.title')" />
+      <ul class="list-disc" v-html="$t('project.history.0-14.features')" />
+    </div>
+    <div class="mb-2">
       <p v-html="$t('project.history.0-13.title')" />
       <ul class="list-disc" v-html="$t('project.history.0-13.features')" />
     </div>

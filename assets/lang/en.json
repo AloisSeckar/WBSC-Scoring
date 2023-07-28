@@ -281,6 +281,10 @@
         "history" : {
             "title" : "History",
             "subtitle" : "(release notes on each version)",
+            "0-14" : {
+                "title" : "<strong>Version 0.14</strong> (ongoing development)",
+                "features" : "<li>Coming soon</li>"
+            },
             "0-13" : {
                 "title" : "<strong>Version 0.13</strong> (2023-07-28)",
                 "features" : "<li>Actions library - SB/CS situations</li><li>New \"Report bug\" page</li><li>Translation between EN/CS using <a href=\"https://v8.i18n.nuxtjs.org/\">nuxt/i18n</a> module</li><li>Improved visual testing</li><li>Various bugfixes and corrections</li>"
