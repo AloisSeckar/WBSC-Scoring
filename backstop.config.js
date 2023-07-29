@@ -9,10 +9,12 @@ const functionScenarios = [
   { label: 'visit-index', ...getFunctionScenarioCfg() },
   { label: 'visit-project', ...getFunctionScenarioCfg('project') },
   { label: 'visit-help', ...getFunctionScenarioCfg('help') },
+  { label: 'visit-report', ...getFunctionScenarioCfg('report') },
   { label: 'generate-err', ...getFunctionScenarioCfg(), clickSelector: '#button-input-generate' },
   { label: 'generate-ok', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/generate-ok.js' },
   { label: 'inputs-none', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-none.js' },
   { label: 'inputs-all', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-all.js' },
+  { label: 'inputs-clear', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-clear.js' },
   { label: 'lib-show', ...getFunctionScenarioCfg(), clickSelector: '#button-input-import-lib' }
 ]
 
