@@ -12,7 +12,7 @@ const decisiveErrorActions = [
   'EF', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
   'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
 ]
-const errorActions = [...decisiveErrorActions, 'eF', 'eT']
+const errorActions = [...decisiveErrorActions, 'eF', 'et']
 const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT']
 
 // validation sequence to be run over given outputs
