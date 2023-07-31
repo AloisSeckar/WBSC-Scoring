@@ -375,7 +375,7 @@
                 "p2" : "You start by picking an option from the first <strong>Action</strong> combo-box containing groups of possible situations. Internally this is called a \"base action\":",
                 "p3" : "Based on the selection the second combo-box becomes active and being filled with concrete plays. This is called a \"specific action\". The options are grouped into \"safe\" and \"out\" situations:",
                 "p4" : "Third element of every action is called <strong>Involved</strong>. This means defensive player position(s) or locations on the field (in certain cases). The availability of those UI elements depends on specific action selection. For some plays there is no additional information allowed, for some there is exactly one or exactly two options. For the rest you can select 1-4. You add new inputs with green \"+P\" button and remove them with red \"-P\" button. When it is not possible to add/remove inputs, the buttons are not enabled.",
-                "p5" : "Once you are ready to render the output of your play, hit the blue \"Generate action\" button:",
+                "p5" : "Once you are ready to render the output of your play, hit the blue \"Score play\" button:",
                 "p6" : "The outcome will be printed into the scoresheet:",
                 "p7" : "You can download the result to preserve it either by right clicking it and pick up from the context menu or by the green \"Download image\" button:"
             },
