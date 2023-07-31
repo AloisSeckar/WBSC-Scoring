@@ -176,6 +176,14 @@
     "name": "Error - obstruction by 2B (R1)"
   },
   {
+    "file": "error-bb-e2t-r1-se",
+    "name": "Error - BB + extra base throwing by C, R1 to 3rd"
+  },
+  {
+    "file": "error-r3-e2t-r2-r1-se",
+    "name": "Error - R3 to Home on e2T, R2 and R1 same error"
+  },
+  {
     "file": "1b-9-e9",
     "name": "Single to RF + extra base fielding error"
   },
