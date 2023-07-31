@@ -1,1 +1,1 @@
-[{"group":"input-b1","baseAction":"err","specAction":"et","base":2,"tie":false,"runtype":"e","pos":"9"},{"group":"input-b","baseAction":"Hit","specAction":"1B","base":1,"tie":false,"runtype":"tu","pos":"9"}]
+[{"group":"input-b1","baseAction":"err","specAction":"eT","base":2,"tie":false,"runtype":"e","pos":"9"},{"group":"input-b","baseAction":"Hit","specAction":"1B","base":1,"tie":false,"runtype":"tu","pos":"9"}]

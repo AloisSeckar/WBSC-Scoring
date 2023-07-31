@@ -282,7 +282,7 @@ function changeRunnerSpecificAction (group: string) {
     case 'CSET':
     case 'CSNT':
     case 'eF':
-    case 'et':
+    case 'eT':
       // no other adjustments
       break
     default:
@@ -638,7 +638,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
     case 'ET':
     case 'EM':
     case 'eF':
-    case 'et':
+    case 'eT':
       output.text1 = pos?.substring(0, pos.length - 1) + action.substring(0, 1) + pos?.substring(pos.length - 1)
       if (!action.endsWith('F')) {
         output.text1 += action.substring(action.length - 1)

@@ -376,7 +376,7 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push(`<option value="EF">${useT('editor.action.error.EF')}</option>`)
       options.push(`<option value="ET">${useT('editor.action.error.ET')}</option>`)
       options.push(`<option value="eF">${useT('editor.action.error.eF')}</option>`)
-      options.push(`<option value="et">${useT('editor.action.error.et')}</option>`)
+      options.push(`<option value="eT">${useT('editor.action.error.eT')}</option>`)
       options.push(`<option value="se0">${useT('editor.action.error.se0')}</option>`)
       if (!(group.includes('r1'))) {
         options.push(`<option value="se1">${useT('editor.action.error.se1')}</option>`)

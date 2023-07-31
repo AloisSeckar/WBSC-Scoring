@@ -121,7 +121,7 @@
                 "ENF" : "Decisive fielding (no advance)",
                 "ENT" : "Decisive throwing (no advance)",
                 "eF" : "Extra base fielding",
-                "et" : "Extra base throwing",
+                "eT" : "Extra base throwing",
                 "se0" : "Same error (Batter)",
                 "se1" : "Same error (Runner at 1st)",
                 "se2" : "Same error (Runner at 2nd)",
