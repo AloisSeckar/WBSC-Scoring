@@ -7,6 +7,11 @@ export default defineNuxtConfig({
   i18n: {
 
   },
+  nitro: {
+    prerender: {
+      routes: ['/help', '/project', '/report']
+    }
+  },
   pinia: {
     autoImports: ['defineStore']
   }
