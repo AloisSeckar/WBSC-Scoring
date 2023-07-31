@@ -196,6 +196,10 @@
     "name": "Single to RF + RF to 2B to 1B, error, no advance"
   },
   {
+    "file": "1b-6-se2-r2-e6t",
+    "name": "Single to 6 + R2 to Home on e6T"
+  },
+  {
     "file": "1b-7-e7-r1-e",
     "name": "Single to LF + extra base fld. err. + R1 scores on err."
   },
