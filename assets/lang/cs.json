@@ -258,8 +258,8 @@
         "title" : "POPIS",
         "p1" : "<strong>WBSC Scoring Creator</strong> je JavaScriptový program, který umožňuje zadávání herních kombinací, které se mohou vyskytnout v baseballu/softballu, aby vizualizoval způsob zapsání takové rozehry v systému zápisu <a href=\"https://www.wbsc.org/\">WBSC</a>. Je určen jak pro individuální zapisovatele k učení a opakování, tak pro lektory, jimž může pomoct sestavit výukové materiály pro semináře.",
         "p2" : "Pro více informací o tom, jak program používat, viz <a href=\"help.html\">Uživatelská příručka</a>.",
-        "p3" : "Projekt je dobrovolně vyvíjen a udržován zkušeným zapisovatelem, který náhodou také něco ví o programování. Bude však trvat ještě dlouho, než dosáhne ideální podoby, pokud vůbec. Pokud narazíte na jakékoliv nesprávné nebo zvláštní chování nebo něco, co zde chybí a mělo by být také zahrnuto, neváhejte mě kontaktovat - buď přímo prostřednictvím <a href=\"mailto:alois.seckar{'@'}gmail.com\">mého emailu</a> nebo můžete použít <a href=\"https://github.com/AloisSeckar/WBSC-Scoring/issues\">GitHub Issues</a> pro vytvoření nové zprávy/otázky/návrhu přímo tam. Pokud tak učiníte, pokuste se dobře popsat váš problém, aby mohl být řešen. Pro zjištění, co se děje, jsou užitečné screenshoty. Chcete-li se dozvědět podrobnosti, můžete si přečíst <a href=\"/report\">průvodce hlášením chyb</a>.",
-        "p4" : "Tento program se stále vyvíjí. Navštivte <a href=\"project.html#todo\">sekci \"TODO\"</a> v přehledu projektu, abyste zjistili, co ještě plánujeme implementovat. Prohlédněte si <a href=\"project.html#limitations\">seznam \"Omezení\"</a>, abyste viděli, co v současné době určitě není možné.",
+        "p3" : "Projekt je dobrovolně vyvíjen a udržován zkušeným zapisovatelem, který náhodou také něco ví o programování. Bude však trvat ještě dlouho, než dosáhne ideální podoby, pokud vůbec. Pokud narazíte na jakékoliv nesprávné nebo zvláštní chování nebo něco, co zde chybí a mělo by být také zahrnuto, neváhejte mě kontaktovat - buď přímo prostřednictvím <a href=\"mailto:alois.seckar{'@'}gmail.com\">mého emailu</a> nebo můžete použít <a href=\"https://github.com/AloisSeckar/WBSC-Scoring/issues\">GitHub Issues</a> pro vytvoření nové zprávy/otázky/návrhu tam. Pokud tak učiníte, pokuste se dobře popsat váš problém, aby mohl být řešen. Pro zjištění, co se děje, jsou užitečné screenshoty. Chcete-li se dozvědět podrobnosti, můžete si přečíst <a href=\"/report\">průvodce hlášením chyb</a>.",
+        "p4" : "Tento program se stále vyvíjí. Navštivte <a href=\"project.html#todo\">sekci \"TODO\"</a> v přehledu projektu, kde zjistíte, co ještě plánuji implementovat. Prohlédněte si <a href=\"project.html#limitations\">seznam \"Omezení\"</a>, abyste viděli, co v současné době určitě není možné.",
         "p5" : "Toto je open-source program distribuovaný pomocí <a href=\"https://unlicense.org/\">UNLICENSE</a>, který lze najít <a href=\"https://github.com/AloisSeckar/WBSC-Scoring\">ZDE</a>. Jakákoliv pomoc s dalším vývojem je vítaná, ale můžete také prostě vzít zdrojový kód a udělat s ním, co chcete.",
         "done" : {
             "title" : "HOTOVO",
@@ -268,7 +268,7 @@
         },
         "todo" : {
             "title" : "Seznam TO-DO",
-            "subtitle" : "(snad bude implementováno v následujících vydáních)",
+            "subtitle" : "(snad bude implementováno v následujících verzích)",
             "dscr" : "Tohle mám v plánu přidat nebo vylepšit:",
             "list" : "<li>Pokrýt většinu možných situací</li><li>Více validací vstupu</li><li>Opravy a úpravy výstupu</li>"
         },
@@ -276,7 +276,7 @@
             "title" : "Omezení",
             "subtitle" : "(neplánuje se v dohledné době implementovat)",
             "dscr" : "Existuje několik oblastí systému zápisu WBSC, které tento program momentálně nepokrývá. Mohou být zahrnuty v některých budoucích verzích, ale nic neslibujeme.",
-            "list" : "<li>Není možné specifikovat akce, kterými se běžci dostali na mety (kromě TIE). Skutečná akce je vždy nahrazena <strong><span style=\"color: red\">červenou hvězdičkou</span></strong>.</li><li>Není možné specifikovat pořadí pálkaře a předchozích běžců v lineupu. Výstup vždy začíná od 1.</li><li>Není možné získat jiný počet K a BB než 1</li><li>Akce jsou omezeny na maximálně 3 asistence (následované autem nebo chybou). Je to především kvůli praktickým problémům s vykreslováním více čísel.</li><li>Žádný 10. hráč (dodatečný hráč na poli) pro slowpitch. Nicméně, je docela pravděpodobné, že toto bude nakonec přidáno.</li><li>Nepokrývá možné situace Baseball5. Je to proto, že systém Baseball5 je velmi odlišný a nekompatibilní. Pokud máte zájem, zde je <a href=\"https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf\">oficiální dokument WBSC</a> popisující systém zápisu Baseball5.</li><li>Nepokrývá střídánní a statistické výstupy. Nemá smysl je začleňovat do mechaniky aplikace. Nicméně, plánuje se přidání statických článků pokrývajících tyto dvě témata.</li>"
+            "list" : "<li>Není možné specifikovat akce, kterými se běžci dostali na mety (kromě TIE). Skutečná akce je vždy nahrazena <strong><span style=\"color: red\">červenou hvězdičkou</span></strong>.</li><li>Není možné specifikovat pořadí pálkaře a předchozích běžců v lineupu. Výstup vždy začíná od 1.</li><li>Není možné nastavit jiný počet K a BB než 1</li><li>Akce jsou omezeny na maximálně 3 asistence (následované autem nebo chybou). Je to především kvůli praktickým problémům s vykreslováním více čísel.</li><li>Žádný 10. hráč (dodatečný hráč na poli) pro slowpitch. Nicméně, je docela pravděpodobné, že toto bude nakonec přidáno.</li><li>Nepokrývá možné situace Baseball5. Je to proto, že systém Baseball5 je velmi odlišný a nekompatibilní. Pokud máte zájem, zde je <a href=\"https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf\">oficiální dokument WBSC</a> popisující systém zápisu Baseball5.</li><li>Nepokrývá střídání a statistické výstupy. Nemá smysl je začleňovat do mechaniky aplikace. Nicméně, plánuje se přidání statických článků pokrývajících tyto dvě témata.</li>"
             },
         "history" : {
             "title" : "Historie",
@@ -357,11 +357,11 @@
     },
     "help" : {
         "title" : "OVLÁDÁNÍ PROGRAMU WBSC SCORING CREATOR",
-        "dscr" : "Základní myšlenka je jednoduchá - sestavíte svůj vstup a po stisknutí tlačítka \"Zapsat rozehru\" se zápis situace zobrazí v sekci \"Výsledek\". Ten je připraven tak, že vypadá jako (modrý) papírový scoresheet WBSC, aby byl dojem co nejbližší tomu, jak byste měli zapsat podobnou akci při sledování skutečné hry. Nad vstupem běží různé validace, které znemožnují některé nesmyslné rozehry, nebo jejich zadávání alespoň omezují.",
-        "premises" : "Je zde několik předpokladů, které je třeba mít na paměti:",
+        "dscr" : "Základní myšlenka je jednoduchá - sestavíte svůj vstup a po stisknutí tlačítka \"Zapsat rozehru\" se zápis situace zobrazí v sekci \"Výsledek\". Ten je připraven tak, že vypadá jako (modrý) papírový scoresheet WBSC, aby byl dojem co nejbližší tomu, jako kdybyste měli zapsat totožnou akci při sledování skutečné hry. Nad vstupem běží různé validace, které znemožnují některé nesmyslné rozehry, nebo jejich zadávání alespoň omezují.",
+        "premises" : "Je několik předpokladů, které je třeba mít na paměti:",
         "premise1" : "Program vždy vykreslí POUZE JEDNU ROZEHRU. Může sestávat z více situací (teoreticky až 10 samostatných akcí), ale všechny se musí stát během jednoho nadhozu (nebo během času mezi dvěma nadhozy). Není možné sledovat průběh celého zápasu.",
-        "premise2" : "Kvůli výše uvedenému jsou umístění běžce na metu označena <span style=\"color: red\">červenou hvězdičkou</span>. Toto není žádná oficiální zkratka pro zápis, tím pouze dáváme najevo, že se stala NĚJAKÁ situace, díky které je běžec na metě, z níž začíná. Akci nechceme zapisovat a nestaráme se o ni. Jedinou výjimkou je běžec v tie-breaku (TIE), protože to je výjimečná a předem daná akce.",
-        "premise3" : "Pálkařské pořadí začíná vždy o 1. V závislosti na počtu zúčastněných hráčů může výsledek ukazovat hráče 1-4 v pálkařském pořadí. Není však možné vybrat jiné výchozí pořadí ani přeskočit některé hráče mezi.",
+        "premise2" : "Kvůli výše uvedenému jsou umístění běžce na metu označena <span style=\"color: red\">červenou hvězdičkou</span>. Toto není žádná oficiální zkratka pro zápis, tím pouze dáváme najevo, že se předtím stala NĚJAKÁ situace, díky které je běžec na metě, z níž začíná. Akci nechceme zapisovat a nestaráme se o ni. Jedinou výjimkou je běžec v tie-breaku (TIE), protože to je výjimečná a předem daná situace.",
+        "premise3" : "Pálkařské pořadí začíná vždy od 1. V závislosti na počtu zúčastněných hráčů může výsledek ukazovat hráče 1-4 v pálkařském pořadí. Není však možné vybrat jiné výchozí pořadí ani přeskočit některé hráče mezi.",
         "controls" : {
             "title" : "OVLÁDÁNÍ",
             "basics" : {
@@ -371,13 +371,13 @@
             },
             "first" : {
                 "title" : "Zadání první rozehry",
-                "p1" : "Všimněte si, že nemůžete výchozí volbou vybrat z combo-boxu <strong>Doběh</strong>, protože vyžaduje situaci, která končí safe na domácí metě. Tato možnost bude popsána až později v pokročilejších tématech.",
+                "p1" : "Všimněte si, že ve výchozím stavu nemůžete vybrat z combo-boxu <strong>Doběh</strong>, protože to vyžaduje situaci, která končí safe na domácí metě. Tato možnost bude popsána až později v pokročilejších tématech.",
                 "p2" : "Začínáte výběrem možnosti z prvního combo-boxu <strong>Situace</strong>, který obsahuje skupiny možných akcí. Interně se tomu říká \"základní (base) akce\":",
-                "p3" : "Na základě výběru se aktivuje druhý combo-box a je naplněn seznamem možných variant. Tomu se říká \"konkrétní (specific) akce\". Možnosti jsou seskupeny do \"safe\" a \"out\" skupin:",
-                "p4" : "Třetím prvkem každé akce je <strong>Pozice</strong>. To znamená pozice hráčů v obraně nebo místa na hřišti (v určitých případech). Dostupnost těchto UI prvků závisí na výběru konkrétní akce. U některých her není povolena žádná další informace, u některých je přesně jedna nebo přesně dvě možnosti. U ostatních můžete vybrat 1-4. Nové vstupy přidáte tlačítkem zelené \"+P\" a odstraníte je tlačítkem červené \"-P\". Pokud není možné přidat/odstranit vstupy, tlačítka nejsou aktivní.",
-                "p5" : "Jakmile jste připraveni vykreslit výstup své rozehry, stiskněte modré tlačítko \"Zapsat rozehru\":",
+                "p3" : "Na základě výběru se aktivuje druhý combo-box a je naplněn odpovídajícím seznamem možných variant. Tomu se říká \"konkrétní (specific) akce\". Možnosti jsou seskupeny do \"safe\" a \"out\" skupin:",
+                "p4" : "Třetím prvkem každé akce je <strong>Pozice</strong>. To znamená pozice hráčů v obraně nebo místa na hřišti (v určitých případech). Dostupnost těchto UI prvků závisí na výběru konkrétní akce. U některých situací není povolena žádná další informace, u některých je přesně jedna nebo přesně dvě možnosti. U ostatních můžete vybrat 1-4. Nové vstupy přidáte tlačítkem zelené \"+P\" a odstraníte je tlačítkem červené \"-P\". Pokud není možné přidat/odstranit vstupy, tlačítka nejsou aktivní.",
+                "p5" : "Jakmile jste připraveni nechat vykreslit výstup své rozehry, stiskněte modré tlačítko \"Zapsat rozehru\":",
                 "p6" : "Výsledek bude vykreslen do scoresheetu:",
-                "p7" : "Výsledek můžete stáhnout a uložit buď kliknutím pravým tlačítkem a výběrem z kontextového menu, nebo zeleným tlačítkem \"Stáhnout obrázek\":"
+                "p7" : "Výsledný obrázek si můžete stáhnout a uložit buď kliknutím pravým tlačítkem a výběrem z kontextového menu, nebo zeleným tlačítkem \"Stáhnout obrázek\":"
             },
             "runners" : {
                 "title" : "Pokročilé - Běžci",
@@ -385,33 +385,33 @@
                 "p2" : "Tlačítka jsou označena \"B\" pro pálkaře (batter) a \"R1-R3\" pro běžce (runner), kteří startují na příslušné metě. Když je kterékoli z tlačítek vybráno, má červenou barvu a \"-\" před označením. Je vykreslen příslušný set vstupů. Zelená tlačítka s \"+\" před označením znamenají, že tato pozice se aktuálně nepoužívá. Kliknutím na kterékoli z tlačítek se změní jeho stav. Například kliknutím na \"+R1\" má za následek:",
                 "p3" : "Další kliknutí vstupy znovu skryje. Můžete zvolit jakoukoli kombinaci s nebo bez pálkře a s nebo bez běžců. Jediným požadavkem je mít vybraného alespoň jednoho hráče.",
                 "p4" : "Vstup běžce je mírně odlišný od vstupu pálkře a mezi metami jsou také drobné rozdíly. Výběr mety a konkrétních akcí je upraven tak, aby zobrazoval relevantní situace.",
-                "p5" : "Pro 1. a 2. metu existuje zaškrtávací políčko \"Tiebreak\". Pokud je zaškrtnuto, běžec se na metě neobjevuje s obecnou červenou hvězdičkou, ale místo toho se používá symbol TIE (což je způsob, jak WBSC zaznamenává běžce v tiebreaku).",
+                "p5" : "Pro 1. a 2. metu existuje zaškrtávací políčko \"Tiebreak\". Pokud je zaškrtnuto, běžec se na metě neobjevuje s obecnou červenou hvězdičkou, ale místo toho se používá symbol TIE (což je způsob, jak WBSC zápis zaznamenává běžce v tiebreaku).",
                 "p6" : "Z rozevírací nabídky \"Meta\" vybíráte metu, u které probíhá aktuální akce běžce. Samozřejmě možnosti jsou upraveny v závislosti na tom, na které metě se právě nacházíme. Pokud potřebujete, aby běžec zůstal na dosavadní metě, neděláte to zde, ale místo toho si z nabídky \"Akce\" vyberete \"Žádný postup\".",
-                "p7" : "Pokud je vybrána situtace vedoucí k safe na domácí metě, stane se aktivním rozevírací nabídka \"Doběh\". Pak si vyberete z možností \"Earned\" / \"Unearned\" / \"Team unearned\". Tato funkce je zde hlavně k tomu, aby ukázala rozdíly mezi jednotlivými variantami. Existují některé základní validace, ale během skutečného zápasu záleží na širším kontextu předchozích rozeher, zatímco zde vždy skórujeme jen jednu samostatnou akci. \"Doběh\" je také možný přímo pro útočníka, ale pouze pro akce typu \"Hit - Home run\"."
+                "p7" : "Pokud je vybrána situtace vedoucí k safe na domácí metě, stane se aktivním rozevírací nabídka \"Doběh\". Pak si vyberete z možností \"Earned\" / \"Unearned\" / \"Team unearned\". Tato funkce je zde hlavně k tomu, aby ukázala rozdíly mezi jednotlivými variantami. Existují některé základní validace, ale během skutečného zápasu záleží na širším kontextu předchozích rozeher, zatímco zde vždy skórujeme jen jednu samostatnou akci. \"Doběh\" je také možný přímo pro pálkaře, ale pouze pro akce typu \"Hit - Home run\"."
             },
             "extra" : {
                 "title" : "Pokročilé - Extra vstupy",
-                "p1" : "Pokud je to třeba, může být s počáteční akcí spojena více než jedna další situace. Pomocí zeleného tlačítka \"+\" pod sekci \"Pozice\" můžete vykreslit novou skupinu vstupů:",
+                "p1" : "Pokud je potřeba, může být s počáteční akcí spojena více než jedna další situace. Pomocí zeleného tlačítka \"+\" pod sekci \"Pozice\" můžete vykreslit novou skupinu vstupů:",
                 "p2" : "Panel s novými vstupy se vykreslí přímo pod ním:",
                 "p3" : "Pokud si to rozmyslíte, skryjete a tím deaktivujete extra vstupy pomocí červeného tlačítka \"-\":",
-                "p4" : "Pro pálkaře může být extra vstupy až 3 (jedna situace na každé metě). Pokud se rozhodnete je znovu odstranit, musíte začít od posledního (je povoleno pouze poslední tlačítko \"-\"). Počet možných extra vstupů pro běžce logicky klesá, jak se domácí meta blíží (0-2 pro 1. metu, 0-1 pro 2. metu a žádný pro 3. metu, protože první akce již posunula tohoto běžce domů). Výběr akcí je přirozeně odlišný pro pálaře (stávajícího se běžcem) a ostatní běžce. Ostatní funkce jsou stejné."
+                "p4" : "Pro pálkaře mohou být extra vstupy až 3 (jedna situace na každé metě). Pokud se rozhodnete je znovu odstranit, musíte začít od posledního (je povoleno pouze poslední tlačítko \"-\"). Počet možných extra vstupů pro běžce logicky klesá, jak se domácí meta blíží (0-2 pro 1. metu, 0-1 pro 2. metu a žádný pro 3. metu, protože první akce již posunula tohoto běžce domů). Výběr akcí je přirozeně odlišný pro pálaře (stávajícího se běžcem) a ostatní běžce. Ostatní funkce jsou stejné."
             },
             "reset" : {
                 "title" : "Pokročilé - Resetování formuláře",
-                "p1" : "Můžete použít žluté tlačítko \"Resetovat\" k rychlému vyčištění vstupů do počátečního stavu s jednoduchým vstupem akce pálkaře a vše vymazano."
+                "p1" : "Můžete použít žluté tlačítko \"Resetovat\" k rychlému vyčištění vstupů do počátečního stavu s jednoduchým vstupem akce pálkaře. Vše ostatní je vymazáno."
             },
             "import" : {
                 "title" : "Pokročilé - Výběr pro import/export",
-                "p1" : "Můžete použít fialové tlačítko \"Export rozehry\" k převzetí aktuálního výběru a jeho uložení pro pozdější použití. Soubor bude exportován ve formátu <strong>.json</strong>. Vstupy mohou být exportovány kdykoli, bez ohledu na jejich platnost.",
+                "p1" : "Můžete použít fialové tlačítko \"Export rozehry\" k převzetí aktuálního výběru a jeho uložení pro pozdější použití. Soubor bude exportován ve formátu <strong>.json</strong>. Rozehry mohou být exportovány kdykoli, bez ohledu na jejich platnost.",
                 "p2" : "Použitím fialového tlačítka \"Importovat se souboru\" můžete nahrát dříve exportovaný soubor <strong>.json</strong>. Pokud je to platný soubor, bude analyzován a převeden do odpovídajícího vstupního výběru a situace bude znovu vygenerována. Může být aktivována chyba validace.",
-                "p3" : "S posledním fialovým tlačítkem \"Importovat z knihovny\" můžete vybírat z naší neustále rostoucí kolekce připravených situací. Jsou uloženy jako soubory <strong>.json</strong>, stejně jako vlastní uživatelské vstupy/výstupy. Po výběru bude soubor analyzován a převeden do odpovídajícího vstupního výběru a situace bude znovu vygenerována. Tato funkce je určena k urychlení procesu generování nových obrázků, pokud je to potřeba, a na pomoc novým uživatelům lépe pochopit, co všechno je možné dosáhnout."
+                "p3" : "S posledním fialovým tlačítkem \"Importovat z knihovny\" můžete vybírat z naší neustále rostoucí kolekce připravených situací. Jsou uloženy jako soubory <strong>.json</strong>, stejně jako vlastní uživatelské vstupy/výstupy. Po výběru bude soubor analyzován a převeden do odpovídajícího vstupního výběru a situace bude znovu vygenerována. Tato funkce je určena k urychlení procesu generování nových obrázků, pokud je to potřeba, a na pomoc novým uživatelům lépe pochopit, čeho všeho je možné dosáhnout."
             }
         }    
     },
     "report" : {
         "title" : "HLÁŠENÍ CHYB",
         "motto" : "V každém počítačovém programu je alespoň jedna chyba.",
-        "p1" : "Toto úsloví může být trochu přehnané, ale obecně je dost těžké udržet jakoukoliv aplikaci bezchybnou. Při vývoji \"WBSC Scoring\" dělám, co můžu, také mám slušnou porci automatizovaných testů s desítkami situací k prověření pokaždé, když něco přidám/změnímú/opravím, ale jsem si prakticky jisté, že tu pořád máme skryté chyby, které čekají na objevení. A pokud ne přímo chyby, tak může někdo z vás přijít s nějakými novými funkcemi, které mě zatím nenapadly.",
+        "p1" : "Toto úsloví může být trochu přehnané, ale obecně je dost těžké udržet jakoukoliv aplikaci bezchybnou. Při vývoji \"WBSC Scoring\" dělám, co můžu, také mám slušnou porci automatizovaných testů s desítkami situací k prověření pokaždé, když něco přidám/změnímú/opravím, ale jsem si prakticky jistý, že tu pořád máme skryté chyby, které čekají na objevení. A pokud ne přímo chyby, tak může někdo z vás přijít s nějakými novými funkcemi, které mě zatím nenapadly.",
         "p2" : "Jsem připraven na všechny vaše podněty. Na této stránce najdete detaily o procesu hlášení.",
         "issues" : {
             "title" : "GitHub issues",
@@ -434,7 +434,7 @@
             "repoductionDscr" : "Sekvence uživatelských kroků a interakcí, která vedla k uvedené situaci. Toto je důležité, protože některé chyby závisí na přesném pořadí činností, a já bych nemusel být schopný je sám zopakovat, pokud mi neřeknete jak.",
             "screenshots" : "Snímky obrazovky",
             "screenshotsDscr1" : "Vizualizace problému často mluví sama za sebe. Vlastně dobrý screenshot může být cennější než samotné textové vysvětlení.",
-            "screenshotsDscr2" : "Bude mě zajímat obrázek výstupu (abych viděl, co je špatně), ale také (a HLAVNĚ) obrázek vstupů, protože příčina může být často skryta právě zde. Prosím vždy se pokuste je přiložit.",
+            "screenshotsDscr2" : "Bude mě zajímat obrázek výstupu (abych viděl, co je špatně), ale také (a HLAVNĚ) obrázek vstupů, protože příčina může být často skryta právě zde. Prosím, vždy se je pokuste přiložit.",
             "console" : "Výstup konzole",
             "consoleDscr" : "Toto je pokročilejší téma, ale také mi může hodně pomoct. Pokud ve vašem prohlížeči (na PC) zmáčknete klávesu <strong>F12</strong>, většinou získáte přístup k nástroji zvanému \"Konzole\". Když navštívíte jakoukoliv stránku, akce vašeho prohlížeče probíhající během načítání obsahu se zde mohou projevit. Speciálně pokud dojde k nějaké chybě, může se zde objevit červený text, který dává vývojářům nápovědu o možné příčině.",
             "consoleExample" : "Zde je příklad výstupu do konzole (poté, co jsem zvolil špatný typ souboru během importu z JSON souboru):"
