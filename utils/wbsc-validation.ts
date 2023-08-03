@@ -21,6 +21,10 @@ const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT']
 function checkUserInput (inputs: WBSCInput[]) {
   let validation = ''
 
+  if (inputs.length === 0) {
+    return useT('editor.validation.noEmptyInput')
+  }
+
   // 1) validations to be run over each input separately
   inputs.forEach((input) => {
     if (input && input.baseAction && input.specAction) {

@@ -195,6 +195,7 @@
             "export" : "Export selection"
         },
         "validation" : {
+            "noEmptyInput" : "At least one input group must be selected.",
             "minPositions" : "At least %pos% involved positions must be selected for current action.",
             "allPositions" : "All positions must be selecte.",
             "noNAAdvance" : "'No advance' action may not result into further advance.",
