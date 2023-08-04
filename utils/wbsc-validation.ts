@@ -427,36 +427,53 @@ function checkSBCS (inputs: WBSCInput[]) {
 function checkExtraBaseAdvances (inputs: WBSCInput[]) {
   let validation = ''
 
+  let isWP = false
+  let isPB = false
+  let isIP = false
+  let isBK = false
+
   let invalidWP = false
   let invalidPB = false
   let invalidIP = false
   let invalidBK = false
 
   inputs.forEach((input) => {
-    const isWP = input.specAction === 'WP'
+    if (input.specAction.toUpperCase() === 'WP') {
+      isWP = true
+    }
     if (isWP && !firstRunnerActions.includes(input.group)) {
       if (!isAfterBB(inputs) && !isAfterSB(inputs)) {
         invalidWP = true
       }
     }
 
-    const isPB = input.specAction === 'PB'
+    if (input.specAction.toUpperCase() === 'PB') {
+      isPB = true
+    }
     if (isPB && !firstRunnerActions.includes(input.group)) {
       if (!isAfterBB(inputs) && !isAfterSB(inputs)) {
         invalidPB = true
       }
     }
 
-    const isIP = input.specAction === 'IP'
+    if (input.specAction.toUpperCase() === 'IP') {
+      isIP = true
+    }
     if (isIP && !firstRunnerActions.includes(input.group)) {
       invalidIP = true
     }
 
-    const isBK = input.specAction === 'BK'
+    if (input.specAction.toUpperCase() === 'BK') {
+      isBK = true
+    }
     if (isBK && !firstRunnerActions.includes(input.group)) {
       invalidBK = true
     }
   })
+
+  if (Number(isWP) + Number(isPB) + Number(isIP) + Number(isBK) > 1) {
+    validation = attachValidation(validation, useT('editor.validation.noMixedExtraAdvances'))
+  }
 
   if (invalidWP) {
     validation = attachValidation(validation, useT('editor.validation.noWPAfterPlay'))

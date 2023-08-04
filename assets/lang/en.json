@@ -224,6 +224,7 @@
             "missingSFPlay" : "SF is selected, but no runner advanced by batter.",
             "missingSFRun" : "SF is selected, but no runner scored.",
             "noSBCS" : "SB is not possible, when another runner was CS, use 'FC - indifference'.",
+            "noMixedExtraAdvances" : "WP/PB/BK/IP cannot be combined. Use only one action type in all inputs.",
             "noWPAfterPlay" : "WP cannot happen after another play (except for SB and BB).",
             "noPBAfterPlay" : "PB cannot happen after another play (except for SB and BB).",
             "noPlayAfterIP" : "IP must be the only runner play at the moment.",
