@@ -312,6 +312,10 @@
     "name": "Stolen base - 2nd + 3rd"
   },
   {
+    "file" : "sb-double-r1-25",
+    "name" : "Stolen base - 2nd+HP - R1 out at 3rd"
+  },
+  {
     "file": "sb-e2t",
     "name": "Stolen base + throwing error by C"
   },
