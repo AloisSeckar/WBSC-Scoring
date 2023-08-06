@@ -29,3 +29,12 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const { locale } = useI18n()
+const storedLocale = useLocalStorage('wbsc-lang', 'en')
+
+if (storedLocale.value && typeof storedLocale.value === 'string') {
+  locale.value = storedLocale.value
+}
+</script>

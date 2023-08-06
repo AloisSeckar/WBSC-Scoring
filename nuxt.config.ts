@@ -1,8 +1,10 @@
 export default defineNuxtConfig({
+  ssr: false,
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@vueuse/nuxt'
   ],
   i18n: {
 

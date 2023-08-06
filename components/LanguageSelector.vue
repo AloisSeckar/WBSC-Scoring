@@ -14,11 +14,15 @@ const selectedLang = 'w-6 m-1 inline-block border-2 border-amber-300'
 const { locale } = useI18n()
 
 function setLocale (newLocale: string) {
-  locale.value = newLocale
-  // currently editor UI is dynamically rendered via JS functions
-  // therefore it cannot keep its state and upon translation it needs to be re-generated
-  if (useRoute().path === '/') {
-    initEditor()
+  if (newLocale) {
+    const storedLocale = useLocalStorage('wbsc-lang', 'en')
+    storedLocale.value = newLocale
+    locale.value = newLocale
+    // currently editor UI is dynamically rendered via JS functions
+    // therefore it cannot keep its state and upon translation it needs to be re-generated
+    if (useRoute().path === '/') {
+      initEditor()
+    }
   }
 }
 </script>
