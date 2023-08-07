@@ -17,69 +17,92 @@
     <h3>{{ $t('help.controls.basics.title') }}</h3>
     <div class="mb-2">
       <p v-html="$t('help.controls.basics.p1')" />
-      <img src="/01-basic-input.png" width="800" height="auto">
+      <img src="/01-basic-input.png" class="w600">
       <p v-html="$t('help.controls.basics.p2')" />
-      <img src="/02-basic-output.png" width="300" height="auto">
+      <img src="/02-basic-output.png" class="w200">
     </div>
 
     <h3>{{ $t('help.controls.first.title') }}</h3>
     <div class="mb-2">
       <p v-html="$t('help.controls.first.p1')" />
       <p v-html="$t('help.controls.first.p2')" />
-      <img src="/03-base-action.png" width="200" height="auto">
+      <img src="/03-base-action.png" class="w200">
       <p v-html="$t('help.controls.first.p3')" />
-      <img src="/04-specific-action.png" width="400" height="auto">
+      <img src="/04-specific-action.png" class="w400">
       <p v-html="$t('help.controls.first.p4')" />
-      <img src="/05-involved.png" width="auto" height="50">
+      <img src="/05-involved.png" class="h40">
       <p v-html="$t('help.controls.first.p5')" />
-      <img src="/06-generate.png" width="auto" height="50">
+      <img src="/06-generate.png" class="h40">
       <p v-html="$t('help.controls.first.p6')" />
-      <img src="/07-result.png" width="300" height="auto">
+      <img src="/07-result.png" class="w200">
       <p v-html="$t('help.controls.first.p7')" />
-      <img src="/08-download.png" width="auto" height="50">
+      <img src="/08-download.png" class="h40">
     </div>
 
     <h3>{{ $t('help.controls.runners.title') }}</h3>
     <div class="mb-2">
       <p v-html="$t('help.controls.runners.p1')" />
-      <img src="/09-pick-players.png" width="auto" height="50">
+      <img src="/09-pick-players.png" class="h40">
       <p v-html="$t('help.controls.runners.p2')" />
-      <img src="/10-runner-input.png" width="800" height="auto">
+      <img src="/10-runner-input.png" class="w600">
       <p v-html="$t('help.controls.runners.p3')" />
       <p v-html="$t('help.controls.runners.p4')" />
       <p v-html="$t('help.controls.runners.p5')" />
       <p v-html="$t('help.controls.runners.p6')" />
       <p v-html="$t('help.controls.runners.p7')" />
-      <img src="/11-type-of-run.png" width="auto" height="100">
+      <img src="/11-type-of-run.png" class="h150">
     </div>
 
     <h3>{{ $t('help.controls.extra.title') }}</h3>
     <div class="mb-2">
       <p v-html="$t('help.controls.extra.p1')" />
-      <img src="/12-plus-action.png" width="auto" height="50">
+      <img src="/12-plus-action.png" class="h40">
       <p v-html="$t('help.controls.extra.p2')" />
-      <img src="/13-extra-input.png" width="800" height="auto">
+      <img src="/13-extra-input.png" class="w600">
       <p v-html="$t('help.controls.extra.p3')" />
-      <img src="/14-minus-action.png" width="auto" height="50">
+      <img src="/14-minus-action.png" class="h40">
       <p v-html="$t('help.controls.extra.p4')" />
     </div>
 
     <h3>{{ $t('help.controls.reset.title') }}</h3>
     <div class="mb-2">
       <p v-html="$t('help.controls.reset.p1')" />
-      <img src="/15-clear.png" width="auto" height="50">
+      <img src="/15-clear.png" class="h40">
     </div>
 
     <h3>{{ $t('help.controls.import.title') }}</h3>
     <div class="mb-2">
       <p v-html="$t('help.controls.import.p1')" />
-      <img src="/16-export.png" width="auto" height="50">
+      <img src="/16-export.png" class="h40">
       <p v-html="$t('help.controls.import.p2')" />
-      <img src="/17-import.png" width="auto" height="50">
+      <img src="/17-import.png" class="h40">
       <p v-html="$t('help.controls.import.p3')" />
-      <img src="/18-import-lib.png" width="auto" height="50">
+      <img src="/18-import-lib.png" class="h40">
     </div>
 
     <NavButtons />
   </div>
 </template>
+
+<style>
+.h40 {
+  width: auto;
+  height: 40px;
+}
+.h150 {
+  width: auto;
+  height: 150px;
+}
+.w200 {
+  width: 200px;
+  height: auto;
+}
+.w400 {
+  width: 400px;
+  height: auto;
+}
+.w600 {
+  width: 600px;
+  height: auto;
+}
+</style>
