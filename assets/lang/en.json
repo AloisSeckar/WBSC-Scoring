@@ -229,6 +229,7 @@
             "noPBAfterPlay" : "PB cannot happen after another play (except for SB and BB).",
             "noPlayAfterIP" : "IP must be the only runner play at the moment.",
             "noPlayAfterBK" : "BK must be the only runner play at the moment.",
+            "noPlayAfterRLE" : "RLE must be the only runner play at the moment.",
             "noSE0" : "Advance by 'Same error (Batter)' is selected, \nbut no corresponding error play was given.",
             "noSE1" : "Advance by 'Same error (Runner at 1st)' is selected, \nbut no corresponding error play was given.",
             "noSE2" : "Advance by 'Same error (Runner at 2nd)' is selected, \nbut no corresponding error play was given.",

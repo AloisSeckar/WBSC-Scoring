@@ -68,6 +68,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkSHSF(inputs))
   validation = attachValidation(validation, checkSBCS(inputs))
   validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
+  validation = attachValidation(validation, checkOBRs(inputs))
   validation = attachValidation(validation, checkSameError(inputs))
   validation = attachValidation(validation, checkEarnedRuns(inputs))
 
@@ -496,6 +497,24 @@ function isAfterBB (inputs: WBSCInput[]) {
 }
 function isAfterSB (inputs: WBSCInput[]) {
   return inputs.some(i => firstRunnerActions.includes(i.group) && i.specAction === 'SB')
+}
+
+function checkOBRs (inputs: WBSCInput[]) {
+  let validation = ''
+
+  let isRLE = false
+
+  inputs.forEach((input) => {
+    if (input.specAction === 'OBR_rle') {
+      isRLE = true
+    }
+  })
+
+  if (isRLE && inputs.length > 1) {
+    validation = attachValidation(validation, useT('editor.validation.noPlayAfterRLE'))
+  }
+
+  return validation
 }
 
 // HIT can only be credited to batter, if there is no forced out
