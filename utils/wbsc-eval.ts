@@ -281,6 +281,7 @@ function changeRunnerSpecificAction (group: string) {
     case 'ENT':
     case 'CSET':
     case 'CSNT':
+    case 'POEN':
     case 'eF':
     case 'eT':
       // no other adjustments
@@ -610,12 +611,19 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       }
       possibleConcurrentPlay = true
       break
+    case 'POEN':
+      output.na = true
+      // falls through
     case 'POE':
-      output.text1 = action.substring(0, 2)
-      output.text2 = 'e' + pos + 'T'
+      output.text1 = 'POA'
+      if (pos.length > 1) {
+        output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)
+      } else {
+        output.text2 = (action === 'POE' ? 'e' : 'E') + pos + 'T'
+      }
       output.num = true
+      output.base = action === 'POE' ? output.origBase + 1 : input.origBase
       output.errorTarget = output.base
-      output.base = output.origBase + 1
       possibleConcurrentPlay = true
       break
     case 'OBR_rle':

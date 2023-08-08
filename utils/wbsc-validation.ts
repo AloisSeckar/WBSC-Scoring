@@ -10,10 +10,10 @@ const firstRunnerActions = [inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
 const decisiveErrorActions = [
   'EF', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
-  'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE'
+  'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN'
 ]
 const errorActions = [...decisiveErrorActions, 'eF', 'eT']
-const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT']
+const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN']
 
 // validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)
