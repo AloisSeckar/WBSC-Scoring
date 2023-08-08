@@ -348,6 +348,46 @@
     "name": "Caught stealing - C to P (field. err.), no advance (R3) + O/2 to 2nd"
   },
   {
+    "file": "po-r1",
+    "name": "Pick off - C to 1B (R1)"
+  },
+  {
+    "file": "po-r2",
+    "name": "Pick off - P to SS (R2)"
+  },
+  {
+    "file": "po-r3",
+    "name": "Pick off - C to 3B (R3)"
+  },
+  {
+    "file": "error-poa-r1",
+    "name": "Pick off attempt - e1T (R1)"
+  },
+  {
+    "file": "error-poa-r2",
+    "name": "Pick off attempt - e1T (R2)"
+  },
+  {
+    "file": "error-poa-r3",
+    "name": "Pick off attempt - e1T (R3)"
+  },
+  {
+    "file": "error-poa-r3-r2-r1-se",
+    "name": "Pick off attempt - e2T (R3), R1 and R2 score on error"
+  },
+  {
+    "file": "error-poa-r1-na",
+    "name": "Pick off attempt - 1E3, no advance (R1)"
+  },
+  {
+    "file": "error-poa-r2-na",
+    "name": "Pick off attempt - 1E4, no advance (R2)"
+  },
+  {
+    "file": "error-poa-r3-na",
+    "name": "Pick off attempt - 25E1, no advance (R3)"
+  },
+  {
     "file": "obr-bob",
     "name": "Out by rule - Batter Out of the Box"
   },
