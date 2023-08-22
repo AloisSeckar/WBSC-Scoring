@@ -1,3 +1,5 @@
+import vsharp from 'vite-plugin-vsharp'
+
 export default defineNuxtConfig({
   ssr: false,
   modules: [
@@ -13,6 +15,9 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/help', '/project', '/report']
     }
+  },
+  vite: {
+    plugins: [vsharp()]
   },
   pinia: {
     autoImports: ['defineStore']

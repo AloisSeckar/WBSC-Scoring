@@ -7,6 +7,7 @@
       <Meta property="og:url" content="https://wbsc-scoring.netlify.app" />
       <Meta property="og:title" content="WBSC Scoring Creator" />
       <Meta property="og:description" content="Visualisation for WBSC Scoring System" />
+      <!-- TODO make dynamic to get rid of error with demo.png during npm run build -->
       <Meta property="og:image" content="https://wbsc-scoring.netlify.app/demo.png" />
     </Head>
     <div id="top" class="flex justify-center">
