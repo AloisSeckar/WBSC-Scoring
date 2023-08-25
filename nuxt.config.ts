@@ -1,3 +1,4 @@
+// @ts-ignore: noImplicitAny - JS module with no types...
 import vsharp from 'vite-plugin-vsharp'
 
 export default defineNuxtConfig({
