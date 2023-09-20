@@ -171,6 +171,7 @@
             "sb" : {
                 "title" : "Steal / CS",
                 "SB" : "Stolen base",
+                "SBPO" : "Stolen base after pickoff",
                 "CSE" : "Caught stealing with fielding error",
                 "CSET" : "Caught stealing with throwing error",
                 "CSN" : "Caught stealing with fielding error (no advance)",

@@ -352,6 +352,7 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
     case 'ste':
       options.push(`<optgroup label="${rSafe}">`)
       options.push(`<option value="SB">${useT('editor.action.sb.SB')}</option>`)
+      options.push(`<option value="SBPO">${useT('editor.action.sb.SBPO')}</option>`)
       options.push(`<option value="CSE">${useT('editor.action.sb.CSE')}</option>`)
       options.push(`<option value="CSET">${useT('editor.action.sb.CSET')}</option>`)
       options.push(`<option value="CSN">${useT('editor.action.sb.CSN')}</option>`)

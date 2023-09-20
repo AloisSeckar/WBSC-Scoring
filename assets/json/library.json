@@ -320,6 +320,10 @@
     "name": "Stolen base + throwing error by C"
   },
   {
+    "file": "sb-po",
+    "name": "Stolen base after pick-off"
+  },
+  {
     "file": "cs-26",
     "name": "Caught stealing - C to SS"
   },

@@ -171,6 +171,7 @@
             "sb" : {
                 "title" : "Krádež / Chycení",
                 "SB" : "Stolen base",
+                "SBPO" : "Stolen base po pick-offu",
                 "CSE" : "Caught stealing + fielding error",
                 "CSET" : "Caught stealing + throwing error",
                 "CSN" : "Caught stealing + fielding error (no advance)",
