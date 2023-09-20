@@ -143,7 +143,7 @@
                 "OBR_BIA" : "Batter's Illegal Action",
                 "OBR_TBB" : "Touched by Batted Ball",
                 "OBR_BIC" : "Batter Interfering with the Catcher",
-                "OBR_BOO" : "Batting Out of Order",
+                "OBR_BOT" : "Batting Out of Turn",
                 "OBR_RTA" : "Refusing To Advance",
                 "OBR_DIF" : "Dropped Infield Fly",
                 "OBR_BIN" : "Batter Interference",

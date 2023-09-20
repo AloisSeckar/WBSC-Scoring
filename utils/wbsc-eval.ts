@@ -133,7 +133,7 @@ function changeBatterSpecificAction () {
     case 'FL':
     case 'FB':
     case 'FFB':
-    case 'OBR_BOO':
+    case 'OBR_BOT':
     case 'OBR_BIN':
     case 'OBR_OIN':
       out = true
@@ -415,7 +415,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       output.text1 = action
       output.out = true
       break
-    case 'OBR_BOO':
+    case 'OBR_BOT':
     case 'OBR_DIF':
     case 'OBR_BIN':
     case 'OBR_OIN':

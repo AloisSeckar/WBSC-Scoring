@@ -300,7 +300,7 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push(`<option value="OBR_BIA">${useT('editor.action.obr.OBR_BIA')}</option>`)
       options.push(`<option value="OBR_TBB">${useT('editor.action.obr.OBR_TBB')}</option>`)
       options.push(`<option value="OBR_BIC">${useT('editor.action.obr.OBR_BIC')}</option>`)
-      options.push(`<option value="OBR_BOO">${useT('editor.action.obr.OBR_BOO')}</option>`)
+      options.push(`<option value="OBR_BOT">${useT('editor.action.obr.OBR_BOT')}</option>`)
       options.push(`<option value="OBR_RTA">${useT('editor.action.obr.OBR_RTA')}</option>`)
       options.push(`<option value="OBR_DIF">${useT('editor.action.obr.OBR_DIF')}</option>`)
       options.push(`<option value="OBR_BIN">${useT('editor.action.obr.OBR_BIN')}</option>`)
