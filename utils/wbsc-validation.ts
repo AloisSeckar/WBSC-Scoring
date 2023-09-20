@@ -79,20 +79,22 @@ function checkUserInput (inputs: WBSCInput[]) {
 function checkPosSelection (selection: string) {
   let validation = ''
 
-  if (selection.length > 1) {
-    if (!selection.endsWith('LL') && selection[selection.length - 2] === selection[selection.length - 1]) {
-      validation = useT('editor.validation.noSelfAsist')
-    }
-  }
-  if (selection.length > 2) {
-    const alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false]
-    for (let i = 0; i < selection.length - 1; i += 1) {
-      const current = parseInt(selection[i])
-      if (alreadyEncounteredPositions[current] === true) {
-        validation = attachValidation(validation, useT('editor.validation.noMultipleAsist'))
-        break
+  if (selection.match(/^\d+/)) {
+    if (selection.length > 1) {
+      if (selection[selection.length - 2] === selection[selection.length - 1]) {
+        validation = useT('editor.validation.noSelfAsist')
       }
-      alreadyEncounteredPositions[current] = true
+    }
+    if (selection.length > 2) {
+      const alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false]
+      for (let i = 0; i < selection.length - 1; i += 1) {
+        const current = parseInt(selection[i])
+        if (alreadyEncounteredPositions[current] === true) {
+          validation = attachValidation(validation, useT('editor.validation.noMultipleAsist'))
+          break
+        }
+        alreadyEncounteredPositions[current] = true
+      }
     }
   }
 

@@ -87,11 +87,13 @@ function renderPlayerOptions () {
 function renderHitLocationOptions () {
   const options = renderPlayerOptions()
   options.push('<option value="LL">LL</option>')
+  options.push('<option value="GLL">GLL</option>')
   options.push('<option value="LS">LS</option>')
   options.push('<option value="LC">LC</option>')
   options.push('<option value="MI">MI</option>')
   options.push('<option value="RC">RC</option>')
   options.push('<option value="RS">RS</option>')
+  options.push('<option value="GRL">GRL</option>')
   options.push('<option value="RL">RL</option>')
   return options
 }
