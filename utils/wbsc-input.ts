@@ -257,7 +257,7 @@ function renderBaseSelection (group: string) {
 
     const baseTIELabel = document.createElement('label')
     if (group === inputR1) {
-      baseTIELabel.innerHTML = '&nbsp;Tiebreak (baseball)'
+      baseTIELabel.innerHTML = '&nbsp;Tiebreak (baseball (old))'
     } else {
       baseTIELabel.innerHTML = '&nbsp;Tiebreak (baseball/softball)'
     }
