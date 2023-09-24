@@ -1,5 +1,5 @@
 /* *************************************** */
-/* wbsc-global.js                          */
+/* wbsc-global.ts                          */
 /* Variable declarations + setting-up      */
 /* *************************************** */
 

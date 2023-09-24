@@ -1,5 +1,5 @@
 /* **************************************** */
-/* wbsc-validation.js                       */
+/* wbsc-validation.ts                       */
 /* Validate user's input to eliminate plays */
 /* that are clearly impossible.             */
 /* **************************************** */

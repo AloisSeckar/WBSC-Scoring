@@ -1,5 +1,5 @@
 /* *************************************** */
-/* wbsc-eval.js                            */
+/* wbsc-eval.ts                            */
 /* CORE file with input evaluation methods */
 /* *************************************** */
 

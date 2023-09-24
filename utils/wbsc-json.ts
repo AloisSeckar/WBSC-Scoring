@@ -1,3 +1,8 @@
+/* *************************************** */
+/* wbsc-json.ts                            */
+/* Processing JSON input of stored action  */
+/* *************************************** */
+
 import { WBSCInput } from '@/composables/useInputStore'
 
 // export current input selection as JSON file

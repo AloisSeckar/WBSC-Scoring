@@ -1,5 +1,5 @@
 /* *************************************** */
-/* wbsc-output.js                          */
+/* wbsc-output.ts                          */
 /* Final rendering based on user's input   */
 /* *************************************** */
 

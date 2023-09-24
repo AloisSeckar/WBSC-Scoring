@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import initEditor from '@/utils/wbsc-global.js'
+import initEditor from '@/utils/wbsc-global'
 
 onMounted(() => initEditor())
 </script>

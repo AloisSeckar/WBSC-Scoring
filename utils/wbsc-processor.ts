@@ -1,5 +1,5 @@
 /* *************************************** */
-/* wbsc-processor.js                       */
+/* wbsc-processor.ts                       */
 /* Transform and process user's input      */
 /* *************************************** */
 

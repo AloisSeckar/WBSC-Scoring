@@ -1,3 +1,8 @@
+/* *************************************** */
+/* wbsc-constants.ts                       */
+/* Single point for defining constants     */
+/* *************************************** */
+
 // DOM elements selectors
 
 export const classWbsc = 'wbsc-inputs'

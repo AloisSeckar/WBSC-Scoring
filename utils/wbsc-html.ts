@@ -1,5 +1,5 @@
 /* *************************************** */
-/* wbsc-html.js                            */
+/* wbsc-html.ts                            */
 /* Helpers to get html code to be inserted */
 /* *************************************** */
 

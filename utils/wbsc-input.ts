@@ -1,5 +1,5 @@
 /* *************************************** */
-/* wbsc-input.js                           */
+/* wbsc-input.ts                           */
 /* Preparing and adjusting user inputs     */
 /* *************************************** */
 
