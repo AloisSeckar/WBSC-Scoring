@@ -186,14 +186,14 @@ function changeBatterSpecificAction () {
     if (isNaN(Number(posSelection[0]))) {
       posItem1.value = posSelection
     } else {
-      posItem1.value = posSelection[0]
+      posItem1.value = posSelection[0] || '1'
     }
   }
 
   if (fc === true) {
     const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement
     posItem2.innerHTML = renderFCLocationOptions().join(' ')
-    posItem2.value = useEvalStore().getPosSelection(groupID)[1]
+    posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for "HP"
   }
 
   const runTypeSelect = document.getElementById(inputB + inputRuntype) as HTMLInputElement
@@ -320,7 +320,7 @@ function changeRunnerSpecificAction (group: string) {
   if (throwing === true) {
     const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement
     posItem2.innerHTML = renderFCLocationOptions().join(' ')
-    posItem2.value = useEvalStore().getPosSelection(groupID)[1]
+    posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for HP
   }
 
   disableExtraInput(group, out === true)
@@ -692,7 +692,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
     let notAddedYet = true
     const concurrentPlays = useEvalStore().concurrentPlays
     for (let i = 0; i < concurrentPlays.length; i += 1) {
-      if (concurrentPlays[i].batter === batter) {
+      if (concurrentPlays[i]?.batter === batter) {
         notAddedYet = false
         break
       }

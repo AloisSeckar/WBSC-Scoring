@@ -88,7 +88,7 @@ function checkPosSelection (selection: string) {
     if (selection.length > 2) {
       const alreadyEncounteredPositions = [false, false, false, false, false, false, false, false, false, false]
       for (let i = 0; i < selection.length - 1; i += 1) {
-        const current = parseInt(selection[i])
+        const current = parseInt(selection[i] || '1')
         if (alreadyEncounteredPositions[current] === true) {
           validation = attachValidation(validation, useT('editor.validation.noMultipleAsist'))
           break
@@ -143,7 +143,7 @@ function checkOutcome (inputs: WBSCInput[]) {
             validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
           }
         }
-        const maxReachedBase = reachedBases[reachedBases.length - 1]
+        const maxReachedBase = reachedBases[reachedBases.length - 1] || 0
         const currentReachedBase = Math.max(output.base, output.errorTarget)
         if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(input.specAction))) {
           validation = attachValidation(validation, useT('editor.validation.advanceInOrder'))
@@ -167,8 +167,8 @@ function checkOutcome (inputs: WBSCInput[]) {
   })
 
   for (let i = 0; i < reachedBases.length - 1; i += 1) {
-    const reachedBase1 = reachedBases[i]
-    const reachedBase2 = reachedBases[i + 1]
+    const reachedBase1 = reachedBases[i] || 0
+    const reachedBase2 = reachedBases[i + 1] || 0
 
     if (reachedBase2 > reachedBase1) {
       validation = attachValidation(validation, useT('editor.validation.noPassingRunner'))

@@ -399,7 +399,7 @@ function getPosSelectionSelect (group: string, ord: number) {
   const posSelection = useEvalStore().getPosSelection(groupID)
   posItem.innerHTML = renderPlayerOptions().join(' ')
   if (posSelection.length > ord - 1) {
-    posItem.value = posSelection[ord - 1]
+    posItem.value = posSelection[ord - 1] || '1'
   }
 
   posItem.addEventListener('change', function () {

@@ -42,9 +42,12 @@ function renderAction (battingOrder: number, clear: boolean, mainInput: WBSCInpu
 
       if (extraInput) {
         for (let i = 0; i < extraInput.length; i += 1) {
-          renderAction(battingOrder, false, extraInput[i])
-          if (!extraInput[i].specAction.includes('N')) {
-            drawConnector(output.base, extraInput[i].output!.base)
+          const extInput = extraInput[i]
+          if (extInput) {
+            renderAction(battingOrder, false, extInput)
+            if (!extInput.specAction.includes('N')) {
+              drawConnector(output.base, extInput.output!.base)
+            }
           }
         }
       }
@@ -742,13 +745,13 @@ function writeBatterIndicator (base: number) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     ctx.font = 'bold 20px Verdana'
-    ctx.fillText(useEvalStore().batter.toString(), coords[0].x, coords[0].y)
+    ctx.fillText(useEvalStore().batter.toString(), coords[0]?.x || 0, coords[0]?.y || 0)
 
     ctx.lineWidth = 3
     ctx.beginPath()
-    ctx.moveTo(coords[1].x, coords[1].y)
-    ctx.lineTo(coords[2].x, coords[2].y)
-    ctx.lineTo(coords[3].x, coords[3].y)
+    ctx.moveTo(coords[1]?.x || 0, coords[1]?.y || 0)
+    ctx.lineTo(coords[2]?.x || 0, coords[2]?.y || 0)
+    ctx.lineTo(coords[3]?.x || 0, coords[3]?.y || 0)
     ctx.stroke()
   } else {
     createError('Canvas context not defined')
@@ -764,73 +767,75 @@ function connectOutsIfNeeded () {
       const start = useEvalStore().outs[i]
       const end = useEvalStore().outs[i + 1]
 
-      const hOffset = useCanvasStore().hOffset
-      const lineHOffset = 20
-      const vOffsetStart = (h1 - 8) * (start.batter - 1)
-      const vOffsetEnd = (h1 - 8) * (end.batter - 1)
+      if (start && end) {
+        const hOffset = useCanvasStore().hOffset
+        const lineHOffset = 20
+        const vOffsetStart = (h1 - 8) * (start.batter - 1)
+        const vOffsetEnd = (h1 - 8) * (end.batter - 1)
 
-      let startX = 0
-      let startY = 0
-      let endX = 0
-      let endY = 0
-      switch (start.base) {
-        case 4:
-          startX = hOffset + lineHOffset
-          startY = h1 - 36 + vOffsetStart
-          switch (end.base) {
-            case 4:
-              startX = hOffset + h2 / 4
-              startY = h1 - 25 + vOffsetStart
-              endX = hOffset + h2 / 4
-              endY = h2 + 25 + vOffsetEnd
-              break
-            case 3:
-              startX = hOffset + h2 / 2
-              startY = h1 - 15 + vOffsetStart
-              endX = hOffset + h2 / 2
-              endY = h2 - 47 + vOffsetEnd
-              break
-            case 2:
-              startX += 15
-              startY += 15
-              endX = hOffset + lineHOffset + 15
-              endY = 37 + vOffsetEnd
-              break
-            case 1:
-            case 0:
+        let startX = 0
+        let startY = 0
+        let endX = 0
+        let endY = 0
+        switch (start.base) {
+          case 4:
+            startX = hOffset + lineHOffset
+            startY = h1 - 36 + vOffsetStart
+            switch (end.base) {
+              case 4:
+                startX = hOffset + h2 / 4
+                startY = h1 - 25 + vOffsetStart
+                endX = hOffset + h2 / 4
+                endY = h2 + 25 + vOffsetEnd
+                break
+              case 3:
+                startX = hOffset + h2 / 2
+                startY = h1 - 15 + vOffsetStart
+                endX = hOffset + h2 / 2
+                endY = h2 - 47 + vOffsetEnd
+                break
+              case 2:
+                startX += 15
+                startY += 15
+                endX = hOffset + lineHOffset + 15
+                endY = 37 + vOffsetEnd
+                break
+              case 1:
+              case 0:
+                endX = hOffset + lineHOffset
+                endY = h2 - 30 + vOffsetEnd
+                break
+            }
+            break
+          case 3:
+            startX = hOffset + lineHOffset
+            startY = h2 + 25 + vOffsetStart
+            if (end.base === 2) {
+              endX = hOffset + lineHOffset
+              endY = h2 / 2 + vOffsetEnd
+            } else {
               endX = hOffset + lineHOffset
               endY = h2 - 30 + vOffsetEnd
-              break
-          }
-          break
-        case 3:
-          startX = hOffset + lineHOffset
-          startY = h2 + 25 + vOffsetStart
-          if (end.base === 2) {
-            endX = hOffset + lineHOffset
-            endY = h2 / 2 + vOffsetEnd
-          } else {
+            }
+            break
+          case 2:
+            startX = hOffset + lineHOffset
+            startY = h2 - 13 + vOffsetStart
             endX = hOffset + lineHOffset
             endY = h2 - 30 + vOffsetEnd
-          }
-          break
-        case 2:
-          startX = hOffset + lineHOffset
-          startY = h2 - 13 + vOffsetStart
-          endX = hOffset + lineHOffset
-          endY = h2 - 30 + vOffsetEnd
-          break
-      }
+            break
+        }
 
-      const ctx = useCanvasStore().ctx
-      if (ctx) {
-        ctx.lineWidth = 6
-        ctx.beginPath()
-        ctx.moveTo(startX, startY)
-        ctx.lineTo(endX, endY)
-        ctx.stroke()
-      } else {
-        createError('Canvas context not defined')
+        const ctx = useCanvasStore().ctx
+        if (ctx) {
+          ctx.lineWidth = 6
+          ctx.beginPath()
+          ctx.moveTo(startX, startY)
+          ctx.lineTo(endX, endY)
+          ctx.stroke()
+        } else {
+          createError('Canvas context not defined')
+        }
       }
     }
   }
@@ -846,120 +851,122 @@ function connectConcurrentPlaysIfNeeded () {
       const start = useEvalStore().concurrentPlays[i]
       const end = useEvalStore().concurrentPlays[i + 1]
 
+      if (start && end) {
       // two outs are already connected
-      if (start.out === false || end.out === false) {
-        const hOffset = useCanvasStore().hOffset
-        const lineHOffset = 30
-        const vOffsetStart = (h1 - 8) * (start.batter - 1)
-        const vOffsetEnd = (h1 - 8) * (end.batter - 1)
-        const out = start.out === true
+        if (start.out === false || end.out === false) {
+          const hOffset = useCanvasStore().hOffset
+          const lineHOffset = 30
+          const vOffsetStart = (h1 - 8) * (start.batter - 1)
+          const vOffsetEnd = (h1 - 8) * (end.batter - 1)
+          const out = start.out === true
 
-        const startNa = start.na === true
-        const endNa = end.na === true
+          const startNa = start.na === true
+          const endNa = end.na === true
 
-        let startX = 0
-        let startY = 0
-        let endX = 0
-        let endY = 0
-        let xHOffset = 0
-        switch (start.base) {
-          case 4:
-            startY = h1 - 20 + vOffsetStart
-            switch (end.base) {
-              case 3:
-                if (out) {
-                  startX = hOffset + (h2 - lineHOffset)
-                  endX = hOffset + (h2 - lineHOffset)
-                  endY = 25 + vOffsetEnd
-                } else {
-                  startX = hOffset + h2 / 2
-                  endX = hOffset + h2 / 2
-                  if (end.out === true) {
-                    endY = h2 / 2 + vOffsetEnd
-                  } else {
+          let startX = 0
+          let startY = 0
+          let endX = 0
+          let endY = 0
+          let xHOffset = 0
+          switch (start.base) {
+            case 4:
+              startY = h1 - 20 + vOffsetStart
+              switch (end.base) {
+                case 3:
+                  if (out) {
+                    startX = hOffset + (h2 - lineHOffset)
+                    endX = hOffset + (h2 - lineHOffset)
                     endY = 25 + vOffsetEnd
+                  } else {
+                    startX = hOffset + h2 / 2
+                    endX = hOffset + h2 / 2
+                    if (end.out === true) {
+                      endY = h2 / 2 + vOffsetEnd
+                    } else {
+                      endY = 25 + vOffsetEnd
+                    }
                   }
-                }
-                break
-              case 2:
-                startX = hOffset + (h2 - lineHOffset)
-                endX = hOffset + h2 + lineHOffset
-                endY = 25 + vOffsetEnd
-                break
-              case 1:
-                startX = hOffset + (h2 - lineHOffset)
-                if (out) {
-                  startY += 15
-                }
-                endX = hOffset + h2 + lineHOffset
-                endY = h2 + 25 + vOffsetEnd
-                break
-              case 0:
-                startX = hOffset + lineHOffset
-                endX = hOffset + lineHOffset
-                endY = 25 + vOffsetEnd
-                break
-            }
-            break
-          case 3:
-            if (out) {
-              startY = h2 * 1.5 + vOffsetStart
-              xHOffset = h2 / 4
-            } else {
-              startY = h2 - (startNa ? -5 : 25) + vOffsetStart
-            }
-            switch (end.base) {
-              case 2:
-                startX = hOffset + h2 / 2 + xHOffset
-                endX = hOffset + h2 + (endNa ? 0 : lineHOffset)
-                endY = (endNa ? 0 : 25) + vOffsetEnd
-                break
-              case 1:
-                startX = hOffset + h2 / 2 + xHOffset
-                endX = hOffset + h2 + (endNa ? h2 / 2 : lineHOffset)
-                endY = h2 + (endNa ? -5 : 25) + vOffsetEnd
-                break
-              case 0:
-                startX = hOffset + lineHOffset
-                endX = hOffset + lineHOffset
-                endY = 25 + vOffsetEnd
-                break
-            }
-            break
-          case 2:
-            if (out) {
-              startX = hOffset + (h2 - lineHOffset)
-              startY = h2 + 45 + vOffsetStart
-            } else if (startNa) {
-              startX = hOffset + h2
-              startY = 45 + vOffsetStart
-            } else {
-              startX = hOffset + (h1 - lineHOffset)
-              startY = h2 - 25 + vOffsetStart
-            }
-            switch (end.base) {
-              case 1:
-                if (out) {
+                  break
+                case 2:
+                  startX = hOffset + (h2 - lineHOffset)
+                  endX = hOffset + h2 + lineHOffset
+                  endY = 25 + vOffsetEnd
+                  break
+                case 1:
+                  startX = hOffset + (h2 - lineHOffset)
+                  if (out) {
+                    startY += 15
+                  }
                   endX = hOffset + h2 + lineHOffset
                   endY = h2 + 25 + vOffsetEnd
-                } else if (startNa) {
-                  endX = hOffset + (h1 - h2 / 2)
-                  endY = h2 + (endNa ? -5 : 15) + vOffsetEnd
-                } else {
-                  endX = hOffset + (h1 - (endNa ? h2 / 2 : lineHOffset))
+                  break
+                case 0:
+                  startX = hOffset + lineHOffset
+                  endX = hOffset + lineHOffset
+                  endY = 25 + vOffsetEnd
+                  break
+              }
+              break
+            case 3:
+              if (out) {
+                startY = h2 * 1.5 + vOffsetStart
+                xHOffset = h2 / 4
+              } else {
+                startY = h2 - (startNa ? -5 : 25) + vOffsetStart
+              }
+              switch (end.base) {
+                case 2:
+                  startX = hOffset + h2 / 2 + xHOffset
+                  endX = hOffset + h2 + (endNa ? 0 : lineHOffset)
+                  endY = (endNa ? 0 : 25) + vOffsetEnd
+                  break
+                case 1:
+                  startX = hOffset + h2 / 2 + xHOffset
+                  endX = hOffset + h2 + (endNa ? h2 / 2 : lineHOffset)
                   endY = h2 + (endNa ? -5 : 25) + vOffsetEnd
-                }
-                break
-              case 0:
-                endX = hOffset + (h1 - lineHOffset)
-                endY = 25 + vOffsetEnd
-                break
-            }
-            break
-        }
+                  break
+                case 0:
+                  startX = hOffset + lineHOffset
+                  endX = hOffset + lineHOffset
+                  endY = 25 + vOffsetEnd
+                  break
+              }
+              break
+            case 2:
+              if (out) {
+                startX = hOffset + (h2 - lineHOffset)
+                startY = h2 + 45 + vOffsetStart
+              } else if (startNa) {
+                startX = hOffset + h2
+                startY = 45 + vOffsetStart
+              } else {
+                startX = hOffset + (h1 - lineHOffset)
+                startY = h2 - 25 + vOffsetStart
+              }
+              switch (end.base) {
+                case 1:
+                  if (out) {
+                    endX = hOffset + h2 + lineHOffset
+                    endY = h2 + 25 + vOffsetEnd
+                  } else if (startNa) {
+                    endX = hOffset + (h1 - h2 / 2)
+                    endY = h2 + (endNa ? -5 : 15) + vOffsetEnd
+                  } else {
+                    endX = hOffset + (h1 - (endNa ? h2 / 2 : lineHOffset))
+                    endY = h2 + (endNa ? -5 : 25) + vOffsetEnd
+                  }
+                  break
+                case 0:
+                  endX = hOffset + (h1 - lineHOffset)
+                  endY = 25 + vOffsetEnd
+                  break
+              }
+              break
+          }
 
-        drawArrow(startX, startY, endX, endY, 6)
-        drawArrow(endX, endY, startX, startY, 6)
+          drawArrow(startX, startY, endX, endY, 6)
+          drawArrow(endX, endY, startX, startY, 6)
+        }
       }
     }
   }

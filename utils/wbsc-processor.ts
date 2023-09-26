@@ -161,7 +161,7 @@ function processAction () {
     // current batter is not known in the time of input evaluation (we don't forsee number of players involved)
     // therefore placeholder is being used and here is replaced with actual number
     for (let i = 0; i < inputs.length; i += 1) {
-      const output = inputs[i].output
+      const output = inputs[i]?.output
       if (output) {
         output.text1 = output.text1.replace('#b#', useEvalStore().batter.toString())
       }
@@ -299,12 +299,14 @@ function checkMultipleRunnerAdvances (inputArr: WBSCInput[]) {
   let advanceEncountered = false
   for (let i = 0; i < inputArr.length; i += 1) {
     const current = inputArr[i]
-    const action = current?.specAction
-    if (action === 'WP' || action === 'PB' || action === 'BK' || action === 'IP') {
-      if (advanceEncountered) {
-        current.specAction = action.toLowerCase()
+    if (current) {
+      const action = current.specAction
+      if (action === 'WP' || action === 'PB' || action === 'BK' || action === 'IP') {
+        if (advanceEncountered) {
+          current.specAction = action.toLowerCase()
+        }
+        advanceEncountered = true
       }
-      advanceEncountered = true
     }
   }
 }
@@ -319,7 +321,7 @@ function removeDuplicateConnectors () {
   let runner12Advance = false
   let batterOut = false
   for (let i = 0; i < useEvalStore().outs.length; i += 1) {
-    const base = useEvalStore().outs[i].base
+    const base = useEvalStore().outs[i]?.base
     if (base === 4 || base === 3) {
       runner23Out = true
     }
@@ -328,8 +330,8 @@ function removeDuplicateConnectors () {
     }
   }
   for (let i = 0; i < useEvalStore().concurrentPlays.length; i += 1) {
-    const base = useEvalStore().concurrentPlays[i].base
-    const out = useEvalStore().concurrentPlays[i].out
+    const base = useEvalStore().concurrentPlays[i]?.base
+    const out = useEvalStore().concurrentPlays[i]?.out
     if ((base === 3 || base === 2) && !out) {
       runner12Advance = true
     }

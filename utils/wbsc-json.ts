@@ -151,7 +151,7 @@ function setInputs (input: WBSCInput) {
             posSelection.innerHTML = renderFCLocationOptions().join(' ') // default are player positions
           }
         }
-        posSelection.value = pos[i]
+        posSelection.value = pos[i] || '1'
       }
     } else {
       const hitSelection = document.getElementById(group + inputPosition + '1') as HTMLSelectElement
