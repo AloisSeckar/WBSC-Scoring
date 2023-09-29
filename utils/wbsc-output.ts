@@ -87,7 +87,7 @@ function drawBackground (battingOrder: number) {
 
     ctx.strokeRect(4, 4 + vOffset, hOffset, h1 - 8)
 
-    ctx.font = 'bold 60px Verdana'
+    ctx.font = FONT_EXTRA_LARGE
     ctx.textAlign = 'center'
     ctx.fillStyle = '#00a7d7'
     ctx.fillText(battingOrder.toString(), 40, h2 + 25 + vOffset)
@@ -297,7 +297,7 @@ function writeSituation (output: WBSCOutput) {
       ctx.fillStyle = 'black'
     }
 
-    ctx.font = 'bold 45px Verdana'
+    ctx.font = FONT_BASE_LARGE
 
     let offset = 20
     let hitOffset = 0
@@ -311,60 +311,52 @@ function writeSituation (output: WBSCOutput) {
     switch (base) {
       case 0:
         if (na) {
-          ctx.font = 'bold 20px Verdana'
+          ctx.font = FONT_EXTRA_TINY
           ctx.fillText(text1, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset)
         } else if (text2) {
           if (text1.length > 2) {
-            ctx.font = 'bold 75px Verdana'
+            ctx.font = FONT_B1_SMALL
             offset = -4
           } else {
-            ctx.font = 'bold 90px Verdana'
+            ctx.font = FONT_B1_MEDIUM
             offset = -8
           }
           ctx.fillText(text1, w2 + hOffset, h2 + offset + vOffset)
 
           if (text2.length > 3) {
-            ctx.font = 'bold 60px Verdana'
+            ctx.font = FONT_B1_TINY
             offset = 60
           } else if (text2.length > 2 || text1.length > 2) {
-            ctx.font = 'bold 75px Verdana'
+            ctx.font = FONT_B1_SMALL
             offset = 65
           } else {
-            ctx.font = 'bold 90px Verdana'
+            ctx.font = FONT_B1_MEDIUM
             offset = 75
           }
           ctx.fillText(text2, w2 + hOffset, h2 + offset + vOffset)
         } else {
-          if (text1.length > 5) {
-            ctx.font = 'bold 45px Verdana'
-            offset = 16
-          } else if (text1.length > 4) {
-            ctx.font = 'bold 52px Verdana'
+          if (text1.length > 4) {
+            ctx.font = FONT_B1_TINY
             offset = 20
           } else if (text1.length > 3) {
-            ctx.font = 'bold 68px Verdana'
+            ctx.font = FONT_B1_SMALL
             offset = 26
           } else if (text1.length > 2) {
-            ctx.font = 'bold 90px Verdana'
+            ctx.font = FONT_B1_MEDIUM
             offset = 34
           } else {
-            ctx.font = 'bold 110px Verdana'
+            ctx.font = FONT_B1_LARGE
             offset = 42
           }
           ctx.fillText(text1, w2 + hOffset, h2 + offset + vOffset)
         }
         if (sub) {
-          ctx.font = 'bold 40px Verdana'
+          ctx.font = FONT_EXTRA_SMALL
           ctx.fillText(sub, w1 + hOffset - 30, h1 - 20 + vOffset)
         }
         if (sup) {
-          if (sup === '14') {
-            ctx.font = 'bold 28px Verdana'
-            ctx.fillText(sup, w1 + hOffset - 32, 38 + vOffset)
-          } else {
-            ctx.font = 'bold 40px Verdana'
-            ctx.fillText(sup, w1 + hOffset - 30, 42 + vOffset)
-          }
+          ctx.font = FONT_EXTRA_SMALL
+          ctx.fillText(sup, w1 + hOffset - 30, 42 + vOffset)
         }
         break
       case 1:
@@ -372,7 +364,7 @@ function writeSituation (output: WBSCOutput) {
           if (text2) {
             text1 += text2
           }
-          ctx.font = '22px Verdana'
+          ctx.font = FONT_EXTRA_TINY
           locHOffset = (text1.length - 3) * 6
           ctx.fillStyle = '#303030'
           ctx.fillText(text1, w2 * 1.5 + 25 - locHOffset + hOffset, h2 + 24 + vOffset)
@@ -385,7 +377,7 @@ function writeSituation (output: WBSCOutput) {
           }
           if (text2) {
             if (text1.length > 2) {
-              ctx.font = 'bold 36px Verdana'
+              ctx.font = FONT_BASE_MEDIUM
               offset = 0
             } else {
               offset = -5
@@ -393,10 +385,10 @@ function writeSituation (output: WBSCOutput) {
             ctx.fillText(text1, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset)
 
             if (text2.length > 4) {
-              ctx.font = 'bold 28px Verdana'
+              ctx.font = FONT_BASE_SMALL
               offset = 36
             } else if (text2.length > 3) {
-              ctx.font = 'bold 36px Verdana'
+              ctx.font = FONT_BASE_MEDIUM
               offset = 38
             } else {
               offset = 40
@@ -404,19 +396,19 @@ function writeSituation (output: WBSCOutput) {
             ctx.fillText(text2, w2 * 1.5 + hOffset, h2 * 1.5 + offset + vOffset)
           } else {
             if (text1.length > 5) {
-              ctx.font = 'bold 24px Verdana'
+              ctx.font = FONT_BASE_TINY
               offset = 12
             } else if (text1.length > 4) {
-              ctx.font = 'bold 30px Verdana'
+              ctx.font = FONT_BASE_SMALL
               offset = 16
             } else if (text1.length > 3 || (hit && text1.length > 1) || text1 === 'IBB') {
-              ctx.font = 'bold 38px Verdana'
+              ctx.font = FONT_BASE_MEDIUM
               offset = 18
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 1.5 + offset + vOffset)
           }
           if (sub) {
-            ctx.font = 'bold 30px Verdana'
+            ctx.font = FONT_BASE_SMALL
             if (text1.startsWith('K')) {
               ctx.fillText(sub, w1 + hOffset - 20, h1 - 62 + vOffset)
             } else {
@@ -435,7 +427,7 @@ function writeSituation (output: WBSCOutput) {
           if (text2) {
             text1 += text2
           }
-          ctx.font = '22px Verdana'
+          ctx.font = FONT_EXTRA_TINY
           ctx.fillStyle = '#303030'
           ctx.fillText(text1, w2 + hOffset, offset + 10 + vOffset)
         } else {
@@ -447,21 +439,20 @@ function writeSituation (output: WBSCOutput) {
           }
           if (out) {
             if (text2) {
-              row1font = 'bold 56px Verdana'
-              row2font = 'bold 56px Verdana'
+              row1font = row2font = FONT_B2_LARGE
               row1offset = 45
               row2offset = 6
               if (text1.length > 2) {
-                row1font = 'bold 45px Verdana'
+                row1font = row2font = FONT_B2_MEDIUM
               }
               if (text2.length > 3) {
                 row1offset = 35
                 row2offset = 2
-                row2font = 'bold 28px Verdana'
+                row2font = FONT_B2_TINY
               } else if (text2.length > 2) {
                 row1offset = 40
                 row2offset = 4
-                row2font = 'bold 36px Verdana'
+                row2font = FONT_B2_SMALL
               }
               ctx.font = row1font
               ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - row1offset + vOffset)
@@ -469,16 +460,16 @@ function writeSituation (output: WBSCOutput) {
               ctx.fillText(text2, w2 * 0.7 + hOffset, h2 + row2offset + vOffset)
             } else {
               if (text1.length > 4) {
-                ctx.font = 'bold 32px Verdana'
+                ctx.font = FONT_B2_TINY
                 offset = 26
               } else if (text1.length > 3) {
-                ctx.font = 'bold 42px Verdana'
+                ctx.font = FONT_B2_SMALL
                 offset = 23
               } else if (text1.length > 2) {
-                ctx.font = 'bold 52px Verdana'
+                ctx.font = FONT_B2_MEDIUM
                 offset = 20
               } else {
-                ctx.font = 'bold 60px Verdana'
+                ctx.font = FONT_B2_LARGE
                 offset = 17
               }
               ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset)
@@ -486,18 +477,18 @@ function writeSituation (output: WBSCOutput) {
             // if batter indicator should be displayed, put it into top-left corner
             base = 3
           } else if (text2) {
-            row1font = 'bold 40px Verdana'
+            row1font = FONT_BASE_MEDIUM
             row1offset = 8
-            row2font = 'bold 40px Verdana'
+            row2font = FONT_BASE_MEDIUM
             row2offset = 30
             if (text2.length > 4) {
               row1offset = 3
               row2offset = 26
-              row2font = 'bold 24px Verdana'
+              row2font = FONT_BASE_TINY
             } else if (text2.length > 3) {
               row1offset = 5
               row2offset = 28
-              row2font = 'bold 30px Verdana'
+              row2font = FONT_BASE_SMALL
             }
             ctx.font = row1font
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 - row1offset + vOffset)
@@ -505,22 +496,22 @@ function writeSituation (output: WBSCOutput) {
             ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset)
           } else {
             if (text1.length > 4) {
-              ctx.font = 'bold 24px Verdana'
+              ctx.font = FONT_BASE_TINY
               offset = 10
             } else if (text1.length > 3) {
-              ctx.font = 'bold 30px Verdana'
+              ctx.font = FONT_BASE_SMALL
               offset = 12
             } else if (text1.length > 2) {
-              ctx.font = 'bold 38px Verdana'
+              ctx.font = FONT_BASE_MEDIUM
               offset = 14
             } else {
-              ctx.font = 'bold 45px Verdana'
+              ctx.font = FONT_BASE_LARGE
               offset = 18
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
           if (sup) {
-            ctx.font = 'bold 28px Verdana'
+            ctx.font = FONT_EXTRA_SMALL
             ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset)
           }
 
@@ -535,7 +526,7 @@ function writeSituation (output: WBSCOutput) {
           if (text2) {
             text1 += text2
           }
-          ctx.font = '22px Verdana'
+          ctx.font = FONT_EXTRA_TINY
           locHOffset = (text1.length - 3) * 6
           ctx.fillStyle = '#303030'
           ctx.fillText(text1, w2 * 0.5 - 25 + locHOffset + hOffset, h2 - 8 + vOffset)
@@ -548,21 +539,20 @@ function writeSituation (output: WBSCOutput) {
           }
           if (out) {
             if (text2) {
-              row1font = 'bold 40px Verdana'
-              row2font = 'bold 40px Verdana'
+              row1font = row2font = FONT_BASE_MEDIUM
               row1offset = 5
               row2offset = 35
               if (text1.length > 2) {
-                row1font = 'bold 34px Verdana'
+                row1font = row2font = FONT_BASE_SMALL
               }
               if (text2.length > 3) {
                 row1offset = 4
                 row2offset = 26
-                row2font = 'bold 28px Verdana'
+                row2font = FONT_BASE_TINY
               } else if (text2.length > 2) {
                 row1offset = 3
                 row2offset = 28
-                row2font = 'bold 34px Verdana'
+                row2font = FONT_BASE_SMALL
               }
               ctx.font = row1font
               ctx.fillText(text1, w2 * 0.5 + hOffset, h2 - row1offset + vOffset)
@@ -570,33 +560,33 @@ function writeSituation (output: WBSCOutput) {
               ctx.fillText(text2, w2 * 0.5 + hOffset, h2 + row2offset + vOffset)
             } else {
               if (text1.length > 4) {
-                ctx.font = 'bold 24px Verdana'
+                ctx.font = FONT_BASE_TINY
                 offset = 10
               } else if (text1.length > 3) {
-                ctx.font = 'bold 30px Verdana'
+                ctx.font = FONT_BASE_SMALL
                 offset = 12
               } else if (text1.length > 2) {
-                ctx.font = 'bold 38px Verdana'
+                ctx.font = FONT_BASE_MEDIUM
                 offset = 14
               } else {
-                ctx.font = 'bold 45px Verdana'
+                ctx.font = FONT_BASE_LARGE
                 offset = 18
               }
               ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset)
             }
           } else if (text2) {
-            row1font = 'bold 40px Verdana'
+            row1font = FONT_BASE_MEDIUM
             row1offset = 8
-            row2font = 'bold 40px Verdana'
+            row2font = FONT_BASE_MEDIUM
             row2offset = 30
             if (text2.length > 4) {
               row1offset = 3
               row2offset = 26
-              row2font = 'bold 24px Verdana'
+              row2font = FONT_BASE_TINY
             } else if (text2.length > 3) {
               row1offset = 5
               row2offset = 28
-              row2font = 'bold 30px Verdana'
+              row2font = FONT_BASE_SMALL
             }
             ctx.font = row1font
             ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 0.5 - row1offset + vOffset)
@@ -604,22 +594,22 @@ function writeSituation (output: WBSCOutput) {
             ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 0.5 + row2offset + vOffset)
           } else {
             if (text1.length > 4) {
-              ctx.font = 'bold 24px Verdana'
+              ctx.font = FONT_BASE_TINY
               offset = 10
             } else if (text1.length > 3) {
-              ctx.font = 'bold 30px Verdana'
+              ctx.font = FONT_BASE_SMALL
               offset = 12
             } else if (text1.length > 2) {
-              ctx.font = 'bold 38px Verdana'
+              ctx.font = FONT_BASE_MEDIUM
               offset = 14
             } else {
-              ctx.font = 'bold 45px Verdana'
+              ctx.font = FONT_BASE_LARGE
               offset = 18
             }
             ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
           if (sup) {
-            ctx.font = 'bold 28px Verdana'
+            ctx.font = FONT_EXTRA_SMALL
             ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset)
           }
 
@@ -632,34 +622,38 @@ function writeSituation (output: WBSCOutput) {
       case 4:
         if (text2) {
           if (out && text1.length > 2) {
-            ctx.font = 'bold 28px Verdana'
+            ctx.font = FONT_BASE_SMALL
           } else {
-            ctx.font = 'bold 32px Verdana'
+            ctx.font = FONT_BASE_MEDIUM
           }
           offset = 32
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset)
           if (text2.length > 3) {
-            ctx.font = 'bold 25px Verdana'
+            ctx.font = FONT_BASE_TINY
+            offset = 24
+          } else if (text2.length > 2) {
+            ctx.font = FONT_BASE_SMALL
+            offset = 28
           }
           ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
         } else {
           if (text1.length > 4) {
-            ctx.font = 'bold 24px Verdana'
+            ctx.font = FONT_BASE_TINY
             offset = 10
           } else if (text1.length > 3) {
-            ctx.font = 'bold 30px Verdana'
+            ctx.font = FONT_BASE_SMALL
             offset = 12
           } else if (text1.length > 2) {
-            ctx.font = 'bold 38px Verdana'
+            ctx.font = FONT_BASE_MEDIUM
             offset = 14
           } else {
-            ctx.font = 'bold 45px Verdana'
+            ctx.font = FONT_BASE_LARGE
             offset = 18
           }
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
         }
         if (sup) {
-          ctx.font = 'bold 28px Verdana'
+          ctx.font = FONT_EXTRA_SMALL
           ctx.fillText(sup, w2 * 1.5 + 2, h2 + 20 + vOffset)
         }
 
@@ -744,7 +738,7 @@ function writeBatterIndicator (base: number) {
 
   const ctx = useCanvasStore().ctx
   if (ctx) {
-    ctx.font = 'bold 20px Verdana'
+    ctx.font = FONT_EXTRA_TINY
     ctx.fillText(useEvalStore().batter.toString(), coords[0]?.x || 0, coords[0]?.y || 0)
 
     ctx.lineWidth = 3
