@@ -280,7 +280,6 @@ function writeSituation (output: WBSCOutput) {
   const out = output.out
   const hit = output.hit
   const sub = output.sub
-  const sup = output.sup
   const na = output.na
 
   let text1 = output.text1
@@ -353,10 +352,6 @@ function writeSituation (output: WBSCOutput) {
         if (sub) {
           ctx.font = FONT_EXTRA_SMALL
           ctx.fillText(sub, w1 + hOffset - 30, h1 - 20 + vOffset)
-        }
-        if (sup) {
-          ctx.font = FONT_EXTRA_SMALL
-          ctx.fillText(sup, w1 + hOffset - 30, 42 + vOffset)
         }
         break
       case 1:
@@ -510,10 +505,6 @@ function writeSituation (output: WBSCOutput) {
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
-          if (sup) {
-            ctx.font = FONT_EXTRA_SMALL
-            ctx.fillText(sup, w2 * 2 - 15, 35 + vOffset)
-          }
 
           // maybe the runner got home on error?
           if (output.errorTarget === 4) {
@@ -608,10 +599,6 @@ function writeSituation (output: WBSCOutput) {
             }
             ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
-          if (sup) {
-            ctx.font = FONT_EXTRA_SMALL
-            ctx.fillText(sup, w2 * 1.5 - 5, h2 * 0.5 + 12 + vOffset)
-          }
 
           // maybe the runner got home on error?
           if (output.errorTarget === 4) {
@@ -651,10 +638,6 @@ function writeSituation (output: WBSCOutput) {
             offset = 18
           }
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
-        }
-        if (sup) {
-          ctx.font = FONT_EXTRA_SMALL
-          ctx.fillText(sup, w2 * 1.5 + 2, h2 + 20 + vOffset)
         }
 
         if (output.out === false) {

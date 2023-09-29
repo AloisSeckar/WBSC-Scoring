@@ -19,7 +19,6 @@ export type WBSCOutput = {
     out: boolean,
     hit: boolean,
     sub?: string,
-    sup?: string,
     run?: string,
     num: boolean,
     errorTarget: number,
