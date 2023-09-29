@@ -143,8 +143,9 @@ function checkOutcome (inputs: WBSCInput[]) {
             validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
           }
         }
-        const maxReachedBase = reachedBases[reachedBases.length - 1] || 0
+        const maxReachedBase = reachedBases[reachedBases.length - 1] || output.base
         const currentReachedBase = Math.max(output.base, output.errorTarget)
+
         if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(input.specAction))) {
           validation = attachValidation(validation, useT('editor.validation.advanceInOrder'))
         }
