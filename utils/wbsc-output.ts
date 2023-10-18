@@ -870,12 +870,10 @@ function connectConcurrentPlaysIfNeeded () {
                   endY = 25 + vOffsetEnd
                   break
                 case 1:
-                  startX = hOffset + (h2 - lineHOffset)
-                  if (out) {
-                    startY += 15
-                  }
-                  endX = hOffset + h2 + lineHOffset
-                  endY = h2 + 25 + vOffsetEnd
+                  startX = hOffset + (w2 - 15)
+                  startY = h1 - 25 + vOffsetStart
+                  endX = hOffset + (w1 - w2 / 2)
+                  endY = h2 + 10 + vOffsetEnd
                   break
                 case 0:
                   startX = hOffset + lineHOffset

@@ -80,6 +80,14 @@
     "name": "Strike out (L) + PB"
   },
   {
+    "file": "ks-wp-r3-wp",
+    "name": "Strike out (S) + WP + R3 to Home on WP"
+  },
+  {
+    "file": "ks-pb-r3-po-25",
+    "name": "Strike out (S) + WP + R3 out C to 3B, PO"
+  },
+  {
     "file": "1b-7",
     "name": "Single to LF"
   },
