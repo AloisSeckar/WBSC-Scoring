@@ -80,6 +80,22 @@
     "name": "Strike out (L) + PB"
   },
   {
+    "file": "ks-wp-r1-wp",
+    "name": "Strike out (S) + WP + R1 to 2nd on WP"
+  },
+  {
+    "file": "ks-pb-r1-cs-24",
+    "name": "Strike out (S) + WP + R2 out C to 2B, CS"
+  },
+  {
+    "file": "kl-pb-r2-pb",
+    "name": "Strike out (L) + PB + R2 to 3rd on PB"
+  },
+  {
+    "file": "ks-wp-r2-po-26",
+    "name": "Strike out (S) + WP + R2 out C to SS, PO"
+  },
+  {
     "file": "ks-wp-r3-wp",
     "name": "Strike out (S) + WP + R3 to Home on WP"
   },

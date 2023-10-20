@@ -884,10 +884,10 @@ function connectConcurrentPlaysIfNeeded () {
               break
             case 3:
               if (out) {
-                startY = h2 * 1.5 + vOffsetStart
+                startY = h2 * 1.5 - 10 + vOffsetStart
                 xHOffset = h2 / 4
               } else {
-                startY = h2 - (startNa ? -5 : 25) + vOffsetStart
+                startY = h2 - (startNa ? -5 : 18) + vOffsetStart
               }
               switch (end.base) {
                 case 2:
@@ -896,9 +896,13 @@ function connectConcurrentPlaysIfNeeded () {
                   endY = (endNa ? 0 : 25) + vOffsetEnd
                   break
                 case 1:
-                  startX = hOffset + h2 / 2 + xHOffset
-                  endX = hOffset + h2 + (endNa ? h2 / 2 : lineHOffset)
-                  endY = h2 + (endNa ? -5 : 25) + vOffsetEnd
+                  if (out) {
+                    startX = hOffset + (w2 - 25)
+                  } else {
+                    startX = hOffset + (w2 / 2)
+                  }
+                  endX = hOffset + (w1 - w2 / 2)
+                  endY = h2 + 10 + vOffsetEnd
                   break
                 case 0:
                   startX = hOffset + lineHOffset
@@ -920,16 +924,8 @@ function connectConcurrentPlaysIfNeeded () {
               }
               switch (end.base) {
                 case 1:
-                  if (out) {
-                    endX = hOffset + h2 + lineHOffset
-                    endY = h2 + 25 + vOffsetEnd
-                  } else if (startNa) {
-                    endX = hOffset + (h1 - h2 / 2)
-                    endY = h2 + (endNa ? -5 : 15) + vOffsetEnd
-                  } else {
-                    endX = hOffset + (h1 - (endNa ? h2 / 2 : lineHOffset))
-                    endY = h2 + (endNa ? -5 : 25) + vOffsetEnd
-                  }
+                  endX = hOffset + (w1 - w2 / 2)
+                  endY = h2 + 10 + vOffsetEnd
                   break
                 case 0:
                   endX = hOffset + (h1 - lineHOffset)
