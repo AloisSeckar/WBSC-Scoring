@@ -3,7 +3,7 @@
 /* Final rendering based on user's input   */
 /* *************************************** */
 
-import { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
+import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // rendering the output
 //   battingOrder - number displayed at the left side (1-4)

@@ -4,7 +4,7 @@
 /* that are clearly impossible.             */
 /* **************************************** */
 
-import { WBSCInput } from '@/composables/useInputStore'
+import type { WBSCInput } from '@/composables/useInputStore'
 
 const firstRunnerActions = [inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']

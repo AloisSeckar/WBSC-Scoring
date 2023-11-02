@@ -3,7 +3,7 @@
 /* Preparing and adjusting user inputs     */
 /* *************************************** */
 
-import { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
+import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // create bar with action buttons
 function renderActionButtons () {

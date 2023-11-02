@@ -3,7 +3,7 @@
 /* Processing JSON input of stored action  */
 /* *************************************** */
 
-import { WBSCInput } from '@/composables/useInputStore'
+import type { WBSCInput } from '@/composables/useInputStore'
 
 // export current input selection as JSON file
 // by https://bobbyhadz.com/blog/javascript-set-blob-filename
