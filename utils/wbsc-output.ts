@@ -876,8 +876,8 @@ function connectConcurrentPlaysIfNeeded () {
                   endY = h2 + 10 + vOffsetEnd
                   break
                 case 0:
-                  startX = hOffset + lineHOffset
-                  endX = hOffset + lineHOffset
+                  startX = endX = hOffset + 15 + lineHOffset
+                  startY = h1 - 23 + vOffsetStart
                   endY = 25 + vOffsetEnd
                   break
               }
@@ -905,8 +905,7 @@ function connectConcurrentPlaysIfNeeded () {
                   endY = h2 + 10 + vOffsetEnd
                   break
                 case 0:
-                  startX = hOffset + lineHOffset
-                  endX = hOffset + lineHOffset
+                  startX = endX = hOffset + 15 + lineHOffset
                   endY = 25 + vOffsetEnd
                   break
               }
@@ -920,7 +919,7 @@ function connectConcurrentPlaysIfNeeded () {
                 startY = 45 + vOffsetStart
               } else {
                 startX = hOffset + (h1 - lineHOffset)
-                startY = h2 - 25 + vOffsetStart
+                startY = h2 - 20 + vOffsetStart
               }
               switch (end.base) {
                 case 1:
