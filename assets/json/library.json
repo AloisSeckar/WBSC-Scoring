@@ -128,6 +128,18 @@
     "name": "Strike out (S) + WP + R3 out C to 3B, PO"
   },
   {
+    "file": "ksr-r1-po-23",
+    "name": "Strike out (KSR) + R1 out C to 1B, PO"
+  },
+  {
+    "file": "kl-r2-cs-25",
+    "name": "Strike out (L) + R2 out C to 3B, CS"
+  },
+  {
+    "file": "ks-r3-po-2512",
+    "name": "Strike out (S) + R3 out C to 3B to P to C, PO"
+  },
+  {
     "file": "1b-7",
     "name": "Single to LF"
   },
