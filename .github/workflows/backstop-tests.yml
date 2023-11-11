@@ -1,0 +1,17 @@
+name: "Backstop tests"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backstop-tests:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: Use Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: '20.x'
+        - run: npm install
+        - run: npm run dev
+        - run: npm run test
