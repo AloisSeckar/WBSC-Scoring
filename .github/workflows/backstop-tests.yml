@@ -12,6 +12,11 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: '20.x'
-        - run: npm install
-        - run: npm run dev
-        - run: npm run test
+        - name: Setup Nuxt app
+          run: |
+            npm install
+            npm run build
+            npm run start & npx wait-on http://127.0.0.1:3000
+        - name: Run Backstop.js
+          run: |
+            npx run test
