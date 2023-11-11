@@ -365,15 +365,27 @@
   },
   {
     "file": "sb-single",
-    "name": "Stolen base - 2nd"
+    "name": "Stolen base - R1"
   },
   {
-    "file": "sb-double",
-    "name": "Stolen base - 2nd + 3rd"
+    "file": "sb-double-12",
+    "name": "Stolen base - R1 + R2"
+  },
+  {
+    "file": "sb-double-13",
+    "name": "Stolen base - R1 + R3"
+  },
+  {
+    "file": "sb-double-23",
+    "name": "Stolen base - R2 + R3"
+  },
+  {
+    "file": "sb-triple",
+    "name": "Stolen base - R1 + R2 + R3"
   },
   {
     "file" : "sb-double-r1-25",
-    "name" : "Stolen base - 2nd+HP - R1 out at 3rd"
+    "name" : "Stolen base - R1 + R3 - R1 out at 3rd"
   },
   {
     "file": "sb-e2t",
@@ -393,11 +405,15 @@
   },
   {
     "file": "cs-25-r1-o",
-    "name": "Caught stealing - C to 3B + O/2 to 2nd"
+    "name": "Caught stealing - C to 3B + R1 O/2 to 2nd"
+  },
+  {
+    "file": "cs-12-r2-o",
+    "name": "Caught stealing - P to C + R2 O/2 to 3rd"
   },
   {
     "file": "cs-2e6-r3-o",
-    "name": "Caught stealing - C to 2B (field. err.) + O/2 to HP"
+    "name": "Caught stealing - C to 2B (field. err.) + R3 O/2 to HP"
   },
   {
     "file": "cs-2e4-r1-na",
