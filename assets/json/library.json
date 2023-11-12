@@ -60,6 +60,10 @@
     "name": "Strike out (S) + WP"
   },
   {
+    "file": "kl-pb",
+    "name": "Strike out (L) + PB"
+  },
+  {
     "file": "ks-e2t",
     "name": "Strike out (S) + E2T"
   },
@@ -69,15 +73,11 @@
   },
   {
     "file": "kso",
-    "name": "Strike out (S) + C to P out at HP"
+    "name": "Strike out (S) + R3 out C to P at HP"
   },
   {
     "file": "ksfc",
-    "name": "Strike out (S) + FC C to 3B"
-  },
-  {
-    "file": "kl-pb",
-    "name": "Strike out (L) + PB"
+    "name": "Strike out (S) + R2 to 3B on PB"
   },
   {
     "file": "ks-r1-sb",
@@ -185,11 +185,11 @@
   },
   {
     "file": "fc-o6-r1-64",
-    "name": "Fielder's choice - occuped - SS to 2B"
+    "name": "Fielder's choice - occuped - R1 SS to 2B"
   },
   {
     "file": "fc-o3-r3-32",
-    "name": "Fielder's choice - occuped - 1B to C"
+    "name": "Fielder's choice - occuped - R3 1B to C"
   },
   {
     "file": "fc-64",
@@ -269,7 +269,7 @@
   },
   {
     "file": "out-31-r1-e3t",
-    "name": "Ground out - 1B to P + runner from 1st scores (FC + e3T)"
+    "name": "Ground out - 1B to P + R1 scores (FC + e3T)"
   },
   {
     "file": "fc-o6-r2-6e4-na",
@@ -301,7 +301,7 @@
   },
   {
     "file": "sf-o8",
-    "name": "SF with forced out - CF to SS at 2nd"
+    "name": "SF with forced out - CF to SS (R2)"
   },
   {
     "file": "gdp-643",
@@ -317,51 +317,51 @@
   },
   {
     "file": "wp-r1",
-    "name": "Wild pitch - runner from 1st"
+    "name": "Wild pitch - R1"
   },
   {
     "file": "wp-r1-r2",
-    "name": "Wild pitch - runner from 1st and 2nd"
+    "name": "Wild pitch - R1 + R2"
   },
   {
     "file": "wp-r1-r2-r3",
-    "name": "Wild pitch - runner from 1st, 2nd and 3rd"
+    "name": "Wild pitch - R1 + R2 + R3"
   },
   {
     "file": "pb-r1",
-    "name": "Passed ball - runner from 1st"
+    "name": "Passed ball - R1"
   },
   {
     "file": "pb-r1-r2",
-    "name": "Passed ball - runner from 1st and 2nd"
+    "name": "Passed ball - R1 + R2"
   },
   {
     "file": "pb-r1-r2-r3",
-    "name": "Passed ball - runner from 1st, 2nd and 3rd"
+    "name": "Passed ball - R1 + R2 + R3"
   },
   {
     "file": "bk-r1",
-    "name": "Balk - runner from 1st"
+    "name": "Balk - R1"
   },
   {
     "file": "bk-r1-r2",
-    "name": "Balk - runner from 1st and 2nd"
+    "name": "Balk - R1 + R2"
   },
   {
     "file": "bk-r1-r2-r3",
-    "name": "Balk - runner from 1st, 2nd and 3rd"
+    "name": "Balk - R1 + R2 + R3"
   },
   {
     "file": "ip-r1",
-    "name": "Illegal pitch - runner from 1st"
+    "name": "Illegal pitch - R1"
   },
   {
     "file": "ip-r1-r2",
-    "name": "Illegal pitch - runner from 1st and 2nd"
+    "name": "Illegal pitch - R1 + R2"
   },
   {
     "file": "ip-r1-r2-r3",
-    "name": "Illegal pitch - runner from 1st, 2nd and 3rd"
+    "name": "Illegal pitch - R1 + R2 + R3"
   },
   {
     "file": "sb-single",
