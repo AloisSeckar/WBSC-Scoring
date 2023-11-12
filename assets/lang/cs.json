@@ -5,7 +5,7 @@
     },
     "index" : {
         "editor" : "Editor rozeher",
-        "note" : "Probíhá vývoj + překlad z angličtiny. Prosím o trpělivost.",
+        "note" : "Aktuálně odlaďujeme poslední chyby ve verzi 1.0.0-RC1",
         "output" : "Výsledek",
         "download" : "Stáhnout obrázek",
         "about" : "O programu",
@@ -286,8 +286,12 @@
         "history" : {
             "title" : "Historie",
             "subtitle" : "(poznámky k jednotlivým verzím)",
+            "1-0-0-rc1" : {
+                "title" : "<strong>Verze 1.0.0-RC1</strong> (12.11.2023)",
+                "features" : "<li>Změna verzování, bsahově shodná s <strong>v0.14</strong></li>"
+            },
             "0-14" : {
-                "title" : "<strong>Version 0.14</strong> (12.11.2023)",
+                "title" : "<strong>Verze 0.14</strong> (12.11.2023)",
                 "features" : "<li>Nové akce - GLL, GRL, SB PO, POA + error, BOO -> BOT</li><li>Knihovna akcí - 31 nových situací</li><li>Prohlížeč si pamatuje výběr jazyka (CZ/EN)</li><li>Úpravy vykreslování</li><li>Menší opravy chyb a korekce</li>"
             },
             "0-13" : {
