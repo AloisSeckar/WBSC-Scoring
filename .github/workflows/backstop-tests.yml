@@ -20,3 +20,8 @@ jobs:
         - name: Run Backstop.js
           run: |
             npm run test
+        - name: Upload report
+          uses: actions/upload-artifact@v3
+          with:
+            name: backstop_data
+            path: /home/runner/work/WBSC-Scoring/WBSC-Scoring/backstop_data/
