@@ -16,7 +16,7 @@ jobs:
           run: |
             npm install
             npm run build
-            npm run start & npx wait-on http://127.0.0.1:3000
+            npm run start & npx wait-on http://localhost:3000
         - name: Run Backstop.js
           run: |
             npm run test
