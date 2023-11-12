@@ -115,3 +115,10 @@
     <NavButtons />
   </div>
 </template>
+
+<script setup>
+usePageMeta({
+  ...WBSC_PAGE_META,
+  title: WBSC_PAGE_META.title + ' - Project'
+})
+</script>

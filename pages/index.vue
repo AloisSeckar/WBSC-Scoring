@@ -51,5 +51,7 @@
 <script setup lang="ts">
 import initEditor from '@/utils/wbsc-global'
 
+usePageMeta(WBSC_PAGE_META)
+
 onMounted(() => initEditor())
 </script>

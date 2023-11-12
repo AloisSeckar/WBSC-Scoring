@@ -84,6 +84,13 @@
   </div>
 </template>
 
+<script setup>
+usePageMeta({
+  ...WBSC_PAGE_META,
+  title: WBSC_PAGE_META.title + ' - Help'
+})
+</script>
+
 <style>
 .h40 {
   width: auto;
