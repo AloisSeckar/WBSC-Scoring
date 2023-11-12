@@ -287,8 +287,8 @@
             "title" : "Historie",
             "subtitle" : "(poznámky k jednotlivým verzím)",
             "0-14" : {
-                "title" : "<strong>Version 0.14</strong> (probíhá vývoj)",
-                "features" : "<li>Bude doplněno</li>"
+                "title" : "<strong>Version 0.14</strong> (12.11.2023)",
+                "features" : "<li>Nové akce - GLL, GRL, SB PO, POA + error, BOO -> BOT</li><li>Knihovna akcí - 31 nových situací</li><li>Prohlížeč si pamatuje výběr jazyka (CZ/EN)</li><li>Úpravy vykreslování</li><li>Menší opravy chyb a korekce</li>"
             },
             "0-13" : {
                 "title" : "<strong>Verze 0.13</strong> (28.07.2023)",

@@ -19,8 +19,19 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
-### Version 0.14 (ongoing development)
-- Coming soon
+### Version 0.14 (2023-11-12)
+- Features:
+  - new hit locations (GLL + GRL)
+  - new action (SB PO)
+  - action BOO renamed to BOT
+  - 31 new library actions + tests
+  - RLE corrected - batter's indicator (#122)
+  - POA + error - pick off attempt resulting into an error (#123)
+  - adjustments in concurrent plays connectors
+- Language selection should be remembered in browser
+- Validations - GitHub issues #119, #120
+- Bug-fixing - GitHub issues #115, #116, #131
+- Refactoring - GitHub issues  #74, #76
 
 ### Version 0.13 (2023-07-28)
 - Actions library - SB/CS situations

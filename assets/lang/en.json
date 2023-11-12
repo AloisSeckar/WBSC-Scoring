@@ -287,8 +287,8 @@
             "title" : "History",
             "subtitle" : "(release notes on each version)",
             "0-14" : {
-                "title" : "<strong>Version 0.14</strong> (ongoing development)",
-                "features" : "<li>Coming soon</li>"
+                "title" : "<strong>Version 0.14</strong> (2023-11-12)",
+                "features" : "<li>New actions- GLL, GRL, SB PO, POA + error, BOO -> BOT</li><li>Actions library - 31 new situations</li><li>Browser should rememeber language selection (CZ/EN)</li><li>Adjustments in rendering</li><li>Various bugfixes and corrections</li>"
             },
             "0-13" : {
                 "title" : "<strong>Version 0.13</strong> (2023-07-28)",
