@@ -20,6 +20,6 @@
     "nuxt": "3.8.1",
     "pinia": "2.1.7",
     "tailwindcss": "3.3.5",
-    "vite-plugin-vsharp": "1.5.4"
+    "vite-plugin-vsharp": "1.6.0"
   }
 }
