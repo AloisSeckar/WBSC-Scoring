@@ -17,6 +17,7 @@ export const FONT_B1_SMALL = 'bold 70px Verdana'
 export const FONT_B1_TINY = 'bold 56px Verdana'
 
 // subset for out-situations at 2nd base
+export const FONT_B2_XL = 'bold 70px Verdana'
 export const FONT_B2_LARGE = 'bold 56px Verdana'
 export const FONT_B2_MEDIUM = 'bold 45px Verdana'
 export const FONT_B2_SMALL = 'bold 36px Verdana'

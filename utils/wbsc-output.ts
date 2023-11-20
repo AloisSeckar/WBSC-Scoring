@@ -455,17 +455,17 @@ function writeSituation (output: WBSCOutput) {
               ctx.fillText(text2, w2 * 0.7 + hOffset, h2 + row2offset + vOffset)
             } else {
               if (text1.length > 4) {
-                ctx.font = FONT_B2_TINY
-                offset = 26
-              } else if (text1.length > 3) {
                 ctx.font = FONT_B2_SMALL
-                offset = 23
-              } else if (text1.length > 2) {
+                offset = 25
+              } else if (text1.length > 3) {
                 ctx.font = FONT_B2_MEDIUM
-                offset = 20
-              } else {
+                offset = 22
+              } else if (text1.length > 2) {
                 ctx.font = FONT_B2_LARGE
-                offset = 17
+                offset = 18
+              } else {
+                ctx.font = FONT_B2_XL
+                offset = 12
               }
               ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset)
             }
