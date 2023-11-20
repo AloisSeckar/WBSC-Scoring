@@ -5,8 +5,9 @@
 /* *************************************** */
 
 // general subset for situations at bases
-export const FONT_BASE_LARGE = 'bold 45px Verdana'
-export const FONT_BASE_MEDIUM = 'bold 37px Verdana'
+export const FONT_BASE_XL = 'bold 56px Verdana'
+export const FONT_BASE_LARGE = 'bold 40px Verdana'
+export const FONT_BASE_MEDIUM = 'bold 35px Verdana'
 export const FONT_BASE_SMALL = 'bold 30px Verdana'
 export const FONT_BASE_TINY = 'bold 24px Verdana'
 

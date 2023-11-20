@@ -393,12 +393,20 @@ function writeSituation (output: WBSCOutput) {
             if (text1.length > 5) {
               ctx.font = FONT_BASE_TINY
               offset = 12
-            } else if (text1.length > 4) {
+            } else if (text1.length > 4 || (hit && text1.length > 2)) {
               ctx.font = FONT_BASE_SMALL
               offset = 16
             } else if (text1.length > 3 || (hit && text1.length > 1) || text1 === 'IBB') {
               ctx.font = FONT_BASE_MEDIUM
               offset = 18
+            } else if (text1.length < 3) {
+              ctx.font = FONT_BASE_XL
+              offset = 26
+              if (text1 === 'BB') {
+                // special text adjustment because of "1" number behind
+                hitOffset = -8
+                offset = 20
+              }
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 1.5 + offset + vOffset)
           }
@@ -491,17 +499,23 @@ function writeSituation (output: WBSCOutput) {
             ctx.fillText(text2, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + row2offset + vOffset)
           } else {
             if (text1.length > 4) {
-              ctx.font = FONT_BASE_TINY
+              ctx.font = FONT_BASE_SMALL
               offset = 10
             } else if (text1.length > 3) {
-              ctx.font = FONT_BASE_SMALL
-              offset = 12
-            } else if (text1.length > 2) {
               ctx.font = FONT_BASE_MEDIUM
-              offset = 14
+              offset = 12
+            } else if (text1.length > 2 || (hit && text1.length > 1)) {
+              if (text1.includes('(')) {
+                // special case for "illegal advances" (i.e. "(2)")
+                ctx.font = FONT_BASE_XL
+                offset = 20
+              } else {
+                ctx.font = FONT_BASE_LARGE
+                offset = 14
+              }
             } else {
-              ctx.font = FONT_BASE_LARGE
-              offset = 18
+              ctx.font = FONT_BASE_XL
+              offset = 20
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
@@ -585,17 +599,23 @@ function writeSituation (output: WBSCOutput) {
             ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 0.5 + row2offset + vOffset)
           } else {
             if (text1.length > 4) {
-              ctx.font = FONT_BASE_TINY
+              ctx.font = FONT_BASE_SMALL
               offset = 10
             } else if (text1.length > 3) {
-              ctx.font = FONT_BASE_SMALL
-              offset = 12
-            } else if (text1.length > 2) {
               ctx.font = FONT_BASE_MEDIUM
-              offset = 14
+              offset = 12
+            } else if (text1.length > 2 || (hit && text1.length > 1)) {
+              if (text1.includes('(')) {
+                // special case for "illegal advances" (i.e. "(2)")
+                ctx.font = FONT_BASE_XL
+                offset = 20
+              } else {
+                ctx.font = FONT_BASE_LARGE
+                offset = 14
+              }
             } else {
-              ctx.font = FONT_BASE_LARGE
-              offset = 18
+              ctx.font = FONT_BASE_XL
+              offset = 20
             }
             ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
@@ -625,17 +645,23 @@ function writeSituation (output: WBSCOutput) {
           ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
         } else {
           if (text1.length > 4) {
-            ctx.font = FONT_BASE_TINY
+            ctx.font = FONT_BASE_SMALL
             offset = 10
           } else if (text1.length > 3) {
-            ctx.font = FONT_BASE_SMALL
-            offset = 12
-          } else if (text1.length > 2) {
             ctx.font = FONT_BASE_MEDIUM
-            offset = 14
+            offset = 12
+          } else if (text1.length > 2 || (hit && text1.length > 1)) {
+            if (text1.includes('(')) {
+              // special case for "illegal advances" (i.e. "(2)")
+              ctx.font = FONT_BASE_XL
+              offset = 20
+            } else {
+              ctx.font = FONT_BASE_LARGE
+              offset = 14
+            }
           } else {
-            ctx.font = FONT_BASE_LARGE
-            offset = 18
+            ctx.font = FONT_BASE_XL
+            offset = 20
           }
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
         }

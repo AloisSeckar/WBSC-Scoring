@@ -144,6 +144,14 @@
     "name": "Single to LF"
   },
   {
+    "file": "1b-mi",
+    "name": "Single through the middle"
+  },
+  {
+    "file": "1b-gll",
+    "name": "Single grounded to left line"
+  },
+  {
     "file": "1b-1b",
     "name": "Single to P, bunt"
   },
@@ -182,6 +190,18 @@
   {
     "file": "hr-rc-4rbi",
     "name": "Home run to RC - 4 RBI"
+  },
+  {
+    "file": "bb",
+    "name": "Base on balls"
+  },
+  {
+    "file": "ibb",
+    "name": "Intentional base on balls"
+  },
+  {
+    "file": "hp",
+    "name": "Hit by pitch"
   },
   {
     "file": "fc-o6-r1-64",
