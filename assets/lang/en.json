@@ -199,7 +199,7 @@
         "validation" : {
             "noEmptyInput" : "At least one input group must be selected.",
             "minPositions" : "At least %pos% involved positions must be selected for current action.",
-            "allPositions" : "All positions must be selecte.",
+            "allPositions" : "All positions must be selected.",
             "noNAAdvance" : "'No advance' action may not result into further advance.",
             "noSBAdvance" : "'Stolen base' may not result into further advance.",
             "noE2TSB" : "Catcher may not be credited with an error when trying to catch runner stealing, unless there is further advance due to it.",
