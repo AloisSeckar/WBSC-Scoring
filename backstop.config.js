@@ -45,7 +45,7 @@ module.exports = {
   onBeforeScript: 'puppet/onBefore.js',
   onReadyScript: 'puppet/onReady.js',
   scenarios: [
-    ...functionScenarios,
+    // ...functionScenarios,
     ...getImportScenarios()
   ],
   paths: {

@@ -399,6 +399,10 @@ function writeSituation (output: WBSCOutput) {
             } else if (text1.length > 3 || (hit && text1.length > 1) || text1 === 'IBB') {
               ctx.font = FONT_BASE_MEDIUM
               offset = 18
+              if (text1 === 'IBB') {
+                // special text adjustment because of "1" number behind
+                hitOffset = -6
+              }
             } else if (text1.length < 3) {
               ctx.font = FONT_BASE_XL
               offset = 26
@@ -475,7 +479,7 @@ function writeSituation (output: WBSCOutput) {
                 ctx.font = FONT_B2_XL
                 offset = 12
               }
-              ctx.fillText(text1, w2 * 0.7 + hOffset, h2 - offset + vOffset)
+              ctx.fillText(text1, w2 * 0.68 + hOffset, h2 - offset + vOffset)
             }
             // if batter indicator should be displayed, put it into top-left corner
             base = 3
@@ -509,6 +513,10 @@ function writeSituation (output: WBSCOutput) {
                 // special case for "illegal advances" (i.e. "(2)")
                 ctx.font = FONT_BASE_XL
                 offset = 20
+              } else if (text1.includes('WP')) {
+                // special case for WP, because letter "W" is too wide
+                ctx.font = FONT_BASE_MEDIUM
+                offset = 12
               } else {
                 ctx.font = FONT_BASE_LARGE
                 offset = 14
@@ -573,11 +581,14 @@ function writeSituation (output: WBSCOutput) {
               } else if (text1.length > 2) {
                 ctx.font = FONT_BASE_MEDIUM
                 offset = 14
-              } else {
+              } else if (text1.length > 1) {
                 ctx.font = FONT_BASE_LARGE
-                offset = 18
+                offset = 16
+              } else {
+                ctx.font = FONT_BASE_XL
+                offset = 20
               }
-              ctx.fillText(text1, w2 * 0.5 + hOffset, h2 + offset + vOffset)
+              ctx.fillText(text1, w4 + hOffset, h2 + offset + vOffset)
             }
           } else if (text2) {
             row1font = FONT_BASE_MEDIUM
@@ -609,6 +620,10 @@ function writeSituation (output: WBSCOutput) {
                 // special case for "illegal advances" (i.e. "(2)")
                 ctx.font = FONT_BASE_XL
                 offset = 20
+              } else if (text1.includes('WP')) {
+                // special case for WP, because letter "W" is too wide
+                ctx.font = FONT_BASE_MEDIUM
+                offset = 12
               } else {
                 ctx.font = FONT_BASE_LARGE
                 offset = 14
@@ -633,8 +648,8 @@ function writeSituation (output: WBSCOutput) {
           } else {
             ctx.font = FONT_BASE_MEDIUM
           }
-          offset = 32
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset)
+          offset = 32
           if (text2.length > 3) {
             ctx.font = FONT_BASE_TINY
             offset = 24
@@ -644,7 +659,7 @@ function writeSituation (output: WBSCOutput) {
           }
           ctx.fillText(text2, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
         } else {
-          if (text1.length > 4) {
+          if (text1.length > 4 || (out && text1.length > 3)) {
             ctx.font = FONT_BASE_SMALL
             offset = 10
           } else if (text1.length > 3) {
@@ -655,10 +670,17 @@ function writeSituation (output: WBSCOutput) {
               // special case for "illegal advances" (i.e. "(2)")
               ctx.font = FONT_BASE_XL
               offset = 20
+            } else if (text1.includes('WP')) {
+              // special case for WP, because letter "W" is too wide
+              ctx.font = FONT_BASE_MEDIUM
+              offset = 12
             } else {
               ctx.font = FONT_BASE_LARGE
               offset = 14
             }
+          } else if (out && text1.length > 1) {
+            ctx.font = 'bold 50px Verdana'
+            offset = 16
           } else {
             ctx.font = FONT_BASE_XL
             offset = 20

@@ -16,6 +16,10 @@
     "name": "Ground out - 3B to 2B, bunt"
   },
   {
+    "file": "out-63-r2-out-6",
+    "name": "Ground out - SS to 1B, R2 out SS, unassisted, DP"
+  },
+  {
     "file": "out-f4",
     "name": "Fly out - 2B"
   },
@@ -26,6 +30,18 @@
   {
     "file": "out-ff2b",
     "name": "Fly out (foul) - C, bunt"
+  },
+  {
+    "file": "out-l4-r1-out-43",
+    "name": "Lined out to 2B, R1 out 2B to 1B, DP"
+  },
+  {
+    "file": "out-l6-r2-out-64",
+    "name": "Lined out to SS, R2 out SS to 2B, DP"
+  },
+  {
+    "file": "out-l1-r3-out-15",
+    "name": "Lined out to P, R3 out P to 3B, DP"
   },
   {
     "file": "ks",

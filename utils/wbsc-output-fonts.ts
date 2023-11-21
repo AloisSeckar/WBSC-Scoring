@@ -6,10 +6,10 @@
 
 // general subset for situations at bases
 export const FONT_BASE_XL = 'bold 56px Verdana'
-export const FONT_BASE_LARGE = 'bold 40px Verdana'
-export const FONT_BASE_MEDIUM = 'bold 35px Verdana'
-export const FONT_BASE_SMALL = 'bold 30px Verdana'
-export const FONT_BASE_TINY = 'bold 24px Verdana'
+export const FONT_BASE_LARGE = 'bold 44px Verdana'
+export const FONT_BASE_MEDIUM = 'bold 38px Verdana'
+export const FONT_BASE_SMALL = 'bold 32px Verdana'
+export const FONT_BASE_TINY = 'bold 26px Verdana'
 
 // subset for out-situations at (before) 1st base
 export const FONT_B1_LARGE = 'bold 110px Verdana'

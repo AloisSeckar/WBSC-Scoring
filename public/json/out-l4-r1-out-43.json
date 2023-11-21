@@ -1,0 +1,1 @@
+[{"group":"input-r1","baseAction":"out","specAction":"GO","origBase":1,"base":2,"tie":false,"runtype":"e","pos":"43"},{"group":"input-b","baseAction":"FlyOut","specAction":"L","origBase":0,"base":1,"tie":false,"runtype":"e","pos":"4"}]
