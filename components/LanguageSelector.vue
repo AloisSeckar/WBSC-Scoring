@@ -8,8 +8,8 @@
 <script setup lang="ts">
 import initEditor from '@/utils/wbsc-global'
 
-const lang = 'w-6 m-1 inline-block'
-const selectedLang = 'w-6 m-1 inline-block border-2 border-amber-300'
+const lang = 'w-6 h-4 m-1 inline-block'
+const selectedLang = 'w-6 h-4 m-1 inline-block border-2 border-amber-300'
 
 const { locale } = useI18n()
 

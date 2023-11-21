@@ -28,4 +28,10 @@ const storedLocale = useLocalStorage('wbsc-lang', 'en')
 if (storedLocale.value && typeof storedLocale.value === 'string') {
   locale.value = storedLocale.value
 }
+
+useHead({
+  htmlAttrs: {
+    lang: locale.value
+  }
+})
 </script>
