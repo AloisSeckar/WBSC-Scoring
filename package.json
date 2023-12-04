@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "12.1.0",
-    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
+    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@^8.0.0-rc.6-28361712.0bc7eea",
     "@nuxtjs/tailwindcss": "6.10.1",
     "@pinia/nuxt": "0.5.1",
     "@vueuse/core": "10.6.1",
