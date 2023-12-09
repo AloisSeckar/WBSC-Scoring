@@ -240,6 +240,10 @@
     "name": "Error - throwing by SS"
   },
   {
+    "file": "error-6-6t",
+    "name": "Error - fielding by SS + extra base throwing by SS"
+  },
+  {
     "file": "error-7f",
     "name": "Error - dropped fly by LF"
   },
@@ -302,6 +306,14 @@
   {
     "file": "1b-7-r1-7e5t-na",
     "name": "Single to LF + LF to 3B, thr. error, no advance (R1)"
+  },
+  {
+    "file": "1b-8-fc-r1-854e6",
+    "name": "Single to CF + T85 to 2B + R1 scores on 854e6t"
+  },
+  {
+    "file": "1b-lc-r2-ob",
+    "name": "Single to LC + R2 scores on obstruction by 3B"
   },
   {
     "file": "out-31-r1-e3t",
@@ -438,6 +450,10 @@
   {
     "file": "cs-2e6",
     "name": "Caught stealing - C to SS (fielding error)"
+  },
+  {
+    "file": "cs-2e6-45",
+    "name": "Caught stealing - C to SS (fielding error) + tag out 2B to 3B"
   },
   {
     "file": "cs-25-r1-o",
