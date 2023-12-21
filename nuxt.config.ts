@@ -2,10 +2,11 @@
 import vsharp from 'vite-plugin-vsharp'
 
 export default defineNuxtConfig({
+  ssr: false,
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
-    ['@pinia/nuxt', { autoImports: ['defineStore'] }],
+    '@pinia/nuxt',
     '@vueuse/nuxt'
   ],
   nitro: {
