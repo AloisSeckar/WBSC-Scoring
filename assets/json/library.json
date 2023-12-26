@@ -156,6 +156,10 @@
     "name": "Strike out (S) + R3 out C to 3B to P to C, PO"
   },
   {
+    "file": "ks-r1-o2-r3-cs-26E2",
+    "name": "Strike out (S) + R1 O/2 + R3 CS with error 26E2"
+  },
+  {
     "file": "1b-7",
     "name": "Single to LF"
   },
@@ -264,6 +268,10 @@
     "name": "Error - fielding by 1B, assited by 2B"
   },
   {
+    "file": "error-5t-2nd-r1-3rd",
+    "name": "Error - throwing by 3B, B to 2nd, R1 to 3rd"
+  },
+  {
     "file": "error-int",
     "name": "Error - catcher's interference"
   },
@@ -286,6 +294,10 @@
   {
     "file": "1b-9-e9",
     "name": "Single to RF + extra base fielding error"
+  },
+  {
+    "file": "1b-7-e7-r2-hp",
+    "name": "Single to LF + extra base fielding error, R2 scores"
   },
   {
     "file": "1b-9-e9t",
