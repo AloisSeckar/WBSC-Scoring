@@ -328,6 +328,10 @@
     "name": "Single to LC + R2 scores on obstruction by 3B"
   },
   {
+    "file": "1b-6-t62-r2-62",
+    "name": "Single to 6 + T62 + R2 out SS to C at HP"
+  },
+  {
     "file": "out-31-r1-e3t",
     "name": "Ground out - 1B to P + R1 scores (FC + e3T)"
   },
@@ -454,6 +458,10 @@
   {
     "file": "sb-po",
     "name": "Stolen base after pick-off"
+  },
+  {
+    "file": "indifference-r1",
+    "name": "Indifference - R1 to 2nd, R3 stays"
   },
   {
     "file": "cs-26",
