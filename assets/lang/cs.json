@@ -106,7 +106,7 @@
                 "FC" : "Fielder's choice",
                 "T" : "On the throw",
                 "O/" : "Indifference",
-                "oc" : "Occupied (hit + appeal play)"
+                "oc" : "Occupied"
             },
             "error" : {
                 "title" : "Chyba",

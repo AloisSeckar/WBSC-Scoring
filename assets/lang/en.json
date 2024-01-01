@@ -106,7 +106,7 @@
                 "FC" : "Fielder's choice",
                 "T" : "On the throw",
                 "O/" : "Indifference",
-                "oc" : "Occupied (hit with appeal play)"
+                "oc" : "Occupied"
             },
             "error" : {
                 "title" : "Error",
