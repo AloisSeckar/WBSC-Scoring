@@ -398,11 +398,11 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       break
     case 'out':
       options.push(`<optgroup label="${rOut}">`)
+      options.push(`<option value="GOT">${useT('editor.action.out.GOT')}</option>`)
       if ((group.includes('-r'))) {
         // only for runners, not the running batter
         options.push(`<option value="GO">${useT('editor.action.out.GO')}</option>`)
       }
-      options.push(`<option value="GOT">${useT('editor.action.out.GOT')}</option>`)
       options.push(`<option value="A">${useT('editor.action.out.A')}</option>`)
       options.push('</optgroup>')
       break
