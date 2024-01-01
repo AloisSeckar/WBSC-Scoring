@@ -363,7 +363,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
   switch (action) {
     case 'EDFB':
       output.base = 0
-      output.text1 = 'E' + pos + ' DF'
+      output.text1 = 'E' + pos
       output.na = true
       break
     case 'KST':

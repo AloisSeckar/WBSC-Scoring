@@ -311,7 +311,7 @@ function writeSituation (output: WBSCOutput) {
       case 0:
         if (na) {
           ctx.font = FONT_EXTRA_TINY
-          ctx.fillText(text1, w2 * 1.5 + 18 + hOffset, h2 * 1.5 + 50 + vOffset)
+          ctx.fillText(text1, w1 - 25 + hOffset, h2 * 1.5 + 50 + vOffset)
         } else if (text2) {
           if (text1.length > 2) {
             ctx.font = FONT_B1_SMALL
