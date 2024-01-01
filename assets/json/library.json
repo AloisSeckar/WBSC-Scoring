@@ -293,7 +293,15 @@
   },
   {
     "file": "1b-9-e9",
-    "name": "Single to RF + extra base fielding error"
+    "name": "Single to RF + extra base fielding error to 2nd"
+  },
+  {
+    "file": "1b-mi-e8-3",
+    "name": "Single to RF + extra base fielding error to 3rd"
+  },
+  {
+    "file": "1b-ll-e7-hp",
+    "name": "Single to RF + extra base fielding error to HP"
   },
   {
     "file": "1b-7-e7-r2-hp",
