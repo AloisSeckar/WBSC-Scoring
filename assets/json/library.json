@@ -244,12 +244,16 @@
     "name": "Error - throwing by SS"
   },
   {
-    "file": "error-6-6t",
-    "name": "Error - fielding by SS + extra base throwing by SS"
-  },
-  {
     "file": "error-7f",
     "name": "Error - dropped fly by LF"
+  },
+  {
+    "file": "error-3df",
+    "name": "Error - dropped foul by 1B"
+  },
+  {
+    "file": "error-6-6t",
+    "name": "Error - fielding by SS + extra base throwing by SS"
   },
   {
     "file": "error-4e3",
