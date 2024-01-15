@@ -232,7 +232,7 @@ function changeRunnerSpecificAction (group: string) {
     case 'BK':
     case 'IP':
     case 'SB':
-    case 'SBPO':
+    case 'SBPOA':
     case 'oc':
     case 'se0':
     case 'se1':
@@ -539,10 +539,10 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
     case 'ip':
       output.text1 = action + '#b#'
       break
-    case 'SBPO':
+    case 'SBPOA':
       possibleConcurrentPlay = true
       output.text1 = 'SB#b#'
-      output.text2 = 'PO'
+      output.text2 = 'POA'
       break
     case 'ADV':
       output.text1 = '#b#'

@@ -468,8 +468,8 @@
     "name": "Stolen base + throwing error by C"
   },
   {
-    "file": "sb-po",
-    "name": "Stolen base after pick-off"
+    "file": "sb-poa",
+    "name": "Stolen base after pick-off attempt"
   },
   {
     "file": "indifference-r1",
