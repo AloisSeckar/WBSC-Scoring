@@ -176,8 +176,8 @@
                 "CSET" : "Caught stealing + throwing error",
                 "CSN" : "Caught stealing + fielding error (no advance)",
                 "CSNT" : "Caught stealing + throwing error (no advance)",
-                "POE" : "Picked off attempt + (throwing) error",
-                "POEN" : "Picked off attempt + (throwing) error (no advance)",
+                "POE" : "Pick off attempt + (throwing) error",
+                "POEN" : "Pick off attempt + (throwing) error (no advance)",
                 "CSO" : "Caught stealing",
                 "PO" : "Picked off",
                 "POCS" : "Picked off + caught stealing"
