@@ -363,6 +363,7 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push(`<optgroup label="${rOut}">`)
       options.push(`<option value="CSO">${useT('editor.action.sb.CSO')}</option>`)
       options.push(`<option value="PO">${useT('editor.action.sb.PO')}</option>`)
+      options.push(`<option value="POCS">${useT('editor.action.sb.POCS')}</option>`)
       options.push('</optgroup>')
       break
     case 'fdc':

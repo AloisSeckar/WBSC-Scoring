@@ -262,6 +262,7 @@ function changeRunnerSpecificAction (group: string) {
       minPosItems = targetPosItems = 2
       break
     case 'CSO':
+    case 'POCS':
     case 'GO':
     case 'GOT':
       out = true
@@ -592,7 +593,8 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'CSO':
     case 'PO':
-      output.text1 = action.substring(0, 2)
+    case 'POCS':
+      output.text1 = action === 'CSO' ? action.substring(0, 2) : action
       output.text2 = pos
       output.out = true
       output.num = true

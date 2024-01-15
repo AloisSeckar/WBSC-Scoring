@@ -449,14 +449,16 @@ function writeSituation (output: WBSCOutput) {
               row1font = row2font = FONT_B2_LARGE
               row1offset = 45
               row2offset = 6
-              if (text1.length > 2) {
+              if (text1.length > 3) {
+                row1font = row2font = FONT_B2_SMALL
+              } else if (text1.length > 2) {
                 row1font = row2font = FONT_B2_MEDIUM
               }
-              if (text2.length > 3) {
+              if (text2.length > 4) {
                 row1offset = 35
                 row2offset = 2
                 row2font = FONT_B2_TINY
-              } else if (text2.length > 2) {
+              } else if (text2.length > 3) {
                 row1offset = 40
                 row2offset = 4
                 row2font = FONT_B2_SMALL

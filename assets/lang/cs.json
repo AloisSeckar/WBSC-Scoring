@@ -179,7 +179,8 @@
                 "POE" : "Picked off attempt + (throwing) error",
                 "POEN" : "Picked off attempt + (throwing) error (no advance)",
                 "CSO" : "Caught stealing",
-                "PO" : "Picked off"
+                "PO" : "Picked off",
+                "POCS" : "Picked off + caught stealing"
             },
             "out" : {
                 "title" : "Aut",

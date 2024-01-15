@@ -524,6 +524,10 @@
     "name": "Pick off - C to 3B (R3)"
   },
   {
+    "file": "pocs-r1-1364",
+    "name": "Pick off + Caught stealing - P to 1B to SS to 2B (R1)"
+  },
+  {
     "file": "error-poa-r1",
     "name": "Pick off attempt - e1T (R1)"
   },
