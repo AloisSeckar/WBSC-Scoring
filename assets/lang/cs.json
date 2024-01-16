@@ -178,6 +178,8 @@
                 "CSNT" : "Caught stealing + throwing error (no advance)",
                 "POE" : "Pick off attempt + (throwing) error",
                 "POEN" : "Pick off attempt + (throwing) error (no advance)",
+                "POCSE" : "Pick off attempt + CS + (throwing) error",
+                "POCSEN" : "Pick off attempt + CS + (throwing) error (no advance)",
                 "CSO" : "Caught stealing",
                 "PO" : "Picked off",
                 "POCS" : "Picked off + caught stealing"

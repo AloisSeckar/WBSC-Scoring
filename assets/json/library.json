@@ -528,6 +528,14 @@
     "name": "Pick off + Caught stealing - P to 1B to SS to 2B (R1)"
   },
   {
+    "file": "pocse-r1",
+    "name": "Pick off + Caught stealing + throwing error by P (R1)"
+  },
+  {
+    "file": "pocsen-r3",
+    "name": "Pick off + Caught stealing + throwing error by P, no advance (R1)"
+  },
+  {
     "file": "error-poa-r1",
     "name": "Pick off attempt - e1T (R1)"
   },

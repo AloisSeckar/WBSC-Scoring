@@ -272,6 +272,10 @@ function changeRunnerSpecificAction (group: string) {
       minPosItems = 1
       targetPosItems = 2
       break
+    case 'POCSE':
+    case 'POCSN':
+      minPosItems = targetPosItems = 1
+      break
     case 'OBR_rol':
     case 'OBR_rin':
     case 'A':
@@ -620,17 +624,22 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       possibleConcurrentPlay = true
       break
     case 'POEN':
+    case 'POCSEN':
       output.na = true
       // falls through
     case 'POE':
+    case 'POCSE':
       output.text1 = 'POA'
+      if (action.includes('CS')) {
+        output.text1 += 'CS'
+      }
       if (pos.length > 1) {
         output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)
       } else {
         output.text2 = (action === 'POE' ? 'e' : 'E') + pos + 'T'
       }
       output.num = true
-      output.base = action === 'POE' ? output.origBase + 1 : input.origBase
+      output.base = !action.includes('N') ? output.origBase + 1 : input.origBase
       output.errorTarget = output.base
       possibleConcurrentPlay = true
       break

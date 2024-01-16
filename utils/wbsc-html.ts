@@ -359,6 +359,8 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       options.push(`<option value="CSNT">${useT('editor.action.sb.CSNT')}</option>`)
       options.push(`<option value="POE">${useT('editor.action.sb.POE')}</option>`)
       options.push(`<option value="POEN">${useT('editor.action.sb.POEN')}</option>`)
+      options.push(`<option value="POCSE">${useT('editor.action.sb.POCSE')}</option>`)
+      options.push(`<option value="POCSEN">${useT('editor.action.sb.POCSEN')}</option>`)
       options.push('</optgroup>')
       options.push(`<optgroup label="${rOut}">`)
       options.push(`<option value="CSO">${useT('editor.action.sb.CSO')}</option>`)

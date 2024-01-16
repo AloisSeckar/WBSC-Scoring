@@ -488,6 +488,9 @@ function writeSituation (output: WBSCOutput) {
           } else if (text2) {
             row1font = FONT_BASE_MEDIUM
             row1offset = 8
+            if (text1.length > 4) {
+              row1font = FONT_BASE_TINY
+            }
             row2font = FONT_BASE_MEDIUM
             row2offset = 30
             if (text2.length > 4) {
@@ -595,6 +598,9 @@ function writeSituation (output: WBSCOutput) {
           } else if (text2) {
             row1font = FONT_BASE_MEDIUM
             row1offset = 8
+            if (text1.length > 4) {
+              row1font = FONT_BASE_TINY
+            }
             row2font = FONT_BASE_MEDIUM
             row2offset = 30
             if (text2.length > 4) {
@@ -649,6 +655,9 @@ function writeSituation (output: WBSCOutput) {
             ctx.font = FONT_BASE_SMALL
           } else {
             ctx.font = FONT_BASE_MEDIUM
+            if (text1.length > 4) {
+              ctx.font = FONT_BASE_TINY
+            }
           }
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset)
           offset = 32
