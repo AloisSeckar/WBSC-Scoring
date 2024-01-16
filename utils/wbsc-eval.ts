@@ -273,7 +273,7 @@ function changeRunnerSpecificAction (group: string) {
       targetPosItems = 2
       break
     case 'POCSE':
-    case 'POCSN':
+    case 'POCSEN':
       minPosItems = targetPosItems = 1
       break
     case 'OBR_rol':
