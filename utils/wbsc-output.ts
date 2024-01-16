@@ -282,7 +282,7 @@ function writeSituation (output: WBSCOutput) {
   const sub = output.sub
   const na = output.na
 
-  let text1 = output.text1
+  const text1 = output.text1
   const text2 = output.text2
 
   const ctx = useCanvasStore().ctx
@@ -356,13 +356,13 @@ function writeSituation (output: WBSCOutput) {
         break
       case 1:
         if (na) {
-          if (text2) {
-            text1 += text2
-          }
           ctx.font = FONT_EXTRA_TINY
           locHOffset = (text1.length - 3) * 6
           ctx.fillStyle = '#303030'
-          ctx.fillText(text1, w2 * 1.5 + 25 - locHOffset + hOffset, h2 + 24 + vOffset)
+          ctx.fillText(text1, w2 * 1.5 + 25 - locHOffset + hOffset, h2 + 23 + vOffset)
+          if (text2) {
+            ctx.fillText(text2, w2 * 1.5 + 25 - locHOffset + hOffset, h2 + 44 + vOffset)
+          }
         } else {
           if (hit) {
             drawHitSymbol(1)
@@ -431,12 +431,12 @@ function writeSituation (output: WBSCOutput) {
         break
       case 2:
         if (na) {
-          if (text2) {
-            text1 += text2
-          }
           ctx.font = FONT_EXTRA_TINY
           ctx.fillStyle = '#303030'
           ctx.fillText(text1, w2 + hOffset, offset + 10 + vOffset)
+          if (text2) {
+            ctx.fillText(text2, w2 + hOffset, offset + 32 + vOffset)
+          }
         } else {
           if (hit) {
             drawHitSymbol(2)
@@ -541,13 +541,13 @@ function writeSituation (output: WBSCOutput) {
         break
       case 3:
         if (na) {
-          if (text2) {
-            text1 += text2
-          }
           ctx.font = FONT_EXTRA_TINY
           locHOffset = (text1.length - 3) * 6
           ctx.fillStyle = '#303030'
-          ctx.fillText(text1, w2 * 0.5 - 25 + locHOffset + hOffset, h2 - 8 + vOffset)
+          ctx.fillText(text1, w2 * 0.5 - 25 + locHOffset + hOffset, h2 - 5 + vOffset)
+          if (text2) {
+            ctx.fillText(text2, w2 * 0.5 - 25 + locHOffset + hOffset, h2 + 20 + vOffset)
+          }
         } else {
           if (hit) {
             drawHitSymbol(3)

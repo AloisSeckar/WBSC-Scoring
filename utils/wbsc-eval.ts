@@ -622,6 +622,11 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
         output.base = input.origBase + 1
       }
       possibleConcurrentPlay = true
+      // do not wrap "short" no-advance plays
+      if (output.na && output.text1.length < 3 && output.text2.length < 4) {
+        output.text1 += output.text2
+        output.text2 = undefined
+      }
       break
     case 'POEN':
     case 'POCSEN':
