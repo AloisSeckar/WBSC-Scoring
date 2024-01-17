@@ -524,6 +524,14 @@
     "name": "Pick off - C to 3B (R3)"
   },
   {
+    "file": "po-r1-13-r2-o",
+    "name": "Pick off - P to 1B (R1) + O/2 to 3rd (R2)"
+  },
+  {
+    "file": "po-r1-13-r3-o",
+    "name": "Pick off - P to 1B (R1) + O/2 to HP (R3)"
+  },
+  {
     "file": "pocs-r1-1364",
     "name": "Pick off + Caught stealing - P to 1B to SS to 2B (R1)"
   },
