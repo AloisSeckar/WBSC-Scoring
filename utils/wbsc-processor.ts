@@ -145,6 +145,8 @@ function processAction () {
     }
   }
 
+  mergeBatterIndicators(inputs)
+
   const validation = checkUserInput(inputs)
   if (validation === '') {
     useCanvasStore().vOffset = 0
@@ -307,6 +309,21 @@ function checkMultipleRunnerAdvances (inputArr: WBSCInput[]) {
         }
         advanceEncountered = true
       }
+    }
+  }
+}
+
+// helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/188
+function mergeBatterIndicators (inputArr: WBSCInput[]) {
+  // render only one batter indicator - for the most advanced runner
+  // other concurrent actions are connected to this play by other means
+  let indicatorEncountered = false
+  for (const input of inputArr) {
+    if (input.output?.num) {
+      if (indicatorEncountered) {
+        input.output.num = false
+      }
+      indicatorEncountered = true
     }
   }
 }
