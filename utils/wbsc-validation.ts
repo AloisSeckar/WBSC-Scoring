@@ -59,7 +59,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   })
 
   // 2) validations over all outputs
-  validation = attachValidation(validation, checkMaxOuts(inputs))
+  validation = attachValidation(validation, checkOutsAndRuns(inputs))
   validation = attachValidation(validation, checkOutcome(inputs))
   validation = attachValidation(validation, checkHit(inputs))
   validation = attachValidation(validation, checkFO(inputs))
@@ -102,18 +102,25 @@ function checkPosSelection (selection: string) {
 }
 
 // there cannot be more than 3 outs
-function checkMaxOuts (inputs: WBSCInput[]) {
+// there cannot be 3 outs + a run
+function checkOutsAndRuns (inputs: WBSCInput[]) {
   let outs = 0
+  let runs = 0
 
   inputs.forEach((input) => {
     const output = input.output
-    if (output && output.out === true) {
+    if (output?.out === true) {
       outs++
+    }
+    if (output?.base === 4 && output?.out === false) {
+      runs++
     }
   })
 
   if (outs > 3) {
     return useT('editor.validation.max3Outs')
+  } else if (outs === 3 && runs > 0) {
+    return useT('editor.validation.3OutsNoRuns')
   } else {
     return ''
   }

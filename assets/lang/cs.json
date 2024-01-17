@@ -210,6 +210,7 @@
             "noSelfAsist" : "Polař nemůže asistovat sám sobě.",
             "noMultipleAsist" : "Polař nemůže mít v jedné sitaci více než jednu asistenci.",
             "max3Outs" : "Během jedné rozehry nemůžou být více než 3 auty.",
+            "3OutsNoRuns" : "Během jedné rozehry nemůžou být zároveň 3 auty a bod.",
             "noOutAfterOut" : "Stejný hráč nemůže být autován vícekrát.",
             "noAdvanceAfterOut" : "Běžec po vyautování nemůže postupovat dále.",
             "advanceInOrder" : "Navazující situace běžce musí proběhnout ve správném pořadí.",
