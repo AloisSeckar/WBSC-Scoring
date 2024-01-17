@@ -66,6 +66,7 @@
 		@apply mx-auto mb-2 py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-blue-200;
 	}
 
+
 	select {
 		@apply m-1 p-1 h-8 min-w-[50px] rounded;
 	}

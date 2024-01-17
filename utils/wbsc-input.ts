@@ -147,25 +147,28 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
   }
 
   if (!parentDiv) {
-    const batterLabel = document.createElement('label')
+    const batterLabel = document.createElement('h3')
     batterLabel.innerHTML = getLabelForInputGroup(group)
     inputsContainer.appendChild(batterLabel)
-    inputsContainer.appendChild(document.createElement('br'))
   }
 
   if (group !== inputB) {
     renderBaseSelection(group)
   } else {
+    const runTypeBox = document.createElement('div')
+    runTypeBox.setAttribute('id', inputB + inputRuntype + '-box')
+    runTypeBox.setAttribute('class', classHidden)
+
     const runTypeLabel = document.createElement('label')
     runTypeLabel.innerHTML = useT('editor.run') + ':&nbsp;'
-    inputsContainer.appendChild(runTypeLabel)
+    runTypeBox.appendChild(runTypeLabel)
 
     const runTypeSelect = document.createElement('select')
     runTypeSelect.setAttribute('id', inputB + inputRuntype)
     runTypeSelect.innerHTML = renderRunTypeOptions().join(' ')
-    runTypeSelect.disabled = true
-    inputsContainer.appendChild(runTypeSelect)
-    inputsContainer.appendChild(document.createElement('br'))
+    runTypeBox.appendChild(runTypeSelect)
+
+    inputsContainer.appendChild(runTypeBox)
   }
 
   const actionLabel = document.createElement('label')
@@ -270,7 +273,7 @@ function renderBaseSelection (group: string) {
   baseLabel.innerHTML = useT('editor.base.base') + ':&nbsp;'
   inputsContainer.appendChild(baseLabel)
 
-  let runTypeSelectDisabled = true
+  let runTypeHidden = true
   const baseSelect = document.createElement('select')
   baseSelect.setAttribute('id', group + inputBase)
   switch (group) {
@@ -288,7 +291,7 @@ function renderBaseSelection (group: string) {
     case inputR2a:
     case inputR3:
       baseSelect.innerHTML = renderBaseOptions(3).join(' ')
-      runTypeSelectDisabled = false
+      runTypeHidden = false
       break
   }
   baseSelect.addEventListener('change', function () {
@@ -296,16 +299,23 @@ function renderBaseSelection (group: string) {
   })
   inputsContainer.appendChild(baseSelect)
 
+  const runTypeBox = document.createElement('div')
+  runTypeBox.setAttribute('id', group + inputRuntype + '-box')
+  runTypeBox.classList.add('inline')
+  if (runTypeHidden) {
+    runTypeBox.classList.add(classHidden)
+  }
+
   const runTypeLabel = document.createElement('label')
   runTypeLabel.innerHTML = '&nbsp;' + useT('editor.run') + ':&nbsp;'
-  inputsContainer.appendChild(runTypeLabel)
+  runTypeBox.appendChild(runTypeLabel)
 
   const runTypeSelect = document.createElement('select')
   runTypeSelect.setAttribute('id', group + inputRuntype)
   runTypeSelect.innerHTML = renderRunTypeOptions().join(' ')
-  runTypeSelect.disabled = runTypeSelectDisabled
-  inputsContainer.appendChild(runTypeSelect)
+  runTypeBox.appendChild(runTypeSelect)
 
+  inputsContainer.appendChild(runTypeBox)
   inputsContainer.appendChild(document.createElement('br'))
 }
 

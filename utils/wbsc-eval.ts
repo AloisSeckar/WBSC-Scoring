@@ -44,7 +44,7 @@ function changeBatterSpecificAction () {
   let minPosItems = 1
   let targetPosItems = 1
   let maxPosItems = 4
-  let runTypeSelectDisabled = true
+  let runTypeSelectVisible = false
 
   const specificAction = document.getElementById(inputB + inputSpecAction) as HTMLInputElement
   const specificActionValue = specificAction.value
@@ -83,7 +83,7 @@ function changeBatterSpecificAction () {
       break
     case 'HR':
     case 'IHR':
-      runTypeSelectDisabled = false
+      runTypeSelectVisible = true
       // falls through
     case '1B':
     case '2B':
@@ -196,8 +196,12 @@ function changeBatterSpecificAction () {
     posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for "HP"
   }
 
-  const runTypeSelect = document.getElementById(inputB + inputRuntype) as HTMLInputElement
-  runTypeSelect.disabled = runTypeSelectDisabled
+  const runTypeBox = document.getElementById(inputB + inputRuntype + '-box') as HTMLElement
+  if (runTypeSelectVisible) {
+    runTypeBox.classList.remove(classHidden)
+  } else {
+    runTypeBox.classList.add(classHidden)
+  }
 
   disableExtraInput(inputB, out === true)
 }
@@ -336,8 +340,12 @@ function changeBase (group: string) {
   const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
   const baseSelectValue = baseSelect.value
 
-  const runTypeSelect = document.getElementById(group + inputRuntype) as HTMLInputElement
-  runTypeSelect.disabled = baseSelectValue !== '4'
+  const runTypeBox = document.getElementById(group + inputRuntype + '-box') as HTMLElement
+  if (baseSelectValue === '4') {
+    runTypeBox.classList.remove(classHidden)
+  } else {
+    runTypeBox.classList.add(classHidden)
+  }
 }
 
 // enhance user's input with output instructions

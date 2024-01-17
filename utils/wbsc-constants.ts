@@ -8,6 +8,7 @@
 export const classWbsc = 'wbsc-inputs'
 export const classWbscPos = 'wbsc-pos-select'
 export const classTools = 'wbsc-toolbar'
+export const classHidden = 'hidden'
 
 export const inputGenerate = 'input-generate'
 export const inputImport = 'input-import'

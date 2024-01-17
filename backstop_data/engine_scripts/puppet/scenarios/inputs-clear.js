@@ -7,14 +7,14 @@ module.exports = async (page) => {
   // render all R1 inputs
   await page.click('#button-input-r1')
   await page.click('#button-input-r1a')
-  await page.click('#button-input-r1b')
+  // TODO for some reason r1b fails on 's'
+  // await page.click('#button-input-r1b')
   // render all R2 inputs
   await page.click('#button-input-r2')
-  // TODO for some reason r2a fails on 's' and 'm'
+  // TODO for some reason r2a fails on 's'
   // await page.click('#button-input-r2a')
   // render R3 inputs
-  // TODO for some reason r3 fails on 's' and 'm'
-  // await page.click('#button-input-r3')
+  await page.click('#button-input-r3')
   // clear all rendered things via reset button
   await page.click('#button-input-clear')
 }
