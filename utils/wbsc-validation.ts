@@ -62,6 +62,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkOutsAndRuns(inputs))
   validation = attachValidation(validation, checkOutcome(inputs))
   validation = attachValidation(validation, checkHit(inputs))
+  validation = attachValidation(validation, checkAdvances(inputs))
   validation = attachValidation(validation, checkFO(inputs))
   validation = attachValidation(validation, checkFC(inputs))
   validation = attachValidation(validation, checkGDP(inputs))
@@ -233,6 +234,17 @@ function checkHit (inputs: WBSCInput[]) {
   return validation
 }
 
+// ADVANCE BY BATTER may only appear at the FIRST runner input
+function checkAdvances (inputs: WBSCInput[]) {
+  let validation = ''
+  inputs.forEach((input) => {
+    if (input.specAction === 'ADV' && ![inputR1, inputR2, inputR3].includes(input.group)) {
+      validation = attachValidation(validation, useT('editor.validation.invalidADV'))
+    }
+  })
+  return validation
+}
+
 // forced out may only happen if runner is being forced to run by runners behind him
 function checkFO (inputs: WBSCInput[]) {
   let validation = ''
@@ -247,7 +259,7 @@ function checkFO (inputs: WBSCInput[]) {
         possibleFO[0] = true // runner at 1st may be forced out at 2nd
         break
       case inputR1:
-        possibleFO[1] = possibleFO[0] // runner at 2nd may be forced out at 3rd
+        possibleFO[1] = !!possibleFO[0] // runner at 2nd may be forced out at 3rd
         if (input.specAction === 'GO') {
           if (input.output?.base === 2) {
             givenFO[0] = true
@@ -257,7 +269,7 @@ function checkFO (inputs: WBSCInput[]) {
         }
         break
       case inputR2:
-        possibleFO[2] = possibleFO[0] && possibleFO[1] // runner at 3rd may be forced out at HP
+        possibleFO[2] = !!possibleFO[0] && !!possibleFO[1] // runner at 3rd may be forced out at HP
         if (input.specAction === 'GO') {
           if (input.output?.base === 3) {
             givenFO[1] = true

@@ -218,6 +218,7 @@
             "noSameBase" : "Dva běžci nemohou skončit na stejné metě.",
             "noHitAndO" : "Není možné zapsat HIT, pokud je běžec nuceně aut před dosaženém další mety, použijte místo toho 'FC - Occupied'.",
             "noHitAndA" : "Není možné zapsat HIT, pokud zároveň nastala hra na výzvu, použijte místo toho 'FC - Occupied'.",
+            "invalidADV" : "'Advanced by batter' může být pouze PRVNÍ akce běžce.",
             "notFO2" : "Force out na 2. metě není možný, protože běžec z 1. mety nebyl nucen postupovat.",
             "notFO3" : "Force out na 3. metě není možný, protože běžec z 2. mety nebyl nucen postupovat.",
             "notFOH" : "Force out na domácí metě není možný, protože běžec z 3. mety nebyl nucen postupovat.",
