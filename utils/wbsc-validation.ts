@@ -241,13 +241,13 @@ function checkFO (inputs: WBSCInput[]) {
   const possibleFO = [false, false, false]
   let impossibleFO = false
 
-  inputs.reverse().forEach((input) => {
+  inputs.forEach((input) => {
     switch (input.group) {
       case inputB:
         possibleFO[0] = true // runner at 1st may be forced out at 2nd
         break
       case inputR1:
-        possibleFO[1] = true // runner at 2nd may be forced out at 3rd
+        possibleFO[1] = possibleFO[0] // runner at 2nd may be forced out at 3rd
         if (input.specAction === 'GO') {
           if (input.output?.base === 2) {
             givenFO[0] = true
@@ -257,9 +257,9 @@ function checkFO (inputs: WBSCInput[]) {
         }
         break
       case inputR2:
-        possibleFO[2] = true // runner at 3rd may be forced out at HP
+        possibleFO[2] = possibleFO[0] && possibleFO[1] // runner at 3rd may be forced out at HP
         if (input.specAction === 'GO') {
-          if (input.output?.base === 3 && possibleFO[1]) {
+          if (input.output?.base === 3) {
             givenFO[1] = true
           } else {
             impossibleFO = true
@@ -268,7 +268,7 @@ function checkFO (inputs: WBSCInput[]) {
         break
       case inputR3:
         if (input.specAction === 'GO') {
-          if (input.output?.base === 4 && possibleFO[1] && possibleFO[2]) {
+          if (input.output?.base === 4) {
             givenFO[2] = true
           } else {
             impossibleFO = true
