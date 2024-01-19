@@ -214,11 +214,11 @@ function checkHit (inputs: WBSCInput[]) {
         break
       case inputR2:
         runnerAt2 = true
-        forceOut = forceOut || input.specAction === 'GO' || (runnerAt1 && input.specAction === 'GOT')
+        forceOut = forceOut || (runnerAt1 && input.specAction.startsWith('GO'))
         appealPlay = appealPlay || input.specAction === 'A'
         break
       case inputR3:
-        forceOut = forceOut || input.specAction === 'GO' || (runnerAt1 && runnerAt2 && input.specAction === 'GOT')
+        forceOut = forceOut || (runnerAt1 && runnerAt2 && input.specAction.startsWith('GO'))
         appealPlay = appealPlay || input.specAction === 'A'
         break
     }
@@ -241,7 +241,7 @@ function checkFO (inputs: WBSCInput[]) {
   const possibleFO = [false, false, false]
   let impossibleFO = false
 
-  inputs.forEach((input) => {
+  inputs.reverse().forEach((input) => {
     switch (input.group) {
       case inputB:
         possibleFO[0] = true // runner at 1st may be forced out at 2nd
@@ -259,7 +259,7 @@ function checkFO (inputs: WBSCInput[]) {
       case inputR2:
         possibleFO[2] = true // runner at 3rd may be forced out at HP
         if (input.specAction === 'GO') {
-          if (input.output?.base === 3) {
+          if (input.output?.base === 3 && possibleFO[1]) {
             givenFO[1] = true
           } else {
             impossibleFO = true
@@ -268,7 +268,7 @@ function checkFO (inputs: WBSCInput[]) {
         break
       case inputR3:
         if (input.specAction === 'GO') {
-          if (input.output?.base === 4) {
+          if (input.output?.base === 4 && possibleFO[1] && possibleFO[2]) {
             givenFO[2] = true
           } else {
             impossibleFO = true
