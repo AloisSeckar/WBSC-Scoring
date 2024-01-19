@@ -216,7 +216,7 @@
             "advanceInOrder" : "Extra advances of one runner must happen in order.",
             "noPassingRunner" : "Player cannot pass another runner.",
             "noSameBase" : "Two runners cannot finish on the same base.",
-            "noHitAndFO" : "It is not possible to score a HIT, if there is a forced out, use 'FC - Occupied' instead.",
+            "noHitAndO" : "It is not possible to score a HIT, if a runner is forced out before reaching next base, use 'FC - Occupied' instead.",
             "noHitAndA" : "It is not possible to score a HIT, if there is an appeal play, use 'FC - Occupied' instead.",
             "notFO2" : "Force out at 2nd is not possible, because the runner from 1st is not forced to advance.",
             "notFO3" : "Force out at 3rd is not possible, because the runner from 2nd is not forced to advance.",

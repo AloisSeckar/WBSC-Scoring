@@ -195,6 +195,8 @@ function checkHit (inputs: WBSCInput[]) {
   let validation = ''
 
   let hitPlay = false
+  let runnerAt1 = false
+  let runnerAt2 = false
   let forceOut = false
   let appealPlay = false
 
@@ -206,19 +208,24 @@ function checkHit (inputs: WBSCInput[]) {
         }
         break
       case inputR1:
+        runnerAt1 = true
+        forceOut = input.specAction.startsWith('GO')
+        appealPlay = input.specAction === 'A'
+        break
       case inputR2:
+        runnerAt2 = true
+        forceOut = forceOut || input.specAction === 'GO' || (runnerAt1 && input.specAction === 'GOT')
+        appealPlay = appealPlay || input.specAction === 'A'
+        break
       case inputR3:
-        if (input.specAction === 'GO') {
-          forceOut = true
-        } else if (input.specAction === 'A') {
-          appealPlay = true
-        }
+        forceOut = forceOut || input.specAction === 'GO' || (runnerAt1 && runnerAt2 && input.specAction === 'GOT')
+        appealPlay = appealPlay || input.specAction === 'A'
         break
     }
   })
 
   if (hitPlay && forceOut) {
-    validation = attachValidation(validation, useT('editor.validation.noHitAndFO'))
+    validation = attachValidation(validation, useT('editor.validation.noHitAndO'))
   } else if (hitPlay && appealPlay) {
     validation = attachValidation(validation, useT('editor.validation.noHitAndA'))
   }

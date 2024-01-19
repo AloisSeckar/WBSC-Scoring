@@ -216,7 +216,7 @@
             "advanceInOrder" : "Navazující situace běžce musí proběhnout ve správném pořadí.",
             "noPassingRunner" : "Hráč nemůže předběhnout jiného běžce.",
             "noSameBase" : "Dva běžci nemohou skončit na stejné metě.",
-            "noHitAndFO" : "Není možné zapsat HIT, pokud zároveň nastal nucený aut, použijte místo toho 'FC - Occupied'.",
+            "noHitAndO" : "Není možné zapsat HIT, pokud je běžec nuceně aut před dosaženém další mety, použijte místo toho 'FC - Occupied'.",
             "noHitAndA" : "Není možné zapsat HIT, pokud zároveň nastala hra na výzvu, použijte místo toho 'FC - Occupied'.",
             "notFO2" : "Force out na 2. metě není možný, protože běžec z 1. mety nebyl nucen postupovat.",
             "notFO3" : "Force out na 3. metě není možný, protože běžec z 2. mety nebyl nucen postupovat.",
