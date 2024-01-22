@@ -445,31 +445,46 @@ function disableParentExtraInput (group: string, disable: boolean) {
 
 // when specific action results into an out, we want to disable further action generating
 // therefore we may disable the corresponding extra inputs render button
+// also, if extra inputs are already rendered, we need to hide them
 function disableExtraInput (group: string, disable: boolean) {
   let extraButtonId = null
+  const groupsToHide = []
   switch (group) {
     case inputB:
       extraButtonId = inputB1
+      groupsToHide.push(inputB3, inputB2, inputB1)
       break
     case inputB1:
       extraButtonId = inputB2
+      groupsToHide.push(inputB3, inputB2)
       break
     case inputB2:
       extraButtonId = inputB3
+      groupsToHide.push(inputB3)
       break
     case inputR1:
       extraButtonId = inputR1a
+      groupsToHide.push(inputR1b, inputR1a)
       break
     case inputR1a:
       extraButtonId = inputR1b
+      groupsToHide.push(inputR1b)
       break
     case inputR2:
       extraButtonId = inputR2a
+      groupsToHide.push(inputR2a)
       break
+  }
+  if (disable) {
+    for (const groupToHide of groupsToHide) {
+      if (document.getElementById(groupToHide)) {
+        hideInputs(groupToHide)
+      }
+    }
   }
   if (extraButtonId) {
     const extraButton = document.getElementById('button-' + extraButtonId) as HTMLInputElement
-    if (extraButton.innerText === '+') {
+    if (extraButton) {
       extraButton.disabled = disable
     }
   }

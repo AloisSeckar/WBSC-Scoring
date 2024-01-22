@@ -203,7 +203,7 @@ function changeBatterSpecificAction () {
     runTypeBox.classList.add(classHidden)
   }
 
-  disableExtraInput(inputB, out === true)
+  disableExtraInput(inputB, out === true || runTypeSelectVisible)
 }
 
 // ajdust 'specific' action according to selected 'base' action
@@ -338,14 +338,16 @@ function changeRunnerSpecificAction (group: string) {
 // allows to select run type when home base is selected
 function changeBase (group: string) {
   const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
-  const baseSelectValue = baseSelect.value
+  const isHPSelected = baseSelect.value === '4'
 
   const runTypeBox = document.getElementById(group + inputRuntype + '-box') as HTMLElement
-  if (baseSelectValue === '4') {
+  if (isHPSelected) {
     runTypeBox.classList.remove(classHidden)
   } else {
     runTypeBox.classList.add(classHidden)
   }
+
+  disableExtraInput(group, isHPSelected)
 }
 
 // enhance user's input with output instructions
