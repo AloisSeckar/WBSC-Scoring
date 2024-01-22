@@ -683,6 +683,11 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       if (!action.endsWith('F')) {
         output.text1 += action.substring(action.length - 1)
       }
+      if (output.text1.length > 4) {
+        const tempText = output.text1
+        output.text1 = tempText.substring(0, tempText.toUpperCase().indexOf('E'))
+        output.text2 = tempText.substring(tempText.toUpperCase().indexOf('E'))
+      }
       if (action.includes('N')) {
         output.base = output.errorTarget = input.origBase
       } else {

@@ -269,11 +269,15 @@
   },
   {
     "file": "error-4e3",
-    "name": "Error - fielding by 1B, assited by 2B"
+    "name": "Error - fielding by 1B, assisted by 2B"
   },
   {
     "file": "error-5t-2nd-r1-3rd",
     "name": "Error - throwing by 3B, B to 2nd, R1 to 3rd"
+  },
+  {
+    "file": "error-265e4-r2-hp",
+    "name": "Error - fielding by 2B, assited by C, SS and 3B, R2 scorers"
   },
   {
     "file": "error-int",
@@ -306,6 +310,10 @@
   {
     "file": "1b-ll-e7-hp",
     "name": "Single to RF + extra base fielding error to HP"
+  },
+  {
+    "file": "1b-6-634e1t-3",
+    "name": "Single to SS + extra base fielding error (634e1t) to 3rd"
   },
   {
     "file": "1b-7-e7-r2-hp",
