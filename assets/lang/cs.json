@@ -237,6 +237,7 @@
             "noPlayAfterIP" : "IP musí být v daný moment jediná situace běžce.",
             "noPlayAfterBK" : "BK musí být v daný moment jediná situace běžce.",
             "noPlayAfterRLE" : "RLE musí být v daný moment jediná situace běžce.",
+            "noAdvanceOnNA" : "Po 'no advance' rozehře není možný další postup běžce.",
             "noSE0" : "Je vybrán postup na 'stejnou chybu (B)', ale chybí odpovídající situace s chybou.",
             "noSE1" : "Je vybrán postup na 'stejnou chybu (R1)', ale chybí odpovídající situace s chybou.",
             "noSE2" : "Je vybrán postup na 'stejnou chybu (R2)', ale chybí odpovídající situace s chybou.",

@@ -13,7 +13,7 @@ const decisiveErrorActions = [
   'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN'
 ]
 const errorActions = [...decisiveErrorActions, 'eF', 'eT']
-const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN']
+export const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN', 'NADV']
 
 // validation sequence to be run over given outputs
 // (this should be the single point of entry to validatons)
@@ -69,6 +69,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkSHSF(inputs))
   validation = attachValidation(validation, checkSBCS(inputs))
   validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
+  validation = attachValidation(validation, checkNoAdvances(inputs))
   validation = attachValidation(validation, checkOBRs(inputs))
   validation = attachValidation(validation, checkSameError(inputs))
   validation = attachValidation(validation, checkEarnedRuns(inputs))
@@ -526,6 +527,25 @@ function isAfterBB (inputs: WBSCInput[]) {
 }
 function isAfterSB (inputs: WBSCInput[]) {
   return inputs.some(i => firstRunnerActions.includes(i.group) && i.specAction === 'SB')
+}
+
+// "no advance" must be the last play and target must be the closest base
+// (last play is ensured by disabling extra inputs in wbsc-eval.ts)
+function checkNoAdvances (inputs: WBSCInput[]) {
+  let validation = ''
+
+  let invalidNADV = false
+  inputs.toReversed().forEach((i) => {
+    if (noAdvActions.includes(i.specAction) && (i.base - i.origBase > 1)) {
+      invalidNADV = true
+    }
+  })
+
+  if (invalidNADV) {
+    validation = attachValidation(validation, useT('editor.validation.noAdvanceOnNA'))
+  }
+
+  return validation
 }
 
 function checkOBRs (inputs: WBSCInput[]) {

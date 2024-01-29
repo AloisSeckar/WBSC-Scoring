@@ -3,6 +3,7 @@
 /* CORE file with input evaluation methods */
 /* *************************************** */
 
+import { noAdvActions } from './wbsc-validation'
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // triggered when user selects from 'base' action
@@ -203,7 +204,7 @@ function changeBatterSpecificAction () {
     runTypeBox.classList.add(classHidden)
   }
 
-  disableExtraInput(inputB, out === true || runTypeSelectVisible)
+  disableExtraInput(inputB, out === true || noAdvActions.includes(specificActionValue) || runTypeSelectVisible)
 }
 
 // ajdust 'specific' action according to selected 'base' action
@@ -332,7 +333,7 @@ function changeRunnerSpecificAction (group: string) {
     posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for HP
   }
 
-  disableExtraInput(group, out === true)
+  disableExtraInput(group, out === true || noAdvActions.includes(runnerSpecificActionValue))
 }
 
 // allows to select run type when home base is selected
