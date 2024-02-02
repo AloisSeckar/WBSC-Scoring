@@ -730,7 +730,13 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       }
     }
     if (notAddedYet) {
-      concurrentPlays.push({ ...output })
+      concurrentPlays.push({ 
+        batter: output.batter,
+        base: output.base,
+        out: output.out,
+        na: output.na,
+        text1: output.text1
+      })
     }
   }
 
