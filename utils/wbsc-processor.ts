@@ -146,6 +146,7 @@ function processAction () {
   }
 
   mergeBatterIndicators(inputs)
+  adjustWPPB(inputs)
 
   const validation = checkUserInput(inputs)
   if (validation === '') {
@@ -358,6 +359,22 @@ function removeDuplicateConnectors () {
   // (evaluation always goes from most ahead runner)
   if (runner23Out === true && runner12Advance === true && batterOut === true) {
     useEvalStore().concurrentPlays.shift()
+  }
+}
+
+// helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/178
+function adjustWPPB (inputArr: WBSCInput[]) {
+  const strikeoutWPPB = inputArr.filter(i => ['KSWP', 'KSPB', 'KLWP', 'KLPB'].includes(i.specAction))?.length > 0
+  if (strikeoutWPPB) {
+    inputArr.forEach((i) => {
+      if (i.output?.text1 === 'WP#b#') {
+        i.output.text1 = 'wp#b#'
+      }
+      if (i.output?.text1 === 'PB#b#') {
+        i.output.text1 = 'pb#b#'
+      }
+    }) 
+    useEvalStore().concurrentPlays = useEvalStore().concurrentPlays.filter((p: ConcurrentPlay) => p.text1 !== 'WP#b#' && p.text1 !== 'PB#b#')
   }
 }
 

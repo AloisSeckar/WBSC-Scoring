@@ -17,7 +17,8 @@ export type ConcurrentPlay = {
     batter: number,
     base: number,
     out: boolean,
-    na: boolean
+    na: boolean,
+    text1: string
 }
 
 export type WBSCEval = {
