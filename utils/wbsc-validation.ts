@@ -247,17 +247,20 @@ function checkAdvances (inputs: WBSCInput[]) {
 }
 
 // forced out may only happen if runner is being forced to run by runners behind him
+// #154 - exception: runner is forced to return to base after fly-out
 function checkFO (inputs: WBSCInput[]) {
   let validation = ''
 
   const givenFO = [false, false, false]
   const possibleFO = [false, false, false]
   let impossibleFO = false
+  let flyout = false
 
   inputs.forEach((input) => {
     switch (input.group) {
       case inputB:
         possibleFO[0] = true // runner at 1st may be forced out at 2nd
+        flyout = ['F', 'P', 'L', 'FF', 'FP', 'FL', 'FB', 'FFB'].includes(input.specAction)
         break
       case inputR1:
         possibleFO[1] = !!possibleFO[0] // runner at 2nd may be forced out at 3rd
@@ -295,18 +298,20 @@ function checkFO (inputs: WBSCInput[]) {
     }
   })
 
-  if (givenFO[0] && !possibleFO[0]) {
-    validation = attachValidation(validation, useT('editor.validation.notFO2'))
-  }
-  if (givenFO[1] && !possibleFO[1]) {
-    validation = attachValidation(validation, useT('editor.validation.notFO3'))
-  }
-  if (givenFO[2] && !possibleFO[2]) {
-    validation = attachValidation(validation, useT('editor.validation.notFOH'))
-  }
+  if (!flyout) {
+    if (givenFO[0] && !possibleFO[0]) {
+      validation = attachValidation(validation, useT('editor.validation.notFO2'))
+    }
+    if (givenFO[1] && !possibleFO[1]) {
+      validation = attachValidation(validation, useT('editor.validation.notFO3'))
+    }
+    if (givenFO[2] && !possibleFO[2]) {
+      validation = attachValidation(validation, useT('editor.validation.notFOH'))
+    }
 
-  if (impossibleFO) {
-    validation = attachValidation(validation, useT('editor.validation.noDistantFO'))
+    if (impossibleFO) {
+      validation = attachValidation(validation, useT('editor.validation.noDistantFO'))
+    }
   }
 
   return validation
