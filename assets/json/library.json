@@ -228,6 +228,10 @@
     "name": "Fielder's choice - occuped - R1 SS to 2B"
   },
   {
+    "file": "fc-o1b-r1-14",
+    "name": "Fielder's choice - occuped - R1 P to 2B - bunt"
+  },
+  {
     "file": "fc-o3-r3-32",
     "name": "Fielder's choice - occuped - R3 1B to C"
   },
@@ -238,6 +242,10 @@
   {
     "file": "error-5",
     "name": "Error - fielding by 3B"
+  },
+  {
+    "file": "error-5b",
+    "name": "Error - fielding by 3B - bunt"
   },
   {
     "file": "error-6t",

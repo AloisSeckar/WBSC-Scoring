@@ -9,7 +9,7 @@ import type { WBSCInput } from '@/composables/useInputStore'
 const firstRunnerActions = [inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
 const decisiveErrorActions = [
-  'EF', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
+  'EF', 'EFB', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
   'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN'
 ]
 const errorActions = [...decisiveErrorActions, 'eF', 'eT']
@@ -334,7 +334,7 @@ function checkFC (inputs: WBSCInput[]) {
   inputs.forEach((input) => {
     const output = input.output
     if (input.group === inputB) {
-      if (input.specAction === 'O' || input.specAction === 'KSO' || input.specAction === 'KLO' || input.specAction === 'SFO') {
+      if (['O', 'OCB', 'KSO', 'KLO', 'SFO'].includes(input.specAction)) {
         oSituation = true
       } else if (input.specAction === 'FC' || input.specAction === 'SHFC') {
         fcSituation = true
@@ -767,7 +767,7 @@ function checkBInput (b1Action: string, bAction: string): string {
   if (b1Action === 'se0' && !decisiveErrorActions.includes(bAction)) {
     validation = attachValidation(validation, attachValidation(validation, useT('editor.validation.noSE0')))
   }
-  if (b1Action === 'oc' && bAction !== 'O') {
+  if (b1Action === 'oc' && bAction !== 'O' && bAction !== 'OCB') {
     validation = attachValidation(validation, useT('editor.validation.missingOAdv'))
   }
 

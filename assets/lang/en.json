@@ -103,6 +103,7 @@
             "fc" : {
                 "title" : "Fielder's choice",
                 "O" : "Occupied",
+                "OCB" : "Occupied - bunt",
                 "FC" : "Fielder's choice",
                 "T" : "On the throw",
                 "O/" : "Indifference",
@@ -111,6 +112,7 @@
             "error" : {
                 "title" : "Error",
                 "EF" : "Fielding error",
+                "EFB" : "Fielding error - bunt",
                 "ET" : "Throwing error",
                 "EDF" : "Dropped fly",
                 "EDL" : "Dropped fly - line",

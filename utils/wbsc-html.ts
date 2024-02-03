@@ -274,12 +274,14 @@ function renderBatterSpecificActionOptions (action: string) {
     case 'FC':
       options.push(`<optgroup label="${bSafe}">`)
       options.push(`<option value="O">${useT('editor.action.fc.O')}</option>`)
+      options.push(`<option value="OCB">${useT('editor.action.fc.OCB')}</option>`)
       options.push(`<option value="FC">${useT('editor.action.fc.FC')}</option>`)
       options.push('</optgroup>')
       break
     case 'Error':
       options.push(`<optgroup label="${bSafe}">`)
       options.push(`<option value="EF">${useT('editor.action.error.EF')}</option>`)
+      options.push(`<option value="EFB">${useT('editor.action.error.EFB')}</option>`)
       options.push(`<option value="ET">${useT('editor.action.error.ET')}</option>`)
       options.push(`<option value="EDF">${useT('editor.action.error.EDF')}</option>`)
       options.push(`<option value="EDL">${useT('editor.action.error.EDL')}</option>`)

@@ -101,6 +101,7 @@ function changeBatterSpecificAction () {
       out = true
       // falls through
     case 'O':
+    case 'OCB':
     case 'KSO':
     case 'KLO':
     case 'SFO':
@@ -144,6 +145,7 @@ function changeBatterSpecificAction () {
     case 'KSET':
     case 'KLET':
     case 'EF':
+    case 'EFB':
     case 'ET':
     case 'SHE':
     case 'SHET':
@@ -459,6 +461,9 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
     case 'O':
       output.text1 = action + pos
       break
+    case 'OCB':
+      output.text1 = 'O' + pos + 'B'
+      break
     case 'FC':
       output.text1 = action
       output.text2 = pos
@@ -678,6 +683,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       output.na = true
       // falls through
     case 'EF':
+    case 'EFB':
     case 'ET':
     case 'EM':
     case 'eF':
@@ -730,7 +736,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       }
     }
     if (notAddedYet) {
-      concurrentPlays.push({ 
+      concurrentPlays.push({
         batter: output.batter,
         base: output.base,
         out: output.out,
