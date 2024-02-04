@@ -476,34 +476,27 @@ function checkExtraBaseAdvances (inputs: WBSCInput[]) {
   inputs.forEach((input) => {
     if (input.specAction.toUpperCase() === 'WP') {
       isWP = true
-    }
-    if (isWP && !firstRunnerActions.includes(input.group)) {
-      if (!isAfterBB(inputs) && !isAfterSB(inputs)) {
+      if (!firstRunnerActions.includes(input.group) && !isAfterBB(inputs) && !isAfterSB(inputs)) {
         invalidWP = true
       }
     }
-
     if (input.specAction.toUpperCase() === 'PB') {
       isPB = true
-    }
-    if (isPB && !firstRunnerActions.includes(input.group)) {
-      if (!isAfterBB(inputs) && !isAfterSB(inputs)) {
+      if (!firstRunnerActions.includes(input.group) && !isAfterBB(inputs) && !isAfterSB(inputs)) {
         invalidPB = true
       }
     }
-
     if (input.specAction.toUpperCase() === 'IP') {
       isIP = true
+      if (!firstRunnerActions.includes(input.group)) {
+        invalidIP = true
+      }
     }
-    if (isIP && !firstRunnerActions.includes(input.group)) {
-      invalidIP = true
-    }
-
     if (input.specAction.toUpperCase() === 'BK') {
       isBK = true
-    }
-    if (isBK && !firstRunnerActions.includes(input.group)) {
-      invalidBK = true
+      if (!firstRunnerActions.includes(input.group)) {
+        invalidBK = true
+      }
     }
   })
 
