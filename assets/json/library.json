@@ -44,6 +44,10 @@
     "name": "Lined out to P, R3 out P to 3B, DP"
   },
   {
+    "file": "out-f9-r1-93-r3-3265",
+    "name": "Fly out to RF, R1 out 93, R3 out 3265, TP"
+  },
+  {
     "file": "ks",
     "name": "Strike out - swinging"
   },
@@ -360,6 +364,10 @@
     "name": "Single to 6 + T62 + R2 out SS to C at HP"
   },
   {
+    "file": "1b-5b-e5t-9e5",
+    "name": "Single to 3B, bunt + e5T to 2nd + 9E5 to HP"
+  },
+  {
     "file": "out-31-r1-e3t",
     "name": "Ground out - 1B to P + R1 scores (FC + e3T)"
   },
@@ -370,6 +378,10 @@
   {
     "file": "sh-54",
     "name": "Sacrifice hit - 3B to 2B"
+  },
+  {
+    "file": "sh-fc-12-r2-r3",
+    "name": "Sacrifice hit - FC P to C, R3 scores, R2 scoeres (O/3), B out 234"
   },
   {
     "file": "error-sh-e5t",
@@ -430,6 +442,10 @@
   {
     "file": "pb-r1-r2-r3",
     "name": "Passed ball - R1 + R2 + R3"
+  },
+  {
+    "file": "pb-r3-r2-e2t-r1-e1",
+    "name": "Passed ball - R3 scores, R2 scores on e2T, R1 scores on e1"
   },
   {
     "file": "bk-r1",
