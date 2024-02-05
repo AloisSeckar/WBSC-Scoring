@@ -606,16 +606,16 @@ function checkSameError (inputs: WBSCInput[]) {
   })
 
   if (seB && !errB) {
-    validation = attachValidation(validation, useT('editor.validation.noSE0'))
+    validation = attachValidation(validation, useT('editor.validation.noSE').replace('#p#', 'B'))
   }
   if (seR1 && !errR1) {
-    validation = attachValidation(validation, useT('editor.validation.noSE1'))
+    validation = attachValidation(validation, useT('editor.validation.noSE').replace('#p#', 'R1'))
   }
   if (seR2 && !errR2) {
-    validation = attachValidation(validation, useT('editor.validation.noSE2'))
+    validation = attachValidation(validation, useT('editor.validation.noSE').replace('#p#', 'R2'))
   }
   if (seR3 && !errR3) {
-    validation = attachValidation(validation, useT('editor.validation.noSE3'))
+    validation = attachValidation(validation, useT('editor.validation.noSE').replace('#p#', 'R3'))
   }
 
   // there may be only one "same error" (and "same occupied") action per each runner
@@ -629,25 +629,25 @@ function checkSameError (inputs: WBSCInput[]) {
     const seBInvalid = inputs.some(i => i.specAction === 'se0' && (i.group === inputB2 || i.group === inputB3))
     const seBActions = inputs.filter(i => i.specAction === 'se0').map(i => getRunner(i.group))
     if (seBInvalid || seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useT('editor.validation.noExAdvSE0'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'B'))
     }
   }
   if (seR1) {
     const seBActions = inputs.filter(i => i.specAction === 'se1').map(i => getRunner(i.group))
     if (seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useT('editor.validation.noExAdvSE1'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'R1'))
     }
   }
   if (seR2) {
     const seBActions = inputs.filter(i => i.specAction === 'se2').map(i => getRunner(i.group))
     if (seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useT('editor.validation.noExAdvSE2'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'R2'))
     }
   }
   if (seR3) {
     const seBActions = inputs.filter(i => i.specAction === 'se3').map(i => getRunner(i.group))
     if (seBActions.length !== new Set(seBActions).size) {
-      validation = attachValidation(validation, useT('editor.validation.noExAdvSE3'))
+      validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'R3'))
     }
   }
 
@@ -735,16 +735,16 @@ function checkEarnedRuns (inputs: WBSCInput[]) {
   })
 
   if (bER && errB) {
-    validation = attachValidation(validation, useT('editor.validation.noER0'))
+    validation = attachValidation(validation, useT('editor.validation.noER').replace('#p#', 'B'))
   }
   if (r1ER && errR1) {
-    validation = attachValidation(validation, useT('editor.validation.noER1'))
+    validation = attachValidation(validation, useT('editor.validation.noER').replace('#p#', 'R1'))
   }
   if (r2ER && errR2) {
-    validation = attachValidation(validation, useT('editor.validation.noER2'))
+    validation = attachValidation(validation, useT('editor.validation.noER').replace('#p#', 'R2'))
   }
   if (r3ER && errR3) {
-    validation = attachValidation(validation, useT('editor.validation.noER3'))
+    validation = attachValidation(validation, useT('editor.validation.noER').replace('#p#', 'R3'))
   }
   if ((tieR1 && (r1ER || r1TU)) || (tieR2 && (r2ER || r2TU))) {
     validation = attachValidation(validation, useT('editor.validation.noTieER'))
@@ -758,7 +758,7 @@ function checkBInput (b1Action: string, bAction: string): string {
   let validation = ''
 
   if (b1Action === 'se0' && !decisiveErrorActions.includes(bAction)) {
-    validation = attachValidation(validation, attachValidation(validation, useT('editor.validation.noSE0')))
+    validation = attachValidation(validation, attachValidation(validation, useT('editor.validation.noSE').replace('#p#', 'B')))
   }
   if (b1Action === 'oc' && bAction !== 'O' && bAction !== 'OCB') {
     validation = attachValidation(validation, useT('editor.validation.missingOAdv'))
