@@ -335,22 +335,23 @@ function changeRunnerSpecificAction (group: string) {
     posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for HP
   }
 
-  disableExtraInput(group, out === true || noAdvActions.includes(runnerSpecificActionValue))
-}
-
-// allows to select run type when home base is selected
-function changeBase (group: string) {
   const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
-  const isHPSelected = baseSelect.value === '4'
-
   const runTypeBox = document.getElementById(group + inputRuntype + '-box') as HTMLElement
-  if (isHPSelected) {
+  if (baseSelect?.value === '4' && !out) {
     runTypeBox.classList.remove(classHidden)
   } else {
     runTypeBox.classList.add(classHidden)
   }
 
-  disableExtraInput(group, isHPSelected)
+  disableExtraInput(group, out === true || noAdvActions.includes(runnerSpecificActionValue))
+}
+
+// allows to select run type when home base is selected
+function changeBase (group: string) {
+  // #202 - we need to know whether there was an out or not
+  // this method is able to calculate it
+  // re-creating or extracting the logic would be harder
+  changeRunnerSpecificAction(group)
 }
 
 // enhance user's input with output instructions

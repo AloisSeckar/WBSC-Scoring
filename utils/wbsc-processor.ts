@@ -373,7 +373,7 @@ function adjustWPPB (inputArr: WBSCInput[]) {
       if (i.output?.text1 === 'PB#b#') {
         i.output.text1 = 'pb#b#'
       }
-    }) 
+    })
     useEvalStore().concurrentPlays = useEvalStore().concurrentPlays.filter((p: ConcurrentPlay) => p.text1 !== 'WP#b#' && p.text1 !== 'PB#b#')
   }
 }
