@@ -64,6 +64,7 @@
                 "GO" : "Ground out",
                 "GOB" : "Ground out - bunt",
                 "GDP" : "Grounded into double play",
+                "GDPO" : "GDP with occupied",
                 "GDPE" : "GDP with error"
             },
             "flyOut" : {
@@ -229,6 +230,7 @@
             "missingFCPlay" : "FC is selected, but corresponding runner advance is missing.",
             "missingPBPlay" : "If strikeout with FC is selected, there must be a passed ball credited to a runner.",
             "missingGDPPlay" : "GDP is selected, but corresponding out/decessive error is missing.",
+            "missingGDPOPlay" : "GDP - occupied is selected, but corresponding out/decessive error plays are missing.",
             "missingSHPlay" : "SH is selected, but no runner advanced by batter.",
             "missingSFPlay" : "SF is selected, but no runner advanced by batter.",
             "missingSFRun" : "SF is selected, but no runner scored.",

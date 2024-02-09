@@ -416,6 +416,10 @@
     "name": "Grounded into DP - SS to 2B + 1B fielding error"
   },
   {
+    "file": "gdpo-1-r1-54-r2-15",
+    "name": "Grounded into DP - occupied to P, R2 out P-3B, R1 out 3B-2B"
+  },
+  {
     "file": "out-if6",
     "name": "Infield fly - SS"
   },

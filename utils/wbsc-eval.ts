@@ -112,6 +112,7 @@ function changeBatterSpecificAction () {
     case 'OB':
     case 'SHEF':
     case 'SFE':
+    case 'GDPO':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'GO':
@@ -715,11 +716,16 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       output.errorTarget = output.base
       output.base = output.origBase + 1
       break
+    case 'GDPO':
     case 'GDPE':
       output.text1 = 'GDP'
-      output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)
-      output.errorTarget = output.base
-      output.base = output.origBase + 1
+      if (action.includes('E')) {
+        output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)
+        output.errorTarget = output.base
+        output.base = output.origBase + 1
+      } else {
+        output.text2 = 'O' + pos
+      }
       break
     case 'NADV':
       output.text1 = '*'

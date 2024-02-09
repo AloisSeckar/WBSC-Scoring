@@ -229,6 +229,7 @@ function renderBatterSpecificActionOptions (action: string) {
       options.push(`<option value="GDP">${useT('editor.action.groundOut.GDP')}</option>`)
       options.push('</optgroup>')
       options.push(`<optgroup label="${bSafe}">`)
+      options.push(`<option value="GDPO">${useT('editor.action.groundOut.GDPO')}</option>`)
       options.push(`<option value="GDPE">${useT('editor.action.groundOut.GDPE')}</option>`)
       options.push('</optgroup>')
       break

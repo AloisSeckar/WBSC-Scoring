@@ -365,25 +365,30 @@ function checkFC (inputs: WBSCInput[]) {
   return validation
 }
 
-// if GDP (GDPE) is selected for batter
-// there has to be at least 1 correspondig out/decessive error situatuon for runners
+// if GDP / GDPE / GDPO is selected for batter
+// there has to be at least 1 (2 for GDPO) correspondig out/decessive error situatuon for runners
 function checkGDP (inputs: WBSCInput[]) {
   let validation = ''
 
   let gdpSelected = false
-  let gdpOut = false
+  let gdpoSelected = false
+  let gdpOuts = 0
 
   inputs.forEach((input) => {
     const output = input.output
     if (output?.text1 === 'GDP' || output?.text1 === 'GDPE') {
       gdpSelected = true
+    } else if (output?.text1 === 'GDPO') {
+      gdpoSelected = true
     } else if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
-      gdpOut = true
+      gdpOuts++
     }
   })
 
-  if (gdpSelected && !gdpOut) {
+  if (gdpSelected && gdpOuts < 1) {
     validation = attachValidation(validation, useT('editor.validation.missingGDPPlay'))
+  } else if (gdpoSelected && gdpOuts < 2) {
+    validation = attachValidation(validation, useT('editor.validation.missingGDPOPlay'))
   }
 
   return validation
