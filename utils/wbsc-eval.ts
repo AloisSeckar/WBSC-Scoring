@@ -233,6 +233,9 @@ function changeRunnerSpecificAction (group: string) {
   const runnerSpecificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
   const runnerSpecificActionValue = runnerSpecificAction.value
   switch (runnerSpecificActionValue) {
+    case 'OBR_rta':
+      out = true
+      // falls through
     case 'ADV':
     case 'WP':
     case 'PB':
@@ -245,12 +248,12 @@ function changeRunnerSpecificAction (group: string) {
     case 'se1':
     case 'se2':
     case 'se3':
-    case 'OBR_rta':
     case 'NADV':
       minPosItems = targetPosItems = maxPosItems = 0
       break
     case 'OBR_hbb':
     case 'OBR_ppr':
+    case 'OBR_rro':
     case 'OBR_rle':
     case 'OBR_rhe':
       out = true
