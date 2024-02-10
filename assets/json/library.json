@@ -296,12 +296,20 @@
     "name": "Error - catcher's interference"
   },
   {
+    "file": "error-int-run",
+    "name": "Error - catcher's interference + all runners advance"
+  },
+  {
     "file": "error-ob3",
     "name": "Error - obstruction by 1B (B)"
   },
   {
     "file": "error-ob4",
     "name": "Error - obstruction by 2B (R1)"
+  },
+  {
+    "file": "error-ob3-run",
+    "name": "Error - obstruction by 1B (B) + all runners advance"
   },
   {
     "file": "error-bb-e2t-r1-se",

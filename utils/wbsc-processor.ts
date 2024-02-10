@@ -151,6 +151,7 @@ function processAction () {
 
   mergeBatterIndicators(inputs)
   adjustWPPB(inputs)
+  adjustIO(inputs)
 
   const validation = checkUserInput(inputs)
   if (validation === '') {
@@ -379,6 +380,19 @@ function adjustWPPB (inputArr: WBSCInput[]) {
       }
     })
     useEvalStore().concurrentPlays = useEvalStore().concurrentPlays.filter((p: ConcurrentPlay) => p.text1 !== 'WP#b#' && p.text1 !== 'PB#b#')
+  }
+}
+
+// helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/177
+function adjustIO (inputArr: WBSCInput[]) {
+  const batterAction = inputArr.filter(i => i.group === inputB)?.[0]?.specAction
+  const isIO = batterAction === 'INT' || batterAction === 'OB'
+  if (isIO) {
+    inputArr.forEach((i) => {
+      if (i.specAction === 'ADV') {
+        i.output!.text1 = '[' + i.output!.text1 + ']'
+      }
+    })
   }
 }
 
