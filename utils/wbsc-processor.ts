@@ -72,8 +72,9 @@ function processAction () {
   useEvalStore().outs = []
   useEvalStore().concurrentPlays = []
 
-  useEvalStore().gdp = false
   useEvalStore().batterAction = false
+  useEvalStore().gdp = false
+  useEvalStore().brokenDP = false
 
   // runner 3
   if (r3Input) {

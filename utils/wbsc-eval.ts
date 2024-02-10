@@ -718,8 +718,10 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       output.errorTarget = output.base
       output.base = output.origBase + 1
       break
-    case 'GDPO':
     case 'GDPE':
+      useEvalStore().brokenDP = true
+      // falls through
+    case 'GDPO':
       output.text1 = 'GDP'
       if (action.includes('E')) {
         output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)

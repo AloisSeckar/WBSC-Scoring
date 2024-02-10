@@ -32,7 +32,9 @@ function renderAction (battingOrder: number, clear: boolean, mainInput: WBSCInpu
 
     if (output.out === true) {
       renderOut(output)
-      useEvalStore().outs.push({ batter: battingOrder, base: mainInput.base })
+      if (!useEvalStore().brokenDP) {
+        useEvalStore().outs.push({ batter: battingOrder, base: mainInput.base })
+      }
     } else {
       renderAdvance(output)
 
