@@ -73,6 +73,7 @@ function processAction () {
   useEvalStore().concurrentPlays = []
 
   useEvalStore().gdp = false
+  useEvalStore().batterAction = false
 
   // runner 3
   if (r3Input) {
@@ -140,6 +141,7 @@ function processAction () {
     extraBatterInput.push(b1Input)
   }
   if (bInput) {
+    useEvalStore().batterAction = true
     bInput.output = processInput(bInput, playersInvolved)
     if (bErrorTarget > 0) {
       bInput.output.errorTarget = bErrorTarget

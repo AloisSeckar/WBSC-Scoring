@@ -709,7 +709,7 @@ function writeSituation (output: WBSCOutput) {
         break
     }
 
-    if (output.num) {
+    if (output.num && !useEvalStore().batterAction) {
       writeBatterIndicator(base)
     }
   } else {
