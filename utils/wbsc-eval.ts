@@ -672,6 +672,8 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       possibleConcurrentPlay = true
       break
     case 'OBR_rle':
+    case 'OBR_rhe':
+    case 'OBR_rin':
       output.num = true
       // falls through
     case 'OBR_rta':
@@ -679,8 +681,6 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
     case 'OBR_rol':
     case 'OBR_ppr':
     case 'OBR_rro':
-    case 'OBR_rin':
-    case 'OBR_rhe':
       output.text1 = action.substring(4).toUpperCase()
       output.text2 = pos || '2'
       output.out = true

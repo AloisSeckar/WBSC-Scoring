@@ -1,0 +1,1 @@
+[{"group":"input-r1","baseAction":"obr","specAction":"OBR_rin","origBase":1,"base":2,"tie":false,"runtype":"e","pos":"46"},{"group":"input-b","baseAction":"OBR","specAction":"OBR_BIN","origBase":0,"base":1,"tie":false,"runtype":"e","pos":"3"}]

@@ -672,8 +672,20 @@
     "name": "Out by rule - Running the bases in Reverse Order (R2)"
   },
   {
-    "file": "obr-rin-r1",
-    "name": "Out by rule - Runner Interference (R1)"
+    "file": "obr-rin-r1-a",
+    "name": "Out by rule - Runner Interference (R1) w/o batter"
+  },
+  {
+    "file": "obr-rin-r1-b",
+    "name": "Out by rule - Runner Interference (R1) with batter"
+  },
+  {
+    "file": "obr-hit-rin",
+    "name": "Out by rule - single to RF, RIN at 2nd"
+  },
+  {
+    "file": "obr-bin-rin",
+    "name": "Out by rule - batter BIN, runner RIN"
   },
   {
     "file": "obr-rle-r1",
