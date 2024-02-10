@@ -32,6 +32,7 @@ export type WBSCEval = {
     posSelection: PosSelection[],
     outs: Out[],
     concurrentPlays: ConcurrentPlay[],
+    gdp: boolean
 }
 
 export const useEvalStore = defineStore({
@@ -47,7 +48,8 @@ export const useEvalStore = defineStore({
       maxPosItems: [],
       posSelection: [],
       outs: [],
-      concurrentPlays: []
+      concurrentPlays: [],
+      gdp: false
     }
     return data
   },
@@ -92,7 +94,7 @@ export const useEvalStore = defineStore({
     },
     getPosSelection: (state) => {
       return (inputGroup: string): string => {
-        const item = state.posSelection.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
+        const item = state.posSelection.find((i: PosSelection) => i.inputGroup === inputGroup)
         if (item) {
           return item.selection
         } else {

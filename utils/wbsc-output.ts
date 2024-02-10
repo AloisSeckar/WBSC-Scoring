@@ -697,6 +697,10 @@ function writeSituation (output: WBSCOutput) {
             offset = 20
           }
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + offset + vOffset)
+
+          if (useEvalStore().gdp && text1.match(/^\d$/)) {
+            drawGDPMarker()
+          }
         }
 
         if (output.out === false) {
@@ -1152,6 +1156,21 @@ function drawExtraErrorAdvanceToHP (startsAt3B: boolean) {
     drawArrow(gap + hOffset, h2 + length + vOffset, gap + hOffset, h2 + length + vOffset + 20, 5)
   } else {
     createError('Canvas context not defined')
+  }
+}
+
+// #160 - mark advance to HP on GDP
+function drawGDPMarker () {
+  const ctx = useCanvasStore().ctx
+  if (ctx) {
+    const hOffset = useCanvasStore().hOffset
+    const vOffset = useCanvasStore().vOffset
+
+    ctx.lineWidth = 7
+    ctx.beginPath()
+    ctx.moveTo(w2 * 0.5 - 22 + hOffset, h2 + 33 + vOffset)
+    ctx.lineTo(w2 * 0.5 + 22 + hOffset, h2 + 33 + vOffset)
+    ctx.stroke()
   }
 }
 

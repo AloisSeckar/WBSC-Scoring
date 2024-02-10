@@ -72,6 +72,8 @@ function processAction () {
   useEvalStore().outs = []
   useEvalStore().concurrentPlays = []
 
+  useEvalStore().gdp = false
+
   // runner 3
   if (r3Input) {
     playersInvolved += 1

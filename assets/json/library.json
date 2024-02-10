@@ -412,6 +412,14 @@
     "name": "Grounded into DP - SS to 2B to 1B"
   },
   {
+    "file": "gdp-643-r3-hp",
+    "name": "Grounded into DP - SS to 2B to 1B, R3 scores"
+  },
+  {
+    "file": "gdp-463-r2-adv-r3-hp",
+    "name": "Grounded into DP - 2B to SS to 1B, R2 to 3rd, R3 scores"
+  },
+  {
     "file": "gdp-64e3",
     "name": "Grounded into DP - SS to 2B + 1B fielding error"
   },

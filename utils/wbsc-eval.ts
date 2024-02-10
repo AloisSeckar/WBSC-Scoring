@@ -430,6 +430,8 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
     }
       break
     case 'GDP':
+      useEvalStore().gdp = true
+      // falls through
     case 'SH':
     case 'FSF':
       output.text2 = pos
@@ -726,6 +728,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       } else {
         output.text2 = 'O' + pos
       }
+      useEvalStore().gdp = true
       break
     case 'NADV':
       output.text1 = '*'
