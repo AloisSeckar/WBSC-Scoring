@@ -403,9 +403,9 @@ function treatSpecialCases (inputArr: WBSCInput[]) {
   // connect SF + indifferece, if some runner advances because appeal play attempt for other runner (example 80)
   const batterInput = inputArr.find(i => i.group === inputB)
   const batterAction = batterInput?.specAction
+
   const isSF = batterAction === 'SF' || batterAction === 'FSF'
   if (isSF) {
-    const batter = batterInput!.output!.batter
     const r1Input = inputArr.find(i => i.group === inputR1)
     const r1Indifference = r1Input?.specAction === 'O/'
     const r2Input = inputArr.find(i => i.group === inputR2)
@@ -413,7 +413,7 @@ function treatSpecialCases (inputArr: WBSCInput[]) {
 
     if (r1Indifference || r2Indifference) {
       useEvalStore().concurrentPlays.push({
-        batter,
+        batter: batterInput!.output!.batter,
         base: 0,
         out: true,
         na: false,
@@ -421,7 +421,7 @@ function treatSpecialCases (inputArr: WBSCInput[]) {
       })
       if (r1Indifference && !r2Indifference) {
         useEvalStore().concurrentPlays.push({
-          batter,
+          batter: r1Input!.output!.batter,
           base: 2,
           out: false,
           na: false,
@@ -430,13 +430,35 @@ function treatSpecialCases (inputArr: WBSCInput[]) {
       }
       if (r2Indifference && !r1Indifference) {
         useEvalStore().concurrentPlays.push({
-          batter,
+          batter: r2Input!.output!.batter,
           base: 3,
           out: false,
           na: false,
           text1: r2Input!.output!.text1
         })
       }
+    }
+  }
+  // connect OB2 for batter + IP/BK to HP - a special case with obstructon during squeeze play (example 40 (42 for softball))
+  const isOB2 = batterAction === 'OB' && batterInput?.pos === '2'
+  if (isOB2) {
+    const r3Input = inputArr.find(i => i.group === inputR3)
+    const r3ToHP = r3Input?.specAction === 'BK' || r3Input?.specAction === 'IP'
+    if (r3ToHP) {
+      useEvalStore().concurrentPlays.push({
+        batter: r3Input!.output!.batter,
+        base: 4,
+        out: false,
+        na: false,
+        text1: r3Input!.output!.text1
+      })
+      useEvalStore().concurrentPlays.push({
+        batter: batterInput!.output!.batter,
+        base: 1,
+        out: false,
+        na: false,
+        text1: batterAction
+      })
     }
   }
 }

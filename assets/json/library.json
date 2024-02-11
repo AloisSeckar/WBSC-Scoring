@@ -312,6 +312,14 @@
     "name": "Error - obstruction by 1B (B) + all runners advance"
   },
   {
+    "file": "error-ob2-r3-bk",
+    "name": "Error - obstruction by C during squeeze play + R3 scorers on BK"
+  },
+  {
+    "file": "error-ob2-r3-ip",
+    "name": "Error - obstruction by C during squeeze play + R3 scorers on IP"
+  },
+  {
     "file": "error-bb-e2t-r1-se",
     "name": "Error - BB + extra base throwing by C, R1 to 3rd"
   },
