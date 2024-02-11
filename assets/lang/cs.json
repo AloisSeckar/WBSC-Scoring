@@ -212,6 +212,7 @@
             "properAction" : "Situace musí být zadána.",
             "noSelfAsist" : "Polař nemůže asistovat sám sobě.",
             "noMultipleAsist" : "Polař nemůže mít v jedné sitaci více než jednu asistenci.",
+            "runnerOnlyAction" : "Nelze kombinovat akci pouze pro běžce (SB/CS/PO/BK/IP) s akcí pro pálkaře.",
             "max3Outs" : "Během jedné rozehry nemůžou být více než 3 auty.",
             "3OutsNoRuns" : "Během jedné rozehry nemůžou být zároveň 3 auty a bod.",
             "noOutAfterOut" : "Stejný hráč nemůže být autován vícekrát.",

@@ -220,6 +220,14 @@
     "name": "Base on balls"
   },
   {
+    "file": "bb-wp",
+    "name": "Base on balls + R2 to 3rd on WP, B stays at 1st"
+  },
+  {
+    "file": "bb-pb",
+    "name": "Base on balls + R2 to 3rd on PB, B to 2nd on PB"
+  },
+  {
     "file": "ibb",
     "name": "Intentional base on balls"
   },

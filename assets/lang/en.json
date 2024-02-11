@@ -212,6 +212,7 @@
             "properAction" : "Action must be properly defined.",
             "noSelfAsist" : "A fielder cannot assist directly to self.",
             "noMultipleAsist" : "A fielder cannot have more than 1 assist in a play.",
+            "runnerOnlyAction" : "Runners-only action (SB/CS/PO/BK/IP) canot be combined with batter's action.",
             "max3Outs" : "There cannot be more than 3 outs in one play.",
             "3OutsNoRuns" : "There cannot be 3 outs and a run scored in one play.",
             "noOutAfterOut" : "One player cannot be out more than once.",

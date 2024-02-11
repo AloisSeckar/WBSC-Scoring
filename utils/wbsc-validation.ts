@@ -13,6 +13,10 @@ const decisiveErrorActions = [
   'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN'
 ]
 const errorActions = [...decisiveErrorActions, 'eF', 'eT']
+const runnersOnlyActions = [
+  'WP', 'PB', 'BK', 'IP', 'SB', 'SBPOA', 'CSE', 'CSET', 'CSN', 'CSNT',
+  'POE', 'POEN', 'POCSE', 'POCSEN', 'CSO', 'PO', 'POCS'
+]
 export const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN', 'NADV']
 
 // validation sequence to be run over given outputs
@@ -59,6 +63,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   })
 
   // 2) validations over all outputs
+  validation = attachValidation(validation, checkActions(inputs))
   validation = attachValidation(validation, checkOutsAndRuns(inputs))
   validation = attachValidation(validation, checkOutcome(inputs))
   validation = attachValidation(validation, checkHit(inputs))
@@ -101,6 +106,39 @@ function checkPosSelection (selection: string) {
   }
 
   return validation
+}
+
+// #204 - check runners-only actions
+function checkActions (inputs: WBSCInput[]) {
+  // basically it is not allowed to combine batter + runner-only action
+  const batterAction = inputs.some(i => i.group === inputB)
+  let invalidCombination = batterAction && inputs.some(i => runnersOnlyActions.includes(i.specAction))
+
+  if (invalidCombination) {
+    // additional check for exceptions
+    const batterInput = inputs.find(i => i.group === inputB)
+    const batterSpecAction = batterInput!.specAction
+    const runnerActions = inputs.filter(i => i.group.startsWith('input-r'))
+    if (batterSpecAction === 'BB1') {
+      // exception 1 - BB - WP/PB is possible
+      invalidCombination = runnerActions.some(i => !['ADV', 'WP', 'PB'].includes(i.specAction))
+    } else if (batterSpecAction.startsWith('KS') || batterSpecAction.startsWith('KL')) {
+      // exception 2 - KS/KL - only BK/IP is impossible
+      invalidCombination = runnerActions.some(i => ['BK', 'IP'].includes(i.specAction))
+    } else if (batterSpecAction === 'OB' && batterInput!.pos === '2') {
+      // exception 3 - OB2 + BK/IP is possible from 3rd
+      const r3SpecAction = inputs.find(i => i.group === inputR3)?.specAction
+      if (r3SpecAction === 'BK' || r3SpecAction === 'IP') {
+        invalidCombination = false
+      }
+    }
+  }
+
+  if (invalidCombination) {
+    return useT('editor.validation.runnerOnlyAction')
+  } else {
+    return ''
+  }
 }
 
 // there cannot be more than 3 outs
