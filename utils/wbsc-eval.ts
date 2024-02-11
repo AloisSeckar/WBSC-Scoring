@@ -742,23 +742,13 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
   }
 
   if (possibleConcurrentPlay) {
-    let notAddedYet = true
-    const concurrentPlays = useEvalStore().concurrentPlays
-    for (let i = 0; i < concurrentPlays.length; i += 1) {
-      if (concurrentPlays[i]?.batter === batter) {
-        notAddedYet = false
-        break
-      }
-    }
-    if (notAddedYet) {
-      concurrentPlays.push({
-        batter: output.batter,
-        base: output.base,
-        out: output.out,
-        na: output.na,
-        text1: output.text1
-      })
-    }
+    useEvalStore().pushConcurrentPlayIfNotAdded({
+      batter: output.batter,
+      base: output.base,
+      out: output.out,
+      na: output.na,
+      text1: output.text1
+    })
   }
 
   return output

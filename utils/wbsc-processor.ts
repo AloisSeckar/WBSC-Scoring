@@ -153,7 +153,7 @@ function processAction () {
   mergeBatterIndicators(inputs)
   adjustWPPB(inputs)
   adjustIO(inputs)
-  treatSpecialCases(inputs)
+  connectSpecialCases(inputs)
 
   const validation = checkUserInput(inputs)
   if (validation === '') {
@@ -398,12 +398,14 @@ function adjustIO (inputArr: WBSCInput[]) {
   }
 }
 
-// this helper was introduced for irregular situations that cannot be handled elsewhere
-function treatSpecialCases (inputArr: WBSCInput[]) {
-  // connect SF + indifferece, if some runner advances because appeal play attempt for other runner (example 80)
+// helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/189
+function connectSpecialCases (inputArr: WBSCInput[]) {
   const batterInput = inputArr.find(i => i.group === inputB)
   const batterAction = batterInput?.specAction
 
+  // connect SB / CS / O/ with an extra base error
+
+  // connect SF + indifferece, if some runner advances because appeal play attempt for other runner (example 80)
   const isSF = batterAction === 'SF' || batterAction === 'FSF'
   if (isSF) {
     const r1Input = inputArr.find(i => i.group === inputR1)
@@ -412,15 +414,15 @@ function treatSpecialCases (inputArr: WBSCInput[]) {
     const r2Indifference = r2Input?.specAction === 'O/'
 
     if (r1Indifference || r2Indifference) {
-      useEvalStore().concurrentPlays.push({
+      useEvalStore().pushConcurrentPlayIfNotAdded({
         batter: batterInput!.output!.batter,
         base: 0,
         out: true,
         na: false,
         text1: batterAction
       })
-      if (r1Indifference && !r2Indifference) {
-        useEvalStore().concurrentPlays.push({
+      if (r1Indifference) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
           batter: r1Input!.output!.batter,
           base: 2,
           out: false,
@@ -428,8 +430,8 @@ function treatSpecialCases (inputArr: WBSCInput[]) {
           text1: r1Input!.output!.text1
         })
       }
-      if (r2Indifference && !r1Indifference) {
-        useEvalStore().concurrentPlays.push({
+      if (r2Indifference) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
           batter: r2Input!.output!.batter,
           base: 3,
           out: false,
@@ -439,20 +441,21 @@ function treatSpecialCases (inputArr: WBSCInput[]) {
       }
     }
   }
+
   // connect OB2 for batter + IP/BK to HP - a special case with obstructon during squeeze play (example 40 (42 for softball))
   const isOB2 = batterAction === 'OB' && batterInput?.pos === '2'
   if (isOB2) {
     const r3Input = inputArr.find(i => i.group === inputR3)
     const r3ToHP = r3Input?.specAction === 'BK' || r3Input?.specAction === 'IP'
     if (r3ToHP) {
-      useEvalStore().concurrentPlays.push({
+      useEvalStore().pushConcurrentPlayIfNotAdded({
         batter: r3Input!.output!.batter,
         base: 4,
         out: false,
         na: false,
         text1: r3Input!.output!.text1
       })
-      useEvalStore().concurrentPlays.push({
+      useEvalStore().pushConcurrentPlayIfNotAdded({
         batter: batterInput!.output!.batter,
         base: 1,
         out: false,
