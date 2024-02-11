@@ -328,6 +328,18 @@
     "name": "Error - R3 to Home on e2T, R2 and R1 same error"
   },
   {
+    "file": "error-r3-e2t-r1-sb",
+    "name": "Error - R3 to Home on e2T, R1 to 2nd (SB)"
+  },
+  {
+    "file": "error-r3-e2t-r1-o2",
+    "name": "Error - R3 to Home on e2T, R1 to 2nd (O/2)"
+  },
+  {
+    "file": "error-r3-e6t-r1-cs26",
+    "name": "Error - R3 to Home on e6T, R1 out (CS 26)"
+  },
+  {
     "file": "1b-9-e9",
     "name": "Single to RF + extra base fielding error to 2nd"
   },

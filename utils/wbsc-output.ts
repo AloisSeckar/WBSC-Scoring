@@ -889,9 +889,10 @@ function connectOutsIfNeeded () {
 // we need to link them with double-sided arrow connector
 function connectConcurrentPlaysIfNeeded () {
   if (useEvalStore().concurrentPlays.length > 1) {
-    for (let i = 0; i < useEvalStore().concurrentPlays.length - 1; i += 1) {
-      const start = useEvalStore().concurrentPlays[i]
-      const end = useEvalStore().concurrentPlays[i + 1]
+    const plays = useEvalStore().concurrentPlays.sort((a, b) => a.batter - b.batter)
+    for (let i = 0; i < plays.length - 1; i += 1) {
+      const start = plays[i]
+      const end = plays[i + 1]
 
       if (start && end) {
       // two outs are already connected
@@ -932,8 +933,8 @@ function connectConcurrentPlaysIfNeeded () {
                 case 2:
                   if (end.out) {
                     startX = hOffset + w4 / 2
-                    endX = hOffset + w4 / 2
-                    endY = 25 + vOffsetEnd
+                    endX = hOffset + w4 / 2 + 10
+                    endY = 20 + vOffsetEnd
                   } else {
                     startX = hOffset + (h2 - lineHOffset)
                     endX = hOffset + h2 + lineHOffset
