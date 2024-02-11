@@ -153,6 +153,7 @@ function processAction () {
   mergeBatterIndicators(inputs)
   adjustWPPB(inputs)
   adjustIO(inputs)
+  treatSpecialCases(inputs)
 
   const validation = checkUserInput(inputs)
   if (validation === '') {
@@ -394,6 +395,49 @@ function adjustIO (inputArr: WBSCInput[]) {
         i.output!.text1 = '[' + i.output!.text1 + ']'
       }
     })
+  }
+}
+
+// this helper was introduced for irregular situations that cannot be handled elsewhere
+function treatSpecialCases (inputArr: WBSCInput[]) {
+  // connect SF + indifferece, if some runner advances because appeal play attempt for other runner (example 80)
+  const batterInput = inputArr.find(i => i.group === inputB)
+  const batterAction = batterInput?.specAction
+  const isSF = batterAction === 'SF' || batterAction === 'FSF'
+  if (isSF) {
+    const batter = batterInput!.output!.batter
+    const r1Input = inputArr.find(i => i.group === inputR1)
+    const r1Indifference = r1Input?.specAction === 'O/'
+    const r2Input = inputArr.find(i => i.group === inputR2)
+    const r2Indifference = r2Input?.specAction === 'O/'
+
+    if (r1Indifference || r2Indifference) {
+      useEvalStore().concurrentPlays.push({
+        batter,
+        base: 0,
+        out: true,
+        na: false,
+        text1: batterAction
+      })
+      if (r1Indifference && !r2Indifference) {
+        useEvalStore().concurrentPlays.push({
+          batter,
+          base: 2,
+          out: false,
+          na: false,
+          text1: r1Input!.output!.text1
+        })
+      }
+      if (r2Indifference && !r1Indifference) {
+        useEvalStore().concurrentPlays.push({
+          batter,
+          base: 3,
+          out: false,
+          na: false,
+          text1: r2Input!.output!.text1
+        })
+      }
+    }
   }
 }
 

@@ -408,6 +408,10 @@
     "name": "Sacrifice fly to LF in foul territory"
   },
   {
+    "file": "sf-7-r1-o",
+    "name": "Sacrifice fly to LF + R1 advance to 2nd (O/1)"
+  },
+  {
     "file": "sf-e8",
     "name": "SF with dropped fly error by CF"
   },
