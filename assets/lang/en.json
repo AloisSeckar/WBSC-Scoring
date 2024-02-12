@@ -242,6 +242,7 @@
             "noPlayAfterIP" : "IP must be the only runner play at the moment.",
             "noPlayAfterBK" : "BK must be the only runner play at the moment.",
             "noPlayAfterRLE" : "RLE must be the only runner play at the moment.",
+            "noPlayAfterDeadBall" : "Selected action is a dead-ball and prevents all runner actions except forced advancements.",
             "noAdvanceOnNA" : "No further advance is possible after 'no advance' play.",
             "noSE" : "Advance by 'Same error (#p#)' is selected, \nbut no corresponding error play was given.",
             "noExAdvFC" : "Further advance after 'FC - Occupied' may happen only once,\n adjust target base instead.",

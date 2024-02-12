@@ -64,7 +64,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   })
 
   // 2) validations over all outputs
-  validation = attachValidation(validation, checkActions(inputs))
+  validation = attachValidation(validation, checkRunnerOnlyActions(inputs))
   validation = attachValidation(validation, checkOutsAndRuns(inputs))
   validation = attachValidation(validation, checkOutcome(inputs))
   validation = attachValidation(validation, checkHit(inputs))
@@ -77,6 +77,7 @@ function checkUserInput (inputs: WBSCInput[]) {
   validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
   validation = attachValidation(validation, checkNoAdvances(inputs))
   validation = attachValidation(validation, checkOBRs(inputs))
+  validation = attachValidation(validation, checkDeadBallPlays(inputs))
   validation = attachValidation(validation, checkSameError(inputs))
   validation = attachValidation(validation, checkEarnedRuns(inputs))
 
@@ -98,7 +99,7 @@ function checkPosSelection (selection: string) {
       for (let i = 0; i < selection.length - 1; i += 1) {
         const current = parseInt(selection[i] || '1')
         if (alreadyEncounteredPositions[current] === true) {
-          validation = attachValidation(validation, useT('editor.validation.noMultipleAsist'))
+          validation = attachValidation(validation, useT('editor.validation.noMultIPleAsist'))
           break
         }
         alreadyEncounteredPositions[current] = true
@@ -110,7 +111,7 @@ function checkPosSelection (selection: string) {
 }
 
 // #204 - check runners-only actions
-function checkActions (inputs: WBSCInput[]) {
+function checkRunnerOnlyActions (inputs: WBSCInput[]) {
   // basically it is not allowed to combine batter + runner-only action
   const batterAction = inputs.some(i => i.group === inputB)
   let invalidCombination = batterAction && inputs.some(i => runnersOnlyActions.includes(i.specAction))
@@ -503,19 +504,18 @@ function checkSBCS (inputs: WBSCInput[]) {
 //   - SB can be followed by WP/PB
 //   - there can be advance because of BB and then WP/PB
 //     (not IBB or HP, because it is dead-ball)
-// IP/BK may only be the first (and only) runner play (because it is dead-ball)
+// WP/PB/IP/BK cannot be mixed
+// further IP/BK validation moved to checkDeadBallPlays (#206)
 function checkExtraBaseAdvances (inputs: WBSCInput[]) {
   let validation = ''
 
   let isWP = false
   let isPB = false
-  let isIP = false
   let isBK = false
+  let isIP = false
 
   let invalidWP = false
   let invalidPB = false
-  let invalidIP = false
-  let invalidBK = false
 
   inputs.forEach((input) => {
     if (input.specAction.toUpperCase() === 'WP') {
@@ -530,21 +530,15 @@ function checkExtraBaseAdvances (inputs: WBSCInput[]) {
         invalidPB = true
       }
     }
-    if (input.specAction.toUpperCase() === 'IP') {
-      isIP = true
-      if (!firstRunnerActions.includes(input.group)) {
-        invalidIP = true
-      }
-    }
     if (input.specAction.toUpperCase() === 'BK') {
       isBK = true
-      if (!firstRunnerActions.includes(input.group)) {
-        invalidBK = true
-      }
+    }
+    if (input.specAction.toUpperCase() === 'IP') {
+      isIP = true
     }
   })
 
-  if (Number(isWP) + Number(isPB) + Number(isIP) + Number(isBK) > 1) {
+  if (Number(isWP) + Number(isPB) + Number(isBK) + Number(isIP) > 1) {
     validation = attachValidation(validation, useT('editor.validation.noMixedExtraAdvances'))
   }
 
@@ -553,12 +547,6 @@ function checkExtraBaseAdvances (inputs: WBSCInput[]) {
   }
   if (invalidPB) {
     validation = attachValidation(validation, useT('editor.validation.noPBAfterPlay'))
-  }
-  if (invalidIP) {
-    validation = attachValidation(validation, useT('editor.validation.noPlayAfterIP'))
-  }
-  if (invalidBK) {
-    validation = attachValidation(validation, useT('editor.validation.noPlayAfterBK'))
   }
 
   return validation
@@ -590,6 +578,8 @@ function checkNoAdvances (inputs: WBSCInput[]) {
   return validation
 }
 
+// edge case - RLE is dead-ball
+// maybe can eventually be merged with `checkDeadBallPlays`?
 function checkOBRs (inputs: WBSCInput[]) {
   let validation = ''
 
@@ -606,6 +596,39 @@ function checkOBRs (inputs: WBSCInput[]) {
   }
 
   return validation
+}
+
+// #206 - when there is a "dead-ball" play, only necessary forced advances of other runners are possible
+// exception: OB2 + BK/IP (obstruction during squeeze play)
+function checkDeadBallPlays (inputs: WBSCInput[]) {
+  if (inputs.some(i => ['INT', 'OB', 'IBB1', 'HP'].includes(i.specAction))) {
+    if (inputs.some(i => i.group !== inputB && !i.specAction.includes('ADV') && (i.group !== inputR3 || !['BK', 'IP'].includes(i.specAction)))) {
+      return useT('editor.validation.noPlayAfterDeadBall')
+    }
+    // the above still allows un-forced advances of R2 or R3
+    const possibleAdvR2 = inputs.some(i => i.group === inputR1)
+    if (!possibleAdvR2 && inputs.some(i => i.group === inputR2 && i.specAction === 'ADV')) {
+      return useT('editor.validation.noPlayAfterDeadBall')
+    }
+    const possibleAdvR3 = possibleAdvR2 && inputs.some(i => i.group === inputR2)
+    if (!possibleAdvR3 && inputs.some(i => i.group === inputR3 && i.specAction === 'ADV')) {
+      return useT('editor.validation.noPlayAfterDeadBall')
+    }
+  }
+
+  if (inputs.some(i => i.specAction === 'BK')) {
+    if (inputs.some(i => i.specAction.toUpperCase() !== 'BK' && (i.group !== inputB || i.specAction !== 'OB' || i.pos !== '2'))) {
+      return useT('editor.validation.noPlayAfterBK')
+    }
+  }
+
+  if (inputs.some(i => i.specAction === 'IP')) {
+    if (inputs.some(i => i.specAction.toUpperCase() !== 'IP' && (i.group !== inputB || i.specAction !== 'OB' || i.pos !== '2'))) {
+      return useT('editor.validation.noPlayAfterIP')
+    }
+  }
+
+  return ''
 }
 
 // HIT can only be credited to batter, if there is no forced out
