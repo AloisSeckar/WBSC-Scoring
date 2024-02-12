@@ -741,7 +741,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       break
   }
 
-  if (possibleConcurrentPlay) {
+  if (possibleConcurrentPlay && firstActions.includes(input.group)) {
     useEvalStore().pushConcurrentPlayIfNotAdded({
       batter: output.batter,
       base: output.base,
