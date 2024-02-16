@@ -404,16 +404,21 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
   const r1Input = inputArr.find(i => i.group === inputR1)
   const r2Input = inputArr.find(i => i.group === inputR2)
   const r3Input = inputArr.find(i => i.group === inputR3)
+  const r1SpecAction = r1Input?.specAction || ''
+  const r2SpecAction = r2Input?.specAction || ''
+  const r3SpecAction = r3Input?.specAction || ''
 
-  // connect SB / CS / O/ with an extra base error
+  // #189 - connect SB / CS / O/ with an extra base error
+  // #176 - also connect "same error" with applicable connection action
   const extraBaseErrors = ['eF', 'eT']
+  const sameError = ['se1', 'se2', 'se3']
   const connectingActions = ['SB', 'SBPOA', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN', 'POCSE', 'POCSEN', 'CSO', 'PO', 'POCS', 'T', 'O/']
-  const r1error = r1Input?.specAction && extraBaseErrors.includes(r1Input.specAction)
-  const r1connect = !r1error && r1Input?.specAction && connectingActions.includes(r1Input.specAction)
-  const r2error = r2Input?.specAction && extraBaseErrors.includes(r2Input.specAction)
-  const r2connect = !r2error && r2Input?.specAction && connectingActions.includes(r2Input.specAction)
-  const r3error = r3Input?.specAction && extraBaseErrors.includes(r3Input.specAction)
-  const r3connect = !r3error && r3Input?.specAction && connectingActions.includes(r3Input.specAction)
+  const r1error = extraBaseErrors.includes(r1SpecAction) || sameError.includes(r1SpecAction)
+  const r1connect = r1error || connectingActions.includes(r1SpecAction)
+  const r2error = extraBaseErrors.includes(r2SpecAction) || sameError.includes(r2SpecAction)
+  const r2connect = r2error || connectingActions.includes(r2SpecAction)
+  const r3error = extraBaseErrors.includes(r3SpecAction) || sameError.includes(r3SpecAction)
+  const r3connect = r3error || connectingActions.includes(r3SpecAction)
 
   if (r1error && (r2connect || r3connect)) {
     const r1Output = r1Input!.output!

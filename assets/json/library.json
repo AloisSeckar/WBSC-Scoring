@@ -580,6 +580,14 @@
     "name": "Caught stealing - C to 3B + R1 O/2 to 2nd"
   },
   {
+    "file": "cs-2e5-r1-se",
+    "name": "Caught stealing - C to 3B (fielding error) + R1 to 2nd (SE)"
+  },
+  {
+    "file": "cs-2e4-r3-se",
+    "name": "Caught stealing - C to 2B (fielding error) + R3 scores (SE)"
+  },
+  {
     "file": "cs-12-r2-o",
     "name": "Caught stealing - P to C + R2 O/2 to 3rd"
   },

@@ -915,6 +915,11 @@ function connectConcurrentPlaysIfNeeded () {
             case 4:
               startY = h1 - 22 + vOffsetStart
               switch (end.base) {
+                case 4:
+                  startX = hOffset + h4
+                  endX = hOffset + h4
+                  endY = h2 + 20 + vOffsetEnd
+                  break
                 case 3:
                   if (out) {
                     startX = hOffset + (h2 - lineHOffset + 8)
