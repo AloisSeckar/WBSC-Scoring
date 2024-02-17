@@ -5,7 +5,7 @@
     },
     "index" : {
         "editor" : "Situation editor",
-        "note" : "Currently we are checking for the last bugs in 1.0.0-RC1 version",
+        "note" : "Currently we are checking for the last bugs in 1.0.0-RC2 version",
         "output" : "Output",
         "download" : "Download image",
         "about" : "About",
@@ -289,13 +289,17 @@
         "history" : {
             "title" : "History",
             "subtitle" : "(release notes on each version)",
+            "1-0-0-rc2" : {
+                "title" : "<strong>Version 1.0.0-RC2</strong> (2024-02-17)",
+                "features" : "<li>New actions - FC+B & E+B, GDP+O</li><li>Added special symbols for advances on GDP/INT/OB</li><li>Actions library - 47 new situations</li><li>Adjustments in rendering</li><li>Various bugfixes and corrections (21)</li>"
+            },
             "1-0-0-rc1" : {
                 "title" : "<strong>Version 1.0.0-RC1</strong> (2023-11-12)",
                 "features" : "<li>Versioning change with same features as in <strong>v0.14</strong></li>"
             },
             "0-14" : {
                 "title" : "<strong>Version 0.14</strong> (2023-11-12)",
-                "features" : "<li>New actions- GLL, GRL, SB PO, POA + error, BOO -> BOT</li><li>Actions library - 31 new situations</li><li>Browser should rememeber language selection (CZ/EN)</li><li>Adjustments in rendering</li><li>Various bugfixes and corrections</li>"
+                "features" : "<li>New actions - GLL, GRL, SB PO, POA + error, BOO -> BOT</li><li>Actions library - 31 new situations</li><li>Browser should rememeber language selection (CZ/EN)</li><li>Adjustments in rendering</li><li>Various bugfixes and corrections</li>"
             },
             "0-13" : {
                 "title" : "<strong>Version 0.13</strong> (2023-07-28)",

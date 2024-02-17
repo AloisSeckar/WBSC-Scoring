@@ -1,10 +1,9 @@
 # WBSC Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system. The app is powered by [Nuxt](https://nuxtjs.org/).
-Live demo (currently v1.0.0-RC1) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
+Live demo (currently v1.0.0-RC2) available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) to get usage instructions.
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms).
 
 ## TO-DO list (to be implemented in next few releases)
-- Actions from updated version of WBSC scoring manual
 - More input validations
 - Deeper refactoring after switching to Nuxt 3
 - Bug-fixing and output corrections
@@ -18,6 +17,20 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - Not covering substitutions and statistic outputs
 
 ## History
+
+### Version 1.0.0-RC2 (2024-02-17)
+- Features:
+  - new actions: FC+B & E+B, GDP+O
+  - adjusted symbols for "advance on GDP" and "advance on INT/OB"
+  - corrections for batter indicators + play connectors
+  - 47 new library actions + tests
+- Font size adjustments
+- Redefined SEO meta tags
+- Enhancements - GitHub issues #151, #160, #165, #173, #177, #189, #191, #200, #204, #206
+- Bug-fixing - GitHub issues #149, #150, #154, #160, #161, #162, #163, #166, #171, #176, #178, #181, #182, #183, #188, #189, #192, #195, #201, #202, #205
+
+### Version 1.0.0-RC1 (2023-11-12)
+- Switched to semantic versioning, no changes
 
 ### Version 0.14 (2023-11-12)
 - Features:

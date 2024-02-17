@@ -5,7 +5,7 @@
     },
     "index" : {
         "editor" : "Editor rozeher",
-        "note" : "Aktuálně odlaďujeme poslední chyby ve verzi 1.0.0-RC1",
+        "note" : "Aktuálně odlaďujeme poslední chyby ve verzi 1.0.0-RC2",
         "output" : "Výsledek",
         "download" : "Stáhnout obrázek",
         "about" : "O programu",
@@ -289,9 +289,13 @@
         "history" : {
             "title" : "Historie",
             "subtitle" : "(poznámky k jednotlivým verzím)",
+            "1-0-0-rc2" : {
+                "title" : "<strong>Verze 1.0.0-RC2</strong> (17.02.2024)",
+                "features" : "<li>Nové akce - FC+B & E+B, GDP+O</li><li>Doplněny speciální symboly pro postupy na GDP, INT a OB</li><li>Knihovna akcí - 47 nových situací</li><li>Úpravy vykreslování</li><li>Opravy chyb a korekce (21)</li>"
+            },
             "1-0-0-rc1" : {
                 "title" : "<strong>Verze 1.0.0-RC1</strong> (12.11.2023)",
-                "features" : "<li>Změna verzování, bsahově shodná s <strong>v0.14</strong></li>"
+                "features" : "<li>Změna verzování, obsahově shodná s <strong>v0.14</strong></li>"
             },
             "0-14" : {
                 "title" : "<strong>Verze 0.14</strong> (12.11.2023)",
