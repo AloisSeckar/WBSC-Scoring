@@ -96,6 +96,14 @@
     "name": "Strike out (S) + R3 out C to P at HP"
   },
   {
+    "file": "kso-r1-24-r3-hp",
+    "name": "Strike out (S) + R1 out C to 2B, R3 scores"
+  },
+  {
+    "file": "kso-r1-o-r3-21",
+    "name": "Strike out (L) + R1 to 2nd (O/2), R3 out C to P at HP"
+  },
+  {
     "file": "ksfc",
     "name": "Strike out (S) + R2 to 3B on PB"
   },

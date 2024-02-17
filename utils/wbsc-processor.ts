@@ -508,6 +508,20 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
       })
     }
   }
+
+  // #182 - connect "indifference" with runner out, not KSO (example 74)
+  const isKSO = batterAction === 'KSO' || batterAction === 'KLO'
+  if (isKSO) {
+    const playWithIndifference = inputArr.find(i => i.specAction === 'O/')
+    const playWithOut = inputArr.find(i => ['GO', 'GOT'].includes(i.specAction))
+    const playToFix = useEvalStore().concurrentPlays.find(p => p.base === 1)
+    if (playWithIndifference && playWithOut && playToFix) {
+      playToFix.base = playWithOut.base
+      playToFix.batter = playWithOut.output!.batter
+      playToFix.out = true
+      playToFix.text1 = playWithOut.specAction
+    }
+  }
 }
 
 export {
