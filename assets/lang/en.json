@@ -8,11 +8,11 @@
         "output" : "Output",
         "download" : "Download image",
         "about" : "About",
-        "dscr" : "This JavaScript-based tool provides visualization for <b><a href=\"https://www.wbsc.org/\">WBSC</a> Scoring System</b> to help new scorers adopting it. Use GUI elements to create a baseball/softball game situation, then click the <strong>'Score play'</strong> button to see how it shall be scored. If you want to store the result, use the <strong>'Download image'</strong> button. If something is wrong, feel free to <a href=\"/report\">report it</a>.",
+        "dscr" : "This JavaScript-based tool provides visualization for <b><a href=\"https://www.wbsc.org/\">WBSC</a> Scoring System</b> to help new scorers adopt it. Use GUI elements to create a baseball/softball game situation, then click the <strong>'Score play'</strong> button to see how it shall be scored. If you want to store the result, use the <strong>'Download image'</strong> button. If something is wrong, feel free to <a href=\"/report\">report it</a>.",
         "overview" : "Project overview",
         "manual" : "User manual",
         "report" : "Report bug",
-        "license" : "This software is distributed under <a href=\"http://unlicense.org/\">UNLICENSE</a>. This means the tool and its output is absolutely free to use for everyone for any purpose. You don't have to ask for any permission, nor you have to credit the author. However, if you want to, it would be appreciated :)",
+        "license" : "This software is distributed under <a href=\"http://unlicense.org/\">UNLICENSE</a>. This means the tool and its output is absolutely free to use for everyone for any purpose. You don't have to ask for any permission, nor do you have to credit the author. However, if you want to, it would be appreciated :)",
         "endorse" : "Also, if you happen to like this thing, please spread your word about it to help it reach other potential users."
     },
     "editor" : {
@@ -211,7 +211,7 @@
             "properAction" : "Action must be properly defined.",
             "noSelfAsist" : "A fielder cannot assist directly to self.",
             "noMultipleAsist" : "A fielder cannot have more than 1 assist in a play.",
-            "runnerOnlyAction" : "Runners-only action (SB/CS/PO/BK/IP) canot be combined with batter's action.",
+            "runnerOnlyAction" : "Runners-only action (SB/CS/PO/BK/IP) cannot be combined with batter's action.",
             "max3Outs" : "There cannot be more than 3 outs in one play.",
             "3OutsNoRuns" : "There cannot be 3 outs and a run scored in one play.",
             "noOutAfterOut" : "One player cannot be out more than once.",
@@ -226,11 +226,11 @@
             "notFO3" : "Force out at 3rd is not possible, because the runner from 2nd is not forced to advance.",
             "notFOH" : "Force out at Home is not possible, because the runner from 3rd is not forced to advance.",
             "noDistantFO" : "Force out is only possible at the closest base to advance on.",
-            "missingOPlay" : "FC - occupied is selected, but corresponding out/decessive error is missing.",
+            "missingOPlay" : "FC - occupied is selected, but corresponding out/decisive error is missing.",
             "missingFCPlay" : "FC is selected, but corresponding runner advance is missing.",
             "missingPBPlay" : "If strikeout with FC is selected, there must be a passed ball credited to a runner.",
-            "missingGDPPlay" : "GDP is selected, but corresponding out/decessive error is missing.",
-            "missingGDPOPlay" : "GDP - occupied is selected, but corresponding out/decessive error plays are missing.",
+            "missingGDPPlay" : "GDP is selected, but corresponding out/decisive error is missing.",
+            "missingGDPOPlay" : "GDP - occupied is selected, but corresponding out/decisive error plays are missing.",
             "missingSHPlay" : "SH is selected, but no runner advanced by batter.",
             "missingSFPlay" : "SF is selected, but no runner advanced by batter.",
             "missingSFRun" : "SF is selected, but no runner scored.",
@@ -265,7 +265,7 @@
         "title" : "DESCRIPTION",
         "p1" : "<strong>WBSC Scoring Creator</strong> is a JavaScript-based program allows selecting combination of plays that may occur in baseball/softball game to visualize the way of scoring such play in <a href=\"https://www.wbsc.org/\">WBSC</a> scoring system. It is meant both for individual scorers for learning and revising and for tutors to help them build up educational materials for clinics.",
         "p2" : "For more information about how to use the program, see <a href=\"help.html\">User manual</a>.",
-        "p3" : "The project is maintained and developed voluntarily by a dedicated scorer who happens to know a thing or two about programming as well. However, it will take long before it reaches ideal shape, if ever. Shall you encounter any incorrect or odd behaviur or something that is missing and should be also included, don't hesitate to contact the author - either directly via <a href=\"mailto:alois.seckar{'@'}gmail.com\">my email</a> or you can use <a href=\"https://github.com/AloisSeckar/WBSC-Scoring/issues\">GitHub interface</a> for creating new report/question/suggestion directly there. If you do so, try to describe your issue, so it can be addressed. Screenshots are useful to see what is happening. You may want to check our <a href=\"/report\">reporting bug guide</a> for details.",
+        "p3" : "The project is maintained and developed voluntarily by a dedicated scorer who happens to know a thing or two about programming as well. However, it will take long before it reaches ideal shape, if ever. Shall you encounter any incorrect or odd behavior or something that is missing and should be also included, don't hesitate to contact the author - either directly via <a href=\"mailto:alois.seckar{'@'}gmail.com\">my email</a> or you can use <a href=\"https://github.com/AloisSeckar/WBSC-Scoring/issues\">GitHub interface</a> for creating new report/question/suggestion directly there. If you do so, try to describe your issue, so it can be addressed. Screenshots are useful to see what is happening. You may want to check our <a href=\"/report\">reporting bug guide</a> for details.",
         "p4" : "This program is still evolving. Visit the <a href=\"project.html#todo\">\"TO-DO\" section</a> in Project overview to check what is yet planned to be implemented. Refer to the <a href=\"project.html#limitations\">\"Limitations\" list</a> to see what is certainly not possible atm.",
         "p5" : "This is an <a href=\"https://unlicense.org/\">Unlicensed</a> open-source that can be found <a href=\"https://github.com/AloisSeckar/WBSC-Scoring\">HERE</a>. Any help with further development would be appreciated, but you can as well take the source code and do whatever you want with it yourself.",
         "done" : {
@@ -282,7 +282,7 @@
             "title" : "Limitations",
             "subtitle" : "(not planned to be implemented soon)",
             "dscr" : "There are several features of WBSC scoring system that are currently not covered by this program. They may be included in some future releases, but no promises.",
-            "list" : "<li>It is not possible to specify actions leading to runners appearing on bases (except TIE). The actuall action is always replaced with a <strong><span style=\"color: red\">red asterisk</span></strong>.</li><li>It is not possible to specify the batting order of the batter and previous runners. Output always starts from 1.</li><li>It is not possible to get different number of Ks and BBs than 1</li><li>Actions are limited to up to 3 assists (followed by an out or an error). This is mainly to avoid practical problems with rendering more numbers.</li><li>No 10th player (additional outfielder) for slowpitch. However, it is quite probable this will be eventually added.</li><li>Not covering possible Baseball5 features. This is because Baseball5 system is very different and non-compatible. If you're interested, here is <a href=\"https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf\">the official WBSC document</a> covering the Baseball5 scoring system.</li><li>Not covering substitutions and statistical outputs. It doesn't quite make sense to include them into the app mechanic. However, it is planned to add dedicated static articles covering these two topics.</li>"
+            "list" : "<li>It is not possible to specify actions leading to runners appearing on bases (except TIE). The actual action is always replaced with a <strong><span style=\"color: red\">red asterisk</span></strong>.</li><li>It is not possible to specify the batting order of the batter and previous runners. Output always starts from 1.</li><li>It is not possible to get different number of Ks and BBs than 1</li><li>Actions are limited to up to 3 assists (followed by an out or an error). This is mainly to avoid practical problems with rendering more numbers.</li><li>No 10th player (additional outfielder) for slowpitch. However, it is quite probable this will be eventually added.</li><li>Not covering possible Baseball5 features. This is because Baseball5 system is very different and non-compatible. If you're interested, here is <a href=\"https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf\">the official WBSC document</a> covering the Baseball5 scoring system.</li><li>Not covering substitutions and statistical outputs. It doesn't quite make sense to include them into the app mechanic. However, it is planned to add dedicated static articles covering these two topics.</li>"
         },
         "history" : {
             "title" : "History",
@@ -301,7 +301,7 @@
             },
             "0-14" : {
                 "title" : "<strong>Version 0.14</strong> (2023-11-12)",
-                "features" : "<li>New actions - GLL, GRL, SB PO, POA + error, BOO -> BOT</li><li>Actions library - 31 new situations</li><li>Browser should rememeber language selection (CZ/EN)</li><li>Adjustments in rendering</li><li>Various bugfixes and corrections</li>"
+                "features" : "<li>New actions - GLL, GRL, SB PO, POA + error, BOO -> BOT</li><li>Actions library - 31 new situations</li><li>Browser should remember language selection (CZ/EN)</li><li>Adjustments in rendering</li><li>Various bugfixes and corrections</li>"
             },
             "0-13" : {
                 "title" : "<strong>Version 0.13</strong> (2023-07-28)",
@@ -353,7 +353,7 @@
             },
             "0-5" : {
                 "title" : "<strong>Version 0.5</strong> (2020-06-13)",
-                "features" : "<li>Batting order (1-4) is now considered</li><li>New actions supported:<ul class=\"list-disc\"><li>Numerous strike out variants</li><li>Extra base advances - BB, IBB, HP, WP, PB, O/</li><li>SB and CS situations</li><li>Various plays with errors</li></ul></li><li>Rendering improved and corrected for currently supported actions</li><li>Due to rendering issues situations are now allowed only with 0-3 assists (followed by an outor an error)</li><li>Various bugfixes and corrections</li>"
+                "features" : "<li>Batting order (1-4) is now considered</li><li>New actions supported:<ul class=\"list-disc\"><li>Numerous strike out variants</li><li>Extra base advances - BB, IBB, HP, WP, PB, O/</li><li>SB and CS situations</li><li>Various plays with errors</li></ul></li><li>Rendering improved and corrected for currently supported actions</li><li>Due to rendering issues situations are now allowed only with 0-3 assists (followed by an out or an error)</li><li>Various bugfixes and corrections</li>"
             },
             "0-4" : {
                 "title" : "<strong>Version 0.4</strong> (2020-06-09)",
@@ -369,7 +369,7 @@
             },
             "0-1" : {
                 "title" : "<strong>Version 0.1</strong> (2019-12-23)",
-                "features" : "<li>First version recorded and launched. Basic website with inputs to generate situation for onebatter. Output can be saved as an image.</li><li>Supported batter's actions:<ul class=\"list-disc\"><li>Strikeout looking and swinging</li><li>Simple ground outs with 1 or 2 fielders involved</li><li>Full spectrum of fly outs</li><li>Full spectrum of hits including named locations</li><li>Ground rule doubles and inside the park home runs</li><li>BB, IBB and HP</li></ul></li>"
+                "features" : "<li>First version recorded and launched. Basic website with inputs to generate situation for one batter. Output can be saved as an image.</li><li>Supported batter's actions:<ul class=\"list-disc\"><li>Strikeout looking and swinging</li><li>Simple ground outs with 1 or 2 fielders involved</li><li>Full spectrum of fly outs</li><li>Full spectrum of hits including named locations</li><li>Ground rule doubles and inside the park home runs</li><li>BB, IBB and HP</li></ul></li>"
             }
         }
     },
@@ -429,7 +429,7 @@
     "report" : {
         "title" : "REPORTING BUGS",
         "motto" : "In every computer program there is at least one bug.",
-        "p1" : "This saying might be a little exaggerated, but generally it is quite hard to keep any application error prone. I am doing my best developing \"WBSC Scoring\", also having quite solid bunch of automated tests with dozens of situations to test every time before I add/update/fix something, but basically I am sure there are still mistakes hidden around and waiting to be discovered. And if not mistakes, then you'll probably come up with some \"nice to have\" new features I haven't thought about yet.",
+        "p1" : "This saying might be a little exaggerated, but generally it is quite hard to keep any application error prone. I am doing my best developing \"WBSC Scoring\", also having quite solid bunch of automated tests with dozens of situations to test every time before I add/update/fix something, but basically, I am sure there are still mistakes hidden around and waiting to be discovered. And if not mistakes, then you'll probably come up with some \"nice to have\" new features I haven't thought about yet.",
         "p2" : "I am ready for all your input. Here on this page, you can find details about the reporting process.",
         "issues" : {
             "title" : "GitHub issues",
