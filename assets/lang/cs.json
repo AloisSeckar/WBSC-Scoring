@@ -459,6 +459,7 @@
         }
     },
     "footer" : {
+        "version" : "Verze",
         "creator" : "Vytvořil a udržuje"
     }
 }

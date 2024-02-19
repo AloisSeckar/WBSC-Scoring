@@ -459,6 +459,7 @@
         }
     },
     "footer" : {
+        "version" : "Version",
         "creator" : "Created and maintained by"
     }
 }
