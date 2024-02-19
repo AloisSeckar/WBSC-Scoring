@@ -5,7 +5,7 @@
         <LanguageSelector />
         <div class="text-center">
           <header class="mt-1 mb-2">
-            <h1>WBSC Scoring Creator <span class="demo">DEMO</span></h1>
+            <h1>WBSC Scoring <span class="text-red-500">Creator</span></h1>
           </header>
           <div class="text-justify mb-16">
             <NuxtPage />

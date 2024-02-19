@@ -7,7 +7,7 @@
 		@apply text-wbsc-blue text-4xl font-bold font-header;
 	}
 	h2 {
-		@apply mt-4 text-wbsc-blue text-3xl font-bold;
+		@apply mt-4 mb-2 text-wbsc-blue text-3xl font-bold;
 	}
 	h3 {
 		@apply mb-2 text-xl font-bold;
@@ -19,10 +19,6 @@
 
 	img {
 		@apply mb-4;
-	}
-
-	.demo {
-		@apply text-red-500;
 	}
 
 	.list-disc {

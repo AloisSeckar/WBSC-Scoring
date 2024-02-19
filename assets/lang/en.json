@@ -5,7 +5,6 @@
     },
     "index" : {
         "editor" : "Situation editor",
-        "note" : "Currently we are checking for the last bugs in 1.0.0-RC2 version",
         "output" : "Output",
         "download" : "Download image",
         "about" : "About",
@@ -272,13 +271,12 @@
         "done" : {
             "title" : "DONE",
             "subtitle" : "(what you can find here)",
-            "dscr" : "<em>List will be included upon v1.0 release.</em>"
+            "list" : "<li>Action editor capable of inserting most of existing situations according to latest version of WBSC manual</li><li>Download output images as PNG</li><li>Export/Import actions in JSON format</li><li>Actions library with 193 predefined plays</li><li>User manual</li><li>English and Czech translation</li>"
         },
         "todo" : {
             "title" : "TO-DO list",
             "subtitle" : "(hopefully will be implemented in next few releases)",
-            "dscr" : "This is what I have scheduled to add or improve:",
-            "list" : "<li>Cover most possible situations</li><li>More input validations</li><li>Output corrections and fixes</li>"
+            "list" : "<li>Reorganizing actions library for greater clarity</li><li>Translations to other languages</li><li>Info pages with scoresheet description and ways of marking substitutions</li><li>More input validations</li><li>Output corrections and fixes where necessary</li>"
         },
         "limitations" : {
             "title" : "Limitations",
@@ -289,6 +287,10 @@
         "history" : {
             "title" : "History",
             "subtitle" : "(release notes on each version)",
+            "1-0-0" : {
+                "title" : "<strong>Version 1.0.0</strong> (2024-02-19)",
+                "features" : "<li>Stabilized feature set listed in \"Project overview\"</li>"
+            },
             "1-0-0-rc2" : {
                 "title" : "<strong>Version 1.0.0-RC2</strong> (2024-02-17)",
                 "features" : "<li>New actions - FC+B & E+B, GDP+O</li><li>Added special symbols for advances on GDP/INT/OB</li><li>Actions library - 47 new situations</li><li>Adjustments in rendering</li><li>Various bugfixes and corrections (21)</li>"

@@ -13,14 +13,13 @@
     <h2>{{ $t('project.done.title') }}</h2>
     <h3>{{ $t('project.done.subtitle') }}</h3>
     <div>
-      <p v-html="$t('project.done.dscr')" />
+      <ul class="list-disc" v-html="$t('project.done.list')" />
     </div>
 
     <a id="todo" />
     <h2>{{ $t('project.todo.title') }}</h2>
     <h3>{{ $t('project.todo.subtitle') }}</h3>
     <div>
-      <p v-html="$t('project.todo.dscr')" />
       <ul class="list-disc" v-html="$t('project.todo.list')" />
     </div>
 
@@ -35,6 +34,10 @@
     <a id="history" />
     <h2>{{ $t('project.history.title') }}</h2>
     <h3>{{ $t('project.history.subtitle') }}</h3>
+    <div class="mb-2">
+      <p v-html="$t('project.history.1-0-0.title')" />
+      <ul class="list-disc" v-html="$t('project.history.1-0-0.features')" />
+    </div>
     <div class="mb-2">
       <p v-html="$t('project.history.1-0-0-rc2.title')" />
       <ul class="list-disc" v-html="$t('project.history.1-0-0-rc2.features')" />

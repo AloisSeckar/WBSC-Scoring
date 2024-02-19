@@ -1,11 +1,8 @@
 <template>
   <div class="text-center">
-    <h2>{{ $t('index.editor') }} v1.0</h2>
+    <h2>{{ $t('index.editor') }} <span class="text-red-500">v1.0</span></h2>
 
     <div class="container">
-      <div class="mb-2">
-        {{ $t('index.note') }}
-      </div>
       <div id="wbsc-inputs" class="mb-2">
         <!-- inputs are dynamically rendered here -->
       </div>

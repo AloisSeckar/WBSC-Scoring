@@ -18,6 +18,9 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
+### Version 1.0.0 (2024-02-19)
+- Stabilized feature set listed in "Project overview"
+
 ### Version 1.0.0-RC2 (2024-02-17)
 - Features:
   - new actions: FC+B & E+B, GDP+O

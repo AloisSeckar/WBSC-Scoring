@@ -5,7 +5,6 @@
     },
     "index" : {
         "editor" : "Editor rozeher",
-        "note" : "Aktuálně odlaďujeme poslední chyby ve verzi 1.0.0-RC2",
         "output" : "Výsledek",
         "download" : "Stáhnout obrázek",
         "about" : "O programu",
@@ -272,13 +271,12 @@
         "done" : {
             "title" : "HOTOVO",
             "subtitle" : "(co zde můžete najít)",
-            "dscr" : "<em>Seznam bude vytvořen při vydání verze 1.0.</em>"
+            "list" : "<li>Editor rozeher umožňující zadat téměř všechny existující situace podle nejnovější verze WBSC manuálu</li><li>Stahování výsledných obrázků v PNG formátu</li><li>Export/Import akcí v JSON formátu</li><li>Knihovna akcí se 193 předdefinovanými situacemi</li><li>Uživatelská příručka</li><li>Český a Anglický překlad</li>"
         },
         "todo" : {
             "title" : "Seznam TO-DO",
             "subtitle" : "(snad bude implementováno v následujících verzích)",
-            "dscr" : "Tohle mám v plánu přidat nebo vylepšit:",
-            "list" : "<li>Pokrýt většinu možných situací</li><li>Více validací vstupu</li><li>Opravy a úpravy výstupu</li>"
+            "list" : "<li>Reorganizace knihovny akcí pro větší přehlednost</li><li>Překlady do dalších jazyků</li><li>Informační stránky s popisem scoresheetu a způsobu zápisu střídání</li><li>Více validací vstupu</li><li>Opravy a úpravy výstupu kde to bude potřeba</li>"
         },
         "limitations" : {
             "title" : "Omezení",
@@ -289,6 +287,10 @@
         "history" : {
             "title" : "Historie",
             "subtitle" : "(poznámky k jednotlivým verzím)",
+            "1-0-0" : {
+                "title" : "<strong>Verze 1.0.0</strong> (19.02.2024)",
+                "features" : "<li>Stabilizován seznam funkcionality vypsaný v \"Přehledu projektu\"</li>"
+            },
             "1-0-0-rc2" : {
                 "title" : "<strong>Verze 1.0.0-RC2</strong> (17.02.2024)",
                 "features" : "<li>Nové akce - FC+B & E+B, GDP+O</li><li>Doplněny speciální symboly pro postupy na GDP, INT a OB</li><li>Knihovna akcí - 47 nových situací</li><li>Úpravy vykreslování</li><li>Opravy chyb a korekce (21)</li>"
