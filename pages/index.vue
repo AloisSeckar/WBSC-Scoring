@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <h2>{{ $t('index.editor') }} <span class="text-red-500">v1.0</span></h2>
+    <h2>{{ $t('index.editor') }} <span class="text-red-500">v1.1</span></h2>
 
     <div class="container">
       <div id="wbsc-inputs" class="mb-2">
