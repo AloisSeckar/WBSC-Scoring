@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
-    <img src="~/assets/img/flag-en.png" alt="EN" title="English" :class="locale === 'en' ? selectedLang : lang" @click="setLocale('en')">
-    <img src="~/assets/img//flag-cs.png" alt="CS" title="Čeština" :class="locale === 'cs' ? selectedLang : lang" @click="setLocale('cs')">
+    <NuxtImg src="/flag-en.png" alt="EN" title="English" :class="locale === 'en' ? selectedLang : lang" @click="setLocale('en')" />
+    <NuxtImg src="/flag-cs.png" alt="CS" title="Čeština" :class="locale === 'cs' ? selectedLang : lang" @click="setLocale('cs')" />
   </div>
 </template>
 

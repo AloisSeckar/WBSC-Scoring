@@ -46,7 +46,7 @@
     <div class="mb-2">
       <p v-html="$t('report.howto.consoleDscr')" />
       <p v-html="$t('report.howto.consoleExample')" />
-      <img src="~/assets/img/report-console.png" class="w-full h-auto max-w-4xl">
+      <NuxtImg src="/report-console.png" class="w-full h-auto max-w-4xl" />
     </div>
 
     <NavButtons />
