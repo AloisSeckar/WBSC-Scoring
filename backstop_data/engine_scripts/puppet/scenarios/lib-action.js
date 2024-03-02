@@ -9,5 +9,5 @@ module.exports = async (page, scenario) => {
   // select (and wait for generate action)
   await page.waitForSelector('#lib-select')
   await page.click('#lib-select')
-  await page.waitForTimeout(400)
+  await new Promise(resolve => setTimeout(resolve, 400))
 }
