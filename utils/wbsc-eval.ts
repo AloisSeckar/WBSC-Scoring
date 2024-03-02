@@ -590,7 +590,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       battingOrder += document.getElementById(inputR3) ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
     }
-    // falls through
+      break
     case 'se3':
       output.text1 = '(1)'
       break
