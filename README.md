@@ -18,6 +18,9 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 
 ## History
 
+### Version 1.0.1 (2024-03-02)
+- Hotfixed error in evaluating "Same error (R2)" (#209)
+
 ### Version 1.0.0 (2024-02-19)
 - Stabilized feature set listed in "Project overview"
 
