@@ -1,5 +1,6 @@
 module.exports = async (page) => {
-  await page.waitForSelector('#button-input-b')
+  // TODO failing for 's'
+  await page.waitForSelector('#button-input-r3')
   // render all batter's inputs
   await page.click('#button-input-b1')
   await page.click('#button-input-b2')
@@ -7,12 +8,10 @@ module.exports = async (page) => {
   // render all R1 inputs
   await page.click('#button-input-r1')
   await page.click('#button-input-r1a')
-  // TODO for some reason r1b fails on 's'
-  // await page.click('#button-input-r1b')
+  await page.click('#button-input-r1b')
   // render all R2 inputs
   await page.click('#button-input-r2')
-  // TODO for some reason r2a fails on 's'
-  // await page.click('#button-input-r2a')
+  await page.click('#button-input-r2a')
   // render R3 inputs
   await page.click('#button-input-r3')
 }
