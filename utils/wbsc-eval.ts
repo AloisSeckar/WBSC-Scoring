@@ -262,6 +262,7 @@ function changeRunnerSpecificAction (group: string) {
     case 'POE':
     case 'O/':
     case 'ob':
+    case 'o':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'T':
@@ -617,6 +618,9 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
     case 'OB':
     case 'ob':
       output.text1 = action + pos
+      break
+    case 'o':
+      output.text1 = 'O' + pos
       break
     case 'CSO':
     case 'PO':

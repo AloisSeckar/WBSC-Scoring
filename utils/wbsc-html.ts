@@ -378,6 +378,9 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       if ((!group.includes('-r'))) {
         // only for running batter, not the runners
         options.push(`<option value="oc">${useT('editor.action.fc.oc')}</option>`)
+      } else {
+        // only for runners
+        options.push(`<option value="o">${useT('editor.action.fc.oc')}</option>`)
       }
       options.push('</optgroup>')
       break

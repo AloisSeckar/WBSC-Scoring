@@ -392,6 +392,10 @@ function checkFC (inputs: WBSCInput[]) {
         kfcPlay = true
       }
     }
+    // #209 - runners may also advance on "FC - occupied"
+    if (input.specAction === 'o') {
+      oSituation = true
+    }
   })
 
   if (oSituation && !oPlay) {

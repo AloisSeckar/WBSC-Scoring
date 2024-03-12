@@ -245,15 +245,19 @@
   },
   {
     "file": "fc-o6-r1-64",
-    "name": "Fielder's choice - occuped - R1 SS to 2B"
+    "name": "Fielder's choice - occupied - R1 SS to 2B"
   },
   {
     "file": "fc-o1b-r1-14",
-    "name": "Fielder's choice - occuped - R1 P to 2B - bunt"
+    "name": "Fielder's choice - occupied - R1 out P to 2B, bunt"
+  },
+  {
+    "file": "fc-o1b-r1-o1-r2-15",
+    "name": "Fielder's choice - occupied - R1 to 2nd, R2 out P to 3B, bunt"
   },
   {
     "file": "fc-o3-r3-32",
-    "name": "Fielder's choice - occuped - R3 1B to C"
+    "name": "Fielder's choice - occupied - R3 1B to C"
   },
   {
     "file": "fc-64",
