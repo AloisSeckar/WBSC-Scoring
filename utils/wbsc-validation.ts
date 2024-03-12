@@ -251,25 +251,27 @@ function checkHit (inputs: WBSCInput[]) {
         break
       case inputR1:
         runnerAt1 = true
-        forceOut = input.specAction.startsWith('GO')
         appealPlay = input.specAction === 'A'
+        forceOut = input.specAction.startsWith('GO') || (appealPlay && hitPlay)
         break
       case inputR2:
         runnerAt2 = true
-        forceOut = forceOut || (runnerAt1 && input.specAction.startsWith('GO'))
         appealPlay = appealPlay || input.specAction === 'A'
+        forceOut = forceOut || (runnerAt1 && (input.specAction.startsWith('GO') || appealPlay))
         break
       case inputR3:
-        forceOut = forceOut || (runnerAt1 && runnerAt2 && input.specAction.startsWith('GO'))
         appealPlay = appealPlay || input.specAction === 'A'
+        forceOut = forceOut || (runnerAt1 && runnerAt2 && (input.specAction.startsWith('GO') || appealPlay))
         break
     }
   })
 
   if (hitPlay && forceOut) {
-    validation = attachValidation(validation, useT('editor.validation.noHitAndO'))
-  } else if (hitPlay && appealPlay) {
-    validation = attachValidation(validation, useT('editor.validation.noHitAndA'))
+    if (appealPlay) {
+      validation = attachValidation(validation, useT('editor.validation.noHitAndA'))
+    } else {
+      validation = attachValidation(validation, useT('editor.validation.noHitAndO'))
+    }
   }
 
   return validation
