@@ -241,6 +241,7 @@
             "noPlayAfterIP" : "IP must be the only runner play at the moment.",
             "noPlayAfterBK" : "BK must be the only runner play at the moment.",
             "noPlayAfterRLE" : "RLE must be the only runner play at the moment.",
+            "noHBBWithoutHit" : "HBB must be scored together with a single for the batter.",
             "noPlayAfterDeadBall" : "Selected action is a dead-ball and prevents all runner actions except forced advancements.",
             "noAdvanceOnNA" : "No further advance is possible after 'no advance' play.",
             "noSE" : "Advance by 'Same error (#p#)' is selected, \nbut no corresponding error play was given.",

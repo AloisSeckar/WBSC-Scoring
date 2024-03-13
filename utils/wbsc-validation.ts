@@ -586,6 +586,7 @@ function checkNoAdvances (inputs: WBSCInput[]) {
 
 // edge case - RLE is dead-ball
 // maybe can eventually be merged with `checkDeadBallPlays`?
+// #130 HBB - requires a single hit for batter
 function checkOBRs (inputs: WBSCInput[]) {
   let validation = ''
 
@@ -599,6 +600,14 @@ function checkOBRs (inputs: WBSCInput[]) {
 
   if (isRLE && inputs.length > 1) {
     validation = attachValidation(validation, useT('editor.validation.noPlayAfterRLE'))
+  }
+
+  const isHBB = inputs.some(i => i.specAction === 'OBR_hbb')
+  if (isHBB) {
+    const bAction = inputs.find(i => i.group === inputB)?.specAction
+    if (bAction !== '1B') {
+      validation = attachValidation(validation, useT('editor.validation.noHBBWithoutHit'))
+    }
   }
 
   return validation

@@ -241,6 +241,7 @@
             "noPlayAfterIP" : "IP musí být v daný moment jediná situace běžce.",
             "noPlayAfterBK" : "BK musí být v daný moment jediná situace běžce.",
             "noPlayAfterRLE" : "RLE musí být v daný moment jediná situace běžce.",
+            "noHBBWithoutHit" : "HBB musí být dohromady se single odpalem pro pálkaře.",
             "noPlayAfterDeadBall" : "Vybraná akce znamená dead-ball, což vylučuje jakékoliv další rozehry s výjimkou nucených postupů.",
             "noAdvanceOnNA" : "Po 'no advance' rozehře není možný další postup běžce.",
             "noSE" : "Je vybrán postup na 'stejnou chybu (#p#)', ale chybí odpovídající situace s chybou.",
