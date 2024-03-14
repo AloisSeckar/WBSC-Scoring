@@ -708,6 +708,10 @@
     "name": "Out by rule - Dropped Infield Fly"
   },
   {
+    "file": "obr-dif-r2-e4",
+    "name": "Out by rule - Dropped Infield Fly, R2 to 3rd on e4"
+  },
+  {
     "file": "obr-bin",
     "name": "Out by rule - Batter Interference"
   },

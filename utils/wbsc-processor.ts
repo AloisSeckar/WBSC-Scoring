@@ -522,6 +522,22 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
       playToFix.text1 = playWithOut.specAction
     }
   }
+
+  // #164 - connect DIF + error/out
+  const isDIF = batterAction === 'OBR_DIF'
+  if (isDIF) {
+    inputArr.forEach((input) => {
+      if (['OBR_DIF', 'GO', 'GOT', 'eF', 'eT'].includes(input.specAction)) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: input!.output!.batter,
+          base: input.base,
+          out: input.output!.out,
+          na: false,
+          text1: input!.output!.text1
+        })
+      }
+    })
+  }
 }
 
 export {
