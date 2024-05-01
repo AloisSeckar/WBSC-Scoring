@@ -9,16 +9,16 @@
     "test-approve": "backstop approve --config=backstop.config.js"
   },
   "devDependencies": {
-    "@nuxt/image": "1.4.0",
+    "@nuxt/image": "1.6.0",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
-    "@nuxtjs/i18n": "8.2.0",
-    "@nuxtjs/tailwindcss": "6.11.4",
+    "@nuxtjs/i18n": "8.3.1",
+    "@nuxtjs/tailwindcss": "6.12.0",
     "@pinia/nuxt": "0.5.1",
     "@vueuse/core": "10.9.0",
     "@vueuse/nuxt": "10.9.0",
     "backstopjs": "6.3.23",
-    "eslint": "8.57.0",
-    "nuxt": "3.11.1",
+    "eslint": "9.1.1",
+    "nuxt": "3.11.2",
     "pinia": "2.1.7",
     "tailwindcss": "3.4.3"
   }
