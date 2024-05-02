@@ -1,18 +1,24 @@
 export default defineNuxtConfig({
   ssr: false,
   modules: [
-    '@nuxt/image',
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
+    '@nuxt/eslint',
+    '@nuxt/image',
     '@pinia/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
   image: {
-    dir: 'assets/img'
+    dir: 'assets/img',
   },
   nitro: {
     prerender: {
-      routes: ['/help', '/project', '/report']
-    }
-  }
+      routes: ['/help', '/project', '/report'],
+    },
+  },
 })

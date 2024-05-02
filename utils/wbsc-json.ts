@@ -7,10 +7,10 @@ import type { WBSCInput } from '@/composables/useInputStore'
 
 // export current input selection as JSON file
 // by https://bobbyhadz.com/blog/javascript-set-blob-filename
-export function exportInputAsJSON () {
+export function exportInputAsJSON() {
   const json = JSON.stringify(getRawInputs())
   const blob = new Blob([json], {
-    type: 'application/octet-stream'
+    type: 'application/octet-stream',
   })
 
   const url = window.URL.createObjectURL(blob)
@@ -29,7 +29,7 @@ export function exportInputAsJSON () {
 // TODO this is (nearly) the same as being done in wbsc-processor.processAction
 // except one special evaluation (bErrorTarget) and we dont use output+validation here
 // refactor to be able to have such code only once...
-function getRawInputs (): WBSCInput[] {
+function getRawInputs(): WBSCInput[] {
   const inputs = [] as WBSCInput[]
 
   const r3Input = getInput(inputR3, true)
@@ -79,7 +79,7 @@ function getRawInputs (): WBSCInput[] {
   return inputs
 }
 
-export function importInputFromJSON () {
+export function importInputFromJSON() {
   const fileInput = document.getElementById(inputImportFile) as HTMLInputElement
   const file = fileInput?.files?.[0]
 
@@ -93,7 +93,7 @@ export function importInputFromJSON () {
   // TODO we may want to log errors...
 }
 
-export function importInputFromLib (fileName: string) {
+export function importInputFromLib(fileName: string) {
   fetch('/json/' + fileName)
     .then(response => response.json())
     .then((fileData) => {
@@ -102,7 +102,7 @@ export function importInputFromLib (fileName: string) {
     // TODO we may want to log errors...
 }
 
-function processFile (fileData: string | ArrayBuffer | null | undefined) {
+function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
     clearInputs()
     renderInputs(inputB)
@@ -114,7 +114,7 @@ function processFile (fileData: string | ArrayBuffer | null | undefined) {
   }
 }
 
-function setInputs (input: WBSCInput) {
+function setInputs(input: WBSCInput) {
   const group = input.group
   const pos = input.pos
 

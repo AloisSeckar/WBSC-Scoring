@@ -56,6 +56,6 @@
 <script setup>
 usePageMeta({
   ...WBSC_PAGE_META,
-  title: WBSC_PAGE_META.title + ' - Report'
+  title: WBSC_PAGE_META.title + ' - Report',
 })
 </script>

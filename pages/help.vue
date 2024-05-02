@@ -87,7 +87,7 @@
 <script setup>
 usePageMeta({
   ...WBSC_PAGE_META,
-  title: WBSC_PAGE_META.title + ' - Help'
+  title: WBSC_PAGE_META.title + ' - Help',
 })
 </script>
 

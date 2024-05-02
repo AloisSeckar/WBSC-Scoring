@@ -10,7 +10,7 @@ import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 //   clear - true, if previous content should be ereased
 //   mainInput - 1st action to be displayed
 //   extraInput - possible concecutive actions (0-3)
-function renderAction (battingOrder: number, clear: boolean, mainInput: WBSCInput, extraInput?: WBSCInput[]) {
+function renderAction(battingOrder: number, clear: boolean, mainInput: WBSCInput, extraInput?: WBSCInput[]) {
   if (clear) {
     drawBackground(battingOrder)
   }
@@ -58,7 +58,7 @@ function renderAction (battingOrder: number, clear: boolean, mainInput: WBSCInpu
 }
 
 // process 'safe' situation
-function renderAdvance (output: WBSCOutput) {
+function renderAdvance(output: WBSCOutput) {
   if (!output.na) {
     drawAdvanceLine(Math.max(output.base, output.errorTarget))
   }
@@ -66,7 +66,7 @@ function renderAdvance (output: WBSCOutput) {
 }
 
 // process 'out' situation
-function renderOut (output: WBSCOutput) {
+function renderOut(output: WBSCOutput) {
   if (output.text1 !== 'LT') {
     drawOutCircle(output.base)
   }
@@ -75,7 +75,7 @@ function renderOut (output: WBSCOutput) {
 
 // prepare empty scoresheet element (blue square)
 //   battingOrder - number displayed at the left side (1-4)
-function drawBackground (battingOrder: number) {
+function drawBackground(battingOrder: number) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset
@@ -117,7 +117,7 @@ function drawBackground (battingOrder: number) {
 }
 
 // draw circle at given base (0-4)
-function drawOutCircle (base: number) {
+function drawOutCircle(base: number) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset
@@ -155,7 +155,7 @@ function drawOutCircle (base: number) {
 }
 
 // draw advance line from HP to given base (1-4)
-function drawAdvanceLine (base: number) {
+function drawAdvanceLine(base: number) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset
@@ -186,7 +186,7 @@ function drawAdvanceLine (base: number) {
 
 // draw narrow connection line between given two bases
 // to join two or more consecutive actions
-function drawConnector (base1: number, base2: number) {
+function drawConnector(base1: number, base2: number) {
   if (base1 < 1 || base1 > 3 || base2 < 1 || base2 > 4 || base1 >= base2) {
     useEvalStore().setError('Invalid input for consecutive action!')
   } else {
@@ -236,7 +236,7 @@ function drawConnector (base1: number, base2: number) {
 }
 
 // draw hit symbol at specified base (1-3)
-function drawHitSymbol (base: number) {
+function drawHitSymbol(base: number) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset
@@ -278,7 +278,7 @@ function drawHitSymbol (base: number) {
 }
 
 // draw the actual output of selected action
-function writeSituation (output: WBSCOutput) {
+function writeSituation(output: WBSCOutput) {
   const out = output.out
   const hit = output.hit
   const sub = output.sub
@@ -720,7 +720,7 @@ function writeSituation (output: WBSCOutput) {
 }
 
 // run type - earned = filled, unearned = empty, team unearned = cross
-function drawRunType (runType: string | undefined) {
+function drawRunType(runType: string | undefined) {
   const ctx = useCanvasStore().ctx!
   const hOffset = useCanvasStore().hOffset
   const vOffset = useCanvasStore().vOffset
@@ -753,7 +753,7 @@ function drawRunType (runType: string | undefined) {
 
 // small boxed number in corner to indicate batting order
 // at the moment the action occured
-function writeBatterIndicator (base: number) {
+function writeBatterIndicator(base: number) {
   const hOffset = useCanvasStore().hOffset
   const vOffset = useCanvasStore().vOffset
   const coords = []
@@ -803,7 +803,7 @@ function writeBatterIndicator (base: number) {
 // processed AFTER all sitations were rendered
 // if plays result into more than one out
 // out circles has to be connected together to mark down double (triple) play
-function connectOutsIfNeeded () {
+function connectOutsIfNeeded() {
   if (useEvalStore().outs.length > 1) {
     for (let i = 0; i < useEvalStore().outs.length - 1; i += 1) {
       const start = useEvalStore().outs[i]
@@ -887,7 +887,7 @@ function connectOutsIfNeeded () {
 // if play contains 2 or more actions that has to be marked as "concurrent"
 // (e.g. KS+SB, BB+WP or SB+SB)
 // we need to link them with double-sided arrow connector
-function connectConcurrentPlaysIfNeeded () {
+function connectConcurrentPlaysIfNeeded() {
   if (useEvalStore().concurrentPlays.length > 1) {
     const plays = useEvalStore().concurrentPlays.sort((a, b) => a.batter - b.batter)
     for (let i = 0; i < plays.length - 1; i += 1) {
@@ -1026,7 +1026,7 @@ function connectConcurrentPlaysIfNeeded () {
 
 // helper function to render an arrow
 // from http://masf-html5.blogspot.com/2016/04/path-drawing-mode-lines-circles-arcs.html
-function drawArrow (fromx: number, fromy: number, tox: number, toy: number, width: number) {
+function drawArrow(fromx: number, fromy: number, tox: number, toy: number, width: number) {
   const headlen = 10
   const angle = Math.atan2(toy - fromy, tox - fromx)
 
@@ -1057,7 +1057,7 @@ function drawArrow (fromx: number, fromy: number, tox: number, toy: number, widt
 // if there is multiple error advance,
 // the "E" mark is made to first base reached on error
 // and the extra advance is visualized with an arrow
-function drawExtraErrorAdvanceIfNeeded (origBase: number, targetBase: number, twoLineText: boolean) {
+function drawExtraErrorAdvanceIfNeeded(origBase: number, targetBase: number, twoLineText: boolean) {
   if (targetBase > origBase) {
     const ctx = useCanvasStore().ctx
     if (ctx) {
@@ -1090,7 +1090,7 @@ function drawExtraErrorAdvanceIfNeeded (origBase: number, targetBase: number, tw
   }
 }
 
-function drawExtraErrorAdvanceTo2B (endsAt2B: boolean, twoLineText: boolean) {
+function drawExtraErrorAdvanceTo2B(endsAt2B: boolean, twoLineText: boolean) {
   const gap = w2 / 2
   const length = 35
   const xHOffset = twoLineText ? 18 : 0
@@ -1118,7 +1118,7 @@ function drawExtraErrorAdvanceTo2B (endsAt2B: boolean, twoLineText: boolean) {
   }
 }
 
-function drawExtraErrorAdvanceTo3B (startsAt2B: boolean, endsAt3B: boolean) {
+function drawExtraErrorAdvanceTo3B(startsAt2B: boolean, endsAt3B: boolean) {
   const gap = w2 / 2
   const length = 35
   const arc = 30
@@ -1146,7 +1146,7 @@ function drawExtraErrorAdvanceTo3B (startsAt2B: boolean, endsAt3B: boolean) {
   }
 }
 
-function drawExtraErrorAdvanceToHP (startsAt3B: boolean) {
+function drawExtraErrorAdvanceToHP(startsAt3B: boolean) {
   const gap = w2 / 2
   const length = 35
   const shift = startsAt3B ? 15 : 0
@@ -1168,7 +1168,7 @@ function drawExtraErrorAdvanceToHP (startsAt3B: boolean) {
 }
 
 // #160 - mark advance to HP on GDP
-function drawGDPMarker () {
+function drawGDPMarker() {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset
@@ -1183,5 +1183,5 @@ function drawGDPMarker () {
 }
 
 export {
-  drawBackground, renderAction, connectOutsIfNeeded, connectConcurrentPlaysIfNeeded
+  drawBackground, renderAction, connectOutsIfNeeded, connectConcurrentPlaysIfNeeded,
 }

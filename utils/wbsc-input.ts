@@ -6,7 +6,7 @@
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // create bar with action buttons
-function renderActionButtons () {
+function renderActionButtons() {
   // in case of re-init (e.g. upon translation), remove previous
   document.getElementById(classTools)?.remove()
 
@@ -67,7 +67,7 @@ function renderActionButtons () {
 //   group - new element's DOM id
 //   parentDiv - null for buttons on action bar
 //             - inputs group for button to add/remove additional inputs for consecutive actions
-function renderInputsButton (group: string, parentDiv?: HTMLElement) {
+function renderInputsButton(group: string, parentDiv?: HTMLElement) {
   const renderButton = document.createElement('button')
   renderButton.setAttribute('id', 'button-' + group)
   renderButton.setAttribute('type', 'button')
@@ -99,7 +99,7 @@ function renderInputsButton (group: string, parentDiv?: HTMLElement) {
 }
 
 // clear all user inputs and reset default state
-function clearInputs () {
+function clearInputs() {
   hideInputs(inputB)
   hideInputs(inputR1)
   hideInputs(inputR2)
@@ -117,7 +117,7 @@ function clearInputs () {
 // show or hide given input group
 //   group - DOM id of encapsulating div
 //   parentDiv - ancestor of encapsulating div in DOM hieararchy
-function renderInputs (group: string, parentDiv?: HTMLElement) {
+function renderInputs(group: string, parentDiv?: HTMLElement) {
   const renderButton = document.getElementById('button-' + group) as HTMLElement
   if (renderButton.innerHTML.includes('+')) {
     showInputs(group, parentDiv)
@@ -130,7 +130,7 @@ function renderInputs (group: string, parentDiv?: HTMLElement) {
 // fuction renders all required inputs and places them into new div
 //   group - DOM id of encapsulating div
 //   parentDiv - ancestor of encapsulating div in DOM hieararchy
-function showInputs (group: string, parentDiv?: HTMLElement) {
+function showInputs(group: string, parentDiv?: HTMLElement) {
   const inputsContainer = document.createElement('div')
   inputsContainer.setAttribute('id', group)
 
@@ -230,7 +230,7 @@ function showInputs (group: string, parentDiv?: HTMLElement) {
 // hide given input group
 // function removes div with all contents from document
 //   group - DOM id of encapsulating div
-function hideInputs (group: string) {
+function hideInputs(group: string) {
   const parentDiv = getParentDiv(group, false)
   const container = document.getElementById(parentDiv) as HTMLElement
   const inputsContainer = document.getElementById(group)
@@ -248,7 +248,7 @@ function hideInputs (group: string) {
 // render select with target base where the action happened
 // + possible TIE checker
 // inside given input group
-function renderBaseSelection (group: string) {
+function renderBaseSelection(group: string) {
   const inputsContainer = document.getElementById(group) as HTMLElement
 
   if (group === inputR1 || group === inputR2) {
@@ -321,7 +321,7 @@ function renderBaseSelection (group: string) {
 
 // render selects and buttons to adjust involved players/positions
 // inside given input group
-function renderPosSelection (group: string) {
+function renderPosSelection(group: string) {
   const groupID = group + inputPosition
 
   const inputsContainer = document.createElement('div')
@@ -360,7 +360,7 @@ function renderPosSelection (group: string) {
 
 // render one new select for players/locations inside given group
 // select is added at the end if possible
-function renderPosSelectItem (group: string) {
+function renderPosSelectItem(group: string) {
   const groupID = group + inputPosition
   const container = document.getElementById(groupID) as HTMLElement
   const renderButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
@@ -379,7 +379,7 @@ function renderPosSelectItem (group: string) {
 
 // removes one select for players/locations from given group
 // select is removed from the end if possible
-function unRenderPosSelectItem (group: string) {
+function unRenderPosSelectItem(group: string) {
   const groupID = group + inputPosition
   const container = document.getElementById(groupID) as HTMLElement
   const renderButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
@@ -399,7 +399,7 @@ function unRenderPosSelectItem (group: string) {
 // physically creates new select for players/locations
 //   group - target inputs group
 //   ord - position inside the group
-function getPosSelectionSelect (group: string, ord: number) {
+function getPosSelectionSelect(group: string, ord: number) {
   const groupID = group + inputPosition
 
   const posItem = document.createElement('select')
@@ -424,7 +424,7 @@ function getPosSelectionSelect (group: string, ord: number) {
 // therefore other removal buttons have to be disabled when new input group is added
 //   group - target inputs group
 //   disable - state of the button (true for 'disabled')
-function disableParentExtraInput (group: string, disable: boolean) {
+function disableParentExtraInput(group: string, disable: boolean) {
   let parentExtraButtonId = null
   switch (group) {
     case inputB2:
@@ -446,7 +446,7 @@ function disableParentExtraInput (group: string, disable: boolean) {
 // when specific action results into an out, we want to disable further action generating
 // therefore we may disable the corresponding extra inputs render button
 // also, if extra inputs are already rendered, we need to hide them
-function disableExtraInput (group: string, disable: boolean) {
+function disableExtraInput(group: string, disable: boolean) {
   let extraButtonId = null
   const groupsToHide = []
   switch (group) {
@@ -493,7 +493,7 @@ function disableExtraInput (group: string, disable: boolean) {
 // find encapsulating div when showing/hiding input groups
 //   group - given input group
 //   show - triggering action (showing or hiding)
-function getParentDiv (group: string, show: boolean) {
+function getParentDiv(group: string, show: boolean) {
   let parentDiv
   switch (group) {
     case inputB1:
@@ -516,7 +516,7 @@ function getParentDiv (group: string, show: boolean) {
 
 // find the next available input subgroup for consecutive actions
 //   group - given input group
-function getAdditionalInputsGroup (group: string) {
+function getAdditionalInputsGroup(group: string) {
   let additionalInputsGroup
   switch (group) {
     case inputB:
@@ -544,7 +544,7 @@ function getAdditionalInputsGroup (group: string) {
 }
 
 // helps maintaining correct order of input groups (HP - 1B - 2B - 3B)
-function getProperLocationForInputs (group: string) {
+function getProperLocationForInputs(group: string) {
   let hook = document.getElementById(classTools)
 
   const r1inputs = document.getElementById(inputR1)
@@ -584,14 +584,14 @@ function getProperLocationForInputs (group: string) {
   return hook
 }
 
-function getEmptyInput (plain: boolean): WBSCInput {
+function getEmptyInput(plain: boolean): WBSCInput {
   const input: WBSCInput = {
     group: '',
     baseAction: '',
     specAction: '',
     origBase: 0,
     base: 0,
-    tie: false
+    tie: false,
   }
 
   if (!plain) {
@@ -602,7 +602,7 @@ function getEmptyInput (plain: boolean): WBSCInput {
   return input
 }
 
-function getEmptyOutput (): WBSCOutput {
+function getEmptyOutput(): WBSCOutput {
   const output: WBSCOutput = {
     previousAdvance: false,
     batter: 0,
@@ -613,13 +613,13 @@ function getEmptyOutput (): WBSCOutput {
     hit: false,
     num: false,
     errorTarget: 0,
-    na: false
+    na: false,
   }
   return output
 }
 
 // reset JSON file import button
-function clearJSONInput () {
+function clearJSONInput() {
   const jsonInput = document.getElementById(inputImportFile) as HTMLInputElement
   if (jsonInput) {
     jsonInput.files = null
@@ -629,5 +629,5 @@ function clearJSONInput () {
 
 export {
   renderActionButtons, renderInputs, clearInputs, renderPosSelectItem, unRenderPosSelectItem,
-  getPosSelectionSelect, disableExtraInput, getEmptyInput, getEmptyOutput
+  getPosSelectionSelect, disableExtraInput, getEmptyInput, getEmptyOutput,
 }

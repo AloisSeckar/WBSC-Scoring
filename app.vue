@@ -35,7 +35,7 @@ if (storedLocale.value && typeof storedLocale.value === 'string') {
 
 useHead({
   htmlAttrs: {
-    lang: locale.value
-  }
+    lang: locale.value,
+  },
 })
 </script>

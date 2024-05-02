@@ -7,7 +7,7 @@ import { noAdvActions } from './wbsc-validation'
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // triggered when user selects from 'base' action
-function changeBaseAction (group: string) {
+function changeBaseAction(group: string) {
   if (group === inputB) {
     changeBatterBaseAction()
   } else {
@@ -16,7 +16,7 @@ function changeBaseAction (group: string) {
 }
 
 // triggered when user selects from 'specific' action
-function changeSpecificAction (group: string) {
+function changeSpecificAction(group: string) {
   if (group === inputB) {
     changeBatterSpecificAction()
   } else {
@@ -25,7 +25,7 @@ function changeSpecificAction (group: string) {
 }
 
 // ajdust 'specific' action according to selected 'base' action
-function changeBatterBaseAction () {
+function changeBatterBaseAction() {
   const baseAction = document.getElementById(inputB + inputBaseAction) as HTMLInputElement
   const actionOptions = renderBatterSpecificActionOptions(baseAction.value)
   const specificActionDisabled = actionOptions.length < 1
@@ -38,7 +38,7 @@ function changeBatterBaseAction () {
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeBatterSpecificAction () {
+function changeBatterSpecificAction() {
   let fc = false
   let hit = false
   let out = false
@@ -211,7 +211,7 @@ function changeBatterSpecificAction () {
 }
 
 // ajdust 'specific' action according to selected 'base' action
-function changeRunnerBaseAction (group: string) {
+function changeRunnerBaseAction(group: string) {
   const runnerBaseAction = document.getElementById(group + inputBaseAction) as HTMLInputElement
   const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value, group)
   const specificActionDisabled = actionOptions.length < 1
@@ -224,7 +224,7 @@ function changeRunnerBaseAction (group: string) {
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeRunnerSpecificAction (group: string) {
+function changeRunnerSpecificAction(group: string) {
   let out = false
   let throwing = false
   let minPosItems = 1
@@ -352,7 +352,7 @@ function changeRunnerSpecificAction (group: string) {
 }
 
 // allows to select run type when home base is selected
-function changeBase (group: string) {
+function changeBase(group: string) {
   // #202 - we need to know whether there was an out or not
   // this method is able to calculate it
   // re-creating or extracting the logic would be harder
@@ -360,7 +360,7 @@ function changeBase (group: string) {
 }
 
 // enhance user's input with output instructions
-function processInput (input: WBSCInput, batter: number): WBSCOutput {
+function processInput(input: WBSCInput, batter: number): WBSCOutput {
   const output: WBSCOutput = getEmptyOutput()
   output.batter = batter
   output.origBase = input.origBase
@@ -751,7 +751,7 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
       base: output.base,
       out: output.out,
       na: output.na,
-      text1: output.text1
+      text1: output.text1,
     })
   }
 
@@ -759,5 +759,5 @@ function processInput (input: WBSCInput, batter: number): WBSCOutput {
 }
 
 export {
-  changeBaseAction, changeSpecificAction, changeBase, processInput
+  changeBaseAction, changeSpecificAction, changeBase, processInput,
 }
