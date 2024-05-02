@@ -2,7 +2,7 @@
 
 <template>
   <transition name="modal-fade">
-    <div class="modal-overlay" @click="close()">
+    <div v-show="useEvalStore().importShow" class="modal-overlay" @click="close()">
       <div :class="divMain" @click.stop>
         <div :class="divHeader">
           {{ $t('editor.import.title') }}

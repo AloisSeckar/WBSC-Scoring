@@ -7,9 +7,9 @@
         <!-- inputs are dynamically rendered here -->
       </div>
       <!-- modal window triggered by validation errors -->
-      <ValidationModal v-show="useEvalStore().errorShow" />
+      <ValidationModal />
       <!-- modal window triggered by "import from library" -->
-      <ImportModal v-show="useEvalStore().importShow" />
+      <ImportModal />
     </div>
 
     <h2>{{ $t('index.output') }}</h2>

@@ -2,7 +2,7 @@
 
 <template>
   <transition name="modal-fade">
-    <div class="modal-overlay" @click="invalidate()">
+    <div v-show="useEvalStore().errorShow" class="modal-overlay" @click="invalidate()">
       <div :class="divMain" @click.stop>
         <div :class="divHeader">
           {{ $t('editor.validation.window.title') }}
