@@ -124,7 +124,7 @@ export const useEvalStore = defineStore({
   },
 })
 
-function resetItemInArray(arr: any[], item: PosSelectionLimit | PosSelection): any[] {
+function resetItemInArray<T extends { inputGroup: string }>(arr: T[], item: T): T[] {
   arr = arr.filter(i => i.inputGroup !== item.inputGroup)
   arr.push(item)
   return arr
