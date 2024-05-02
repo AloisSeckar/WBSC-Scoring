@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html (HTML content is used only from internal i18n) -->
 <template>
   <div class="text-center">
     <h2>{{ $t('index.editor') }} <span class="text-red-500">v1.1</span></h2>

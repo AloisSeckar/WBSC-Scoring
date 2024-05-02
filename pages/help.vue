@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html (HTML content is used only from internal i18n) -->
 <template>
   <div>
     <h2>{{ $t('help.title') }}</h2>
