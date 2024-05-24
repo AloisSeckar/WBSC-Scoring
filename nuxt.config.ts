@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   ssr: false,
+  devtools: { enabled: false },
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
