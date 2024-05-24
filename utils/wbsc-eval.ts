@@ -557,11 +557,18 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'WP':
     case 'PB':
-    case 'SB':
       possibleConcurrentPlay = true
       // falls through
     case 'wp':
     case 'pb':
+      output.text1 = action + '#b#'
+      // #179 - multiple base advance should render same as an error
+      output.errorTarget = output.base
+      output.base = output.origBase + 1
+      break
+    case 'SB':
+      possibleConcurrentPlay = true
+      // falls through
     case 'BK':
     case 'bk':
     case 'IP':

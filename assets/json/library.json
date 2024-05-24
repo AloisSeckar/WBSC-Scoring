@@ -492,6 +492,10 @@
     "name": "Wild pitch - R1"
   },
   {
+    "file": "wp-r1-3b",
+    "name": "Wild pitch - R1 to 3rd"
+  },
+  {
     "file": "wp-r1-r2",
     "name": "Wild pitch - R1 + R2"
   },
@@ -510,6 +514,10 @@
   {
     "file": "pb-r1-r2-r3",
     "name": "Passed ball - R1 + R2 + R3"
+  },
+  {
+    "file": "pb-r1-r3-2r",
+    "name": "Passed ball - R3 scores + R1 scores"
   },
   {
     "file": "pb-r3-r2-e2t-r1-e1",
