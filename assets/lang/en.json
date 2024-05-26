@@ -221,6 +221,7 @@
             "noSameBase" : "Two runners cannot finish on the same base.",
             "noHitAndO" : "It is not possible to score a HIT, if a runner is forced out before reaching next base, use 'FC - Occupied' instead.",
             "noHitAndA" : "It is not possible to score a HIT, if there is an appeal play with forced out, use 'FC - Occupied' instead.",
+            "noADVWithoutBatter" : "'Advanced by batter' is not possible without batter's action.",
             "invalidADV" : "'Advanced by batter' can only be the FIRST runner action.",
             "notFO2" : "Force out at 2nd is not possible, because the runner from 1st is not forced to advance.",
             "notFO3" : "Force out at 3rd is not possible, because the runner from 2nd is not forced to advance.",

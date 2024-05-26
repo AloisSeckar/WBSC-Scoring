@@ -278,8 +278,14 @@ function checkHit(inputs: WBSCInput[]) {
 }
 
 // ADVANCE BY BATTER may only appear at the FIRST runner input
+// additionally it require batter's action
 function checkAdvances(inputs: WBSCInput[]) {
   let validation = ''
+
+  if (inputs.some(i => i.specAction === 'ADV') && !inputs.some(i => i.group === inputB)) {
+    validation = attachValidation(validation, useT('editor.validation.noADVWithoutBatter'))
+  }
+
   inputs.forEach((input) => {
     if (input.specAction === 'ADV' && ![inputR1, inputR2, inputR3].includes(input.group)) {
       validation = attachValidation(validation, useT('editor.validation.invalidADV'))
