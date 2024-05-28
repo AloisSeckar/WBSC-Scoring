@@ -21,7 +21,7 @@ const selectedLang = 'w-6 h-4 m-1 inline-block border-2 border-amber-300'
 
 const { locale } = useI18n()
 
-function setLocale(newLocale: string) {
+async function setLocale(newLocale: string) {
   if (newLocale) {
     const storedLocale = useLocalStorage('wbsc-lang', 'en')
     storedLocale.value = newLocale
@@ -31,6 +31,8 @@ function setLocale(newLocale: string) {
     if (useRoute().path === '/') {
       initEditor()
     }
+
+    return navigateTo(useRoute().fullPath)
   }
 }
 </script>
