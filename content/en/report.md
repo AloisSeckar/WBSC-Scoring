@@ -42,7 +42,7 @@ I would be interested in the picture of the output (to see what is wrong), but a
 
 ### Console output
 
-This is an advanced topic, but it can also help me a lot. If you press <strong>F12</strong> in most of the browsers (on desktop), you gain access to a thing called "Console". As you visit any website, the actions your browser is performing during rendering the content may manifest here. Especially when some error occurs, a red text may appear here giving hints to developers about the cause.
+This is an advanced topic, but it can also help me a lot. If you press **F12** in most of the browsers (on desktop), you gain access to a thing called "Console". As you visit any website, the actions your browser is performing during rendering the content may manifest here. Especially when some error occurs, a red text may appear here giving hints to developers about the cause.
 
 Here is an example of console output (after I picked wrong file type during importing input):
 

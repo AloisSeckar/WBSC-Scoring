@@ -8,7 +8,7 @@ Jsem připraven na všechny vaše podněty. Na této stránce najdete detaily o 
 
 ## GitHub issues
 
-GitHub nabízí jednoduchý a přitom plně dostačující systém sledování chyb/návrhů, který v tomto projektu používám.
+GitHub nabízí jednoduchý, a přitom plně dostačující systém sledování chyb/návrhů, který v tomto projektu používám.
 
 Všechny tickety tykající se "WBSC Scoring" můžete nalézt [ZDE](https://github.com/AloisSeckar/WBSC-Scoring/issues). Výchozí filtr ukazuje otevřené úkoly, které jsou mi známy, ale ještě je třeba je vypořádat.
 
@@ -42,7 +42,7 @@ Bude mě zajímat obrázek výstupu (abych viděl, co je špatně), ale také (a
 
 ### Výstup konzole
 
-Toto je pokročilejší téma, ale také mi může hodně pomoct. Pokud ve vašem prohlížeči (na PC) zmáčknete klávesu <strong>F12</strong>, většinou získáte přístup k nástroji zvanému "Konzole". Když navštívíte jakoukoliv stránku, akce vašeho prohlížeče probíhající během načítání obsahu se zde mohou projevit. Speciálně pokud dojde k nějaké chybě, může se zde objevit červený text, který dává vývojářům nápovědu o možné příčině.
+Toto je pokročilejší téma, ale také mi může hodně pomoct. Pokud ve vašem prohlížeči (na PC) zmáčknete klávesu **F12**, většinou získáte přístup k nástroji zvanému "Konzole". Když navštívíte jakoukoliv stránku, akce vašeho prohlížeče probíhající během načítání obsahu se zde mohou projevit. Speciálně pokud dojde k nějaké chybě, může se zde objevit červený text, který dává vývojářům nápovědu o možné příčině.
 
 Zde je příklad výstupu do konzole (poté, co jsem zvolil špatný typ souboru během importu z JSON souboru):
 
