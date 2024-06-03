@@ -228,6 +228,7 @@
             "notFOH" : "Force out at Home is not possible, because the runner from 3rd is not forced to advance.",
             "noDistantFO" : "Force out is only possible at the closest base to advance on.",
             "missingOPlay" : "FC - occupied is selected, but corresponding out/decisive error is missing.",
+            "invalidOPlay" : "Player who decides throwing to a different runner during 'FC - occupied' must be the same in corresponding play.",
             "missingFCPlay" : "FC is selected, but corresponding runner advance is missing.",
             "missingPBPlay" : "If strikeout with FC is selected, there must be a passed ball credited to a runner.",
             "missingGDPPlay" : "GDP is selected, but corresponding out/decisive error is missing.",

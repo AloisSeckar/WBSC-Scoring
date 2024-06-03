@@ -366,13 +366,15 @@ function checkFO(inputs: WBSCInput[]) {
 }
 
 // if there is O/FC is selected for batter
-// there has to be at least 1 correspondig situatuon for runners
+// there has to be at least 1 correspondig situation for runners
+// also linked play must start with mentioned fielder (#152)
 // FC => advance by batter, O => out/decessive error
 // special case: K+FC must be toghether with PB
 function checkFC(inputs: WBSCInput[]) {
   let validation = ''
 
   let oSituation = false
+  let oTarget = ''
   let oPlay = false
   let fcSituation = false
   let fcPlay = false
@@ -384,6 +386,7 @@ function checkFC(inputs: WBSCInput[]) {
     if (input.group === inputB) {
       if (['O', 'OCB', 'KSO', 'KLO', 'SFO'].includes(input.specAction)) {
         oSituation = true
+        oTarget = input.pos?.at(0) || ''
       } else if (input.specAction === 'FC' || input.specAction === 'SHFC') {
         fcSituation = true
       } else if (input.specAction === 'KSFC' || input.specAction === 'KLFC') {
@@ -398,9 +401,10 @@ function checkFC(inputs: WBSCInput[]) {
         kfcPlay = true
       }
     }
-    // #209 - runners may also advance on "FC - occupied"
+    // runners may also advance on "FC - occupied" (#209)
     if (input.specAction === 'o') {
       oSituation = true
+      oTarget = input.pos?.at(0) || ''
     }
   })
 
@@ -412,6 +416,21 @@ function checkFC(inputs: WBSCInput[]) {
   }
   if (kfcSituation && !kfcPlay) {
     validation = attachValidation(validation, useT('editor.validation.missingPBPlay'))
+  }
+
+  if (oTarget) {
+    let matchedPlay = false
+    for (const input of inputs) {
+      if (firstRunnerActions.includes(input.group)) {
+        if (oTarget === input.pos?.at(0)) {
+          matchedPlay = true
+          break
+        }
+      }
+    }
+    if (!matchedPlay) {
+      validation = attachValidation(validation, useT('editor.validation.invalidOPlay'))
+    }
   }
 
   return validation

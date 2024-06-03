@@ -228,6 +228,7 @@
             "notFOH" : "Force out na domácí metě není možný, protože běžec z 3. mety nebyl nucen postupovat.",
             "noDistantFO" : "Nucený aut je možný pouze na nejbližší následující metě.",
             "missingOPlay" : "Je vybráno 'FC - occupied', ale chybí odpovídající out/decisive error.",
+            "invalidOPlay" : "Hráč, který zvolil hru na jiného běžce při 'FC - occupied', musí odpovídat zapsané rozehře.",
             "missingFCPlay" : "Je vybráno 'FC', ale chybí odpovídající postup běžce.",
             "missingPBPlay" : "Pokud je vybrán strikeout + FC, musí být zadán PB pro běžce.",
             "missingGDPPlay" : "Je vybráno 'GDP', ale chybí odpovídající out/decisive error.",
