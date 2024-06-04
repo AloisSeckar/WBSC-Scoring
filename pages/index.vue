@@ -15,31 +15,31 @@
 
     <h2>{{ $t('index.output') }}</h2>
 
-    <canvas id="canvas" class="mx-auto my-4" width="325" height="250" />
+    <canvas id="canvas" class="mx-auto my-4 w-full min-[325px]:w-[325px]" />
 
-    <div class="mx-auto mb-8 w-48">
-      <a id="download-link" class="btn btn-download">{{ $t('index.download') }}</a>
+    <div class="flex mb-6 justify-center">
+      <a id="download-link" class="btn btn-download min-w-40">{{ $t('index.download') }}</a>
     </div>
 
     <h2>{{ $t('index.about') }}</h2>
 
-    <div class="mt-2 text-justify">
+    <div class="mt-2 text-left sm:text-justify">
       <p v-html="$t('index.dscr')" />
     </div>
     <div class="my-6">
-      <div class="text-center">
-        <NuxtLink class="btn btn-link" to="/project">
+      <div class="flex flex-col min-[525px]:flex-row items-center justify-center">
+        <NuxtLink class="btn btn-link min-w-40" to="/project">
           {{ $t('index.overview') }}
         </NuxtLink>
-        <NuxtLink class="btn btn-link" to="/help">
+        <NuxtLink class="btn btn-link min-w-40" to="/help">
           {{ $t('index.manual') }}
         </NuxtLink>
-        <NuxtLink class="btn btn-clear" to="/report">
+        <NuxtLink class="btn btn-clear min-w-40" to="/report">
           {{ $t('index.report') }}
         </NuxtLink>
       </div>
     </div>
-    <div class="mb-12 text-justify">
+    <div class="mb-12 text-left sm:text-justify">
       <p v-html="$t('index.license')" />
       <p v-html="$t('index.endorse')" />
     </div>
