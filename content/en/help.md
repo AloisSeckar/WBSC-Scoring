@@ -86,7 +86,7 @@ For 1st and 2nd base. There is a "Tiebreak" checkbox. If it is checked, runner d
 
 From the "Base" combo-box you pick the base that runner gains with current action. Obviously, the options are adjusted depending on which base we are currently on. If you need a runner to stay on the current base, you don't do it here, but instead you pick "No advance" from the "Action" menu.
 
-If a play resulting in a safe situation at home plate is selected, combo-box "Run" becomes active. Then you pick from "Earned" / "Unearned" / "Team unearned" options. This feature is here mainly to show differences between each variant. There are some basic validations, but during the game it depends on a broader context of previous plays, while here we always score just one separate action. "Run" is also possible directly for the batter, but only for "Hit - Home run" plays.
+If a play resulting in a safe situation at home plate is selected, combo-box "Run" becomes active. Then you pick from "ER" _(earned run)_ / "UE" _(unearned run)_ / "TU" _(team unearned run)_ options. This feature is here mainly to show differences between each variant. There are some basic validations, but during the game it depends on a broader context of previous plays, while here we always score just one separate action. "Run" is also possible directly for the batter, but only for "Hit - Home run" plays.
 
 <div>
 <article-image src="/11-type-of-run.png" alt="" :height="150" />

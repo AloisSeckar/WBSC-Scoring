@@ -94,7 +94,7 @@ Pro 1. a 2. metu existuje zaškrtávací políčko "Tiebreak". Pokud je zaškrtn
 
 Z rozevírací nabídky "Meta" vybíráte metu, u které probíhá aktuální akce běžce. Samozřejmě možnosti jsou upraveny v závislosti na tom, na které metě se právě nacházíme. Pokud potřebujete, aby běžec zůstal na dosavadní metě, neděláte to zde, ale místo toho si z nabídky "Akce" vyberete "Žádný postup".
 
-Pokud je vybrána situace vedoucí k safe na domácí metě, stane se aktivním rozevírací nabídka "Doběh". Pak si vyberete z možností "Earned" / "Unearned" / "Team unearned". Tato funkce je zde hlavně k tomu, aby ukázala rozdíly mezi jednotlivými variantami. Existují některé základní validace, ale během skutečného zápasu záleží na širším kontextu předchozích rozeher, zatímco zde vždy skórujeme jen jednu samostatnou akci. "Doběh" je také možný přímo pro pálkaře, ale pouze pro akce typu "Hit – Home run".
+Pokud je vybrána situace vedoucí k safe na domácí metě, stane se aktivním rozevírací nabídka "Doběh". Pak si vyberete z možností "ER" _(umožněný bod)_ / "UE" _(neumožněný bod)_ / "TU" _(týmově neumožněný bod)_. Tato funkce je zde hlavně k tomu, aby ukázala rozdíly mezi jednotlivými variantami. Existují některé základní validace, ale během skutečného zápasu záleží na širším kontextu předchozích rozeher, zatímco zde vždy skórujeme jen jednu samostatnou akci. "Doběh" je také možný přímo pro pálkaře, ale pouze pro akce typu "Hit – Home run".
 
 <div>
 <article-image src="/11-type-of-run.png" alt="" :height="150" />
