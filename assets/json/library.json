@@ -416,6 +416,14 @@
     "name": "Single to 3B, bunt + e5T to 2nd + 9E5 to HP"
   },
   {
+    "file": "2b-rl-e9t",
+    "name": "Double to RL + e9T"
+  },
+  {
+    "file": "3b-rl-9e2",
+    "name": "Triple to RL + 9E2"
+  },
+  {
     "file": "out-31-r1-e3t",
     "name": "Ground out - 1B to P + R1 scores (FC + e3T)"
   },

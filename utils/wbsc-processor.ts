@@ -150,6 +150,13 @@ function processAction() {
     }
   }
 
+  // special case - double or triple followed by an error (#226)
+  if ((bInput?.specAction.startsWith('2') || bInput?.specAction.startsWith('3'))
+    && (b1Input?.specAction.startsWith('e') || b1Input?.specAction.startsWith('E'))) {
+    b1Input.output!.base = bInput.output!.base + 1
+    b1Input.output!.origBase = bInput.output!.base + 1
+  }
+
   mergeBatterIndicators(inputs)
   adjustWPPB(inputs)
   adjustIO(inputs)
