@@ -10,7 +10,7 @@ This program is still evolving. Visit the ["TODO" section](/project#todo) in Pro
 
 This is an [UNLICENSE](https://unlicense.org/) open source that can be found [HERE](https://github.com/AloisSeckar/WBSC-Scoring). Any help with further development would be appreciated, but you can as well take the source code and do whatever you want with it yourself.
 
- <a id="done" />   
+<a id="done"></a>
  
 ## DONE
 _(what you can find here)_
@@ -19,7 +19,7 @@ _(what you can find here)_
 <li>Action editor capable of inserting most of existing situations according to latest version of WBSC manual</li><li>Download output images as PNG</li><li>Export/Import actions in JSON format</li><li>Actions library with nearly 200 predefined plays</li><li>User manual</li><li>English and Czech translation</li>
 </ul>
 
- <a id="todo" />   
+<a id="todo"></a>
 
 ## TO-DO list
 _(hopefully will be implemented in next few releases)_
@@ -29,7 +29,7 @@ _(hopefully will be implemented in next few releases)_
 </ul>
 
 
- <a id="limitations" />   
+<a id="limitations"></a>
 
 ## Limitations
 _(not planned to be implemented soon)_
@@ -40,7 +40,7 @@ There are several features of WBSC scoring system that are currently not covered
 <li>It is not possible to specify actions leading to runners appearing on bases (except TIE). The actual action is always replaced with a <strong><span style="color: red">red asterisk</span></strong>.</li><li>It is not possible to specify the batting order of the batter and previous runners. Output always starts from 1.</li><li>It is not possible to get different number of Ks and BBs than 1</li><li>Actions are limited to up to 3 assists (followed by an out or an error). This is mainly to avoid practical problems with rendering more numbers.</li><li>No 10th player (additional outfielder) for slowpitch. However, it is quite probable this will be eventually added.</li><li>Not covering possible Baseball5 features. This is because Baseball5 system is very different and non-compatible. If you're interested, here is <a href="https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf">the official WBSC document</a> covering the Baseball5 scoring system.</li><li>Not covering substitutions and statistical outputs. It doesn't quite make sense to include them into the app mechanic. However, it is planned to add dedicated static articles covering these two topics.</li>
 </ul>
 
- <a id="history" />  
+<a id="history"></a>
 
- ## History
-Viz [CHANGELOG](https://github.com/AloisSeckar/WBSC-Scoring/blob/master/CHANGELOG.md)
+## History
+See [CHANGELOG](https://github.com/AloisSeckar/WBSC-Scoring/blob/master/CHANGELOG.md)
