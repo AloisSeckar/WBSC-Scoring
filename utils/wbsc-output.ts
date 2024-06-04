@@ -17,7 +17,7 @@ function renderAction(battingOrder: number, clear: boolean, mainInput: WBSCInput
 
   const output = mainInput.output
   if (output) {
-    if (output.origBase && output.origBase > 0) {
+    if (output.origBase > 0) {
       const prevOutput: WBSCOutput = getEmptyOutput()
       prevOutput.base = output.origBase
       if (output.previousAdvance) {

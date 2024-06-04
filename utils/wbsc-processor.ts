@@ -107,7 +107,7 @@ function processAction() {
     extraR1Input.push(r1bInput)
   }
   if (r1aInput) {
-    if (r1Input && r1Input.base) {
+    if (r1Input?.base) {
       r1aInput.origBase = r1Input.base
     }
     r1aInput.output = processInput(r1aInput, playersInvolved)
@@ -128,14 +128,14 @@ function processAction() {
     extraBatterInput.push(b3Input)
   }
   if (b2Input) {
-    if (b1Input && b1Input.base) {
+    if (b1Input?.base) {
       b2Input.origBase = b1Input.base
     }
     b2Input.output = processInput(b2Input, playersInvolved)
     extraBatterInput.push(b2Input)
   }
   if (b1Input) {
-    if (bInput && bInput.base) {
+    if (bInput?.base) {
       b1Input.origBase = bInput.base
     }
     b1Input.output = processInput(b1Input, playersInvolved)

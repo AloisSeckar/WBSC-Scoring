@@ -32,7 +32,7 @@ function checkUserInput(inputs: WBSCInput[]) {
 
   // 1) validations to be run over each input separately
   inputs.forEach((input) => {
-    if (input && input.baseAction && input.specAction) {
+    if (input?.baseAction && input?.specAction) {
       const minPosItems = useEvalStore().getMinPosItems(input.group)
       const posSelection = input.pos
       if (minPosItems > 0 && (!posSelection || posSelection.length < minPosItems)) {

@@ -12,7 +12,7 @@ This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
   - [Nuxt Content](https://nuxt.com/modules/content) for documentation/overview pages (#153)
   - Project history now tracked in CHANGELOG.md (#223)
 - Enhancements - GitHub issues #164, #197, #207, #224
-- Bugfixes - GitHub issues #130, #179, #209, #210, #220
+- Bugfixes - GitHub issues #130, #179, #209, #210, #220, #226
 
 ## Version 1.0.1 (2024-03-02)
 - Hotfixed error in evaluating "Same error (R2)" (#209)
