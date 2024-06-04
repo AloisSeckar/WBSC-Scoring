@@ -262,6 +262,10 @@
             "situation" : "Situation",
             "confirm" : "Import",
             "cancel" : "Cancel"
+        },
+        "error" : {
+            "invalidCanvas" : "Fatal: Rendering target not defined!",
+            "invalidAction" : "Invalid input for consecutive action!"
         }
     },
     "footer" : {

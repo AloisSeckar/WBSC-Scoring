@@ -20,7 +20,7 @@ function extendDownloadButton() {
       downloadButton.href = canvas.toDataURL()
       downloadButton.download = 'wbsc-scoring.png'
     } else {
-      useEvalStore().setError('Canvas not defined')
+      useEvalStore().setError(useT('editor.error.invalidCanvas'))
     }
   }, false)
 }

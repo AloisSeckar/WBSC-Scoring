@@ -262,6 +262,10 @@
             "situation" : "Situace",
             "confirm" : "Importovat",
             "cancel" : "Zrušit"
+        },
+        "error" : {
+            "invalidCanvas" : "Fatal: Není definován objekt pro vykreslování obsahu!",
+            "invalidAction" : "Neplatný vstup pro navazující akci!"
         }
     },
     "footer" : {

@@ -112,7 +112,7 @@ function drawBackground(battingOrder: number) {
     ctx.lineTo(w1 - h3 + hOffset, h2 + vOffset)
     ctx.stroke()
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -150,7 +150,7 @@ function drawOutCircle(base: number) {
     }
     ctx.stroke()
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -180,7 +180,7 @@ function drawAdvanceLine(base: number) {
     }
     ctx.stroke()
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -188,7 +188,7 @@ function drawAdvanceLine(base: number) {
 // to join two or more consecutive actions
 function drawConnector(base1: number, base2: number) {
   if (base1 < 1 || base1 > 3 || base2 < 1 || base2 > 4 || base1 >= base2) {
-    useEvalStore().setError('Invalid input for consecutive action!')
+    useEvalStore().setError(useT('editor.error.invalidAction'))
   } else {
     const ctx = useCanvasStore().ctx
     if (ctx) {
@@ -230,7 +230,7 @@ function drawConnector(base1: number, base2: number) {
       }
       ctx.stroke()
     } else {
-      createError('Canvas context not defined')
+      createError(useT('editor.error.invalidCanvas'))
     }
   }
 }
@@ -273,7 +273,7 @@ function drawHitSymbol(base: number) {
     }
     ctx.stroke()
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -715,7 +715,7 @@ function writeSituation(output: WBSCOutput) {
       writeBatterIndicator(base)
     }
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -796,7 +796,7 @@ function writeBatterIndicator(base: number) {
     ctx.lineTo(coords[3]?.x || 0, coords[3]?.y || 0)
     ctx.stroke()
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -876,7 +876,7 @@ function connectOutsIfNeeded() {
           ctx.lineTo(endX, endY)
           ctx.stroke()
         } else {
-          createError('Canvas context not defined')
+          createError(useT('editor.error.invalidCanvas'))
         }
       }
     }
@@ -1050,7 +1050,7 @@ function drawArrow(fromx: number, fromy: number, tox: number, toy: number, width
       toy - headlen * Math.sin(angle - Math.PI / 7))
     ctx.stroke()
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -1064,7 +1064,7 @@ function drawExtraErrorAdvanceIfNeeded(origBase: number, targetBase: number, two
       ctx.lineWidth = 5
       ctx.strokeStyle = 'black'
     } else {
-      createError('Canvas context not defined')
+      createError(useT('editor.error.invalidCanvas'))
     }
 
     switch (origBase) {
@@ -1114,7 +1114,7 @@ function drawExtraErrorAdvanceTo2B(endsAt2B: boolean, twoLineText: boolean) {
       ctx.stroke()
     }
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -1142,7 +1142,7 @@ function drawExtraErrorAdvanceTo3B(startsAt2B: boolean, endsAt3B: boolean) {
       ctx.stroke()
     }
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
@@ -1163,7 +1163,7 @@ function drawExtraErrorAdvanceToHP(startsAt3B: boolean) {
 
     drawArrow(gap + hOffset, h2 + length + vOffset, gap + hOffset, h2 + length + vOffset + 20, 5)
   } else {
-    createError('Canvas context not defined')
+    createError(useT('editor.error.invalidCanvas'))
   }
 }
 
