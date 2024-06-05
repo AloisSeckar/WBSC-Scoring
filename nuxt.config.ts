@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     },
   },
   image: {
+    provider: import.meta.env.PROD ? 'netlify' : 'ipx',
     dir: 'assets/img',
   },
   nitro: {
