@@ -2,8 +2,11 @@
 
 This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
 
+## Version 1.2.0 [IN PROGRESS]
+
 ## Version 1.1.1 (2024-06-05)
 - Hotfixed error with displaying images (#227)
+- dropped [Nuxt Image](https://nuxt.com/modules/image) due to Netlify-related issues
 
 ## Version 1.1.0 (2024-06-05)
 - Features:
