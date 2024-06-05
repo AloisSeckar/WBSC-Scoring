@@ -2,7 +2,7 @@
 
 This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
 
-## Version 1.1.0 [UNRELEASED]
+## Version 1.1.0 (2024-06-05)
 - Features:
   - new action: FC - occupied for runners
   - 2 new library actions + tests
