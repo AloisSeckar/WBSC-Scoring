@@ -47,5 +47,5 @@ Toto je pokročilejší téma, ale také mi může hodně pomoct. Pokud ve vaše
 Zde je příklad výstupu do konzole (poté, co jsem zvolil špatný typ souboru během importu z JSON souboru):
 
 <div>
-<article-image src="/report-console.png" alt="" sizes="100% md:768px" />
+<article-image src="report-console.png" alt="" css="w-full md:w-[768px]" />
 </div>

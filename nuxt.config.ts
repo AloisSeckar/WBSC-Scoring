@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/content',
     '@nuxt/eslint',
-    '@nuxt/image',
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
@@ -14,9 +13,6 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
-  },
-  image: {
-    dir: 'assets/img',
   },
   nitro: {
     prerender: {

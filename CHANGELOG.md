@@ -2,6 +2,9 @@
 
 This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
 
+## Version 1.1.1 (2024-06-05)
+- Hotfixed error with displaying images (#227)
+
 ## Version 1.1.0 (2024-06-05)
 - Features:
   - new action: FC - occupied for runners
