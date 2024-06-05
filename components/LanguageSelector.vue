@@ -10,6 +10,11 @@
       :class="locale === 'cs' ? selectedLang : lang"
       @click="setLocale('cs')"
     />
+    <NuxtImg
+      src="/flag-it.png" alt="IT" title="Italiano"
+      :class="locale === 'it' ? selectedLang : lang"
+      @click="setLocale('it')"
+    />
   </div>
 </template>
 
