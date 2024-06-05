@@ -1,6 +1,7 @@
 .nuxt
 .output
 .vite
+dist
 node_modules
 
 #backstop

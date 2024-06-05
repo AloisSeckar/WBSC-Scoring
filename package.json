@@ -3,8 +3,9 @@
   "private": true,
   "scripts": {
     "eslint": "eslint .",
-    "dev": "nuxi dev",
-    "build": "nuxi build",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
     "start": "node .output/server/index.mjs",
     "test": "backstop test --config=backstop.config.js",
     "test-approve": "backstop approve --config=backstop.config.js"
