@@ -17,6 +17,9 @@ export default defineNuxtConfig({
   },
   image: {
     provider: import.meta.env.PROD ? 'netlify' : 'ipx',
+    netlify: {
+      baseURl: process.env.IMAGES_URL,
+    },
     dir: 'assets/img',
   },
   nitro: {
