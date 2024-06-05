@@ -1,10 +1,9 @@
 <template>
-  <div v-bind="$attrs" class="mb-2">
-    <NuxtImg
-      :src="`/${props.src}`" :alt
-      :width :height :sizes
-      class="max-w-full"
-    />
+  <div v-bind="$attrs" class="my-4">
+    <img
+      :src="`/img/${props.src}`" :alt
+      :width :height :class="css"
+    >
   </div>
 </template>
 
@@ -14,6 +13,6 @@ const props = defineProps({
   alt: { type: String, required: true },
   width: { type: Number },
   height: { type: Number },
-  sizes: { type: String },
+  css: { type: String },
 })
 </script>

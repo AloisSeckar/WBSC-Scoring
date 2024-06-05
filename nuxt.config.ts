@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/content',
     '@nuxt/eslint',
-    '@nuxt/image',
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
@@ -14,13 +13,6 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
-  },
-  image: {
-    provider: import.meta.env.PROD ? 'netlify' : 'ipx',
-    netlify: {
-      baseURl: process.env.IMAGES_URL,
-    },
-    dir: 'assets/img',
   },
   nitro: {
     prerender: {

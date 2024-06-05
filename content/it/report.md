@@ -47,5 +47,5 @@ Questo è un argomento avanzato ma può anche aiutarmi molto. Se premi **F12** n
 Ecco un esempio di output della console (dopo aver scelto il tipo di file sbagliato durante l'importazione dell'input):
 
 <div>
-<article-image src="/report-console.png" alt="" sizes="100% md:768px" />
+<article-image src="report-console.png" alt="" css="w-full md:w-[768px]" />
 </div>

@@ -47,5 +47,5 @@ This is an advanced topic, but it can also help me a lot. If you press **F12** i
 Here is an example of console output (after I picked wrong file type during importing input):
 
 <div>
-<article-image src="/report-console.png" alt="" sizes="100% md:768px" />
+<article-image src="report-console.png" alt="" css="w-full md:w-[768px]" />
 </div>
