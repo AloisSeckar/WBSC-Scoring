@@ -7,7 +7,7 @@ import type { WBSCInput } from '@/composables/useInputStore'
 
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
-function processAction () {
+function processAction() {
   const inputs = [] as WBSCInput[]
   const r3Input = getInput(inputR3)
   if (r3Input) {
@@ -107,7 +107,7 @@ function processAction () {
     extraR1Input.push(r1bInput)
   }
   if (r1aInput) {
-    if (r1Input && r1Input.base) {
+    if (r1Input?.base) {
       r1aInput.origBase = r1Input.base
     }
     r1aInput.output = processInput(r1aInput, playersInvolved)
@@ -128,14 +128,14 @@ function processAction () {
     extraBatterInput.push(b3Input)
   }
   if (b2Input) {
-    if (b1Input && b1Input.base) {
+    if (b1Input?.base) {
       b2Input.origBase = b1Input.base
     }
     b2Input.output = processInput(b2Input, playersInvolved)
     extraBatterInput.push(b2Input)
   }
   if (b1Input) {
-    if (bInput && bInput.base) {
+    if (bInput?.base) {
       b1Input.origBase = bInput.base
     }
     b1Input.output = processInput(b1Input, playersInvolved)
@@ -148,6 +148,13 @@ function processAction () {
       bInput.output.errorTarget = bErrorTarget
       bInput.output.run = bRunType
     }
+  }
+
+  // special case - double or triple followed by an error (#226)
+  if ((bInput?.specAction.startsWith('2') || bInput?.specAction.startsWith('3'))
+    && (b1Input?.specAction.startsWith('e') || b1Input?.specAction.startsWith('E'))) {
+    b1Input.output!.base = bInput.output!.base + 1
+    b1Input.output!.origBase = bInput.output!.base + 1
   }
 
   mergeBatterIndicators(inputs)
@@ -209,7 +216,7 @@ function processAction () {
 }
 
 // get current value from 'base' select for given input group
-function getBaseSelection (group: string): number {
+function getBaseSelection(group: string): number {
   let base = 1
 
   const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
@@ -221,7 +228,7 @@ function getBaseSelection (group: string): number {
 }
 
 // get current value from 'tiebreak' checker for given input group
-function getTIESelection (group: string): boolean {
+function getTIESelection(group: string): boolean {
   let tie = false
 
   const tieCheck = document.getElementById(group + inputTie) as HTMLInputElement
@@ -233,7 +240,7 @@ function getTIESelection (group: string): boolean {
 }
 
 // returns original base based on input group
-function getOrigBase (group: string): number {
+function getOrigBase(group: string): number {
   switch (group) {
     case inputR3:
     case inputR2a:
@@ -253,7 +260,7 @@ function getOrigBase (group: string): number {
 }
 
 // get current value from 'run' select for given input group
-function getRunTypeSelection (group: string): string {
+function getRunTypeSelection(group: string): string {
   let run = 'e'
 
   const runtypeSelect = document.getElementById(group + inputRuntype) as HTMLInputElement
@@ -265,7 +272,7 @@ function getRunTypeSelection (group: string): string {
 }
 
 // get current values from 'involved' selects for given input group
-function getPosSelection (group: string) {
+function getPosSelection(group: string) {
   let selection = ''
 
   const container = document.getElementById(group + inputPosition) as HTMLElement
@@ -281,7 +288,7 @@ function getPosSelection (group: string) {
 }
 
 // get and wrap current user input for given input group
-function getInput (group: string, plain?: boolean): WBSCInput | null {
+function getInput(group: string, plain?: boolean): WBSCInput | null {
   let input = null
 
   const container = document.getElementById(group)
@@ -304,7 +311,7 @@ function getInput (group: string, plain?: boolean): WBSCInput | null {
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/10
-function checkMultipleRunnerAdvances (inputArr: WBSCInput[]) {
+function checkMultipleRunnerAdvances(inputArr: WBSCInput[]) {
   // first encountered will be uppercase, possible others lowercase
   let advanceEncountered = false
   for (let i = 0; i < inputArr.length; i += 1) {
@@ -322,7 +329,7 @@ function checkMultipleRunnerAdvances (inputArr: WBSCInput[]) {
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/188
-function mergeBatterIndicators (inputArr: WBSCInput[]) {
+function mergeBatterIndicators(inputArr: WBSCInput[]) {
   // render only one batter indicator - for the most advanced runner
   // other concurrent actions are connected to this play by other means
   let indicatorEncountered = false
@@ -341,7 +348,7 @@ function mergeBatterIndicators (inputArr: WBSCInput[]) {
 // as the situations were already bind together with multiple-out marker
 // known cases:
 // - ahead runner out at 3rd/Home + following runner advances to 2nd/3rd + batter out
-function removeDuplicateConnectors () {
+function removeDuplicateConnectors() {
   let runner23Out = false
   let runner12Advance = false
   let batterOut = false
@@ -370,7 +377,7 @@ function removeDuplicateConnectors () {
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/178
-function adjustWPPB (inputArr: WBSCInput[]) {
+function adjustWPPB(inputArr: WBSCInput[]) {
   const strikeoutWPPB = inputArr.filter(i => ['KSWP', 'KSPB', 'KLWP', 'KLPB'].includes(i.specAction))?.length > 0
   if (strikeoutWPPB) {
     inputArr.forEach((i) => {
@@ -386,7 +393,7 @@ function adjustWPPB (inputArr: WBSCInput[]) {
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/177
-function adjustIO (inputArr: WBSCInput[]) {
+function adjustIO(inputArr: WBSCInput[]) {
   const batterAction = inputArr.filter(i => i.group === inputB)?.[0]?.specAction
   const isIO = batterAction === 'INT' || batterAction === 'OB'
   if (isIO) {
@@ -399,7 +406,7 @@ function adjustIO (inputArr: WBSCInput[]) {
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/189
-function connectSpecialCases (inputArr: WBSCInput[]) {
+function connectSpecialCases(inputArr: WBSCInput[]) {
   const batterInput = inputArr.find(i => i.group === inputB)
   const r1Input = inputArr.find(i => i.group === inputR1)
   const r2Input = inputArr.find(i => i.group === inputR2)
@@ -427,7 +434,7 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
       base: r1Output.base,
       out: r1Output.out,
       na: r1Output.na,
-      text1: r1Output.text1
+      text1: r1Output.text1,
     })
   }
   if (r2error && (r1connect || r3connect)) {
@@ -437,7 +444,7 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
       base: r2Output.base,
       out: r2Output.out,
       na: r2Output.na,
-      text1: r2Output.text1
+      text1: r2Output.text1,
     })
   }
   if (r3error && (r1connect || r2connect)) {
@@ -447,7 +454,7 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
       base: r3Output.base,
       out: r3Output.out,
       na: r3Output.na,
-      text1: r3Output.text1
+      text1: r3Output.text1,
     })
   }
 
@@ -464,7 +471,7 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
         base: 0,
         out: true,
         na: false,
-        text1: batterAction
+        text1: batterAction,
       })
       if (r1Indifference) {
         useEvalStore().pushConcurrentPlayIfNotAdded({
@@ -472,7 +479,7 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
           base: 2,
           out: false,
           na: false,
-          text1: r1Input!.output!.text1
+          text1: r1Input!.output!.text1,
         })
       }
       if (r2Indifference) {
@@ -481,7 +488,7 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
           base: 3,
           out: false,
           na: false,
-          text1: r2Input!.output!.text1
+          text1: r2Input!.output!.text1,
         })
       }
     }
@@ -497,14 +504,14 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
         base: 4,
         out: false,
         na: false,
-        text1: r3Input!.output!.text1
+        text1: r3Input!.output!.text1,
       })
       useEvalStore().pushConcurrentPlayIfNotAdded({
         batter: batterInput!.output!.batter,
         base: 1,
         out: false,
         na: false,
-        text1: batterAction
+        text1: batterAction,
       })
     }
   }
@@ -522,8 +529,24 @@ function connectSpecialCases (inputArr: WBSCInput[]) {
       playToFix.text1 = playWithOut.specAction
     }
   }
+
+  // #164 - connect DIF + error/out
+  const isDIF = batterAction === 'OBR_DIF'
+  if (isDIF) {
+    inputArr.forEach((input) => {
+      if (['OBR_DIF', 'GO', 'GOT', 'eF', 'eT'].includes(input.specAction)) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: input!.output!.batter,
+          base: input.base,
+          out: input.output!.out,
+          na: false,
+          text1: input!.output!.text1,
+        })
+      }
+    })
+  }
 }
 
 export {
-  processAction, getPosSelection, getInput
+  processAction, getPosSelection, getInput,
 }

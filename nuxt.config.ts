@@ -1,20 +1,26 @@
-// @ts-ignore: noImplicitAny - JS module with no types...
-import vsharp from 'vite-plugin-vsharp'
-
 export default defineNuxtConfig({
   ssr: false,
+  devtools: { enabled: false },
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/image',
     '@pinia/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
+  image: {
+    dir: 'assets/img',
+  },
   nitro: {
     prerender: {
-      routes: ['/help', '/project', '/report']
-    }
+      routes: ['/help', '/project', '/report'],
+    },
   },
-  vite: {
-    plugins: [vsharp()]
-  }
 })

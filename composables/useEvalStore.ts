@@ -1,40 +1,40 @@
 export type PosSelectionLimit = {
-    inputGroup: string,
-    limit: number,
+  inputGroup: string
+  limit: number
 }
 
 export type PosSelection = {
-    inputGroup: string,
-    selection: string,
+  inputGroup: string
+  selection: string
 }
 
 export type Out = {
-    batter: number,
-    base: number,
+  batter: number
+  base: number
 }
 
 export type ConcurrentPlay = {
-    batter: number,
-    base: number,
-    out: boolean,
-    na: boolean,
-    text1: string
+  batter: number
+  base: number
+  out: boolean
+  na: boolean
+  text1: string
 }
 
 export type WBSCEval = {
-    importShow: boolean,
-    errorShow: boolean,
-    errorText: string,
-    batter: number,
-    batterAction: boolean,
-    minPosItems: PosSelectionLimit[],
-    targetPosItems: PosSelectionLimit[],
-    maxPosItems: PosSelectionLimit[],
-    posSelection: PosSelection[],
-    outs: Out[],
-    concurrentPlays: ConcurrentPlay[],
-    gdp: boolean,
-    brokenDP: boolean
+  importShow: boolean
+  errorShow: boolean
+  errorText: string
+  batter: number
+  batterAction: boolean
+  minPosItems: PosSelectionLimit[]
+  targetPosItems: PosSelectionLimit[]
+  maxPosItems: PosSelectionLimit[]
+  posSelection: PosSelection[]
+  outs: Out[]
+  concurrentPlays: ConcurrentPlay[]
+  gdp: boolean
+  brokenDP: boolean
 }
 
 export const useEvalStore = defineStore({
@@ -53,28 +53,28 @@ export const useEvalStore = defineStore({
       outs: [],
       concurrentPlays: [],
       gdp: false,
-      brokenDP: false
+      brokenDP: false,
     }
     return data
   },
   actions: {
-    setError (errorText: string) {
+    setError(errorText: string) {
       this.errorText = errorText
       this.errorShow = true
     },
-    setMinPosItems (inputGroup: string, limit: number) {
+    setMinPosItems(inputGroup: string, limit: number) {
       this.minPosItems = resetItemInArray(this.minPosItems, { inputGroup, limit })
     },
-    setTargetPosItems (inputGroup: string, limit: number) {
+    setTargetPosItems(inputGroup: string, limit: number) {
       this.targetPosItems = resetItemInArray(this.targetPosItems, { inputGroup, limit })
     },
-    setMaxPosItems (inputGroup: string, limit: number) {
+    setMaxPosItems(inputGroup: string, limit: number) {
       this.maxPosItems = resetItemInArray(this.maxPosItems, { inputGroup, limit })
     },
-    setPosSelection (inputGroup: string, selection: string) {
+    setPosSelection(inputGroup: string, selection: string) {
       this.posSelection = resetItemInArray(this.posSelection, { inputGroup, selection })
     },
-    pushConcurrentPlayIfNotAdded (play: ConcurrentPlay) {
+    pushConcurrentPlayIfNotAdded(play: ConcurrentPlay) {
       let notAddedYet = true
       for (let i = 0; i < this.concurrentPlays.length; i += 1) {
         if (this.concurrentPlays[i]?.batter === play.batter) {
@@ -85,7 +85,7 @@ export const useEvalStore = defineStore({
       if (notAddedYet) {
         this.concurrentPlays.push(play)
       }
-    }
+    },
   },
   getters: {
     getMinPosItems: (state) => {
@@ -93,7 +93,8 @@ export const useEvalStore = defineStore({
         const item = state.minPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
         if (item) {
           return item.limit
-        } else {
+        }
+        else {
           return 0
         }
       }
@@ -103,7 +104,8 @@ export const useEvalStore = defineStore({
         const item = state.maxPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
         if (item) {
           return item.limit
-        } else {
+        }
+        else {
           return 0
         }
       }
@@ -113,15 +115,16 @@ export const useEvalStore = defineStore({
         const item = state.posSelection.find((i: PosSelection) => i.inputGroup === inputGroup)
         if (item) {
           return item.selection
-        } else {
+        }
+        else {
           return ' '
         }
       }
-    }
-  }
+    },
+  },
 })
 
-function resetItemInArray (arr: any[], item: PosSelectionLimit | PosSelection): any[] {
+function resetItemInArray<T extends { inputGroup: string }>(arr: T[], item: T): T[] {
   arr = arr.filter(i => i.inputGroup !== item.inputGroup)
   arr.push(item)
   return arr

@@ -7,7 +7,7 @@
           <header class="mt-1 mb-2">
             <h1>WBSC Scoring <span class="text-red-500">Creator</span></h1>
           </header>
-          <div class="text-justify mb-16">
+          <div class="text-left sm:text-justify mb-16">
             <NuxtPage />
           </div>
           <footer class="fixed bottom-0 left-0 w-full p-1 bg-wbsc-blue text-black text-xs">
@@ -35,7 +35,7 @@ if (storedLocale.value && typeof storedLocale.value === 'string') {
 
 useHead({
   htmlAttrs: {
-    lang: locale.value
-  }
+    lang: locale.value,
+  },
 })
 </script>

@@ -22,8 +22,9 @@
 
 const https = require('https')
 const fetch = require('node-fetch')
+
 const agent = new https.Agent({
-  rejectUnauthorized: false
+  rejectUnauthorized: false,
 })
 
 module.exports = async function (page, scenario) {
@@ -40,7 +41,7 @@ module.exports = async function (page, scenario) {
         body: request.postData(),
         method: request.method(),
         follow: 20,
-        agent
+        agent,
       }
 
       const result = await fetch(requestUrl, options)
@@ -51,7 +52,7 @@ module.exports = async function (page, scenario) {
       await request.respond({
         body: buffer,
         headers: cleanedHeaders,
-        status: result.status
+        status: result.status,
       })
     } else {
       request.continue()

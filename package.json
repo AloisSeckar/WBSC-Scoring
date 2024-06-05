@@ -2,6 +2,7 @@
   "name": "wbsc-scoring",
   "private": true,
   "scripts": {
+    "eslint": "eslint .",
     "dev": "nuxi dev",
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
@@ -9,17 +10,17 @@
     "test-approve": "backstop approve --config=backstop.config.js"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config-typescript": "12.1.0",
-    "@nuxtjs/i18n": "8.1.1",
-    "@nuxtjs/tailwindcss": "6.11.4",
+    "@nuxtjs/i18n": "8.3.1",
+    "@nuxtjs/tailwindcss": "6.12.0",
+    "@nuxt/content": "2.12.1",
+    "@nuxt/eslint": "0.3.13",
+    "@nuxt/image": "1.7.0",
     "@pinia/nuxt": "0.5.1",
-    "@vueuse/core": "10.7.2",
-    "@vueuse/nuxt": "10.7.2",
-    "backstopjs": "6.3.3",
-    "eslint": "8.56.0",
-    "nuxt": "3.10.2",
+    "@vueuse/core": "10.10.0",
+    "@vueuse/nuxt": "10.10.0",
+    "backstopjs": "6.3.23",
+    "nuxt": "3.11.2",
     "pinia": "2.1.7",
-    "tailwindcss": "3.4.1",
-    "vite-plugin-vsharp": "1.7.3"
+    "tailwindcss": "3.4.3"
   }
 }

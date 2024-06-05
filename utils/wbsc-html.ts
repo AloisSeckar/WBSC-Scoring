@@ -4,7 +4,7 @@
 /* *************************************** */
 
 // displayed title for given input group
-function getLabelForInputGroup (group: string) {
+function getLabelForInputGroup(group: string) {
   let label = '<strong>'
   switch (group) {
     case inputB:
@@ -25,7 +25,7 @@ function getLabelForInputGroup (group: string) {
 }
 
 // displayed text for given action button
-function getLabelForRenderButton (group: string, render: boolean) {
+function getLabelForRenderButton(group: string, render: boolean) {
   let label = ''
   switch (group) {
     case inputGenerate:
@@ -68,7 +68,7 @@ function getLabelForRenderButton (group: string, render: boolean) {
 }
 
 // list of existing player positions / basic field locations
-function renderPlayerOptions () {
+function renderPlayerOptions() {
   const options = []
   options.push('<option value=""></option>')
   options.push('<option value="1">P</option>')
@@ -84,7 +84,7 @@ function renderPlayerOptions () {
 }
 
 // list of extra field locations to describe hits
-function renderHitLocationOptions () {
+function renderHitLocationOptions() {
   const options = renderPlayerOptions()
   options.push('<option value="LL">LL</option>')
   options.push('<option value="GLL">GLL</option>')
@@ -99,7 +99,7 @@ function renderHitLocationOptions () {
 }
 
 // list of target bases for fielder's choice
-function renderFCLocationOptions () {
+function renderFCLocationOptions() {
   const options = []
   options.push('<option value="X">2nd</option>')
   options.push('<option value="Y">3rd</option>')
@@ -109,7 +109,7 @@ function renderFCLocationOptions () {
 
 // list of available advances
 //   base - original base
-function renderBaseOptions (base: number) {
+function renderBaseOptions(base: number) {
   const options = []
   if (base < 2) {
     const second = useT('editor.base.second')
@@ -137,7 +137,7 @@ function renderBaseOptions (base: number) {
 }
 
 // list of possible run types
-function renderRunTypeOptions () {
+function renderRunTypeOptions() {
   const options = []
   options.push('<option value="e">ER</option>')
   options.push('<option value="ue">UE</option>')
@@ -146,7 +146,7 @@ function renderRunTypeOptions () {
 }
 
 // list of basic actions for the batter
-function renderBatterActionOptions () {
+function renderBatterActionOptions() {
   const options = []
   options.push('<option value=""></option>')
   options.push(`<option value="StrikeOut">${useT('editor.action.strikeOut.title')}</option>`)
@@ -163,7 +163,7 @@ function renderBatterActionOptions () {
 }
 
 // list of basic actions for the running batter
-function renderBatterRunnerActionOptions () {
+function renderBatterRunnerActionOptions() {
   const options = []
   options.push('<option value=""></option>')
   options.push(`<option value="exb">${useT('editor.action.extraBase.title')}</option>`)
@@ -175,7 +175,7 @@ function renderBatterRunnerActionOptions () {
 }
 
 // list of basic actions for the runner
-function renderRunnerActionOptions () {
+function renderRunnerActionOptions() {
   const options = []
   options.push('<option value=""></option>')
   options.push(`<option value="adv">${useT('editor.action.advance.title')}</option>`)
@@ -190,7 +190,7 @@ function renderRunnerActionOptions () {
 }
 
 // list of specific actions based on selected base action for batter
-function renderBatterSpecificActionOptions (action: string) {
+function renderBatterSpecificActionOptions(action: string) {
   const options = []
   const bSafe = useT('editor.action.batterSafe')
   const bOut = useT('editor.action.batterOut')
@@ -325,7 +325,7 @@ function renderBatterSpecificActionOptions (action: string) {
 // list of specific actions based on selected base action for runner
 //   action - selected base action
 //   group - invoking input group
-function renderRunnerSpecificActionOptions (action: string, group: string) {
+function renderRunnerSpecificActionOptions(action: string, group: string) {
   const options = []
   const rSafe = useT('editor.action.runnerSafe')
   const rStay = useT('editor.action.runnerStay')
@@ -378,6 +378,9 @@ function renderRunnerSpecificActionOptions (action: string, group: string) {
       if ((!group.includes('-r'))) {
         // only for running batter, not the runners
         options.push(`<option value="oc">${useT('editor.action.fc.oc')}</option>`)
+      } else {
+        // only for runners
+        options.push(`<option value="o">${useT('editor.action.fc.oc')}</option>`)
       }
       options.push('</optgroup>')
       break
@@ -432,5 +435,5 @@ export {
   getLabelForInputGroup, getLabelForRenderButton, renderPlayerOptions, renderHitLocationOptions,
   renderFCLocationOptions, renderBaseOptions, renderRunTypeOptions, renderBatterActionOptions,
   renderBatterRunnerActionOptions, renderRunnerActionOptions, renderBatterSpecificActionOptions,
-  renderRunnerSpecificActionOptions
+  renderRunnerSpecificActionOptions,
 }

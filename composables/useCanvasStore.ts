@@ -1,8 +1,8 @@
 export type CanvasInfo = {
-    canvas?: HTMLCanvasElement,
-    ctx?: CanvasRenderingContext2D,
-    hOffset: number,
-    vOffset: number,
+  canvas?: HTMLCanvasElement
+  ctx?: CanvasRenderingContext2D
+  hOffset: number
+  vOffset: number
 }
 
 export const useCanvasStore = defineStore({
@@ -10,12 +10,12 @@ export const useCanvasStore = defineStore({
   state: () => {
     const item: CanvasInfo = {
       hOffset: 75,
-      vOffset: 0
+      vOffset: 0,
     }
     return item
   },
   actions: {
-    init () {
+    init() {
       this.$reset()
 
       const canvas = document.getElementById('canvas') as HTMLCanvasElement
@@ -34,8 +34,8 @@ export const useCanvasStore = defineStore({
       this.ctx = ctx
 
       drawBackground(1)
-    }
+    },
   },
   getters: {
-  }
+  },
 })

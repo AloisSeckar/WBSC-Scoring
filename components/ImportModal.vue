@@ -2,7 +2,7 @@
 
 <template>
   <transition name="modal-fade">
-    <div class="modal-overlay" @click="close()">
+    <div v-show="useEvalStore().importShow" class="modal-overlay" @click="close()">
       <div :class="divMain" @click.stop>
         <div :class="divHeader">
           {{ $t('editor.import.title') }}
@@ -32,21 +32,21 @@ import libItems from '@/assets/json/library.json'
 
 const libFileId = 'lib-items'
 
-const divMain = 'mt-[10%] px-4 max-[500px]:w-[90%] max-[1200px]:w-[80%] w-1/2 min-[1600px]:w-1/3 h-fit ' +
-                'border border-black rounded bg-blue-200'
+const divMain = 'mt-[10%] px-4 max-[500px]:w-[90%] max-[1200px]:w-[80%] w-1/2 min-[1600px]:w-1/3 h-fit '
+  + 'border border-black rounded bg-blue-200'
 const divHeader = 'py-4 text-3xl font-bold'
 const divSelect = 'max-[650px]:max-w-[90%]'
-const divButton = 'mx-2 my-4 p-2 w-28 inline-block border border-black rounded bg-wbsc-blue hover:bg-sky-300 ' +
-                  'text-white hover:text-gray-700 font-bold cursor-pointer'
+const divButton = 'mx-2 my-4 p-2 w-28 inline-block border border-black rounded bg-wbsc-blue hover:bg-sky-300 '
+  + 'text-white hover:text-gray-700 font-bold cursor-pointer'
 
-function importFromLib () {
+function importFromLib() {
   const libFileSelect = document.getElementById(libFileId) as HTMLInputElement
   const libFileValue = libFileSelect.value
   importInputFromLib(libFileValue)
   close()
 }
 
-function close () {
+function close() {
   useEvalStore().importShow = false
 }
 </script>

@@ -4,7 +4,7 @@
 /* *************************************** */
 
 // prepare environment and render default state
-export default function initEditor () {
+export default function initEditor() {
   renderActionButtons()
   clearInputs()
   useCanvasStore().init()
@@ -12,7 +12,7 @@ export default function initEditor () {
 }
 
 // button for saving output as PNG
-function extendDownloadButton () {
+function extendDownloadButton() {
   const downloadButton = document.getElementById('download-link') as HTMLAnchorElement
   downloadButton.addEventListener('click', function () {
     const canvas = useCanvasStore().canvas
@@ -20,7 +20,7 @@ function extendDownloadButton () {
       downloadButton.href = canvas.toDataURL()
       downloadButton.download = 'wbsc-scoring.png'
     } else {
-      useEvalStore().setError('Canvas not defined')
+      useEvalStore().setError(useT('editor.error.invalidCanvas'))
     }
   }, false)
 }

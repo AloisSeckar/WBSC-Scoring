@@ -2,7 +2,7 @@
 
 <template>
   <transition name="modal-fade">
-    <div class="modal-overlay" @click="invalidate()">
+    <div v-show="useEvalStore().errorShow" class="modal-overlay" @click="invalidate()">
       <div :class="divMain" @click.stop>
         <div :class="divHeader">
           {{ $t('editor.validation.window.title') }}
@@ -23,14 +23,14 @@
 <script setup lang="ts">
 const divMain = 'mt-[10%] px-4 max-[380px]:w-[90%] max-[720px]:w-[75%] w-1/2 xl:w-1/3 h-fit border border-black rounded bg-white'
 const divHeader = 'py-4 text-3xl font-bold'
-const divButton = 'mx-auto my-4 p-2 w-16 border border-black rounded bg-wbsc-blue hover:bg-sky-300 ' +
-                  'text-white hover:text-gray-700 font-bold cursor-pointer'
+const divButton = 'mx-auto my-4 p-2 w-16 border border-black rounded bg-wbsc-blue hover:bg-sky-300 '
+  + 'text-white hover:text-gray-700 font-bold cursor-pointer'
 
 const validationRows = computed((): string[] => {
   return useEvalStore().errorText?.split('\n')
 })
 
-function invalidate () {
+function invalidate() {
   useEvalStore().errorShow = false
   useEvalStore().errorText = ''
 }
