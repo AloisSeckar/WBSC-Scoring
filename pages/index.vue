@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-v-html (HTML content is used only from internal i18n) -->
 <template>
   <div class="text-center">
-    <h2>{{ $t('index.editor') }} <span class="text-red-500">v1.1</span></h2>
+    <h2>{{ $t('index.editor') }} <span class="text-red-500">{{ version }}</span></h2>
 
     <div class="container">
       <div id="wbsc-inputs" class="mb-2">
@@ -48,6 +48,8 @@
 
 <script setup lang="ts">
 import initEditor from '@/utils/wbsc-global'
+
+const version = 'v' + useAppConfig().publicVersion
 
 usePageMeta(WBSC_PAGE_META)
 

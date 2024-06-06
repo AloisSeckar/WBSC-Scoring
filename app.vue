@@ -19,7 +19,7 @@
             </NuxtLink>
             (2019-{{ new Date().getFullYear() }})
             {{ $t('footer.version') }}
-            <strong>{{ useAppConfig().version }}</strong>
+            <strong>{{ useAppConfig().fullVersion }}</strong>
           </footer>
         </div>
       </div>
