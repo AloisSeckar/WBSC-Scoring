@@ -4,8 +4,8 @@
     <h2>{{ $t('index.editor') }} <span class="text-red-500">{{ version }}</span></h2>
 
     <div class="container">
-      <div id="wbsc-inputs" class="mb-2">
-        <!-- inputs are dynamically rendered here -->
+      <div id="wbsc-inputs">
+        <WBSCToolbar ref="toolbar" />
       </div>
       <!-- modal window triggered by validation errors -->
       <ValidationModal />

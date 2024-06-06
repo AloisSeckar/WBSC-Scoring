@@ -12,7 +12,7 @@ export default function initEditor() {
 }
 
 // button for saving output as PNG
-function extendDownloadButton() {
+export function extendDownloadButton() {
   const downloadButton = document.getElementById('download-link') as HTMLAnchorElement
   downloadButton.addEventListener('click', function () {
     const canvas = useCanvasStore().canvas

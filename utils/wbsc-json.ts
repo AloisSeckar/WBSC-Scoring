@@ -79,6 +79,10 @@ function getRawInputs(): WBSCInput[] {
   return inputs
 }
 
+export function importFile() {
+  document.getElementById(inputImportFile)?.click()
+}
+
 export function importInputFromJSON() {
   const fileInput = document.getElementById(inputImportFile) as HTMLInputElement
   const file = fileInput?.files?.[0]
