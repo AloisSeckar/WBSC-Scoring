@@ -99,7 +99,7 @@ function checkPosSelection(selection: string) {
       for (let i = 0; i < selection.length - 1; i += 1) {
         const current = parseInt(selection[i] || '1')
         if (alreadyEncounteredPositions[current] === true) {
-          validation = attachValidation(validation, useT('editor.validation.noMultIPleAsist'))
+          validation = attachValidation(validation, useT('editor.validation.noMultipleAsist'))
           break
         }
         alreadyEncounteredPositions[current] = true

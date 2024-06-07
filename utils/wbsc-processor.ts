@@ -291,8 +291,10 @@ function getPosSelection(group: string) {
 function getInput(group: string, plain?: boolean): WBSCInput | null {
   let input = null
 
-  const container = document.getElementById(group)
-  if (container) {
+  console.warn('get input ' + group)
+  console.warn(useGUIStore().isVisible(group))
+
+  if (useGUIStore().isVisible(group)) {
     const baseAction = document.getElementById(group + inputBaseAction) as HTMLInputElement
     const specAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
 

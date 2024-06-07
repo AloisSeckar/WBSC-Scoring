@@ -1,6 +1,6 @@
 <template>
   <button
-    :id="'button-' + group" type="button"
+    :id="group" type="button"
     :class="`btn ${css}`">
     {{ label }}
   </button>

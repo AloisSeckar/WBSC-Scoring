@@ -5,6 +5,10 @@
 
     <div class="container">
       <div id="wbsc-inputs">
+        <WBSCInputs :group="inputB" :label="useT('editor.batter')" :visible="useGUIStore().inputB" />
+        <WBSCInputs :group="inputR1" :label="useT('editor.r1')" :visible="useGUIStore().inputR1" />
+        <WBSCInputs :group="inputR2" :label="useT('editor.r2')" :visible="useGUIStore().inputR2" />
+        <WBSCInputs :group="inputR3" :label="useT('editor.r3')" :visible="useGUIStore().inputR3" />
         <WBSCToolbar ref="toolbar" />
       </div>
       <!-- modal window triggered by validation errors -->
@@ -47,11 +51,12 @@
 </template>
 
 <script setup lang="ts">
-import initEditor from '@/utils/wbsc-global'
+import type { WBSCToolbar } from '#components'
 
 const version = 'v' + useAppConfig().publicVersion
 
 usePageMeta(WBSC_PAGE_META)
 
-onMounted(() => initEditor())
+const toolbar: Ref<InstanceType<typeof WBSCToolbar> | null> = ref(null)
+onMounted(() => toolbar.value?.init())
 </script>
