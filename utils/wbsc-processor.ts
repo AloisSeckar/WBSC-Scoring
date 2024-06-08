@@ -291,6 +291,7 @@ function getPosSelection(group: string) {
 function getInput(group: string, plain?: boolean): WBSCInput | null {
   let input = null
 
+  // TODO remove logs
   console.warn('get input ' + group)
   console.warn(useGUIStore().isVisible(group))
 

@@ -1,11 +1,10 @@
 <template>
-  <div v-show="visible" :id="group" class="wbsc-inputs">
-    <h3>{{ label }}</h3>
+  <div>
     <div v-if="tieVisible">
       <input :id="group + inputTie" type="checkbox" class="wbsc-select">
       <label :for="group + inputTie" class="ml-1">{{ tieLabel }}</label>
     </div>
-    <div>
+    <div v-if="situationVisible" :id="group">
       <div v-if="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
         <select :id="group + inputBase">
@@ -53,16 +52,14 @@
 </template>
 
 <script setup lang="ts">
-import type { GUIOption } from '~/utils/wbsc-types'
-
 const props = defineProps({
   group: { type: String, required: true },
-  label: { type: String, required: true },
-  visible: { type: Boolean, required: true },
 })
 
 const tieVisible = props.group === inputR1 || props.group === inputR2
 const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebreak (baseball/softball)'
+
+const situationVisible = ![inputB, inputR1, inputR2, inputR3].includes(props.group)
 
 const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptionsNEW(getBaseOptionsValueNEW(props.group))

@@ -271,3 +271,34 @@ export function renderRunnerSpecificActionOptionsNEW(baseAction: string, group: 
   }
   return options
 }
+
+export function getExtra1Group(group: string) {
+  switch (group) {
+    case inputB:
+      return inputB1
+    case inputR1:
+      return inputR1a
+    case inputR2:
+      return inputR2a
+    default:
+      return '???'
+  }
+}
+export function getExtra2Group(group: string) {
+  switch (group) {
+    case inputB:
+      return inputB2
+    case inputR1:
+      return inputR1b
+    default:
+      return '???'
+  }
+}
+export function getExtra3Group(group: string) {
+  switch (group) {
+    case inputB:
+      return inputB3
+    default:
+      return '???'
+  }
+}
