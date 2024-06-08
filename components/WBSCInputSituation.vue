@@ -4,8 +4,8 @@
       <input :id="group + inputTie" type="checkbox" class="wbsc-select">
       <label :for="group + inputTie" class="ml-1">{{ tieLabel }}</label>
     </div>
-    <div v-if="situationVisible" :id="group">
-      <div v-if="baseVisible" class="inline-block">
+    <div>
+      <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
         <select :id="group + inputBase">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
@@ -13,7 +13,7 @@
           </option>
         </select>
       </div>
-      <div v-if="runTypeVisible" :id="group + inputRuntype + '-box'" class="inline-block">
+      <div v-show="runTypeVisible" :id="group + inputRuntype + '-box'" class="inline-block">
         <label :for="group + inputRuntype" class="mx-1">{{ useT('editor.run') + ':' }}</label>
         <select :id="group + inputRuntype">
           <option v-for="opt in runTypeOptions" :key="opt.value" :value="opt.value">
@@ -41,12 +41,16 @@
     </div>
     <div :id="group + inputPosition">
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.involved') + ':' }}</label>
+      <WBSCInputPos v-show="pos1Show" :group :ord="1" :positions />
+      <WBSCInputPos v-show="pos2Show" :group :ord="2" :positions />
+      <WBSCInputPos v-show="pos3Show" :group :ord="3" :positions />
+      <WBSCInputPos v-show="pos4Show" :group :ord="4" :positions />
       <WBSCButton
         :group="group + inputPosition + inputAdd" label="+P"
-        :disabled="addPosDisabled" @click="renderPosSelectItem(group)" />
+        :disabled="addPosDisabled" @click="showPosSelectItemNEW()" />
       <WBSCButton
         :group="group + inputPosition + inputRemove" label="-P" class="btn-remove"
-        :disabled="removePosDisabled" @click="unRenderPosSelectItem(group)" />
+        :disabled="removePosDisabled" @click="hidePosSelectItemNEW()" />
     </div>
   </div>
 </template>
@@ -59,12 +63,10 @@ const props = defineProps({
 const tieVisible = props.group === inputR1 || props.group === inputR2
 const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebreak (baseball/softball)'
 
-const situationVisible = ![inputB, inputR1, inputR2, inputR3].includes(props.group)
-
 const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptionsNEW(getBaseOptionsValueNEW(props.group))
 
-const runTypeVisible = true
+const runTypeVisible = true // TODO
 const runTypeOptions: GUIOption[] = [
   { value: 'e', label: 'ER' },
   { value: 'ue', label: 'UE' },
@@ -76,8 +78,10 @@ const baseActionOptions: GUIOption[] = renderBaseActionOptionsNEW(props.group)
 const specActionOptions: Ref<GUIOption[]> = ref([])
 const specActionDisabled = ref(false)
 
-const addPosDisabled = ref(true)
-const removePosDisabled = ref(true)
+// TODO dynamic hits + FCs
+const positions = computed(() => {
+  return renderPlayerOptionsNEW()
+})
 
 function changeBaseActionNEW(event: Event, group: string) {
   const baseAction = event.target as HTMLInputElement
@@ -89,12 +93,92 @@ function changeBaseActionNEW(event: Event, group: string) {
   }
   specActionDisabled.value = specActionOptions.value.length < 1
   // TODO change impl
-  setTimeout(() => changeSpecificAction(group))
+  hideAllPos()
+  changeSpecificAction(group)
 }
 
 function changeSpecActionNEW(event: Event, group: string) {
   const _specAction = event.target as HTMLInputElement
   // TODO change impl
-  setTimeout(() => changeSpecificAction(group))
+  hideAllPos()
+  changeSpecificAction(group)
+}
+
+const pos1Show = ref(false)
+const pos2Show = ref(false)
+const pos3Show = ref(false)
+const pos4Show = ref(false)
+
+function hideAllPos() {
+  pos1Show.value = false
+  pos2Show.value = false
+  pos3Show.value = false
+  pos4Show.value = false
+}
+
+const posShown = computed(() => {
+  let shown = 0
+  if (pos1Show.value) {
+    shown++
+  }
+  if (pos2Show.value) {
+    shown++
+  }
+  if (pos3Show.value) {
+    shown++
+  }
+  if (pos4Show.value) {
+    shown++
+  }
+  return shown
+})
+
+const addPosDisabled = computed(() => {
+  console.warn('add', posShown.value, useEvalStore().getMaxPosItems(props.group))
+  return posShown.value >= useEvalStore().getMaxPosItems(props.group)
+})
+const removePosDisabled = computed(() => {
+  console.warn('remove', posShown.value, useEvalStore().getMinPosItems(props.group))
+  return posShown.value <= useEvalStore().getMinPosItems(props.group)
+})
+
+function showPosSelectItemNEW() {
+  if (pos4Show.value) {
+    return
+  } else {
+    if (!pos3Show.value) {
+      if (!pos2Show.value) {
+        if (!pos1Show.value) {
+          pos1Show.value = true
+        } else {
+          pos2Show.value = true
+        }
+      } else {
+        pos3Show.value = true
+      }
+    } else {
+      pos4Show.value = true
+    }
+  }
+}
+
+function hidePosSelectItemNEW() {
+  if (!pos1Show.value) {
+    return
+  } else {
+    if (pos2Show.value) {
+      if (pos3Show.value) {
+        if (pos4Show.value) {
+          pos4Show.value = false
+        } else {
+          pos3Show.value = false
+        }
+      } else {
+        pos2Show.value = false
+      }
+    } else {
+      pos1Show.value = false
+    }
+  }
 }
 </script>

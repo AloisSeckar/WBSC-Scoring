@@ -99,7 +99,7 @@ function renderInputsButton(group: string, parentDiv?: HTMLElement) {
 }
 
 // clear all user inputs and reset default state
-function clearInputs() {
+async function clearInputs() {
   // hideInputs(inputB)
   // hideInputs(inputR1)
   // hideInputs(inputR2)
@@ -114,7 +114,7 @@ function clearInputs() {
   useInputStore().$reset()
   useCanvasStore().init()
 
-  nextTick()
+  await nextTick()
 }
 
 // show or hide given input group

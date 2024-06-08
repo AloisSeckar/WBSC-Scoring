@@ -15,6 +15,43 @@ export const useGUIStore = defineStore({
     }
   },
   actions: {
+    setVisible(inputGroup: string, visible: boolean) {
+      console.log(inputGroup, visible)
+      switch (inputGroup) {
+        case inputB:
+          console.log(this.inputB)
+          this.inputB = visible
+          console.log(this.inputB)
+          break
+        case inputB1:
+          this.inputB1 = visible
+          break
+        case inputB2:
+          this.inputB2 = visible
+          break
+        case inputB3:
+          this.inputB3 = visible
+          break
+        case inputR1:
+          this.inputR1 = visible
+          break
+        case inputR1a:
+          this.inputR1a = visible
+          break
+        case inputR1b:
+          this.inputR1b = visible
+          break
+        case inputR2:
+          this.inputR2 = visible
+          break
+        case inputR2a:
+          this.inputR2a = visible
+          break
+        case inputR3:
+          this.inputR3 = visible
+          break
+      }
+    },
   },
   getters: {
     isVisible: (state) => {

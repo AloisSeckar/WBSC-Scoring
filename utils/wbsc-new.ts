@@ -302,3 +302,43 @@ export function getExtra3Group(group: string) {
       return '???'
   }
 }
+
+// list of existing player positions / basic field locations
+export function renderPlayerOptionsNEW() {
+  const options = []
+  options.push({ value: '', label: '' })
+  options.push({ value: '1', label: 'P' })
+  options.push({ value: '2', label: 'C' })
+  options.push({ value: '3', label: '1B' })
+  options.push({ value: '4', label: '2B' })
+  options.push({ value: '5', label: '3B' })
+  options.push({ value: '6', label: 'SS' })
+  options.push({ value: '7', label: 'LF' })
+  options.push({ value: '8', label: 'CF' })
+  options.push({ value: '9', label: 'RF' })
+  return options
+}
+
+// list of extra field locations to describe hits
+export function renderHitLocationOptionsNEW() {
+  const options = renderPlayerOptionsNEW()
+  options.push({ value: 'LL', label: 'LL' })
+  options.push({ value: 'GLL', label: 'GLL' })
+  options.push({ value: 'LS', label: 'LS' })
+  options.push({ value: 'LC', label: 'LC' })
+  options.push({ value: 'MI', label: 'MI' })
+  options.push({ value: 'RC', label: 'RC' })
+  options.push({ value: 'RS', label: 'RS' })
+  options.push({ value: 'GRL', label: 'GRL' })
+  options.push({ value: 'RL', label: 'RL' })
+  return options
+}
+
+// list of target bases for fielder's choice
+export function renderFCLocationOptionsNEW() {
+  const options = []
+  options.push({ value: 'X', label: '2nd' })
+  options.push({ value: 'Y', label: '3rd' })
+  options.push({ value: 'Z', label: 'HP' })
+  return options
+}

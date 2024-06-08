@@ -83,45 +83,49 @@ export function importFile() {
   document.getElementById(inputImportFile)?.click()
 }
 
-export function importInputFromJSON() {
+export async function importInputFromJSON() {
   const fileInput = document.getElementById(inputImportFile) as HTMLInputElement
   const file = fileInput?.files?.[0]
 
   if (file) {
     const reader = new FileReader()
-    reader.onload = (event) => {
-      processFile(event.target?.result)
+    reader.onload = async (event) => {
+      await processFile(event.target?.result)
     }
     reader.readAsText(file)
   }
   // TODO we may want to log errors...
 }
 
-export function importInputFromLib(fileName: string) {
+export async function importInputFromLib(fileName: string) {
   fetch('/json/' + fileName)
     .then(response => response.json())
-    .then((fileData) => {
-      processFile(JSON.stringify(fileData))
+    .then(async (fileData) => {
+      await processFile(JSON.stringify(fileData))
     })
     // TODO we may want to log errors...
 }
 
-function processFile(fileData: string | ArrayBuffer | null | undefined) {
+async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
-    clearInputs()
-    renderInputs(inputB)
+    await clearInputs()
+    // renderInputs(inputB)
     const jsonData: WBSCInput[] = JSON.parse(fileData.toString())
-    jsonData?.reverse().forEach((input) => {
-      setInputs(input)
+    jsonData?.reverse().forEach(async (input) => {
+      await setInputs(input)
     })
     processAction()
   }
 }
 
-function setInputs(input: WBSCInput) {
+async function setInputs(input: WBSCInput) {
   const group = input.group
   const pos = input.pos
 
+  useGUIStore().setVisible(group, true)
+  await nextTick()
+
+  /*
   let parentDiv
   if (group.match(/b\d$/)) {
     parentDiv = document.getElementById(inputB)
@@ -129,6 +133,7 @@ function setInputs(input: WBSCInput) {
     parentDiv = document.getElementById(group.slice(0, -1))
   }
   renderInputs(group, parentDiv || undefined)
+  */
 
   const selectBaseAction = document.getElementById(group + inputBaseAction) as HTMLSelectElement
   selectBaseAction.value = input.baseAction
@@ -139,6 +144,7 @@ function setInputs(input: WBSCInput) {
   selectSpecAction.dispatchEvent(new Event('change'))
 
   if (pos) {
+    console.warn(pos)
     // for some inputs there are less pos selection items then initially generated
     let itemsCreated = document.getElementById(group)!.getElementsByClassName(classWbscPos).length
     while (itemsCreated > pos.length) {
@@ -148,9 +154,14 @@ function setInputs(input: WBSCInput) {
     if (pos.match(/^\d/)) {
       for (let i = 0; i < pos.length; i++) {
         let posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
+        console.log(posSelection)
         if (!posSelection) {
           renderPosSelectItem(group)
-          posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
+          await nextTick()
+          const x = group + inputPosition + (i + 1)
+          console.log(x)
+          posSelection = document.getElementById(x) as HTMLSelectElement
+          console.log(posSelection)
           if (pos.match(/[XYZ]$/)) {
             posSelection.innerHTML = renderFCLocationOptions().join(' ') // default are player positions
           }
@@ -178,4 +189,7 @@ function setInputs(input: WBSCInput) {
     const checkTie = document.getElementById(group + inputTie) as HTMLInputElement
     checkTie.checked = input.tie
   }
+  console.log('This happen when?')
+
+  await nextTick()
 }
