@@ -7,7 +7,7 @@
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase">
+        <select :id="group + inputBase" ref="baseSelect" @change="selectBaseNEW">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
@@ -41,10 +41,10 @@
     </div>
     <div :id="group + inputPosition">
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.involved') + ':' }}</label>
-      <WBSCInputPos v-show="pos1Show" :group :ord="1" :positions />
-      <WBSCInputPos v-show="pos2Show" :group :ord="2" :positions />
-      <WBSCInputPos v-show="pos3Show" :group :ord="3" :positions />
-      <WBSCInputPos v-show="pos4Show" :group :ord="4" :positions />
+      <WBSCInputSituationPos v-show="pos1Show" :group :ord="1" :positions />
+      <WBSCInputSituationPos v-show="pos2Show" :group :ord="2" :positions />
+      <WBSCInputSituationPos v-show="pos3Show" :group :ord="3" :positions />
+      <WBSCInputSituationPos v-show="pos4Show" :group :ord="4" :positions />
       <WBSCButton
         :group="group + inputPosition + inputAdd" label="+P"
         :disabled="addPosDisabled" @click="showPosSelectItemNEW()" />
@@ -63,10 +63,15 @@ const props = defineProps({
 const tieVisible = props.group === inputR1 || props.group === inputR2
 const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebreak (baseball/softball)'
 
+const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptionsNEW(getBaseOptionsValueNEW(props.group))
+function selectBaseNEW(event: Event) {
+  const base = event.target as HTMLInputElement
+  runTypeVisible.value = base.value.toString() === '4'
+}
 
-const runTypeVisible = true // TODO
+const runTypeVisible = ref(false)
 const runTypeOptions: GUIOption[] = [
   { value: 'e', label: 'ER' },
   { value: 'ue', label: 'UE' },
@@ -102,6 +107,13 @@ function changeSpecActionNEW(event: Event, group: string) {
   // TODO change impl
   hideAllPos()
   changeSpecificAction(group)
+  //
+  if (_specAction.value === 'HR' || _specAction.value === 'IHR') {
+    baseSelect.value!.value = '4'
+  } else {
+    baseSelect.value!.value = '0'
+  }
+  baseSelect.value!.dispatchEvent(new Event('change'))
 }
 
 const pos1Show = ref(false)
@@ -134,11 +146,9 @@ const posShown = computed(() => {
 })
 
 const addPosDisabled = computed(() => {
-  console.warn('add', posShown.value, useEvalStore().getMaxPosItems(props.group))
   return posShown.value >= useEvalStore().getMaxPosItems(props.group)
 })
 const removePosDisabled = computed(() => {
-  console.warn('remove', posShown.value, useEvalStore().getMinPosItems(props.group))
   return posShown.value <= useEvalStore().getMinPosItems(props.group)
 })
 

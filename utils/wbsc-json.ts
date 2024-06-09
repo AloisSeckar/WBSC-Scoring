@@ -144,7 +144,6 @@ async function setInputs(input: WBSCInput) {
   selectSpecAction.dispatchEvent(new Event('change'))
 
   if (pos) {
-    console.warn(pos)
     // for some inputs there are less pos selection items then initially generated
     let itemsCreated = document.getElementById(group)!.getElementsByClassName(classWbscPos).length
     while (itemsCreated > pos.length) {

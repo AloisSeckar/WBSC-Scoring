@@ -43,7 +43,6 @@ defineExpose({
 const labelB = ref('+B')
 const cssB = ref('btn-add')
 watch(() => GUI.inputB, (newValue) => {
-  console.warn(newValue)
   labelB.value = newValue ? '-B' : '+B'
   cssB.value = newValue ? 'btn-remove' : 'btn-add'
 }, { immediate: true })
