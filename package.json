@@ -16,11 +16,11 @@
     "@nuxt/content": "2.12.1",
     "@nuxt/eslint": "0.3.13",
     "@pinia/nuxt": "0.5.1",
-    "@vueuse/core": "10.10.0",
-    "@vueuse/nuxt": "10.10.0",
+    "@vueuse/core": "10.11.0",
+    "@vueuse/nuxt": "10.11.0",
     "backstopjs": "6.3.23",
-    "nuxt": "3.11.2",
+    "nuxt": "3.12.2",
     "pinia": "2.1.7",
-    "tailwindcss": "3.4.3"
+    "tailwindcss": "3.4.4"
   }
 }
