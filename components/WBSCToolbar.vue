@@ -14,7 +14,7 @@
         :group="'button-' + inputClear" :label="useT('editor.button.clear')"
         css="btn-clear" @click="clearInputs()" />
     </div>
-    <div class="flex flex-row justify-center">
+    <div class="flex flex-row flex-wrap justify-center">
       <WBSCButton
         :group="'button-' + inputImport" :label="'&#8664; ' + useT('editor.button.import')"
         css="btn-json" @click="importFile()" />
