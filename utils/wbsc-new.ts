@@ -109,7 +109,7 @@ export function renderBatterSpecificActionOptionsNEW(baseAction: string): GUIOpt
       options.push({ group: bSafe, value: 'KLFC', label: useT('editor.action.strikeOut.KLFC') })
       break
     case 'GroundOut':
-      options.push({ group: bOut, value: 'GO', label: useT('editor.action.groundOut.GO'), selected: true })
+      options.push({ group: bOut, value: 'GO', label: useT('editor.action.groundOut.GO') })
       options.push({ group: bOut, value: 'GOB', label: useT('editor.action.groundOut.GOB') })
       options.push({ group: bOut, value: 'GDP', label: useT('editor.action.groundOut.GDP') })
       options.push({ group: bSafe, value: 'GDPO', label: useT('editor.action.groundOut.GDPO') })

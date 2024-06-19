@@ -16,11 +16,11 @@ function changeBaseAction(group: string) {
 }
 
 // triggered when user selects from 'specific' action
-function changeSpecificAction(group: string) {
+function changeSpecificAction(specAction: string, group: string) {
   if (group === inputB) {
-    changeBatterSpecificAction()
+    changeBatterSpecificAction(specAction)
   } else {
-    changeRunnerSpecificAction(group)
+    changeRunnerSpecificAction(specAction, group)
   }
 }
 
@@ -34,11 +34,11 @@ function changeBatterBaseAction() {
   specificAction.innerHTML = actionOptions.join(' ')
   specificAction.disabled = specificActionDisabled
 
-  changeBatterSpecificAction()
+  // changeBatterSpecificAction()
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeBatterSpecificAction() {
+function changeBatterSpecificAction(specAction: string) {
   let fc = false
   let hit = false
   let out = false
@@ -47,9 +47,7 @@ function changeBatterSpecificAction() {
   let maxPosItems = 4
   let runTypeSelectVisible = false
 
-  const specificAction = document.getElementById(inputB + inputSpecAction) as HTMLInputElement
-  const specificActionValue = specificAction.value
-  switch (specificActionValue) {
+  switch (specAction) {
     case 'FC':
     case 'SHFC':
     case 'KSFC':
@@ -161,26 +159,10 @@ function changeBatterSpecificAction() {
   useEvalStore().setMaxPosItems(inputB, maxPosItems)
 
   const groupID = inputB + inputPosition
-
-  const container = document.getElementById(groupID) as HTMLElement
   const addItemButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
+  addItemButton.disabled = targetPosItems >= maxPosItems
   const removeItemButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
-
-  let itemsCreated = container.getElementsByClassName(classWbscPos).length
-  while (itemsCreated > 0) {
-    const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement
-    container.removeChild(posItemN)
-    itemsCreated -= 1
-  }
-
-  while (itemsCreated < targetPosItems) {
-    itemsCreated += 1
-    const posItemN = getPosSelectionSelect(inputB, itemsCreated)
-    container.insertBefore(posItemN, addItemButton)
-  }
-
-  addItemButton.disabled = itemsCreated >= maxPosItems
-  removeItemButton.disabled = itemsCreated <= minPosItems
+  removeItemButton.disabled = targetPosItems <= minPosItems
 
   if (hit === true) {
     const posItem1 = document.getElementById(groupID + '1') as HTMLInputElement
@@ -207,7 +189,7 @@ function changeBatterSpecificAction() {
     runTypeBox.classList.add(classHidden)
   }
 
-  disableExtraInput(inputB, out === true || noAdvActions.includes(specificActionValue) || runTypeSelectVisible)
+  disableExtraInput(inputB, out === true || noAdvActions.includes(specAction) || runTypeSelectVisible)
 }
 
 // ajdust 'specific' action according to selected 'base' action
@@ -220,20 +202,17 @@ function changeRunnerBaseAction(group: string) {
   specificAction.innerHTML = actionOptions.join(' ')
   specificAction.disabled = specificActionDisabled
 
-  changeRunnerSpecificAction(group)
+  // changeRunnerSpecificAction(group)
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeRunnerSpecificAction(group: string) {
+function changeRunnerSpecificAction(specAction: string, group: string) {
   let out = false
   let throwing = false
   let minPosItems = 1
   let targetPosItems = 1
   let maxPosItems = 4
-
-  const runnerSpecificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
-  const runnerSpecificActionValue = runnerSpecificAction.value
-  switch (runnerSpecificActionValue) {
+  switch (specAction) {
     case 'OBR_rta':
       out = true
       // falls through
@@ -348,7 +327,7 @@ function changeRunnerSpecificAction(group: string) {
     runTypeBox.classList.add(classHidden)
   }
 
-  disableExtraInput(group, out === true || noAdvActions.includes(runnerSpecificActionValue))
+  disableExtraInput(group, out === true || noAdvActions.includes(specAction))
 }
 
 // allows to select run type when home base is selected
@@ -356,7 +335,9 @@ function changeBase(group: string) {
   // #202 - we need to know whether there was an out or not
   // this method is able to calculate it
   // re-creating or extracting the logic would be harder
-  changeRunnerSpecificAction(group)
+  const runnerSpecificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
+  const specAction = runnerSpecificAction.value
+  changeRunnerSpecificAction(specAction, group)
 }
 
 // enhance user's input with output instructions

@@ -97,23 +97,38 @@ function changeBaseActionNEW(event: Event, group: string) {
     specActionOptions.value.push(...renderRunnerSpecificActionOptionsNEW(baseAction.value, group))
   }
   specActionDisabled.value = specActionOptions.value.length < 1
-  // TODO change impl
-  hideAllPos()
-  changeSpecificAction(group)
+  //
+  handleChange(specActionOptions.value[0]!.value as string, group)
 }
 
 function changeSpecActionNEW(event: Event, group: string) {
-  const _specAction = event.target as HTMLInputElement
-  // TODO change impl
-  hideAllPos()
-  changeSpecificAction(group)
+  const specAction = event.target as HTMLInputElement
+  handleChange(specAction.value, group)
   //
-  if (_specAction.value === 'HR' || _specAction.value === 'IHR') {
+  if (specAction.value === 'HR' || specAction.value === 'IHR') {
     baseSelect.value!.value = '4'
   } else {
     baseSelect.value!.value = '0'
   }
   baseSelect.value!.dispatchEvent(new Event('change'))
+}
+
+function handleChange(specAction: string, group: string) {
+  changeSpecificAction(specAction, group)
+  hideAllPos()
+  const targetPosItems = useEvalStore().getTargetPosItems(group)
+  if (targetPosItems > 0) {
+    pos1Show.value = true
+  }
+  if (targetPosItems > 1) {
+    pos2Show.value = true
+  }
+  if (targetPosItems > 2) {
+    pos3Show.value = true
+  }
+  if (targetPosItems > 3) {
+    pos4Show.value = true
+  }
 }
 
 const pos1Show = ref(false)

@@ -93,8 +93,17 @@ export const useEvalStore = defineStore({
         const item = state.minPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
         if (item) {
           return item.limit
+        } else {
+          return 0
         }
-        else {
+      }
+    },
+    getTargetPosItems: (state) => {
+      return (inputGroup: string): number => {
+        const item = state.targetPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
+        if (item) {
+          return item.limit
+        } else {
           return 0
         }
       }
@@ -104,8 +113,7 @@ export const useEvalStore = defineStore({
         const item = state.maxPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
         if (item) {
           return item.limit
-        }
-        else {
+        } else {
           return 0
         }
       }
@@ -115,8 +123,7 @@ export const useEvalStore = defineStore({
         const item = state.posSelection.find((i: PosSelection) => i.inputGroup === inputGroup)
         if (item) {
           return item.selection
-        }
-        else {
+        } else {
           return ' '
         }
       }
