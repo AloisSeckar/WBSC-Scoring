@@ -3,7 +3,6 @@
 /* CORE file with input evaluation methods */
 /* *************************************** */
 
-import { noAdvActions } from './wbsc-validation'
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // triggered when user selects from 'base' action
@@ -39,20 +38,15 @@ function changeBatterBaseAction() {
 
 // adjust 'involved' inputs according to selected 'specific' action
 function changeBatterSpecificAction(specAction: string) {
-  let fc = false
-  let hit = false
-  let out = false
   let minPosItems = 1
   let targetPosItems = 1
   let maxPosItems = 4
-  let runTypeSelectVisible = false
 
   switch (specAction) {
     case 'FC':
     case 'SHFC':
     case 'KSFC':
     case 'KLFC':
-      fc = true
       minPosItems = targetPosItems = maxPosItems = 2
       break
     case 'KS':
@@ -67,9 +61,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'OBR_TBB':
     case 'OBR_BIC':
     case 'OBR_RTA':
-    case 'LT': // note - here it only means "no further action possible", not an actual out
-      out = true
-      // falls through
+    case 'LT':
     case 'BB1':
     case 'IBB1':
     case 'HP':
@@ -82,22 +74,15 @@ function changeBatterSpecificAction(specAction: string) {
       break
     case 'HR':
     case 'IHR':
-      runTypeSelectVisible = true
-      // falls through
     case '1B':
     case '2B':
     case '3B':
     case '1BB':
     case '2BG':
-      hit = true
-      minPosItems = targetPosItems = maxPosItems = 1
-      break
     case 'SF':
     case 'FSF':
     case 'IF':
     case 'OBR_DIF':
-      out = true
-      // falls through
     case 'O':
     case 'OCB':
     case 'KSO':
@@ -118,8 +103,6 @@ function changeBatterSpecificAction(specAction: string) {
     case 'GDP':
     case 'SH':
     case 'A':
-      out = true
-      // falls through
     case 'GDPE':
       minPosItems = 1
       targetPosItems = 2
@@ -137,8 +120,6 @@ function changeBatterSpecificAction(specAction: string) {
     case 'OBR_BOT':
     case 'OBR_BIN':
     case 'OBR_OIN':
-      out = true
-      // falls through
     case 'KSE':
     case 'KLE':
     case 'KSET':
@@ -157,39 +138,6 @@ function changeBatterSpecificAction(specAction: string) {
   useEvalStore().setMinPosItems(inputB, minPosItems)
   useEvalStore().setTargetPosItems(inputB, targetPosItems)
   useEvalStore().setMaxPosItems(inputB, maxPosItems)
-
-  const groupID = inputB + inputPosition
-  const addItemButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
-  addItemButton.disabled = targetPosItems >= maxPosItems
-  const removeItemButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
-  removeItemButton.disabled = targetPosItems <= minPosItems
-
-  if (hit === true) {
-    const posItem1 = document.getElementById(groupID + '1') as HTMLInputElement
-    posItem1.innerHTML = renderHitLocationOptions().join(' ')
-
-    const posSelection = useEvalStore().getPosSelection(groupID)
-    if (isNaN(Number(posSelection[0]))) {
-      posItem1.value = posSelection
-    } else {
-      posItem1.value = posSelection[0] || '1'
-    }
-  }
-
-  if (fc === true) {
-    const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement
-    posItem2.innerHTML = renderFCLocationOptions().join(' ')
-    posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for "HP"
-  }
-
-  const runTypeBox = document.getElementById(inputB + inputRuntype + '-box') as HTMLElement
-  if (runTypeSelectVisible) {
-    runTypeBox.classList.remove(classHidden)
-  } else {
-    runTypeBox.classList.add(classHidden)
-  }
-
-  disableExtraInput(inputB, out === true || noAdvActions.includes(specAction) || runTypeSelectVisible)
 }
 
 // ajdust 'specific' action according to selected 'base' action
@@ -207,15 +155,12 @@ function changeRunnerBaseAction(group: string) {
 
 // adjust 'involved' inputs according to selected 'specific' action
 function changeRunnerSpecificAction(specAction: string, group: string) {
-  let out = false
-  let throwing = false
   let minPosItems = 1
   let targetPosItems = 1
   let maxPosItems = 4
+
   switch (specAction) {
     case 'OBR_rta':
-      out = true
-      // falls through
     case 'ADV':
     case 'WP':
     case 'PB':
@@ -236,8 +181,6 @@ function changeRunnerSpecificAction(specAction: string, group: string) {
     case 'OBR_rro':
     case 'OBR_rle':
     case 'OBR_rhe':
-      out = true
-      // falls through
     case 'POE':
     case 'O/':
     case 'ob':
@@ -246,18 +189,14 @@ function changeRunnerSpecificAction(specAction: string, group: string) {
       break
     case 'T':
       minPosItems = targetPosItems = maxPosItems = 2
-      throwing = true
       break
     case 'PO':
-      out = true
       minPosItems = targetPosItems = 2
       break
     case 'CSO':
     case 'POCS':
     case 'GO':
     case 'GOT':
-      out = true
-      // falls through
     case 'CSE':
     case 'CSN':
       minPosItems = 1
@@ -270,8 +209,6 @@ function changeRunnerSpecificAction(specAction: string, group: string) {
     case 'OBR_rol':
     case 'OBR_rin':
     case 'A':
-      out = true
-      // falls through
     case 'EF':
     case 'ET':
     case 'ENF':
@@ -290,44 +227,6 @@ function changeRunnerSpecificAction(specAction: string, group: string) {
   useEvalStore().setMinPosItems(group, minPosItems)
   useEvalStore().setTargetPosItems(group, targetPosItems)
   useEvalStore().setMaxPosItems(group, maxPosItems)
-
-  const groupID = group + inputPosition
-
-  const container = document.getElementById(groupID) as HTMLElement
-  const addItemButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
-  const removeItemButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
-
-  let itemsCreated = container.getElementsByClassName(classWbscPos).length
-  while (itemsCreated > 0) {
-    const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement
-    container.removeChild(posItemN)
-    itemsCreated -= 1
-  }
-
-  while (itemsCreated < targetPosItems) {
-    itemsCreated += 1
-    const posItemN = getPosSelectionSelect(group, itemsCreated)
-    container.insertBefore(posItemN, addItemButton)
-  }
-
-  addItemButton.disabled = itemsCreated >= maxPosItems
-  removeItemButton.disabled = itemsCreated <= minPosItems
-
-  if (throwing === true) {
-    const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement
-    posItem2.innerHTML = renderFCLocationOptions().join(' ')
-    posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for HP
-  }
-
-  const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
-  const runTypeBox = document.getElementById(group + inputRuntype + '-box') as HTMLElement
-  if (baseSelect?.value === '4' && !out) {
-    runTypeBox.classList.remove(classHidden)
-  } else {
-    runTypeBox.classList.add(classHidden)
-  }
-
-  disableExtraInput(group, out === true || noAdvActions.includes(specAction))
 }
 
 // allows to select run type when home base is selected

@@ -4,3 +4,5 @@ export type GUIOption = {
   label: string
   selected?: boolean
 }
+
+export type PositionType = 'player-locations' | 'hit-locations' | 'fc-locations'

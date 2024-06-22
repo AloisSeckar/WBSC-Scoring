@@ -41,10 +41,10 @@
     </div>
     <div :id="group + inputPosition">
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.involved') + ':' }}</label>
-      <WBSCInputSituationPos v-show="pos1Show" :group :ord="1" :positions />
-      <WBSCInputSituationPos v-show="pos2Show" :group :ord="2" :positions />
-      <WBSCInputSituationPos v-show="pos3Show" :group :ord="3" :positions />
-      <WBSCInputSituationPos v-show="pos4Show" :group :ord="4" :positions />
+      <WBSCInputSituationPos v-show="pos1Show" :group :ord="1" :type="pos1Type" />
+      <WBSCInputSituationPos v-show="pos2Show" :group :ord="2" :type="pos2Type" />
+      <WBSCInputSituationPos v-show="pos3Show" :group :ord="3" type="player-locations" />
+      <WBSCInputSituationPos v-show="pos4Show" :group :ord="4" type="player-locations" />
       <WBSCButton
         :group="group + inputPosition + inputAdd" label="+P"
         :disabled="addPosDisabled" @click="showPosSelectItemNEW()" />
@@ -83,10 +83,8 @@ const baseActionOptions: GUIOption[] = renderBaseActionOptionsNEW(props.group)
 const specActionOptions: Ref<GUIOption[]> = ref([])
 const specActionDisabled = ref(false)
 
-// TODO dynamic hits + FCs
-const positions = computed(() => {
-  return renderPlayerOptionsNEW()
-})
+const pos1Type: Ref<PositionType> = ref('player-locations')
+const pos2Type: Ref<PositionType> = ref('player-locations')
 
 function changeBaseActionNEW(event: Event, group: string) {
   const baseAction = event.target as HTMLInputElement
@@ -98,6 +96,17 @@ function changeBaseActionNEW(event: Event, group: string) {
   }
   specActionDisabled.value = specActionOptions.value.length < 1
   //
+  if (baseAction.value === 'Hit') {
+    pos1Type.value = 'hit-locations'
+  } else {
+    pos1Type.value = 'player-locations'
+  }
+  if (baseAction.value === 'FC' || baseAction.value === 'fdc') {
+    pos2Type.value = 'fc-locations'
+  } else {
+    pos2Type.value = 'player-locations'
+  }
+  //
   handleChange(specActionOptions.value[0]!.value as string, group)
 }
 
@@ -105,10 +114,12 @@ function changeSpecActionNEW(event: Event, group: string) {
   const specAction = event.target as HTMLInputElement
   handleChange(specAction.value, group)
   //
-  if (specAction.value === 'HR' || specAction.value === 'IHR') {
-    baseSelect.value!.value = '4'
-  } else {
-    baseSelect.value!.value = '0'
+  if (group === inputB) {
+    if (specAction.value === 'HR' || specAction.value === 'IHR') {
+      baseSelect.value!.value = '4'
+    } else {
+      baseSelect.value!.value = '0'
+    }
   }
   baseSelect.value!.dispatchEvent(new Event('change'))
 }

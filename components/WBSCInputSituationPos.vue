@@ -1,16 +1,27 @@
 <template>
   <select
     :id="`${group}-pos${ord}`" class="wbsc-pos-select">
-    <option v-for="opt in positions" :key="opt.value" :value="opt.value" :selected="opt.selected">
+    <option v-for="opt in options" :key="opt.value" :value="opt.value" :selected="opt.selected">
       {{ opt.label }}
     </option>
   </select>
 </template>
 
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   group: { type: String, required: true },
   ord: { type: Number as PropType<1 | 2 | 3 | 4>, required: true },
-  positions: { type: Object as PropType<GUIOption[]>, required: true },
+  type: { type: String as PropType<PositionType>, required: true },
+})
+
+const options = computed(() => {
+  switch (props.type) {
+    case 'fc-locations':
+      return getFCLocations()
+    case 'hit-locations':
+      return getHitLocations()
+    default:
+      return getPlayerLocations()
+  }
 })
 </script>

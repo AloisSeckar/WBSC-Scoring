@@ -70,12 +70,25 @@ function renderBatterActionOptionsNEW(): GUIOption[] {
 function renderBatterRunnerActionOptionsNEW(): GUIOption[] {
   return [
     { value: '', label: '' },
+    { value: 'exb', label: useT('editor.action.extraBase.title') },
+    { value: 'fdc', label: useT('editor.action.fc.title') },
+    { value: 'err', label: useT('editor.action.error.title') },
+    { value: 'out', label: useT('editor.action.out.title') },
+    { value: 'obr', label: useT('editor.action.obr.title') },
   ]
 }
 
 function renderRunnerActionOptionsNEW(): GUIOption[] {
   return [
     { value: '', label: '' },
+    { value: 'adv', label: useT('editor.action.advance.title') },
+    { value: 'nadv', label: useT('editor.action.advance.titleN') },
+    { value: 'exb', label: useT('editor.action.extraBase.title') },
+    { value: 'ste', label: useT('editor.action.sb.title') },
+    { value: 'fdc', label: useT('editor.action.fc.title') },
+    { value: 'err', label: useT('editor.action.error.title') },
+    { value: 'out', label: useT('editor.action.out.title') },
+    { value: 'obr', label: useT('editor.action.obr.title') },
   ]
 }
 
@@ -304,8 +317,8 @@ export function getExtra3Group(group: string) {
 }
 
 // list of existing player positions / basic field locations
-export function renderPlayerOptionsNEW() {
-  const options = []
+export function getPlayerLocations() {
+  const options: GUIOption[] = []
   options.push({ value: '', label: '' })
   options.push({ value: '1', label: 'P' })
   options.push({ value: '2', label: 'C' })
@@ -320,8 +333,8 @@ export function renderPlayerOptionsNEW() {
 }
 
 // list of extra field locations to describe hits
-export function renderHitLocationOptionsNEW() {
-  const options = renderPlayerOptionsNEW()
+export function getHitLocations() {
+  const options: GUIOption[] = getPlayerLocations()
   options.push({ value: 'LL', label: 'LL' })
   options.push({ value: 'GLL', label: 'GLL' })
   options.push({ value: 'LS', label: 'LS' })
@@ -335,8 +348,8 @@ export function renderHitLocationOptionsNEW() {
 }
 
 // list of target bases for fielder's choice
-export function renderFCLocationOptionsNEW() {
-  const options = []
+export function getFCLocations() {
+  const options: GUIOption[] = []
   options.push({ value: 'X', label: '2nd' })
   options.push({ value: 'Y', label: '3rd' })
   options.push({ value: 'Z', label: 'HP' })

@@ -42,7 +42,7 @@ function checkUserInput(inputs: WBSCInput[]) {
       } else if (posSelection) {
         const container = document.getElementById(input.group) as HTMLElement
         const allPosSelects = container.getElementsByClassName(classWbscPos)
-        const filteredPosSelects = [...allPosSelects].filter(i => i.id.startsWith(input.group + '-'))
+        const filteredPosSelects = [...allPosSelects].filter(i => i.id.startsWith(input.group + '-') && i.checkVisibility())
         if (filteredPosSelects.length > posSelection.length) {
           validation = attachValidation(validation, useT('editor.validation.allPositions'))
         } else {
