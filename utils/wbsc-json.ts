@@ -108,87 +108,15 @@ export async function importInputFromLib(fileName: string) {
 
 async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
-    await clearInputs()
-    // renderInputs(inputB)
     const jsonData: WBSCInput[] = JSON.parse(fileData.toString())
     jsonData?.reverse().forEach(async (input) => {
+      // TODO process json file
       await setInputs(input)
     })
     processAction()
   }
 }
 
-async function setInputs(input: WBSCInput) {
-  const group = input.group
-  const pos = input.pos
-
-  useGUIStore().setVisible(group, true)
-  await nextTick()
-
-  /*
-  let parentDiv
-  if (group.match(/b\d$/)) {
-    parentDiv = document.getElementById(inputB)
-  } else if (group.endsWith('a') || group.endsWith('b')) {
-    parentDiv = document.getElementById(group.slice(0, -1))
-  }
-  renderInputs(group, parentDiv || undefined)
-  */
-
-  const selectBaseAction = document.getElementById(group + inputBaseAction) as HTMLSelectElement
-  selectBaseAction.value = input.baseAction
-  selectBaseAction.dispatchEvent(new Event('change'))
-
-  const selectSpecAction = document.getElementById(group + inputSpecAction) as HTMLSelectElement
-  selectSpecAction.value = input.specAction
-  selectSpecAction.dispatchEvent(new Event('change'))
-
-  if (pos) {
-    // for some inputs there are less pos selection items then initially generated
-    let itemsCreated = document.getElementById(group)!.getElementsByClassName(classWbscPos).length
-    while (itemsCreated > pos.length) {
-      unRenderPosSelectItem(group)
-      itemsCreated--
-    }
-    if (pos.match(/^\d/)) {
-      for (let i = 0; i < pos.length; i++) {
-        let posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
-        console.log(posSelection)
-        if (!posSelection) {
-          renderPosSelectItem(group)
-          await nextTick()
-          const x = group + inputPosition + (i + 1)
-          console.log(x)
-          posSelection = document.getElementById(x) as HTMLSelectElement
-          console.log(posSelection)
-          if (pos.match(/[XYZ]$/)) {
-            posSelection.innerHTML = renderFCLocationOptions().join(' ') // default are player positions
-          }
-        }
-        posSelection.value = pos[i] || '1'
-      }
-    } else {
-      const hitSelection = document.getElementById(group + inputPosition + '1') as HTMLSelectElement
-      hitSelection.value = pos
-    }
-  }
-
-  if (group !== inputB) {
-    const selectBase = document.getElementById(group + inputBase) as HTMLSelectElement
-    selectBase.value = input.base?.toString()
-  }
-
-  const selectRuntype = document.getElementById(group + inputRuntype) as HTMLInputElement
-  selectRuntype.disabled = input.base < 4 && !input.specAction.includes('HR')
-  if (input.runtype) {
-    selectRuntype.value = input.runtype
-  }
-
-  if (group === inputR1 || group === inputR2) {
-    const checkTie = document.getElementById(group + inputTie) as HTMLInputElement
-    checkTie.checked = input.tie
-  }
-  console.log('This happen when?')
-
-  await nextTick()
+async function setInputs(_input: WBSCInput) {
+  // TODO process input from JSON file
 }

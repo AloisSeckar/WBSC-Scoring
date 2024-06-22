@@ -5,15 +5,6 @@
 
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
-// triggered when user selects from 'base' action
-function changeBaseAction(group: string) {
-  if (group === inputB) {
-    changeBatterBaseAction()
-  } else {
-    changeRunnerBaseAction(group)
-  }
-}
-
 // triggered when user selects from 'specific' action
 function changeSpecificAction(specAction: string, group: string) {
   if (group === inputB) {
@@ -21,19 +12,6 @@ function changeSpecificAction(specAction: string, group: string) {
   } else {
     changeRunnerSpecificAction(specAction, group)
   }
-}
-
-// ajdust 'specific' action according to selected 'base' action
-function changeBatterBaseAction() {
-  const baseAction = document.getElementById(inputB + inputBaseAction) as HTMLInputElement
-  const actionOptions = renderBatterSpecificActionOptions(baseAction.value)
-  const specificActionDisabled = actionOptions.length < 1
-
-  const specificAction = document.getElementById(inputB + inputSpecAction) as HTMLInputElement
-  specificAction.innerHTML = actionOptions.join(' ')
-  specificAction.disabled = specificActionDisabled
-
-  // changeBatterSpecificAction()
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
@@ -138,19 +116,6 @@ function changeBatterSpecificAction(specAction: string) {
   useEvalStore().setMinPosItems(inputB, minPosItems)
   useEvalStore().setTargetPosItems(inputB, targetPosItems)
   useEvalStore().setMaxPosItems(inputB, maxPosItems)
-}
-
-// ajdust 'specific' action according to selected 'base' action
-function changeRunnerBaseAction(group: string) {
-  const runnerBaseAction = document.getElementById(group + inputBaseAction) as HTMLInputElement
-  const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value, group)
-  const specificActionDisabled = actionOptions.length < 1
-
-  const specificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
-  specificAction.innerHTML = actionOptions.join(' ')
-  specificAction.disabled = specificActionDisabled
-
-  // changeRunnerSpecificAction(group)
 }
 
 // adjust 'involved' inputs according to selected 'specific' action

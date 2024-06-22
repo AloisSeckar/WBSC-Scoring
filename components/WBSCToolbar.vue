@@ -67,4 +67,33 @@ watch(() => GUI.inputR3, (newValue) => {
   labelR3.value = newValue ? '-R3' : '+R3'
   cssR3.value = newValue ? 'btn-remove' : 'btn-add'
 })
+
+// button for saving output as PNG
+function extendDownloadButton() {
+  const downloadButton = document.getElementById('download-link') as HTMLAnchorElement
+  downloadButton.addEventListener('click', function () {
+    const canvas = useCanvasStore().canvas
+    if (canvas) {
+      downloadButton.href = canvas.toDataURL()
+      downloadButton.download = 'wbsc-scoring.png'
+    } else {
+      useEvalStore().setError(useT('editor.error.invalidCanvas'))
+    }
+  }, false)
+}
+
+// clear all user inputs and reset default state
+async function clearInputs() {
+  useGUIStore().$reset()
+  useEvalStore().$reset()
+  useInputStore().$reset()
+  useCanvasStore().init()
+
+  // json
+  const jsonInput = document.getElementById(inputImportFile) as HTMLInputElement
+  if (jsonInput) {
+    jsonInput.files = null
+    jsonInput.value = ''
+  }
+}
 </script>

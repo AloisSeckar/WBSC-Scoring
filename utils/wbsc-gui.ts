@@ -1,7 +1,9 @@
-// new functions related to #217
-// TODO proper refactoring and moving function where appropriate
+/* *************************************** */
+/* wbsc-gui.ts                             */
+/* helper functions for working with GUI   */
+/* *************************************** */
 
-export function getBaseOptionsValueNEW(group: string) {
+export function getBaseOptionsValue(group: string) {
   switch (group) {
     case inputB1:
     case inputR1:
@@ -19,7 +21,7 @@ export function getBaseOptionsValueNEW(group: string) {
   return 0
 }
 
-export function renderBaseOptionsNEW(base: number): GUIOption[] {
+export function renderBaseOptions(base: number): GUIOption[] {
   const options = []
   if (base < 2) {
     options.push({ value: 2, label: useT('editor.base.second'), selected: base === 1 })
@@ -31,27 +33,27 @@ export function renderBaseOptionsNEW(base: number): GUIOption[] {
   return options
 }
 
-export function renderBaseActionOptionsNEW(group: string): GUIOption[] {
+export function renderBaseActionOptions(group: string): GUIOption[] {
   switch (group) {
     case inputB:
-      return renderBatterActionOptionsNEW()
+      return renderBatterActionOptions()
     case inputB1:
     case inputB2:
     case inputB3:
-      return renderBatterRunnerActionOptionsNEW()
+      return renderBatterRunnerActionOptions()
     case inputR1:
     case inputR1a:
     case inputR1b:
     case inputR2:
     case inputR2a:
     case inputR3:
-      return renderRunnerActionOptionsNEW()
+      return renderRunnerActionOptions()
     default:
       return []
   }
 }
 
-function renderBatterActionOptionsNEW(): GUIOption[] {
+function renderBatterActionOptions(): GUIOption[] {
   return [
     { value: '', label: '' },
     { value: 'StrikeOut', label: useT('editor.action.strikeOut.title') },
@@ -67,7 +69,7 @@ function renderBatterActionOptionsNEW(): GUIOption[] {
   ]
 }
 
-function renderBatterRunnerActionOptionsNEW(): GUIOption[] {
+function renderBatterRunnerActionOptions(): GUIOption[] {
   return [
     { value: '', label: '' },
     { value: 'exb', label: useT('editor.action.extraBase.title') },
@@ -78,7 +80,7 @@ function renderBatterRunnerActionOptionsNEW(): GUIOption[] {
   ]
 }
 
-function renderRunnerActionOptionsNEW(): GUIOption[] {
+function renderRunnerActionOptions(): GUIOption[] {
   return [
     { value: '', label: '' },
     { value: 'adv', label: useT('editor.action.advance.title') },
@@ -92,7 +94,7 @@ function renderRunnerActionOptionsNEW(): GUIOption[] {
   ]
 }
 
-export function renderBatterSpecificActionOptionsNEW(baseAction: string): GUIOption[] {
+export function renderBatterSpecificActionOptions(baseAction: string): GUIOption[] {
   const options = []
   const bSafe = useT('editor.action.batterSafe')
   const bOut = useT('editor.action.batterOut')
@@ -199,7 +201,7 @@ export function renderBatterSpecificActionOptionsNEW(baseAction: string): GUIOpt
   return options
 }
 
-export function renderRunnerSpecificActionOptionsNEW(baseAction: string, group: string): GUIOption[] {
+export function renderRunnerSpecificActionOptions(baseAction: string, group: string): GUIOption[] {
   const options = []
   const rSafe = useT('editor.action.runnerSafe')
   const rStay = useT('editor.action.runnerStay')

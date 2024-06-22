@@ -7,7 +7,7 @@
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase" ref="baseSelect" @change="selectBaseNEW">
+        <select :id="group + inputBase" ref="baseSelect" @change="selectBase">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
@@ -26,14 +26,14 @@
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.action.action') + ':' }}</label>
       <select
         :id="group + inputBaseAction" class="wbsc-base-action-select form-control"
-        @change="e => changeBaseActionNEW(e, group)">
+        @change="e => changeBaseAction(e, group)">
         <option v-for="opt in baseActionOptions" :key="opt.value" :value="opt.value">
           {{ opt.label }}
         </option>
       </select>
       <select
         :id="group + inputSpecAction" class="wbsc-specific-action-select form-control"
-        :disabled="specActionDisabled" @change="e => changeSpecActionNEW(e, group)">
+        :disabled="specActionDisabled" @change="e => changeSpecAction(e, group)">
         <option v-for="opt in specActionOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
           {{ opt.label }}
         </option>
@@ -47,10 +47,10 @@
       <WBSCInputSituationPos v-show="pos4Show" :group :ord="4" type="player-locations" />
       <WBSCButton
         :group="group + inputPosition + inputAdd" label="+P"
-        :disabled="addPosDisabled" @click="showPosSelectItemNEW()" />
+        :disabled="addPosDisabled" @click="showPosSelectItem()" />
       <WBSCButton
         :group="group + inputPosition + inputRemove" label="-P" class="btn-remove"
-        :disabled="removePosDisabled" @click="hidePosSelectItemNEW()" />
+        :disabled="removePosDisabled" @click="hidePosSelectItem()" />
     </div>
   </div>
 </template>
@@ -65,8 +65,8 @@ const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebre
 
 const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB
-const baseOptions: GUIOption[] = renderBaseOptionsNEW(getBaseOptionsValueNEW(props.group))
-function selectBaseNEW(event: Event) {
+const baseOptions: GUIOption[] = renderBaseOptions(getBaseOptionsValue(props.group))
+function selectBase(event: Event) {
   const base = event.target as HTMLInputElement
   runTypeVisible.value = base.value.toString() === '4'
 }
@@ -78,7 +78,7 @@ const runTypeOptions: GUIOption[] = [
   { value: 'tu', label: 'TU' },
 ]
 
-const baseActionOptions: GUIOption[] = renderBaseActionOptionsNEW(props.group)
+const baseActionOptions: GUIOption[] = renderBaseActionOptions(props.group)
 
 const specActionOptions: Ref<GUIOption[]> = ref([])
 const specActionDisabled = ref(false)
@@ -86,13 +86,13 @@ const specActionDisabled = ref(false)
 const pos1Type: Ref<PositionType> = ref('player-locations')
 const pos2Type: Ref<PositionType> = ref('player-locations')
 
-function changeBaseActionNEW(event: Event, group: string) {
+function changeBaseAction(event: Event, group: string) {
   const baseAction = event.target as HTMLInputElement
   specActionOptions.value.length = 0
   if (group === inputB) {
-    specActionOptions.value.push(...renderBatterSpecificActionOptionsNEW(baseAction.value))
+    specActionOptions.value.push(...renderBatterSpecificActionOptions(baseAction.value))
   } else {
-    specActionOptions.value.push(...renderRunnerSpecificActionOptionsNEW(baseAction.value, group))
+    specActionOptions.value.push(...renderRunnerSpecificActionOptions(baseAction.value, group))
   }
   specActionDisabled.value = specActionOptions.value.length < 1
   //
@@ -110,7 +110,7 @@ function changeBaseActionNEW(event: Event, group: string) {
   handleChange(specActionOptions.value[0]!.value as string, group)
 }
 
-function changeSpecActionNEW(event: Event, group: string) {
+function changeSpecAction(event: Event, group: string) {
   const specAction = event.target as HTMLInputElement
   handleChange(specAction.value, group)
   //
@@ -178,7 +178,7 @@ const removePosDisabled = computed(() => {
   return posShown.value <= useEvalStore().getMinPosItems(props.group)
 })
 
-function showPosSelectItemNEW() {
+function showPosSelectItem() {
   if (pos4Show.value) {
     return
   } else {
@@ -198,7 +198,7 @@ function showPosSelectItemNEW() {
   }
 }
 
-function hidePosSelectItemNEW() {
+function hidePosSelectItem() {
   if (!pos1Show.value) {
     return
   } else {

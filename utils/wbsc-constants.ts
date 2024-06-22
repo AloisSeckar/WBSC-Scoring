@@ -3,6 +3,8 @@
 /* Single point for defining constants     */
 /* *************************************** */
 
+// TODO revision and cleanup
+
 // DOM elements selectors
 
 export const classWbsc = 'wbsc-inputs'
