@@ -86,7 +86,7 @@ function extendDownloadButton() {
 async function clearInputs() {
   useGUIStore().$reset()
   useEvalStore().$reset()
-  useInputStore().$reset()
+  useInputStore().clear()
   useCanvasStore().init()
 
   // json

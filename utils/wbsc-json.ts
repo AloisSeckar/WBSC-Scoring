@@ -30,49 +30,50 @@ export function exportInputAsJSON() {
 // except one special evaluation (bErrorTarget) and we dont use output+validation here
 // refactor to be able to have such code only once...
 function getRawInputs(): WBSCInput[] {
+  const inputStore = useInputStore()
   const inputs = [] as WBSCInput[]
 
-  const r3Input = getInput(inputR3, true)
-  if (r3Input) {
+  const r3Input = inputStore.inputR3
+  if (r3Input.baseAction) {
     inputs.push(r3Input)
   }
 
-  const r2aInput = getInput(inputR2a, true)
-  if (r2aInput) {
+  const r2aInput = inputStore.inputR2a
+  if (r2aInput.baseAction) {
     inputs.push(r2aInput)
   }
-  const r2Input = getInput(inputR2, true)
-  if (r2Input) {
+  const r2Input = inputStore.inputR2
+  if (r2Input.baseAction) {
     inputs.push(r2Input)
   }
 
-  const r1bInput = getInput(inputR1b, true)
-  if (r1bInput) {
+  const r1bInput = inputStore.inputR1b
+  if (r1bInput.baseAction) {
     inputs.push(r1bInput)
   }
-  const r1aInput = getInput(inputR1a, true)
-  if (r1aInput) {
+  const r1aInput = inputStore.inputR1b
+  if (r1aInput.baseAction) {
     inputs.push(r1aInput)
   }
-  const r1Input = getInput(inputR1, true)
-  if (r1Input) {
+  const r1Input = inputStore.inputR1
+  if (r1Input.baseAction) {
     inputs.push(r1Input)
   }
 
-  const b3Input = getInput(inputB3, true)
-  if (b3Input) {
+  const b3Input = inputStore.inputB3
+  if (b3Input.baseAction) {
     inputs.push(b3Input)
   }
-  const b2Input = getInput(inputB2, true)
-  if (b2Input) {
+  const b2Input = inputStore.inputB2
+  if (b2Input.baseAction) {
     inputs.push(b2Input)
   }
-  const b1Input = getInput(inputB1, true)
-  if (b1Input) {
+  const b1Input = inputStore.inputB1
+  if (b1Input.baseAction) {
     inputs.push(b1Input)
   }
-  const bInput = getInput(inputB, true)
-  if (bInput) {
+  const bInput = inputStore.inputB
+  if (bInput.baseAction) {
     inputs.push(bInput)
   }
 

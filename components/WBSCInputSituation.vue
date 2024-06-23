@@ -1,13 +1,13 @@
 <template>
   <div>
     <div v-if="tieVisible">
-      <input :id="group + inputTie" type="checkbox" class="wbsc-select">
+      <input :id="group + inputTie" v-model="model.tie" type="checkbox" class="wbsc-select">
       <label :for="group + inputTie" class="ml-1">{{ tieLabel }}</label>
     </div>
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase" ref="baseSelect" @change="selectBase">
+        <select :id="group + inputBase" ref="baseSelect" v-model="model.base" @change="selectBase">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
@@ -15,7 +15,7 @@
       </div>
       <div v-show="runTypeVisible" :id="group + inputRuntype + '-box'" class="inline-block">
         <label :for="group + inputRuntype" class="mx-1">{{ useT('editor.run') + ':' }}</label>
-        <select :id="group + inputRuntype">
+        <select :id="group + inputRuntype" v-model="model.runtype">
           <option v-for="opt in runTypeOptions" :key="opt.value" :value="opt.value">
             {{ opt.label }}
           </option>
@@ -25,14 +25,14 @@
     <div>
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.action.action') + ':' }}</label>
       <select
-        :id="group + inputBaseAction" class="wbsc-base-action-select form-control"
+        :id="group + inputBaseAction" v-model="model.baseAction" class="wbsc-base-action-select form-control"
         @change="e => changeBaseAction(e, group)">
         <option v-for="opt in baseActionOptions" :key="opt.value" :value="opt.value">
           {{ opt.label }}
         </option>
       </select>
       <select
-        :id="group + inputSpecAction" class="wbsc-specific-action-select form-control"
+        :id="group + inputSpecAction" v-model="model.specAction" class="wbsc-specific-action-select form-control"
         :disabled="specActionDisabled" @change="e => changeSpecAction(e, group)">
         <option v-for="opt in specActionOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
           {{ opt.label }}
@@ -41,10 +41,18 @@
     </div>
     <div :id="group + inputPosition">
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.involved') + ':' }}</label>
-      <WBSCInputSituationPos v-show="pos1Show" :group :ord="1" :type="pos1Type" />
-      <WBSCInputSituationPos v-show="pos2Show" :group :ord="2" :type="pos2Type" />
-      <WBSCInputSituationPos v-show="pos3Show" :group :ord="3" type="player-locations" />
-      <WBSCInputSituationPos v-show="pos4Show" :group :ord="4" type="player-locations" />
+      <WBSCInputSituationPos
+        v-show="pos1Show" v-model="model.pos1"
+        :group :ord="1" :type="pos1Type" />
+      <WBSCInputSituationPos
+        v-show="pos2Show" v-model="model.pos2"
+        :group :ord="2" :type="pos2Type" />
+      <WBSCInputSituationPos
+        v-show="pos3Show" v-model="model.pos3"
+        :group :ord="3" type="player-locations" />
+      <WBSCInputSituationPos
+        v-show="pos4Show" v-model="model.pos4"
+        :group :ord="4" type="player-locations" />
       <WBSCButton
         :group="group + inputPosition + inputAdd" label="+P"
         :disabled="addPosDisabled" @click="showPosSelectItem()" />
@@ -59,6 +67,8 @@
 const props = defineProps({
   group: { type: String, required: true },
 })
+
+const model = defineModel<WBSCInput>({ required: true })
 
 const tieVisible = props.group === inputR1 || props.group === inputR2
 const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebreak (baseball/softball)'

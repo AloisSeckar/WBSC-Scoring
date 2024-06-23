@@ -2,8 +2,7 @@
   <div v-bind="$attrs" class="my-4">
     <img
       :src="`/img/${props.src}`" :alt
-      :width :height :class="css"
-    >
+      :width :height :class="css">
   </div>
 </template>
 

@@ -3,56 +3,49 @@
 /* Final rendering based on user's input   */
 /* *************************************** */
 
-import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
+import type { WBSCOutput } from '@/composables/useInputStore'
 
 // rendering the output
 //   battingOrder - number displayed at the left side (1-4)
 //   clear - true, if previous content should be ereased
-//   mainInput - 1st action to be displayed
-//   extraInput - possible concecutive actions (0-3)
-function renderAction(battingOrder: number, clear: boolean, mainInput: WBSCInput, extraInput?: WBSCInput[]) {
+//   output - actions to be displayed
+function renderAction(battingOrder: number, clear: boolean, output: WBSCOutput) {
   if (clear) {
     drawBackground(battingOrder)
   }
 
-  const output = mainInput.output
-  if (output) {
-    if (output.origBase > 0) {
-      const prevOutput: WBSCOutput = getEmptyOutput()
-      prevOutput.base = output.origBase
-      if (output.previousAdvance) {
-        if (mainInput.tie === true) {
-          prevOutput.text1 = 'TIE'
-        } else {
-          prevOutput.text1 = '*'
-        }
+  if (output.origBase > 0) {
+    const prevOutput: WBSCOutput = getEmptyOutput()
+    prevOutput.base = output.origBase
+    if (output.previousAdvance) {
+      if (output.tie === true) {
+        prevOutput.text1 = 'TIE'
+      } else {
+        prevOutput.text1 = '*'
       }
-      renderAdvance(prevOutput)
+    }
+    renderAdvance(prevOutput)
+  }
+
+  if (output.out === true) {
+    renderOut(output)
+    if (!useEvalStore().brokenDP) {
+      useEvalStore().outs.push({ batter: battingOrder, base: output.base })
+    }
+  } else {
+    renderAdvance(output)
+
+    if (output.errorTarget) {
+      drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
     }
 
-    if (output.out === true) {
-      renderOut(output)
-      if (!useEvalStore().brokenDP) {
-        useEvalStore().outs.push({ batter: battingOrder, base: mainInput.base })
-      }
-    } else {
-      renderAdvance(output)
-
-      if (output.errorTarget) {
-        drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
-      }
-
-      if (extraInput) {
-        for (let i = 0; i < extraInput.length; i += 1) {
-          const extInput = extraInput[i]
-          if (extInput) {
-            renderAction(battingOrder, false, extInput)
-            if (!extInput.specAction.includes('N')) {
-              drawConnector(output.base, extInput.output!.base)
-            }
-          }
+    if (output.extraOutput) {
+      output.extraOutput.forEach((extraOutput) => {
+        renderAction(battingOrder, false, extraOutput)
+        if (!extraOutput.na) {
+          drawConnector(output.base, extraOutput.base)
         }
-      }
+      })
     }
   }
 }

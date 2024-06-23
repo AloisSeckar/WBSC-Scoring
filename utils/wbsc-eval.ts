@@ -207,13 +207,17 @@ function changeBase(group: string) {
 // enhance user's input with output instructions
 function processInput(input: WBSCInput, batter: number): WBSCOutput {
   const output: WBSCOutput = getEmptyOutput()
+  output.group = input.group
+  output.specAction = input.specAction
   output.batter = batter
   output.origBase = input.origBase
   output.base = input.base
   output.run = input.runtype
   output.errorTarget = input.base
+  output.na = input.specAction.includes('N')
+  output.tie = input.tie
 
-  let pos = input.pos
+  let pos = getPos(input)
   if (pos) {
     const lastPos = pos[pos.length - 1]
     if (lastPos === 'X') {
