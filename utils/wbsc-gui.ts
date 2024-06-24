@@ -100,7 +100,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
   const bOut = useT('editor.action.batterOut')
   switch (baseAction) {
     case 'StrikeOut':
-      options.push({ group: bOut, value: 'KS', label: useT('editor.action.strikeOut.KS'), selected: true })
+      options.push({ group: bOut, value: 'KS', label: useT('editor.action.strikeOut.KS') })
       options.push({ group: bOut, value: 'KL', label: useT('editor.action.strikeOut.KL') })
       options.push({ group: bOut, value: 'KST', label: useT('editor.action.strikeOut.KST') })
       options.push({ group: bOut, value: 'KLT', label: useT('editor.action.strikeOut.KLT') })
@@ -110,7 +110,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bOut, value: 'KSI', label: useT('editor.action.strikeOut.KSI') })
       options.push({ group: bOut, value: 'KLI', label: useT('editor.action.strikeOut.KLI') })
 
-      options.push({ group: bSafe, value: 'KSET', label: useT('editor.action.strikeOut.KSET'), selected: true })
+      options.push({ group: bSafe, value: 'KSET', label: useT('editor.action.strikeOut.KSET') })
       options.push({ group: bSafe, value: 'KSE', label: useT('editor.action.strikeOut.KSE') })
       options.push({ group: bSafe, value: 'KSWP', label: useT('editor.action.strikeOut.KSWP') })
       options.push({ group: bSafe, value: 'KSPB', label: useT('editor.action.strikeOut.KSPB') })
@@ -131,7 +131,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bSafe, value: 'GDPE', label: useT('editor.action.groundOut.GDPE') })
       break
     case 'FlyOut':
-      options.push({ group: bOut, value: 'F', label: useT('editor.action.flyOut.F'), selected: true })
+      options.push({ group: bOut, value: 'F', label: useT('editor.action.flyOut.F') })
       options.push({ group: bOut, value: 'P', label: useT('editor.action.flyOut.P') })
       options.push({ group: bOut, value: 'L', label: useT('editor.action.flyOut.L') })
       options.push({ group: bOut, value: 'FF', label: useT('editor.action.flyOut.FF') })
@@ -142,7 +142,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bOut, value: 'FFB', label: useT('editor.action.flyOut.FFB') })
       break
     case 'Hit':
-      options.push({ group: bSafe, value: '1B', label: useT('editor.action.hit.1B'), selected: true })
+      options.push({ group: bSafe, value: '1B', label: useT('editor.action.hit.1B') })
       options.push({ group: bSafe, value: '2B', label: useT('editor.action.hit.2B') })
       options.push({ group: bSafe, value: '3B', label: useT('editor.action.hit.3B') })
       options.push({ group: bSafe, value: 'HR', label: useT('editor.action.hit.HR') })
@@ -151,7 +151,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bSafe, value: 'IHR', label: useT('editor.action.hit.IHR') })
       break
     case 'Sacrifice':
-      options.push({ group: bOut, value: 'SH', label: useT('editor.action.sacrifice.SH'), selected: true })
+      options.push({ group: bOut, value: 'SH', label: useT('editor.action.sacrifice.SH') })
       options.push({ group: bOut, value: 'SF', label: useT('editor.action.sacrifice.SF') })
       options.push({ group: bOut, value: 'FSF', label: useT('editor.action.sacrifice.FSF') })
       options.push({ group: bSafe, value: 'SHE', label: useT('editor.action.sacrifice.SHE') })
@@ -162,12 +162,12 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bSafe, value: 'SFO', label: useT('editor.action.sacrifice.SFO') })
       break
     case 'FC':
-      options.push({ group: bSafe, value: 'O', label: useT('editor.action.fc.O'), selected: true })
+      options.push({ group: bSafe, value: 'O', label: useT('editor.action.fc.O') })
       options.push({ group: bSafe, value: 'OCB', label: useT('editor.action.fc.OCB') })
       options.push({ group: bSafe, value: 'FC', label: useT('editor.action.fc.FC') })
       break
     case 'Error':
-      options.push({ group: bSafe, value: 'EF', label: useT('editor.action.error.EF'), selected: true })
+      options.push({ group: bSafe, value: 'EF', label: useT('editor.action.error.EF') })
       options.push({ group: bSafe, value: 'EFB', label: useT('editor.action.error.EFB') })
       options.push({ group: bSafe, value: 'ET', label: useT('editor.action.error.ET') })
       options.push({ group: bSafe, value: 'EDF', label: useT('editor.action.error.EDF') })
@@ -178,12 +178,12 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bSafe, value: 'OB', label: useT('editor.action.error.OB') })
       break
     case 'Advance':
-      options.push({ group: bSafe, value: 'BB1', label: useT('editor.action.advance.BB1'), selected: true })
+      options.push({ group: bSafe, value: 'BB1', label: useT('editor.action.advance.BB1') })
       options.push({ group: bSafe, value: 'IBB1', label: useT('editor.action.advance.IBB1') }) // "1" indicates the numbering should be included in output
       options.push({ group: bSafe, value: 'HP', label: useT('editor.action.advance.HP') }) // "1" indicates the numbering should be included in output
       break
     case 'OBR':
-      options.push({ group: bOut, value: 'OBR_BOB', label: useT('editor.action.obr.OBR_BOB'), selected: true })
+      options.push({ group: bOut, value: 'OBR_BOB', label: useT('editor.action.obr.OBR_BOB') })
       options.push({ group: bOut, value: 'OBR_BIA', label: useT('editor.action.obr.OBR_BIA') })
       options.push({ group: bOut, value: 'OBR_TBB', label: useT('editor.action.obr.OBR_TBB') })
       options.push({ group: bOut, value: 'OBR_BIC', label: useT('editor.action.obr.OBR_BIC') })
@@ -194,7 +194,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bOut, value: 'OBR_OIN', label: useT('editor.action.obr.OBR_OIN') })
       break
     case 'Other':
-      options.push({ group: bOut, value: 'A', label: useT('editor.action.other.A'), selected: true })
+      options.push({ group: bOut, value: 'A', label: useT('editor.action.other.A') })
       options.push({ group: bOut, value: 'LT', label: useT('editor.action.other.LT') })
       break
   }
@@ -208,13 +208,13 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
   const rOut = useT('editor.action.runnerOut')
   switch (baseAction) {
     case 'adv':
-      options.push({ group: rSafe, value: 'ADV', label: useT('editor.action.advance.ADV'), selected: true })
+      options.push({ group: rSafe, value: 'ADV', label: useT('editor.action.advance.ADV') })
       break
     case 'nadv':
-      options.push({ group: rStay, value: 'NADV', label: useT('editor.action.advance.NADV'), selected: true })
+      options.push({ group: rStay, value: 'NADV', label: useT('editor.action.advance.NADV') })
       break
     case 'exb':
-      options.push({ group: rSafe, value: 'WP', label: useT('editor.action.extraBase.WP'), selected: true })
+      options.push({ group: rSafe, value: 'WP', label: useT('editor.action.extraBase.WP') })
       options.push({ group: rSafe, value: 'PB', label: useT('editor.action.extraBase.PB') })
       if ((group.includes('-r'))) {
         // only for runners, not the running batter
@@ -223,7 +223,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
       }
       break
     case 'ste':
-      options.push({ group: rSafe, value: 'SB', label: useT('editor.action.sb.SB'), selected: true })
+      options.push({ group: rSafe, value: 'SB', label: useT('editor.action.sb.SB') })
       options.push({ group: rSafe, value: 'SBPOA', label: useT('editor.action.sb.SBPOA') })
       options.push({ group: rSafe, value: 'CSE', label: useT('editor.action.sb.CSE') })
       options.push({ group: rSafe, value: 'CSET', label: useT('editor.action.sb.CSET') })
@@ -236,18 +236,18 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
       options.push({ group: rOut, value: 'POCS', label: useT('editor.action.sb.POCS') })
       break
     case 'fdc':
-      options.push({ group: rSafe, value: 'T', label: useT('editor.action.fc.T'), selected: true })
+      options.push({ group: rSafe, value: 'T', label: useT('editor.action.fc.T') })
       options.push({ group: rSafe, value: 'O/', label: useT('editor.action.fc.O/') })
       if ((!group.includes('-r'))) {
         // only for running batter, not the runners
         options.push({ group: rSafe, value: 'oc', label: useT('editor.action.fc.oc') })
       } else {
         // only for runners
-        options.push({ group: rSafe, value: 'o', label: useT('editor.action.fc.o') })
+        options.push({ group: rSafe, value: 'o', label: useT('editor.action.fc.oc') })
       }
       break
     case 'err':
-      options.push({ group: rSafe, value: 'EF', label: useT('editor.action.error.EF'), selected: true })
+      options.push({ group: rSafe, value: 'EF', label: useT('editor.action.error.EF') })
       options.push({ group: rSafe, value: 'ET', label: useT('editor.action.error.ET') })
       options.push({ group: rSafe, value: 'eF', label: useT('editor.action.error.eF') })
       options.push({ group: rSafe, value: 'eT', label: useT('editor.action.error.eT') })
@@ -266,7 +266,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
       options.push({ group: rSafe, value: 'ob', label: useT('editor.action.error.OB') })
       break
     case 'out':
-      options.push({ group: rOut, value: 'GOT', label: useT('editor.action.out.GOT'), selected: true })
+      options.push({ group: rOut, value: 'GOT', label: useT('editor.action.out.GOT') })
       if ((group.includes('-r'))) {
         // only for runners, not the running batter
         options.push({ group: rOut, value: 'GO', label: useT('editor.action.out.GO') })
@@ -274,7 +274,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
       options.push({ group: rOut, value: 'A', label: useT('editor.action.out.A') })
       break
     case 'obr':
-      options.push({ group: rOut, value: 'OBR_rta', label: useT('editor.action.obr.OBR_rta'), selected: true })
+      options.push({ group: rOut, value: 'OBR_rta', label: useT('editor.action.obr.OBR_RTA') })
       options.push({ group: rOut, value: 'OBR_hbb', label: useT('editor.action.obr.OBR_hbb') })
       options.push({ group: rOut, value: 'OBR_rol', label: useT('editor.action.obr.OBR_rol') })
       options.push({ group: rOut, value: 'OBR_ppr', label: useT('editor.action.obr.OBR_ppr') })

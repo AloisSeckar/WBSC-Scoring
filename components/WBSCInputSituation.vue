@@ -117,7 +117,8 @@ function changeBaseAction(event: Event, group: string) {
     pos2Type.value = 'player-locations'
   }
   //
-  handleChange(specActionOptions.value[0]!.value as string, group)
+  model.value.specAction = specActionOptions.value[0]!.value as string
+  handleChange(model.value.specAction as string, group)
 }
 
 function changeSpecAction(event: Event, group: string) {
