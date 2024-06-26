@@ -68,6 +68,10 @@ const props = defineProps({
   group: { type: String, required: true },
 })
 
+const emit = defineEmits<{
+  play: [out: boolean]
+}>()
+
 const model = defineModel<WBSCInput>({ required: true })
 
 const tieVisible = props.group === inputR1 || props.group === inputR2
@@ -76,6 +80,7 @@ const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebre
 const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptions(getBaseOptionsValue(props.group))
+model.value.base = baseOptions.at(0)!.value as number
 function selectBase(event: Event) {
   const base = event.target as HTMLInputElement
   runTypeVisible.value = base.value.toString() === '4'
@@ -136,7 +141,9 @@ function changeSpecAction(event: Event, group: string) {
 }
 
 function handleChange(specAction: string, group: string) {
-  changeSpecificAction(specAction, group)
+  const out = changeSpecificAction(specAction, group)
+  emit('play', out)
+  //
   hideAllPos()
   const targetPosItems = useEvalStore().getTargetPosItems(group)
   if (targetPosItems > 0) {

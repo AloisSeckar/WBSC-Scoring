@@ -259,7 +259,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
         options.push({ group: rSafe, value: 'se2', label: useT('editor.action.error.se2') })
       }
       if (!(group.includes('r3'))) {
-        options.push({ group: rSafe, value: 'se0', label: useT('editor.action.error.se0') })
+        options.push({ group: rSafe, value: 'se3', label: useT('editor.action.error.se3') })
       }
       options.push({ group: rSafe, value: 'ENF', label: useT('editor.action.error.ENF') })
       options.push({ group: rSafe, value: 'ENT', label: useT('editor.action.error.ENT') })
