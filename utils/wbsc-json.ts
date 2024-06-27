@@ -99,7 +99,7 @@ export async function importInputFromJSON() {
 }
 
 export async function importInputFromLib(fileName: string) {
-  fetch('/json/' + fileName)
+  fetch('/json/' + fileName + '.json')
     .then(response => response.json())
     .then(async (fileData) => {
       await processFile(JSON.stringify(fileData))

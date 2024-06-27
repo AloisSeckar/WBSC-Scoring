@@ -9,8 +9,8 @@
         </div>
         <label :for="libFileId">
           {{ $t('editor.import.situation') }}:</label>
-        <select :id="libFileId" :name="libFileId" :class="divSelect">
-          <option v-for="row in libItems" :key="row.file" :value="row.file + '.json'">
+        <select :id="libFileId" v-model="libFile" :class="divSelect">
+          <option v-for="row in libItems" :key="row.file" :value="row.file">
             {{ row.name }}
           </option>
         </select>
@@ -39,10 +39,9 @@ const divSelect = 'max-[650px]:max-w-[90%]'
 const divButton = 'mx-2 my-4 p-2 w-28 inline-block border border-black rounded bg-wbsc-blue hover:bg-sky-300 '
   + 'text-white hover:text-gray-700 font-bold cursor-pointer'
 
+const libFile = ref(libItems.at(0)!.file)
 function importFromLib() {
-  const libFileSelect = document.getElementById(libFileId) as HTMLInputElement
-  const libFileValue = libFileSelect.value
-  importInputFromLib(libFileValue)
+  importInputFromLib(libFile.value)
   close()
 }
 
