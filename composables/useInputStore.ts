@@ -101,13 +101,16 @@ export function getPos(input: WBSCInput): string {
   return (input.pos1 || '') + (input.pos2 || '') + (input.pos3 || '') + (input.pos4 || '')
 }
 
+export type WBSCBase = 0 | 1 | 2 | 3 | 4
+
 export type WBSCOutput = {
   group: string
   specAction: string
   previousAdvance: boolean
   batter: number
-  origBase: number
-  base: number
+  origBase: WBSCBase
+  base: WBSCBase
+  errorTarget: WBSCBase
   text1: string
   text2?: string
   out: boolean
@@ -115,7 +118,6 @@ export type WBSCOutput = {
   sub?: string
   run?: string
   num: boolean
-  errorTarget: number
   tie: boolean
   na: boolean
   extraOutput?: WBSCOutput[]
@@ -125,8 +127,8 @@ export type WBSCInput = {
   group: string
   baseAction: string
   specAction: string
-  origBase: number
-  base: number
+  origBase: WBSCBase
+  base: WBSCBase
   tie: boolean
   pos1: string
   pos2: string

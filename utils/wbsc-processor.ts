@@ -46,7 +46,7 @@ function processAction() {
   }
   const b1Input = inputStore.inputB1
   const bInput = inputStore.inputB
-  let bErrorTarget = 0
+  let bErrorTarget: WBSCBase = 0
   let bRunType = 'e'
   if (b1Input.baseAction) {
     // special case 1 - extra advance on error
@@ -166,8 +166,8 @@ function processAction() {
   // special case - double or triple followed by an error (#226)
   if ((bInput.specAction.startsWith('2') || bInput.specAction.startsWith('3'))
     && (b1Input.specAction.startsWith('e') || b1Input.specAction.startsWith('E'))) {
-    b1Output!.base = bOutput!.base + 1
-    b1Output!.origBase = bOutput!.base + 1
+    b1Output!.base = bOutput!.base + 1 as WBSCBase
+    b1Output!.origBase = bOutput!.base + 1 as WBSCBase
   }
 
   mergeBatterIndicators(outputs)

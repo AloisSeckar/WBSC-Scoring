@@ -80,7 +80,7 @@ const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebre
 const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptions(getBaseOptionsValue(props.group))
-model.value.base = baseOptions.at(0)!.value as number
+model.value.base = props.group === inputB ? 0 : baseOptions.at(0)!.value as WBSCBase
 function selectBase(event: Event) {
   const base = event.target as HTMLInputElement
   runTypeVisible.value = base.value.toString() === '4'
@@ -92,6 +92,7 @@ const runTypeOptions: GUIOption[] = [
   { value: 'ue', label: 'UE' },
   { value: 'tu', label: 'TU' },
 ]
+model.value.runtype = runTypeOptions.at(0)!.value as string
 
 const baseActionOptions: GUIOption[] = renderBaseActionOptions(props.group)
 
@@ -142,21 +143,40 @@ function changeSpecAction(event: Event, group: string) {
 
 function handleChange(specAction: string, group: string) {
   const out = changeSpecificAction(specAction, group)
+  if (group === inputB) {
+    if (specAction === '2B' || specAction === '2BG') {
+      model.value.base = 2
+    } else if (specAction === '3B') {
+      model.value.base = 3
+    } else if (specAction === 'HR' || specAction === 'HR') {
+      model.value.base = 4
+    } else {
+      model.value.base = out ? 0 : 1
+    }
+  }
   emit('play', out)
   //
   hideAllPos()
   const targetPosItems = useEvalStore().getTargetPosItems(group)
   if (targetPosItems > 0) {
     pos1Show.value = true
+  } else {
+    model.value.pos1 = ''
   }
   if (targetPosItems > 1) {
     pos2Show.value = true
+  } else {
+    model.value.pos2 = ''
   }
   if (targetPosItems > 2) {
     pos3Show.value = true
+  } else {
+    model.value.pos3 = ''
   }
   if (targetPosItems > 3) {
     pos4Show.value = true
+  } else {
+    model.value.pos4 = ''
   }
 }
 

@@ -3,7 +3,7 @@
 /* Final rendering based on user's input   */
 /* *************************************** */
 
-import type { WBSCOutput } from '@/composables/useInputStore'
+import type { WBSCBase, WBSCOutput } from '@/composables/useInputStore'
 
 // rendering the output
 //   battingOrder - number displayed at the left side (1-4)
@@ -53,7 +53,7 @@ function renderAction(battingOrder: number, clear: boolean, output: WBSCOutput) 
 // process 'safe' situation
 function renderAdvance(output: WBSCOutput) {
   if (!output.na) {
-    drawAdvanceLine(Math.max(output.base, output.errorTarget))
+    drawAdvanceLine(output.errorTarget > output.base ? output.errorTarget : output.base)
   }
   writeSituation(output)
 }
@@ -148,7 +148,7 @@ function drawOutCircle(base: number) {
 }
 
 // draw advance line from HP to given base (1-4)
-function drawAdvanceLine(base: number) {
+function drawAdvanceLine(base: WBSCBase) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset

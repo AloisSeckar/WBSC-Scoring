@@ -222,16 +222,6 @@ function changeRunnerSpecificAction(specAction: string, group: string) {
   return out
 }
 
-// allows to select run type when home base is selected
-function changeBase(group: string) {
-  // #202 - we need to know whether there was an out or not
-  // this method is able to calculate it
-  // re-creating or extracting the logic would be harder
-  const runnerSpecificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
-  const specAction = runnerSpecificAction.value
-  changeRunnerSpecificAction(specAction, group)
-}
-
 // enhance user's input with output instructions
 function processInput(input: WBSCInput, batter: number): WBSCOutput {
   const output: WBSCOutput = getEmptyOutput()
@@ -394,7 +384,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
         output.text2 += action.substring(3)
       }
       output.errorTarget = output.base
-      output.base = output.origBase + 1
+      output.base = output.origBase + 1 as WBSCBase
       break
     case 'INT':
       output.text1 = action
@@ -441,7 +431,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       output.text1 = action + '#b#'
       // #179 - multiple base advance should render same as an error
       output.errorTarget = output.base
-      output.base = output.origBase + 1
+      output.base = output.origBase + 1 as WBSCBase
       break
     case 'SB':
       possibleConcurrentPlay = true
@@ -530,7 +520,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       output.num = true
       output.errorTarget = output.base
       if (!action.includes('N')) {
-        output.base = input.origBase + 1
+        output.base = input.origBase + 1 as WBSCBase
       }
       possibleConcurrentPlay = true
       // do not wrap "short" no-advance plays
@@ -555,7 +545,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
         output.text2 = (action === 'POE' ? 'e' : 'E') + pos + 'T'
       }
       output.num = true
-      output.base = !action.includes('N') ? output.origBase + 1 : input.origBase
+      output.base = !action.includes('N') ? output.origBase + 1 as WBSCBase : input.origBase
       output.errorTarget = output.base
       possibleConcurrentPlay = true
       break
@@ -595,7 +585,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       if (action.includes('N')) {
         output.base = output.errorTarget = input.origBase
       } else {
-        output.base = output.origBase + 1
+        output.base = output.origBase + 1 as WBSCBase
         output.errorTarget = input.base
       }
       break
@@ -604,7 +594,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'EDP':
       output.text1 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1) + action.substring(action.length - 1)
       output.errorTarget = output.base
-      output.base = output.origBase + 1
+      output.base = output.origBase + 1 as WBSCBase
       break
     case 'GDPE':
       useEvalStore().brokenDP = true
@@ -614,7 +604,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       if (action.includes('E')) {
         output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)
         output.errorTarget = output.base
-        output.base = output.origBase + 1
+        output.base = output.origBase + 1 as WBSCBase
       } else {
         output.text2 = 'O' + pos
       }
