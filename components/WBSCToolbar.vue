@@ -25,6 +25,9 @@
         :group="'button-' + inputExport" :label="useT('editor.button.export') + ' &#8663;'"
         css="btn-json" @click="exportInputAsJSON()" />
     </div>
+    <input
+      :id="inputImportFile" type="file" class="hidden"
+      accept="application/json" @change="importInputFromJSON()">
   </div>
 </template>
 

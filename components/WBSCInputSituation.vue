@@ -244,14 +244,18 @@ function hidePosSelectItem() {
       if (pos3Show.value) {
         if (pos4Show.value) {
           pos4Show.value = false
+          model.value.pos4 = ''
         } else {
           pos3Show.value = false
+          model.value.pos3 = ''
         }
       } else {
         pos2Show.value = false
+        model.value.pos2 = ''
       }
     } else {
       pos1Show.value = false
+      model.value.pos1 = ''
     }
   }
 }
