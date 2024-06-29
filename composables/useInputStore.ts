@@ -136,3 +136,5 @@ export type WBSCInput = {
   pos4: string
   runtype: string
 }
+
+export type WBSCInputJson = WBSCInput & { pos?: string }
