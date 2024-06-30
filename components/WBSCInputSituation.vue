@@ -130,26 +130,19 @@ function changeBaseAction(group: string) {
 function changeSpecAction(group: string) {
   const specAction = model.value.specAction
   handleChange(specAction, group)
-  //
-  if (group === inputB) {
-    if (specAction === 'HR' || specAction === 'IHR') {
-      baseSelect.value!.value = '4'
-    } else {
-      baseSelect.value!.value = '0'
-    }
-  }
-  baseSelect.value!.dispatchEvent(new Event('change'))
 }
 
 function handleChange(specAction: string, group: string) {
   const out = changeSpecificAction(specAction, group)
   if (group === inputB) {
+    runTypeVisible.value = false
     if (specAction === '2B' || specAction === '2BG') {
       model.value.base = 2
     } else if (specAction === '3B') {
       model.value.base = 3
-    } else if (specAction === 'HR' || specAction === 'HR') {
+    } else if (specAction === 'HR' || specAction === 'IHR') {
       model.value.base = 4
+      runTypeVisible.value = true
     } else {
       model.value.base = out ? 0 : 1
     }
