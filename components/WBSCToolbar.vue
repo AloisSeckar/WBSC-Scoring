@@ -98,5 +98,10 @@ async function clearInputs() {
     jsonInput.files = null
     jsonInput.value = ''
   }
+
+  setTimeout(() => {
+    const baseSelect = document.getElementById(`${inputB}-base-action`) as HTMLInputElement
+    baseSelect.dispatchEvent(new Event('change'))
+  })
 }
 </script>
