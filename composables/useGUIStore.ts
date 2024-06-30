@@ -16,12 +16,9 @@ export const useGUIStore = defineStore({
   },
   actions: {
     setVisible(inputGroup: string, visible: boolean) {
-      console.log(inputGroup, visible)
       switch (inputGroup) {
         case inputB:
-          console.log(this.inputB)
           this.inputB = visible
-          console.log(this.inputB)
           break
         case inputB1:
           this.inputB1 = visible

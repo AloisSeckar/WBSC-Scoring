@@ -104,7 +104,6 @@ const pos2Type: Ref<PositionType> = ref('player-locations')
 
 function changeBaseAction(group: string) {
   const baseAction = model.value.baseAction
-  console.log(baseAction)
   specActionOptions.value.length = 0
   if (group === inputB) {
     specActionOptions.value.push(...renderBatterSpecificActionOptions(baseAction))
@@ -124,9 +123,6 @@ function changeBaseAction(group: string) {
     pos2Type.value = 'player-locations'
   }
   //
-  //
-  console.log(model.value.baseAction)
-  console.log(specActionOptions.value)
   model.value.specAction = specActionOptions.value[0]!.value as string
   handleChange(model.value.specAction as string, group)
 }

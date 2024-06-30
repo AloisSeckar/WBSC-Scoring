@@ -110,58 +110,57 @@ export async function importInputFromLib(fileName: string) {
 async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
     const jsonData: WBSCInputJson[] = JSON.parse(fileData.toString())
-    jsonData?.reverse().forEach(async (input) => {
+    for (const input of jsonData) {
       await setInputFromJSON(input)
-    })
-    setTimeout(() => {
-      processAction()
-    }, 100)
+    }
+    processAction()
   }
 }
 
 async function setInputFromJSON(input: WBSCInputJson) {
-  // TODO validate
   useGUIStore().setVisible(input.group, true)
 
   const guiModel = useInputStore().getModel(input.group)
 
   guiModel.baseAction = input.baseAction
-  setTimeout(async () => {
-    const baseSelect = document.getElementById(`${input.group}-base-action`) as HTMLInputElement
-    baseSelect.dispatchEvent(new Event('change'))
 
-    guiModel.specAction = input.specAction
-    setTimeout(async () => {
-      const specSelect = document.getElementById(`${input.group}-spec-action`) as HTMLInputElement
-      specSelect.dispatchEvent(new Event('change'))
+  await new Promise(resolve => setTimeout(resolve, 0))
 
-      setTimeout(async () => {
-        guiModel.tie = input.tie
-        guiModel.base = input.base
-        guiModel.runtype = input.runtype
+  const baseSelect = document.getElementById(`${input.group}-base-action`) as HTMLInputElement
+  baseSelect.dispatchEvent(new Event('change'))
 
-        if (input.pos) {
-          // legacy .json - only one "pos" element that needs to be parsed
-          const pos = input.pos
-          if (pos.length > 0) {
-            guiModel.pos1 = pos[0]!
-          }
-          if (pos.length > 1) {
-            guiModel.pos2 = pos[1]!
-          }
-          if (pos.length > 2) {
-            guiModel.pos3 = pos[2]!
-          }
-          if (pos.length > 3) {
-            guiModel.pos4 = pos[3]!
-          }
-        } else {
-          guiModel.pos1 = input.pos1
-          guiModel.pos2 = input.pos2
-          guiModel.pos3 = input.pos3
-          guiModel.pos4 = input.pos4
-        }
-      })
-    })
-  })
+  guiModel.specAction = input.specAction
+
+  await new Promise(resolve => setTimeout(resolve, 0))
+
+  const specSelect = document.getElementById(`${input.group}-spec-action`) as HTMLInputElement
+  specSelect.dispatchEvent(new Event('change'))
+
+  await new Promise(resolve => setTimeout(resolve, 0))
+
+  guiModel.tie = input.tie
+  guiModel.base = input.base
+  guiModel.runtype = input.runtype
+
+  if (input.pos) {
+    // legacy .json - only one "pos" element that needs to be parsed
+    const pos = input.pos
+    if (pos.length > 0) {
+      guiModel.pos1 = pos[0]!
+    }
+    if (pos.length > 1) {
+      guiModel.pos2 = pos[1]!
+    }
+    if (pos.length > 2) {
+      guiModel.pos3 = pos[2]!
+    }
+    if (pos.length > 3) {
+      guiModel.pos4 = pos[3]!
+    }
+  } else {
+    guiModel.pos1 = input.pos1
+    guiModel.pos2 = input.pos2
+    guiModel.pos3 = input.pos3
+    guiModel.pos4 = input.pos4
+  }
 }
