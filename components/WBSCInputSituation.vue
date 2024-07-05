@@ -97,7 +97,7 @@ model.value.runtype = runTypeOptions.at(0)!.value as string
 const baseActionOptions: GUIOption[] = renderBaseActionOptions(props.group)
 
 const specActionOptions: Ref<GUIOption[]> = ref([])
-const specActionDisabled = ref(false)
+const specActionDisabled = ref(true)
 
 const pos1Type: Ref<PositionType> = ref('player-locations')
 const pos2Type: Ref<PositionType> = ref('player-locations')

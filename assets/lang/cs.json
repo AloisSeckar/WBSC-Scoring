@@ -202,7 +202,7 @@
             "export" : "Export rozehry"
         },
         "validation" : {
-            "noEmptyInput" : "Musí být vybrána alespoň jedna skupina vstupů.",
+            "noEmptyInput" : "Musí být zadána alespoň jedna akce.",
             "minPositions" : "Pro tuto situaci musí být zadáno nejméně %pos% pozice.",
             "allPositions" : "Musí být vybrány všechny pozice.",
             "noNAAdvance" : "'No advance' nemůže pokračovat další situací.",

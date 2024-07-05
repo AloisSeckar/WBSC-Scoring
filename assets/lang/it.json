@@ -202,7 +202,7 @@
             "export" : "Esporta selezione"
         },
         "validation" : {
-            "noEmptyInput" : "Almeno un gruppo di input deve essere selezionato.",
+            "noEmptyInput" : "È necessario definire almeno un'azione.",
             "minPositions" : "Almeno %pos% posizioni coinvolte devono essere selezionate per l'azione selezionata.",
             "allPositions" : "Tutte le posizioni devono essere selezionate.",
             "noNAAdvance" : "Su 'Nessun avanzamento' non devono risultare ulteriori avanzamenti.",

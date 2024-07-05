@@ -123,7 +123,7 @@ function processAction() {
       extraR1Output.push(processInput(r1aInput, playersInvolved))
     }
 
-    r1Output = processInput(r2Input, playersInvolved)
+    r1Output = processInput(r1Input, playersInvolved)
     r1Output.previousAdvance = true
     r1Output.extraOutput = extraR1Output
     outputs.push(r1Output)

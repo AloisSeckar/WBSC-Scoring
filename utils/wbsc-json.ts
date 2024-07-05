@@ -158,9 +158,9 @@ async function setInputFromJSON(input: WBSCInputJson) {
       guiModel.pos4 = pos[3]!
     }
   } else {
-    guiModel.pos1 = input.pos1
-    guiModel.pos2 = input.pos2
-    guiModel.pos3 = input.pos3
-    guiModel.pos4 = input.pos4
+    guiModel.pos1 = input.pos1 || ''
+    guiModel.pos2 = input.pos2 || ''
+    guiModel.pos3 = input.pos3 || ''
+    guiModel.pos4 = input.pos4 || ''
   }
 }

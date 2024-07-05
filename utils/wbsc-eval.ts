@@ -122,6 +122,7 @@ function changeBatterSpecificAction(specAction: string) {
       // no pos adjustments
       break
     default:
+      out = specAction === ''
       minPosItems = targetPosItems = maxPosItems = 0
   }
 
