@@ -19,7 +19,7 @@
     "@vueuse/core": "10.11.0",
     "@vueuse/nuxt": "10.11.0",
     "backstopjs": "6.3.23",
-    "nuxt": "3.12.2",
+    "nuxt": "3.12.3",
     "pinia": "2.1.7",
     "tailwindcss": "3.4.4"
   }
