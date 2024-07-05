@@ -3,12 +3,11 @@
 /* Preparing and adjusting user inputs     */
 /* *************************************** */
 
-// TODO should be here?
 // TODO rename to "init..."?
 
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
-function getEmptyInput(group: string): WBSCInput {
+export function getEmptyInput(group: string): WBSCInput {
   const input: WBSCInput = {
     group,
     baseAction: '',
@@ -26,7 +25,7 @@ function getEmptyInput(group: string): WBSCInput {
   return input
 }
 
-function getEmptyOutput(): WBSCOutput {
+export function getEmptyOutput(): WBSCOutput {
   const output: WBSCOutput = {
     group: '',
     specAction: '',
@@ -45,6 +44,23 @@ function getEmptyOutput(): WBSCOutput {
   return output
 }
 
-export {
-  getEmptyInput, getEmptyOutput,
+// clear all user inputs and reset default state
+export function clearInputs() {
+  useGUIStore().$reset()
+  useEvalStore().$reset()
+  useInputStore().clear()
+  useCanvasStore().init()
+
+  // json
+  const jsonInput = document.getElementById(inputImportFile) as HTMLInputElement
+  if (jsonInput) {
+    jsonInput.files = null
+    jsonInput.value = ''
+  }
+
+  // reset batter input
+  setTimeout(() => {
+    const baseSelect = document.getElementById(`${inputB}-base-action`) as HTMLInputElement
+    baseSelect.dispatchEvent(new Event('change'))
+  })
 }

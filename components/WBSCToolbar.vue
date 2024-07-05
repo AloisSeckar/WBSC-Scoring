@@ -84,24 +84,4 @@ function extendDownloadButton() {
     }
   }, false)
 }
-
-// clear all user inputs and reset default state
-async function clearInputs() {
-  useGUIStore().$reset()
-  useEvalStore().$reset()
-  useInputStore().clear()
-  useCanvasStore().init()
-
-  // json
-  const jsonInput = document.getElementById(inputImportFile) as HTMLInputElement
-  if (jsonInput) {
-    jsonInput.files = null
-    jsonInput.value = ''
-  }
-
-  setTimeout(() => {
-    const baseSelect = document.getElementById(`${inputB}-base-action`) as HTMLInputElement
-    baseSelect.dispatchEvent(new Event('change'))
-  })
-}
 </script>

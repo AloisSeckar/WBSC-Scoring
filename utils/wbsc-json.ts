@@ -109,6 +109,7 @@ export async function importInputFromLib(fileName: string) {
 
 async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
+    clearInputs()
     const jsonData: WBSCInputJson[] = JSON.parse(fileData.toString())
     for (const input of jsonData) {
       await setInputFromJSON(input)

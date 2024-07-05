@@ -173,6 +173,13 @@ function handleChange(specAction: string, group: string) {
   }
 }
 
+watch(model, () => {
+  pos1Show.value = !!model.value.pos1
+  pos2Show.value = !!model.value.pos2
+  pos3Show.value = !!model.value.pos3
+  pos4Show.value = !!model.value.pos4
+}, { deep: true })
+
 const pos1Show = ref(false)
 const pos2Show = ref(false)
 const pos3Show = ref(false)

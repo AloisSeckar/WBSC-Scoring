@@ -3,7 +3,7 @@ module.exports = async (page, scenario) => {
   // import from library
   await page.waitForSelector('#button-input-import-lib')
   await page.click('#button-input-import-lib')
-  // pick "Out 63"
+  // pick given action
   await page.waitForSelector('#lib-items')
   await page.select('#lib-items', action + '.json')
   // select (and wait for generate action)
