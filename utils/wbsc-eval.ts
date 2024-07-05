@@ -458,14 +458,14 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'se1': {
       let battingOrder = 1
-      battingOrder += document.getElementById(inputR2) ? 1 : 0
-      battingOrder += document.getElementById(inputR3) ? 1 : 0
+      battingOrder += useGUIStore().inputR2 ? 1 : 0
+      battingOrder += useGUIStore().inputR3 ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
     }
       break
     case 'se2': {
       let battingOrder = 1
-      battingOrder += document.getElementById(inputR3) ? 1 : 0
+      battingOrder += useGUIStore().inputR3 ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
     }
       break

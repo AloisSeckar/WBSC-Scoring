@@ -8,9 +8,6 @@
             <h1 class="cursor-pointer" @click="toIndex">
               WBSC Scoring <span class="text-red-500">Creator</span>
             </h1>
-            <div class="text-red-500">
-              Dev currently not working properly due to WIP on #217
-            </div>
           </header>
           <div class="text-left sm:text-justify mb-16">
             <NuxtPage />

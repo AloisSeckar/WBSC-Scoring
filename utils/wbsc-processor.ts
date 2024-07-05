@@ -344,7 +344,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   const r3error = extraBaseErrors.includes(r3SpecAction) || sameError.includes(r3SpecAction)
   const r3connect = r3error || connectingActions.includes(r3SpecAction)
 
-  const bOutput = outputs.find(o => o.group === inputR1)
+  const bOutput = outputs.find(o => o.group === inputB)
   const r1Output = outputs.find(o => o.group === inputR1)
   const r2Output = outputs.find(o => o.group === inputR2)
   const r3Output = outputs.find(o => o.group === inputR3)
@@ -379,10 +379,15 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
 
   // connect SF + indifferece, if some runner advances because appeal play attempt for other runner (example 80)
   const batterAction = batterInput?.specAction
+  console.log(batterAction)
   const isSF = batterAction === 'SF' || batterAction === 'FSF'
   if (isSF) {
     const r1Indifference = r1Input?.specAction === 'O/'
     const r2Indifference = r2Input?.specAction === 'O/'
+    console.log(r1Indifference)
+    console.log(r2Indifference)
+    console.log(bOutput)
+    console.log(r1Output)
 
     if (r1Indifference || r2Indifference) {
       if (bOutput) {

@@ -231,6 +231,8 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
       options.push({ group: rSafe, value: 'CSNT', label: useT('editor.action.sb.CSNT') })
       options.push({ group: rSafe, value: 'POE', label: useT('editor.action.sb.POE') })
       options.push({ group: rSafe, value: 'POEN', label: useT('editor.action.sb.POEN') })
+      options.push({ group: rSafe, value: 'POCSE', label: useT('editor.action.sb.POCSE') })
+      options.push({ group: rSafe, value: 'POCSEN', label: useT('editor.action.sb.POCSEN') })
       options.push({ group: rOut, value: 'CSO', label: useT('editor.action.sb.CSO') })
       options.push({ group: rOut, value: 'PO', label: useT('editor.action.sb.PO') })
       options.push({ group: rOut, value: 'POCS', label: useT('editor.action.sb.POCS') })

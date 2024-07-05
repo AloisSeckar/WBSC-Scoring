@@ -401,7 +401,7 @@ function checkFC(inputs: WBSCInput[]) {
         kfcSituation = true
       }
     } else if (firstRunnerActions.includes(input.group)) {
-      if (['GOT', 'GO', 'A'].includes(input.specAction) || errorActions.includes(input.specAction)) {
+      if (['GOT', 'GO', 'A', 'OBR_rin'].includes(input.specAction) || errorActions.includes(input.specAction)) {
         oPlay = true
       } else if (input.specAction === 'ADV') {
         fcPlay = true
