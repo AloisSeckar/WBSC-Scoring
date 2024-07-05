@@ -16,16 +16,16 @@ export const useInputStore = defineStore({
   },
   actions: {
     clear() {
-      clearInput(this.inputB)
-      clearInput(this.inputB1)
-      clearInput(this.inputB2)
-      clearInput(this.inputB3)
-      clearInput(this.inputR1)
-      clearInput(this.inputR1a)
-      clearInput(this.inputR1b)
-      clearInput(this.inputR2)
-      clearInput(this.inputR2a)
-      clearInput(this.inputR3)
+      clearInput(this.inputB, inputB)
+      clearInput(this.inputB1, inputB1)
+      clearInput(this.inputB2, inputB2)
+      clearInput(this.inputB3, inputB3)
+      clearInput(this.inputR1, inputR1)
+      clearInput(this.inputR1a, inputR1a)
+      clearInput(this.inputR1b, inputR1b)
+      clearInput(this.inputR2, inputR2)
+      clearInput(this.inputR2a, inputR2a)
+      clearInput(this.inputR3, inputR3)
     },
   },
   getters: {
@@ -34,10 +34,22 @@ export const useInputStore = defineStore({
         switch (inputGroup) {
           case inputB:
             return state.inputB
+          case inputB1:
+            return state.inputB1
+          case inputB2:
+            return state.inputB2
+          case inputB3:
+            return state.inputB3
           case inputR1:
             return state.inputR1
+          case inputR1a:
+            return state.inputR1a
+          case inputR1b:
+            return state.inputR1b
           case inputR2:
             return state.inputR2
+          case inputR2a:
+            return state.inputR2a
           case inputR3:
             return state.inputR3
           default:
@@ -84,10 +96,10 @@ export const useInputStore = defineStore({
   },
 })
 
-function clearInput(input: WBSCInput) {
+function clearInput(input: WBSCInput, inputGroup: string) {
   input.baseAction = ''
   input.specAction = ''
-  input.origBase = 0
+  input.origBase = getOrigBase(inputGroup)
   input.base = 0
   input.tie = false
   input.pos1 = ''

@@ -5,7 +5,7 @@ module.exports = async (page, scenario) => {
   await page.click('#button-input-import-lib')
   // pick given action
   await page.waitForSelector('#lib-items')
-  await page.select('#lib-items', action + '.json')
+  await page.select('#lib-items', action)
   // select (and wait for generate action)
   await page.waitForSelector('#lib-select')
   await page.click('#lib-select')

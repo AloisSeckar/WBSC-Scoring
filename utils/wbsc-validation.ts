@@ -63,23 +63,34 @@ function checkUserInput(inputs: WBSCInput[], outputs: WBSCOutput[]) {
     }
   })
 
+  // "extra" outputs are now nested inside main 4
+  // but validations were designed for "flat" array
+  // TODO this should be solved some better way..
+  const flattenedOutputs: WBSCOutput[] = []
+  outputs.forEach((output) => {
+    output.extraOutput?.forEach((output) => {
+      flattenedOutputs.push(output)
+    })
+    flattenedOutputs.push(output)
+  })
+
   // 2) validations over all inputs/outputs
   validation = attachValidation(validation, checkRunnerOnlyActions(inputs))
-  validation = attachValidation(validation, checkOutsAndRuns(outputs))
-  validation = attachValidation(validation, checkOutcome(outputs))
+  validation = attachValidation(validation, checkOutsAndRuns(flattenedOutputs))
+  validation = attachValidation(validation, checkOutcome(flattenedOutputs))
   validation = attachValidation(validation, checkHit(inputs))
   validation = attachValidation(validation, checkAdvances(inputs))
-  validation = attachValidation(validation, checkFO(outputs))
+  validation = attachValidation(validation, checkFO(flattenedOutputs))
   validation = attachValidation(validation, checkFC(inputs))
-  validation = attachValidation(validation, checkGDP(outputs))
+  validation = attachValidation(validation, checkGDP(flattenedOutputs))
   validation = attachValidation(validation, checkSHSF(inputs))
   validation = attachValidation(validation, checkSBCS(inputs))
   validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
   validation = attachValidation(validation, checkNoAdvances(inputs))
   validation = attachValidation(validation, checkOBRs(inputs))
   validation = attachValidation(validation, checkDeadBallPlays(inputs))
-  validation = attachValidation(validation, checkSameError(outputs))
-  validation = attachValidation(validation, checkEarnedRuns(outputs))
+  validation = attachValidation(validation, checkSameError(flattenedOutputs))
+  validation = attachValidation(validation, checkEarnedRuns(flattenedOutputs))
 
   return validation
 }
@@ -302,7 +313,7 @@ function checkFO(outputs: WBSCOutput[]) {
   let impossibleFO = false
   let flyout = false
 
-  outputs.forEach((output) => {
+  outputs.toReversed().forEach((output) => {
     switch (output.group) {
       case inputB:
         possibleFO[0] = true // runner at 1st may be forced out at 2nd

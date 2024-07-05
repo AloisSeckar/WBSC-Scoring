@@ -233,7 +233,6 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
   output.base = input.base
   output.run = input.runtype
   output.errorTarget = input.base
-  output.na = input.specAction.includes('N')
   output.tie = input.tie
 
   let pos = getPos(input)
@@ -336,13 +335,16 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'O':
       output.text1 = action + pos
+      output.base = 1
       break
     case 'OCB':
       output.text1 = 'O' + pos + 'B'
+      output.base = 1
       break
     case 'FC':
       output.text1 = action
       output.text2 = pos
+      output.base = 1
       break
     case 'KSWP':
     case 'KSPB':

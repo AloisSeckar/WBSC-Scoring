@@ -12,7 +12,7 @@ export function getEmptyInput(group: string): WBSCInput {
     group,
     baseAction: '',
     specAction: '',
-    origBase: 0,
+    origBase: getOrigBase(group),
     base: 0,
     tie: false,
     pos1: '',
@@ -42,6 +42,26 @@ export function getEmptyOutput(): WBSCOutput {
     tie: false,
   }
   return output
+}
+
+// returns original base based on input group
+export function getOrigBase(inputGroup: string): WBSCBase {
+  switch (inputGroup) {
+    case inputR3:
+    case inputR2a:
+    case inputR1b:
+    case inputB3:
+      return 3
+    case inputR2:
+    case inputR1a:
+    case inputB2:
+      return 2
+    case inputR1:
+    case inputB1:
+      return 1
+    default:
+      return 0
+  }
 }
 
 // clear all user inputs and reset default state

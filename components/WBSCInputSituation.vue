@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :id="group">
     <div v-if="tieVisible">
       <input :id="group + inputTie" v-model="model.tie" type="checkbox" class="wbsc-select">
       <label :for="group + inputTie" class="ml-1">{{ tieLabel }}</label>

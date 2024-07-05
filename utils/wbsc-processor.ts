@@ -8,47 +8,58 @@ import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
 function processAction() {
+  const GUI = useGUIStore()
   const inputStore = useInputStore()
 
   // TODO skip "inputs" array creation
   const inputs = [] as WBSCInput[]
+
   const r3Input = inputStore.inputR3
-  if (r3Input.baseAction) {
+  if (GUI.inputR3 && r3Input.baseAction) {
     inputs.push(r3Input)
   }
+
   const r2aInput = inputStore.inputR2a
-  if (r2aInput.baseAction) {
+  if (GUI.inputR2a && r2aInput.baseAction) {
     inputs.push(r2aInput)
   }
+
   const r2Input = inputStore.inputR2
-  if (r2Input.baseAction) {
+  if (GUI.inputR2 && r2Input.baseAction) {
     inputs.push(r2Input)
   }
+
   const r1bInput = inputStore.inputR1b
-  if (r1bInput.baseAction) {
+  if (GUI.inputR1b && r1bInput.baseAction) {
     inputs.push(r1bInput)
   }
+
   const r1aInput = inputStore.inputR1a
-  if (r1aInput.baseAction) {
+  if (GUI.inputR1a && r1aInput.baseAction) {
     inputs.push(r1aInput)
   }
+
   const r1Input = inputStore.inputR1
-  if (r1Input.baseAction) {
+  if (GUI.inputR1 && r1Input.baseAction) {
     inputs.push(r1Input)
   }
+
   const b3Input = inputStore.inputB3
-  if (b3Input.baseAction) {
+  if (GUI.inputB3 && b3Input.baseAction) {
     inputs.push(b3Input)
   }
+
   const b2Input = inputStore.inputB2
-  if (b2Input.baseAction) {
+  if (GUI.inputB2 && b2Input.baseAction) {
     inputs.push(b2Input)
   }
+
   const b1Input = inputStore.inputB1
   const bInput = inputStore.inputB
   let bErrorTarget: WBSCBase = 0
   let bRunType = 'e'
-  if (b1Input.baseAction) {
+  let omitB1 = false
+  if (GUI.inputB1 && b1Input.baseAction) {
     // special case 1 - extra advance on error
     // special case 2 - multiple-base hit with later appeal play on some of the runners
     if (b1Input.specAction === 'se0' || b1Input.specAction === 'oc') {
@@ -60,12 +71,13 @@ function processAction() {
       }
       bErrorTarget = b1Input.base
       bRunType = b1Input.runtype || 'e'
-      b1Input.baseAction = ''
+      omitB1 = true
     } else {
       inputs.push(b1Input)
     }
   }
-  if (bInput.baseAction) {
+
+  if (GUI.inputB && bInput.baseAction) {
     inputs.push(bInput)
   }
 
@@ -84,7 +96,7 @@ function processAction() {
 
   // runner 3
   let r3Output: WBSCOutput
-  if (r3Input.baseAction) {
+  if (GUI.inputR3 && r3Input.baseAction) {
     playersInvolved += 1
     r3Output = processInput(r3Input, playersInvolved)
     r3Output.previousAdvance = true
@@ -93,11 +105,11 @@ function processAction() {
 
   // runner 2
   let r2Output: WBSCOutput
-  if (r2Input.baseAction) {
+  if (GUI.inputR2 && r2Input.baseAction) {
     playersInvolved += 1
 
     const extraR2Output: WBSCOutput[] = []
-    if (r2aInput.baseAction) {
+    if (GUI.inputR2a && r2aInput.baseAction) {
       extraR2Output.push(processInput(r2aInput, playersInvolved))
     }
 
@@ -109,14 +121,14 @@ function processAction() {
 
   // runner 1
   let r1Output: WBSCOutput
-  if (r1Input.baseAction) {
+  if (GUI.inputR1 && r1Input.baseAction) {
     playersInvolved += 1
 
     const extraR1Output: WBSCOutput[] = []
-    if (r1bInput.baseAction) {
+    if (GUI.inputR1b && r1bInput.baseAction) {
       extraR1Output.push(processInput(r1bInput, playersInvolved))
     }
-    if (r1aInput.baseAction) {
+    if (GUI.inputR1a && r1aInput.baseAction) {
       if (r1Input.base) {
         r1aInput.origBase = r1Input.base
       }
@@ -132,20 +144,20 @@ function processAction() {
   // batter
   let bOutput: WBSCOutput
   let b1Output: WBSCOutput
-  if (bInput.baseAction) {
+  if (GUI.inputB && bInput.baseAction) {
     playersInvolved += 1
 
     const extraBatterOutput: WBSCOutput[] = []
-    if (b3Input.baseAction) {
+    if (GUI.inputB3 && b3Input.baseAction) {
       extraBatterOutput.push(processInput(b3Input, playersInvolved))
     }
-    if (b2Input.baseAction) {
+    if (GUI.inputB2 && b2Input.baseAction) {
       if (b1Input.base) {
         b2Input.origBase = b1Input.base
       }
       extraBatterOutput.push(processInput(b2Input, playersInvolved))
     }
-    if (b1Input.baseAction) {
+    if (GUI.inputB1 && b1Input.baseAction && !omitB1) {
       if (bInput.base) {
         b1Input.origBase = bInput.base
       }
@@ -182,7 +194,7 @@ function processAction() {
     const canvas = useCanvasStore().canvas as HTMLCanvasElement
     canvas.height = playersInvolved * h1 - ((playersInvolved - 1) * 8)
 
-    if (!bInput) {
+    if (!GUI.inputB) {
       useEvalStore().batter = playersInvolved + 1
     } else {
       useEvalStore().batter = playersInvolved
@@ -190,8 +202,12 @@ function processAction() {
 
     // current batter is not known in the time of input evaluation (we don't forsee number of players involved)
     // therefore placeholder is being used and here is replaced with actual number
+    const batter = useEvalStore().batter.toString()
     outputs.forEach((o) => {
-      o.text1 = o.text1.replace('#b#', useEvalStore().batter.toString())
+      o.text1 = o.text1.replace('#b#', batter)
+      o.extraOutput?.forEach((o) => {
+        o.text1 = o.text1.replace('#b#', batter)
+      })
     })
 
     // render situations one by one
