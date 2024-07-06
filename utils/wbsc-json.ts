@@ -125,19 +125,9 @@ async function setInputFromJSON(input: WBSCInputJson) {
   const guiModel = useInputStore().getModel(input.group)
 
   guiModel.baseAction = input.baseAction
-
   await new Promise(resolve => setTimeout(resolve, 0))
-
-  const baseSelect = document.getElementById(`${input.group}-base-action`) as HTMLInputElement
-  baseSelect.dispatchEvent(new Event('change'))
 
   guiModel.specAction = input.specAction
-
-  await new Promise(resolve => setTimeout(resolve, 0))
-
-  const specSelect = document.getElementById(`${input.group}-spec-action`) as HTMLInputElement
-  specSelect.dispatchEvent(new Event('change'))
-
   await new Promise(resolve => setTimeout(resolve, 0))
 
   guiModel.tie = input.tie

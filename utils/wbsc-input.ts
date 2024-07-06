@@ -77,10 +77,4 @@ export function clearInputs() {
     jsonInput.files = null
     jsonInput.value = ''
   }
-
-  // reset batter input
-  setTimeout(() => {
-    const baseSelect = document.getElementById(`${inputB}-base-action`) as HTMLInputElement
-    baseSelect.dispatchEvent(new Event('change'))
-  })
 }

@@ -213,7 +213,8 @@ function changeRunnerSpecificAction(specAction: string, group: string) {
       // no pos adjustments
       break
     default:
-      maxPosItems = 1
+      out = specAction === ''
+      minPosItems = targetPosItems = maxPosItems = 0
   }
 
   useEvalStore().setMinPosItems(group, minPosItems)

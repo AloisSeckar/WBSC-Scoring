@@ -7,7 +7,7 @@
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase" ref="baseSelect" v-model="model.base" @change="selectBase">
+        <select :id="group + inputBase" ref="baseSelect" v-model="model.base">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
@@ -25,15 +25,14 @@
     <div>
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.action.action') + ':' }}</label>
       <select
-        :id="group + inputBaseAction" v-model="model.baseAction" class="wbsc-base-action-select form-control"
-        @change="changeBaseAction(group)">
+        :id="group + inputBaseAction" v-model="model.baseAction" class="wbsc-base-action-select form-control">
         <option v-for="opt in baseActionOptions" :key="opt.value" :value="opt.value">
           {{ opt.label }}
         </option>
       </select>
       <select
-        :id="group + inputSpecAction" v-model="model.specAction" class="wbsc-specific-action-select form-control"
-        :disabled="specActionDisabled" @change="changeSpecAction(group)">
+        :id="group + inputSpecAction" v-model="model.specAction"
+        class="wbsc-specific-action-select form-control" :disabled="specActionDisabled">
         <option v-for="opt in specActionOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
           {{ opt.label }}
         </option>
@@ -81,10 +80,10 @@ const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptions(getBaseOptionsValue(props.group))
 model.value.base = props.group === inputB ? 0 : baseOptions.at(0)!.value as WBSCBase
-function selectBase(event: Event) {
-  const base = event.target as HTMLInputElement
-  runTypeVisible.value = base.value.toString() === '4'
-}
+
+watch(() => model.value.base, () => {
+  runTypeVisible.value = model.value.base?.toString() === '4'
+})
 
 const runTypeVisible = ref(false)
 const runTypeOptions: GUIOption[] = [
@@ -102,13 +101,13 @@ const specActionDisabled = ref(true)
 const pos1Type: Ref<PositionType> = ref('player-locations')
 const pos2Type: Ref<PositionType> = ref('player-locations')
 
-function changeBaseAction(group: string) {
+watch(() => model.value.baseAction, () => {
   const baseAction = model.value.baseAction
   specActionOptions.value.length = 0
-  if (group === inputB) {
+  if (props.group === inputB) {
     specActionOptions.value.push(...renderBatterSpecificActionOptions(baseAction))
   } else {
-    specActionOptions.value.push(...renderRunnerSpecificActionOptions(baseAction, group))
+    specActionOptions.value.push(...renderRunnerSpecificActionOptions(baseAction, props.group))
   }
   specActionDisabled.value = specActionOptions.value.length < 1
   //
@@ -124,17 +123,12 @@ function changeBaseAction(group: string) {
   }
   //
   model.value.specAction = specActionOptions.value[0]?.value as string || ''
-  handleChange(model.value.specAction as string, group)
-}
+})
 
-function changeSpecAction(group: string) {
+watch(() => model.value.specAction, () => {
   const specAction = model.value.specAction
-  handleChange(specAction, group)
-}
-
-function handleChange(specAction: string, group: string) {
-  const out = changeSpecificAction(specAction, group)
-  if (group === inputB) {
+  const out = changeSpecificAction(specAction, props.group)
+  if (props.group === inputB) {
     runTypeVisible.value = false
     if (specAction === '2B' || specAction === '2BG') {
       model.value.base = 2
@@ -150,7 +144,7 @@ function handleChange(specAction: string, group: string) {
   emit('play', out)
   //
   hideAllPos()
-  const targetPosItems = useEvalStore().getTargetPosItems(group)
+  const targetPosItems = useEvalStore().getTargetPosItems(props.group)
   if (targetPosItems > 0) {
     pos1Show.value = true
   } else {
@@ -171,7 +165,7 @@ function handleChange(specAction: string, group: string) {
   } else {
     model.value.pos4 = ''
   }
-}
+})
 
 watch(model, () => {
   pos1Show.value = !!model.value.pos1
