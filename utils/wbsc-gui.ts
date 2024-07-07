@@ -3,8 +3,8 @@
 /* helper functions for working with GUI   */
 /* *************************************** */
 
-export function getBaseOptionsValue(group: string) {
-  switch (group) {
+export function getBaseOptionsValue(inputGroup: string) {
+  switch (inputGroup) {
     case inputB1:
     case inputR1:
       return 1
@@ -33,8 +33,8 @@ export function renderBaseOptions(base: number): GUIOption[] {
   return options
 }
 
-export function renderBaseActionOptions(group: string): GUIOption[] {
-  switch (group) {
+export function renderBaseActionOptions(inputGroup: string): GUIOption[] {
+  switch (inputGroup) {
     case inputB:
       return renderBatterActionOptions()
     case inputB1:
@@ -201,7 +201,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
   return options
 }
 
-export function renderRunnerSpecificActionOptions(baseAction: string, group: string): GUIOption[] {
+export function renderRunnerSpecificActionOptions(baseAction: string, inputGroup: string): GUIOption[] {
   const options = []
   const rSafe = useT('editor.action.runnerSafe')
   const rStay = useT('editor.action.runnerStay')
@@ -216,7 +216,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
     case 'exb':
       options.push({ group: rSafe, value: 'WP', label: useT('editor.action.extraBase.WP') })
       options.push({ group: rSafe, value: 'PB', label: useT('editor.action.extraBase.PB') })
-      if ((group.includes('-r'))) {
+      if ((inputGroup.includes('-r'))) {
         // only for runners, not the running batter
         options.push({ group: rSafe, value: 'BK', label: useT('editor.action.extraBase.BK') })
         options.push({ group: rSafe, value: 'IP', label: useT('editor.action.extraBase.IP') })
@@ -240,7 +240,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
     case 'fdc':
       options.push({ group: rSafe, value: 'T', label: useT('editor.action.fc.T') })
       options.push({ group: rSafe, value: 'O/', label: useT('editor.action.fc.O/') })
-      if ((!group.includes('-r'))) {
+      if ((!inputGroup.includes('-r'))) {
         // only for running batter, not the runners
         options.push({ group: rSafe, value: 'oc', label: useT('editor.action.fc.oc') })
       } else {
@@ -254,13 +254,13 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
       options.push({ group: rSafe, value: 'eF', label: useT('editor.action.error.eF') })
       options.push({ group: rSafe, value: 'eT', label: useT('editor.action.error.eT') })
       options.push({ group: rSafe, value: 'se0', label: useT('editor.action.error.se0') })
-      if (!(group.includes('r1'))) {
+      if (!(inputGroup.includes('r1'))) {
         options.push({ group: rSafe, value: 'se1', label: useT('editor.action.error.se1') })
       }
-      if (!(group.includes('r2'))) {
+      if (!(inputGroup.includes('r2'))) {
         options.push({ group: rSafe, value: 'se2', label: useT('editor.action.error.se2') })
       }
-      if (!(group.includes('r3'))) {
+      if (!(inputGroup.includes('r3'))) {
         options.push({ group: rSafe, value: 'se3', label: useT('editor.action.error.se3') })
       }
       options.push({ group: rSafe, value: 'ENF', label: useT('editor.action.error.ENF') })
@@ -269,7 +269,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
       break
     case 'out':
       options.push({ group: rOut, value: 'GOT', label: useT('editor.action.out.GOT') })
-      if ((group.includes('-r'))) {
+      if ((inputGroup.includes('-r'))) {
         // only for runners, not the running batter
         options.push({ group: rOut, value: 'GO', label: useT('editor.action.out.GO') })
       }
@@ -289,8 +289,8 @@ export function renderRunnerSpecificActionOptions(baseAction: string, group: str
   return options
 }
 
-export function getExtra1Group(group: string) {
-  switch (group) {
+export function getExtra1Group(inputGroup: string) {
+  switch (inputGroup) {
     case inputB:
       return inputB1
     case inputR1:
@@ -301,8 +301,8 @@ export function getExtra1Group(group: string) {
       return '???'
   }
 }
-export function getExtra2Group(group: string) {
-  switch (group) {
+export function getExtra2Group(inputGroup: string) {
+  switch (inputGroup) {
     case inputB:
       return inputB2
     case inputR1:
@@ -311,8 +311,8 @@ export function getExtra2Group(group: string) {
       return '???'
   }
 }
-export function getExtra3Group(group: string) {
-  switch (group) {
+export function getExtra3Group(inputGroup: string) {
+  switch (inputGroup) {
     case inputB:
       return inputB3
     default:

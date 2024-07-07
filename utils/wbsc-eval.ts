@@ -7,11 +7,11 @@ import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // triggered when user selects from 'specific' action
 // returns true, if action result is out
-function changeSpecificAction(specAction: string, group: string) {
-  if (group === inputB) {
+function changeSpecificAction(specAction: string, inputGroup: string) {
+  if (inputGroup === inputB) {
     return changeBatterSpecificAction(specAction)
   } else {
-    return changeRunnerSpecificAction(specAction, group)
+    return changeRunnerSpecificAction(specAction, inputGroup)
   }
 }
 
@@ -135,7 +135,7 @@ function changeBatterSpecificAction(specAction: string) {
 
 // adjust 'involved' inputs according to selected 'specific' action
 // returns true, if action result is out
-function changeRunnerSpecificAction(specAction: string, group: string) {
+function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
   let out = false
 
   let minPosItems = 1
@@ -217,9 +217,9 @@ function changeRunnerSpecificAction(specAction: string, group: string) {
       minPosItems = targetPosItems = maxPosItems = 0
   }
 
-  useEvalStore().setMinPosItems(group, minPosItems)
-  useEvalStore().setTargetPosItems(group, targetPosItems)
-  useEvalStore().setMaxPosItems(group, maxPosItems)
+  useEvalStore().setMinPosItems(inputGroup, minPosItems)
+  useEvalStore().setTargetPosItems(inputGroup, targetPosItems)
+  useEvalStore().setMaxPosItems(inputGroup, maxPosItems)
 
   return out
 }
