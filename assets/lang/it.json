@@ -63,6 +63,7 @@
                 "GO" : "Eliminato",
                 "GOB" : "Eliminato - bunt",
                 "GDP" : "Battuta in doppio gioco (GDP)",
+                "GDPB" : "GDP con bunt",
                 "GDPO" : "GDP con palla occupata",
                 "GDPE" : "GDP con errore"
             },

@@ -63,6 +63,7 @@
                 "GO" : "Ground out",
                 "GOB" : "Ground out - bunt",
                 "GDP" : "Grounded into double play",
+                "GDPB" : "GDP with bunt",
                 "GDPO" : "GDP with occupied",
                 "GDPE" : "GDP with error"
             },

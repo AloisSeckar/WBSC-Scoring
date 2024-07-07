@@ -444,7 +444,7 @@ function checkFC(inputs: WBSCInput[]) {
   return validation
 }
 
-// if GDP / GDPE / GDPO is selected for batter
+// if GDP / GDPB / GDPO / GDPE is selected for batter
 // there has to be at least 1 (2 for GDPO) correspondig out/decessive error situatuon for runners
 function checkGDP(outputs: WBSCOutput[]) {
   let validation = ''
@@ -454,7 +454,7 @@ function checkGDP(outputs: WBSCOutput[]) {
   let gdpOuts = 0
 
   outputs.forEach((output) => {
-    if (output?.text1 === 'GDP' || output?.text1 === 'GDPE') {
+    if (output?.text1 === 'GDP' || output?.text1 === 'GDPB' || output?.text1 === 'GDPE') {
       gdpSelected = true
     } else if (output?.text1 === 'GDPO') {
       gdpoSelected = true

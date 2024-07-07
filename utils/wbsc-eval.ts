@@ -87,6 +87,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'GO':
     case 'GOB':
     case 'GDP':
+    case 'GDPB':
     case 'SH':
     case 'A':
       out = true
@@ -603,12 +604,16 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'GDPE':
       useEvalStore().brokenDP = true
       // falls through
+    case 'GDPB':
     case 'GDPO':
       output.text1 = 'GDP'
       if (action.includes('E')) {
         output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)
         output.errorTarget = output.base
         output.base = output.origBase + 1 as WBSCBase
+      } else if (action.includes('B')) {
+        output.text2 = pos + 'B'
+        output.out = true
       } else {
         output.text2 = 'O' + pos
       }

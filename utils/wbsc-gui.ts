@@ -127,6 +127,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bOut, value: 'GO', label: useT('editor.action.groundOut.GO') })
       options.push({ group: bOut, value: 'GOB', label: useT('editor.action.groundOut.GOB') })
       options.push({ group: bOut, value: 'GDP', label: useT('editor.action.groundOut.GDP') })
+      options.push({ group: bSafe, value: 'GDPB', label: useT('editor.action.groundOut.GDPB') })
       options.push({ group: bSafe, value: 'GDPO', label: useT('editor.action.groundOut.GDPO') })
       options.push({ group: bSafe, value: 'GDPE', label: useT('editor.action.groundOut.GDPE') })
       break
