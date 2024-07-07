@@ -12,9 +12,9 @@
         <WBSCToolbar ref="toolbar" />
       </div>
       <!-- modal window triggered by validation errors -->
-      <ValidationModal />
+      <ModalValidation />
       <!-- modal window triggered by "import from library" -->
-      <ImportModal />
+      <ModalImport />
     </div>
 
     <h2>{{ $t('index.output') }}</h2>
