@@ -134,25 +134,34 @@ async function setInputFromJSON(input: WBSCInputJson) {
   guiModel.base = input.base
   guiModel.runtype = input.runtype
 
-  if (input.pos) {
+  const pos = input.pos
+  if (pos) {
     // legacy .json - only one "pos" element that needs to be parsed
-    const pos = input.pos
-    if (pos.length > 0) {
+    const length = pos.length
+    useEvalStore().setTargetPosItems(input.group, length)
+    if (length > 0) {
       guiModel.pos1 = pos[0]!
     }
-    if (pos.length > 1) {
+    if (length > 1) {
       guiModel.pos2 = pos[1]!
     }
-    if (pos.length > 2) {
+    if (length > 2) {
       guiModel.pos3 = pos[2]!
     }
-    if (pos.length > 3) {
+    if (length > 3) {
       guiModel.pos4 = pos[3]!
     }
   } else {
+    // since #217 - there are 4 separate variables
+    const length = getPosSelected(input.pos1, input.pos2, input.pos3, input.pos4)
+    useEvalStore().setTargetPosItems(input.group, length)
     guiModel.pos1 = input.pos1 || ''
     guiModel.pos2 = input.pos2 || ''
     guiModel.pos3 = input.pos3 || ''
     guiModel.pos4 = input.pos4 || ''
   }
+}
+
+function getPosSelected(...args: (string | undefined | null)[]) {
+  return args.filter(arg => !!arg).length
 }

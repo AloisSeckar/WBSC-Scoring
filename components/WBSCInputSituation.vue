@@ -167,12 +167,17 @@ watch(() => model.value.specAction, () => {
   }
 })
 
-watch(model, () => {
-  pos1Show.value = !!model.value.pos1
-  pos2Show.value = !!model.value.pos2
+watch(() => model.value.pos1, () => adjustPosVisibility())
+watch(() => model.value.pos2, () => adjustPosVisibility())
+watch(() => model.value.pos3, () => adjustPosVisibility())
+watch(() => model.value.pos4, () => adjustPosVisibility())
+function adjustPosVisibility() {
+  const target = useEvalStore().getTargetPosItems(props.group)
+  pos1Show.value = !!model.value.pos1 || target > 0
+  pos2Show.value = !!model.value.pos2 || target > 1
   pos3Show.value = !!model.value.pos3
   pos4Show.value = !!model.value.pos4
-}, { deep: true })
+}
 
 const pos1Show = ref(false)
 const pos2Show = ref(false)
