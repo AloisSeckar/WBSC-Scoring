@@ -246,22 +246,22 @@ function drawHitSymbol(base: number) {
         ctx.lineTo(w2 + 58 + hOffset, h2 + 45 + vOffset)
         break
       case 2:
-        ctx.moveTo(w2 + 25 + hOffset, h2 - 35 + vOffset)
-        ctx.lineTo(w2 + 50 + hOffset, 25 + vOffset)
-        ctx.moveTo(w2 + 30 + hOffset, 35 + vOffset)
-        ctx.lineTo(w2 + 58 + hOffset, 40 + vOffset)
-        ctx.moveTo(w2 + 28 + hOffset, 45 + vOffset)
-        ctx.lineTo(w2 + 56 + hOffset, 50 + vOffset)
+        ctx.moveTo(w2 + 18 + hOffset, h2 - 35 + vOffset)
+        ctx.lineTo(w2 + 43 + hOffset, 25 + vOffset)
+        ctx.moveTo(w2 + 23 + hOffset, 35 + vOffset)
+        ctx.lineTo(w2 + 51 + hOffset, 40 + vOffset)
+        ctx.moveTo(w2 + 21 + hOffset, 45 + vOffset)
+        ctx.lineTo(w2 + 49 + hOffset, 50 + vOffset)
         break
       case 3:
-        ctx.moveTo(20 + hOffset, h2 - 35 + vOffset)
-        ctx.lineTo(45 + hOffset, 25 + vOffset)
-        ctx.moveTo(25 + hOffset, 35 + vOffset)
-        ctx.lineTo(53 + hOffset, 40 + vOffset)
-        ctx.moveTo(23 + hOffset, 45 + vOffset)
-        ctx.lineTo(51 + hOffset, 50 + vOffset)
-        ctx.moveTo(21 + hOffset, 55 + vOffset)
-        ctx.lineTo(49 + hOffset, 60 + vOffset)
+        ctx.moveTo(18 + hOffset, h2 - 35 + vOffset)
+        ctx.lineTo(43 + hOffset, 25 + vOffset)
+        ctx.moveTo(23 + hOffset, 35 + vOffset)
+        ctx.lineTo(51 + hOffset, 40 + vOffset)
+        ctx.moveTo(21 + hOffset, 45 + vOffset)
+        ctx.lineTo(49 + hOffset, 50 + vOffset)
+        ctx.moveTo(19 + hOffset, 55 + vOffset)
+        ctx.lineTo(47 + hOffset, 60 + vOffset)
         break
     }
     ctx.stroke()
@@ -435,7 +435,7 @@ function writeSituation(output: WBSCOutput) {
         } else {
           if (hit) {
             drawHitSymbol(2)
-            hitOffset = 20
+            hitOffset = 18
           } else {
             hitOffset = 0
           }
