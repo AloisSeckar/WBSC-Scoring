@@ -192,8 +192,12 @@
     "name": "Single to RF + 916 out at 2nd"
   },
   {
-    "file": "2b-ll",
-    "name": "Double to LL"
+    "file": "2b-rs",
+    "name": "Double to RS"
+  },
+  {
+    "file": "2b-gll",
+    "name": "Double grounded to left line"
   },
   {
     "file": "2b-8gr",
@@ -202,6 +206,10 @@
   {
     "file": "3b-rc",
     "name": "Triple to RC"
+  },
+  {
+    "file": "3b-grl",
+    "name": "Triple grounded to right line"
   },
   {
     "file": "hr-8",

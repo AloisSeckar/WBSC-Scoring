@@ -517,6 +517,10 @@ function writeSituation(output: WBSCOutput) {
                 // special case for WP, because letter "W" is too wide
                 ctx.font = FONT_BASE_MEDIUM
                 offset = 12
+              } else if (text1 === 'GRL' || text1 === 'GLL') {
+                // special "grounder down-the-line" hits
+                ctx.font = FONT_BASE_SMALL
+                offset = 16
               } else {
                 ctx.font = FONT_BASE_LARGE
                 offset = 14
@@ -627,6 +631,10 @@ function writeSituation(output: WBSCOutput) {
                 // special case for WP, because letter "W" is too wide
                 ctx.font = FONT_BASE_MEDIUM
                 offset = 12
+              } else if (text1 === 'GRL' || text1 === 'GLL') {
+                // special "grounder down-the-line" hits
+                ctx.font = FONT_BASE_SMALL
+                offset = 18
               } else {
                 ctx.font = FONT_BASE_LARGE
                 offset = 14
