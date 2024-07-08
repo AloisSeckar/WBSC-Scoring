@@ -244,6 +244,10 @@
     "name": "Base on balls + R2 to 3rd on PB, B to 2nd on PB"
   },
   {
+    "file": "bb-wp-r3-hp",
+    "name": "Base on balls + R2 to 3rd on WP, R3 scores on WP"
+  },
+  {
     "file": "ibb",
     "name": "Intentional base on balls"
   },

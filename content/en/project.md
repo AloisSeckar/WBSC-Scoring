@@ -16,7 +16,7 @@ This is an [UNLICENSE](https://unlicense.org/) open source that can be found [HE
 _(what you can find here)_
 
 <ul class="list-disc">
-<li>Action editor capable of inserting most of existing situations according to latest version of WBSC manual</li><li>Download output images as PNG</li><li>Export/Import actions in JSON format</li><li>Actions library with nearly 200 predefined plays</li><li>User manual</li><li>English, Italian and Czech translation</li>
+<li>Action editor capable of inserting most of existing situations according to latest version of WBSC manual</li><li>Download output images as PNG</li><li>Export/Import actions in JSON format</li><li>Actions library with more than 200 predefined plays</li><li>User manual</li><li>English, Italian and Czech translation</li>
 </ul>
 
 <a id="todo"></a>
