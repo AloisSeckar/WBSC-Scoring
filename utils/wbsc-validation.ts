@@ -474,6 +474,7 @@ function checkGDP(outputs: WBSCOutput[]) {
 
 // if SH is selected for batter, there has to be at least 1 correspondig "advance by batter" runner action
 // if SF is selected for the batter, there has to be at least 1 corresponding "advance by batter" runner who scored
+// #219 - if SH is selected for batter, there cannot be forced out / decessive error of any runner
 function checkSHSF(inputs: WBSCInput[]) {
   let validation = ''
 
@@ -492,9 +493,6 @@ function checkSHSF(inputs: WBSCInput[]) {
       if (input?.base === 4) {
         runScored = true
       }
-    } else {
-      // TODO check for forced out
-      // there cannot be forced out + SH play
     }
   })
 
@@ -507,6 +505,32 @@ function checkSHSF(inputs: WBSCInput[]) {
     }
     if (!runScored) {
       validation = attachValidation(validation, useT('editor.validation.missingSFRun'))
+    }
+  }
+
+  if (!validation && shSelected) {
+    let runnerAt1 = false
+    let runnerAt2 = false
+    let forceOut = false
+
+    inputs.forEach((input) => {
+      switch (input.group) {
+        case inputR1:
+          runnerAt1 = true
+          forceOut = input.specAction.startsWith('GO')
+          break
+        case inputR2:
+          runnerAt2 = true
+          forceOut = forceOut || (runnerAt1 && input.specAction.startsWith('GO'))
+          break
+        case inputR3:
+          forceOut = forceOut || (runnerAt1 && runnerAt2 && input.specAction.startsWith('GO'))
+          break
+      }
+    })
+
+    if (forceOut) {
+      validation = attachValidation(validation, useT('editor.validation.noSHAndO'))
     }
   }
 

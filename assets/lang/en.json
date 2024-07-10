@@ -237,6 +237,7 @@
             "missingSHPlay" : "SH is selected, but no runner advanced by batter.",
             "missingSFPlay" : "SF is selected, but no runner advanced by batter.",
             "missingSFRun" : "SF is selected, but no runner scored.",
+            "noSHAndO" : "It is not possible to score a SH, if a runner is forced out before reaching next base.",
             "noSBCS" : "SB is not possible, when another runner was CS, use 'FC - indifference'.",
             "noMixedExtraAdvances" : "WP/PB/BK/IP cannot be combined. Use only one action type in all inputs.",
             "noWPAfterPlay" : "WP cannot happen after another play (except for SB and BB).",
