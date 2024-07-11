@@ -7,7 +7,7 @@
       </div>
       <div v-if="nodpVisible" class="inline-block mx-2">
         <input :id="group + inputNodp" v-model="model.nodp" type="checkbox" class="wbsc-select">
-        <label :for="group + inputNodp" class="ml-1">'No DP'</label>
+        <label :for="group + inputNodp" class="ml-1">No DP</label>
       </div>
     </div>
     <div>
