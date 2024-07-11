@@ -192,6 +192,10 @@
     "name": "Single to RF + 916 out at 2nd"
   },
   {
+    "file": "1b-9-r2-hp-tie",
+    "name": "Single to RF + R2 scores (tiebreak)"
+  },
+  {
     "file": "2b-rs",
     "name": "Double to RS"
   },
