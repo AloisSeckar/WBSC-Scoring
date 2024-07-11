@@ -34,21 +34,19 @@ Pod tím je základní sekce pro výstup skládající se z prázdného prvku sc
 
 ### Zadání první rozehry
 
-Všimněte si, že ve výchozím stavu nemůžete vybrat z combo-boxu **Doběh**, protože to vyžaduje situaci, která končí safe na domácí metě. Tato možnost bude popsána až později v pokročilejších tématech.
-
 Začínáte výběrem možnosti z prvního combo-boxu **Situace**, který obsahuje skupiny možných akcí. Interně se tomu říká "základní (base) akce":
 
 <div>
 <article-image src="03-base-action.png" alt="" :width="200" />
 </div>
 
-Na základě výběru se aktivuje druhý combo-box a je naplněn odpovídajícím seznamem možných variant. Tomu se říká "konkrétní (specific) akce". Možnosti jsou seskupeny do "safe" a "out" skupin:
+Na základě výběru se aktivuje druhý combo-box a je naplněn odpovídajícím seznamem možných variant. Tomu se říká "konkrétní (specific) akce":
 
 <div>
 <article-image src="04-specific-action.png" alt="" :width="400" />
 </div>
 
-Třetím prvkem každé akce je **Pozice**. To znamená pozice hráčů v obraně nebo místa na hřišti (v určitých případech). Dostupnost těchto UI prvků závisí na výběru konkrétní akce. U některých situací není povolena žádná další informace, u některých je přesně jedna nebo přesně dvě možnosti. U ostatních můžete vybrat 1-4. Nové vstupy přidáte tlačítkem zelené "+P" a odstraníte je tlačítkem červené "-P". Pokud není možné přidat/odstranit vstupy, tlačítka nejsou aktivní.
+Třetím prvkem každé akce je **Pozice**. To znamená pozice hráčů v obraně nebo místa na hřišti (v určitých případech). Dostupnost těchto UI prvků závisí na výběru konkrétní akce. U některých situací není povolena žádná další informace, u některých je přesně jedna nebo přesně dvě možnosti. U ostatních můžete vybrat 1-4. Nové vstupy přidáte tlačítkem zelené "+P" a odstraníte je tlačítkem červené "-P" (viz dále). Pokud není možné přidat/odstranit vstupy, tlačítka nejsou aktivní.
 
 <div>
 <article-image src="05-involved.png" alt="" :height="40" />
@@ -92,9 +90,11 @@ Vstup běžce je mírně odlišný od vstupu pálkaře a mezi metami jsou také 
 
 Pro 1. a 2. metu existuje zaškrtávací políčko "Tiebreak". Pokud je zaškrtnuto, běžec se na metě neobjevuje s obecnou červenou hvězdičkou, ale místo toho se používá symbol TIE (což je způsob, jak WBSC zápis zaznamenává běžce v tiebreaku).
 
+For 1., 2. a 3. metu existuje zaškrtávací políčko "No DP". Pokud je zaškrtnuto a vybraná rozehra má za následek aut, nebude propojen s dalším autem (či auty). To lze využít pro situaci, kdy v důsledku chyby (zapsané či skryté (extempted)) dojde k rozbití přirozeného flow double play hry.
+
 Z rozevírací nabídky "Meta" vybíráte metu, u které probíhá aktuální akce běžce. Samozřejmě možnosti jsou upraveny v závislosti na tom, na které metě se právě nacházíme. Pokud potřebujete, aby běžec zůstal na dosavadní metě, neděláte to zde, ale místo toho si z nabídky "Akce" vyberete "Žádný postup".
 
-Pokud je vybrána situace vedoucí k safe na domácí metě, stane se aktivním rozevírací nabídka "Doběh". Pak si vyberete z možností "ER" _(umožněný bod)_ / "UE" _(neumožněný bod)_ / "TU" _(týmově neumožněný bod)_. Tato funkce je zde hlavně k tomu, aby ukázala rozdíly mezi jednotlivými variantami. Existují některé základní validace, ale během skutečného zápasu záleží na širším kontextu předchozích rozeher, zatímco zde vždy skórujeme jen jednu samostatnou akci. "Doběh" je také možný přímo pro pálkaře, ale pouze pro akce typu "Hit – Home run".
+Pokud je vybrána situace vedoucí k safe na domácí metě, stane se viditelnou rozevírací nabídka "Doběh". Pak si vyberete z možností "ER" _(umožněný bod)_ / "UE" _(neumožněný bod)_ / "TU" _(týmově neumožněný bod)_. Tato funkce je zde hlavně k tomu, aby ukázala rozdíly mezi jednotlivými variantami. Existují některé základní validace, ale během skutečného zápasu záleží na širším kontextu předchozích rozeher, zatímco zde vždy skórujeme jen jednu samostatnou akci. "Doběh" je možný i pro pálkaře, ale pouze pro akce typu "Hit – Home run".
 
 <div>
 <article-image src="11-type-of-run.png" alt="" :height="150" />
@@ -108,7 +108,7 @@ Pokud je potřeba, může být s počáteční akcí spojena více než jedna da
 <article-image src="12-plus-action.png" alt="" :height="40" />
 </div>
 
-Panel s novými vstupy se vykreslí přímo pod ním:
+Tlačítko je aktivní pouze, pokud vybraná rozehra končí jako safe. Panel s novými vstupy se vykreslí přímo pod ním:
 
 <div>
 <article-image src="13-extra-input.png" alt="" :width="600" />
@@ -120,7 +120,9 @@ Pokud si to rozmyslíte, skryjete a tím deaktivujete extra vstupy pomocí červ
 <article-image src="14-minus-action.png" alt="" :height="40" />
 </div>
 
-Pro pálkaře mohou být extra vstupy až 3 (jedna situace na každé metě). Pokud se rozhodnete je znovu odstranit, musíte začít od posledního (je povoleno pouze poslední tlačítko "-"). Počet možných extra vstupů pro běžce logicky klesá, jak se domácí meta blíží (0-2 pro 1. metu, 0-1 pro 2. metu a žádný pro 3. metu, protože první akce již posunula tohoto běžce domů). Výběr akcí je přirozeně odlišný pro pálkaře (stávajícího se běžcem) a ostatní běžce. Ostatní funkce jsou stejné.
+Pro pálkaře mohou být extra vstupy až 3 (jedna situace na každé metě). Pokud se rozhodnete je znovu odstranit, musíte začít od posledního (je povoleno pouze poslední tlačítko "-"). Pokud vyberete rozehru, která má za následek aut, celý podstrom dalších vstupů zmizí.
+
+Počet možných extra vstupů pro běžce logicky klesá, jak se domácí meta blíží (0-2 pro 1. metu, 0-1 pro 2. metu a žádný pro 3. metu, protože první akce již posunula tohoto běžce domů). Výběr akcí je přirozeně odlišný pro pálkaře (stávajícího se běžcem) a ostatní běžce. Ostatní funkce jsou stejné.
 
 ### Pokročilé – Resetování formuláře
 
