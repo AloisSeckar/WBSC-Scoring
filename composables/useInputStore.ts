@@ -102,6 +102,7 @@ function clearInput(input: WBSCInput, inputGroup: string) {
   input.origBase = getOrigBase(inputGroup)
   input.base = 0
   input.tie = false
+  input.nodp = false
   input.pos1 = ''
   input.pos2 = ''
   input.pos3 = ''
@@ -131,6 +132,7 @@ export type WBSCOutput = {
   run?: string
   num: boolean
   tie: boolean
+  nodp: boolean
   na: boolean
   extraOutput?: WBSCOutput[]
 }
@@ -142,6 +144,7 @@ export type WBSCInput = {
   origBase: WBSCBase
   base: WBSCBase
   tie: boolean
+  nodp: boolean
   pos1: string
   pos2: string
   pos3: string

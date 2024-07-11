@@ -1,8 +1,14 @@
 <template>
   <div :id="group">
-    <div v-if="tieVisible">
-      <input :id="group + inputTie" v-model="model.tie" type="checkbox" class="wbsc-select">
-      <label :for="group + inputTie" class="ml-1">{{ tieLabel }}</label>
+    <div v-if="tieVisible || nodpVisible">
+      <div v-if="tieVisible" class="inline-block mx-2">
+        <input :id="group + inputTie" v-model="model.tie" type="checkbox" class="wbsc-select">
+        <label :for="group + inputTie" class="ml-1">{{ tieLabel }}</label>
+      </div>
+      <div v-if="nodpVisible" class="inline-block mx-2">
+        <input :id="group + inputNodp" v-model="model.nodp" type="checkbox" class="wbsc-select">
+        <label :for="group + inputNodp" class="ml-1">'No DP'</label>
+      </div>
     </div>
     <div>
       <div v-show="baseVisible" class="inline-block">
@@ -75,6 +81,8 @@ const model = defineModel<WBSCInput>({ required: true })
 
 const tieVisible = props.group === inputR1 || props.group === inputR2
 const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebreak (baseball/softball)'
+
+const nodpVisible = props.group === inputR1 || props.group === inputR2 || props.group === inputR3
 
 const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB

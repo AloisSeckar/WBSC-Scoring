@@ -8,5 +8,4 @@ module.exports = async (page) => {
   await page.click('#button-input-r3')
   // clear all rendered things via reset button
   await page.click('#button-input-clear')
-  // TODO not working for "-l" (inputs stay rendered)
 }

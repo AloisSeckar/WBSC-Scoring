@@ -272,6 +272,14 @@
     "name": "Fielder's choice - occupied - R3 1B to C"
   },
   {
+    "file": "fc-o64-94-dp",
+    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, DP"
+  },
+  {
+    "file": "fc-o64-94-no-dp",
+    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, no DP"
+  },
+  {
     "file": "fc-64",
     "name": "Fielder's choice - SS to 2B"
   },

@@ -235,7 +235,8 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
   output.base = input.base
   output.run = input.runtype
   output.errorTarget = input.base
-  output.tie = input.tie
+  output.tie = !!input.tie
+  output.nodp = !!input.nodp
 
   let pos = getPos(input)
   if (pos) {

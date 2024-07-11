@@ -29,7 +29,7 @@ function renderAction(battingOrder: number, clear: boolean, output: WBSCOutput) 
 
   if (output.out === true) {
     renderOut(output)
-    if (!useEvalStore().brokenDP) {
+    if (!useEvalStore().brokenDP && !output.nodp) {
       useEvalStore().outs.push({ batter: battingOrder, base: output.base })
     }
   } else {

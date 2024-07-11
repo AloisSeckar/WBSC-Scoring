@@ -132,7 +132,8 @@ async function setInputFromJSON(input: WBSCInputJson) {
   guiModel.specAction = input.specAction
   await new Promise(resolve => setTimeout(resolve, 0))
 
-  guiModel.tie = input.tie
+  guiModel.tie = !!input.tie
+  guiModel.nodp = !!input.nodp
   guiModel.base = input.base
   guiModel.runtype = input.runtype
 
