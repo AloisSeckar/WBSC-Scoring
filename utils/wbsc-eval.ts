@@ -60,9 +60,6 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FSF':
     case 'IF':
     case 'OBR_DIF':
-    case 'O':
-    case 'OCB':
-    case 'GDPO':
       out = true
       // falls through
     case 'HR':
@@ -82,6 +79,9 @@ function changeBatterSpecificAction(specAction: string) {
     case 'OB':
     case 'SHEF':
     case 'SFE':
+    case 'O':
+    case 'OCB':
+    case 'GDPO':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'GO':
