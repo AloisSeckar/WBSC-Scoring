@@ -1,5 +1,4 @@
 import { expect, test } from 'vitest'
-import { checkPosSelection } from '../../utils/wbsc-validation'
 
 test('validation should pass for an unassisted out', () => {
   expect(checkPosSelection('1')).toBe('')
