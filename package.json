@@ -7,9 +7,10 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "node .output/server/index.mjs",
-    "test": "backstop test --config=backstop.config.js",
-    "test-approve": "backstop approve --config=backstop.config.js",
-    "vitest": "vitest run"
+    "test": "pnpm test-vitest && pnpm test-backstop",
+    "test-vitest": "vitest run",
+    "test-backstop": "backstop test --config=backstop.config.js",
+    "test-approve": "backstop approve --config=backstop.config.js"
   },
   "devDependencies": {
     "@nuxt/content": "2.13.1",
