@@ -23,7 +23,7 @@ export const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN', 'NADV']
 // validation sequence to be run over given inputs/outputs
 // (this should be the single point of entry to validatons)
 // (called from wbsc-processor.processAction())
-function checkUserInput(inputs: WBSCInput[], outputs: WBSCOutput[]) {
+export function checkUserInput(inputs: WBSCInput[], outputs: WBSCOutput[]) {
   let validation = ''
 
   if (inputs.length === 0) {
@@ -96,7 +96,7 @@ function checkUserInput(inputs: WBSCInput[], outputs: WBSCOutput[]) {
 }
 
 // validates given 'involved' sequence
-function checkPosSelection(selection: string) {
+export function checkPosSelection(selection: string) {
   let validation = ''
 
   if (selection.match(/^\d+/)) {
@@ -892,7 +892,7 @@ function checkEarnedRuns(outputs: WBSCOutput[]) {
 }
 
 // separate validator for batter edge-cases (see #112)
-function checkBInput(b1Action: string, bAction: string): string {
+export function checkBInput(b1Action: string, bAction: string): string {
   let validation = ''
 
   if (b1Action === 'se0' && !decisiveErrorActions.includes(bAction)) {
@@ -941,8 +941,4 @@ function attachValidation(validation: string, newMessage: string) {
     validation += '\n'
   }
   return validation + newMessage
-}
-
-export {
-  checkUserInput, checkBInput,
 }

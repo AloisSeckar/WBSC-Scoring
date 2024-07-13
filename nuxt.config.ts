@@ -3,10 +3,11 @@ export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: false },
   modules: [
-    '@nuxtjs/i18n',
-    '@nuxtjs/tailwindcss',
     '@nuxt/content',
     '@nuxt/eslint',
+    '@nuxt/test-utils/module',
+    '@nuxtjs/i18n',
+    '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
