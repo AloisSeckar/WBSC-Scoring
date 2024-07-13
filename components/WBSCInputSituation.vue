@@ -89,10 +89,6 @@ const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptions(getBaseOptionsValue(props.group))
 model.value.base = props.group === inputB ? 0 : baseOptions.at(0)!.value as WBSCBase
 
-watch(() => model.value.base, () => {
-  runTypeVisible.value = model.value.base?.toString() === '4'
-})
-
 const runTypeVisible = ref(false)
 const runTypeOptions: GUIOption[] = [
   { value: 'e', label: 'ER' },
@@ -100,6 +96,10 @@ const runTypeOptions: GUIOption[] = [
   { value: 'tu', label: 'TU' },
 ]
 model.value.runtype = runTypeOptions.at(0)!.value as string
+
+watch(() => model.value.base, () => {
+  runTypeVisible.value = model.value.base?.toString() === '4'
+}, { immediate: true })
 
 const baseActionOptions: GUIOption[] = renderBaseActionOptions(props.group)
 
