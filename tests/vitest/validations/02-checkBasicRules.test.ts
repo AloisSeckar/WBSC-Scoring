@@ -1,20 +1,13 @@
 import { expect, test } from 'vitest'
-import { createMockPosSelections } from '../vitestUtils'
+import { createMockInput, createMockPosSelections } from '../vitestUtils'
 
-const okInput: WBSCInput = {
+const okInput = createMockInput({
   group: 'input-b',
   baseAction: 'GroundOut',
   specAction: 'GO',
-  origBase: 0,
-  base: 1,
-  tie: false,
-  nodp: false,
   pos1: '6',
   pos2: '3',
-  pos3: '',
-  pos4: '',
-  runtype: 'e',
-}
+})
 
 test('validation should fail for empty input', () => {
   expect(checkBasicRules([])).toBe(useT('editor.validation.noEmptyInput'))
@@ -30,7 +23,7 @@ test('validation should fail if more pos selects displayed', () => {
   expect(checkBasicRules([okInput])).toBe(useT('editor.validation.allPositions'))
 })
 
-test('validation should pass for incomplete inputs', () => {
+test('validation should fail for incomplete inputs', () => {
   createMockPosSelections('input-b', 2)
   const noBaseActionInput = { ...okInput }
   noBaseActionInput.baseAction = ''
@@ -38,6 +31,13 @@ test('validation should pass for incomplete inputs', () => {
   const noSpecActionInput = { ...okInput }
   noSpecActionInput.specAction = ''
   expect(checkBasicRules([noBaseActionInput])).toBe(useT('editor.validation.properAction'))
+})
+
+test('validation should fail with incorrect pos selection', () => {
+  createMockPosSelections('input-b', 2)
+  const wrongPosInput = { ...okInput }
+  wrongPosInput.pos2 = '6'
+  expect(checkBasicRules([wrongPosInput])).toBe(useT('editor.validation.noSelfAsist'))
 })
 
 // TODO editor.validation.minPositions

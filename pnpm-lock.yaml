@@ -35,6 +35,9 @@ importers:
       backstopjs:
         specifier: 6.3.23
         version: 6.3.23(typescript@5.5.2)
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
       happy-dom:
         specifier: 14.12.3
         version: 14.12.3
