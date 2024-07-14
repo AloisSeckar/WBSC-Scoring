@@ -15,6 +15,7 @@ export function getEmptyInput(group: string): WBSCInput {
     origBase: getOrigBase(group),
     base: 0,
     tie: false,
+    nodp: false,
     pos1: '',
     pos2: '',
     pos3: '',
@@ -40,6 +41,7 @@ export function getEmptyOutput(): WBSCOutput {
     errorTarget: 0,
     na: false,
     tie: false,
+    nodp: false,
   }
   return output
 }
