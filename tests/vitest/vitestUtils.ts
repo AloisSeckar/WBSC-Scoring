@@ -13,6 +13,13 @@ export function createMockInput(values: Partial<WBSCInput>): WBSCInput {
   return defu(values, getEmptyInput('mock'))
 }
 
+// factory method to get WBSCOutput instances
+// we use "Partial" TS object to define WBSCInput-like structure, but with all fiels optional
+// we use "defu" library to simply merge given values with defaults
+export function createMockOutput(values: Partial<WBSCOutput>): WBSCOutput {
+  return defu(values, getEmptyOutput()) as WBSCOutput
+}
+
 // checkBasicRules validation checks, if the length of "pos" input matches the number of displayed inputs
 // we need to mock corresponding amount of elements to make this validation pass
 export function createMockPosSelections(inputGroup: string, numberOfSelects: number) {

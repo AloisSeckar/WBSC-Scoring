@@ -14,6 +14,7 @@ test('validation should pass if there are only batter actions', () => {
   })
   expect(checkRunnerOnlyActions([bInput, b1Input])).toBe('')
 })
+
 test('validation should pass if there are only runner actions', () => {
   const r1Input = createMockInput({
     group: 'input-r1',

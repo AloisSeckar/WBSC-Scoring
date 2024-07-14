@@ -162,7 +162,7 @@ export function checkRunnerOnlyActions(inputs: WBSCInput[]) {
 
 // there cannot be more than 3 outs
 // there cannot be 3 outs + a run
-function checkOutsAndRuns(outputs: WBSCOutput[]) {
+export function checkOutsAndRuns(outputs: WBSCOutput[]) {
   let outs = 0
   let runs = 0
 
@@ -188,7 +188,7 @@ function checkOutsAndRuns(outputs: WBSCOutput[]) {
 // runners cannot end on the same base
 // extra actions for same runner must happen in order
 // when the runner is out, he cannot advance further
-function checkOutcome(outputs: WBSCOutput[]) {
+export function checkOutcome(outputs: WBSCOutput[]) {
   let validation = ''
 
   let currentBatter = -1
@@ -248,7 +248,7 @@ function checkOutcome(outputs: WBSCOutput[]) {
 }
 
 // HIT can only be credited to batter, if there is no forced out
-function checkHit(inputs: WBSCInput[]) {
+export function checkHit(inputs: WBSCInput[]) {
   let validation = ''
 
   let hitPlay = false
@@ -257,6 +257,7 @@ function checkHit(inputs: WBSCInput[]) {
   let forceOut = false
   let appealPlay = false
 
+  // TODO #193 - remove this + fix tests (all #193 remarks)
   inputs.reverse().forEach((input) => {
     switch (input.group) {
       case inputB:
