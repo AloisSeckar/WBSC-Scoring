@@ -257,8 +257,7 @@ export function checkHit(inputs: WBSCInput[]) {
   let forceOut = false
   let appealPlay = false
 
-  // TODO #193 - remove this + fix tests (all #193 remarks)
-  inputs.reverse().forEach((input) => {
+  inputs.forEach((input) => {
     switch (input.group) {
       case inputB:
         if (hitActions.includes(input.specAction)) {

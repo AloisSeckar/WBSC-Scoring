@@ -44,6 +44,5 @@ test('validation should fail for APPEAL PLAY', () => {
     baseAction: 'out',
     specAction: 'A',
   })
-  // #193 - here it shouldn't be reversed!
-  expect(checkHit([r1Input, bInput])).toBe(useT('editor.validation.noHitAndA'))
+  expect(checkHit([bInput, r1Input])).toBe(useT('editor.validation.noHitAndA'))
 })
