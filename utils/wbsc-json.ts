@@ -122,8 +122,6 @@ async function processFile(fileData: string | ArrayBuffer | null | undefined) {
 }
 
 async function setInputFromJSON(input: WBSCInputJson) {
-  useGUIStore().setVisible(input.group, true)
-
   const guiModel = useInputStore().getModel(input.group)
 
   guiModel.baseAction = input.baseAction
@@ -163,6 +161,8 @@ async function setInputFromJSON(input: WBSCInputJson) {
     guiModel.pos3 = input.pos3 || ''
     guiModel.pos4 = input.pos4 || ''
   }
+
+  useGUIStore().setVisible(input.group, true)
 }
 
 function getPosSelected(...args: (string | undefined | null)[]) {

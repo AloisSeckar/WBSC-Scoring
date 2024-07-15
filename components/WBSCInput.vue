@@ -37,6 +37,9 @@ const input = useInputStore()
 
 const model = input.getModel(props.group)
 
+// TODO there are already waaay too many watchers/computed/etc. stuff firing one over another
+// try to refactor this to use only the minimum amount necessary...
+
 const extra1Visible = [inputB, inputR1, inputR2].includes(props.group)
 const extra1Disabled = ref(true)
 const extra1Model = input.getExtra1Model(props.group)
