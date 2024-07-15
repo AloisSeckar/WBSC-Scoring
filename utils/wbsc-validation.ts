@@ -295,7 +295,7 @@ export function checkHit(inputs: WBSCInput[]) {
 
 // ADVANCE BY BATTER may only appear at the FIRST runner input
 // additionally it require batter's action
-function checkAdvances(inputs: WBSCInput[]) {
+export function checkAdvances(inputs: WBSCInput[]) {
   let validation = ''
 
   if (inputs.some(i => i.specAction === 'ADV') && !inputs.some(i => i.group === inputB)) {
@@ -312,7 +312,7 @@ function checkAdvances(inputs: WBSCInput[]) {
 
 // forced out may only happen if runner is being forced to run by runners behind him
 // #154 - exception: runner is forced to return to base after fly-out
-function checkFO(outputs: WBSCOutput[]) {
+export function checkFO(outputs: WBSCOutput[]) {
   let validation = ''
 
   const givenFO = [false, false, false]
@@ -386,7 +386,7 @@ function checkFO(outputs: WBSCOutput[]) {
 // also linked play must start with mentioned fielder (#152)
 // FC => advance by batter, O => out/decessive error
 // special case: K+FC must be toghether with PB
-function checkFC(inputs: WBSCInput[]) {
+export function checkFC(inputs: WBSCInput[]) {
   let validation = ''
 
   let oSituation = false
@@ -453,7 +453,7 @@ function checkFC(inputs: WBSCInput[]) {
 
 // if GDP / GDPB / GDPO / GDPE is selected for batter
 // there has to be at least 1 (2 for GDPO) correspondig out/decessive error situatuon for runners
-function checkGDP(outputs: WBSCOutput[]) {
+export function checkGDP(outputs: WBSCOutput[]) {
   let validation = ''
 
   let gdpSelected = false
@@ -461,6 +461,7 @@ function checkGDP(outputs: WBSCOutput[]) {
   let gdpOuts = 0
 
   outputs.forEach((output) => {
+    // TODO maybe change impl to rely on "specAction" rather than "text1"?
     if (output?.text1 === 'GDP' || output?.text1 === 'GDPB' || output?.text1 === 'GDPE') {
       gdpSelected = true
     } else if (output?.text1 === 'GDPO') {
@@ -482,7 +483,7 @@ function checkGDP(outputs: WBSCOutput[]) {
 // if SH is selected for batter, there has to be at least 1 correspondig "advance by batter" runner action
 // if SF is selected for the batter, there has to be at least 1 corresponding "advance by batter" runner who scored
 // #219 - if SH is selected for batter, there cannot be forced out / decessive error of any runner
-function checkSHSF(inputs: WBSCInput[]) {
+export function checkSHSF(inputs: WBSCInput[]) {
   let validation = ''
 
   let shSelected = false
@@ -546,7 +547,7 @@ function checkSHSF(inputs: WBSCInput[]) {
 
 // there cannot be SB and CS in the same play
 // when CS, other advances are indifference (O/)
-function checkSBCS(inputs: WBSCInput[]) {
+export function checkSBCS(inputs: WBSCInput[]) {
   let validation = ''
 
   let sbSelected = false
