@@ -38,6 +38,15 @@ test('validation should pass - O-play with decisive error at runner', () => {
   expect(checkFC([bOInput, r1Input])).toBe('')
 })
 
+test('validation should fail - O-play with extra-base error at runner', () => {
+  const r1Input = createMockInput({
+    group: 'input-r1',
+    baseAction: 'err',
+    specAction: 'eF',
+  })
+  expect(checkFC([bOInput, r1Input])).toBe(useT('editor.validation.missingOPlay'))
+})
+
 test('validation should fail - O-play with decisive error at runner, but after he advanced', () => {
   const r1Input = createMockInput({
     group: 'input-r1',
