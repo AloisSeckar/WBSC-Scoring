@@ -576,7 +576,7 @@ export function checkSBCS(inputs: WBSCInput[]) {
 //     (not IBB or HP, because it is dead-ball)
 // WP/PB/IP/BK cannot be mixed
 // further IP/BK validation moved to checkDeadBallPlays (#206)
-function checkExtraBaseAdvances(inputs: WBSCInput[]) {
+export function checkExtraBaseAdvances(inputs: WBSCInput[]) {
   let validation = ''
 
   let isWP = false
@@ -631,7 +631,7 @@ function isAfterSB(inputs: WBSCInput[]) {
 
 // "no advance" must be the last play and target must be the closest base
 // (last play is ensured by disabling extra inputs in wbsc-eval.ts)
-function checkNoAdvances(inputs: WBSCInput[]) {
+export function checkNoAdvances(inputs: WBSCInput[]) {
   let validation = ''
 
   let invalidNADV = false
@@ -651,7 +651,7 @@ function checkNoAdvances(inputs: WBSCInput[]) {
 // edge case - RLE is dead-ball
 // maybe can eventually be merged with `checkDeadBallPlays`?
 // #130 HBB - requires a single hit for batter
-function checkOBRs(inputs: WBSCInput[]) {
+export function checkOBRs(inputs: WBSCInput[]) {
   let validation = ''
 
   let isRLE = false
@@ -679,7 +679,7 @@ function checkOBRs(inputs: WBSCInput[]) {
 
 // #206 - when there is a "dead-ball" play, only necessary forced advances of other runners are possible
 // exception: OB2 + BK/IP (obstruction during squeeze play)
-function checkDeadBallPlays(inputs: WBSCInput[]) {
+export function checkDeadBallPlays(inputs: WBSCInput[]) {
   if (inputs.some(i => ['INT', 'OB', 'IBB1', 'HP'].includes(i.specAction))) {
     if (inputs.some(i => i.group !== inputB && !i.specAction.includes('ADV') && (i.group !== inputR3 || !['BK', 'IP'].includes(i.specAction)))) {
       return useT('editor.validation.noPlayAfterDeadBall')
@@ -710,8 +710,8 @@ function checkDeadBallPlays(inputs: WBSCInput[]) {
   return ''
 }
 
-// HIT can only be credited to batter, if there is no forced out
-function checkSameError(outputs: WBSCOutput[]) {
+// there must be corresponding error to link "same error" with
+export function checkSameError(outputs: WBSCOutput[]) {
   let validation = ''
 
   // TODO some other computations may be also optimized like this?
@@ -801,7 +801,7 @@ function checkSameError(outputs: WBSCOutput[]) {
 }
 
 // RUN cannot be marked as "earned" once there was a decessive error
-function checkEarnedRuns(outputs: WBSCOutput[]) {
+export function checkEarnedRuns(outputs: WBSCOutput[]) {
   let validation = ''
 
   // run marked as earned

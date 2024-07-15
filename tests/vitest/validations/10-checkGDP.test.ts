@@ -2,13 +2,13 @@ import { expect, test } from 'vitest'
 import { createMockOutput } from '../vitestUtils'
 
 test('validation should pass - not GDP action', () => {
-  const bInput = createMockOutput({
+  const bOutput = createMockOutput({
     group: 'input-b',
     specAction: '1B',
     text1: '1B',
     base: 1,
   })
-  expect(checkGDP([bInput])).toBe('')
+  expect(checkGDP([bOutput])).toBe('')
 })
 
 const bGDPOutput = createMockOutput({

@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest'
 import { createMockInput } from '../vitestUtils'
-import { checkSBCS } from '~/utils/wbsc-validation'
 
 test('validation should pass -  no SB/CS play', () => {
   const bInput = createMockInput({
