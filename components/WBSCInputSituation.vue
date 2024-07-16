@@ -74,7 +74,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits<{
-  play: [out: boolean]
+  play: [last: boolean]
 }>()
 
 const model = defineModel<WBSCInput>({ required: true })
@@ -135,7 +135,7 @@ watch(() => model.value.baseAction, () => {
 
 watch(() => model.value.specAction, () => {
   const specAction = model.value.specAction
-  const out = changeSpecificAction(specAction, props.group)
+  const last = changeSpecificAction(specAction, props.group)
   if (props.group === inputB) {
     runTypeVisible.value = false
     if (specAction === '2B' || specAction === '2BG') {
@@ -146,10 +146,10 @@ watch(() => model.value.specAction, () => {
       model.value.base = 4
       runTypeVisible.value = true
     } else {
-      model.value.base = out ? 0 : 1
+      model.value.base = last ? 0 : 1
     }
   }
-  emit('play', out)
+  emit('play', last)
   //
   hideAllPos()
   const targetPosItems = useEvalStore().getTargetPosItems(props.group)

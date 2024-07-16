@@ -18,7 +18,7 @@ const runnersOnlyActions = [
   'WP', 'PB', 'BK', 'IP', 'SB', 'SBPOA', 'CSE', 'CSET', 'CSN', 'CSNT',
   'POE', 'POEN', 'POCSE', 'POCSEN', 'CSO', 'PO', 'POCS',
 ]
-export const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN', 'NADV']
+export const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN', 'POCSEN', 'NADV']
 
 // validation sequence to be run over given inputs/outputs
 // (this should be the single point of entry to validatons)
@@ -628,7 +628,8 @@ function isAfterSB(inputs: WBSCInput[]) {
 }
 
 // "no advance" must be the last play and target must be the closest base
-// (last play is ensured by disabling extra inputs in wbsc-eval.ts)
+// - this validation only checks the target base
+// - last play is ensured by disabling extra inputs via `changeSpecificAction` result in wbsc-eval
 export function checkNoAdvances(inputs: WBSCInput[]) {
   let validation = ''
 

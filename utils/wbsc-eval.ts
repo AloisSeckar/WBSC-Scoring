@@ -6,7 +6,7 @@
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 // triggered when user selects from 'specific' action
-// returns true, if action result is out
+// returns true, if action cannot be followed by another (= must be last)
 function changeSpecificAction(specAction: string, inputGroup: string) {
   if (inputGroup === inputB) {
     return changeBatterSpecificAction(specAction)
@@ -16,9 +16,9 @@ function changeSpecificAction(specAction: string, inputGroup: string) {
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-// returns true, if action result is out
+// returns true, if action cannot be followed by another (= must be last)
 function changeBatterSpecificAction(specAction: string) {
-  let out = false
+  let last = false
 
   let minPosItems = 1
   let targetPosItems = 1
@@ -44,7 +44,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'OBR_BIC':
     case 'OBR_RTA':
     case 'LT':
-      out = true
+      last = true
       // falls through
     case 'BB1':
     case 'IBB1':
@@ -60,7 +60,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FSF':
     case 'IF':
     case 'OBR_DIF':
-      out = true
+      last = true
       // falls through
     case 'HR':
     case 'IHR':
@@ -90,7 +90,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'GDPB':
     case 'SH':
     case 'A':
-      out = true
+      last = true
       // falls through
     case 'GDPE':
       minPosItems = 1
@@ -109,7 +109,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'OBR_BOT':
     case 'OBR_BIN':
     case 'OBR_OIN':
-      out = true
+      last = true
       // falls through
     case 'KSE':
     case 'KLE':
@@ -123,7 +123,7 @@ function changeBatterSpecificAction(specAction: string) {
       // no pos adjustments
       break
     default:
-      out = specAction === ''
+      last = specAction === ''
       minPosItems = targetPosItems = maxPosItems = 0
   }
 
@@ -131,13 +131,13 @@ function changeBatterSpecificAction(specAction: string) {
   useEvalStore().setTargetPosItems(inputB, targetPosItems)
   useEvalStore().setMaxPosItems(inputB, maxPosItems)
 
-  return out
+  return last
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-// returns true, if action result is out
+// returns true, if action cannot be followed by another (= must be last)
 function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
-  let out = false
+  let last = false
 
   let minPosItems = 1
   let targetPosItems = 1
@@ -145,7 +145,8 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
 
   switch (specAction) {
     case 'OBR_rta':
-      out = true
+    case 'NADV':
+      last = true
       // falls through
     case 'ADV':
     case 'WP':
@@ -159,7 +160,6 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
     case 'se1':
     case 'se2':
     case 'se3':
-    case 'NADV':
       minPosItems = targetPosItems = maxPosItems = 0
       break
     case 'OBR_hbb':
@@ -167,7 +167,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
     case 'OBR_rro':
     case 'OBR_rle':
     case 'OBR_rhe':
-      out = true
+      last = true
       // falls through
     case 'POE':
     case 'O/':
@@ -179,42 +179,44 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
       minPosItems = targetPosItems = maxPosItems = 2
       break
     case 'PO':
-      out = true
+      last = true
       minPosItems = targetPosItems = 2
       break
     case 'CSO':
     case 'POCS':
     case 'GO':
     case 'GOT':
-      out = true
+      last = true
       // falls through
     case 'CSE':
     case 'CSN':
       minPosItems = 1
       targetPosItems = 2
       break
-    case 'POCSE':
     case 'POCSEN':
+      last = true
+      // falls through
+    case 'POCSE':
       minPosItems = targetPosItems = 1
       break
     case 'OBR_rol':
     case 'OBR_rin':
     case 'A':
-      out = true
-      // falls through
-    case 'EF':
-    case 'ET':
     case 'ENF':
     case 'ENT':
     case 'CSET':
     case 'CSNT':
     case 'POEN':
+      last = true
+      // falls through
+    case 'EF':
+    case 'ET':
     case 'eF':
     case 'eT':
       // no pos adjustments
       break
     default:
-      out = specAction === ''
+      last = specAction === ''
       minPosItems = targetPosItems = maxPosItems = 0
   }
 
@@ -222,7 +224,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
   useEvalStore().setTargetPosItems(inputGroup, targetPosItems)
   useEvalStore().setMaxPosItems(inputGroup, maxPosItems)
 
-  return out
+  return last
 }
 
 // enhance user's input with output instructions
