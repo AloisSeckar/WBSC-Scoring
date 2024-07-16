@@ -167,10 +167,10 @@ export function checkOutsAndRuns(outputs: WBSCOutput[]) {
   let runs = 0
 
   outputs.forEach((output) => {
-    if (output?.out === true) {
+    if (output.out === true) {
       outs++
     }
-    if (output?.base === 4 && output?.out === false) {
+    if (output.base === 4 && output.out === false) {
       runs++
     }
   })
@@ -196,37 +196,35 @@ export function checkOutcome(outputs: WBSCOutput[]) {
   const reachedBases: number[] = []
 
   outputs.forEach((output) => {
-    if (output) {
-      if (currentBatter === output.batter) {
-        if (output.out) {
-          // this is probably a dead code after #60
-          if (playerWasOut) {
-            validation = attachValidation(validation, useT('editor.validation.noOutAfterOut'))
-          } else {
-            playerWasOut = true
-            validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
-          }
-        }
-        const currentReachedBase = Math.max(output.base, output.errorTarget)
-        const maxReachedBase = reachedBases[reachedBases.length - 1] || currentReachedBase
-
-        if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(output.specAction))) {
-          validation = attachValidation(validation, useT('editor.validation.advanceInOrder'))
-        }
-      } else {
-        // special case for "batter + same error"
+    if (currentBatter === output.batter) {
+      if (output.out) {
         // this is probably a dead code after #60
-        if (output.group === inputB) {
-          if (output.base === 0 && output.errorTarget > 1) {
-            playerWasOut = true
-            validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
-          }
+        if (playerWasOut) {
+          validation = attachValidation(validation, useT('editor.validation.noOutAfterOut'))
+        } else {
+          playerWasOut = true
+          validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
         }
-        currentBatter = output.batter
-        playerWasOut = output.out
-        if (!playerWasOut) {
-          reachedBases.push(Math.max(output.base, output.errorTarget))
+      }
+      const currentReachedBase = Math.max(output.base, output.errorTarget)
+      const maxReachedBase = reachedBases[reachedBases.length - 1] || currentReachedBase
+
+      if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(output.specAction))) {
+        validation = attachValidation(validation, useT('editor.validation.advanceInOrder'))
+      }
+    } else {
+      // special case for "batter + same error"
+      // this is probably a dead code after #60
+      if (output.group === inputB) {
+        if (output.base === 0 && output.errorTarget > 1) {
+          playerWasOut = true
+          validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
         }
+      }
+      currentBatter = output.batter
+      playerWasOut = output.out
+      if (!playerWasOut) {
+        reachedBases.push(Math.max(output.base, output.errorTarget))
       }
     }
   })
@@ -461,11 +459,11 @@ export function checkGDP(outputs: WBSCOutput[]) {
 
   outputs.forEach((output) => {
     // TODO maybe change impl to rely on "specAction" rather than "text1"?
-    if (output?.text1 === 'GDP' || output?.text1 === 'GDPB' || output?.text1 === 'GDPE') {
+    if (output.text1 === 'GDP' || output.text1 === 'GDPB' || output.text1 === 'GDPE') {
       gdpSelected = true
-    } else if (output?.text1 === 'GDPO') {
+    } else if (output.text1 === 'GDPO') {
       gdpoSelected = true
-    } else if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
+    } else if (output.out || output.text1.includes('E') || output.text2?.includes('E')) {
       gdpOuts++
     }
   })
@@ -491,13 +489,13 @@ export function checkSHSF(inputs: WBSCInput[]) {
   let runScored = false
 
   inputs.forEach((input) => {
-    if (input?.specAction.startsWith('SH')) {
+    if (input.specAction.startsWith('SH')) {
       shSelected = true
-    } else if (input?.specAction.startsWith('SF') || input?.specAction === 'FSF') {
+    } else if (input.specAction.startsWith('SF') || input.specAction === 'FSF') {
       sfSelected = true
-    } else if (input?.specAction === 'ADV') {
+    } else if (input.specAction === 'ADV') {
       advanceByBatter = true
-      if (input?.base === 4) {
+      if (input.base === 4) {
         runScored = true
       }
     }
@@ -553,9 +551,9 @@ export function checkSBCS(inputs: WBSCInput[]) {
   let csSelected = false
 
   inputs.forEach((input) => {
-    if (input?.specAction === 'SB') {
+    if (input.specAction === 'SB') {
       sbSelected = true
-    } else if (input?.specAction.startsWith('CS')) {
+    } else if (input.specAction.startsWith('CS')) {
       csSelected = true
     }
   })
