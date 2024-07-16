@@ -21,4 +21,11 @@ export default defineNuxtConfig({
       routes: ['/help', '/project', '/report'],
     },
   },
+  runtimeConfig: {
+    public: {
+      // default log level for consola
+      // (less important logs will be ignored)
+      logLevel: 'debug',
+    },
+  },
 })

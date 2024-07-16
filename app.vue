@@ -28,6 +28,8 @@
 </template>
 
 <script setup lang="ts">
+initConsola()
+
 const { locale } = useI18n()
 const storedLocale = useLocalStorage('wbsc-lang', 'en')
 

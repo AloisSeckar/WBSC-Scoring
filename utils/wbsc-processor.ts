@@ -8,6 +8,8 @@ import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
 function processAction() {
+  log.info('Getting input')
+
   const GUI = useGUIStore()
   const inputStore = useInputStore()
 
@@ -80,6 +82,8 @@ function processAction() {
   if (GUI.inputB && bInput.baseAction) {
     inputs.push(bInput)
   }
+
+  log.info('Evaluating output')
 
   checkMultipleRunnerAdvances(inputs)
 
@@ -187,8 +191,12 @@ function processAction() {
   adjustIO(outputs)
   connectSpecialCases(outputs)
 
+  log.info('Validating data')
+
   const validation = checkUserInput(inputs, outputs)
   if (validation === '') {
+    log.info('Rendering output')
+
     useCanvasStore().vOffset = 0
 
     const canvas = useCanvasStore().canvas as HTMLCanvasElement
@@ -221,7 +229,9 @@ function processAction() {
     connectOutsIfNeeded()
     removeDuplicateConnectors()
     connectConcurrentPlaysIfNeeded()
+    log.info('Output rendered')
   } else {
+    log.info('Invalid user input')
     useEvalStore().setError(validation)
   }
 }
