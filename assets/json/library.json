@@ -400,6 +400,14 @@
     "name": "Single to SS + extra base fielding error (634e1t) to 3rd"
   },
   {
+    "file": "1b-6-e6t-95-3b",
+    "name": "Single to SS + e6T to 2nd + 95 tag out at 3rd"
+  },
+  {
+    "file": "1b-6-e6t-92-hp",
+    "name": "Single to SS + e6T to 3rd + 92 tag out at Home"
+  },
+  {
     "file": "1b-7-e7-r2-hp",
     "name": "Single to LF + extra base fielding error, R2 scores"
   },

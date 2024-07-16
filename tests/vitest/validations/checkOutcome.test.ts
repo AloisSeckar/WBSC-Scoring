@@ -131,7 +131,7 @@ test('validation should fail - special case for "batter + same error"', () => {
     group: 'input-b',
     specAction: 'EF',
     base: 0,
-    errorTarget: 2,
+    errorTarget: 1,
     out: true,
   })
   expect(checkOutcome([b1Output, bOutput])).toBe(useT('editor.validation.noAdvanceAfterOut'))
