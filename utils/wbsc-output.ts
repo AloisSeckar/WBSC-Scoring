@@ -865,7 +865,18 @@ function connectOutsIfNeeded() {
             startX = hOffset + lineHOffset
             startY = h2 - 13 + vOffsetStart
             endX = hOffset + lineHOffset
-            endY = h2 - 30 + vOffsetEnd
+            if (end.base === 4) {
+              startX += 5
+              endX += 5
+              startY += 10
+              endY = h2 + 30 + vOffsetEnd
+            } else if (end.base === 3) {
+              endY = h2 - 26 + vOffsetEnd
+            } else if (end.base === 2) {
+              endY = h4 + vOffsetEnd
+            } else {
+              endY = h2 - 30 + vOffsetEnd
+            }
             break
         }
 
