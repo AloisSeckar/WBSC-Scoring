@@ -26,7 +26,7 @@ test('validation should pass - O-play with forced-out runner', () => {
     baseAction: 'GroundOut',
     specAction: 'GO',
   })
-  expect(checkFC([bOInput, r1Input])).toBe('')
+  expect(checkFC([r1Input, bOInput])).toBe('')
 })
 
 test('validation should pass - O-play with decisive error at runner', () => {
@@ -35,7 +35,7 @@ test('validation should pass - O-play with decisive error at runner', () => {
     baseAction: 'err',
     specAction: 'ET',
   })
-  expect(checkFC([bOInput, r1Input])).toBe('')
+  expect(checkFC([r1Input, bOInput])).toBe('')
 })
 
 test('validation should fail - O-play with extra-base error at runner', () => {
@@ -44,7 +44,7 @@ test('validation should fail - O-play with extra-base error at runner', () => {
     baseAction: 'err',
     specAction: 'eF',
   })
-  expect(checkFC([bOInput, r1Input])).toBe(useT('editor.validation.missingOPlay'))
+  expect(checkFC([r1Input, bOInput])).toBe(useT('editor.validation.missingOPlay'))
 })
 
 test('validation should fail - O-play with decisive error at runner, but after he advanced', () => {
@@ -58,7 +58,7 @@ test('validation should fail - O-play with decisive error at runner, but after h
     baseAction: 'err',
     specAction: 'ET',
   })
-  expect(checkFC([bOInput, r1Input, r1aInput])).toBe(useT('editor.validation.missingOPlay'))
+  expect(checkFC([r1aInput, r1Input, bOInput])).toBe(useT('editor.validation.missingOPlay'))
 })
 
 const bFCInput = createMockInput({
@@ -77,7 +77,7 @@ test('validation should pass - FC action with runner advance', () => {
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  expect(checkFC([bFCInput, r1Input])).toBe('')
+  expect(checkFC([r1Input, bFCInput])).toBe('')
 })
 
 const bKSFCInput = createMockInput({
@@ -96,7 +96,7 @@ test('validation should pass - KSFC action with PB at runner', () => {
     baseAction: 'exb',
     specAction: 'PB',
   })
-  expect(checkFC([bKSFCInput, r1Input])).toBe('')
+  expect(checkFC([r1Input, bKSFCInput])).toBe('')
 })
 
 const bO1Input = structuredClone(bOInput)
@@ -110,7 +110,7 @@ test('validation should pass - correct O-play target', () => {
     pos1: '1',
     pos2: '6',
   })
-  expect(checkFC([bO1Input, r1Input])).toBe('')
+  expect(checkFC([r1Input, bO1Input])).toBe('')
 })
 
 test('validation should fail - incorrect O-play target', () => {
@@ -121,5 +121,5 @@ test('validation should fail - incorrect O-play target', () => {
     pos1: '4',
     pos2: '6',
   })
-  expect(checkFC([bO1Input, r1Input])).toBe(useT('editor.validation.invalidOPlay'))
+  expect(checkFC([r1Input, bO1Input])).toBe(useT('editor.validation.invalidOPlay'))
 })

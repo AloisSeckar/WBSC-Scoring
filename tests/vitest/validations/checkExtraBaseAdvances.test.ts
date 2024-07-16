@@ -21,7 +21,7 @@ test('validation should pass -  two WP plays possible', () => {
     baseAction: 'exb',
     specAction: 'WP',
   })
-  expect(checkExtraBaseAdvances([r1Input, r2Input])).toBe('')
+  expect(checkExtraBaseAdvances([r2Input, r1Input])).toBe('')
 })
 
 test('validation should fail -  mixed WP and PB', () => {
@@ -35,7 +35,7 @@ test('validation should fail -  mixed WP and PB', () => {
     baseAction: 'exb',
     specAction: 'PB',
   })
-  expect(checkExtraBaseAdvances([r1Input, r2Input])).toBe(useT('editor.validation.noMixedExtraAdvances'))
+  expect(checkExtraBaseAdvances([r2Input, r1Input])).toBe(useT('editor.validation.noMixedExtraAdvances'))
 })
 
 test('validation should pass -  PB is first action', () => {
@@ -49,7 +49,7 @@ test('validation should pass -  PB is first action', () => {
     baseAction: 'err',
     specAction: 'eT',
   })
-  expect(checkExtraBaseAdvances([r1Input, r1aInput])).toBe('')
+  expect(checkExtraBaseAdvances([r1aInput, r1Input])).toBe('')
 })
 
 test('validation should fail -  PB is second action', () => {
@@ -63,7 +63,7 @@ test('validation should fail -  PB is second action', () => {
     baseAction: 'exb',
     specAction: 'PB',
   })
-  expect(checkExtraBaseAdvances([r1Input, r1aInput])).toBe(useT('editor.validation.noPBAfterPlay'))
+  expect(checkExtraBaseAdvances([r1aInput, r1Input])).toBe(useT('editor.validation.noPBAfterPlay'))
 })
 
 test('validation should pass -  PB is second action, but after SB', () => {
@@ -77,7 +77,7 @@ test('validation should pass -  PB is second action, but after SB', () => {
     baseAction: 'exb',
     specAction: 'PB',
   })
-  expect(checkExtraBaseAdvances([r1Input, r1aInput])).toBe('')
+  expect(checkExtraBaseAdvances([r1aInput, r1Input])).toBe('')
 })
 
 test('validation should fail -  WP is second action', () => {
@@ -96,7 +96,7 @@ test('validation should fail -  WP is second action', () => {
     baseAction: 'exb',
     specAction: 'WP',
   })
-  expect(checkExtraBaseAdvances([bInput, r1Input, r1aInput])).toBe(useT('editor.validation.noWPAfterPlay'))
+  expect(checkExtraBaseAdvances([r1aInput, r1Input, bInput])).toBe(useT('editor.validation.noWPAfterPlay'))
 })
 test('validation should pass -  WP is second action, but after BB', () => {
   const bInput = createMockInput({
@@ -114,5 +114,5 @@ test('validation should pass -  WP is second action, but after BB', () => {
     baseAction: 'exb',
     specAction: 'WP',
   })
-  expect(checkExtraBaseAdvances([bInput, r1Input, r1aInput])).toBe('')
+  expect(checkExtraBaseAdvances([r1aInput, r1Input, bInput])).toBe('')
 })

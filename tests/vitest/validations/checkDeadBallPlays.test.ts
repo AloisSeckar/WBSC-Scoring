@@ -12,7 +12,7 @@ test('validation should pass - not a dead-ball play', () => {
     baseAction: 'out',
     specAction: 'GO',
   })
-  expect(checkDeadBallPlays([bInput, r1Input])).toBe('')
+  expect(checkDeadBallPlays([r1Input, bInput])).toBe('')
 })
 
 const bINTInput = createMockInput({
@@ -38,7 +38,7 @@ const r3Input = createMockInput({
 })
 
 test('validation should pass - only ADV after dead-ball play', () => {
-  expect(checkDeadBallPlays([bINTInput, r1Input, r2Input, r3Input])).toBe('')
+  expect(checkDeadBallPlays([r3Input, r2Input, r1Input, bINTInput])).toBe('')
 })
 
 test('validation should fail - other situation after dead-ball play', () => {
@@ -47,15 +47,15 @@ test('validation should fail - other situation after dead-ball play', () => {
     baseAction: 'out',
     specAction: 'GO',
   })
-  expect(checkDeadBallPlays([bINTInput, r1Input])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
+  expect(checkDeadBallPlays([r1Input, bINTInput])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
 })
 
 test('validation should fail - ADV of not-forced runner at 2nd after dead-ball play', () => {
-  expect(checkDeadBallPlays([bINTInput, r2Input])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
+  expect(checkDeadBallPlays([r2Input, bINTInput])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
 })
 
 test('validation should fail - ADV of not-forced runner at 3rd after dead-ball play', () => {
-  expect(checkDeadBallPlays([bINTInput, r3Input])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
+  expect(checkDeadBallPlays([r3Input, bINTInput])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
 })
 
 const bOBInput = createMockInput({
@@ -72,11 +72,11 @@ const rBKInput = createMockInput({
 })
 
 test('validation should fail - BK + other play', () => {
-  expect(checkDeadBallPlays([r1Input, rBKInput])).toBe(useT('editor.validation.noPlayAfterBK'))
+  expect(checkDeadBallPlays([rBKInput, r1Input])).toBe(useT('editor.validation.noPlayAfterBK'))
 })
 
 test('validation should pass - BK at 3rd + OB2 exception', () => {
-  expect(checkDeadBallPlays([bOBInput, rBKInput])).toBe('')
+  expect(checkDeadBallPlays([rBKInput, bOBInput])).toBe('')
 })
 
 const rIPInput = createMockInput({
@@ -86,9 +86,9 @@ const rIPInput = createMockInput({
 })
 
 test('validation should fail - IP + other play', () => {
-  expect(checkDeadBallPlays([r1Input, rIPInput])).toBe(useT('editor.validation.noPlayAfterIP'))
+  expect(checkDeadBallPlays([rIPInput, r1Input])).toBe(useT('editor.validation.noPlayAfterIP'))
 })
 
 test('validation should pass - IP at 3rd + OB2 exception', () => {
-  expect(checkDeadBallPlays([bOBInput, rIPInput])).toBe('')
+  expect(checkDeadBallPlays([rIPInput, bOBInput])).toBe('')
 })

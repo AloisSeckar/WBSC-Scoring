@@ -21,7 +21,7 @@ test('validation should pass - both SBs', () => {
     baseAction: 'ste',
     specAction: 'SB',
   })
-  expect(checkSBCS([r1Input, r2Input])).toBe('')
+  expect(checkSBCS([r2Input, r1Input])).toBe('')
 })
 
 test('validation should fail - SB + CS', () => {
@@ -35,7 +35,7 @@ test('validation should fail - SB + CS', () => {
     baseAction: 'ste',
     specAction: 'CS',
   })
-  expect(checkSBCS([r1Input, r2Input])).toBe(useT('editor.validation.noSBCS'))
+  expect(checkSBCS([r2Input, r1Input])).toBe(useT('editor.validation.noSBCS'))
 })
 
 test('validation should pass - CS + O/', () => {
@@ -49,5 +49,5 @@ test('validation should pass - CS + O/', () => {
     baseAction: 'ste',
     specAction: 'CS',
   })
-  expect(checkSBCS([r1Input, r2Input])).toBe('')
+  expect(checkSBCS([r2Input, r1Input])).toBe('')
 })

@@ -17,7 +17,7 @@ test('validation should pass for correct batter + runner input', () => {
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  expect(checkHit([bInput, r1Input])).toBe('')
+  expect(checkHit([r1Input, bInput])).toBe('')
 })
 
 test('validation should fail for FORCED out runner', () => {
@@ -26,7 +26,7 @@ test('validation should fail for FORCED out runner', () => {
     baseAction: 'out',
     specAction: 'GO',
   })
-  expect(checkHit([bInput, r1Input])).toBe(useT('editor.validation.noHitAndO'))
+  expect(checkHit([r1Input, bInput])).toBe(useT('editor.validation.noHitAndO'))
 })
 
 test('validation should pass for NOT FORCED out runner', () => {
@@ -35,7 +35,7 @@ test('validation should pass for NOT FORCED out runner', () => {
     baseAction: 'out',
     specAction: 'GO',
   })
-  expect(checkHit([bInput, r2Input])).toBe('')
+  expect(checkHit([r2Input, bInput])).toBe('')
 })
 
 test('validation should fail for APPEAL PLAY', () => {
@@ -44,5 +44,5 @@ test('validation should fail for APPEAL PLAY', () => {
     baseAction: 'out',
     specAction: 'A',
   })
-  expect(checkHit([bInput, r1Input])).toBe(useT('editor.validation.noHitAndA'))
+  expect(checkHit([r1Input, bInput])).toBe(useT('editor.validation.noHitAndA'))
 })

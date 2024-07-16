@@ -30,7 +30,7 @@ test('validation should fail for incomplete inputs', () => {
   expect(checkBasicRules([noBaseActionInput])).toBe(useT('editor.validation.properAction'))
   const noSpecActionInput = { ...okInput }
   noSpecActionInput.specAction = ''
-  expect(checkBasicRules([noBaseActionInput])).toBe(useT('editor.validation.properAction'))
+  expect(checkBasicRules([noSpecActionInput])).toBe(useT('editor.validation.properAction'))
 })
 
 test('validation should fail with incorrect pos selection', () => {

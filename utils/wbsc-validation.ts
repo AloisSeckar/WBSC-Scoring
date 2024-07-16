@@ -255,7 +255,7 @@ export function checkHit(inputs: WBSCInput[]) {
   let forceOut = false
   let appealPlay = false
 
-  inputs.forEach((input) => {
+  inputs.toReversed().forEach((input) => {
     switch (input.group) {
       case inputB:
         if (hitActions.includes(input.specAction)) {
@@ -518,7 +518,8 @@ export function checkSHSF(inputs: WBSCInput[]) {
     let runnerAt2 = false
     let forceOut = false
 
-    inputs.forEach((input) => {
+    inputs.toReversed().forEach((input) => {
+      console.log(input)
       switch (input.group) {
         case inputR1:
           runnerAt1 = true

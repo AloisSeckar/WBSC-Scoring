@@ -12,7 +12,7 @@ test('validation should pass if there are only batter actions', () => {
     baseAction: 'fdc',
     specAction: 'T',
   })
-  expect(checkRunnerOnlyActions([bInput, b1Input])).toBe('')
+  expect(checkRunnerOnlyActions([b1Input, bInput])).toBe('')
 })
 
 test('validation should pass if there are only runner actions', () => {
@@ -31,7 +31,7 @@ test('validation should pass if there are only runner actions', () => {
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  expect(checkRunnerOnlyActions([r1Input, r1aInput, r2Input])).toBe('')
+  expect(checkRunnerOnlyActions([r2Input, r1aInput, r1Input])).toBe('')
 })
 
 test('validation should pass for valid combination', () => {
@@ -45,7 +45,7 @@ test('validation should pass for valid combination', () => {
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  expect(checkRunnerOnlyActions([bInput, r1Input])).toBe('')
+  expect(checkRunnerOnlyActions([r1Input, bInput])).toBe('')
 })
 
 test('validation should fail for invalid combination', () => {
@@ -59,7 +59,7 @@ test('validation should fail for invalid combination', () => {
     baseAction: 'ste',
     specAction: 'SB',
   })
-  expect(checkRunnerOnlyActions([bInput, r1Input])).toBe(useT('editor.validation.runnerOnlyAction'))
+  expect(checkRunnerOnlyActions([r1Input, bInput])).toBe(useT('editor.validation.runnerOnlyAction'))
 })
 
 test('validation should pass - BB + WP is possible', () => {
@@ -78,7 +78,7 @@ test('validation should pass - BB + WP is possible', () => {
     baseAction: 'exb',
     specAction: 'WP',
   })
-  expect(checkRunnerOnlyActions([bInput, r1Input, r2Input])).toBe('')
+  expect(checkRunnerOnlyActions([r2Input, r1Input, bInput])).toBe('')
 })
 
 test('validation should pass - KS + PB is possible', () => {
@@ -97,7 +97,7 @@ test('validation should pass - KS + PB is possible', () => {
     baseAction: 'exb',
     specAction: 'PB',
   })
-  expect(checkRunnerOnlyActions([bInput, r1Input, r2Input])).toBe('')
+  expect(checkRunnerOnlyActions([r2Input, r1Input, bInput])).toBe('')
 })
 
 test('validation should fail - KL + BK is impossible', () => {
@@ -112,7 +112,7 @@ test('validation should fail - KL + BK is impossible', () => {
     specAction: 'BK',
   })
 
-  expect(checkRunnerOnlyActions([bInput, r1Input])).toBe(useT('editor.validation.runnerOnlyAction'))
+  expect(checkRunnerOnlyActions([r1Input, bInput])).toBe(useT('editor.validation.runnerOnlyAction'))
 })
 
 test('validation should pass - OB2 + IP is possible from 3rd', () => {
@@ -128,5 +128,5 @@ test('validation should pass - OB2 + IP is possible from 3rd', () => {
     specAction: 'IP',
   })
 
-  expect(checkRunnerOnlyActions([bInput, r3Input])).toBe('')
+  expect(checkRunnerOnlyActions([r3Input, bInput])).toBe('')
 })

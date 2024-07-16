@@ -26,7 +26,7 @@ test('validation should pass for correct batter + runner input', () => {
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  expect(checkHit([bInput, r1Input])).toBe('')
+  expect(checkHit([r1Input, bInput])).toBe('')
 })
 
 test('validation should fail if batter action missing', () => {
@@ -49,5 +49,5 @@ test('validation should fail if ADV is not first', () => {
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  expect(checkAdvances([bInput, r1Input, r1aInput])).toBe(useT('editor.validation.invalidADV'))
+  expect(checkAdvances([r1aInput, r1Input, bInput])).toBe(useT('editor.validation.invalidADV'))
 })

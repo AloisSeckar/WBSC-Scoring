@@ -27,7 +27,7 @@ test('validation should fail - no runner advanced', () => {
 })
 
 test('validation should pass - runner from 1st advanced', () => {
-  expect(checkSHSF([bSHInput, r1ADVInput])).toBe('')
+  expect(checkSHSF([r1ADVInput, bSHInput])).toBe('')
 })
 
 test('validation should fail - runner from 1st advanced, but runner from 2nd is forced out', () => {
@@ -36,7 +36,7 @@ test('validation should fail - runner from 1st advanced, but runner from 2nd is 
     baseAction: 'out',
     specAction: 'GO',
   })
-  expect(checkSHSF([bSHInput, r1ADVInput, r2Input])).toBe(useT('editor.validation.noSHAndO'))
+  expect(checkSHSF([r2Input, r1ADVInput, bSHInput])).toBe(useT('editor.validation.noSHAndO'))
 })
 
 test('validation should pass - runner from 1st advanced and runner from 3rd was not forced', () => {
@@ -45,7 +45,7 @@ test('validation should pass - runner from 1st advanced and runner from 3rd was 
     baseAction: 'out',
     specAction: 'GO',
   })
-  expect(checkSHSF([bSHInput, r1ADVInput, r3Input])).toBe('')
+  expect(checkSHSF([r3Input, r1ADVInput, bSHInput])).toBe('')
 })
 
 const bSFInput = createMockInput({
@@ -60,7 +60,7 @@ test('validation should fail - no runner advanced', () => {
 })
 
 test('validation should fail - no runner scored', () => {
-  expect(checkSHSF([bSFInput, r1ADVInput])).toBe(useT('editor.validation.missingSFRun'))
+  expect(checkSHSF([r1ADVInput, bSFInput])).toBe(useT('editor.validation.missingSFRun'))
 })
 
 test('validation should pass - runner scored', () => {
@@ -70,5 +70,5 @@ test('validation should pass - runner scored', () => {
     specAction: 'ADV',
     base: 4,
   })
-  expect(checkSHSF([bSFInput, r3Input])).toBe('')
+  expect(checkSHSF([r3Input, bSFInput])).toBe('')
 })

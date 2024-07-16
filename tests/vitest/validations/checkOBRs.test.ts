@@ -26,7 +26,7 @@ test('validation should fail -  RLE + other play', () => {
     baseAction: 'exb',
     specAction: 'WP',
   })
-  expect(checkOBRs([r1RLEInput, r2Input])).toBe(useT('editor.validation.noPlayAfterRLE'))
+  expect(checkOBRs([r2Input, r1RLEInput])).toBe(useT('editor.validation.noPlayAfterRLE'))
 })
 
 const r1HBBInput = createMockInput({
@@ -41,7 +41,7 @@ test('validation should pass -  HBB + hit', () => {
     baseAction: 'Hit',
     specAction: '1B',
   })
-  expect(checkOBRs([bInput, r1HBBInput])).toBe('')
+  expect(checkOBRs([r1HBBInput, bInput])).toBe('')
 })
 
 test('validation should fail -  HBB + FC', () => {
@@ -50,5 +50,5 @@ test('validation should fail -  HBB + FC', () => {
     baseAction: 'FC',
     specAction: 'O',
   })
-  expect(checkOBRs([bInput, r1HBBInput])).toBe(useT('editor.validation.noHBBWithoutHit'))
+  expect(checkOBRs([r1HBBInput, bInput])).toBe(useT('editor.validation.noHBBWithoutHit'))
 })
