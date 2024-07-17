@@ -138,19 +138,26 @@ async function setInputFromJSON(input: WBSCInputJson) {
   const pos = input.pos
   if (pos) {
     // legacy .json - only one "pos" element that needs to be parsed
-    const length = pos.length
-    useEvalStore().setTargetPosItems(input.group, length)
-    if (length > 0) {
-      guiModel.pos1 = pos[0]!
-    }
-    if (length > 1) {
-      guiModel.pos2 = pos[1]!
-    }
-    if (length > 2) {
-      guiModel.pos3 = pos[2]!
-    }
-    if (length > 3) {
-      guiModel.pos4 = pos[3]!
+    // usually starts with a number (fielding position),
+    // but hits are an exception (they can be 2-3 letter strings)
+    if (!pos.match(/^\d/)) {
+      useEvalStore().setTargetPosItems(input.group, 1)
+      guiModel.pos1 = pos
+    } else {
+      const length = pos.length
+      useEvalStore().setTargetPosItems(input.group, length)
+      if (length > 0) {
+        guiModel.pos1 = pos[0]!
+      }
+      if (length > 1) {
+        guiModel.pos2 = pos[1]!
+      }
+      if (length > 2) {
+        guiModel.pos3 = pos[2]!
+      }
+      if (length > 3) {
+        guiModel.pos4 = pos[3]!
+      }
     }
   } else {
     // since #217 - there are 4 separate variables
