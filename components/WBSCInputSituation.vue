@@ -87,7 +87,12 @@ const nodpVisible = props.group === inputR1 || props.group === inputR2 || props.
 const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB
 const baseOptions: GUIOption[] = renderBaseOptions(getBaseOptionsValue(props.group))
-model.value.base = props.group === inputB ? 0 : baseOptions.at(0)!.value as WBSCBase
+
+watch(() => model.value.base, (newValue) => {
+  if (newValue === 0 && props.group !== inputB) {
+    model.value.base = baseOptions.at(0)!.value as WBSCBase
+  }
+}, { immediate: true })
 
 const runTypeVisible = ref(false)
 const runTypeOptions: GUIOption[] = [
