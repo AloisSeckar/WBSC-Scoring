@@ -107,7 +107,7 @@ function clearInput(input: WBSCInput, inputGroup: string) {
   input.pos2 = ''
   input.pos3 = ''
   input.pos4 = ''
-  input.runtype = 'ER'
+  input.runtype = 'e'
 }
 
 export function getPos(input: WBSCInput): string {

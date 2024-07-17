@@ -20,7 +20,7 @@ export function getEmptyInput(group: string): WBSCInput {
     pos2: '',
     pos3: '',
     pos4: '',
-    runtype: 'ER',
+    runtype: 'e',
   }
 
   return input
