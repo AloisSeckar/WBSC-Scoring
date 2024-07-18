@@ -2,7 +2,17 @@
 
 This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
 
-## Version 1.2.0 [IN PROGRESS]
+## Version 1.2.0 (2024-07-18)
+- Features:
+  - "No DP" option for runners (#180)
+  - GDP + bunt (#219)
+- Tech updates:
+  - GUI rewritten from vanilla JavaScript to Vue components (#217)
+  - Vitest unit tests for validation methods (#218 + #243)
+  - Logging with unjs/consola (#215)
+  - Switched to pnpm package manager
+  - Some refactoring - component names, code revision
+- Bugfixes - GitHub issues #193, #230, #231, #233, #234, #235, #240, #242, #244 + several others
 
 ## Version 1.1.1 (2024-06-05)
 - Hotfixed error with displaying images (#227)
