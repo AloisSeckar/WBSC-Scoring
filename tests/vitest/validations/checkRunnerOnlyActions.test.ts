@@ -71,7 +71,7 @@ test('validation should pass - BB + WP is possible', () => {
   const r1Input = createMockInput({
     group: 'input-r1',
     baseAction: 'exb',
-    specAction: 'wp',
+    specAction: 'WP',
   })
   const r2Input = createMockInput({
     group: 'input-r2',
@@ -90,7 +90,7 @@ test('validation should pass - KS + PB is possible', () => {
   const r1Input = createMockInput({
     group: 'input-r1',
     baseAction: 'exb',
-    specAction: 'pb',
+    specAction: 'PB',
   })
   const r2Input = createMockInput({
     group: 'input-r2',

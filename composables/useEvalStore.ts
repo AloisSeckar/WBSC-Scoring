@@ -35,6 +35,7 @@ export type WBSCEval = {
   concurrentPlays: ConcurrentPlay[]
   gdp: boolean
   brokenDP: boolean
+  exb: boolean
 }
 
 export const useEvalStore = defineStore({
@@ -54,6 +55,7 @@ export const useEvalStore = defineStore({
       concurrentPlays: [],
       gdp: false,
       brokenDP: false,
+      exb: false,
     }
     return data
   },

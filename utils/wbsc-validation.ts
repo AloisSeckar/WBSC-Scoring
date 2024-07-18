@@ -140,10 +140,10 @@ export function checkRunnerOnlyActions(inputs: WBSCInput[]) {
     const runnerActions = inputs.filter(i => i.group.startsWith('input-r'))
     if (batterSpecAction === 'BB1') {
       // exception 1 - BB + WP/PB is possible
-      invalidCombination = runnerActions.some(i => !['ADV', 'WP', 'wp', 'PB', 'pb'].includes(i.specAction))
+      invalidCombination = runnerActions.some(i => !['ADV', 'WP', 'PB'].includes(i.specAction))
     } else if (batterSpecAction.startsWith('KS') || batterSpecAction.startsWith('KL')) {
       // exception 2 - KS/KL - only BK/IP is impossible
-      invalidCombination = runnerActions.some(i => ['BK', 'bk', 'IP', 'ip'].includes(i.specAction))
+      invalidCombination = runnerActions.some(i => ['BK', 'IP'].includes(i.specAction))
     } else if (batterSpecAction === 'OB' && getPos(batterInput!) === '2') {
       // exception 3 - OB2 + BK/IP is possible from 3rd
       const r3SpecAction = inputs.find(i => i.group === inputR3)?.specAction

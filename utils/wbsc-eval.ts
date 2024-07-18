@@ -432,23 +432,29 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'WP':
     case 'PB':
-      possibleConcurrentPlay = true
-      // falls through
-    case 'wp':
-    case 'pb':
-      output.text1 = action + '#b#'
+      if (!useEvalStore().exb) {
+        useEvalStore().exb = true
+        possibleConcurrentPlay = true
+        output.text1 = action + '#b#'
+      } else {
+        output.text1 = action.toLowerCase() + '#b#'
+      }
       // #179 - multiple base advance should render same as an error
       output.errorTarget = output.base
       output.base = output.origBase + 1 as WBSCBase
       break
     case 'SB':
       possibleConcurrentPlay = true
-      // falls through
-    case 'BK':
-    case 'bk':
-    case 'IP':
-    case 'ip':
       output.text1 = action + '#b#'
+      break
+    case 'BK':
+    case 'IP':
+      if (!useEvalStore().exb) {
+        useEvalStore().exb = true
+        output.text1 = action + '#b#'
+      } else {
+        output.text1 = action.toLowerCase() + '#b#'
+      }
       break
     case 'SBPOA':
       possibleConcurrentPlay = true

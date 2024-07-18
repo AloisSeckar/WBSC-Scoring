@@ -10,6 +10,8 @@ import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 function processAction() {
   log.info('Getting input')
 
+  useEvalStore().$reset()
+
   const GUI = useGUIStore()
   const inputStore = useInputStore()
 
@@ -84,8 +86,6 @@ function processAction() {
   }
 
   log.info('Evaluating output')
-
-  checkMultipleRunnerAdvances(inputs)
 
   let playersInvolved = 0
   useEvalStore().outs = []
@@ -233,24 +233,6 @@ function processAction() {
   } else {
     log.info('Invalid user input')
     useEvalStore().setError(validation)
-  }
-}
-
-// helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/10
-function checkMultipleRunnerAdvances(inputArr: WBSCInput[]) {
-  // first encountered will be uppercase, possible others lowercase
-  let advanceEncountered = false
-  for (let i = 0; i < inputArr.length; i += 1) {
-    const current = inputArr[i]
-    if (current) {
-      const action = current.specAction
-      if (action === 'WP' || action === 'PB' || action === 'BK' || action === 'IP') {
-        if (advanceEncountered) {
-          current.specAction = action.toLowerCase()
-        }
-        advanceEncountered = true
-      }
-    }
   }
 }
 
