@@ -94,6 +94,7 @@ watch(() => model.value.base, (newValue) => {
   }
 }, { immediate: true })
 
+const lastPlaySelected = ref(false)
 const runTypeVisible = ref(false)
 const runTypeOptions: GUIOption[] = [
   { value: 'e', label: 'ER' },
@@ -103,7 +104,7 @@ const runTypeOptions: GUIOption[] = [
 model.value.runtype = runTypeOptions.at(0)!.value as string
 
 watch(() => model.value.base, () => {
-  runTypeVisible.value = model.value.base?.toString() === '4'
+  checkRunTypeVisible()
 }, { immediate: true })
 
 const baseActionOptions: GUIOption[] = renderBaseActionOptions(props.group)
@@ -141,6 +142,7 @@ watch(() => model.value.baseAction, () => {
 watch(() => model.value.specAction, () => {
   const specAction = model.value.specAction
   const last = changeSpecificAction(specAction, props.group)
+  lastPlaySelected.value = last
   if (props.group === inputB) {
     runTypeVisible.value = false
     if (specAction === '2B' || specAction === '2BG') {
@@ -153,6 +155,8 @@ watch(() => model.value.specAction, () => {
     } else {
       model.value.base = last ? 0 : 1
     }
+  } else {
+    checkRunTypeVisible()
   }
   emit('play', last)
   //
@@ -179,6 +183,10 @@ watch(() => model.value.specAction, () => {
     model.value.pos4 = ''
   }
 })
+
+function checkRunTypeVisible() {
+  runTypeVisible.value = model.value.base?.toString() === '4' && !lastPlaySelected.value
+}
 
 watch(() => model.value.pos1, () => adjustPosVisibility())
 watch(() => model.value.pos2, () => adjustPosVisibility())
