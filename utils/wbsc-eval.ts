@@ -183,13 +183,13 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
       minPosItems = targetPosItems = 2
       break
     case 'CSO':
+    case 'CSN':
     case 'POCS':
     case 'GO':
     case 'GOT':
       last = true
       // falls through
     case 'CSE':
-    case 'CSN':
       minPosItems = 1
       targetPosItems = 2
       break
@@ -204,7 +204,6 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
     case 'A':
     case 'ENF':
     case 'ENT':
-    case 'CSET':
     case 'CSNT':
     case 'POEN':
       last = true
@@ -213,6 +212,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
     case 'ET':
     case 'eF':
     case 'eT':
+    case 'CSET':
       // no pos adjustments
       break
     default:
