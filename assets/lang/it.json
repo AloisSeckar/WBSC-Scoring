@@ -63,6 +63,7 @@
                 "GO" : "Eliminato",
                 "GOB" : "Eliminato - bunt",
                 "GDP" : "Battuta in doppio gioco (GDP)",
+                "GDPB" : "GDP con bunt",
                 "GDPO" : "GDP con palla occupata",
                 "GDPE" : "GDP con errore"
             },
@@ -202,7 +203,7 @@
             "export" : "Esporta selezione"
         },
         "validation" : {
-            "noEmptyInput" : "Almeno un gruppo di input deve essere selezionato.",
+            "noEmptyInput" : "È necessario definire almeno un'azione.",
             "minPositions" : "Almeno %pos% posizioni coinvolte devono essere selezionate per l'azione selezionata.",
             "allPositions" : "Tutte le posizioni devono essere selezionate.",
             "noNAAdvance" : "Su 'Nessun avanzamento' non devono risultare ulteriori avanzamenti.",
@@ -236,6 +237,7 @@
             "missingSHPlay" : "SH è selezionato, ma nessun corridore è avanzato sulla battuta.",
             "missingSFPlay" : "SF è selezionato, ma nessun corridore è avanzato sulla battuta.",
             "missingSFRun" : "SF  è selezionato, ma nessun punto è segnato sulla battuta.",
+            "noSHAndO" : "Non è possibile assegnare una SH, se un corridore è out prima di raggiungere la base successiva.",
             "noSBCS" : "SB non è possibile, quando un altro corridore è CS, usa 'FC - indifferenza'.",
             "noMixedExtraAdvances" : "WP/PB/BK/IP non possono essere collegati. Usa solo una azione nella stessa azione.",
             "noWPAfterPlay" : "WP non può accadere dopo un'altra giocata (ad eccezione per SB e BB).",

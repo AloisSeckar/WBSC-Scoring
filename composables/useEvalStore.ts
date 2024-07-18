@@ -35,6 +35,7 @@ export type WBSCEval = {
   concurrentPlays: ConcurrentPlay[]
   gdp: boolean
   brokenDP: boolean
+  exb: boolean
 }
 
 export const useEvalStore = defineStore({
@@ -54,6 +55,7 @@ export const useEvalStore = defineStore({
       concurrentPlays: [],
       gdp: false,
       brokenDP: false,
+      exb: false,
     }
     return data
   },
@@ -93,8 +95,17 @@ export const useEvalStore = defineStore({
         const item = state.minPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
         if (item) {
           return item.limit
+        } else {
+          return 0
         }
-        else {
+      }
+    },
+    getTargetPosItems: (state) => {
+      return (inputGroup: string): number => {
+        const item = state.targetPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
+        if (item) {
+          return item.limit
+        } else {
           return 0
         }
       }
@@ -104,8 +115,7 @@ export const useEvalStore = defineStore({
         const item = state.maxPosItems.find((i: PosSelectionLimit) => i.inputGroup === inputGroup)
         if (item) {
           return item.limit
-        }
-        else {
+        } else {
           return 0
         }
       }
@@ -115,8 +125,7 @@ export const useEvalStore = defineStore({
         const item = state.posSelection.find((i: PosSelection) => i.inputGroup === inputGroup)
         if (item) {
           return item.selection
-        }
-        else {
+        } else {
           return ' '
         }
       }

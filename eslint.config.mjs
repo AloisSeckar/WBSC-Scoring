@@ -17,6 +17,15 @@ export default withNuxt({
         max: 3,
       },
     }],
+    'vue/html-closing-bracket-newline': [
+      'error',
+      {
+        multiline: 'never',
+        selfClosingTag: {
+          multiline: 'never',
+        },
+      },
+    ],
     '@stylistic/brace-style': 'off',
   },
 

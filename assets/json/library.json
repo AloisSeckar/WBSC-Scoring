@@ -93,7 +93,7 @@
   },
   {
     "file": "kso",
-    "name": "Strike out (S) + R3 out C to P at HP"
+    "name": "Strike out (S) + R3 out C to P at Home"
   },
   {
     "file": "kso-r1-24-r3-hp",
@@ -101,7 +101,7 @@
   },
   {
     "file": "kso-r1-o-r3-21",
-    "name": "Strike out (L) + R1 to 2nd (O/2), R3 out C to P at HP"
+    "name": "Strike out (L) + R1 to 2nd (O/2), R3 out C to P at Home"
   },
   {
     "file": "ksfc",
@@ -192,8 +192,16 @@
     "name": "Single to RF + 916 out at 2nd"
   },
   {
-    "file": "2b-ll",
-    "name": "Double to LL"
+    "file": "1b-9-r2-hp-tie",
+    "name": "Single to RF + R2 scores (tiebreak)"
+  },
+  {
+    "file": "2b-rs",
+    "name": "Double to RS"
+  },
+  {
+    "file": "2b-gll",
+    "name": "Double grounded to left line"
   },
   {
     "file": "2b-8gr",
@@ -202,6 +210,10 @@
   {
     "file": "3b-rc",
     "name": "Triple to RC"
+  },
+  {
+    "file": "3b-grl",
+    "name": "Triple grounded to right line"
   },
   {
     "file": "hr-8",
@@ -236,6 +248,10 @@
     "name": "Base on balls + R2 to 3rd on PB, B to 2nd on PB"
   },
   {
+    "file": "bb-wp-r3-hp",
+    "name": "Base on balls + R2 to 3rd on WP, R3 scores on WP"
+  },
+  {
     "file": "ibb",
     "name": "Intentional base on balls"
   },
@@ -258,6 +274,14 @@
   {
     "file": "fc-o3-r3-32",
     "name": "Fielder's choice - occupied - R3 1B to C"
+  },
+  {
+    "file": "fc-o64-94-dp",
+    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, DP"
+  },
+  {
+    "file": "fc-o64-94-no-dp",
+    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, no DP"
   },
   {
     "file": "fc-64",
@@ -369,11 +393,19 @@
   },
   {
     "file": "1b-ll-e7-hp",
-    "name": "Single to RF + extra base fielding error to HP"
+    "name": "Single to RF + extra base fielding error to Home"
   },
   {
     "file": "1b-6-634e1t-3",
     "name": "Single to SS + extra base fielding error (634e1t) to 3rd"
+  },
+  {
+    "file": "1b-6-e6t-95-3b",
+    "name": "Single to SS + e6T to 2nd + 95 tag out at 3rd"
+  },
+  {
+    "file": "1b-6-e6t-92-hp",
+    "name": "Single to SS + e6T to 3rd + 92 tag out at Home"
   },
   {
     "file": "1b-7-e7-r2-hp",
@@ -389,15 +421,15 @@
   },
   {
     "file": "1b-6-se2-r2-e6t",
-    "name": "Single to 6 + R2 to Home on e6T"
+    "name": "Single to SS + R2 to Home on e6T"
   },
   {
     "file": "1b-7-e7-r1-e",
-    "name": "Single to LF + extra base fld. err. + R1 scores on err."
+    "name": "Single to LF + extra base fielding error + R1 scores on error"
   },
   {
     "file": "1b-7-r1-7e5t-na",
-    "name": "Single to LF + LF to 3B, thr. error, no advance (R1)"
+    "name": "Single to LF + LF to 3B, thrrowing error, no advance (R1)"
   },
   {
     "file": "1b-8-fc-r1-854e6",
@@ -409,11 +441,11 @@
   },
   {
     "file": "1b-6-t62-r2-62",
-    "name": "Single to 6 + T62 + R2 out SS to C at HP"
+    "name": "Single to SS + T62 + R2 out SS to C at Home"
   },
   {
     "file": "1b-5b-e5t-9e5",
-    "name": "Single to 3B, bunt + e5T to 2nd + 9E5 to HP"
+    "name": "Single to 3B, bunt + e5T to 2nd + 9E5 to Home"
   },
   {
     "file": "2b-rl-e9t",
@@ -470,6 +502,10 @@
   {
     "file": "gdp-643",
     "name": "Grounded into DP - SS to 2B to 1B"
+  },
+  {
+    "file": "gdpb-163",
+    "name": "Grounded into DP - P to SS to 1B, bunt"
   },
   {
     "file": "gdp-643-r3-hp",
@@ -621,19 +657,19 @@
   },
   {
     "file": "cs-2e6-r3-o",
-    "name": "Caught stealing - C to 2B (field. err.) + R3 O/2 to HP"
+    "name": "Caught stealing - C to 2B (fielding error) + R3 O/2 to Home"
   },
   {
     "file": "cs-2e4-r1-na",
-    "name": "Caught stealing - C to 2B (field. err.), no advance (R1)"
+    "name": "Caught stealing - C to 2B (fielding error), no advance (R1)"
   },
   {
     "file": "cs-26e5t-r2-na",
-    "name": "Caught stealing - C to SS to 3B (throw. err.), no advance (R2)"
+    "name": "Caught stealing - C to SS to 3B (throwing error), no advance (R2)"
   },
   {
     "file": "cs-2e1-r3-na-r1-o",
-    "name": "Caught stealing - C to P (field. err.), no advance (R3) + O/2 to 2nd"
+    "name": "Caught stealing - C to P (fielding error), no advance (R3) + O/2 to 2nd"
   },
   {
     "file": "po-r1",
@@ -653,7 +689,7 @@
   },
   {
     "file": "po-r1-13-r3-o",
-    "name": "Pick off - P to 1B (R1) + O/2 to HP (R3)"
+    "name": "Pick off - P to 1B (R1) + O/2 to Home (R3)"
   },
   {
     "file": "pocs-r1-1364",

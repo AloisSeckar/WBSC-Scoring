@@ -3,56 +3,49 @@
 /* Final rendering based on user's input   */
 /* *************************************** */
 
-import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
+import type { WBSCBase, WBSCOutput } from '@/composables/useInputStore'
 
 // rendering the output
 //   battingOrder - number displayed at the left side (1-4)
 //   clear - true, if previous content should be ereased
-//   mainInput - 1st action to be displayed
-//   extraInput - possible concecutive actions (0-3)
-function renderAction(battingOrder: number, clear: boolean, mainInput: WBSCInput, extraInput?: WBSCInput[]) {
+//   output - actions to be displayed
+function renderAction(battingOrder: number, clear: boolean, output: WBSCOutput) {
   if (clear) {
     drawBackground(battingOrder)
   }
 
-  const output = mainInput.output
-  if (output) {
-    if (output.origBase > 0) {
-      const prevOutput: WBSCOutput = getEmptyOutput()
-      prevOutput.base = output.origBase
-      if (output.previousAdvance) {
-        if (mainInput.tie === true) {
-          prevOutput.text1 = 'TIE'
-        } else {
-          prevOutput.text1 = '*'
-        }
+  if (output.origBase > 0) {
+    const prevOutput: WBSCOutput = getEmptyOutput()
+    prevOutput.base = output.origBase
+    if (output.previousAdvance) {
+      if (output.tie === true) {
+        prevOutput.text1 = 'TIE'
+      } else {
+        prevOutput.text1 = '*'
       }
-      renderAdvance(prevOutput)
+    }
+    renderAdvance(prevOutput)
+  }
+
+  if (output.out === true) {
+    renderOut(output)
+    if (!useEvalStore().brokenDP && !output.nodp) {
+      useEvalStore().outs.push({ batter: battingOrder, base: output.base })
+    }
+  } else {
+    renderAdvance(output)
+
+    if (output.errorTarget) {
+      drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
     }
 
-    if (output.out === true) {
-      renderOut(output)
-      if (!useEvalStore().brokenDP) {
-        useEvalStore().outs.push({ batter: battingOrder, base: mainInput.base })
-      }
-    } else {
-      renderAdvance(output)
-
-      if (output.errorTarget) {
-        drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
-      }
-
-      if (extraInput) {
-        for (let i = 0; i < extraInput.length; i += 1) {
-          const extInput = extraInput[i]
-          if (extInput) {
-            renderAction(battingOrder, false, extInput)
-            if (!extInput.specAction.includes('N')) {
-              drawConnector(output.base, extInput.output!.base)
-            }
-          }
+    if (output.extraOutput) {
+      output.extraOutput.forEach((extraOutput) => {
+        renderAction(battingOrder, false, extraOutput)
+        if (!extraOutput.na) {
+          drawConnector(output.base, extraOutput.base)
         }
-      }
+      })
     }
   }
 }
@@ -60,7 +53,7 @@ function renderAction(battingOrder: number, clear: boolean, mainInput: WBSCInput
 // process 'safe' situation
 function renderAdvance(output: WBSCOutput) {
   if (!output.na) {
-    drawAdvanceLine(Math.max(output.base, output.errorTarget))
+    drawAdvanceLine(output.errorTarget > output.base ? output.errorTarget : output.base)
   }
   writeSituation(output)
 }
@@ -155,7 +148,7 @@ function drawOutCircle(base: number) {
 }
 
 // draw advance line from HP to given base (1-4)
-function drawAdvanceLine(base: number) {
+function drawAdvanceLine(base: WBSCBase) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset
@@ -253,22 +246,22 @@ function drawHitSymbol(base: number) {
         ctx.lineTo(w2 + 58 + hOffset, h2 + 45 + vOffset)
         break
       case 2:
-        ctx.moveTo(w2 + 25 + hOffset, h2 - 35 + vOffset)
-        ctx.lineTo(w2 + 50 + hOffset, 25 + vOffset)
-        ctx.moveTo(w2 + 30 + hOffset, 35 + vOffset)
-        ctx.lineTo(w2 + 58 + hOffset, 40 + vOffset)
-        ctx.moveTo(w2 + 28 + hOffset, 45 + vOffset)
-        ctx.lineTo(w2 + 56 + hOffset, 50 + vOffset)
+        ctx.moveTo(w2 + 18 + hOffset, h2 - 35 + vOffset)
+        ctx.lineTo(w2 + 43 + hOffset, 25 + vOffset)
+        ctx.moveTo(w2 + 23 + hOffset, 35 + vOffset)
+        ctx.lineTo(w2 + 51 + hOffset, 40 + vOffset)
+        ctx.moveTo(w2 + 21 + hOffset, 45 + vOffset)
+        ctx.lineTo(w2 + 49 + hOffset, 50 + vOffset)
         break
       case 3:
-        ctx.moveTo(20 + hOffset, h2 - 35 + vOffset)
-        ctx.lineTo(45 + hOffset, 25 + vOffset)
-        ctx.moveTo(25 + hOffset, 35 + vOffset)
-        ctx.lineTo(53 + hOffset, 40 + vOffset)
-        ctx.moveTo(23 + hOffset, 45 + vOffset)
-        ctx.lineTo(51 + hOffset, 50 + vOffset)
-        ctx.moveTo(21 + hOffset, 55 + vOffset)
-        ctx.lineTo(49 + hOffset, 60 + vOffset)
+        ctx.moveTo(18 + hOffset, h2 - 35 + vOffset)
+        ctx.lineTo(43 + hOffset, 25 + vOffset)
+        ctx.moveTo(23 + hOffset, 35 + vOffset)
+        ctx.lineTo(51 + hOffset, 40 + vOffset)
+        ctx.moveTo(21 + hOffset, 45 + vOffset)
+        ctx.lineTo(49 + hOffset, 50 + vOffset)
+        ctx.moveTo(19 + hOffset, 55 + vOffset)
+        ctx.lineTo(47 + hOffset, 60 + vOffset)
         break
     }
     ctx.stroke()
@@ -442,7 +435,7 @@ function writeSituation(output: WBSCOutput) {
         } else {
           if (hit) {
             drawHitSymbol(2)
-            hitOffset = 20
+            hitOffset = 18
           } else {
             hitOffset = 0
           }
@@ -524,6 +517,10 @@ function writeSituation(output: WBSCOutput) {
                 // special case for WP, because letter "W" is too wide
                 ctx.font = FONT_BASE_MEDIUM
                 offset = 12
+              } else if (text1 === 'GRL' || text1 === 'GLL') {
+                // special "grounder down-the-line" hits
+                ctx.font = FONT_BASE_SMALL
+                offset = 16
               } else {
                 ctx.font = FONT_BASE_LARGE
                 offset = 14
@@ -634,6 +631,10 @@ function writeSituation(output: WBSCOutput) {
                 // special case for WP, because letter "W" is too wide
                 ctx.font = FONT_BASE_MEDIUM
                 offset = 12
+              } else if (text1 === 'GRL' || text1 === 'GLL') {
+                // special "grounder down-the-line" hits
+                ctx.font = FONT_BASE_SMALL
+                offset = 18
               } else {
                 ctx.font = FONT_BASE_LARGE
                 offset = 14
@@ -864,7 +865,18 @@ function connectOutsIfNeeded() {
             startX = hOffset + lineHOffset
             startY = h2 - 13 + vOffsetStart
             endX = hOffset + lineHOffset
-            endY = h2 - 30 + vOffsetEnd
+            if (end.base === 4) {
+              startX += 5
+              endX += 5
+              startY += 10
+              endY = h2 + 30 + vOffsetEnd
+            } else if (end.base === 3) {
+              endY = h2 - 26 + vOffsetEnd
+            } else if (end.base === 2) {
+              endY = h4 + vOffsetEnd
+            } else {
+              endY = h2 - 30 + vOffsetEnd
+            }
             break
         }
 

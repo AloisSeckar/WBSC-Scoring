@@ -1,16 +1,20 @@
 <!-- eslint-disable vue/no-v-html (HTML content is used only from internal i18n) -->
 <template>
   <div class="text-center">
-    <h2>{{ $t('index.editor') }} <span class="text-red-500">v1.1</span></h2>
+    <h2>{{ $t('index.editor') }} <span class="text-red-500">{{ version }}</span></h2>
 
     <div class="container">
-      <div id="wbsc-inputs" class="mb-2">
-        <!-- inputs are dynamically rendered here -->
+      <div id="wbsc-inputs">
+        <WBSCInput :group="inputB" :label="useT('editor.batter')" :visible="useGUIStore().inputB" />
+        <WBSCInput :group="inputR1" :label="useT('editor.r1')" :visible="useGUIStore().inputR1" />
+        <WBSCInput :group="inputR2" :label="useT('editor.r2')" :visible="useGUIStore().inputR2" />
+        <WBSCInput :group="inputR3" :label="useT('editor.r3')" :visible="useGUIStore().inputR3" />
+        <WBSCToolbar ref="toolbar" />
       </div>
       <!-- modal window triggered by validation errors -->
-      <ValidationModal />
+      <ModalValidation />
       <!-- modal window triggered by "import from library" -->
-      <ImportModal />
+      <ModalImport />
     </div>
 
     <h2>{{ $t('index.output') }}</h2>
@@ -47,9 +51,12 @@
 </template>
 
 <script setup lang="ts">
-import initEditor from '@/utils/wbsc-global'
+import type { WBSCToolbar } from '#components'
+
+const version = 'v' + useAppConfig().publicVersion
 
 usePageMeta(WBSC_PAGE_META)
 
-onMounted(() => initEditor())
+const toolbar: Ref<InstanceType<typeof WBSCToolbar> | null> = ref(null)
+onMounted(() => toolbar.value?.init())
 </script>

@@ -3,58 +3,32 @@
 /* CORE file with input evaluation methods */
 /* *************************************** */
 
-import { noAdvActions } from './wbsc-validation'
 import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
-// triggered when user selects from 'base' action
-function changeBaseAction(group: string) {
-  if (group === inputB) {
-    changeBatterBaseAction()
-  } else {
-    changeRunnerBaseAction(group)
-  }
-}
-
 // triggered when user selects from 'specific' action
-function changeSpecificAction(group: string) {
-  if (group === inputB) {
-    changeBatterSpecificAction()
+// returns true, if action cannot be followed by another (= must be last)
+function changeSpecificAction(specAction: string, inputGroup: string) {
+  if (inputGroup === inputB) {
+    return changeBatterSpecificAction(specAction)
   } else {
-    changeRunnerSpecificAction(group)
+    return changeRunnerSpecificAction(specAction, inputGroup)
   }
-}
-
-// ajdust 'specific' action according to selected 'base' action
-function changeBatterBaseAction() {
-  const baseAction = document.getElementById(inputB + inputBaseAction) as HTMLInputElement
-  const actionOptions = renderBatterSpecificActionOptions(baseAction.value)
-  const specificActionDisabled = actionOptions.length < 1
-
-  const specificAction = document.getElementById(inputB + inputSpecAction) as HTMLInputElement
-  specificAction.innerHTML = actionOptions.join(' ')
-  specificAction.disabled = specificActionDisabled
-
-  changeBatterSpecificAction()
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeBatterSpecificAction() {
-  let fc = false
-  let hit = false
-  let out = false
+// returns true, if action cannot be followed by another (= must be last)
+function changeBatterSpecificAction(specAction: string) {
+  let last = false
+
   let minPosItems = 1
   let targetPosItems = 1
   let maxPosItems = 4
-  let runTypeSelectVisible = false
 
-  const specificAction = document.getElementById(inputB + inputSpecAction) as HTMLInputElement
-  const specificActionValue = specificAction.value
-  switch (specificActionValue) {
+  switch (specAction) {
     case 'FC':
     case 'SHFC':
     case 'KSFC':
     case 'KLFC':
-      fc = true
       minPosItems = targetPosItems = maxPosItems = 2
       break
     case 'KS':
@@ -69,8 +43,8 @@ function changeBatterSpecificAction() {
     case 'OBR_TBB':
     case 'OBR_BIC':
     case 'OBR_RTA':
-    case 'LT': // note - here it only means "no further action possible", not an actual out
-      out = true
+    case 'LT':
+      last = true
       // falls through
     case 'BB1':
     case 'IBB1':
@@ -82,26 +56,19 @@ function changeBatterSpecificAction() {
     case 'INT':
       minPosItems = targetPosItems = maxPosItems = 0
       break
+    case 'SF':
+    case 'FSF':
+    case 'IF':
+    case 'OBR_DIF':
+      last = true
+      // falls through
     case 'HR':
     case 'IHR':
-      runTypeSelectVisible = true
-      // falls through
     case '1B':
     case '2B':
     case '3B':
     case '1BB':
     case '2BG':
-      hit = true
-      minPosItems = targetPosItems = maxPosItems = 1
-      break
-    case 'SF':
-    case 'FSF':
-    case 'IF':
-    case 'OBR_DIF':
-      out = true
-      // falls through
-    case 'O':
-    case 'OCB':
     case 'KSO':
     case 'KLO':
     case 'SFO':
@@ -112,15 +79,18 @@ function changeBatterSpecificAction() {
     case 'OB':
     case 'SHEF':
     case 'SFE':
+    case 'O':
+    case 'OCB':
     case 'GDPO':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'GO':
     case 'GOB':
     case 'GDP':
+    case 'GDPB':
     case 'SH':
     case 'A':
-      out = true
+      last = true
       // falls through
     case 'GDPE':
       minPosItems = 1
@@ -139,7 +109,7 @@ function changeBatterSpecificAction() {
     case 'OBR_BOT':
     case 'OBR_BIN':
     case 'OBR_OIN':
-      out = true
+      last = true
       // falls through
     case 'KSE':
     case 'KLE':
@@ -150,9 +120,10 @@ function changeBatterSpecificAction() {
     case 'ET':
     case 'SHE':
     case 'SHET':
-      // no other adjustments
+      // no pos adjustments
       break
     default:
+      last = specAction === ''
       minPosItems = targetPosItems = maxPosItems = 0
   }
 
@@ -160,82 +131,22 @@ function changeBatterSpecificAction() {
   useEvalStore().setTargetPosItems(inputB, targetPosItems)
   useEvalStore().setMaxPosItems(inputB, maxPosItems)
 
-  const groupID = inputB + inputPosition
-
-  const container = document.getElementById(groupID) as HTMLElement
-  const addItemButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
-  const removeItemButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
-
-  let itemsCreated = container.getElementsByClassName(classWbscPos).length
-  while (itemsCreated > 0) {
-    const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement
-    container.removeChild(posItemN)
-    itemsCreated -= 1
-  }
-
-  while (itemsCreated < targetPosItems) {
-    itemsCreated += 1
-    const posItemN = getPosSelectionSelect(inputB, itemsCreated)
-    container.insertBefore(posItemN, addItemButton)
-  }
-
-  addItemButton.disabled = itemsCreated >= maxPosItems
-  removeItemButton.disabled = itemsCreated <= minPosItems
-
-  if (hit === true) {
-    const posItem1 = document.getElementById(groupID + '1') as HTMLInputElement
-    posItem1.innerHTML = renderHitLocationOptions().join(' ')
-
-    const posSelection = useEvalStore().getPosSelection(groupID)
-    if (isNaN(Number(posSelection[0]))) {
-      posItem1.value = posSelection
-    } else {
-      posItem1.value = posSelection[0] || '1'
-    }
-  }
-
-  if (fc === true) {
-    const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement
-    posItem2.innerHTML = renderFCLocationOptions().join(' ')
-    posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for "HP"
-  }
-
-  const runTypeBox = document.getElementById(inputB + inputRuntype + '-box') as HTMLElement
-  if (runTypeSelectVisible) {
-    runTypeBox.classList.remove(classHidden)
-  } else {
-    runTypeBox.classList.add(classHidden)
-  }
-
-  disableExtraInput(inputB, out === true || noAdvActions.includes(specificActionValue) || runTypeSelectVisible)
-}
-
-// ajdust 'specific' action according to selected 'base' action
-function changeRunnerBaseAction(group: string) {
-  const runnerBaseAction = document.getElementById(group + inputBaseAction) as HTMLInputElement
-  const actionOptions = renderRunnerSpecificActionOptions(runnerBaseAction.value, group)
-  const specificActionDisabled = actionOptions.length < 1
-
-  const specificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
-  specificAction.innerHTML = actionOptions.join(' ')
-  specificAction.disabled = specificActionDisabled
-
-  changeRunnerSpecificAction(group)
+  return last
 }
 
 // adjust 'involved' inputs according to selected 'specific' action
-function changeRunnerSpecificAction(group: string) {
-  let out = false
-  let throwing = false
+// returns true, if action cannot be followed by another (= must be last)
+function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
+  let last = false
+
   let minPosItems = 1
   let targetPosItems = 1
   let maxPosItems = 4
 
-  const runnerSpecificAction = document.getElementById(group + inputSpecAction) as HTMLInputElement
-  const runnerSpecificActionValue = runnerSpecificAction.value
-  switch (runnerSpecificActionValue) {
+  switch (specAction) {
     case 'OBR_rta':
-      out = true
+    case 'NADV':
+      last = true
       // falls through
     case 'ADV':
     case 'WP':
@@ -249,7 +160,6 @@ function changeRunnerSpecificAction(group: string) {
     case 'se1':
     case 'se2':
     case 'se3':
-    case 'NADV':
       minPosItems = targetPosItems = maxPosItems = 0
       break
     case 'OBR_hbb':
@@ -257,7 +167,7 @@ function changeRunnerSpecificAction(group: string) {
     case 'OBR_rro':
     case 'OBR_rle':
     case 'OBR_rhe':
-      out = true
+      last = true
       // falls through
     case 'POE':
     case 'O/':
@@ -267,108 +177,70 @@ function changeRunnerSpecificAction(group: string) {
       break
     case 'T':
       minPosItems = targetPosItems = maxPosItems = 2
-      throwing = true
       break
     case 'PO':
-      out = true
+      last = true
       minPosItems = targetPosItems = 2
       break
     case 'CSO':
+    case 'CSN':
     case 'POCS':
     case 'GO':
     case 'GOT':
-      out = true
+      last = true
       // falls through
     case 'CSE':
-    case 'CSN':
       minPosItems = 1
       targetPosItems = 2
       break
-    case 'POCSE':
     case 'POCSEN':
+      last = true
+      // falls through
+    case 'POCSE':
       minPosItems = targetPosItems = 1
       break
     case 'OBR_rol':
     case 'OBR_rin':
     case 'A':
-      out = true
+    case 'ENF':
+    case 'ENT':
+    case 'CSNT':
+    case 'POEN':
+      last = true
       // falls through
     case 'EF':
     case 'ET':
-    case 'ENF':
-    case 'ENT':
-    case 'CSET':
-    case 'CSNT':
-    case 'POEN':
     case 'eF':
     case 'eT':
-      // no other adjustments
+    case 'CSET':
+      // no pos adjustments
       break
     default:
-      maxPosItems = 1
+      last = specAction === ''
+      minPosItems = targetPosItems = maxPosItems = 0
   }
 
-  useEvalStore().setMinPosItems(group, minPosItems)
-  useEvalStore().setTargetPosItems(group, targetPosItems)
-  useEvalStore().setMaxPosItems(group, maxPosItems)
+  useEvalStore().setMinPosItems(inputGroup, minPosItems)
+  useEvalStore().setTargetPosItems(inputGroup, targetPosItems)
+  useEvalStore().setMaxPosItems(inputGroup, maxPosItems)
 
-  const groupID = group + inputPosition
-
-  const container = document.getElementById(groupID) as HTMLElement
-  const addItemButton = document.getElementById(groupID + inputAdd) as HTMLInputElement
-  const removeItemButton = document.getElementById(groupID + inputRemove) as HTMLInputElement
-
-  let itemsCreated = container.getElementsByClassName(classWbscPos).length
-  while (itemsCreated > 0) {
-    const posItemN = document.getElementById(groupID + itemsCreated) as HTMLElement
-    container.removeChild(posItemN)
-    itemsCreated -= 1
-  }
-
-  while (itemsCreated < targetPosItems) {
-    itemsCreated += 1
-    const posItemN = getPosSelectionSelect(group, itemsCreated)
-    container.insertBefore(posItemN, addItemButton)
-  }
-
-  addItemButton.disabled = itemsCreated >= maxPosItems
-  removeItemButton.disabled = itemsCreated <= minPosItems
-
-  if (throwing === true) {
-    const posItem2 = document.getElementById(groupID + '2') as HTMLInputElement
-    posItem2.innerHTML = renderFCLocationOptions().join(' ')
-    posItem2.value = useEvalStore().getPosSelection(groupID)[1] || 'Z' // for HP
-  }
-
-  const baseSelect = document.getElementById(group + inputBase) as HTMLInputElement
-  const runTypeBox = document.getElementById(group + inputRuntype + '-box') as HTMLElement
-  if (baseSelect?.value === '4' && !out) {
-    runTypeBox.classList.remove(classHidden)
-  } else {
-    runTypeBox.classList.add(classHidden)
-  }
-
-  disableExtraInput(group, out === true || noAdvActions.includes(runnerSpecificActionValue))
-}
-
-// allows to select run type when home base is selected
-function changeBase(group: string) {
-  // #202 - we need to know whether there was an out or not
-  // this method is able to calculate it
-  // re-creating or extracting the logic would be harder
-  changeRunnerSpecificAction(group)
+  return last
 }
 
 // enhance user's input with output instructions
 function processInput(input: WBSCInput, batter: number): WBSCOutput {
   const output: WBSCOutput = getEmptyOutput()
+  output.group = input.group
+  output.specAction = input.specAction
   output.batter = batter
   output.origBase = input.origBase
   output.base = input.base
   output.run = input.runtype
   output.errorTarget = input.base
+  output.tie = !!input.tie
+  output.nodp = !!input.nodp
 
-  let pos = input.pos
+  let pos = getPos(input)
   if (pos) {
     const lastPos = pos[pos.length - 1]
     if (lastPos === 'X') {
@@ -468,13 +340,16 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'O':
       output.text1 = action + pos
+      output.base = 1
       break
     case 'OCB':
       output.text1 = 'O' + pos + 'B'
+      output.base = 1
       break
     case 'FC':
       output.text1 = action
       output.text2 = pos
+      output.base = 1
       break
     case 'KSWP':
     case 'KSPB':
@@ -517,7 +392,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
         output.text2 += action.substring(3)
       }
       output.errorTarget = output.base
-      output.base = output.origBase + 1
+      output.base = output.origBase + 1 as WBSCBase
       break
     case 'INT':
       output.text1 = action
@@ -557,23 +432,29 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'WP':
     case 'PB':
-      possibleConcurrentPlay = true
-      // falls through
-    case 'wp':
-    case 'pb':
-      output.text1 = action + '#b#'
+      if (!useEvalStore().exb) {
+        useEvalStore().exb = true
+        possibleConcurrentPlay = true
+        output.text1 = action + '#b#'
+      } else {
+        output.text1 = action.toLowerCase() + '#b#'
+      }
       // #179 - multiple base advance should render same as an error
       output.errorTarget = output.base
-      output.base = output.origBase + 1
+      output.base = output.origBase + 1 as WBSCBase
       break
     case 'SB':
       possibleConcurrentPlay = true
-      // falls through
-    case 'BK':
-    case 'bk':
-    case 'IP':
-    case 'ip':
       output.text1 = action + '#b#'
+      break
+    case 'BK':
+    case 'IP':
+      if (!useEvalStore().exb) {
+        useEvalStore().exb = true
+        output.text1 = action + '#b#'
+      } else {
+        output.text1 = action.toLowerCase() + '#b#'
+      }
       break
     case 'SBPOA':
       possibleConcurrentPlay = true
@@ -588,14 +469,14 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       break
     case 'se1': {
       let battingOrder = 1
-      battingOrder += document.getElementById(inputR2) ? 1 : 0
-      battingOrder += document.getElementById(inputR3) ? 1 : 0
+      battingOrder += useGUIStore().inputR2 ? 1 : 0
+      battingOrder += useGUIStore().inputR3 ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
     }
       break
     case 'se2': {
       let battingOrder = 1
-      battingOrder += document.getElementById(inputR3) ? 1 : 0
+      battingOrder += useGUIStore().inputR3 ? 1 : 0
       output.text1 = '(' + battingOrder + ')'
     }
       break
@@ -653,7 +534,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       output.num = true
       output.errorTarget = output.base
       if (!action.includes('N')) {
-        output.base = input.origBase + 1
+        output.base = input.origBase + 1 as WBSCBase
       }
       possibleConcurrentPlay = true
       // do not wrap "short" no-advance plays
@@ -678,7 +559,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
         output.text2 = (action === 'POE' ? 'e' : 'E') + pos + 'T'
       }
       output.num = true
-      output.base = !action.includes('N') ? output.origBase + 1 : input.origBase
+      output.base = !action.includes('N') ? output.origBase + 1 as WBSCBase : input.origBase
       output.errorTarget = output.base
       possibleConcurrentPlay = true
       break
@@ -718,7 +599,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       if (action.includes('N')) {
         output.base = output.errorTarget = input.origBase
       } else {
-        output.base = output.origBase + 1
+        output.base = output.origBase + 1 as WBSCBase
         output.errorTarget = input.base
       }
       break
@@ -727,17 +608,21 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'EDP':
       output.text1 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1) + action.substring(action.length - 1)
       output.errorTarget = output.base
-      output.base = output.origBase + 1
+      output.base = output.origBase + 1 as WBSCBase
       break
     case 'GDPE':
       useEvalStore().brokenDP = true
       // falls through
+    case 'GDPB':
     case 'GDPO':
       output.text1 = 'GDP'
       if (action.includes('E')) {
         output.text2 = pos?.substring(0, pos.length - 1) + 'E' + pos?.substring(pos.length - 1)
         output.errorTarget = output.base
-        output.base = output.origBase + 1
+        output.base = output.origBase + 1 as WBSCBase
+      } else if (action.includes('B')) {
+        output.text2 = pos + 'B'
+        output.out = true
       } else {
         output.text2 = 'O' + pos
       }

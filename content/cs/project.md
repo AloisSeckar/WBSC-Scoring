@@ -16,7 +16,7 @@ Toto je open-source program distribuovaný pomocí [UNLICENSE](https://unlicense
 _(co zde už můžete najít)_
 
 <ul class="list-disc">
-<li>Editor rozeher umožňující zadat téměř všechny existující situace podle nejnovější verze WBSC manuálu</li><li>Stahování výsledných obrázků v PNG formátu</li><li>Export/Import akcí v JSON formátu</li><li>Knihovna akcí s téměř 200 předdefinovanými situacemi</li><li>Uživatelská příručka</li><li>Český, Anglický a Italský překlad</li>
+<li>Editor rozeher umožňující zadat téměř všechny existující situace podle nejnovější verze WBSC manuálu</li><li>Stahování výsledných obrázků v PNG formátu</li><li>Export/Import akcí v JSON formátu</li><li>Knihovna akcí s více než 200 předdefinovanými situacemi</li><li>Uživatelská příručka</li><li>Český, Anglický a Italský překlad</li>
 </ul>
 
 <a id="todo"></a>

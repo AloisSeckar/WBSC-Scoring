@@ -48,7 +48,7 @@
 		@apply bg-wbsc-blue hover:bg-sky-300;
 	}
 	.btn-json {
-		@apply bg-violet-400 hover:bg-violet-200;
+		@apply bg-violet-400 hover:bg-violet-200 whitespace-nowrap;
 	}
 	.btn-clear {
 		@apply bg-amber-500 hover:bg-amber-300;

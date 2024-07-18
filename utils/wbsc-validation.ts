@@ -4,7 +4,7 @@
 /* that are clearly impossible.             */
 /* **************************************** */
 
-import type { WBSCInput } from '@/composables/useInputStore'
+import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 
 const firstRunnerActions = [inputR1, inputR2, inputR3]
 export const firstActions = [inputB, inputR1, inputR2, inputR3]
@@ -18,23 +18,58 @@ const runnersOnlyActions = [
   'WP', 'PB', 'BK', 'IP', 'SB', 'SBPOA', 'CSE', 'CSET', 'CSN', 'CSNT',
   'POE', 'POEN', 'POCSE', 'POCSEN', 'CSO', 'PO', 'POCS',
 ]
-export const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN', 'NADV']
+export const noAdvActions = ['ENF', 'ENT', 'CSN', 'CSNT', 'POEN', 'POCSEN', 'NADV']
 
-// validation sequence to be run over given outputs
+// validation sequence to be run over given inputs/outputs
 // (this should be the single point of entry to validatons)
 // (called from wbsc-processor.processAction())
-function checkUserInput(inputs: WBSCInput[]) {
+export function checkUserInput(inputs: WBSCInput[], outputs: WBSCOutput[]) {
+  let validation = ''
+
+  // "extra" outputs are now nested inside main 4
+  // but validations were designed for "flat" array
+  // TODO this should be solved some better way..
+  const flattenedOutputs: WBSCOutput[] = []
+  outputs.forEach((output) => {
+    output.extraOutput?.forEach((output) => {
+      flattenedOutputs.push(output)
+    })
+    flattenedOutputs.push(output)
+  })
+
+  validation = attachValidation(validation, checkBasicRules(inputs))
+  validation = attachValidation(validation, checkRunnerOnlyActions(inputs))
+  validation = attachValidation(validation, checkOutsAndRuns(flattenedOutputs))
+  validation = attachValidation(validation, checkOutcome(flattenedOutputs))
+  validation = attachValidation(validation, checkHit(inputs))
+  validation = attachValidation(validation, checkAdvances(inputs))
+  validation = attachValidation(validation, checkFO(flattenedOutputs))
+  validation = attachValidation(validation, checkFC(inputs))
+  validation = attachValidation(validation, checkGDP(flattenedOutputs))
+  validation = attachValidation(validation, checkSHSF(inputs))
+  validation = attachValidation(validation, checkSBCS(inputs))
+  validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
+  validation = attachValidation(validation, checkNoAdvances(inputs))
+  validation = attachValidation(validation, checkOBRs(inputs))
+  validation = attachValidation(validation, checkDeadBallPlays(inputs))
+  validation = attachValidation(validation, checkSameError(flattenedOutputs))
+  validation = attachValidation(validation, checkEarnedRuns(flattenedOutputs))
+
+  return validation
+}
+
+// do some basic validations over inputs
+export function checkBasicRules(inputs: WBSCInput[]) {
   let validation = ''
 
   if (inputs.length === 0) {
     return useT('editor.validation.noEmptyInput')
   }
 
-  // 1) validations to be run over each input separately
   inputs.forEach((input) => {
-    if (input?.baseAction && input?.specAction) {
+    if (input.baseAction && input.specAction) {
       const minPosItems = useEvalStore().getMinPosItems(input.group)
-      const posSelection = input.pos
+      const posSelection = getPos(input)
       if (minPosItems > 0 && (!posSelection || posSelection.length < minPosItems)) {
         let message = useT('editor.validation.minPositions')
         message = message.replace('%pos%', minPosItems.toString())
@@ -42,7 +77,7 @@ function checkUserInput(inputs: WBSCInput[]) {
       } else if (posSelection) {
         const container = document.getElementById(input.group) as HTMLElement
         const allPosSelects = container.getElementsByClassName(classWbscPos)
-        const filteredPosSelects = [...allPosSelects].filter(i => i.id.startsWith(input.group + '-'))
+        const filteredPosSelects = [...allPosSelects].filter(i => i.id.startsWith(input.group + '-') && i.checkVisibility())
         if (filteredPosSelects.length > posSelection.length) {
           validation = attachValidation(validation, useT('editor.validation.allPositions'))
         } else {
@@ -55,7 +90,7 @@ function checkUserInput(inputs: WBSCInput[]) {
       if (input.specAction === 'SB' && input.base - input.origBase > 1) {
         validation = attachValidation(validation, useT('editor.validation.noSBAdvance'))
       }
-      if (['CSE', 'CSET', 'CSN', 'CSNT'].includes(input.specAction) && input.pos === '2') {
+      if (['CSE', 'CSET', 'CSN', 'CSNT'].includes(input.specAction) && getPos(input) === '2') {
         validation = attachValidation(validation, useT('editor.validation.noE2TSB'))
       }
     } else {
@@ -63,29 +98,11 @@ function checkUserInput(inputs: WBSCInput[]) {
     }
   })
 
-  // 2) validations over all outputs
-  validation = attachValidation(validation, checkRunnerOnlyActions(inputs))
-  validation = attachValidation(validation, checkOutsAndRuns(inputs))
-  validation = attachValidation(validation, checkOutcome(inputs))
-  validation = attachValidation(validation, checkHit(inputs))
-  validation = attachValidation(validation, checkAdvances(inputs))
-  validation = attachValidation(validation, checkFO(inputs))
-  validation = attachValidation(validation, checkFC(inputs))
-  validation = attachValidation(validation, checkGDP(inputs))
-  validation = attachValidation(validation, checkSHSF(inputs))
-  validation = attachValidation(validation, checkSBCS(inputs))
-  validation = attachValidation(validation, checkExtraBaseAdvances(inputs))
-  validation = attachValidation(validation, checkNoAdvances(inputs))
-  validation = attachValidation(validation, checkOBRs(inputs))
-  validation = attachValidation(validation, checkDeadBallPlays(inputs))
-  validation = attachValidation(validation, checkSameError(inputs))
-  validation = attachValidation(validation, checkEarnedRuns(inputs))
-
   return validation
 }
 
 // validates given 'involved' sequence
-function checkPosSelection(selection: string) {
+export function checkPosSelection(selection: string) {
   let validation = ''
 
   if (selection.match(/^\d+/)) {
@@ -99,7 +116,7 @@ function checkPosSelection(selection: string) {
       for (let i = 0; i < selection.length - 1; i += 1) {
         const current = parseInt(selection[i] || '1')
         if (alreadyEncounteredPositions[current] === true) {
-          validation = attachValidation(validation, useT('editor.validation.noMultIPleAsist'))
+          validation = attachValidation(validation, useT('editor.validation.noMultipleAsist'))
           break
         }
         alreadyEncounteredPositions[current] = true
@@ -111,7 +128,7 @@ function checkPosSelection(selection: string) {
 }
 
 // #204 - check runners-only actions
-function checkRunnerOnlyActions(inputs: WBSCInput[]) {
+export function checkRunnerOnlyActions(inputs: WBSCInput[]) {
   // basically it is not allowed to combine batter + runner-only action
   const batterAction = inputs.some(i => i.group === inputB)
   let invalidCombination = batterAction && inputs.some(i => runnersOnlyActions.includes(i.specAction))
@@ -122,12 +139,12 @@ function checkRunnerOnlyActions(inputs: WBSCInput[]) {
     const batterSpecAction = batterInput!.specAction
     const runnerActions = inputs.filter(i => i.group.startsWith('input-r'))
     if (batterSpecAction === 'BB1') {
-      // exception 1 - BB - WP/PB is possible
+      // exception 1 - BB + WP/PB is possible
       invalidCombination = runnerActions.some(i => !['ADV', 'WP', 'PB'].includes(i.specAction))
     } else if (batterSpecAction.startsWith('KS') || batterSpecAction.startsWith('KL')) {
       // exception 2 - KS/KL - only BK/IP is impossible
       invalidCombination = runnerActions.some(i => ['BK', 'IP'].includes(i.specAction))
-    } else if (batterSpecAction === 'OB' && batterInput!.pos === '2') {
+    } else if (batterSpecAction === 'OB' && getPos(batterInput!) === '2') {
       // exception 3 - OB2 + BK/IP is possible from 3rd
       const r3SpecAction = inputs.find(i => i.group === inputR3)?.specAction
       if (r3SpecAction === 'BK' || r3SpecAction === 'IP') {
@@ -145,16 +162,15 @@ function checkRunnerOnlyActions(inputs: WBSCInput[]) {
 
 // there cannot be more than 3 outs
 // there cannot be 3 outs + a run
-function checkOutsAndRuns(inputs: WBSCInput[]) {
+export function checkOutsAndRuns(outputs: WBSCOutput[]) {
   let outs = 0
   let runs = 0
 
-  inputs.forEach((input) => {
-    const output = input.output
-    if (output?.out === true) {
+  outputs.forEach((output) => {
+    if (output.out === true) {
       outs++
     }
-    if (output?.base === 4 && output?.out === false) {
+    if (output.base === 4 && output.out === false) {
       runs++
     }
   })
@@ -172,46 +188,43 @@ function checkOutsAndRuns(inputs: WBSCInput[]) {
 // runners cannot end on the same base
 // extra actions for same runner must happen in order
 // when the runner is out, he cannot advance further
-function checkOutcome(inputs: WBSCInput[]) {
+export function checkOutcome(outputs: WBSCOutput[]) {
   let validation = ''
 
   let currentBatter = -1
   let playerWasOut = false
   const reachedBases: number[] = []
 
-  inputs.forEach((input) => {
-    const output = input.output
-    if (output) {
-      if (currentBatter === output.batter) {
-        if (output.out) {
-          // this is probably a dead code after #60
-          if (playerWasOut) {
-            validation = attachValidation(validation, useT('editor.validation.noOutAfterOut'))
-          } else {
-            playerWasOut = true
-            validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
-          }
-        }
-        const maxReachedBase = reachedBases[reachedBases.length - 1] || output.base
-        const currentReachedBase = Math.max(output.base, output.errorTarget)
-
-        if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(input.specAction))) {
-          validation = attachValidation(validation, useT('editor.validation.advanceInOrder'))
-        }
-      } else {
-        // special case for "batter + same error"
+  outputs.forEach((output) => {
+    if (currentBatter === output.batter) {
+      if (output.out) {
         // this is probably a dead code after #60
-        if (input.group === inputB) {
-          if (output.base === 0 && output.errorTarget > 1) {
-            playerWasOut = true
-            validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
-          }
+        if (playerWasOut) {
+          validation = attachValidation(validation, useT('editor.validation.noOutAfterOut'))
+        } else {
+          playerWasOut = true
+          validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
         }
-        currentBatter = output.batter
-        playerWasOut = output.out
-        if (!playerWasOut) {
-          reachedBases.push(Math.max(output.base, output.errorTarget))
+      }
+      const currentReachedBase = Math.max(output.base, output.errorTarget)
+      const maxReachedBase = reachedBases[reachedBases.length - 1] || currentReachedBase
+
+      if (currentReachedBase > maxReachedBase || (currentReachedBase === maxReachedBase && noAdvActions.includes(output.specAction))) {
+        validation = attachValidation(validation, useT('editor.validation.advanceInOrder'))
+      }
+    } else {
+      // special case for "batter + same error"
+      // this is probably a dead code after #60
+      if (output.group === inputB) {
+        if (output.base === 0 && output.errorTarget > 1) {
+          playerWasOut = true
+          validation = attachValidation(validation, useT('editor.validation.noAdvanceAfterOut'))
         }
+      }
+      currentBatter = output.batter
+      playerWasOut = output.out
+      if (!playerWasOut) {
+        reachedBases.push(Math.max(output.base, output.errorTarget))
       }
     }
   })
@@ -233,7 +246,7 @@ function checkOutcome(inputs: WBSCInput[]) {
 }
 
 // HIT can only be credited to batter, if there is no forced out
-function checkHit(inputs: WBSCInput[]) {
+export function checkHit(inputs: WBSCInput[]) {
   let validation = ''
 
   let hitPlay = false
@@ -242,7 +255,7 @@ function checkHit(inputs: WBSCInput[]) {
   let forceOut = false
   let appealPlay = false
 
-  inputs.reverse().forEach((input) => {
+  inputs.toReversed().forEach((input) => {
     switch (input.group) {
       case inputB:
         if (hitActions.includes(input.specAction)) {
@@ -279,7 +292,7 @@ function checkHit(inputs: WBSCInput[]) {
 
 // ADVANCE BY BATTER may only appear at the FIRST runner input
 // additionally it require batter's action
-function checkAdvances(inputs: WBSCInput[]) {
+export function checkAdvances(inputs: WBSCInput[]) {
   let validation = ''
 
   if (inputs.some(i => i.specAction === 'ADV') && !inputs.some(i => i.group === inputB)) {
@@ -296,7 +309,7 @@ function checkAdvances(inputs: WBSCInput[]) {
 
 // forced out may only happen if runner is being forced to run by runners behind him
 // #154 - exception: runner is forced to return to base after fly-out
-function checkFO(inputs: WBSCInput[]) {
+export function checkFO(outputs: WBSCOutput[]) {
   let validation = ''
 
   const givenFO = [false, false, false]
@@ -304,16 +317,16 @@ function checkFO(inputs: WBSCInput[]) {
   let impossibleFO = false
   let flyout = false
 
-  inputs.forEach((input) => {
-    switch (input.group) {
+  outputs.toReversed().forEach((output) => {
+    switch (output.group) {
       case inputB:
         possibleFO[0] = true // runner at 1st may be forced out at 2nd
-        flyout = ['F', 'P', 'L', 'FF', 'FP', 'FL', 'FB', 'FFB'].includes(input.specAction)
+        flyout = ['F', 'P', 'L', 'FF', 'FP', 'FL', 'FB', 'FFB'].includes(output.specAction)
         break
       case inputR1:
         possibleFO[1] = !!possibleFO[0] // runner at 2nd may be forced out at 3rd
-        if (input.specAction === 'GO') {
-          if (input.output?.base === 2) {
+        if (output.specAction === 'GO') {
+          if (output.base === 2) {
             givenFO[0] = true
           } else {
             impossibleFO = true
@@ -322,8 +335,8 @@ function checkFO(inputs: WBSCInput[]) {
         break
       case inputR2:
         possibleFO[2] = !!possibleFO[0] && !!possibleFO[1] // runner at 3rd may be forced out at HP
-        if (input.specAction === 'GO') {
-          if (input.output?.base === 3) {
+        if (output.specAction === 'GO') {
+          if (output.base === 3) {
             givenFO[1] = true
           } else {
             impossibleFO = true
@@ -331,8 +344,8 @@ function checkFO(inputs: WBSCInput[]) {
         }
         break
       case inputR3:
-        if (input.specAction === 'GO') {
-          if (input.output?.base === 4) {
+        if (output.specAction === 'GO') {
+          if (output.base === 4) {
             givenFO[2] = true
           } else {
             impossibleFO = true
@@ -340,7 +353,7 @@ function checkFO(inputs: WBSCInput[]) {
         }
         break
       default:
-        if (input.specAction === 'GO') {
+        if (output.specAction === 'GO') {
           impossibleFO = true
         }
     }
@@ -370,7 +383,7 @@ function checkFO(inputs: WBSCInput[]) {
 // also linked play must start with mentioned fielder (#152)
 // FC => advance by batter, O => out/decessive error
 // special case: K+FC must be toghether with PB
-function checkFC(inputs: WBSCInput[]) {
+export function checkFC(inputs: WBSCInput[]) {
   let validation = ''
 
   let oSituation = false
@@ -382,18 +395,17 @@ function checkFC(inputs: WBSCInput[]) {
   let kfcPlay = false
 
   inputs.forEach((input) => {
-    const output = input.output
     if (input.group === inputB) {
       if (['O', 'OCB', 'KSO', 'KLO', 'SFO'].includes(input.specAction)) {
         oSituation = true
-        oTarget = input.pos?.at(0) || ''
+        oTarget = getPos(input).at(0) || ''
       } else if (input.specAction === 'FC' || input.specAction === 'SHFC') {
         fcSituation = true
       } else if (input.specAction === 'KSFC' || input.specAction === 'KLFC') {
         kfcSituation = true
       }
     } else if (firstRunnerActions.includes(input.group)) {
-      if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
+      if (['GOT', 'GO', 'A', 'OBR_rin'].includes(input.specAction) || decisiveErrorActions.includes(input.specAction)) {
         oPlay = true
       } else if (input.specAction === 'ADV') {
         fcPlay = true
@@ -404,7 +416,7 @@ function checkFC(inputs: WBSCInput[]) {
     // runners may also advance on "FC - occupied" (#209)
     if (input.specAction === 'o') {
       oSituation = true
-      oTarget = input.pos?.at(0) || ''
+      oTarget = getPos(input).at(0) || ''
     }
   })
 
@@ -422,7 +434,7 @@ function checkFC(inputs: WBSCInput[]) {
     let matchedPlay = false
     for (const input of inputs) {
       if (firstRunnerActions.includes(input.group)) {
-        if (oTarget === input.pos?.at(0)) {
+        if (oTarget === getPos(input).at(0)) {
           matchedPlay = true
           break
         }
@@ -436,22 +448,22 @@ function checkFC(inputs: WBSCInput[]) {
   return validation
 }
 
-// if GDP / GDPE / GDPO is selected for batter
+// if GDP / GDPB / GDPO / GDPE is selected for batter
 // there has to be at least 1 (2 for GDPO) correspondig out/decessive error situatuon for runners
-function checkGDP(inputs: WBSCInput[]) {
+export function checkGDP(outputs: WBSCOutput[]) {
   let validation = ''
 
   let gdpSelected = false
   let gdpoSelected = false
   let gdpOuts = 0
 
-  inputs.forEach((input) => {
-    const output = input.output
-    if (output?.text1 === 'GDP' || output?.text1 === 'GDPE') {
+  outputs.forEach((output) => {
+    // TODO maybe change impl to rely on "specAction" rather than "text1"?
+    if (output.text1 === 'GDP' || output.text1 === 'GDPB' || output.text1 === 'GDPE') {
       gdpSelected = true
-    } else if (output?.text1 === 'GDPO') {
+    } else if (output.text1 === 'GDPO') {
       gdpoSelected = true
-    } else if (output?.out || output?.text1.includes('E') || output?.text2?.includes('E')) {
+    } else if (output.out || output.text1.includes('E') || output.text2?.includes('E')) {
       gdpOuts++
     }
   })
@@ -467,7 +479,8 @@ function checkGDP(inputs: WBSCInput[]) {
 
 // if SH is selected for batter, there has to be at least 1 correspondig "advance by batter" runner action
 // if SF is selected for the batter, there has to be at least 1 corresponding "advance by batter" runner who scored
-function checkSHSF(inputs: WBSCInput[]) {
+// #219 - if SH is selected for batter, there cannot be forced out / decessive error of any runner
+export function checkSHSF(inputs: WBSCInput[]) {
   let validation = ''
 
   let shSelected = false
@@ -476,18 +489,15 @@ function checkSHSF(inputs: WBSCInput[]) {
   let runScored = false
 
   inputs.forEach((input) => {
-    if (input?.specAction.startsWith('SH')) {
+    if (input.specAction.startsWith('SH')) {
       shSelected = true
-    } else if (input?.specAction.startsWith('SF') || input?.specAction === 'FSF') {
+    } else if (input.specAction.startsWith('SF') || input.specAction === 'FSF') {
       sfSelected = true
-    } else if (input?.specAction === 'ADV') {
+    } else if (input.specAction === 'ADV') {
       advanceByBatter = true
-      if (input?.base === 4) {
+      if (input.base === 4) {
         runScored = true
       }
-    } else {
-      // TODO check for forced out
-      // there cannot be forced out + SH play
     }
   })
 
@@ -503,21 +513,48 @@ function checkSHSF(inputs: WBSCInput[]) {
     }
   }
 
+  if (!validation && shSelected) {
+    let runnerAt1 = false
+    let runnerAt2 = false
+    let forceOut = false
+
+    inputs.toReversed().forEach((input) => {
+      console.log(input)
+      switch (input.group) {
+        case inputR1:
+          runnerAt1 = true
+          forceOut = input.specAction.startsWith('GO')
+          break
+        case inputR2:
+          runnerAt2 = true
+          forceOut = forceOut || (runnerAt1 && input.specAction.startsWith('GO'))
+          break
+        case inputR3:
+          forceOut = forceOut || (runnerAt1 && runnerAt2 && input.specAction.startsWith('GO'))
+          break
+      }
+    })
+
+    if (forceOut) {
+      validation = attachValidation(validation, useT('editor.validation.noSHAndO'))
+    }
+  }
+
   return validation
 }
 
 // there cannot be SB and CS in the same play
 // when CS, other advances are indifference (O/)
-function checkSBCS(inputs: WBSCInput[]) {
+export function checkSBCS(inputs: WBSCInput[]) {
   let validation = ''
 
   let sbSelected = false
   let csSelected = false
 
   inputs.forEach((input) => {
-    if (input?.specAction === 'SB') {
+    if (input.specAction === 'SB') {
       sbSelected = true
-    } else if (input?.specAction.startsWith('CS')) {
+    } else if (input.specAction.startsWith('CS')) {
       csSelected = true
     }
   })
@@ -537,7 +574,7 @@ function checkSBCS(inputs: WBSCInput[]) {
 //     (not IBB or HP, because it is dead-ball)
 // WP/PB/IP/BK cannot be mixed
 // further IP/BK validation moved to checkDeadBallPlays (#206)
-function checkExtraBaseAdvances(inputs: WBSCInput[]) {
+export function checkExtraBaseAdvances(inputs: WBSCInput[]) {
   let validation = ''
 
   let isWP = false
@@ -591,8 +628,9 @@ function isAfterSB(inputs: WBSCInput[]) {
 }
 
 // "no advance" must be the last play and target must be the closest base
-// (last play is ensured by disabling extra inputs in wbsc-eval.ts)
-function checkNoAdvances(inputs: WBSCInput[]) {
+// - this validation only checks the target base
+// - last play is ensured by disabling extra inputs via `changeSpecificAction` result in wbsc-eval
+export function checkNoAdvances(inputs: WBSCInput[]) {
   let validation = ''
 
   let invalidNADV = false
@@ -612,7 +650,7 @@ function checkNoAdvances(inputs: WBSCInput[]) {
 // edge case - RLE is dead-ball
 // maybe can eventually be merged with `checkDeadBallPlays`?
 // #130 HBB - requires a single hit for batter
-function checkOBRs(inputs: WBSCInput[]) {
+export function checkOBRs(inputs: WBSCInput[]) {
   let validation = ''
 
   let isRLE = false
@@ -640,7 +678,7 @@ function checkOBRs(inputs: WBSCInput[]) {
 
 // #206 - when there is a "dead-ball" play, only necessary forced advances of other runners are possible
 // exception: OB2 + BK/IP (obstruction during squeeze play)
-function checkDeadBallPlays(inputs: WBSCInput[]) {
+export function checkDeadBallPlays(inputs: WBSCInput[]) {
   if (inputs.some(i => ['INT', 'OB', 'IBB1', 'HP'].includes(i.specAction))) {
     if (inputs.some(i => i.group !== inputB && !i.specAction.includes('ADV') && (i.group !== inputR3 || !['BK', 'IP'].includes(i.specAction)))) {
       return useT('editor.validation.noPlayAfterDeadBall')
@@ -657,13 +695,13 @@ function checkDeadBallPlays(inputs: WBSCInput[]) {
   }
 
   if (inputs.some(i => i.specAction === 'BK')) {
-    if (inputs.some(i => i.specAction.toUpperCase() !== 'BK' && (i.group !== inputB || i.specAction !== 'OB' || i.pos !== '2'))) {
+    if (inputs.some(i => i.specAction.toUpperCase() !== 'BK' && (i.group !== inputB || i.specAction !== 'OB' || getPos(i) !== '2'))) {
       return useT('editor.validation.noPlayAfterBK')
     }
   }
 
   if (inputs.some(i => i.specAction === 'IP')) {
-    if (inputs.some(i => i.specAction.toUpperCase() !== 'IP' && (i.group !== inputB || i.specAction !== 'OB' || i.pos !== '2'))) {
+    if (inputs.some(i => i.specAction.toUpperCase() !== 'IP' && (i.group !== inputB || i.specAction !== 'OB' || getPos(i) !== '2'))) {
       return useT('editor.validation.noPlayAfterIP')
     }
   }
@@ -671,15 +709,15 @@ function checkDeadBallPlays(inputs: WBSCInput[]) {
   return ''
 }
 
-// HIT can only be credited to batter, if there is no forced out
-function checkSameError(inputs: WBSCInput[]) {
+// there must be corresponding error to link "same error" with
+export function checkSameError(outputs: WBSCOutput[]) {
   let validation = ''
 
   // TODO some other computations may be also optimized like this?
-  const seB = inputs.some(i => i.specAction === 'se0')
-  const seR1 = inputs.some(i => i.specAction === 'se1')
-  const seR2 = inputs.some(i => i.specAction === 'se2')
-  const seR3 = inputs.some(i => i.specAction === 'se3')
+  const seB = outputs.some(o => o.specAction === 'se0')
+  const seR1 = outputs.some(o => o.specAction === 'se1')
+  const seR2 = outputs.some(o => o.specAction === 'se2')
+  const seR3 = outputs.some(o => o.specAction === 'se3')
 
   // error action happened
   let errB = false
@@ -687,9 +725,9 @@ function checkSameError(inputs: WBSCInput[]) {
   let errR2 = false
   let errR3 = false
 
-  inputs.forEach((input) => {
-    if (isError(input, errorActions)) {
-      switch (input.group) {
+  outputs.forEach((output) => {
+    if (isError(output, errorActions)) {
+      switch (output.group) {
         case inputB:
         case inputB1:
         case inputB2:
@@ -727,32 +765,32 @@ function checkSameError(inputs: WBSCInput[]) {
 
   // there may be only one "same error" (and "same occupied") action per each runner
   // 'oc' and 'se0 for batter' must be dealt differently, because in this case b1Input gets deleted
-  if (inputs.some(i => i.specAction === 'oc')) {
-    if (inputs.some(i => i.specAction === 'oc' && i.group !== inputB1)) {
+  if (outputs.some(o => o.specAction === 'oc')) {
+    if (outputs.some(o => o.specAction === 'oc' && o.group !== inputB1)) {
       validation = attachValidation(validation, useT('editor.validation.noExAdvFC'))
     }
   }
   if (seB) {
-    const seBInvalid = inputs.some(i => i.specAction === 'se0' && (i.group === inputB2 || i.group === inputB3))
-    const seBActions = inputs.filter(i => i.specAction === 'se0').map(i => getRunner(i.group))
+    const seBInvalid = outputs.some(o => o.specAction === 'se0' && (o.group === inputB2 || o.group === inputB3))
+    const seBActions = outputs.filter(o => o.specAction === 'se0').map(o => getRunner(o.group))
     if (seBInvalid || seBActions.length !== new Set(seBActions).size) {
       validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'B'))
     }
   }
   if (seR1) {
-    const seBActions = inputs.filter(i => i.specAction === 'se1').map(i => getRunner(i.group))
+    const seBActions = outputs.filter(o => o.specAction === 'se1').map(o => getRunner(o.group))
     if (seBActions.length !== new Set(seBActions).size) {
       validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'R1'))
     }
   }
   if (seR2) {
-    const seBActions = inputs.filter(i => i.specAction === 'se2').map(i => getRunner(i.group))
+    const seBActions = outputs.filter(o => o.specAction === 'se2').map(o => getRunner(o.group))
     if (seBActions.length !== new Set(seBActions).size) {
       validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'R2'))
     }
   }
   if (seR3) {
-    const seBActions = inputs.filter(i => i.specAction === 'se3').map(i => getRunner(i.group))
+    const seBActions = outputs.filter(o => o.specAction === 'se3').map(o => getRunner(o.group))
     if (seBActions.length !== new Set(seBActions).size) {
       validation = attachValidation(validation, useT('editor.validation.noExAdvSE').replace('#p#', 'R3'))
     }
@@ -762,7 +800,7 @@ function checkSameError(inputs: WBSCInput[]) {
 }
 
 // RUN cannot be marked as "earned" once there was a decessive error
-function checkEarnedRuns(inputs: WBSCInput[]) {
+export function checkEarnedRuns(outputs: WBSCOutput[]) {
   let validation = ''
 
   // run marked as earned
@@ -784,12 +822,12 @@ function checkEarnedRuns(inputs: WBSCInput[]) {
   let tieR1 = false
   let tieR2 = false
 
-  inputs.forEach((input) => {
-    const err = isError(input, decisiveErrorActions)
-    const earned = isEarnedRun(input)
-    const teamUnearned = isTeamUnearnedRun(input)
+  outputs.forEach((output) => {
+    const err = isError(output, decisiveErrorActions)
+    const earned = isEarnedRun(output)
+    const teamUnearned = isTeamUnearnedRun(output)
 
-    switch (input.group) {
+    switch (output.group) {
       case inputB:
       case inputB1:
       case inputB2:
@@ -802,7 +840,7 @@ function checkEarnedRuns(inputs: WBSCInput[]) {
         }
         break
       case inputR1:
-        tieR1 = input.tie
+        tieR1 = output.tie
         // falls through
       case inputR1a:
       case inputR1b:
@@ -817,7 +855,7 @@ function checkEarnedRuns(inputs: WBSCInput[]) {
         }
         break
       case inputR2:
-        tieR2 = input.tie
+        tieR2 = output.tie
         // falls through
       case inputR2a:
         if (err) {
@@ -861,7 +899,7 @@ function checkEarnedRuns(inputs: WBSCInput[]) {
 }
 
 // separate validator for batter edge-cases (see #112)
-function checkBInput(b1Action: string, bAction: string): string {
+export function checkBInput(b1Action: string, bAction: string): string {
   let validation = ''
 
   if (b1Action === 'se0' && !decisiveErrorActions.includes(bAction)) {
@@ -892,16 +930,16 @@ function getRunner(group: string): string {
 }
 
 // helper to decide whether there is an error action in current input
-function isError(input: WBSCInput, actionList: string[]): boolean {
-  return actionList.includes(input?.specAction)
+function isError(output: WBSCOutput, actionList: string[]): boolean {
+  return actionList.includes(output.specAction)
 }
 // helper to decide whether there is an earned run in current input
-function isEarnedRun(input: WBSCInput): boolean {
-  return (input?.output?.base === 4 || input?.output?.errorTarget === 4) && input?.output?.run === 'e'
+function isEarnedRun(output: WBSCOutput): boolean {
+  return (output.base === 4 || output.errorTarget === 4) && output.run === 'e'
 }
 // helper to decide whether there is a team unearned run in current input
-function isTeamUnearnedRun(input: WBSCInput): boolean {
-  return (input?.output?.base === 4 || input?.output?.errorTarget === 4) && input?.output?.run === 'tu'
+function isTeamUnearnedRun(output: WBSCOutput): boolean {
+  return (output.base === 4 || output.errorTarget === 4) && output.run === 'tu'
 }
 
 // helper to attach new part of validation message to previous contents
@@ -910,8 +948,4 @@ function attachValidation(validation: string, newMessage: string) {
     validation += '\n'
   }
   return validation + newMessage
-}
-
-export {
-  checkUserInput, checkBInput,
 }

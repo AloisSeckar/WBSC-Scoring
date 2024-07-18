@@ -30,148 +30,148 @@ export function exportInputAsJSON() {
 // except one special evaluation (bErrorTarget) and we dont use output+validation here
 // refactor to be able to have such code only once...
 function getRawInputs(): WBSCInput[] {
+  const GUI = useGUIStore()
+
+  const inputStore = useInputStore()
   const inputs = [] as WBSCInput[]
 
-  const r3Input = getInput(inputR3, true)
-  if (r3Input) {
+  const r3Input = inputStore.inputR3
+  if (GUI.inputR3 && r3Input.baseAction) {
     inputs.push(r3Input)
   }
 
-  const r2aInput = getInput(inputR2a, true)
-  if (r2aInput) {
+  const r2aInput = inputStore.inputR2a
+  if (GUI.inputR2a && r2aInput.baseAction) {
     inputs.push(r2aInput)
   }
-  const r2Input = getInput(inputR2, true)
-  if (r2Input) {
+  const r2Input = inputStore.inputR2
+  if (GUI.inputR2 && r2Input.baseAction) {
     inputs.push(r2Input)
   }
 
-  const r1bInput = getInput(inputR1b, true)
-  if (r1bInput) {
+  const r1bInput = inputStore.inputR1b
+  if (GUI.inputR1b && r1bInput.baseAction) {
     inputs.push(r1bInput)
   }
-  const r1aInput = getInput(inputR1a, true)
-  if (r1aInput) {
+  const r1aInput = inputStore.inputR1a
+  if (GUI.inputR1a && r1aInput.baseAction) {
     inputs.push(r1aInput)
   }
-  const r1Input = getInput(inputR1, true)
-  if (r1Input) {
+  const r1Input = inputStore.inputR1
+  if (GUI.inputR1 && r1Input.baseAction) {
     inputs.push(r1Input)
   }
 
-  const b3Input = getInput(inputB3, true)
-  if (b3Input) {
+  const b3Input = inputStore.inputB3
+  if (GUI.inputB3 && b3Input.baseAction) {
     inputs.push(b3Input)
   }
-  const b2Input = getInput(inputB2, true)
-  if (b2Input) {
+  const b2Input = inputStore.inputB2
+  if (GUI.inputB2 && b2Input.baseAction) {
     inputs.push(b2Input)
   }
-  const b1Input = getInput(inputB1, true)
-  if (b1Input) {
+  const b1Input = inputStore.inputB1
+  if (GUI.inputB1 && b1Input.baseAction) {
     inputs.push(b1Input)
   }
-  const bInput = getInput(inputB, true)
-  if (bInput) {
+  const bInput = inputStore.inputB
+  if (GUI.inputB && bInput.baseAction) {
     inputs.push(bInput)
   }
 
   return inputs
 }
 
-export function importInputFromJSON() {
+export function importFile() {
+  document.getElementById(inputImportFile)?.click()
+}
+
+export async function importInputFromJSON() {
   const fileInput = document.getElementById(inputImportFile) as HTMLInputElement
   const file = fileInput?.files?.[0]
 
   if (file) {
     const reader = new FileReader()
-    reader.onload = (event) => {
-      processFile(event.target?.result)
+    reader.onload = async (event) => {
+      await processFile(event.target?.result)
     }
     reader.readAsText(file)
   }
   // TODO we may want to log errors...
 }
 
-export function importInputFromLib(fileName: string) {
-  fetch('/json/' + fileName)
+export async function importInputFromLib(fileName: string) {
+  fetch('/json/' + fileName + '.json')
     .then(response => response.json())
-    .then((fileData) => {
-      processFile(JSON.stringify(fileData))
+    .then(async (fileData) => {
+      await processFile(JSON.stringify(fileData))
     })
     // TODO we may want to log errors...
 }
 
-function processFile(fileData: string | ArrayBuffer | null | undefined) {
+async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
     clearInputs()
-    renderInputs(inputB)
-    const jsonData: WBSCInput[] = JSON.parse(fileData.toString())
-    jsonData?.reverse().forEach((input) => {
-      setInputs(input)
-    })
+    useGUIStore().inputB = false
+    const jsonData: WBSCInputJson[] = JSON.parse(fileData.toString())
+    for (const input of jsonData) {
+      await setInputFromJSON(input)
+    }
     processAction()
   }
 }
 
-function setInputs(input: WBSCInput) {
-  const group = input.group
+async function setInputFromJSON(input: WBSCInputJson) {
+  const guiModel = useInputStore().getModel(input.group)
+
+  guiModel.baseAction = input.baseAction
+  await new Promise(resolve => setTimeout(resolve, 0))
+
+  guiModel.specAction = input.specAction
+  await new Promise(resolve => setTimeout(resolve, 0))
+
+  guiModel.tie = !!input.tie
+  guiModel.nodp = !!input.nodp
+  guiModel.base = input.base
+  guiModel.runtype = input.runtype
+
   const pos = input.pos
-
-  let parentDiv
-  if (group.match(/b\d$/)) {
-    parentDiv = document.getElementById(inputB)
-  } else if (group.endsWith('a') || group.endsWith('b')) {
-    parentDiv = document.getElementById(group.slice(0, -1))
-  }
-  renderInputs(group, parentDiv || undefined)
-
-  const selectBaseAction = document.getElementById(group + inputBaseAction) as HTMLSelectElement
-  selectBaseAction.value = input.baseAction
-  selectBaseAction.dispatchEvent(new Event('change'))
-
-  const selectSpecAction = document.getElementById(group + inputSpecAction) as HTMLSelectElement
-  selectSpecAction.value = input.specAction
-  selectSpecAction.dispatchEvent(new Event('change'))
-
   if (pos) {
-    // for some inputs there are less pos selection items then initially generated
-    let itemsCreated = document.getElementById(group)!.getElementsByClassName(classWbscPos).length
-    while (itemsCreated > pos.length) {
-      unRenderPosSelectItem(group)
-      itemsCreated--
-    }
-    if (pos.match(/^\d/)) {
-      for (let i = 0; i < pos.length; i++) {
-        let posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
-        if (!posSelection) {
-          renderPosSelectItem(group)
-          posSelection = document.getElementById(group + inputPosition + (i + 1)) as HTMLSelectElement
-          if (pos.match(/[XYZ]$/)) {
-            posSelection.innerHTML = renderFCLocationOptions().join(' ') // default are player positions
-          }
-        }
-        posSelection.value = pos[i] || '1'
-      }
+    // legacy .json - only one "pos" element that needs to be parsed
+    // usually starts with a number (fielding position),
+    // but hits are an exception (they can be 2-3 letter strings)
+    if (!pos.match(/^\d/)) {
+      useEvalStore().setTargetPosItems(input.group, 1)
+      guiModel.pos1 = pos
     } else {
-      const hitSelection = document.getElementById(group + inputPosition + '1') as HTMLSelectElement
-      hitSelection.value = pos
+      const length = pos.length
+      useEvalStore().setTargetPosItems(input.group, length)
+      if (length > 0) {
+        guiModel.pos1 = pos[0]!
+      }
+      if (length > 1) {
+        guiModel.pos2 = pos[1]!
+      }
+      if (length > 2) {
+        guiModel.pos3 = pos[2]!
+      }
+      if (length > 3) {
+        guiModel.pos4 = pos[3]!
+      }
     }
+  } else {
+    // since #217 - there are 4 separate variables
+    const length = getPosSelected(input.pos1, input.pos2, input.pos3, input.pos4)
+    useEvalStore().setTargetPosItems(input.group, length)
+    guiModel.pos1 = input.pos1 || ''
+    guiModel.pos2 = input.pos2 || ''
+    guiModel.pos3 = input.pos3 || ''
+    guiModel.pos4 = input.pos4 || ''
   }
 
-  if (group !== inputB) {
-    const selectBase = document.getElementById(group + inputBase) as HTMLSelectElement
-    selectBase.value = input.base?.toString()
-  }
+  useGUIStore().setVisible(input.group, true)
+}
 
-  const selectRuntype = document.getElementById(group + inputRuntype) as HTMLInputElement
-  selectRuntype.disabled = input.base < 4 && !input.specAction.includes('HR')
-  if (input.runtype) {
-    selectRuntype.value = input.runtype
-  }
-
-  if (group === inputR1 || group === inputR2) {
-    const checkTie = document.getElementById(group + inputTie) as HTMLInputElement
-    checkTie.checked = input.tie
-  }
+function getPosSelected(...args: (string | undefined | null)[]) {
+  return args.filter(arg => !!arg).length
 }

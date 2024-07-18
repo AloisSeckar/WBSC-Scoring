@@ -26,21 +26,19 @@ Underneath there is basic output form consisting of empty scoresheet element and
 
 ### Entering first play
 
-Note you cannot select from **Run** combo-box by default, because it requires a play that ends up safe at home base. This option will be covered later in more advanced topics.
-
 You start by picking an option from the first **Action** combo-box containing groups of possible situations. Internally this is called a "base action":
 
 <div>
 <article-image src="03-base-action.png" alt="" :width="200" />
 </div>
 
-Based on the selection the second combo-box becomes active and being filled with concrete plays. This is called a "specific action". The options are grouped into "safe" and "out" situations:
+Based on the selection the second combo-box becomes active and being filled with concrete plays. This is called a "specific action":
 
 <div>
 <article-image src="04-specific-action.png" alt="" :width="400" />
 </div>
 
-The third element of every action is called **Involved**. This means defensive player position(s) or locations on the field (in certain cases). The availability of those UI elements depends on specific action selection. For some plays there is no additional information allowed, for some there is exactly one or exactly two options. For the rest you can select 1-4. You add new inputs with green "+P" button and remove them with red "-P" button. When it is not possible to add/remove inputs, the buttons are not enabled.
+The third element of every action is called **Involved**. This means defensive player position(s) or locations on the field (in certain cases). The availability of those UI elements depends on specific action selection. For some plays there is no additional information allowed, for some there is exactly one or exactly two options. For the rest you can select 1-4. You add new inputs with green "+P" button and remove them with red "-P" button (see later). When it is not possible to add/remove inputs, the buttons are not enabled.
 
 <div>
 <article-image src="05-involved.png" alt="" :height="40" />
@@ -84,9 +82,11 @@ Runner's input is slightly different from the batter's and there are also minor 
 
 For 1st and 2nd base. There is a "Tiebreak" checkbox. If it is checked, runner doesn't appear on base with generic red asterisk, but instead the symbol TIE is used (which is how WBSC scores tiebreaker runners).
 
-From the "Base" combo-box you pick the base that runner gains with current action. Obviously, the options are adjusted depending on which base we are currently on. If you need a runner to stay on the current base, you don't do it here, but instead you pick "No advance" from the "Action" menu.
+For 1st, 2nd and 3rd base. There is a "No DP" checkbox. If it is checked and selected action resulted into an out, it is not connected with other out(s). This can be used to point out a situation where an error (writter or extempted) breaks the natural flow of the double play.
 
-If a play resulting in a safe situation at home plate is selected, combo-box "Run" becomes active. Then you pick from "ER" _(earned run)_ / "UE" _(unearned run)_ / "TU" _(team unearned run)_ options. This feature is here mainly to show differences between each variant. There are some basic validations, but during the game it depends on a broader context of previous plays, while here we always score just one separate action. "Run" is also possible directly for the batter, but only for "Hit - Home run" plays.
+From the "Base" combo-box you pick the base that runner gains with current action. Obviously, the options are adjusted depending on which base we are currently on. If you need a runner to stay on the current base, you don't do it here, but instead you pick "No advance" from the "Action" menu. 
+
+If a play resulting in a safe situation at home plate is selected, combo-box "Run" becomes visible. Then you pick from "ER" _(earned run)_ / "UE" _(unearned run)_ / "TU" _(team unearned run)_ options. This feature is here mainly to show differences between each variant. There are some basic validations, but during the game it depends on a broader context of previous plays, while here we always score just one separate action. "Run" is also possible for the batter, but only for "Hit - Home run" plays.
 
 <div>
 <article-image src="11-type-of-run.png" alt="" :height="150" />
@@ -100,7 +100,7 @@ If needed, there can be more than one situation chained together with the initia
 <article-image src="12-plus-action.png" alt="" :height="40" />
 </div>
 
-The box with new inputs renders directly below:
+The button is only active if the currently selected play ends up safe. The box with new inputs renders directly below:
 
 <div>
 <article-image src="13-extra-input.png" alt="" :width="600" />
@@ -112,11 +112,13 @@ If you change your mind, you hide and thus disable extra inputs with red "-" but
 <article-image src="14-minus-action.png" alt="" :height="40" />
 </div>
 
-For the batter there can be up to 3 extra inputs (one situation at each base). If you decide to remove them again, you have to start from the last (only the last "-" button is enabled). For the runners, the number of possible extra inputs logically decreases as the home plate is getting closer (0-2 for 1st base, 0-1 for 2nd base and none for 3rd base, as the first action already moved that runner home). The selection of actions is naturally different for the batter (becoming batter runner) and the other runners. The other functions are the same.
+For the batter there can be up to 3 extra inputs (one situation at each base). If you decide to remove them again, you have to start from the last (only the last "-" button is enabled). If you select a play that results into an out, the rest of the extra inputs chain disappears.
+
+For the runners, the number of possible extra inputs logically decreases as the home plate is getting closer (0-2 for 1st base, 0-1 for 2nd base and none for 3rd base, as the first action already moved that runner home). The selection of actions is naturally different for the batter (becoming batter runner) and the other runners. The other functions are the same.
 
 ### Advanced - Reset form
 
-You can use the yellow "Clear" button to quickly reset inputs into initial state with simple batter's action input only and everything cleared.
+You can use the yellow "Clear" button to quickly reset inputs into initial state with simple batter's action input only and everything else cleared.
 
 <div>
 <article-image src="15-clear.png" alt="" :height="40" />

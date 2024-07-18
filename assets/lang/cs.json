@@ -63,6 +63,7 @@
                 "GO" : "Ground out",
                 "GOB" : "Ground out - bunt",
                 "GDP" : "Grounded into double play",
+                "GDPB" : "GDP + bunt",
                 "GDPO" : "GDP + occupied",
                 "GDPE" : "GDP + error"
             },
@@ -202,7 +203,7 @@
             "export" : "Export rozehry"
         },
         "validation" : {
-            "noEmptyInput" : "Musí být vybrána alespoň jedna skupina vstupů.",
+            "noEmptyInput" : "Musí být zadána alespoň jedna akce.",
             "minPositions" : "Pro tuto situaci musí být zadáno nejméně %pos% pozice.",
             "allPositions" : "Musí být vybrány všechny pozice.",
             "noNAAdvance" : "'No advance' nemůže pokračovat další situací.",
@@ -219,7 +220,7 @@
             "advanceInOrder" : "Navazující situace běžce musí proběhnout ve správném pořadí.",
             "noPassingRunner" : "Hráč nemůže předběhnout jiného běžce.",
             "noSameBase" : "Dva běžci nemohou skončit na stejné metě.",
-            "noHitAndO" : "Není možné zapsat HIT, pokud je běžec nuceně aut před dosaženém další mety, použijte místo toho 'FC - Occupied'.",
+            "noHitAndO" : "Není možné zapsat HIT, pokud je běžec nuceně aut před dosažením další mety, použijte místo toho 'FC - Occupied'.",
             "noHitAndA" : "Není možné zapsat HIT, pokud zároveň nastala hra na výzvu + nucený aut, použijte místo toho 'FC - Occupied'.",
             "noADVWithoutBatter" : "'Advanced by batter' není možné bez akce pálkaře.",
             "invalidADV" : "'Advanced by batter' může být pouze PRVNÍ akce běžce.",
@@ -236,6 +237,7 @@
             "missingSHPlay" : "Je vybráno 'SH', ale žádný běžec nepostoupil na akci pálkaře.",
             "missingSFPlay" : "Je vybráno 'SF', ale žádný běžec nepostoupil na akci pálkaře.",
             "missingSFRun" : "Je vybráno 'SF', ale žádný běžec neskóroval.",
+            "noSHAndO" : "Není možné zapsat SH, pokud je běžec nuceně aut před dosažením další mety.",
             "noSBCS" : "SB není možné zapsat, pokud byl jiný běžec CS. Použijte místo toho 'FC - indifference'.",
             "noMixedExtraAdvances" : "WP/PB/BK/IP nelze kombinovat v jedné rozehře. Použijte pouze jeden typ akce pro všechny vstupy.",
             "noWPAfterPlay" : "WP nemůže nastat po jiné situaci (kromě SB a BB).",

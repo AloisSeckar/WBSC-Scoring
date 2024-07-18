@@ -16,7 +16,7 @@ Il progetto è rilasciato sotto la licenza [UNLICENSE](https://unlicense.org/) e
 **(cosa puoi già trovare qui)**
 
 <ul class="list-disc">
-<li>Editor per le azioni in grado di inserire la maggior parte delle situazioni esistenti secondo l'ultimo manuale WBSC</li><li>Scarica le immagini di output come PNG</li><li>Esporta/Importa azioni in formato JSON</li><li>Libreria azioni con 193 giocate predefinite</li><li>Manuale utente</li><li>Traduzione in inglese, ceco e italiano</li>
+<li>Editor per le azioni in grado di inserire la maggior parte delle situazioni esistenti secondo l'ultimo manuale WBSC</li><li>Scarica le immagini di output come PNG</li><li>Esporta/Importa azioni in formato JSON</li><li>Libreria azioni con più di 200 giocate predefinite</li><li>Manuale utente</li><li>Traduzione in inglese, ceco e italiano</li>
 </ul>
 
 
