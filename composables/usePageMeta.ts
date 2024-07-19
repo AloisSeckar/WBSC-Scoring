@@ -1,7 +1,7 @@
 export const WBSC_TYPE = 'website'
 export const WBSC_URL = 'https://wbsc-scoring.netlify.app'
 export const WBSC_TITLE = 'WBSC Scoring Creator'
-export const WBSC_DSCR = 'JavaScript-based visualization of WBSC Scoring System'
+export const WBSC_DSCR = 'Visualization of WBSC baseball/softball scoring system for educational purposes'
 
 export type MetaDef = {
   type?: 'website' | 'article'
