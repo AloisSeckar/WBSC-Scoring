@@ -1,8 +1,9 @@
 // #215 - centralized logging system
 // https://github.com/unjs/consola
 
-import type { LogLevel, LogObject } from 'consola'
-import { LogLevels, consola, createConsola } from 'consola'
+import type { LogLevel, LogObject } from 'consola/core'
+import { LogLevels, createConsola } from 'consola/core'
+import { consola } from 'consola'
 
 // default instance to write into browser's console
 const defaultReporter = consola
