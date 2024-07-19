@@ -2,6 +2,12 @@
 
 This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
 
+## Version 1.2.1 (2024-07-19)
+- Bugfixes:
+  - SEO Meta tags not rendered correctly (#247)
+  - Hydration mismatches in translations (#248)
+  - Dynamic translations of base/spec actions (#249)
+
 ## Version 1.2.0 (2024-07-18)
 - Features:
   - "No DP" option for runners (#180)
