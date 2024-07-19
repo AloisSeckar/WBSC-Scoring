@@ -8,20 +8,20 @@
             WBSC Scoring <span class="text-red-500">Creator</span>
           </h1>
         </header>
-        <ClientOnly>
-          <div class="text-left sm:text-justify mb-16">
-            <NuxtPage />
-          </div>
-          <footer class="fixed bottom-0 left-0 w-full p-1 bg-wbsc-blue text-black text-xs">
-            {{ $t('footer.creator') }}
-            <NuxtLink to="http://alois-seckar.cz" class="text-white hover:text-yellow-300">
-              Alois Sečkár
-            </NuxtLink>
-            (2019-{{ new Date().getFullYear() }})
-            {{ $t('footer.version') }}
-            <strong>{{ useAppConfig().fullVersion }}</strong>
-          </footer>
-        </ClientOnly>
+        <!-- <ClientOnly> -->
+        <div class="text-left sm:text-justify mb-16">
+          <NuxtPage />
+        </div>
+        <footer class="fixed bottom-0 left-0 w-full p-1 bg-wbsc-blue text-black text-xs">
+          {{ $t('footer.creator') }}
+          <NuxtLink to="http://alois-seckar.cz" class="text-white hover:text-yellow-300">
+            Alois Sečkár
+          </NuxtLink>
+          (2019-{{ new Date().getFullYear() }})
+          {{ $t('footer.version') }}
+          <strong>{{ useAppConfig().fullVersion }}</strong>
+        </footer>
+        <!-- </ClientOnly> -->
       </div>
     </div>
   </div>
