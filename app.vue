@@ -1,14 +1,14 @@
 <template>
-  <ClientOnly>
-    <div id="top" class="flex justify-center">
-      <div class="mx-2 md:w-4/5">
-        <LanguageSelector />
-        <div class="text-center">
-          <header class="mt-1 mb-2">
-            <h1 class="cursor-pointer" @click="toIndex">
-              WBSC Scoring <span class="text-red-500">Creator</span>
-            </h1>
-          </header>
+  <div id="top" class="flex justify-center">
+    <div class="mx-2 md:w-4/5">
+      <LanguageSelector />
+      <div class="text-center">
+        <header class="mt-1 mb-2">
+          <h1 class="cursor-pointer" @click="toIndex">
+            WBSC Scoring <span class="text-red-500">Creator</span>
+          </h1>
+        </header>
+        <ClientOnly>
           <div class="text-left sm:text-justify mb-16">
             <NuxtPage />
           </div>
@@ -21,10 +21,10 @@
             {{ $t('footer.version') }}
             <strong>{{ useAppConfig().fullVersion }}</strong>
           </footer>
-        </div>
+        </ClientOnly>
       </div>
     </div>
-  </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">
