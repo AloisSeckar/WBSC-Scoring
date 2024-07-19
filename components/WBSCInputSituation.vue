@@ -107,7 +107,8 @@ watch(() => model.value.base, () => {
   checkRunTypeVisible()
 }, { immediate: true })
 
-const baseActionOptions: GUIOption[] = renderBaseActionOptions(props.group)
+const baseActionOptions: Ref<GUIOption[]> = ref([])
+reloadBaseActions()
 
 const specActionOptions: Ref<GUIOption[]> = ref([])
 const specActionDisabled = ref(true)
@@ -116,15 +117,10 @@ const pos1Type: Ref<PositionType> = ref('player-locations')
 const pos2Type: Ref<PositionType> = ref('player-locations')
 
 watch(() => model.value.baseAction, () => {
-  const baseAction = model.value.baseAction
-  specActionOptions.value.length = 0
-  if (props.group === inputB) {
-    specActionOptions.value.push(...renderBatterSpecificActionOptions(baseAction))
-  } else {
-    specActionOptions.value.push(...renderRunnerSpecificActionOptions(baseAction, props.group))
-  }
+  reloadSpecActions()
   specActionDisabled.value = specActionOptions.value.length < 1
   //
+  const baseAction = model.value.baseAction
   if (baseAction === 'Hit') {
     pos1Type.value = 'hit-locations'
   } else {
@@ -277,6 +273,27 @@ function hidePosSelectItem() {
       pos1Show.value = false
       model.value.pos1 = ''
     }
+  }
+}
+
+const { locale } = useI18n()
+watch(() => locale.value, () => {
+  reloadBaseActions()
+  reloadSpecActions()
+})
+
+function reloadBaseActions() {
+  baseActionOptions.value.length = 0
+  baseActionOptions.value.push(...renderBaseActionOptions(props.group))
+}
+
+function reloadSpecActions() {
+  const baseAction = model.value.baseAction
+  specActionOptions.value.length = 0
+  if (props.group === inputB) {
+    specActionOptions.value.push(...renderBatterSpecificActionOptions(baseAction))
+  } else {
+    specActionOptions.value.push(...renderRunnerSpecificActionOptions(baseAction, props.group))
   }
 }
 </script>
