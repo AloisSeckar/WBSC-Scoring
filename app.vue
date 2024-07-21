@@ -1,7 +1,7 @@
 <template>
-  <ClientOnly>
-    <div id="top" class="flex justify-center">
-      <div class="mx-2 md:w-4/5">
+  <div id="top" class="flex justify-center">
+    <div class="mx-2 md:w-4/5">
+      <ClientOnly>
         <LanguageSelector />
         <div class="text-center">
           <header class="mt-1 mb-2">
@@ -22,9 +22,9 @@
             <strong>{{ useAppConfig().fullVersion }}</strong>
           </footer>
         </div>
-      </div>
+      </ClientOnly>
     </div>
-  </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -41,6 +41,15 @@ useHead({
   htmlAttrs: {
     lang: locale.value,
   },
+})
+
+const title = ref(getPageTitle(useRoute().path))
+usePageMeta({
+  ...WBSC_PAGE_META,
+  title,
+})
+useRouter().beforeEach((to) => {
+  title.value = getPageTitle(to.path)
 })
 
 function toIndex() {

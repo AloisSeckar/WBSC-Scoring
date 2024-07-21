@@ -55,8 +55,6 @@ import type { WBSCToolbar } from '#components'
 
 const version = 'v' + useAppConfig().publicVersion
 
-usePageMeta(WBSC_PAGE_META)
-
 const toolbar: Ref<InstanceType<typeof WBSCToolbar> | null> = ref(null)
 onMounted(() => toolbar.value?.init())
 </script>

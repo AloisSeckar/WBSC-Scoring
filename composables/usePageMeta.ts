@@ -5,9 +5,9 @@ export const WBSC_DSCR = 'Visualization of WBSC baseball/softball scoring system
 
 export type MetaDef = {
   type?: 'website' | 'article'
-  url?: string
-  title?: string
-  dscr?: string
+  url?: string | Ref<string>
+  title?: string | Ref<string>
+  dscr?: string | Ref<string>
 }
 
 export const WBSC_PAGE_META: MetaDef = {
@@ -28,4 +28,18 @@ export function usePageMeta(meta: MetaDef) {
     ogImage: 'https://wbsc-scoring.netlify.app/demo.png',
     twitterCard: 'summary_large_image',
   })
+}
+
+export function getPageTitle(route: string) {
+  const title = WBSC_TITLE
+  switch (route) {
+    case '/help':
+      return title + ' - Help'
+    case '/project':
+      return title + ' - Project'
+    case '/report':
+      return title + ' - Report'
+    default:
+      return title
+  }
 }
