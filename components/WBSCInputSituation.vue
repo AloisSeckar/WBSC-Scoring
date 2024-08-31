@@ -13,7 +13,7 @@
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase" ref="baseSelect" v-model="model.base">
+        <select :id="group + inputBase" ref="baseSelect" v-model="model.base" @change="changeBase()">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
@@ -154,7 +154,7 @@ watch(() => model.value.specAction, () => {
   } else {
     checkRunTypeVisible()
   }
-  emit('play', last)
+  emit('play', last || model.value.base === 4)
   //
   hideAllPos()
   const targetPosItems = useEvalStore().getTargetPosItems(props.group)
@@ -294,6 +294,12 @@ function reloadSpecActions() {
     specActionOptions.value.push(...renderBatterSpecificActionOptions(baseAction))
   } else {
     specActionOptions.value.push(...renderRunnerSpecificActionOptions(baseAction, props.group))
+  }
+}
+
+function changeBase() {
+  if (model.value.base === 4) {
+    emit('play', true)
   }
 }
 </script>
