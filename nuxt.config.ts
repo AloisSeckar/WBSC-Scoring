@@ -21,6 +21,10 @@ export default defineNuxtConfig({
     },
   },
 
+  i18n: {
+    vueI18n: './i18n.config.ts',
+  },
+
   nitro: {
     prerender: {
       routes: ['/help', '/project', '/report'],
