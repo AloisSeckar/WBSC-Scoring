@@ -155,29 +155,6 @@ watch(() => model.value.specAction, () => {
     checkRunTypeVisible()
   }
   emit('play', last || model.value.base === 4)
-  //
-  hideAllPos()
-  const targetPosItems = useEvalStore().getTargetPosItems(props.group)
-  if (targetPosItems > 0) {
-    pos1Show.value = true
-  } else {
-    model.value.pos1 = ''
-  }
-  if (targetPosItems > 1) {
-    pos2Show.value = true
-  } else {
-    model.value.pos2 = ''
-  }
-  if (targetPosItems > 2) {
-    pos3Show.value = true
-  } else {
-    model.value.pos3 = ''
-  }
-  if (targetPosItems > 3) {
-    pos4Show.value = true
-  } else {
-    model.value.pos4 = ''
-  }
 })
 
 function checkRunTypeVisible() {
@@ -263,6 +240,30 @@ function hidePosSelectItem() {
     }
   }
 }
+
+watch(() => useEvalStore().getTargetPosItems(props.group), (targetPosItems) => {
+  hideAllPos()
+  if (targetPosItems > 0) {
+    pos1Show.value = true
+  } else {
+    model.value.pos1 = ''
+  }
+  if (targetPosItems > 1) {
+    pos2Show.value = true
+  } else {
+    model.value.pos2 = ''
+  }
+  if (targetPosItems > 2) {
+    pos3Show.value = true
+  } else {
+    model.value.pos3 = ''
+  }
+  if (targetPosItems > 3) {
+    pos4Show.value = true
+  } else {
+    model.value.pos4 = ''
+  }
+})
 
 const { locale } = useI18n()
 watch(() => locale.value, () => {
