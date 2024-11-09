@@ -1,10 +1,4 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2024-09-01',
-
-  devtools: {
-    enabled: false,
-  },
-
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
@@ -14,6 +8,26 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
+
+  devtools: {
+    enabled: false,
+  },
+
+  runtimeConfig: {
+    public: {
+      // default log level for consola
+      // (less important logs will be ignored)
+      logLevel: 'debug',
+    },
+  },
+
+  compatibilityDate: '2024-11-09',
+
+  nitro: {
+    prerender: {
+      routes: ['/help', '/project', '/report'],
+    },
+  },
 
   eslint: {
     config: {
@@ -25,19 +39,5 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
     locales: ['en'],
     defaultLocale: 'en',
-  },
-
-  nitro: {
-    prerender: {
-      routes: ['/help', '/project', '/report'],
-    },
-  },
-
-  runtimeConfig: {
-    public: {
-      // default log level for consola
-      // (less important logs will be ignored)
-      logLevel: 'debug',
-    },
   },
 })
