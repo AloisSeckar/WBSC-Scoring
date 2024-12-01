@@ -30,5 +30,10 @@
     "tailwindcss": "3.4.15",
     "typescript": "5.7.2",
     "vitest": "2.1.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "5.4.11"
+    }
   }
 }
