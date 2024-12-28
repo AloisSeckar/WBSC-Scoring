@@ -580,8 +580,8 @@
     "name": "Wild pitch - R1 + R2 + R3"
   },
   {
-    "file": "wp-r3-52",
-    "name": "Wild pitch - R3 out at home 3B to C"
+    "file": "wp-r2-r3-21",
+    "name": "Wild pitch - R2 + R3 out at home C to P"
   },
   {
     "file": "pb-r1",
@@ -602,6 +602,10 @@
   {
     "file": "pb-r3-r2-e2t-r1-e1",
     "name": "Passed ball - R3 scores, R2 scores on e2T, R1 scores on e1"
+  },
+  {
+    "file": "pb-r1-r3-21",
+    "name": "Passed ball - R1 + R3 out at home C to P"
   },
   {
     "file": "bk-r1",
