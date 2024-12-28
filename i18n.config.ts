@@ -4,7 +4,9 @@ import it from '@/assets/lang/it.json'
 
 export default defineI18nConfig(() => ({
   legacy: false,
+  strategy: 'no_prefix',
   locale: 'en',
+  defaultLocale: 'en',
   fallbackLocale: 'en',
   messages: { en, cs, it },
   warnHtmlMessage: false,

@@ -2,6 +2,13 @@
 
 This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
 
+## Version 1.3.0 (2024-12-28)
+- Features:
+  - 11 new library actions
+- Tech updates:
+  - Corrections in input rendering (#238, #257)
+- Bugfixes - GitHub issues #256, #258, #265
+
 ## Version 1.2.2 (2024-07-21)
 - Bugfixes:
   - SEO Meta tags not rendered correctly (#247)

@@ -192,6 +192,14 @@
     "name": "Single to RF + 916 out at 2nd"
   },
   {
+    "file": "1b-ls-r1-75",
+    "name": "Single to RF + R1 out LF to 3B at 3rd"
+  },
+  {
+    "file": "1b-mi-t82-r2-82",
+    "name": "Single to MI + R2 out CF to C at Home, batter to 2nd on throw"
+  },
+  {
     "file": "1b-9-r2-hp-tie",
     "name": "Single to RF + R2 scores (tiebreak)"
   },
@@ -284,6 +292,10 @@
     "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, no DP"
   },
   {
+    "file": "fc-o6-e-r2-6e5",
+    "name": "Fielder's choice - occupied - R2 reaches on 5E6, batter to 2nd"
+  },
+  {
     "file": "fc-64",
     "name": "Fielder's choice - SS to 2B"
   },
@@ -336,6 +348,14 @@
     "name": "Error - fielding by 2B, assited by C, SS and 3B, R2 scorers"
   },
   {
+    "file": "error-4-e8",
+    "name": "Error - fielding by 2B, B scorers on e8, R2 scorers"
+  },
+  {
+    "file": "error-e4f-r1-r2",
+    "name": "Error - dropped fly by 2B, R1 and R2 advance on error"
+  },
+  {
     "file": "error-int",
     "name": "Error - catcher's interference"
   },
@@ -382,6 +402,14 @@
   {
     "file": "error-r3-e6t-r1-cs26",
     "name": "Error - R3 to Home on e6T, R1 out (CS 26)"
+  },
+  {
+    "file": "error-r3-1e2",
+    "name": "Error - R3 scored on 1E2"
+  },
+  {
+    "file": "error-r3-e5-b-o5",
+    "name": "Error - R3 scored on E5, B reached on O5"
   },
   {
     "file": "1b-9-e9",
@@ -446,6 +474,10 @@
   {
     "file": "1b-5b-e5t-9e5",
     "name": "Single to 3B, bunt + e5T to 2nd + 9E5 to Home"
+  },
+  {
+    "file": "1b-ls-r2-e7-hp",
+    "name": "Single to LS, R2 out CF to C at Home"
   },
   {
     "file": "2b-rl-e9t",
@@ -548,6 +580,10 @@
     "name": "Wild pitch - R1 + R2 + R3"
   },
   {
+    "file": "wp-r2-r3-21",
+    "name": "Wild pitch - R2 + R3 out at home C to P"
+  },
+  {
     "file": "pb-r1",
     "name": "Passed ball - R1"
   },
@@ -566,6 +602,10 @@
   {
     "file": "pb-r3-r2-e2t-r1-e1",
     "name": "Passed ball - R3 scores, R2 scores on e2T, R1 scores on e1"
+  },
+  {
+    "file": "pb-r1-r3-21",
+    "name": "Passed ball - R1 + R3 out at home C to P"
   },
   {
     "file": "bk-r1",
@@ -622,6 +662,10 @@
   {
     "file": "sb-poa",
     "name": "Stolen base after pick-off attempt"
+  },
+  {
+    "file": "sb-52",
+    "name": "Stolen base + out at HP 3B to C"
   },
   {
     "file": "indifference-r1",

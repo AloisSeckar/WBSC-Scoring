@@ -10,7 +10,8 @@ import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 function processAction() {
   log.info('Getting input')
 
-  useEvalStore().$reset()
+  // #265
+  useEvalStore().softReset()
 
   const GUI = useGUIStore()
   const inputStore = useInputStore()
@@ -313,7 +314,7 @@ function adjustIO(outputs: WBSCOutput[]) {
   }
 }
 
-// helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/189
+// helper for various special cases of concurrent plays
 function connectSpecialCases(outputs: WBSCOutput[]) {
   const inputStore = useInputStore()
   const batterInput = inputStore.inputB
@@ -461,6 +462,42 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
         })
       }
     })
+  }
+
+  // #256 - connect putout at home + WP/PB
+  const outAtHome = r3SpecAction === 'GOT'
+  const r1WpOrPb = r1Output && (r1SpecAction === 'WP' || r1SpecAction === 'PB')
+  const r2WpOrPb = r2Output && (r2SpecAction === 'WP' || r2SpecAction === 'PB')
+
+  if (outAtHome && (r1WpOrPb || r2WpOrPb)) {
+    // runner from 3rd out at HP
+    useEvalStore().pushConcurrentPlayIfNotAdded({
+      batter: r3Output!.batter,
+      base: 4,
+      out: true,
+      na: false,
+      text1: r3Output!.text1,
+    })
+    if (r2WpOrPb) {
+      // runner 2 advance on WP/PB
+      useEvalStore().pushConcurrentPlayIfNotAdded({
+        batter: r2Output!.batter,
+        base: r2Output!.base,
+        out: false,
+        na: false,
+        text1: r2Output!.text1,
+      })
+    }
+    if (r1WpOrPb && !r2WpOrPb) {
+      // runner 1 advance on WP/PB
+      useEvalStore().pushConcurrentPlayIfNotAdded({
+        batter: r1Output!.batter,
+        base: r1Output!.base,
+        out: false,
+        na: false,
+        text1: r1Output!.text1,
+      })
+    }
   }
 }
 

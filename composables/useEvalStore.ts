@@ -60,6 +60,17 @@ export const useEvalStore = defineStore({
     return data
   },
   actions: {
+    softReset() {
+      // reset necessary fields before scoring a new play
+      // but not the whole store (see #257 and #265)
+      this.batter = 1
+      this.batterAction = false
+      this.outs = []
+      this.concurrentPlays = []
+      this.gdp = false
+      this.brokenDP = false
+      this.exb = false
+    },
     setError(errorText: string) {
       this.errorText = errorText
       this.errorShow = true

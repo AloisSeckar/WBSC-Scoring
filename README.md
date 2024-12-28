@@ -1,8 +1,6 @@
 # WBSC Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system. The app is powered by [Nuxt](https://nuxtjs.org/).
 
-**NOTE: Dev currently not working properly due to WIP on #217**
-
 Project is available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) for usage instructions.
 
 This software is distributed under [http://unlicense.org/](UNLICENSE) (free to use without any terms). Mentions and endorsements appreciated, but not requested.

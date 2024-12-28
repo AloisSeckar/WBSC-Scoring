@@ -519,7 +519,6 @@ export function checkSHSF(inputs: WBSCInput[]) {
     let forceOut = false
 
     inputs.toReversed().forEach((input) => {
-      console.log(input)
       switch (input.group) {
         case inputR1:
           runnerAt1 = true

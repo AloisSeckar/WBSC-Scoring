@@ -13,7 +13,7 @@
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase" ref="baseSelect" v-model="model.base">
+        <select :id="group + inputBase" ref="baseSelect" v-model="model.base" @change="changeBase()">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
@@ -154,46 +154,11 @@ watch(() => model.value.specAction, () => {
   } else {
     checkRunTypeVisible()
   }
-  emit('play', last)
-  //
-  hideAllPos()
-  const targetPosItems = useEvalStore().getTargetPosItems(props.group)
-  if (targetPosItems > 0) {
-    pos1Show.value = true
-  } else {
-    model.value.pos1 = ''
-  }
-  if (targetPosItems > 1) {
-    pos2Show.value = true
-  } else {
-    model.value.pos2 = ''
-  }
-  if (targetPosItems > 2) {
-    pos3Show.value = true
-  } else {
-    model.value.pos3 = ''
-  }
-  if (targetPosItems > 3) {
-    pos4Show.value = true
-  } else {
-    model.value.pos4 = ''
-  }
+  emit('play', last || model.value.base === 4)
 })
 
 function checkRunTypeVisible() {
   runTypeVisible.value = model.value.base?.toString() === '4' && !lastPlaySelected.value
-}
-
-watch(() => model.value.pos1, () => adjustPosVisibility())
-watch(() => model.value.pos2, () => adjustPosVisibility())
-watch(() => model.value.pos3, () => adjustPosVisibility())
-watch(() => model.value.pos4, () => adjustPosVisibility())
-function adjustPosVisibility() {
-  const target = useEvalStore().getTargetPosItems(props.group)
-  pos1Show.value = !!model.value.pos1 || target > 0
-  pos2Show.value = !!model.value.pos2 || target > 1
-  pos3Show.value = !!model.value.pos3
-  pos4Show.value = !!model.value.pos4
 }
 
 const pos1Show = ref(false)
@@ -276,6 +241,30 @@ function hidePosSelectItem() {
   }
 }
 
+watch(() => useEvalStore().getTargetPosItems(props.group), (targetPosItems) => {
+  hideAllPos()
+  if (targetPosItems > 0) {
+    pos1Show.value = true
+  } else {
+    model.value.pos1 = ''
+  }
+  if (targetPosItems > 1) {
+    pos2Show.value = true
+  } else {
+    model.value.pos2 = ''
+  }
+  if (targetPosItems > 2) {
+    pos3Show.value = true
+  } else {
+    model.value.pos3 = ''
+  }
+  if (targetPosItems > 3) {
+    pos4Show.value = true
+  } else {
+    model.value.pos4 = ''
+  }
+})
+
 const { locale } = useI18n()
 watch(() => locale.value, () => {
   reloadBaseActions()
@@ -294,6 +283,12 @@ function reloadSpecActions() {
     specActionOptions.value.push(...renderBatterSpecificActionOptions(baseAction))
   } else {
     specActionOptions.value.push(...renderRunnerSpecificActionOptions(baseAction, props.group))
+  }
+}
+
+function changeBase() {
+  if (model.value.base === 4) {
+    emit('play', true)
   }
 }
 </script>
