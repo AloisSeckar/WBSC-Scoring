@@ -469,8 +469,6 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   const r1WpOrPb = r1Output && (r1SpecAction === 'WP' || r1SpecAction === 'PB')
   const r2WpOrPb = r2Output && (r2SpecAction === 'WP' || r2SpecAction === 'PB')
 
-  console.log(useEvalStore().exb)
-
   if (outAtHome && (r1WpOrPb || r2WpOrPb)) {
     // runner from 3rd out at HP
     useEvalStore().pushConcurrentPlayIfNotAdded({
