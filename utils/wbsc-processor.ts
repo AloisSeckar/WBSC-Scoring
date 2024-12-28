@@ -10,6 +10,9 @@ import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
 function processAction() {
   log.info('Getting input')
 
+  // #265
+  useEvalStore().softReset()
+
   const GUI = useGUIStore()
   const inputStore = useInputStore()
 
