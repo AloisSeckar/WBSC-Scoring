@@ -32,5 +32,10 @@
     "vitest": "2.1.8",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "pnpm": {
+    "overrides": {
+      "path-to-regexp": "^0.1.12"
+    }
   }
 }
