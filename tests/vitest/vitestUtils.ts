@@ -25,7 +25,7 @@ export function createMockOutput(values: Partial<WBSCOutput>): WBSCOutput {
 export function createMockPosSelections(inputGroup: string, numberOfSelects: number) {
   const cleanup = document.getElementById(inputGroup)
   if (cleanup) {
-    document.removeChild(cleanup)
+    document.body.removeChild(cleanup)
   }
 
   const mockContainer = document.createElement('div')
@@ -36,5 +36,5 @@ export function createMockPosSelections(inputGroup: string, numberOfSelects: num
     mockSelect.setAttribute('class', classWbscPos)
     mockContainer.appendChild(mockSelect)
   }
-  document.appendChild(mockContainer)
+  document.body.appendChild(mockContainer)
 }
