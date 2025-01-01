@@ -86,11 +86,12 @@ const nodpVisible = props.group === inputR1 || props.group === inputR2 || props.
 
 const baseSelect: Ref<HTMLSelectElement | null> = ref(null)
 const baseVisible = props.group !== inputB
-const baseOptions: GUIOption[] = renderBaseOptions(getBaseOptionsValue(props.group))
+const baseOptions: Ref<GUIOption[]> = ref([])
+reloadBaseOptions()
 
 watch(() => model.value.base, (newValue) => {
   if (newValue === 0 && props.group !== inputB) {
-    model.value.base = baseOptions.at(0)!.value as WBSCBase
+    model.value.base = baseOptions.value.at(0)!.value as WBSCBase
   }
 }, { immediate: true })
 
@@ -267,9 +268,15 @@ watch(() => useEvalStore().getTargetPosItems(props.group), (targetPosItems) => {
 
 const { locale } = useI18n()
 watch(() => locale.value, () => {
+  reloadBaseOptions()
   reloadBaseActions()
   reloadSpecActions()
 })
+
+function reloadBaseOptions() {
+  baseOptions.value.length = 0
+  baseOptions.value.push(...renderBaseOptions(getBaseOptionsValue(props.group)))
+}
 
 function reloadBaseActions() {
   baseActionOptions.value.length = 0
