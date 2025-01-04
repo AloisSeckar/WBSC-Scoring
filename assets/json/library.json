@@ -536,6 +536,14 @@
     "name": "Grounded into DP - SS to 2B to 1B"
   },
   {
+    "file": "gdp-36",
+    "name": "Grounded into DP - 1B to SS"
+  },
+  {
+    "file": "gdp-543-tp",
+    "name": "Grounded into DP - 3B to 2B to 1B (triple play)"
+  },
+  {
     "file": "gdpb-163",
     "name": "Grounded into DP - P to SS to 1B, bunt"
   },
