@@ -1,886 +1,1107 @@
 [
   {
     "file": "out-63",
-    "name": "Ground out - SS to 1B"
+    "name": "Ground out - SS to 1B",
+    "cat": "Ground Outs"
   },
   {
     "file": "out-3",
-    "name": "Ground out - 1B, unassisted"
+    "name": "Ground out - 1B, unassisted",
+    "cat": "Ground Outs"
   },
   {
     "file": "out-143",
-    "name": "Ground out - P to 2B to 1B"
+    "name": "Ground out - P to 2B to 1B",
+    "cat": "Ground Outs"
   },
   {
     "file": "out-54b",
-    "name": "Ground out - 3B to 2B, bunt"
+    "name": "Ground out - 3B to 2B, bunt",
+    "cat": "Ground Outs"
   },
   {
     "file": "out-63-r2-out-6",
-    "name": "Ground out - SS to 1B, R2 out SS, unassisted, DP"
+    "name": "Ground out - SS to 1B, R2 out SS, unassisted, DP",
+    "cat": "Ground Outs"
   },
   {
     "file": "out-f4",
-    "name": "Fly out - 2B"
+    "name": "Fly out - 2B",
+    "cat": "Fly Outs"
   },
   {
     "file": "out-ff5",
-    "name": "Fly out (foul) - 3B"
+    "name": "Fly out (foul) - 3B",
+    "cat": "Fly Outs"
   },
   {
     "file": "out-ff2b",
-    "name": "Fly out (foul) - C, bunt"
+    "name": "Fly out (foul) - C, bunt",
+    "cat": "Fly Outs"
   },
   {
     "file": "out-l4-r1-out-43",
-    "name": "Lined out to 2B, R1 out 2B to 1B, DP"
+    "name": "Lined out to 2B, R1 out 2B to 1B, DP",
+    "cat": "Double plays"
   },
   {
     "file": "out-l6-r2-out-64",
-    "name": "Lined out to SS, R2 out SS to 2B, DP"
+    "name": "Lined out to SS, R2 out SS to 2B, DP",
+    "cat": "Double plays"
   },
   {
     "file": "out-l1-r3-out-15",
-    "name": "Lined out to P, R3 out P to 3B, DP"
+    "name": "Lined out to P, R3 out P to 3B, DP",
+    "cat": "Double plays"
   },
   {
     "file": "out-f9-r1-93-r3-3265",
-    "name": "Fly out to RF, R1 out 93, R3 out 3265, TP"
+    "name": "Fly out to RF, R1 out 93, R3 out 3265, TP",
+    "cat": "Double plays"
   },
   {
     "file": "ks",
-    "name": "Strike out - swinging"
+    "name": "Strike out - swinging",
+    "cat": "Strike outs"
   },
   {
     "file": "kl",
-    "name": "Strike out - looking"
+    "name": "Strike out - looking",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-2",
-    "name": "Strike out (S) - tag by C"
+    "name": "Strike out (S) - tag by C",
+    "cat": "Strike outs"
   },
   {
     "file": "kl-23",
-    "name": "Strike out (L) - C to 1B"
+    "name": "Strike out (L) - C to 1B",
+    "cat": "Strike outs"
   },
   {
     "file": "ksb",
-    "name": "Strike out (S) - bunt 3rd"
+    "name": "Strike out (S) - bunt 3rd",
+    "cat": "Strike outs"
   },
   {
     "file": "ksr",
-    "name": "Strike out (S) - by rule"
+    "name": "Strike out (S) - by rule",
+    "cat": "Strike outs"
   },
   {
     "file": "ksi",
-    "name": "Strike out (S) - interference"
+    "name": "Strike out (S) - interference",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-wp",
-    "name": "Strike out (S) + WP"
+    "name": "Strike out (S) + WP",
+    "cat": "Strike outs"
   },
   {
     "file": "kl-pb",
-    "name": "Strike out (L) + PB"
+    "name": "Strike out (L) + PB",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-e2t",
-    "name": "Strike out (S) + E2T"
+    "name": "Strike out (S) + E2T",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-2e3",
-    "name": "Strike out (S) + 2E3"
+    "name": "Strike out (S) + 2E3",
+    "cat": "Strike outs"
   },
   {
     "file": "kso",
-    "name": "Strike out (S) + R3 out C to P at Home"
+    "name": "Strike out (S) + R3 out C to P at Home",
+    "cat": "Strike outs"
   },
   {
     "file": "kso-r1-24-r3-hp",
-    "name": "Strike out (S) + R1 out C to 2B, R3 scores"
+    "name": "Strike out (S) + R1 out C to 2B, R3 scores",
+    "cat": "Strike outs"
   },
   {
     "file": "kso-r1-o-r3-21",
-    "name": "Strike out (L) + R1 to 2nd (O/2), R3 out C to P at Home"
+    "name": "Strike out (L) + R1 to 2nd (O/2), R3 out C to P at Home",
+    "cat": "Strike outs"
   },
   {
     "file": "ksfc",
-    "name": "Strike out (S) + R2 to 3B on PB"
+    "name": "Strike out (S) + R2 to 3B on PB",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-r1-sb",
-    "name": "Strike out (S) + R1 to 2nd on SB"
+    "name": "Strike out (S) + R1 to 2nd on SB",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-r2-wp",
-    "name": "Strike out (S) + R2 to 3rd on WP"
+    "name": "Strike out (S) + R2 to 3rd on WP",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-r3-pb",
-    "name": "Strike out (S) + R3 to Home on PB"
+    "name": "Strike out (S) + R3 to Home on PB",
+    "cat": "Strike outs"
   },
   {
     "file": "kl-r1-cs-2e4",
-    "name": "Strike out (L) + R1 to 2nd on CS 2E4"
+    "name": "Strike out (L) + R1 to 2nd on CS 2E4",
+    "cat": "Strike outs"
   },
   {
     "file": "ksr-r2-cs-25e4t",
-    "name": "Strike out (KSR) + R2 to 3nd on CS 25E4t"
+    "name": "Strike out (KSR) + R2 to 3nd on CS 25E4t",
+    "cat": "Strike outs"
   },
   {
     "file": "klr-r3-poa-e2t",
-    "name": "Strike out (KLR) + R3 to Home on POA e2T"
+    "name": "Strike out (KLR) + R3 to Home on POA e2T",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-wp-r1-wp",
-    "name": "Strike out (S) + WP + R1 to 2nd on WP"
+    "name": "Strike out (S) + WP + R1 to 2nd on WP",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-pb-r1-cs-24",
-    "name": "Strike out (S) + PB + R2 out C to 2B, CS"
+    "name": "Strike out (S) + PB + R2 out C to 2B, CS",
+    "cat": "Strike outs"
   },
   {
     "file": "kl-pb-r2-pb",
-    "name": "Strike out (L) + PB + R2 to 3rd on PB"
+    "name": "Strike out (L) + PB + R2 to 3rd on PB",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-wp-r2-po-26",
-    "name": "Strike out (S) + WP + R2 out C to SS, PO"
+    "name": "Strike out (S) + WP + R2 out C to SS, PO",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-wp-r3-wp",
-    "name": "Strike out (S) + WP + R3 to Home on WP"
+    "name": "Strike out (S) + WP + R3 to Home on WP",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-pb-r3-po-25",
-    "name": "Strike out (S) + PB + R3 out C to 3B, PO"
+    "name": "Strike out (S) + PB + R3 out C to 3B, PO",
+    "cat": "Strike outs"
   },
   {
     "file": "ksr-r1-po-23",
-    "name": "Strike out (KSR) + R1 out C to 1B, PO"
+    "name": "Strike out (KSR) + R1 out C to 1B, PO",
+    "cat": "Strike outs"
   },
   {
     "file": "kl-r2-cs-25",
-    "name": "Strike out (L) + R2 out C to 3B, CS"
+    "name": "Strike out (L) + R2 out C to 3B, CS",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-r3-po-2512",
-    "name": "Strike out (S) + R3 out C to 3B to P to C, PO"
+    "name": "Strike out (S) + R3 out C to 3B to P to C, PO",
+    "cat": "Strike outs"
   },
   {
     "file": "ks-r1-o2-r3-cs-26E2",
-    "name": "Strike out (S) + R1 O/2 + R3 CS with error 26E2"
+    "name": "Strike out (S) + R1 O/2 + R3 CS with error 26E2",
+    "cat": "Strike outs"
   },
   {
     "file": "1b-7",
-    "name": "Single to LF"
+    "name": "Single to LF",
+    "cat": "Hits"
   },
   {
     "file": "1b-mi",
-    "name": "Single through the middle"
+    "name": "Single through the middle",
+    "cat": "Hits"
   },
   {
     "file": "1b-gll",
-    "name": "Single grounded to left line"
+    "name": "Single grounded to left line",
+    "cat": "Hits"
   },
   {
     "file": "1b-1b",
-    "name": "Single to P, bunt"
+    "name": "Single to P, bunt",
+    "cat": "Hits"
   },
   {
     "file": "1b-9-916",
-    "name": "Single to RF + 916 out at 2nd"
+    "name": "Single to RF + 916 out at 2nd",
+    "cat": "Hits"
   },
   {
     "file": "1b-ls-r1-75",
-    "name": "Single to RF + R1 out LF to 3B at 3rd"
+    "name": "Single to RF + R1 out LF to 3B at 3rd",
+    "cat": "Hits"
   },
   {
     "file": "1b-mi-t82-r2-82",
-    "name": "Single to MI + R2 out CF to C at Home, batter to 2nd on throw"
+    "name": "Single to MI + R2 out CF to C at Home, batter to 2nd on throw",
+    "cat": "Hits"
   },
   {
     "file": "1b-9-r2-hp-tie",
-    "name": "Single to RF + R2 scores (tiebreak)"
+    "name": "Single to RF + R2 scores (tiebreak)",
+    "cat": "Hits"
   },
   {
     "file": "2b-rs",
-    "name": "Double to RS"
+    "name": "Double to RS",
+    "cat": "Hits"
   },
   {
     "file": "2b-gll",
-    "name": "Double grounded to left line"
+    "name": "Double grounded to left line",
+    "cat": "Hits"
   },
   {
     "file": "2b-8gr",
-    "name": "Double to CF - ground rule"
+    "name": "Double to CF - ground rule",
+    "cat": "Hits"
   },
   {
     "file": "3b-rc",
-    "name": "Triple to RC"
+    "name": "Triple to RC",
+    "cat": "Hits"
   },
   {
     "file": "3b-grl",
-    "name": "Triple grounded to right line"
+    "name": "Triple grounded to right line",
+    "cat": "Hits"
   },
   {
     "file": "hr-8",
-    "name": "Home run to CF"
+    "name": "Home run to CF",
+    "cat": "Hits"
   },
   {
     "file": "hr-8ue",
-    "name": "Home run to CF - unearned"
+    "name": "Home run to CF - unearned",
+    "cat": "Hits"
   },
   {
     "file": "hr-8tu",
-    "name": "Home run to CF - team unearned"
+    "name": "Home run to CF - team unearned",
+    "cat": "Hits"
   },
   {
     "file": "hr-rl-i",
-    "name": "Home run to RL - inside-the-park"
+    "name": "Home run to RL - inside-the-park",
+    "cat": "Hits"
   },
   {
     "file": "hr-rc-4rbi",
-    "name": "Home run to RC - 4 RBI"
+    "name": "Home run to RC - 4 RBI",
+    "cat": "Hits"
   },
   {
     "file": "bb",
-    "name": "Base on balls"
+    "name": "Base on balls",
+    "cat": "Hits"
   },
   {
     "file": "bb-wp",
-    "name": "Base on balls + R2 to 3rd on WP, B stays at 1st"
+    "name": "Base on balls + R2 to 3rd on WP, B stays at 1st",
+    "cat": "Advances"
   },
   {
     "file": "bb-pb",
-    "name": "Base on balls + R2 to 3rd on PB, B to 2nd on PB"
+    "name": "Base on balls + R2 to 3rd on PB, B to 2nd on PB",
+    "cat": "Advances"
   },
   {
     "file": "bb-wp-r3-hp",
-    "name": "Base on balls + R2 to 3rd on WP, R3 scores on WP"
+    "name": "Base on balls + R2 to 3rd on WP, R3 scores on WP",
+    "cat": "Advances"
   },
   {
     "file": "ibb",
-    "name": "Intentional base on balls"
+    "name": "Intentional base on balls",
+    "cat": "Advances"
   },
   {
     "file": "hp",
-    "name": "Hit by pitch"
+    "name": "Hit by pitch",
+    "cat": "Advances"
   },
   {
     "file": "fc-o6-r1-64",
-    "name": "Fielder's choice - occupied - R1 SS to 2B"
+    "name": "Fielder's choice - occupied - R1 SS to 2B",
+    "cat": "Fielder's choices"
   },
   {
     "file": "fc-o1b-r1-14",
-    "name": "Fielder's choice - occupied - R1 out P to 2B, bunt"
+    "name": "Fielder's choice - occupied - R1 out P to 2B, bunt",
+    "cat": "Fielder's choices"
   },
   {
     "file": "fc-o1b-r1-o1-r2-15",
-    "name": "Fielder's choice - occupied - R1 to 2nd, R2 out P to 3B, bunt"
+    "name": "Fielder's choice - occupied - R1 to 2nd, R2 out P to 3B, bunt",
+    "cat": "Fielder's choices"
   },
   {
     "file": "fc-o3-r3-32",
-    "name": "Fielder's choice - occupied - R3 1B to C"
+    "name": "Fielder's choice - occupied - R3 1B to C",
+    "cat": "Fielder's choices"
   },
   {
     "file": "fc-o64-94-dp",
-    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, DP"
+    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, DP",
+    "cat": "Fielder's choices"
   },
   {
     "file": "fc-o64-94-no-dp",
-    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, no DP"
+    "name": "Fielder's choice - occupied - R1 SS to 2B, B out RF to 2B at 2nd, no DP",
+    "cat": "Fielder's choices"
   },
   {
     "file": "fc-o6-e-r2-6e5",
-    "name": "Fielder's choice - occupied - R2 reaches on 5E6, batter to 2nd"
+    "name": "Fielder's choice - occupied - R2 reaches on 5E6, batter to 2nd",
+    "cat": "Fielder's choices"
   },
   {
     "file": "fc-64",
-    "name": "Fielder's choice - SS to 2B"
+    "name": "Fielder's choice - SS to 2B",
+    "cat": "Fielder's choices"
   },
   {
     "file": "error-5",
-    "name": "Error - fielding by 3B"
+    "name": "Error - fielding by 3B",
+    "cat": "Errors"
   },
   {
     "file": "error-5b",
-    "name": "Error - fielding by 3B - bunt"
+    "name": "Error - fielding by 3B - bunt",
+    "cat": "Errors"
   },
   {
     "file": "error-6t",
-    "name": "Error - throwing by SS"
+    "name": "Error - throwing by SS",
+    "cat": "Errors"
   },
   {
     "file": "error-7f",
-    "name": "Error - dropped fly by LF"
+    "name": "Error - dropped fly by LF",
+    "cat": "Errors"
   },
   {
     "file": "error-3df",
-    "name": "Error - dropped foul by 1B"
+    "name": "Error - dropped foul by 1B",
+    "cat": "Errors"
   },
   {
     "file": "error-6-6t",
-    "name": "Error - fielding by SS + extra base throwing by SS"
+    "name": "Error - fielding by SS + extra base throwing by SS",
+    "cat": "Errors"
   },
   {
     "file": "error-4e3",
-    "name": "Error - fielding by 1B, assited by 2B"
+    "name": "Error - fielding by 1B, assited by 2B",
+    "cat": "Errors"
   },
   {
     "file": "error-23e4-r1-na",
-    "name": "Error - fielding by 2B, assited by C and 1B, no advance (R1)"
+    "name": "Error - fielding by 2B, assited by C and 1B, no advance (R1)",
+    "cat": "Errors"
   },
   {
     "file": "error-25e1t-r3-na",
-    "name": "Error - throwing by P, assited by C and 3B, no advance (R3)"
+    "name": "Error - throwing by P, assited by C and 3B, no advance (R3)",
+    "cat": "Errors"
   },
   {
     "file": "error-4e3",
-    "name": "Error - fielding by 1B, assisted by 2B"
+    "name": "Error - fielding by 1B, assisted by 2B",
+    "cat": "Errors"
   },
   {
     "file": "error-5t-2nd-r1-3rd",
-    "name": "Error - throwing by 3B, B to 2nd, R1 to 3rd"
+    "name": "Error - throwing by 3B, B to 2nd, R1 to 3rd",
+    "cat": "Errors"
   },
   {
     "file": "error-265e4-r2-hp",
-    "name": "Error - fielding by 2B, assited by C, SS and 3B, R2 scorers"
+    "name": "Error - fielding by 2B, assited by C, SS and 3B, R2 scorers",
+    "cat": "Errors"
   },
   {
     "file": "error-4-e8",
-    "name": "Error - fielding by 2B, B scorers on e8, R2 scorers"
+    "name": "Error - fielding by 2B, B scorers on e8, R2 scorers",
+    "cat": "Errors"
   },
   {
     "file": "error-e4f-r1-r2",
-    "name": "Error - dropped fly by 2B, R1 and R2 advance on error"
+    "name": "Error - dropped fly by 2B, R1 and R2 advance on error",
+    "cat": "Errors"
   },
   {
     "file": "error-int",
-    "name": "Error - catcher's interference"
+    "name": "Error - catcher's interference",
+    "cat": "Errors"
   },
   {
     "file": "error-int-run",
-    "name": "Error - catcher's interference + all runners advance"
+    "name": "Error - catcher's interference + all runners advance",
+    "cat": "Errors"
   },
   {
     "file": "error-ob3",
-    "name": "Error - obstruction by 1B (B)"
+    "name": "Error - obstruction by 1B (B)",
+    "cat": "Errors"
   },
   {
     "file": "error-ob4",
-    "name": "Error - obstruction by 2B (R1)"
+    "name": "Error - obstruction by 2B (R1)",
+    "cat": "Errors"
   },
   {
     "file": "error-ob3-run",
-    "name": "Error - obstruction by 1B (B) + all runners advance"
+    "name": "Error - obstruction by 1B (B) + all runners advance",
+    "cat": "Errors"
   },
   {
     "file": "error-ob2-r3-bk",
-    "name": "Error - obstruction by C during squeeze play + R3 scorers on BK"
+    "name": "Error - obstruction by C during squeeze play + R3 scorers on BK",
+    "cat": "Errors"
   },
   {
     "file": "error-ob2-r3-ip",
-    "name": "Error - obstruction by C during squeeze play + R3 scorers on IP"
+    "name": "Error - obstruction by C during squeeze play + R3 scorers on IP",
+    "cat": "Errors"
   },
   {
     "file": "error-bb-e2t-r1-se",
-    "name": "Error - BB + extra base throwing by C, R1 to 3rd"
+    "name": "Error - BB + extra base throwing by C, R1 to 3rd",
+    "cat": "Errors"
   },
   {
     "file": "error-r3-e2t-r2-r1-se",
-    "name": "Error - R3 to Home on e2T, R2 and R1 same error"
+    "name": "Error - R3 to Home on e2T, R2 and R1 same error",
+    "cat": "Errors"
   },
   {
     "file": "error-r3-e2t-r1-sb",
-    "name": "Error - R3 to Home on e2T, R1 to 2nd (SB)"
+    "name": "Error - R3 to Home on e2T, R1 to 2nd (SB)",
+    "cat": "Errors"
   },
   {
     "file": "error-r3-e2t-r1-o2",
-    "name": "Error - R3 to Home on e2T, R1 to 2nd (O/2)"
+    "name": "Error - R3 to Home on e2T, R1 to 2nd (O/2)",
+    "cat": "Errors"
   },
   {
     "file": "error-r3-e6t-r1-cs26",
-    "name": "Error - R3 to Home on e6T, R1 out (CS 26)"
+    "name": "Error - R3 to Home on e6T, R1 out (CS 26)",
+    "cat": "Errors"
   },
   {
     "file": "error-r3-1e2",
-    "name": "Error - R3 scored on 1E2"
+    "name": "Error - R3 scored on 1E2",
+    "cat": "Errors"
   },
   {
     "file": "error-r3-e5-b-o5",
-    "name": "Error - R3 scored on E5, B reached on O5"
+    "name": "Error - R3 scored on E5, B reached on O5",
+    "cat": "Errors"
   },
   {
     "file": "1b-9-e9",
-    "name": "Single to RF + extra base fielding error to 2nd"
+    "name": "Single to RF + extra base fielding error to 2nd",
+    "cat": "Errors"
   },
   {
     "file": "1b-mi-e8-3",
-    "name": "Single to RF + extra base fielding error to 3rd"
+    "name": "Single to RF + extra base fielding error to 3rd",
+    "cat": "Errors"
   },
   {
     "file": "1b-ll-e7-hp",
-    "name": "Single to RF + extra base fielding error to Home"
+    "name": "Single to RF + extra base fielding error to Home",
+    "cat": "Errors"
   },
   {
     "file": "1b-6-634e1t-3",
-    "name": "Single to SS + extra base fielding error (634e1t) to 3rd"
+    "name": "Single to SS + extra base fielding error (634e1t) to 3rd",
+    "cat": "Errors"
   },
   {
     "file": "1b-6-e6t-95-3b",
-    "name": "Single to SS + e6T to 2nd + 95 tag out at 3rd"
+    "name": "Single to SS + e6T to 2nd + 95 tag out at 3rd",
+    "cat": "Errors"
   },
   {
     "file": "1b-6-e6t-92-hp",
-    "name": "Single to SS + e6T to 3rd + 92 tag out at Home"
+    "name": "Single to SS + e6T to 3rd + 92 tag out at Home",
+    "cat": "Errors"
   },
   {
     "file": "1b-7-e7-r2-hp",
-    "name": "Single to LF + extra base fielding error, R2 scores"
+    "name": "Single to LF + extra base fielding error, R2 scores",
+    "cat": "Errors"
   },
   {
     "file": "1b-9-e9t",
-    "name": "Single to RF + extra base throwing error"
+    "name": "Single to RF + extra base throwing error",
+    "cat": "Errors"
   },
   {
     "file": "1b-9-94e3-na",
-    "name": "Single to RF + RF to 2B to 1B, error, no advance"
+    "name": "Single to RF + RF to 2B to 1B, error, no advance",
+    "cat": "Errors"
   },
   {
     "file": "1b-6-se2-r2-e6t",
-    "name": "Single to SS + R2 to Home on e6T"
+    "name": "Single to SS + R2 to Home on e6T",
+    "cat": "Errors"
   },
   {
     "file": "1b-7-e7-r1-e",
-    "name": "Single to LF + extra base fielding error + R1 scores on error"
+    "name": "Single to LF + extra base fielding error + R1 scores on error",
+    "cat": "Errors"
   },
   {
     "file": "1b-7-r1-7e5t-na",
-    "name": "Single to LF + LF to 3B, thrrowing error, no advance (R1)"
+    "name": "Single to LF + LF to 3B, thrrowing error, no advance (R1)",
+    "cat": "Errors"
   },
   {
     "file": "1b-8-fc-r1-854e6",
-    "name": "Single to CF + T85 to 2B + R1 scores on 854e6t"
+    "name": "Single to CF + T85 to 2B + R1 scores on 854e6t",
+    "cat": "Errors"
   },
   {
     "file": "1b-lc-r2-ob",
-    "name": "Single to LC + R2 scores on obstruction by 3B"
+    "name": "Single to LC + R2 scores on obstruction by 3B",
+    "cat": "Errors"
   },
   {
     "file": "1b-6-t62-r2-62",
-    "name": "Single to SS + T62 + R2 out SS to C at Home"
+    "name": "Single to SS + T62 + R2 out SS to C at Home",
+    "cat": "Hits"
   },
   {
     "file": "1b-5b-e5t-9e5",
-    "name": "Single to 3B, bunt + e5T to 2nd + 9E5 to Home"
+    "name": "Single to 3B, bunt + e5T to 2nd + 9E5 to Home",
+    "cat": "Errors"
   },
   {
     "file": "1b-ls-r2-e7-hp",
-    "name": "Single to LS, R2 out CF to C at Home"
+    "name": "Single to LS, R2 out CF to C at Home",
+    "cat": "Hits"
   },
   {
     "file": "2b-rl-e9t",
-    "name": "Double to RL + e9T"
+    "name": "Double to RL + e9T",
+    "cat": "Errors"
   },
   {
     "file": "3b-rl-9e2",
-    "name": "Triple to RL + 9E2"
+    "name": "Triple to RL + 9E2",
+    "cat": "Errors"
   },
   {
     "file": "out-31-r1-e3t",
-    "name": "Ground out - 1B to P + R1 scores (FC + e3T)"
+    "name": "Ground out - 1B to P + R1 scores (FC + e3T)",
+    "cat": "Errors"
   },
   {
     "file": "fc-o6-r2-6e4-na",
-    "name": "FC - occupied - SS to 2B, error, no advance (R2)"
+    "name": "FC - occupied - SS to 2B, error, no advance (R2)",
+    "cat": "Errors"
   },
   {
     "file": "sh-54",
-    "name": "Sacrifice hit - 3B to 2B"
+    "name": "Sacrifice hit - 3B to 2B",
+    "cat": "Sacrifices"
   },
   {
     "file": "sh-fc-12-r2-r3",
-    "name": "Sacrifice hit - FC P to C, R3 scores, R2 scoeres (O/3), B out 234"
+    "name": "Sacrifice hit - FC P to C, R3 scores, R2 scores (O/3), B out 234",
+    "cat": "Sacrifices"
   },
   {
     "file": "error-sh-e5t",
-    "name": "SH with throwing error by 3B"
+    "name": "SH with throwing error by 3B",
+    "cat": "Errors"
   },
   {
     "file": "error-sh-5e4",
-    "name": "SH with fielding error by 2B, assisted by 3B"
+    "name": "SH with fielding error by 2B, assisted by 3B",
+    "cat": "Errors"
   },
   {
     "file": "sf-8",
-    "name": "Sacrifice fly to CF"
+    "name": "Sacrifice fly to CF",
+    "cat": "Sacrifices"
   },
   {
     "file": "fsf-7",
-    "name": "Sacrifice fly to LF in foul territory"
+    "name": "Sacrifice fly to LF in foul territory",
+    "cat": "Sacrifices"
   },
   {
     "file": "sf-7-r1-o",
-    "name": "Sacrifice fly to LF + R1 advance to 2nd (O/1)"
+    "name": "Sacrifice fly to LF + R1 advance to 2nd (O/1)",
+    "cat": "Sacrifices"
   },
   {
     "file": "sf-e8",
-    "name": "SF with dropped fly error by CF"
+    "name": "SF with dropped fly error by CF",
+    "cat": "Errors"
   },
   {
     "file": "sf-o8",
-    "name": "SF with forced out - CF to SS (R2)"
+    "name": "SF with forced out - CF to SS (R2)",
+    "cat": "Sacrifices"
   },
   {
     "file": "gdp-643",
-    "name": "Grounded into DP - SS to 2B to 1B"
+    "name": "Grounded into DP - SS to 2B to 1B",
+    "cat": "Double plays"
   },
   {
     "file": "gdp-36",
-    "name": "Grounded into DP - 1B to SS"
+    "name": "Grounded into DP - 1B to SS",
+    "cat": "Double plays"
   },
   {
     "file": "gdp-543-tp",
-    "name": "Grounded into DP - 3B to 2B to 1B (triple play)"
+    "name": "Grounded into DP - 3B to 2B to 1B, TP",
+    "cat": "Double plays"
   },
   {
     "file": "gdpb-163",
-    "name": "Grounded into DP - P to SS to 1B, bunt"
+    "name": "Grounded into DP - P to SS to 1B, bunt",
+    "cat": "Double plays"
   },
   {
     "file": "gdp-643-r3-hp",
-    "name": "Grounded into DP - SS to 2B to 1B, R3 scores"
+    "name": "Grounded into DP - SS to 2B to 1B, R3 scores",
+    "cat": "Double plays"
   },
   {
     "file": "gdp-463-r2-adv-r3-hp",
-    "name": "Grounded into DP - 2B to SS to 1B, R2 to 3rd, R3 scores"
+    "name": "Grounded into DP - 2B to SS to 1B, R2 to 3rd, R3 scores",
+    "cat": "Double plays"
   },
   {
     "file": "gdp-64e3",
-    "name": "Grounded into DP - SS to 2B + 1B fielding error"
+    "name": "Grounded into DP - SS to 2B + 1B fielding error",
+    "cat": "Errors"
   },
   {
     "file": "gdp-64e3-94",
-    "name": "Grounded into DP - 64 + 4E3, B out at 2nd 94 (no DP)"
+    "name": "Grounded into DP - 64 + 4E3, B out at 2nd 94 (no DP)",
+    "cat": "Errors"
   },
   {
     "file": "gdpo-1-r1-54-r2-15",
-    "name": "Grounded into DP - occupied to P, R2 out P-3B, R1 out 3B-2B"
+    "name": "Grounded into DP - occupied to P, R2 out P-3B, R1 out 3B-2B",
+    "cat": "Double plays"
   },
   {
     "file": "out-if6",
-    "name": "Infield fly - SS"
+    "name": "Infield fly - SS",
+    "cat": "Fly Outs"
   },
   {
     "file": "wp-r1",
-    "name": "Wild pitch - R1"
+    "name": "Wild pitch - R1",
+    "cat": "Advances"
   },
   {
     "file": "wp-r1-3b",
-    "name": "Wild pitch - R1 to 3rd"
+    "name": "Wild pitch - R1 to 3rd",
+    "cat": "Advances"
   },
   {
     "file": "wp-r1-r2",
-    "name": "Wild pitch - R1 + R2"
+    "name": "Wild pitch - R1 + R2",
+    "cat": "Advances"
   },
   {
     "file": "wp-r1-r2-r3",
-    "name": "Wild pitch - R1 + R2 + R3"
+    "name": "Wild pitch - R1 + R2 + R3",
+    "cat": "Advances"
   },
   {
     "file": "wp-r2-r3-21",
-    "name": "Wild pitch - R2 + R3 out at home C to P"
+    "name": "Wild pitch - R2 + R3 out at home C to P",
+    "cat": "Advances"
   },
   {
     "file": "pb-r1",
-    "name": "Passed ball - R1"
+    "name": "Passed ball - R1",
+    "cat": "Advances"
   },
   {
     "file": "pb-r1-r2",
-    "name": "Passed ball - R1 + R2"
+    "name": "Passed ball - R1 + R2",
+    "cat": "Advances"
   },
   {
     "file": "pb-r1-r2-r3",
-    "name": "Passed ball - R1 + R2 + R3"
+    "name": "Passed ball - R1 + R2 + R3",
+    "cat": "Advances"
   },
   {
     "file": "pb-r1-r3-2r",
-    "name": "Passed ball - R3 scores + R1 scores"
+    "name": "Passed ball - R3 scores + R1 scores",
+    "cat": "Advances"
   },
   {
     "file": "pb-r3-r2-e2t-r1-e1",
-    "name": "Passed ball - R3 scores, R2 scores on e2T, R1 scores on e1"
+    "name": "Passed ball - R3 scores, R2 scores on e2T, R1 scores on e1",
+    "cat": "Errors"
   },
   {
     "file": "pb-r1-r3-21",
-    "name": "Passed ball - R1 + R3 out at home C to P"
+    "name": "Passed ball - R1 + R3 out at home C to P",
+    "cat": "Advances"
   },
   {
     "file": "bk-r1",
-    "name": "Balk - R1"
+    "name": "Balk - R1",
+    "cat": "Advances"
   },
   {
     "file": "bk-r1-r2",
-    "name": "Balk - R1 + R2"
+    "name": "Balk - R1 + R2",
+    "cat": "Advances"
   },
   {
     "file": "bk-r1-r2-r3",
-    "name": "Balk - R1 + R2 + R3"
+    "name": "Balk - R1 + R2 + R3",
+    "cat": "Advances"
   },
   {
     "file": "ip-r1",
-    "name": "Illegal pitch - R1"
+    "name": "Illegal pitch - R1",
+    "cat": "Advances"
   },
   {
     "file": "ip-r1-r2",
-    "name": "Illegal pitch - R1 + R2"
+    "name": "Illegal pitch - R1 + R2",
+    "cat": "Advances"
   },
   {
     "file": "ip-r1-r2-r3",
-    "name": "Illegal pitch - R1 + R2 + R3"
+    "name": "Illegal pitch - R1 + R2 + R3",
+    "cat": "Advances"
   },
   {
     "file": "sb-single",
-    "name": "Stolen base - R1"
+    "name": "Stolen base - R1",
+    "cat": "SB/CS"
   },
   {
     "file": "sb-double-12",
-    "name": "Stolen base - R1 + R2"
+    "name": "Stolen base - R1 + R2",
+    "cat": "SB/CS"
   },
   {
     "file": "sb-double-13",
-    "name": "Stolen base - R1 + R3"
+    "name": "Stolen base - R1 + R3",
+    "cat": "SB/CS"
   },
   {
     "file": "sb-double-23",
-    "name": "Stolen base - R2 + R3"
+    "name": "Stolen base - R2 + R3",
+    "cat": "SB/CS"
   },
   {
     "file": "sb-triple",
-    "name": "Stolen base - R1 + R2 + R3"
+    "name": "Stolen base - R1 + R2 + R3",
+    "cat": "SB/CS"
   },
   {
     "file" : "sb-double-r1-25",
-    "name" : "Stolen base - R1 + R3 - R1 out at 3rd"
+    "name" : "Stolen base - R1 + R3 - R1 out at 3rd",
+    "cat": "SB/CS"
   },
   {
     "file": "sb-e2t",
-    "name": "Stolen base + throwing error by C"
+    "name": "Stolen base + throwing error by C",
+    "cat": "SB/CS"
   },
   {
     "file": "sb-poa",
-    "name": "Stolen base after pick-off attempt"
+    "name": "Stolen base after pick-off attempt",
+    "cat": "SB/CS"
   },
   {
     "file": "sb-52",
-    "name": "Stolen base + out at HP 3B to C"
+    "name": "Stolen base + out at HP 3B to C",
+    "cat": "SB/CS"
   },
   {
     "file": "indifference-r1",
-    "name": "Indifference - R1 to 2nd, R3 stays"
+    "name": "Indifference - R1 to 2nd, R3 stays",
+    "cat": "Fielder's choices"
   },
   {
     "file": "cs-26",
-    "name": "Caught stealing - C to SS"
+    "name": "Caught stealing - C to SS",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-2e6",
-    "name": "Caught stealing - C to SS (fielding error)"
+    "name": "Caught stealing - C to SS (fielding error)",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-2e6-45",
-    "name": "Caught stealing - C to SS (fielding error) + tag out 2B to 3B"
+    "name": "Caught stealing - C to SS (fielding error) + tag out 2B to 3B",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-25-r1-o",
-    "name": "Caught stealing - C to 3B + R1 O/2 to 2nd"
+    "name": "Caught stealing - C to 3B + R1 O/2 to 2nd",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-2e5-r1-se",
-    "name": "Caught stealing - C to 3B (fielding error) + R1 to 2nd (SE)"
+    "name": "Caught stealing - C to 3B (fielding error) + R1 to 2nd (SE)",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-2e4-r3-se",
-    "name": "Caught stealing - C to 2B (fielding error) + R3 scores (SE)"
+    "name": "Caught stealing - C to 2B (fielding error) + R3 scores (SE)",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-12-r2-o",
-    "name": "Caught stealing - P to C + R2 O/2 to 3rd"
+    "name": "Caught stealing - P to C + R2 O/2 to 3rd",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-2e6-r3-o",
-    "name": "Caught stealing - C to 2B (fielding error) + R3 O/2 to Home"
+    "name": "Caught stealing - C to 2B (fielding error) + R3 O/2 to Home",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-2e4-r1-na",
-    "name": "Caught stealing - C to 2B (fielding error), no advance (R1)"
+    "name": "Caught stealing - C to 2B (fielding error), no advance (R1)",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-26e5t-r2-na",
-    "name": "Caught stealing - C to SS to 3B (throwing error), no advance (R2)"
+    "name": "Caught stealing - C to SS to 3B (throwing error), no advance (R2)",
+    "cat": "SB/CS"
   },
   {
     "file": "cs-2e1-r3-na-r1-o",
-    "name": "Caught stealing - C to P (fielding error), no advance (R3) + O/2 to 2nd"
+    "name": "Caught stealing - C to P (fielding error), no advance (R3) + O/2 to 2nd",
+    "cat": "SB/CS"
   },
   {
     "file": "po-r1",
-    "name": "Pick off - C to 1B (R1)"
+    "name": "Pick off - C to 1B (R1)",
+    "cat": "SB/CS"
   },
   {
     "file": "po-r2",
-    "name": "Pick off - P to SS (R2)"
+    "name": "Pick off - P to SS (R2)",
+    "cat": "SB/CS"
   },
   {
     "file": "po-r3",
-    "name": "Pick off - C to 3B (R3)"
+    "name": "Pick off - C to 3B (R3)",
+    "cat": "SB/CS"
   },
   {
     "file": "po-r1-13-r2-o",
-    "name": "Pick off - P to 1B (R1) + O/2 to 3rd (R2)"
+    "name": "Pick off - P to 1B (R1) + O/2 to 3rd (R2)",
+    "cat": "SB/CS"
   },
   {
     "file": "po-r1-13-r3-o",
-    "name": "Pick off - P to 1B (R1) + O/2 to Home (R3)"
+    "name": "Pick off - P to 1B (R1) + O/2 to Home (R3)",
+    "cat": "SB/CS"
   },
   {
     "file": "pocs-r1-1364",
-    "name": "Pick off + Caught stealing - P to 1B to SS to 2B (R1)"
+    "name": "Pick off + Caught stealing - P to 1B to SS to 2B (R1)",
+    "cat": "SB/CS"
   },
   {
     "file": "pocse-r1",
-    "name": "Pick off + Caught stealing + throwing error by P (R1)"
+    "name": "Pick off + Caught stealing + throwing error by P (R1)",
+    "cat": "SB/CS"
   },
   {
     "file": "pocsen-r3",
-    "name": "Pick off + Caught stealing + throwing error by P, no advance (R1)"
+    "name": "Pick off + Caught stealing + throwing error by P, no advance (R1)",
+    "cat": "SB/CS"
   },
   {
     "file": "error-poa-r1",
-    "name": "Pick off attempt - e1T (R1)"
+    "name": "Pick off attempt - e1T (R1)",
+    "cat": "SB/CS"
   },
   {
     "file": "error-poa-r2",
-    "name": "Pick off attempt - e1T (R2)"
+    "name": "Pick off attempt - e1T (R2)",
+    "cat": "SB/CS"
   },
   {
     "file": "error-poa-r3",
-    "name": "Pick off attempt - e1T (R3)"
+    "name": "Pick off attempt - e1T (R3)",
+    "cat": "SB/CS"
   },
   {
     "file": "error-poa-r3-r2-r1-se",
-    "name": "Pick off attempt - e2T (R3), R1 and R2 score on error"
+    "name": "Pick off attempt - e2T (R3), R1 and R2 score on error",
+    "cat": "SB/CS"
   },
   {
     "file": "error-poa-r1-na",
-    "name": "Pick off attempt - 1E3, no advance (R1)"
+    "name": "Pick off attempt - 1E3, no advance (R1)",
+    "cat": "SB/CS"
   },
   {
     "file": "error-poa-r2-na",
-    "name": "Pick off attempt - 1E4, no advance (R2)"
+    "name": "Pick off attempt - 1E4, no advance (R2)",
+    "cat": "SB/CS"
   },
   {
     "file": "error-poa-r3-na",
-    "name": "Pick off attempt - 25E1, no advance (R3)"
+    "name": "Pick off attempt - 25E1, no advance (R3)",
+    "cat": "SB/CS"
   },
   {
     "file": "obr-bob",
-    "name": "Out by rule - Batter Out of the Box"
+    "name": "Out by rule - Batter Out of the Box",
+    "cat": "OBRs"
   },
   {
     "file": "obr-bia",
-    "name": "Out by rule - Batter's Illegal Action"
+    "name": "Out by rule - Batter's Illegal Action",
+    "cat": "OBRs"
   },
   {
     "file": "obr-tbb",
-    "name": "Out by rule - Touched by Batted Ball"
+    "name": "Out by rule - Touched by Batted Ball",
+    "cat": "OBRs"
   },
   {
     "file": "obr-bic",
-    "name": "Out by rule - Batter Interfering with the Catcher"
+    "name": "Out by rule - Batter Interfering with the Catcher",
+    "cat": "OBRs"
   },
   {
     "file": "obr-boo",
-    "name": "Out by rule - Batting Out of Order"
+    "name": "Out by rule - Batting Out of Order",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rta",
-    "name": "Out by rule - Refusing To Advance"
+    "name": "Out by rule - Refusing To Advance",
+    "cat": "OBRs"
   },
   {
     "file": "obr-dif",
-    "name": "Out by rule - Dropped Infield Fly"
+    "name": "Out by rule - Dropped Infield Fly",
+    "cat": "OBRs"
   },
   {
     "file": "obr-dif-r2-e4",
-    "name": "Out by rule - Dropped Infield Fly, R2 to 3rd on e4"
+    "name": "Out by rule - Dropped Infield Fly, R2 to 3rd on e4",
+    "cat": "OBRs"
   },
   {
     "file": "obr-bin",
-    "name": "Out by rule - Batter Interference"
+    "name": "Out by rule - Batter Interference",
+    "cat": "OBRs"
   },
   {
     "file": "obr-oin",
-    "name": "Out by rule - Other Interference"
+    "name": "Out by rule - Other Interference",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rta-r3",
-    "name": "Out by rule - Refusing to advance (R3)"
+    "name": "Out by rule - Refusing to advance (R3)",
+    "cat": "OBRs"
   },
   {
     "file": "obr-hbb-r1",
-    "name": "Out by rule - Hit by fair Batted Ball (R1)"
+    "name": "Out by rule - Hit by fair Batted Ball (R1)",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rol-r1",
-    "name": "Out by rule - Running Out of Line (R1)"
+    "name": "Out by rule - Running Out of Line (R1)",
+    "cat": "OBRs"
   },
   {
     "file": "obr-ppr-r1",
-    "name": "Out by rule - Passing a Preceding Runner (R1)"
+    "name": "Out by rule - Passing a Preceding Runner (R1)",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rro-r2",
-    "name": "Out by rule - Running the bases in Reverse Order (R2)"
+    "name": "Out by rule - Running the bases in Reverse Order (R2)",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rin-r1-a",
-    "name": "Out by rule - Runner Interference (R1) w/o batter"
+    "name": "Out by rule - Runner Interference (R1) w/o batter",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rin-r1-b",
-    "name": "Out by rule - Runner Interference (R1) with batter"
+    "name": "Out by rule - Runner Interference (R1) with batter",
+    "cat": "OBRs"
   },
   {
     "file": "obr-hit-rin",
-    "name": "Out by rule - single to RF, RIN at 2nd"
+    "name": "Out by rule - single to RF, RIN at 2nd",
+    "cat": "OBRs"
   },
   {
     "file": "obr-bin-rin",
-    "name": "Out by rule - batter BIN, runner RIN"
+    "name": "Out by rule - batter BIN, runner RIN",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rle-r1",
-    "name": "Out by rule - Runner Left Early (R1)"
+    "name": "Out by rule - Runner Left Early (R1)",
+    "cat": "OBRs"
   },
   {
     "file": "obr-rhe-r3",
-    "name": "Out by rule - Removal of Helmet (R3)"
+    "name": "Out by rule - Removal of Helmet (R3)",
+    "cat": "OBRs"
   },
   {
     "file": "a-13",
-    "name": "Appeal play - P to 1B (batter)"
+    "name": "Appeal play - P to 1B (batter)",
+    "cat": "Other plays"
   },
   {
     "file": "o-a-r3",
-    "name": "Appeal play - hit (HR) + P to 3B (R3)"
+    "name": "Appeal play - hit (HR) + P to 3B (R3)",
+    "cat": "Other plays"
   },
   {
     "file": "o-a-r1",
-    "name": "Appeal play - hit (3B) + SS (R1)"
+    "name": "Appeal play - hit (3B) + SS (R1)",
+    "cat": "Other plays"
   },
   {
     "file": "lt",
-    "name": "Lost turn at bat"
+    "name": "Lost turn at bat",
+    "cat": "Other plays"
   }
 ]
