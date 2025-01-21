@@ -10,9 +10,11 @@
         <label :for="libFileId">
           {{ $t('editor.import.situation') }}:</label>
         <select :id="libFileId" v-model="libFile" :class="divSelect">
-          <option v-for="row in libItems" :key="row.file" :value="row.file">
-            {{ row.name }}
-          </option>
+          <optgroup v-for="[catKey, catValue] in library" :key="catKey" :label="catKey">
+            <option v-for="row in catValue" :key="row.file" :value="row.file">
+              {{ row.name }}
+            </option>
+          </optgroup>
         </select>
         <div class="mx-auto">
           <div id="lib-select" :class="divButton" @click="importFromLib()">
@@ -28,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import libItems from '@/assets/json/library.json'
+import jsonItems from '@/assets/json/library.json'
 
 const libFileId = 'lib-items'
 
@@ -39,7 +41,18 @@ const divSelect = 'max-[650px]:max-w-[90%]'
 const divButton = 'mx-2 my-4 p-2 w-28 inline-block border border-black rounded bg-wbsc-blue hover:bg-sky-300 '
   + 'text-white hover:text-gray-700 font-bold cursor-pointer'
 
-const libFile = ref(libItems.at(0)!.file)
+const library = new Map<string, LibraryItem[]>()
+jsonItems.forEach((json) => {
+  if (!library.has(json.cat)) {
+    library.set(json.cat, [])
+  }
+  library.get(json.cat)!.push({
+    file: json.file,
+    name: json.name,
+  })
+})
+
+const libFile = ref(library.get('Ground Outs')!.at(0)!.file)
 function importFromLib() {
   importInputFromLib(libFile.value)
   close()
