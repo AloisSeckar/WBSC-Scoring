@@ -4,8 +4,11 @@
 dist
 node_modules
 
-#backstop
+# backstop
 /tests/backstop/bitmaps_test/
 /tests/backstop/html_report/
+
+# env variables
+.env
 
 todo.txt

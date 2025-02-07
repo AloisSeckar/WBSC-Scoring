@@ -18,6 +18,12 @@
               Alois Sečkár
             </NuxtLink>
             (2019-{{ new Date().getFullYear() }})
+            |
+            Powered by
+            <NuxtLink to="https://github.com/AloisSeckar/nuxt-ignis" class="text-white hover:text-yellow-300">
+              nuxt-ignis
+            </NuxtLink>
+            |
             {{ $t('footer.version') }}
             <strong>{{ useAppConfig().fullVersion }}</strong>
           </footer>
