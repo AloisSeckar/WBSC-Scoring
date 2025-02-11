@@ -156,6 +156,7 @@
                 "OBR_ppr" : "Passa corridore precendete",
                 "OBR_rro" : "Corre sulle basi nell'ordine inverso",
                 "OBR_rin" : "Interferenza del corridore",
+                "OBR_oin" : "Altra Interference",
                 "OBR_rle" : "Lascia la base troppo presto (softball)",
                 "OBR_rhe" : "Si togle il caschetto (softball)"
             },

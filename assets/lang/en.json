@@ -156,6 +156,7 @@
                 "OBR_ppr" : "Passing a Preceding Runner",
                 "OBR_rro" : "Running the bases in Reverse Order",
                 "OBR_rin" : "Runner Interference",
+                "OBR_oin" : "Other Interference",
                 "OBR_rle" : "Runner Left Early (softball)",
                 "OBR_rhe" : "Removal of Helmet (softball)"
             },

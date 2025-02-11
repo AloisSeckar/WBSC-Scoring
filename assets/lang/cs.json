@@ -156,6 +156,7 @@
                 "OBR_ppr" : "Předběhnutí běžce",
                 "OBR_rro" : "Běh po metách v opačném pořadí",
                 "OBR_rin" : "Bránění běžce",
+                "OBR_oin" : "Jiné bránění",
                 "OBR_rle" : "Předčasný výběh (softball)",
                 "OBR_rhe" : "Sundání helmy(softball)"
             },

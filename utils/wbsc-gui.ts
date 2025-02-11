@@ -283,6 +283,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, inputGroup
       options.push({ group: rOut, value: 'OBR_ppr', label: useT('editor.action.obr.OBR_ppr') })
       options.push({ group: rOut, value: 'OBR_rro', label: useT('editor.action.obr.OBR_rro') })
       options.push({ group: rOut, value: 'OBR_rin', label: useT('editor.action.obr.OBR_rin') })
+      options.push({ group: rOut, value: 'OBR_oin', label: useT('editor.action.obr.OBR_oin') })
       options.push({ group: rOut, value: 'OBR_rle', label: useT('editor.action.obr.OBR_rle') })
       options.push({ group: rOut, value: 'OBR_rhe', label: useT('editor.action.obr.OBR_rhe') })
       break

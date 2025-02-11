@@ -1026,7 +1026,17 @@
   },
   {
     "file": "obr-oin",
-    "name": "Out by rule - Other Interference",
+    "name": "Out by rule - Other Interference (batter)",
+    "cat": "OBRs"
+  },
+  {
+    "file": "obr-oin-r1",
+    "name": "Out by rule - Other Interference (runner)",
+    "cat": "OBRs"
+  },
+  {
+    "file": "obr-oin-ks",
+    "name": "Out by rule - KS (B) + OIN (R1)",
     "cat": "OBRs"
   },
   {

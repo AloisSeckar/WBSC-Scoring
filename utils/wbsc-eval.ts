@@ -201,6 +201,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
       break
     case 'OBR_rol':
     case 'OBR_rin':
+    case 'OBR_oin':
     case 'A':
     case 'ENF':
     case 'ENT':
@@ -566,6 +567,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'OBR_rle':
     case 'OBR_rhe':
     case 'OBR_rin':
+    case 'OBR_oin':
       output.num = true
       // falls through
     case 'OBR_rta':
