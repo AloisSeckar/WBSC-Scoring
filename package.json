@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "backstopjs": "6.3.25",
-    "nuxt-ignis": "0.1.10",
+    "nuxt-ignis": "0.2.2",
     "vue": "latest",
     "vue-router": "latest"
   },
