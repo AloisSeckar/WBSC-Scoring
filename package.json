@@ -14,13 +14,6 @@
   },
   "devDependencies": {
     "backstopjs": "6.3.25",
-    "nuxt-ignis": "0.1.10",
-    "vue": "latest",
-    "vue-router": "latest"
-  },
-  "pnpm": {
-    "overrides": {
-      "@nuxtjs/mdc": "^0.13.3"
-    }
+    "nuxt-ignis": "0.2.5"
   }
 }
