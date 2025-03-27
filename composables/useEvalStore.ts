@@ -38,8 +38,7 @@ export type WBSCEval = {
   exb: boolean
 }
 
-export const useEvalStore = defineStore({
-  id: 'eval-store',
+export const useEvalStore = defineStore('eval-store', {
   state: () => {
     const data: WBSCEval = {
       importShow: false,

@@ -4,6 +4,9 @@
 dist
 node_modules
 
+# nuxt-content
+.data
+
 # backstop
 /tests/backstop/bitmaps_test/
 /tests/backstop/html_report/

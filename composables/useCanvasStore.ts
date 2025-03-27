@@ -5,8 +5,7 @@ export type CanvasInfo = {
   vOffset: number
 }
 
-export const useCanvasStore = defineStore({
-  id: 'canvas-store',
+export const useCanvasStore = defineStore('canvas-store', {
   state: () => {
     const item: CanvasInfo = {
       hOffset: 75,
