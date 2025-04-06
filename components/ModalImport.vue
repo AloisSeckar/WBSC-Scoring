@@ -52,7 +52,7 @@ jsonItems.forEach((json) => {
   })
 })
 
-const libFile = ref(library.get('Ground Outs')!.at(0)!.file)
+const libFile = ref(library.get('Ground outs')!.at(0)!.file)
 function importFromLib() {
   importInputFromLib(libFile.value)
   close()

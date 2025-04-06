@@ -2,42 +2,42 @@
   {
     "file": "out-63",
     "name": "Ground out - SS to 1B",
-    "cat": "Ground Outs"
+    "cat": "Ground outs"
   },
   {
     "file": "out-3",
     "name": "Ground out - 1B, unassisted",
-    "cat": "Ground Outs"
+    "cat": "Ground outs"
   },
   {
     "file": "out-143",
     "name": "Ground out - P to 2B to 1B",
-    "cat": "Ground Outs"
+    "cat": "Ground outs"
   },
   {
     "file": "out-54b",
     "name": "Ground out - 3B to 2B, bunt",
-    "cat": "Ground Outs"
-  },
-  {
-    "file": "out-63-r2-out-6",
-    "name": "Ground out - SS to 1B, R2 out 6, DP",
-    "cat": "Double Plays"
+    "cat": "Ground outs"
   },
   {
     "file": "out-f4",
     "name": "Fly out - 2B",
-    "cat": "Fly Outs"
+    "cat": "Fly outs"
   },
   {
     "file": "out-ff5",
     "name": "Fly out (foul) - 3B",
-    "cat": "Fly Outs"
+    "cat": "Fly outs"
   },
   {
     "file": "out-ff2b",
     "name": "Fly out (foul) - C, bunt",
-    "cat": "Fly Outs"
+    "cat": "Fly outs"
+  },
+  {
+    "file": "out-63-r2-out-6",
+    "name": "Ground out - SS to 1B, R2 out 6, DP",
+    "cat": "Double plays"
   },
   {
     "file": "out-l4-r1-out-43",
@@ -712,7 +712,7 @@
   {
     "file": "out-if6",
     "name": "Infield fly - SS",
-    "cat": "Fly Outs"
+    "cat": "Fly outs"
   },
   {
     "file": "wp-r1",
