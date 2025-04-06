@@ -1,6 +1,6 @@
 ## POPIS PROJEKTU
 
-**WBSC Scoring Creator** je JavaScriptový program, který umožňuje zadávání herních kombinací, které se mohou vyskytnout v baseballu/softballu, aby vizualizoval způsob zapsání takové rozehry v systému zápisu [WBSC](https://www.wbsc.org/). Je určen jak pro individuální zapisovatele k učení a opakování, tak pro lektory, jimž může pomoct sestavit výukové materiály pro semináře.
+**WBSC-like Scoring Creator** je JavaScriptový program, který umožňuje zadávání herních kombinací, které se mohou vyskytnout v baseballu/softballu, aby vizualizoval způsob zapsání takové rozehry v systému zápisu podle [WBSC](https://www.wbsc.org/). Je určen jak pro individuální zapisovatele k učení a opakování, tak pro lektory, jimž může pomoct sestavit výukové materiály pro semináře.
 
 Pro více informací o tom, jak program používat, viz [Uživatelská příručka](/help).
 

@@ -1,6 +1,6 @@
 ## PROJECT DESCRIPTION
 
-**WBSC Scoring Creator** is a JavaScript-based program that allows selecting combination of plays that may occur in baseball/softball game to visualize the way of scoring such play in [WBSC](https://www.wbsc.org/) scoring system. It is meant both for individual scorers for learning and revising and for tutors to help them build up educational materials for clinics.
+**WBSC-like Scoring Creator** is a JavaScript-based program that allows selecting combination of plays that may occur in baseball/softball game to visualize the way of scoring such play in [WBSC](https://www.wbsc.org/) scoring system. It is meant both for individual scorers for learning and revising and for tutors to help them build up educational materials for clinics.
 
 For more information about how to use the program, see [User manual](/help).
 

@@ -1,4 +1,4 @@
-# WBSC Scoring Creator
+# WBSC-like Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system. The app is powered by [Nuxt](https://nuxtjs.org/).
 
 Project is available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) for usage instructions.

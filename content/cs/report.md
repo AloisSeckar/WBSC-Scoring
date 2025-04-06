@@ -2,7 +2,7 @@
 
 _V každém počítačovém programu je alespoň jedna chyba._
 
-Toto úsloví může být trochu přehnané, ale obecně je dost těžké udržet jakoukoliv aplikaci bezchybnou. Při vývoji "WBSC Scoring" dělám, co můžu, také mám slušnou porci automatizovaných testů s desítkami situací k prověření pokaždé, když něco přidám/změním/opravím, ale jsem si prakticky jistý, že tu pořád máme skryté chyby, které čekají na objevení. A pokud ne přímo chyby, tak může někdo z vás přijít s nějakými novými funkcemi, které mě zatím nenapadly.
+Toto úsloví může být trochu přehnané, ale obecně je dost těžké udržet jakoukoliv aplikaci bezchybnou. Při vývoji "WBSC-like Scoring" dělám, co můžu, také mám slušnou porci automatizovaných testů s desítkami situací k prověření pokaždé, když něco přidám/změním/opravím, ale jsem si prakticky jistý, že tu pořád máme skryté chyby, které čekají na objevení. A pokud ne přímo chyby, tak může někdo z vás přijít s nějakými novými funkcemi, které mě zatím nenapadly.
 
 Jsem připraven na všechny vaše podněty. Na této stránce najdete detaily o procesu hlášení.
 
@@ -10,7 +10,7 @@ Jsem připraven na všechny vaše podněty. Na této stránce najdete detaily o 
 
 GitHub nabízí jednoduchý, a přitom plně dostačující systém sledování chyb/návrhů, který v tomto projektu používám.
 
-Všechny tickety tykající se "WBSC Scoring" můžete nalézt [ZDE](https://github.com/AloisSeckar/WBSC-Scoring/issues). Výchozí filtr ukazuje otevřené úkoly, které jsou mi známy, ale ještě je třeba je vypořádat.
+Všechny tickety tykající se "WBSC-like Scoring" můžete nalézt [ZDE](https://github.com/AloisSeckar/WBSC-Scoring/issues). Výchozí filtr ukazuje otevřené úkoly, které jsou mi známy, ale ještě je třeba je vypořádat.
 
 Pokud umíte s GitHubem pracovat, neváhejte tam sami vytvořit nové hlášení. Budu se je snažit vyřídit co nejdříve.
 

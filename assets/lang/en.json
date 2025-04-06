@@ -8,7 +8,7 @@
         "output" : "Output",
         "download" : "Download image",
         "about" : "About",
-        "dscr" : "This JavaScript-based tool provides visualization for <b><a href=\"https://www.wbsc.org/\">WBSC</a> Scoring System</b> to help new scorers adopt it. Use GUI elements to create a baseball/softball game situation, then click the <strong>'Score play'</strong> button to see how it shall be scored. If you want to store the result, use the <strong>'Download image'</strong> button. If something is wrong, feel free to <a href=\"/report\">report it</a>.",
+        "dscr" : "This JavaScript-based tool provides visualization for <b>Scoring System for baseball/softball games</b> proposed by <b><a href=\"https://www.wbsc.org/\">WBSC</a></b> to help new scorers adopt it. Use GUI elements to create a baseball/softball game situation, then click the <strong>'Score play'</strong> button to see how it shall be scored. If you want to store the result, use the <strong>'Download image'</strong> button. If something is wrong, feel free to <a href=\"/report\">report it</a>.",
         "overview" : "Project overview",
         "manual" : "User manual",
         "report" : "Report bug",

@@ -6,7 +6,7 @@
         <div class="text-center">
           <header class="mt-1 mb-2">
             <h1 class="cursor-pointer" @click="toIndex">
-              WBSC Scoring <span class="text-red-500">Creator</span>
+              WBSC-like Scoring <span class="text-red-500">Creator</span>
             </h1>
           </header>
           <div class="text-left sm:text-justify mb-16">

@@ -1,6 +1,6 @@
 # Changelog
 
-This file keeps track of changes, updates and fixes in "WBSC Scoring" project.
+This file keeps track of changes, updates and fixes in "WBSC-like Scoring" project.
 
 ## Version 1.3.0 (2024-12-28)
 - Features:

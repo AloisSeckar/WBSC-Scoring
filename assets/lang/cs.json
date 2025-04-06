@@ -8,7 +8,7 @@
         "output" : "Výsledek",
         "download" : "Stáhnout obrázek",
         "about" : "O programu",
-        "dscr" : "Tento JavaScriptový nástroj slouží k vizualizaci <b>mezinárodního <a href=\"https://www.wbsc.org/\">WBSC</a> zápisu</b> a pomáhá novým zapisovatelům naučit se ho. Použijte UI ovládací prvky k vytvoření baseballové či softballové herní situace a poté klikněte na tlačítko <strong>'Zapsat rozehru'</strong> pro zobrazení, jak by měla být zapsána. Pokud si chcete výsledek uložit, využijte tlačítko <strong>'Stáhnout obrázek'</strong>. Pokud něco nefunguje, neváhejte <a href=\"/report\">chybu nahlásit</a>.",
+        "dscr" : "Tento JavaScriptový nástroj slouží k vizualizaci <b>systému zápisu utkání baseballu a softballu</b> podle doporučení <b><a href=\"https://www.wbsc.org/\">WBSC</a></b> a pomáhá novým zapisovatelům naučit se ho. Použijte UI ovládací prvky k vytvoření baseballové či softballové herní situace a poté klikněte na tlačítko <strong>'Zapsat rozehru'</strong> pro zobrazení, jak by měla být zapsána. Pokud si chcete výsledek uložit, využijte tlačítko <strong>'Stáhnout obrázek'</strong>. Pokud něco nefunguje, neváhejte <a href=\"/report\">chybu nahlásit</a>.",
         "overview" : "Přehled projektu",
         "manual" : "Uživatelská příručka",
         "report" : "Nahlásit chybu",

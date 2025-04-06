@@ -8,7 +8,7 @@
         "output" : "Output",
         "download" : "Scarica imagine",
         "about" : "Riguardo a",
-        "dscr" : "Questo strumento basato su javascript permette di visuallizare <b>i simboli ufficiali <a href=\"https://www.wbsc.org/\">WBSC</a></b> per aiutare nuovi scorers/scorekeepers. Usa gli elementi dell'interfaccia per creare situazioni di baseball/softball, poi premi sul pulsante <strong>'Classifica azione'</strong> per vedere come dovrebbe essere scritta. Se vuoi salvare il risultato, premi il pulsante <strong>'Scarica imagine'</strong>. Se qualcosa è sbagliato, <a href=\"/report\">segnalalo </a>.",
+        "dscr" : "Questo strumento basato su javascript permette di visuallizare <b>i simboli ufficiali per le partite di baseball/softball</b> proposto da <b><a href=\"https://www.wbsc.org/\">WBSC</a></b> per aiutare nuovi scorers/scorekeepers. Usa gli elementi dell'interfaccia per creare situazioni di baseball/softball, poi premi sul pulsante <strong>'Classifica azione'</strong> per vedere come dovrebbe essere scritta. Se vuoi salvare il risultato, premi il pulsante <strong>'Scarica imagine'</strong>. Se qualcosa è sbagliato, <a href=\"/report\">segnalalo </a>.",
         "overview" : "Panoramica del pogetto",
         "manual" : "Manuale Utente",
         "report" : "Segnala errore",

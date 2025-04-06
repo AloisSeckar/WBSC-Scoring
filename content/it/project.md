@@ -1,6 +1,6 @@
 ## DESCRIZIONE PROGETTO
 
-**WBSC Scoring Creator** è un programma basato su JavaScript che permette di selezionare combinazioni di azioni che possono verificarsi in una partita di baseball/softball per visualizzare il modo di segnare tale azione nel sistema di punteggio [WBSC](https://www.wbsc.org/). È pensato sia per i segnapunti individuali per l'apprendimento e la revisione, sia per i tutor per aiutarli a costruire materiali educativi per le riunioni/clinics.
+**WBSC-like Scoring Creator** è un programma basato su JavaScript che permette di selezionare combinazioni di azioni che possono verificarsi in una partita di baseball/softball per visualizzare il modo di segnare tale azione nel sistema di punteggio [WBSC](https://www.wbsc.org/). È pensato sia per i segnapunti individuali per l'apprendimento e la revisione, sia per i tutor per aiutarli a costruire materiali educativi per le riunioni/clinics.
 
 Per maggiori informazioni su come utilizzare il programma, consulta il [Manuale utente](/help).
 
