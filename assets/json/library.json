@@ -1010,8 +1010,8 @@
     "cat": "OBRs"
   },
   {
-    "file": "obr-boo",
-    "name": "Out by rule - Batting Out of Order",
+    "file": "obr-bot",
+    "name": "Out by rule - Batting Out of Turn",
     "cat": "OBRs"
   },
   {
