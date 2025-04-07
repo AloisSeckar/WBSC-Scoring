@@ -107,6 +107,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FB':
     case 'FFB':
     case 'OBR_BOT':
+    case 'OBR_ROL':
     case 'OBR_BIN':
     case 'OBR_OIN':
       last = true
@@ -316,6 +317,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       output.out = true
       break
     case 'OBR_BOT':
+    case 'OBR_ROL':
     case 'OBR_DIF':
     case 'OBR_BIN':
     case 'OBR_OIN':

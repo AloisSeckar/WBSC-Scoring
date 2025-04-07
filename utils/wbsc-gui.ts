@@ -189,6 +189,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bOut, value: 'OBR_TBB', label: useT('editor.action.obr.OBR_TBB') })
       options.push({ group: bOut, value: 'OBR_BIC', label: useT('editor.action.obr.OBR_BIC') })
       options.push({ group: bOut, value: 'OBR_BOT', label: useT('editor.action.obr.OBR_BOT') })
+      options.push({ group: bOut, value: 'OBR_ROL', label: useT('editor.action.obr.OBR_rol') })
       options.push({ group: bOut, value: 'OBR_RTA', label: useT('editor.action.obr.OBR_RTA') })
       options.push({ group: bOut, value: 'OBR_DIF', label: useT('editor.action.obr.OBR_DIF') })
       options.push({ group: bOut, value: 'OBR_BIN', label: useT('editor.action.obr.OBR_BIN') })
