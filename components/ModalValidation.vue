@@ -7,7 +7,7 @@
         <div :class="divHeader">
           {{ $t('editor.validation.window.title') }}
         </div>
-        <ul>
+        <ul class="text-left">
           <li v-for="row in validationRows" :key="row">
             {{ row }}
           </li>
@@ -27,7 +27,7 @@ const divButton = 'mx-auto my-4 p-2 w-16 border border-black rounded bg-wbsc-blu
   + 'text-white hover:text-gray-700 font-bold cursor-pointer'
 
 const validationRows = computed((): string[] => {
-  return useEvalStore().errorText?.split('\n')
+  return useEvalStore().errorText?.split('\n').filter(a => !!a)
 })
 
 function invalidate() {
