@@ -240,6 +240,7 @@
             "missingSFRun" : "SF is selected, but no runner scored.",
             "noSHAndO" : "It is not possible to score a SH, if a runner is forced out before reaching next base.",
             "noSBCS" : "SB is not possible, when another runner was CS, use 'FC - indifference'.",
+            "invalidE2T" : "E2T is not possible after SB. Use \"extra base\" e2T.",
             "noMixedExtraAdvances" : "WP/PB/BK/IP cannot be combined. Use only one action type in all inputs.",
             "noWPAfterPlay" : "WP cannot happen after another play (except for SB and BB).",
             "noPBAfterPlay" : "PB cannot happen after another play (except for SB and BB).",

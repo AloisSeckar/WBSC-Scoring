@@ -544,15 +544,26 @@ export function checkSHSF(inputs: WBSCInput[]) {
 
 // there cannot be SB and CS in the same play
 // when CS, other advances are indifference (O/)
+// #277 - there cannot be decisive E2T after SB
 export function checkSBCS(inputs: WBSCInput[]) {
   let validation = ''
 
+  log.warn(inputs)
+
   let sbSelected = false
   let csSelected = false
+  let invalidE2T = false
 
   inputs.forEach((input) => {
     if (input.specAction === 'SB') {
       sbSelected = true
+      if (input.group === inputR1) {
+        const r1a = inputs.find(i => i.group === inputR1a)
+        invalidE2T = r1a?.specAction === 'ET' && r1a.pos1 === '2'
+      } else if (input.group === inputR2) {
+        const r2a = inputs.find(i => i.group === inputR2a)
+        invalidE2T = r2a?.specAction === 'ET' && r2a.pos1 === '2'
+      }
     } else if (input.specAction.startsWith('CS')) {
       csSelected = true
     }
@@ -560,6 +571,9 @@ export function checkSBCS(inputs: WBSCInput[]) {
 
   if (sbSelected && csSelected) {
     validation = attachValidation(validation, useT('editor.validation.noSBCS'))
+  }
+  if (invalidE2T) {
+    validation = attachValidation(validation, useT('editor.validation.invalidE2T'))
   }
 
   return validation

@@ -240,6 +240,7 @@
             "missingSFRun" : "SF  è selezionato, ma nessun punto è segnato sulla battuta.",
             "noSHAndO" : "Non è possibile assegnare una SH, se un corridore è out prima di raggiungere la base successiva.",
             "noSBCS" : "SB non è possibile, quando un altro corridore è CS, usa 'FC - indifferenza'.",
+            "invalidE2T" : "E2T non può accadere dopo SB. Usa \"extra base\" e2T.",
             "noMixedExtraAdvances" : "WP/PB/BK/IP non possono essere collegati. Usa solo una azione nella stessa azione.",
             "noWPAfterPlay" : "WP non può accadere dopo un'altra giocata (ad eccezione per SB e BB).",
             "noPBAfterPlay" : "PB non può accadere dopo un'altra giocata (ad eccezione per SB e BB).",
