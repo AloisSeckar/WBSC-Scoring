@@ -13,7 +13,7 @@ Toto je open-source program distribuovaný pomocí [UNLICENSE](https://unlicense
 <a id="done"></a>
  
 ## HOTOVO
-_(co zde už můžete najít)_
+**co zde už můžete najít**
 
 <ul class="list-disc">
 <li>Editor rozeher umožňující zadat téměř všechny existující situace podle nejnovější verze WBSC manuálu</li><li>Stahování výsledných obrázků v PNG formátu</li><li>Export/Import akcí v JSON formátu</li><li>Knihovna akcí s více než 200 předdefinovanými situacemi</li><li>Uživatelská příručka</li><li>Český, Anglický a Italský překlad</li>
@@ -22,7 +22,7 @@ _(co zde už můžete najít)_
 <a id="todo"></a>
 
 ## Seznam TO-DO
-_(snad bude implementováno v následujících verzích)_
+**snad bude implementováno v následujících verzích**
 
 <ul class="list-disc">
 <li>Reorganizace knihovny akcí pro větší přehlednost</li><li>Překlady do dalších jazyků</li><li>Informační stránky s popisem scoresheetu a způsobu zápisu střídání</li><li>Více validací vstupu</li><li>Opravy a úpravy výstupu kde to bude potřeba</li>
@@ -31,7 +31,7 @@ _(snad bude implementováno v následujících verzích)_
 <a id="limitations"></a>
 
 ## Omezení
-_(neplánuje se v dohledné době implementovat)_
+**neplánuje se v dohledné době implementovat**
 
 Existuje několik oblastí systému zápisu WBSC, které tento program momentálně nepokrývá. Mohou být zahrnuty v některých budoucích verzích, ale nic neslibujeme.
 
