@@ -499,6 +499,32 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
       })
     }
   }
+
+  // #279 - strikeout + indifference advance + runner out (but no DP)
+  const nodpStrikeout = ['KSR', 'KLR', 'KSWP', 'KLWP', 'KSPB', 'KLWP', 'KSO', 'KLO'].includes(batterAction)
+  if (nodpStrikeout) {
+    const connected = []
+    if ((['GOT', 'GO', 'A'].includes(r1SpecAction) && r1Input.nodp) || r1SpecAction === 'O/') {
+      connected.push(r1Output)
+    }
+    if ((['GOT', 'GO', 'A'].includes(r2SpecAction) && r2Input.nodp) || r2SpecAction === 'O/') {
+      connected.push(r2Output)
+    }
+    if ((['GOT', 'GO', 'A'].includes(r3SpecAction) && r3Input.nodp) || r3SpecAction === 'O/') {
+      connected.push(r3Output)
+    }
+    if (connected.length > 1) {
+      connected.forEach((output) => {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: output!.batter,
+          base: output!.base,
+          out: output!.out,
+          na: false,
+          text1: output!.text1,
+        })
+      })
+    }
+  }
 }
 
 export {
