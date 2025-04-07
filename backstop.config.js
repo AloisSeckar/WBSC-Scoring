@@ -10,7 +10,7 @@ const functionScenarios = [
   { label: 'visit-project', ...getFunctionScenarioCfg('project') },
   { label: 'visit-help', ...getFunctionScenarioCfg('help') },
   { label: 'visit-report', ...getFunctionScenarioCfg('report') },
-  { label: 'generate-err', ...getFunctionScenarioCfg(), clickSelector: '#button-input-generate' },
+  { label: 'generate-err', ...getFunctionScenarioCfg(), clickSelector: '#button-input-generate' }, // TODO fails for w:320, needs w:325 (why?)
   { label: 'generate-ok', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/generate-ok.js' },
   { label: 'inputs-none', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-none.js' },
   { label: 'inputs-all', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-all.js' },
