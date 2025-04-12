@@ -60,6 +60,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FSF':
     case 'IF':
     case 'OBR_DIF':
+    case 'EDFB':
       last = true
       // falls through
     case 'HR':
@@ -75,7 +76,6 @@ function changeBatterSpecificAction(specAction: string) {
     case 'EDF':
     case 'EDL':
     case 'EDP':
-    case 'EDFB':
     case 'OB':
     case 'SHEF':
     case 'SFE':

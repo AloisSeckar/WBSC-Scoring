@@ -249,6 +249,7 @@
             "noPlayAfterBK" : "BK must be the only runner play at the moment.",
             "noPlayAfterRLE" : "RLE must be the only runner play at the moment.",
             "noHBBWithoutHit" : "HBB must be scored together with a single for the batter.",
+            "noPlayAfterEDFB" : "Dropped foul error is a dead-ball and prevents all other actions.",
             "noPlayAfterDeadBall" : "Selected action is a dead-ball and prevents all runner actions except forced advancements.",
             "noAdvanceOnNA" : "No further advance is possible after 'no advance' play.",
             "eDF" : "Extra base dropped fly error is only possible with 'FC - Occupied'.",

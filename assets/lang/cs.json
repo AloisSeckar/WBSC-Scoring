@@ -249,6 +249,7 @@
             "noPlayAfterBK" : "BK musí být v daný moment jediná situace běžce.",
             "noPlayAfterRLE" : "RLE musí být v daný moment jediná situace běžce.",
             "noHBBWithoutHit" : "HBB musí být dohromady se single odpalem pro pálkaře.",
+            "noPlayAfterEDFB" : "Upuštěný foul ball znamená dead-ball, což vylučuje jakékoliv další rozehry.",
             "noPlayAfterDeadBall" : "Vybraná akce znamená dead-ball, což vylučuje jakékoliv další rozehry s výjimkou nucených postupů.",
             "noAdvanceOnNA" : "Po 'no advance' rozehře není možný další postup běžce.",
             "eDF" : "Extra base dropped fly error je možné zapsat pouze dohromady 'FC - Occupied'.",

@@ -92,3 +92,22 @@ test('validation should fail - IP + other play', () => {
 test('validation should pass - IP at 3rd + OB2 exception', () => {
   expect(checkDeadBallPlays([rIPInput, bOBInput])).toBe('')
 })
+
+const bDFInput = createMockInput({
+  group: 'input-b',
+  baseAction: 'Error',
+  specAction: 'EDFB',
+})
+
+test('validation should pass - EDFB as single action', () => {
+  expect(checkDeadBallPlays([bDFInput])).toBe('')
+})
+
+test('validation should fail - no actions after EDFB', () => {
+  const r1Input = createMockInput({
+    group: 'input-r1',
+    baseAction: 'out',
+    specAction: 'GO',
+  })
+  expect(checkDeadBallPlays([r1Input, bDFInput])).toBe(useT('editor.validation.noPlayAfterEDFB'))
+})

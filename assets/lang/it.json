@@ -249,6 +249,7 @@
             "noPlayAfterBK" : "BK deve essere la sola azione del corridore al momento.",
             "noPlayAfterRLE" : "RLE  deve essere la sola azione del corridore al momento.",
             "noHBBWithoutHit" : "HBB deve essere classificata con un singolo per il battitore.",
+            "noPlayAfterEDFB" : "Foul mancata è una palla morta, i corridori non possono avanzare.",
             "noPlayAfterDeadBall" : "L'azione selezionata è una palla morta, i corridori non possono avanzare ad eccezione per gli avanzamenti forzati.",
             "noAdvanceOnNA" : "Nessun ulteriore avanzamento è possibile se è selezionato 'nessun avanzamento'.",
             "eDF" : "Volata mancata da extra base errore è possibile solo con 'FC - Occupata'.",

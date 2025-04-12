@@ -692,7 +692,12 @@ export function checkOBRs(inputs: WBSCInput[]) {
 
 // #206 - when there is a "dead-ball" play, only necessary forced advances of other runners are possible
 // exception: OB2 + BK/IP (obstruction during squeeze play)
+// #281 - dropped foul ball error must be the only play scored (ball is dead upon dropped in foul territory)
 export function checkDeadBallPlays(inputs: WBSCInput[]) {
+  if (inputs.some(i => i.specAction === 'EDFB') && inputs.length > 1) {
+    return useT('editor.validation.noPlayAfterEDFB')
+  }
+
   if (inputs.some(i => ['INT', 'OB', 'IBB1', 'HP'].includes(i.specAction))) {
     if (inputs.some(i => i.group !== inputB && !i.specAction.includes('ADV') && (i.group !== inputR3 || !['BK', 'IP'].includes(i.specAction)))) {
       return useT('editor.validation.noPlayAfterDeadBall')
