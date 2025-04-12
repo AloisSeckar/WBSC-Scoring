@@ -464,6 +464,22 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
     })
   }
 
+  // #168 - connect dropped fly error (ExF) + error/out
+  const droppedFly = ['EDF', 'EDL', 'EDP'].includes(batterAction)
+  if (droppedFly) {
+    outputs.forEach((output) => {
+      if (['EDF', 'EDL', 'EDP', 'GO', 'GOT'].includes(output.specAction)) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: output.batter,
+          base: output.base,
+          out: output.out,
+          na: false,
+          text1: output.text1,
+        })
+      }
+    })
+  }
+
   // #256 - connect putout at home + WP/PB
   const outAtHome = r3SpecAction === 'GOT'
   const r1WpOrPb = r1Output && (r1SpecAction === 'WP' || r1SpecAction === 'PB')

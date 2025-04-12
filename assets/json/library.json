@@ -455,6 +455,11 @@
     "cat": "E"
   },
   {
+    "file": "error-8f-r2-85",
+    "name": "Error - dropped fly by CF, R2 out 85 at 3rd",
+    "cat": "E"
+  },
+  {
     "file": "error-int",
     "name": "Error - catcher's interference",
     "cat": "E"
