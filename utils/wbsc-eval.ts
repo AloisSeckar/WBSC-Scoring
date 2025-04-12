@@ -170,6 +170,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
     case 'OBR_rhe':
       last = true
       // falls through
+    case 'eDF':
     case 'POE':
     case 'O/':
     case 'ob':
@@ -591,9 +592,12 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'EM':
     case 'eF':
     case 'eT':
+    case 'eDF':
       output.text1 = pos?.substring(0, pos.length - 1) + action.substring(0, 1) + pos?.substring(pos.length - 1)
       if (!action.endsWith('F')) {
         output.text1 += action.substring(action.length - 1)
+      } else if (action === 'eDF') {
+        output.text1 += 'F'
       }
       if (output.text1.length > 4) {
         const tempText = output.text1

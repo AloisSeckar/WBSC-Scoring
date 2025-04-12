@@ -630,6 +630,11 @@
     "cat": "E"
   },
   {
+    "file": "error-o9-r1-94-r2-e9df",
+    "name": "FC - occupied to 9, R1 out 94 at 2nd, R2 to 3rd on e9F",
+    "cat": "E"
+  },
+  {
     "file": "fc-o6-r2-6e4-na",
     "name": "FC - occupied - SS to 2B, error, no advance (R2)",
     "cat": "E"

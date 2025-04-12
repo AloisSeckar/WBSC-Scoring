@@ -327,7 +327,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
 
   // #189 - connect SB / CS / O/ with an extra base error
   // #176 - also connect "same error" with applicable connection action
-  const extraBaseErrors = ['eF', 'eT']
+  const extraBaseErrors = ['eF', 'eT'] // eDF doesn't apply here
   const sameError = ['se1', 'se2', 'se3']
   const connectingActions = ['SB', 'SBPOA', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN', 'POCSE', 'POCSEN', 'CSO', 'PO', 'POCS', 'T', 'O/']
   const r1error = extraBaseErrors.includes(r1SpecAction) || sameError.includes(r1SpecAction)
@@ -469,6 +469,22 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   if (droppedFly) {
     outputs.forEach((output) => {
       if (['EDF', 'EDL', 'EDP', 'GO', 'GOT'].includes(output.specAction)) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: output.batter,
+          base: output.base,
+          out: output.out,
+          na: false,
+          text1: output.text1,
+        })
+      }
+    })
+  }
+
+  // #172 - connect dropped fly extra base error + batter's action (occupied)
+  const droppedFlyExtra = outputs.some(o => o.specAction === 'eDF')
+  if (droppedFlyExtra) {
+    outputs.forEach((output) => {
+      if (['O', 'OCB', 'eDF'].includes(output.specAction)) {
         useEvalStore().pushConcurrentPlayIfNotAdded({
           batter: output.batter,
           base: output.base,
