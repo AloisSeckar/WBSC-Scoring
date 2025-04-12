@@ -265,7 +265,21 @@
             "title" : "Select situation to import",
             "situation" : "Situation",
             "confirm" : "Import",
-            "cancel" : "Cancel"
+            "cancel" : "Cancel",
+            "category": {
+                "GO": "Ground outs",
+                "SO": "Strike outs",
+                "FO": "Fly outs",
+                "H": "Hits",
+                "A": "Advances",
+                "S": "Sacrifices",
+                "E": "Errors",
+                "SB": "SB/CS",
+                "DP": "Double plays",
+                "FC": "Fielder's choices",
+                "OBR": "OBRs",
+                "OP": "Other plays"
+            }
         },
         "error" : {
             "invalidCanvas" : "Fatal: Rendering target not defined!",

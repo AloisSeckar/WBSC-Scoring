@@ -265,7 +265,21 @@
             "title" : "Seleziona situazione da importare",
             "situation" : "Situazione",
             "confirm" : "Importa",
-            "cancel" : "Anulla"
+            "cancel" : "Anulla",
+            "category": {
+                "GO": "Eliminato",
+                "SO": "Strike out",
+                "FO": "Out al volo",
+                "H": "Valida",
+                "A": "Avanzamento",
+                "S": "Sacrificio",
+                "E": "Errore",
+                "SB": "Rubate / CS",
+                "DP": "Doppio gioco",
+                "FC": "Scelta della difesa",
+                "OBR": "Out per regola",
+                "OP": "Altro gioco"
+            }
         },
         "error" : {
             "invalidCanvas" : "Errore fatale: Il target per il rendering non è definito!",

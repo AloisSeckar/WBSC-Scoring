@@ -90,7 +90,7 @@
                 "IHR" : "Home run - inside the park"
             },
             "sacrifice" : {
-                "title" : "Sacrifice",
+                "title" : "SH / SF",
                 "SH" : "Sacrifice bunt",
                 "SF" : "Sacrifice fly",
                 "FSF" : "Sacrifice fly in foul territory",
@@ -161,7 +161,7 @@
                 "OBR_rhe" : "Sundání helmy(softball)"
             },
             "other" : {
-                "title" : "Jiný aut",
+                "title" : "Ostatní situace",
                 "A" : "Hra na výzvu",
                 "LT" : "Lost turn"
             },
@@ -265,7 +265,21 @@
             "title" : "Vyberte situaci, kterou chcete importovat",
             "situation" : "Situace",
             "confirm" : "Importovat",
-            "cancel" : "Zrušit"
+            "cancel" : "Zrušit",
+            "category": {
+                "GO": "Ground out",
+                "SO": "Strike out",
+                "FO": "Fly out",
+                "H": "Odpal",
+                "A": "Postup",
+                "S": "SH / SF",
+                "E": "Chyba",
+                "SB": "Krádež / Chycení",
+                "DP": "Double play",
+                "FC": "Volba v obraně",
+                "OBR": "Technický aut",
+                "OP": "Ostatní situace"
+            }
         },
         "error" : {
             "invalidCanvas" : "Fatal: Není definován objekt pro vykreslování obsahu!",

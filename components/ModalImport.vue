@@ -10,7 +10,7 @@
         <label :for="libFileId">
           {{ $t('editor.import.situation') }}:</label>
         <select :id="libFileId" v-model="libFile" :class="divSelect">
-          <optgroup v-for="[catKey, catValue] in library" :key="catKey" :label="catKey">
+          <optgroup v-for="[catKey, catValue] in library" :key="catKey" :label="useT(`editor.import.category.${catKey}`)">
             <option v-for="row in catValue" :key="row.file" :value="row.file">
               {{ row.name }}
             </option>
@@ -52,7 +52,7 @@ jsonItems.forEach((json) => {
   })
 })
 
-const libFile = ref(library.get('Ground outs')!.at(0)!.file)
+const libFile = ref(library.get('GO')!.at(0)!.file)
 function importFromLib() {
   importInputFromLib(libFile.value)
   close()
