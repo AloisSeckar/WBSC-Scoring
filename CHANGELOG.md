@@ -2,6 +2,18 @@
 
 This file keeps track of changes, updates and fixes in "WBSC-like Scoring" project.
 
+## Version 1.4.0 (2025-04-13)
+- Features:
+  - ROL added to batter actions (#275)
+  - OIN added to runner actions (#272)
+  - Extra base dropped fly added to runner actions (#172)
+  - SH validation broadened to any putout while "attempting to advance one base" (#241)
+  - Library actions grouped by translatable categories (#254)
+  - 9 new library actions (227 total)
+- Tech updates:
+  - NPM dependencies moved to [`nuxt-ignis` module](https://github.com/AloisSeckar/nuxt-ignis)
+- Bugfixes - GitHub issues #168, #268, #269, #271, #277
+
 ## Version 1.3.0 (2024-12-28)
 - Features:
   - 11 new library actions
