@@ -239,7 +239,7 @@
             "missingSHPlay" : "Je vybráno 'SH', ale žádný běžec nepostoupil na akci pálkaře.",
             "missingSFPlay" : "Je vybráno 'SF', ale žádný běžec nepostoupil na akci pálkaře.",
             "missingSFRun" : "Je vybráno 'SF', ale žádný běžec neskóroval.",
-            "noSHAndO" : "Není možné zapsat SH, pokud je běžec nuceně aut před dosažením další mety.",
+            "noSHAndO" : "Není možné zapsat SH, pokud je běžec aut před dosažením další mety.",
             "noSBCS" : "SB není možné zapsat, pokud byl jiný běžec CS. Použijte místo toho 'FC - indifference'.",
             "invalidE2T" : "Po SB nemůže následovat E2T. Použijte místo toho \"extra base\" e2T.",
             "noMixedExtraAdvances" : "WP/PB/BK/IP nelze kombinovat v jedné rozehře. Použijte pouze jeden typ akce pro všechny vstupy.",

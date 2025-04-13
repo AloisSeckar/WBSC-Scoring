@@ -515,27 +515,7 @@ export function checkSHSF(inputs: WBSCInput[]) {
   }
 
   if (!validation && shSelected) {
-    let runnerAt1 = false
-    let runnerAt2 = false
-    let forceOut = false
-
-    inputs.toReversed().forEach((input) => {
-      switch (input.group) {
-        case inputR1:
-          runnerAt1 = true
-          forceOut = input.specAction.startsWith('GO')
-          break
-        case inputR2:
-          runnerAt2 = true
-          forceOut = forceOut || (runnerAt1 && input.specAction.startsWith('GO'))
-          break
-        case inputR3:
-          forceOut = forceOut || (runnerAt1 && runnerAt2 && input.specAction.startsWith('GO'))
-          break
-      }
-    })
-
-    if (forceOut) {
+    if (inputs.some(i => firstRunnerActions.includes(i.group) && i.specAction.startsWith('GO'))) {
       validation = attachValidation(validation, useT('editor.validation.noSHAndO'))
     }
   }
