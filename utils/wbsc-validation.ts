@@ -529,8 +529,6 @@ export function checkSHSF(inputs: WBSCInput[]) {
 export function checkSBCS(inputs: WBSCInput[]) {
   let validation = ''
 
-  log.warn(inputs)
-
   let sbSelected = false
   let csSelected = false
   let invalidE2T = false

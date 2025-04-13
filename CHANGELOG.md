@@ -2,6 +2,11 @@
 
 This file keeps track of changes, updates and fixes in "WBSC-like Scoring" project.
 
+## Version 1.4.1 (2025-04-13)
+- Fixes:
+  - Fix Netlify deployment
+  - Remove forgotten console log
+
 ## Version 1.4.0 (2025-04-13)
 - Features:
   - ROL added to batter actions (#275)
