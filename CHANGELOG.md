@@ -2,10 +2,13 @@
 
 This file keeps track of changes, updates and fixes in "WBSC-like Scoring" project.
 
+## Version 1.5 (in progress)
+- TODO
+
 ## Version 1.4.1 (2025-04-13)
 - Fixes:
-  - Fix Netlify deployment
-  - Remove forgotten console log
+  - build: fix Netlify deployment (6a60b6c)
+  - chore: remove forgotten console log (768ec2a)
 
 ## Version 1.4.0 (2025-04-13)
 - Features:
