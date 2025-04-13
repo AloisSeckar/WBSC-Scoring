@@ -1,5 +1,4 @@
-export const useInputStore = defineStore({
-  id: 'input-store',
+export const useInputStore = defineStore('input-store', {
   state: () => {
     return {
       inputB: getEmptyInput(inputB),

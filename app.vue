@@ -6,7 +6,7 @@
         <div class="text-center">
           <header class="mt-1 mb-2">
             <h1 class="cursor-pointer" @click="toIndex">
-              WBSC Scoring <span class="text-red-500">Creator</span>
+              WBSC-like Scoring <span class="text-red-500">Creator</span>
             </h1>
           </header>
           <div class="text-left sm:text-justify mb-16">
@@ -18,6 +18,12 @@
               Alois Sečkár
             </NuxtLink>
             (2019-{{ new Date().getFullYear() }})
+            |
+            Powered by
+            <NuxtLink to="https://github.com/AloisSeckar/nuxt-ignis" class="text-white hover:text-yellow-300">
+              nuxt-ignis
+            </NuxtLink>
+            |
             {{ $t('footer.version') }}
             <strong>{{ useAppConfig().fullVersion }}</strong>
           </footer>

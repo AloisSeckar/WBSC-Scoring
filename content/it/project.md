@@ -1,6 +1,6 @@
 ## DESCRIZIONE PROGETTO
 
-**WBSC Scoring Creator** è un programma basato su JavaScript che permette di selezionare combinazioni di azioni che possono verificarsi in una partita di baseball/softball per visualizzare il modo di segnare tale azione nel sistema di punteggio [WBSC](https://www.wbsc.org/). È pensato sia per i segnapunti individuali per l'apprendimento e la revisione, sia per i tutor per aiutarli a costruire materiali educativi per le riunioni/clinics.
+**WBSC-like Scoring Creator** è un programma basato su JavaScript che permette di selezionare combinazioni di azioni che possono verificarsi in una partita di baseball/softball per visualizzare il modo di segnare tale azione nel sistema di punteggio [WBSC](https://www.wbsc.org/). È pensato sia per i segnapunti individuali per l'apprendimento e la revisione, sia per i tutor per aiutarli a costruire materiali educativi per le riunioni/clinics.
 
 Per maggiori informazioni su come utilizzare il programma, consulta il [Manuale utente](/help).
 
@@ -10,7 +10,7 @@ Questo programma è ancora in evoluzione. Visita la sezione ["TODO"](/project#to
 
 Il progetto è rilasciato sotto la licenza [UNLICENSE](https://unlicense.org/) e il codice sorgente può essere trovato [QUI](https://github.com/AloisSeckar/WBSC-Scoring). Qualsiasi aiuto per lo sviluppo futuro sarebbe apprezzato, ma puoi anche prendere il codice sorgente e fare ciò che vuoi con esso.
 
- <a id="done" />   
+<a id="done"></a>
  
 ## DISPONIBILE
 **(cosa puoi già trovare qui)**
@@ -20,7 +20,7 @@ Il progetto è rilasciato sotto la licenza [UNLICENSE](https://unlicense.org/) e
 </ul>
 
 
- <a id="todo" />   
+<a id="todo"></a>  
 
 ## LISTA TODO (da fare)
 **(quello che verrà implementato nelle prossime versioni)**
@@ -30,7 +30,7 @@ Il progetto è rilasciato sotto la licenza [UNLICENSE](https://unlicense.org/) e
 </ul>
 
 
- <a id="limitations" />   
+<a id="limitations"></a>   
 
 ## Limitazioni
 **(non pianificato per il prossino futuro)**
@@ -41,7 +41,7 @@ Ci sono diverse situazioni del sistema di scoring WBSC che attualmente non sono 
 <li>Non è possibile specificare azioni che portano i corridori a comparire sulle basi (tranne TIE). L'azione effettiva è sempre sostituita da un <strong><span style="color: red">asterisco rosso</span></strong>.</li><li>Non è possibile specificare l'ordine di battuta del battitore e dei corridori precedenti. L'output inizia sempre da 1.</li><li>Non è possibile ottenere un numero diverso di K e BB rispetto a 1</li><li>Le azioni sono limitate fino a 3 assist (seguiti da un out o un errore). Questo è principalmente per evitare problemi pratici con il rendering di più numeri.</li><li>Nessun 10° giocatore (esterno aggiuntivo) per lo slowpitch. Tuttavia, è molto probabile che verrà aggiunto in futuro.</li><li>Non copre le possibili funzionalità di Baseball5. Questo perché il sistema Baseball5 è molto diverso e non compatibile. Se sei interessato, qui c'è <a href="https://s3-eu-west-1.amazonaws.com/static.wbsc.org/assets/cms/documents/9b129842-cb39-da53-4b67-9c4c5a86f997.pdf">il documento ufficiale WBSC</a> che copre il sistema di punteggio del Baseball5.</li><li>Non copre le sostituzioni e gli output statistici. Non ha molto senso includerli nel meccanismo dell'app. Tuttavia, è previsto aggiungere articoli statici dedicati che coprono questi due argomenti.</li>
 </ul>
 
- <a id="history" />  
+<a id="history"></a>
 
  ## Storia
 Go to [CHANGELOG](https://github.com/AloisSeckar/WBSC-Scoring/blob/master/CHANGELOG.md)

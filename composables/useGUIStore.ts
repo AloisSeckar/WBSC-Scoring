@@ -1,5 +1,4 @@
-export const useGUIStore = defineStore({
-  id: 'gui-store',
+export const useGUIStore = defineStore('gui-store', {
   state: () => {
     return {
       inputB: true,

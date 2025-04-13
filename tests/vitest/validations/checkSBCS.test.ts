@@ -38,6 +38,36 @@ test('validation should fail - SB + CS', () => {
   expect(checkSBCS([r2Input, r1Input])).toBe(useT('editor.validation.noSBCS'))
 })
 
+test('validation should fail - SB + E2T', () => {
+  const r1Input = createMockInput({
+    group: 'input-r1',
+    baseAction: 'ste',
+    specAction: 'SB',
+  })
+  const r1aInput = createMockInput({
+    group: 'input-r1a',
+    baseAction: 'err',
+    specAction: 'ET',
+    pos1: '2',
+  })
+  expect(checkSBCS([r1aInput, r1Input])).toBe(useT('editor.validation.invalidE2T'))
+})
+
+test('validation should pass - SB + e2T', () => {
+  const r1Input = createMockInput({
+    group: 'input-r1',
+    baseAction: 'ste',
+    specAction: 'SB',
+  })
+  const r1aInput = createMockInput({
+    group: 'input-r1a',
+    baseAction: 'err',
+    specAction: 'eT',
+    pos1: '2',
+  })
+  expect(checkSBCS([r1aInput, r1Input])).toBe('')
+})
+
 test('validation should pass - CS + O/', () => {
   const r1Input = createMockInput({
     group: 'input-r1',

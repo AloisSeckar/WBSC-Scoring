@@ -1,4 +1,4 @@
 export default defineAppConfig({
-  publicVersion: '1.3',
-  fullVersion: '1.3.0',
+  publicVersion: '1.4',
+  fullVersion: '1.4.0',
 })

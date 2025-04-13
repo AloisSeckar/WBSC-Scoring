@@ -13,7 +13,7 @@ const decisiveErrorActions = [
   'EF', 'EFB', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
   'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN',
 ]
-const errorActions = [...decisiveErrorActions, 'eF', 'eT']
+const errorActions = [...decisiveErrorActions, 'eF', 'eT', 'eDF']
 const runnersOnlyActions = [
   'WP', 'PB', 'BK', 'IP', 'SB', 'SBPOA', 'CSE', 'CSET', 'CSN', 'CSNT',
   'POE', 'POEN', 'POCSE', 'POCSEN', 'CSO', 'PO', 'POCS',
@@ -52,6 +52,7 @@ export function checkUserInput(inputs: WBSCInput[], outputs: WBSCOutput[]) {
   validation = attachValidation(validation, checkNoAdvances(inputs))
   validation = attachValidation(validation, checkOBRs(inputs))
   validation = attachValidation(validation, checkDeadBallPlays(inputs))
+  validation = attachValidation(validation, checkExtraBaseDroppedFlyError(flattenedOutputs))
   validation = attachValidation(validation, checkSameError(flattenedOutputs))
   validation = attachValidation(validation, checkEarnedRuns(flattenedOutputs))
 
@@ -434,7 +435,7 @@ export function checkFC(inputs: WBSCInput[]) {
     let matchedPlay = false
     for (const input of inputs) {
       if (firstRunnerActions.includes(input.group)) {
-        if (oTarget === getPos(input).at(0)) {
+        if (oTarget === getPos(input).at(0) && input.specAction !== 'eDF') {
           matchedPlay = true
           break
         }
@@ -514,27 +515,7 @@ export function checkSHSF(inputs: WBSCInput[]) {
   }
 
   if (!validation && shSelected) {
-    let runnerAt1 = false
-    let runnerAt2 = false
-    let forceOut = false
-
-    inputs.toReversed().forEach((input) => {
-      switch (input.group) {
-        case inputR1:
-          runnerAt1 = true
-          forceOut = input.specAction.startsWith('GO')
-          break
-        case inputR2:
-          runnerAt2 = true
-          forceOut = forceOut || (runnerAt1 && input.specAction.startsWith('GO'))
-          break
-        case inputR3:
-          forceOut = forceOut || (runnerAt1 && runnerAt2 && input.specAction.startsWith('GO'))
-          break
-      }
-    })
-
-    if (forceOut) {
+    if (inputs.some(i => firstRunnerActions.includes(i.group) && i.specAction.startsWith('GO'))) {
       validation = attachValidation(validation, useT('editor.validation.noSHAndO'))
     }
   }
@@ -544,15 +525,26 @@ export function checkSHSF(inputs: WBSCInput[]) {
 
 // there cannot be SB and CS in the same play
 // when CS, other advances are indifference (O/)
+// #277 - there cannot be decisive E2T after SB
 export function checkSBCS(inputs: WBSCInput[]) {
   let validation = ''
 
+  log.warn(inputs)
+
   let sbSelected = false
   let csSelected = false
+  let invalidE2T = false
 
   inputs.forEach((input) => {
     if (input.specAction === 'SB') {
       sbSelected = true
+      if (input.group === inputR1) {
+        const r1a = inputs.find(i => i.group === inputR1a)
+        invalidE2T = r1a?.specAction === 'ET' && r1a.pos1 === '2'
+      } else if (input.group === inputR2) {
+        const r2a = inputs.find(i => i.group === inputR2a)
+        invalidE2T = r2a?.specAction === 'ET' && r2a.pos1 === '2'
+      }
     } else if (input.specAction.startsWith('CS')) {
       csSelected = true
     }
@@ -560,6 +552,9 @@ export function checkSBCS(inputs: WBSCInput[]) {
 
   if (sbSelected && csSelected) {
     validation = attachValidation(validation, useT('editor.validation.noSBCS'))
+  }
+  if (invalidE2T) {
+    validation = attachValidation(validation, useT('editor.validation.invalidE2T'))
   }
 
   return validation
@@ -677,7 +672,12 @@ export function checkOBRs(inputs: WBSCInput[]) {
 
 // #206 - when there is a "dead-ball" play, only necessary forced advances of other runners are possible
 // exception: OB2 + BK/IP (obstruction during squeeze play)
+// #281 - dropped foul ball error must be the only play scored (ball is dead upon dropped in foul territory)
 export function checkDeadBallPlays(inputs: WBSCInput[]) {
+  if (inputs.some(i => i.specAction === 'EDFB') && inputs.length > 1) {
+    return useT('editor.validation.noPlayAfterEDFB')
+  }
+
   if (inputs.some(i => ['INT', 'OB', 'IBB1', 'HP'].includes(i.specAction))) {
     if (inputs.some(i => i.group !== inputB && !i.specAction.includes('ADV') && (i.group !== inputR3 || !['BK', 'IP'].includes(i.specAction)))) {
       return useT('editor.validation.noPlayAfterDeadBall')
@@ -706,6 +706,20 @@ export function checkDeadBallPlays(inputs: WBSCInput[]) {
   }
 
   return ''
+}
+
+// eDF for runner is only possible when batter gets FC - occupied (#172)
+export function checkExtraBaseDroppedFlyError(outputs: WBSCOutput[]) {
+  let validation = ''
+
+  const droppedFlyExtra = outputs.some(o => o.specAction === 'eDF')
+  if (droppedFlyExtra) {
+    if (!outputs.some(o => o.specAction === 'O' || o.specAction === 'OCB')) {
+      validation = attachValidation(validation, useT('editor.validation.eDF'))
+    }
+  }
+
+  return validation
 }
 
 // there must be corresponding error to link "same error" with

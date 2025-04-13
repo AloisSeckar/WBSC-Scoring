@@ -30,7 +30,7 @@ test('validation should pass - runner from 1st advanced', () => {
   expect(checkSHSF([r1ADVInput, bSHInput])).toBe('')
 })
 
-test('validation should fail - runner from 1st advanced, but runner from 2nd is forced out', () => {
+test('validation should fail - runner from 1st advanced, but runner from 2nd was out', () => {
   const r2Input = createMockInput({
     group: 'input-r2',
     baseAction: 'out',
@@ -39,13 +39,27 @@ test('validation should fail - runner from 1st advanced, but runner from 2nd is 
   expect(checkSHSF([r2Input, r1ADVInput, bSHInput])).toBe(useT('editor.validation.noSHAndO'))
 })
 
-test('validation should pass - runner from 1st advanced and runner from 3rd was not forced', () => {
+test('validation should fail - runner from 1st advanced, but runner from 3rd was out', () => {
   const r3Input = createMockInput({
     group: 'input-r3',
     baseAction: 'out',
     specAction: 'GO',
   })
-  expect(checkSHSF([r3Input, r1ADVInput, bSHInput])).toBe('')
+  expect(checkSHSF([r3Input, r1ADVInput, bSHInput])).toBe(useT('editor.validation.noSHAndO'))
+})
+
+test('validation should pass - runner from 1st advanced one base, was out afterwards', () => {
+  const r1Input = createMockInput({
+    group: 'input-r1',
+    baseAction: 'adv',
+    specAction: 'ADV',
+  })
+  const r1aInput = createMockInput({
+    group: 'input-r1a',
+    baseAction: 'out',
+    specAction: 'GO',
+  })
+  expect(checkSHSF([r1aInput, r1Input, bSHInput])).toBe('')
 })
 
 const bSFInput = createMockInput({

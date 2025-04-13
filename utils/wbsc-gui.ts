@@ -189,6 +189,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bOut, value: 'OBR_TBB', label: useT('editor.action.obr.OBR_TBB') })
       options.push({ group: bOut, value: 'OBR_BIC', label: useT('editor.action.obr.OBR_BIC') })
       options.push({ group: bOut, value: 'OBR_BOT', label: useT('editor.action.obr.OBR_BOT') })
+      options.push({ group: bOut, value: 'OBR_ROL', label: useT('editor.action.obr.OBR_rol') })
       options.push({ group: bOut, value: 'OBR_RTA', label: useT('editor.action.obr.OBR_RTA') })
       options.push({ group: bOut, value: 'OBR_DIF', label: useT('editor.action.obr.OBR_DIF') })
       options.push({ group: bOut, value: 'OBR_BIN', label: useT('editor.action.obr.OBR_BIN') })
@@ -254,6 +255,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, inputGroup
       options.push({ group: rSafe, value: 'ET', label: useT('editor.action.error.ET') })
       options.push({ group: rSafe, value: 'eF', label: useT('editor.action.error.eF') })
       options.push({ group: rSafe, value: 'eT', label: useT('editor.action.error.eT') })
+      options.push({ group: rSafe, value: 'eDF', label: useT('editor.action.error.eDF') })
       options.push({ group: rSafe, value: 'se0', label: useT('editor.action.error.se0') })
       if (!(inputGroup.includes('r1'))) {
         options.push({ group: rSafe, value: 'se1', label: useT('editor.action.error.se1') })
@@ -283,6 +285,7 @@ export function renderRunnerSpecificActionOptions(baseAction: string, inputGroup
       options.push({ group: rOut, value: 'OBR_ppr', label: useT('editor.action.obr.OBR_ppr') })
       options.push({ group: rOut, value: 'OBR_rro', label: useT('editor.action.obr.OBR_rro') })
       options.push({ group: rOut, value: 'OBR_rin', label: useT('editor.action.obr.OBR_rin') })
+      options.push({ group: rOut, value: 'OBR_oin', label: useT('editor.action.obr.OBR_oin') })
       options.push({ group: rOut, value: 'OBR_rle', label: useT('editor.action.obr.OBR_rle') })
       options.push({ group: rOut, value: 'OBR_rhe', label: useT('editor.action.obr.OBR_rhe') })
       break

@@ -1,4 +1,4 @@
-# WBSC Scoring Creator
+# WBSC-like Scoring Creator
 JavaScript-based visualisation tool for WBSC scoring system. The app is powered by [Nuxt](https://nuxtjs.org/).
 
 Project is available at [https://wbsc-scoring.netlify.app/](https://wbsc-scoring.netlify.app/). Refer to [manual](https://wbsc-scoring.netlify.app/help.html) for usage instructions.
@@ -10,6 +10,27 @@ This software is distributed under [http://unlicense.org/](UNLICENSE) (free to u
 - [Luca Facchini [ITA]](https://github.com/lucafano04) - Italian translations
 
 Suggestions, bug reports and pull requests are welcome!
+
+## nuxt-ignis
+This project uses [Nuxt Ignis](https://github.com/AloisSeckar/nuxt-ignis) to simplify dependency management.
+
+To make it run locally, you need to provide `.env` file with following settings:
+
+```
+# enable Tailwind CSS
+NUXT_PUBLIC_IGNIS_PRESET_UI=tailwind
+
+# enable i18n translations
+NUXT_PUBLIC_IGNIS_I18N_ENABLED=true
+
+# enable working with Nuxt Content
+NUXT_PUBLIC_IGNIS_CONTENT=true
+
+# special setting to improve formatting
+# this should help preventing single-letter words at the end of the line
+NUXT_PUBLIC_IGNIS_PSLO_ENABLED=true
+NUXT_PUBLIC_IGNIS_PSLO_CONTENT=true
+```
 
 ## TO-DO list (to be implemented in next few releases)
 - More input validations

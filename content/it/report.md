@@ -2,7 +2,7 @@
 
 _In ogni programma c'è almeno un bug._
 
-Questo detto potrebbe essere un po' esagerato, ma in generale è abbastanza difficile mantenere qualsiasi applicazione priva di errori. Sto facendo del mio meglio per sviluppare "WBSC Scoring", avendo anche un bel po' di test automatizzati con decine di situazioni da testare ogni volta prima di aggiungere/aggiornare/risolvere qualcosa, ma in generale, sono sicuro che ci siano ancora errori nascosti in giro e in attesa di essere scoperti. E se non errori, allora probabilmente verrai con alcune nuove funzionalità "belle da avere" che non ho ancora pensato.
+Questo detto potrebbe essere un po' esagerato, ma in generale è abbastanza difficile mantenere qualsiasi applicazione priva di errori. Sto facendo del mio meglio per sviluppare "WBSC-like Scoring", avendo anche un bel po' di test automatizzati con decine di situazioni da testare ogni volta prima di aggiungere/aggiornare/risolvere qualcosa, ma in generale, sono sicuro che ci siano ancora errori nascosti in giro e in attesa di essere scoperti. E se non errori, allora probabilmente verrai con alcune nuove funzionalità "belle da avere" che non ho ancora pensato.
 
 Sono pronto per tutti i tuoi input. Qui su questa pagina, puoi trovare dettagli sul processo di segnalazione.
 
@@ -10,7 +10,7 @@ Sono pronto per tutti i tuoi input. Qui su questa pagina, puoi trovare dettagli 
 
 GitHub fornisce un sistema di tracciamento dei bug/feature semplice, ma sufficiente, che viene utilizzato per questo progetto.
 
-Puoi trovare tutte le segnalazioni relativi a "WBSC Scoring" [QUI](https://github.com/AloisSeckar/WBSC-Scoring/issues). Il filtro predefinito mostra i problemi aperti, che sono noti a me, ma che devono ancora essere affrontati.
+Puoi trovare tutte le segnalazioni relativi a "WBSC-like Scoring" [QUI](https://github.com/AloisSeckar/WBSC-Scoring/issues). Il filtro predefinito mostra i problemi aperti, che sono noti a me, ma che devono ancora essere affrontati.
 
 Se sei familiare con GitHub, sentiti libero di aprire una nuova segnalazione da solo. Cercherò di affontarla il prima possibile
 

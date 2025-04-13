@@ -1,6 +1,6 @@
 ## PROJECT DESCRIPTION
 
-**WBSC Scoring Creator** is a JavaScript-based program that allows selecting combination of plays that may occur in baseball/softball game to visualize the way of scoring such play in [WBSC](https://www.wbsc.org/) scoring system. It is meant both for individual scorers for learning and revising and for tutors to help them build up educational materials for clinics.
+**WBSC-like Scoring Creator** is a JavaScript-based program that allows selecting combination of plays that may occur in baseball/softball game to visualize the way of scoring such play in [WBSC](https://www.wbsc.org/) scoring system. It is meant both for individual scorers for learning and revising and for tutors to help them build up educational materials for clinics.
 
 For more information about how to use the program, see [User manual](/help).
 
@@ -13,7 +13,7 @@ This is an [UNLICENSE](https://unlicense.org/) open source that can be found [HE
 <a id="done"></a>
  
 ## DONE
-_(what you can find here)_
+**what you can find here**
 
 <ul class="list-disc">
 <li>Action editor capable of inserting most of existing situations according to latest version of WBSC manual</li><li>Download output images as PNG</li><li>Export/Import actions in JSON format</li><li>Actions library with more than 200 predefined plays</li><li>User manual</li><li>English, Italian and Czech translation</li>
@@ -22,7 +22,7 @@ _(what you can find here)_
 <a id="todo"></a>
 
 ## TO-DO list
-_(hopefully will be implemented in next few releases)_
+**hopefully will be implemented in next few releases**
 
 <ul class="list-disc">
 <li>Reorganizing actions library for greater clarity</li><li>Translations to other languages</li><li>Info pages with scoresheet description and ways of marking substitutions</li><li>More input validations</li><li>Output corrections and fixes where necessary</li>
@@ -32,7 +32,7 @@ _(hopefully will be implemented in next few releases)_
 <a id="limitations"></a>
 
 ## Limitations
-_(not planned to be implemented soon)_
+**not planned to be implemented soon**
 
 There are several features of WBSC scoring system that are currently not covered by this program. They may be included in some future releases, but no promises.
 

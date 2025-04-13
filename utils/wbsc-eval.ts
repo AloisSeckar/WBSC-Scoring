@@ -60,6 +60,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FSF':
     case 'IF':
     case 'OBR_DIF':
+    case 'EDFB':
       last = true
       // falls through
     case 'HR':
@@ -75,7 +76,6 @@ function changeBatterSpecificAction(specAction: string) {
     case 'EDF':
     case 'EDL':
     case 'EDP':
-    case 'EDFB':
     case 'OB':
     case 'SHEF':
     case 'SFE':
@@ -107,6 +107,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FB':
     case 'FFB':
     case 'OBR_BOT':
+    case 'OBR_ROL':
     case 'OBR_BIN':
     case 'OBR_OIN':
       last = true
@@ -169,6 +170,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
     case 'OBR_rhe':
       last = true
       // falls through
+    case 'eDF':
     case 'POE':
     case 'O/':
     case 'ob':
@@ -201,6 +203,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
       break
     case 'OBR_rol':
     case 'OBR_rin':
+    case 'OBR_oin':
     case 'A':
     case 'ENF':
     case 'ENT':
@@ -315,6 +318,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       output.out = true
       break
     case 'OBR_BOT':
+    case 'OBR_ROL':
     case 'OBR_DIF':
     case 'OBR_BIN':
     case 'OBR_OIN':
@@ -566,6 +570,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'OBR_rle':
     case 'OBR_rhe':
     case 'OBR_rin':
+    case 'OBR_oin':
       output.num = true
       // falls through
     case 'OBR_rta':
@@ -587,9 +592,12 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'EM':
     case 'eF':
     case 'eT':
+    case 'eDF':
       output.text1 = pos?.substring(0, pos.length - 1) + action.substring(0, 1) + pos?.substring(pos.length - 1)
       if (!action.endsWith('F')) {
         output.text1 += action.substring(action.length - 1)
+      } else if (action === 'eDF') {
+        output.text1 += 'F'
       }
       if (output.text1.length > 4) {
         const tempText = output.text1

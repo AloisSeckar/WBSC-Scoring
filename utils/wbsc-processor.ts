@@ -327,7 +327,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
 
   // #189 - connect SB / CS / O/ with an extra base error
   // #176 - also connect "same error" with applicable connection action
-  const extraBaseErrors = ['eF', 'eT']
+  const extraBaseErrors = ['eF', 'eT'] // eDF doesn't apply here
   const sameError = ['se1', 'se2', 'se3']
   const connectingActions = ['SB', 'SBPOA', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN', 'POCSE', 'POCSEN', 'CSO', 'PO', 'POCS', 'T', 'O/']
   const r1error = extraBaseErrors.includes(r1SpecAction) || sameError.includes(r1SpecAction)
@@ -464,6 +464,38 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
     })
   }
 
+  // #168 - connect dropped fly error (ExF) + error/out
+  const droppedFly = ['EDF', 'EDL', 'EDP'].includes(batterAction)
+  if (droppedFly) {
+    outputs.forEach((output) => {
+      if (['EDF', 'EDL', 'EDP', 'GO', 'GOT'].includes(output.specAction)) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: output.batter,
+          base: output.base,
+          out: output.out,
+          na: false,
+          text1: output.text1,
+        })
+      }
+    })
+  }
+
+  // #172 - connect dropped fly extra base error + batter's action (occupied)
+  const droppedFlyExtra = outputs.some(o => o.specAction === 'eDF')
+  if (droppedFlyExtra) {
+    outputs.forEach((output) => {
+      if (['O', 'OCB', 'eDF'].includes(output.specAction)) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: output.batter,
+          base: output.base,
+          out: output.out,
+          na: false,
+          text1: output.text1,
+        })
+      }
+    })
+  }
+
   // #256 - connect putout at home + WP/PB
   const outAtHome = r3SpecAction === 'GOT'
   const r1WpOrPb = r1Output && (r1SpecAction === 'WP' || r1SpecAction === 'PB')
@@ -496,6 +528,32 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
         out: false,
         na: false,
         text1: r1Output!.text1,
+      })
+    }
+  }
+
+  // #279 - strikeout + indifference advance + runner out (but no DP)
+  const nodpStrikeout = ['KSR', 'KLR', 'KSWP', 'KLWP', 'KSPB', 'KLWP', 'KSO', 'KLO'].includes(batterAction)
+  if (nodpStrikeout) {
+    const connected = []
+    if ((['GOT', 'GO', 'A'].includes(r1SpecAction) && r1Input.nodp) || r1SpecAction === 'O/') {
+      connected.push(r1Output)
+    }
+    if ((['GOT', 'GO', 'A'].includes(r2SpecAction) && r2Input.nodp) || r2SpecAction === 'O/') {
+      connected.push(r2Output)
+    }
+    if ((['GOT', 'GO', 'A'].includes(r3SpecAction) && r3Input.nodp) || r3SpecAction === 'O/') {
+      connected.push(r3Output)
+    }
+    if (connected.length > 1) {
+      connected.forEach((output) => {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: output!.batter,
+          base: output!.base,
+          out: output!.out,
+          na: false,
+          text1: output!.text1,
+        })
       })
     }
   }

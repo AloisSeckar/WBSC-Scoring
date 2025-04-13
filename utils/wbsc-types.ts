@@ -6,3 +6,13 @@ export type GUIOption = {
 }
 
 export type PositionType = 'player-locations' | 'hit-locations' | 'fc-locations'
+
+export type LibraryItem = {
+  file: string
+  name: string
+}
+
+export type LibraryCategory = {
+  cat: string
+  items: LibraryItem[]
+}

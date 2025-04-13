@@ -123,3 +123,21 @@ test('validation should fail - incorrect O-play target', () => {
   })
   expect(checkFC([r1Input, bO1Input])).toBe(useT('editor.validation.invalidOPlay'))
 })
+
+test('validation should fail - incorrect O-play target', () => {
+  const r1Input = createMockInput({
+    group: 'input-r1',
+    baseAction: 'GroundOut',
+    specAction: 'GO',
+    pos1: '4',
+    pos2: '6',
+  })
+  // eDF situation must be ignored
+  const r2Input = createMockInput({
+    group: 'input-r2',
+    baseAction: 'Error',
+    specAction: 'eDF',
+    pos1: '1',
+  })
+  expect(checkFC([r2Input, r1Input, bO1Input])).toBe(useT('editor.validation.invalidOPlay'))
+})

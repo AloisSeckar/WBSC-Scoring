@@ -4,17 +4,9 @@ Základní myšlenka je jednoduchá – sestavíte svůj vstup a po stisknutí t
 
 Je několik předpokladů, které je třeba mít na paměti:
 
-<ul class="list-disc">
-<li>
-Program vždy vykreslí POUZE JEDNU ROZEHRU. Může sestávat z více situací (teoreticky až 10 samostatných akcí), ale všechny se musí stát během jednoho nadhozu (nebo během času mezi dvěma nadhozy). Není možné sledovat průběh celého zápasu.
-</li>
-<li>
-Kvůli výše uvedenému jsou umístění běžce na metu označena <span style="color: red">červenou hvězdičkou</span>. Toto není žádná oficiální zkratka pro zápis, tím pouze dáváme najevo, že se předtím stala NĚJAKÁ situace, díky které je běžec na metě, z níž začíná. Akci nechceme zapisovat a nestaráme se o ni. Jedinou výjimkou je běžec v tie-breaku (TIE), protože to je speciální a předem daná situace.
-</li>
-<li>
-Pálkařské pořadí začíná vždy od 1. V závislosti na počtu zúčastněných hráčů může výsledek ukazovat hráče 1-4 v pálkařském pořadí. Není však možné vybrat jiné výchozí pořadí ani přeskočit některé hráče mezi.
-</li>
-</ul>
+- Program vždy vykreslí POUZE JEDNU ROZEHRU. Může sestávat z více situací (teoreticky až 10 samostatných akcí), ale všechny se musí stát během jednoho nadhozu (nebo během času mezi dvěma nadhozy). Není možné sledovat průběh celého zápasu.
+- Kvůli výše uvedenému jsou umístění běžce na metu označena <span style="color: red">červenou hvězdičkou</span>. Toto není žádná oficiální zkratka pro zápis, tím pouze dáváme najevo, že se předtím stala NĚJAKÁ situace, díky které je běžec na metě, z níž začíná. Akci nechceme zapisovat a nestaráme se o ni. Jedinou výjimkou je běžec v tie-breaku (TIE), protože to je speciální a předem daná situace.
+- Pálkařské pořadí začíná vždy od 1. V závislosti na počtu zúčastněných hráčů může výsledek ukazovat hráče 1-4 v pálkařském pořadí. Není však možné vybrat jiné výchozí pořadí ani přeskočit některé hráče mezi.
         
 ## OVLÁDÁNÍ
 
