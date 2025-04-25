@@ -5,6 +5,13 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 ## Version 1.5 (in progress)
 - TODO
 
+## Version 1.4.2 (2025-04-25)
+- Features:
+  - OBR actions (BOB, BIA, TBB, BIN, RTA) were updated according to latest guidelines (#273)
+  - BIC action removed and replaced with BIN (#273)
+  - BIN can only be credited to catcher (#274)
+  - RIN for the batter after broken double play (#271)
+
 ## Version 1.4.1 (2025-04-13)
 - Fixes:
   - build: fix Netlify deployment (6a60b6c)
