@@ -41,7 +41,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'OBR_BOB':
     case 'OBR_BIA':
     case 'OBR_TBB':
-    case 'OBR_BIC':
+    case 'OBR_BIN':
     case 'OBR_RTA':
     case 'LT':
       last = true
@@ -108,7 +108,6 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FFB':
     case 'OBR_BOT':
     case 'OBR_ROL':
-    case 'OBR_BIN':
     case 'OBR_OIN':
       last = true
       // falls through
@@ -317,19 +316,19 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
       output.text1 = action
       output.out = true
       break
-    case 'OBR_BOT':
-    case 'OBR_ROL':
-    case 'OBR_DIF':
-    case 'OBR_BIN':
-    case 'OBR_OIN':
-      output.text2 = pos
-      // falls through
     case 'OBR_BOB':
     case 'OBR_BIA':
     case 'OBR_TBB':
-    case 'OBR_BIC':
+    case 'OBR_BIN':
     case 'OBR_RTA':
+      pos = '2'
+      // falls through
+    case 'OBR_BOT':
+    case 'OBR_ROL':
+    case 'OBR_DIF':
+    case 'OBR_OIN':
       output.text1 = action.substring(4)
+      output.text2 = pos
       output.base = 0
       output.out = true
       possibleConcurrentPlay = true

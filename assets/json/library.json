@@ -1015,11 +1015,6 @@
     "cat": "OBR"
   },
   {
-    "file": "obr-bic",
-    "name": "Out by rule - Batter Interfering with the Catcher",
-    "cat": "OBR"
-  },
-  {
     "file": "obr-bot",
     "name": "Out by rule - Batting Out of Turn",
     "cat": "OBR"
