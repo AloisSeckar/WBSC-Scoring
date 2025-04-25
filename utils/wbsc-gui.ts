@@ -192,6 +192,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bOut, value: 'OBR_RTA', label: useT('editor.action.obr.OBR_RTA') })
       options.push({ group: bOut, value: 'OBR_DIF', label: useT('editor.action.obr.OBR_DIF') })
       options.push({ group: bOut, value: 'OBR_ROL', label: useT('editor.action.obr.OBR_rol') })
+      options.push({ group: bOut, value: 'OBR_RIN', label: useT('editor.action.obr.OBR_rin') })
       options.push({ group: bOut, value: 'OBR_OIN', label: useT('editor.action.obr.OBR_OIN') })
       break
     case 'Other':
