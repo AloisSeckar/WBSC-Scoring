@@ -82,6 +82,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'O':
     case 'OCB':
     case 'GDPO':
+    case 'OBR_OIN':
       minPosItems = targetPosItems = maxPosItems = 1
       break
     case 'GO':
@@ -108,7 +109,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FFB':
     case 'OBR_BOT':
     case 'OBR_ROL':
-    case 'OBR_OIN':
+    case 'OBR_RIN':
       last = true
       // falls through
     case 'KSE':
@@ -326,6 +327,7 @@ function processInput(input: WBSCInput, batter: number): WBSCOutput {
     case 'OBR_BOT':
     case 'OBR_ROL':
     case 'OBR_DIF':
+    case 'OBR_RIN':
     case 'OBR_OIN':
       output.text1 = action.substring(4)
       output.text2 = pos
