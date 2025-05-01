@@ -97,6 +97,10 @@ function changeBatterSpecificAction(specAction: string) {
       minPosItems = 1
       targetPosItems = 2
       break
+    case 'OBR_BOT':
+      // #284 - pre-select catcher as the most probable player
+      useInputStore().inputB.pos1 = '2'
+      // falls through
     case 'KST':
     case 'KLT':
     case 'F':
@@ -107,7 +111,6 @@ function changeBatterSpecificAction(specAction: string) {
     case 'FL':
     case 'FB':
     case 'FFB':
-    case 'OBR_BOT':
     case 'OBR_ROL':
     case 'OBR_RIN':
       last = true
