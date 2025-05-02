@@ -17,7 +17,7 @@ function renderAction(battingOrder: number, clear: boolean, output: WBSCOutput) 
   if (output.origBase > 0) {
     const prevOutput: WBSCOutput = getEmptyOutput()
     prevOutput.base = output.origBase
-    if (output.previousAdvance) {
+    if ([inputR1, inputR2, inputR3].includes(output.group)) {
       if (output.tie === true) {
         prevOutput.text1 = 'TIE'
       } else {

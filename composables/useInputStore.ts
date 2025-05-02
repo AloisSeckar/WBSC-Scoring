@@ -118,7 +118,6 @@ export type WBSCBase = 0 | 1 | 2 | 3 | 4
 export type WBSCOutput = {
   group: string
   specAction: string
-  previousAdvance: boolean
   batter: number
   origBase: WBSCBase
   base: WBSCBase

@@ -104,7 +104,6 @@ function processAction() {
   if (GUI.inputR3 && r3Input.baseAction) {
     playersInvolved += 1
     r3Output = processInput(r3Input, playersInvolved)
-    r3Output.previousAdvance = true
     outputs.push(r3Output)
   }
 
@@ -119,7 +118,6 @@ function processAction() {
     }
 
     r2Output = processInput(r2Input, playersInvolved)
-    r2Output.previousAdvance = true
     r2Output.extraOutput = extraR2Output
     outputs.push(r2Output)
   }
@@ -141,7 +139,6 @@ function processAction() {
     }
 
     r1Output = processInput(r1Input, playersInvolved)
-    r1Output.previousAdvance = true
     r1Output.extraOutput = extraR1Output
     outputs.push(r1Output)
   }

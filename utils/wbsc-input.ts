@@ -30,7 +30,6 @@ export function getEmptyOutput(): WBSCOutput {
   const output: WBSCOutput = {
     group: '',
     specAction: '',
-    previousAdvance: false,
     batter: 0,
     origBase: 0,
     base: 0,
