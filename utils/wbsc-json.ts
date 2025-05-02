@@ -3,8 +3,6 @@
 /* Processing JSON input of stored action  */
 /* *************************************** */
 
-import type { WBSCInput } from '@/composables/useInputStore'
-
 // export current input selection as JSON file
 // by https://bobbyhadz.com/blog/javascript-set-blob-filename
 export function exportInputAsJSON() {
@@ -29,11 +27,11 @@ export function exportInputAsJSON() {
 // TODO this is (nearly) the same as being done in wbsc-processor.processAction
 // except one special evaluation (bErrorTarget) and we dont use output+validation here
 // refactor to be able to have such code only once...
-function getRawInputs(): WBSCInput[] {
+function getRawInputs(): WBSCAction[] {
   const GUI = useGUIStore()
 
   const inputStore = useInputStore()
-  const inputs = [] as WBSCInput[]
+  const inputs = [] as WBSCAction[]
 
   const r3Input = inputStore.inputR3
   if (GUI.inputR3 && r3Input.baseAction) {
@@ -113,7 +111,7 @@ async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
     clearInputs()
     useGUIStore().inputB = false
-    const jsonData: WBSCInputJson[] = JSON.parse(fileData.toString())
+    const jsonData: WBSCActionJson[] = JSON.parse(fileData.toString())
     for (const input of jsonData) {
       await setInputFromJSON(input)
     }
@@ -121,7 +119,7 @@ async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   }
 }
 
-async function setInputFromJSON(input: WBSCInputJson) {
+async function setInputFromJSON(input: WBSCActionJson) {
   const guiModel = useInputStore().getModel(input.group)
 
   guiModel.baseAction = input.baseAction

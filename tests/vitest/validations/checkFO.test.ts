@@ -1,25 +1,25 @@
 import { expect, test } from 'vitest'
-import { createMockOutput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
-const bOutput = createMockOutput({
+const bOutput = createMockAction({
   group: 'input-b',
   specAction: 'O',
-  base: 1,
+  targetBase: 1,
 })
-const r1Out = createMockOutput({
+const r1Out = createMockAction({
   group: 'input-r1',
   specAction: 'GO',
-  base: 2,
+  targetBase: 2,
 })
-const r2Out = createMockOutput({
+const r2Out = createMockAction({
   group: 'input-r2',
   specAction: 'GO',
-  base: 3,
+  targetBase: 3,
 })
-const r3Out = createMockOutput({
+const r3Out = createMockAction({
   group: 'input-r3',
   specAction: 'GO',
-  base: 4,
+  targetBase: 4,
 })
 
 test('validation should pass - runner forced at 2nd', () => {
@@ -54,7 +54,7 @@ test('validation should fail - runner not forced at 3rd', () => {
 
 test('validation should fail - out at 3rd is not forced', () => {
   const r1Wrong = structuredClone(r1Out)
-  r1Wrong.base = 3
+  r1Wrong.targetBase = 3
   expect(checkFO([r1Wrong, bOutput])).toBe(useT('editor.validation.noDistantFO'))
 })
 

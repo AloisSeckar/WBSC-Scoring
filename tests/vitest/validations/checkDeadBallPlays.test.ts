@@ -1,13 +1,13 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass - not a dead-ball play', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'FC',
     specAction: 'O',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'out',
     specAction: 'GO',
@@ -15,23 +15,23 @@ test('validation should pass - not a dead-ball play', () => {
   expect(checkDeadBallPlays([r1Input, bInput])).toBe('')
 })
 
-const bINTInput = createMockInput({
+const bINTInput = createMockAction({
   group: 'input-b',
   baseAction: 'Error',
   specAction: 'INT',
 })
 
-const r1Input = createMockInput({
+const r1Input = createMockAction({
   group: 'input-r1',
   baseAction: 'adv',
   specAction: 'ADV',
 })
-const r2Input = createMockInput({
+const r2Input = createMockAction({
   group: 'input-r2',
   baseAction: 'adv',
   specAction: 'ADV',
 })
-const r3Input = createMockInput({
+const r3Input = createMockAction({
   group: 'input-r3',
   baseAction: 'adv',
   specAction: 'ADV',
@@ -42,7 +42,7 @@ test('validation should pass - only ADV after dead-ball play', () => {
 })
 
 test('validation should fail - other situation after dead-ball play', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'out',
     specAction: 'GO',
@@ -58,14 +58,14 @@ test('validation should fail - ADV of not-forced runner at 3rd after dead-ball p
   expect(checkDeadBallPlays([r3Input, bINTInput])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
 })
 
-const bOBInput = createMockInput({
+const bOBInput = createMockAction({
   group: 'input-b',
   baseAction: 'Error',
   specAction: 'OB',
   pos1: '2',
 })
 
-const rBKInput = createMockInput({
+const rBKInput = createMockAction({
   group: 'input-r3',
   baseAction: 'exb',
   specAction: 'BK',
@@ -79,7 +79,7 @@ test('validation should pass - BK at 3rd + OB2 exception', () => {
   expect(checkDeadBallPlays([rBKInput, bOBInput])).toBe('')
 })
 
-const rIPInput = createMockInput({
+const rIPInput = createMockAction({
   group: 'input-r3',
   baseAction: 'exb',
   specAction: 'IP',
@@ -93,7 +93,7 @@ test('validation should pass - IP at 3rd + OB2 exception', () => {
   expect(checkDeadBallPlays([rIPInput, bOBInput])).toBe('')
 })
 
-const bDFInput = createMockInput({
+const bDFInput = createMockAction({
   group: 'input-b',
   baseAction: 'Error',
   specAction: 'EDFB',
@@ -104,7 +104,7 @@ test('validation should pass - EDFB as single action', () => {
 })
 
 test('validation should fail - no actions after EDFB', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'out',
     specAction: 'GO',

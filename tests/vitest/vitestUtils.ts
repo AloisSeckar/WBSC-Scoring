@@ -6,18 +6,11 @@ global.Element.prototype.checkVisibility = function () {
   return true
 }
 
-// factory method to get WBSCInput instances
-// we use "Partial" TS object to define WBSCInput-like structure, but with all fiels optional
+// factory method to get WBSCAction instances
+// we use "Partial" TS object to define WBSCAction-like structure, but with all fiels optional
 // we use "defu" library to simply merge given values with defaults
-export function createMockInput(values: Partial<WBSCInput>): WBSCInput {
-  return defu(values, getEmptyInput('mock'))
-}
-
-// factory method to get WBSCOutput instances
-// we use "Partial" TS object to define WBSCInput-like structure, but with all fiels optional
-// we use "defu" library to simply merge given values with defaults
-export function createMockOutput(values: Partial<WBSCOutput>): WBSCOutput {
-  return defu(values, getEmptyOutput()) as WBSCOutput
+export function createMockAction(values: Partial<WBSCAction>): WBSCAction {
+  return defu(values, getEmptyAction('mock'))
 }
 
 // checkBasicRules validation checks, if the length of "pos" input matches the number of displayed inputs

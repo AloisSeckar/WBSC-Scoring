@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
-const bInput = createMockInput({
+const bInput = createMockAction({
   group: 'input-b',
   baseAction: 'Hit',
   specAction: '1B',
@@ -12,7 +12,7 @@ test('validation should pass for batter input only', () => {
 })
 
 test('validation should pass for runner input only', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
@@ -21,7 +21,7 @@ test('validation should pass for runner input only', () => {
 })
 
 test('validation should pass for correct batter + runner input', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
@@ -30,7 +30,7 @@ test('validation should pass for correct batter + runner input', () => {
 })
 
 test('validation should fail if batter action missing', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
@@ -39,12 +39,12 @@ test('validation should fail if batter action missing', () => {
 })
 
 test('validation should fail if ADV is not first', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'adv',
     specAction: 'ADV',

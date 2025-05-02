@@ -1,13 +1,13 @@
 import { expect, test } from 'vitest'
-import { createMockOutput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass for correct output', () => {
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
     base: 2,
   })
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
     base: 1,
@@ -16,13 +16,13 @@ test('validation should pass for correct output', () => {
 })
 
 test('validation should fail - runners cannot overtake his precessor', () => {
-  const r2Output = createMockOutput({
+  const r2Output = createMockAction({
     group: 'input-r2',
     specAction: 'ADV',
     base: 3,
     batter: 1,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
     base: 4,
@@ -32,13 +32,13 @@ test('validation should fail - runners cannot overtake his precessor', () => {
 })
 
 test('validation should fail - runners cannot end on the same base', () => {
-  const r2Output = createMockOutput({
+  const r2Output = createMockAction({
     group: 'input-r2',
     specAction: 'ADV',
     base: 3,
     batter: 1,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
     base: 3,
@@ -48,12 +48,12 @@ test('validation should fail - runners cannot end on the same base', () => {
 })
 
 test('validation should pass - extra actions for same runner must happen in order', () => {
-  const r1aOutput = createMockOutput({
+  const r1aOutput = createMockAction({
     group: 'input-r1a',
     specAction: 'ADV',
     base: 3,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
     base: 2,
@@ -62,12 +62,12 @@ test('validation should pass - extra actions for same runner must happen in orde
 })
 
 test('validation should fail - extra actions for same runner must happen in order', () => {
-  const r1aOutput = createMockOutput({
+  const r1aOutput = createMockAction({
     group: 'input-r1a',
     specAction: 'ADV',
     base: 2,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
     base: 3,
@@ -76,13 +76,13 @@ test('validation should fail - extra actions for same runner must happen in orde
 })
 
 test('validation should pass - runner can advance and then be out', () => {
-  const r1aOutput = createMockOutput({
+  const r1aOutput = createMockAction({
     group: 'input-r1a',
     specAction: 'GO',
     base: 3,
     out: true,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
     base: 2,
@@ -91,12 +91,12 @@ test('validation should pass - runner can advance and then be out', () => {
 })
 
 test('validation should fail - when the runner is out, he cannot advance further', () => {
-  const r1aOutput = createMockOutput({
+  const r1aOutput = createMockAction({
     group: 'input-r1a',
     specAction: 'ADV',
     base: 3,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'GO',
     base: 2,
@@ -106,13 +106,13 @@ test('validation should fail - when the runner is out, he cannot advance further
 })
 
 test('validation should fail - when the runner is out, he cannot be out again', () => {
-  const r1aOutput = createMockOutput({
+  const r1aOutput = createMockAction({
     group: 'input-r1a',
     specAction: 'GO',
     base: 3,
     out: true,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'GO',
     base: 2,
@@ -122,16 +122,16 @@ test('validation should fail - when the runner is out, he cannot be out again', 
 })
 
 test('validation should fail - special case for "batter + same error"', () => {
-  const b1Output = createMockOutput({
+  const b1Output = createMockAction({
     group: 'input-b1',
     specAction: 'se0',
     base: 2,
   })
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: 'EF',
     base: 0,
-    errorTarget: 1,
+    outputBase: 1,
     out: true,
   })
   expect(checkOutcome([b1Output, bOutput])).toBe(useT('editor.validation.noAdvanceAfterOut'))

@@ -1,13 +1,13 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass if there are only batter actions', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Hit',
     specAction: '1B',
   })
-  const b1Input = createMockInput({
+  const b1Input = createMockAction({
     group: 'input-b1',
     baseAction: 'fdc',
     specAction: 'T',
@@ -16,17 +16,17 @@ test('validation should pass if there are only batter actions', () => {
 })
 
 test('validation should pass if there are only runner actions', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'err',
     specAction: 'EF',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'adv',
     specAction: 'ADV',
@@ -35,12 +35,12 @@ test('validation should pass if there are only runner actions', () => {
 })
 
 test('validation should pass for valid combination', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Hit',
     specAction: '1B',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
@@ -49,12 +49,12 @@ test('validation should pass for valid combination', () => {
 })
 
 test('validation should fail for invalid combination', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Hit',
     specAction: '1B',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
@@ -63,17 +63,17 @@ test('validation should fail for invalid combination', () => {
 })
 
 test('validation should pass - BB + WP is possible', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Advance',
     specAction: 'BB1',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'exb',
     specAction: 'WP',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'exb',
     specAction: 'WP',
@@ -82,17 +82,17 @@ test('validation should pass - BB + WP is possible', () => {
 })
 
 test('validation should pass - KS + PB is possible', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'StrikeOut',
     specAction: 'KS',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'exb',
     specAction: 'PB',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'exb',
     specAction: 'PB',
@@ -101,12 +101,12 @@ test('validation should pass - KS + PB is possible', () => {
 })
 
 test('validation should fail - KL + BK is impossible', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'StrikeOut',
     specAction: 'KL',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'exb',
     specAction: 'BK',
@@ -116,13 +116,13 @@ test('validation should fail - KL + BK is impossible', () => {
 })
 
 test('validation should pass - OB2 + IP is possible from 3rd', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Error',
     specAction: 'OB',
     pos1: '2',
   })
-  const r3Input = createMockInput({
+  const r3Input = createMockAction({
     group: 'input-r3',
     baseAction: 'exb',
     specAction: 'IP',

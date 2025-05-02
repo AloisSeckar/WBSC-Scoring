@@ -1,15 +1,15 @@
 import { expect, test } from 'vitest'
-import { createMockOutput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass - not eDF action', () => {
-  const rInput = createMockOutput({
+  const rInput = createMockAction({
     group: 'input-r1',
     specAction: 'eF',
   })
   expect(checkExtraBaseDroppedFlyError([rInput])).toBe('')
 })
 
-const r2Input = createMockOutput({
+const r2Input = createMockAction({
   group: 'input-r2',
   specAction: 'eDF',
 })
@@ -21,7 +21,7 @@ test('validation should fail - missing batter action', () => {
 })
 
 test('validation should fail - invalid batter action', () => {
-  const bInput = createMockOutput({
+  const bInput = createMockAction({
     group: 'input-b',
     specAction: 'KS',
   })
@@ -29,7 +29,7 @@ test('validation should fail - invalid batter action', () => {
 })
 
 test('validation should pass - FC - occupied', () => {
-  const bInput = createMockOutput({
+  const bInput = createMockAction({
     group: 'input-b',
     specAction: 'O',
   })
@@ -37,7 +37,7 @@ test('validation should pass - FC - occupied', () => {
 })
 
 test('validation should pass - FC - occupied - bunt', () => {
-  const bInput = createMockOutput({
+  const bInput = createMockAction({
     group: 'input-b',
     specAction: 'OCB',
   })

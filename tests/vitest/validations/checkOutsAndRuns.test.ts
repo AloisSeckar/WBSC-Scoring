@@ -1,22 +1,22 @@
 import { expect, test } from 'vitest'
-import { createMockOutput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
-const bOutput = createMockOutput({
+const bOutput = createMockAction({
   group: 'input-b',
   specAction: 'GO',
   out: true,
 })
-const r1Output = createMockOutput({
+const r1Output = createMockAction({
   group: 'input-r1',
   specAction: 'GO',
   out: true,
 })
-const r2Output = createMockOutput({
+const r2Output = createMockAction({
   group: 'input-r2',
   specAction: 'GO',
   out: true,
 })
-const r3Output = createMockOutput({
+const r3Output = createMockAction({
   group: 'input-r3',
   specAction: 'GO',
   out: true,
@@ -35,10 +35,10 @@ test('validation should fail if there are 4 outs', () => {
 })
 
 test('validation should fail if there are 3 outs + run', () => {
-  const r3RunOutput = createMockOutput({
+  const r3RunOutput = createMockAction({
     group: 'input-r3',
     specAction: 'ADV',
-    base: 4,
+    targetBase: 4,
   })
   expect(checkOutsAndRuns([bOutput, r1Output, r2Output, r3RunOutput])).toBe(useT('editor.validation.3OutsNoRuns'))
 })

@@ -1,16 +1,16 @@
 export const useInputStore = defineStore('input-store', {
   state: () => {
     return {
-      inputB: getEmptyInput(inputB),
-      inputB1: getEmptyInput(inputB1),
-      inputB2: getEmptyInput(inputB2),
-      inputB3: getEmptyInput(inputB3),
-      inputR1: getEmptyInput(inputR1),
-      inputR1a: getEmptyInput(inputR1a),
-      inputR1b: getEmptyInput(inputR1b),
-      inputR2: getEmptyInput(inputR2),
-      inputR2a: getEmptyInput(inputR2a),
-      inputR3: getEmptyInput(inputR3),
+      inputB: getEmptyAction(inputB),
+      inputB1: getEmptyAction(inputB1),
+      inputB2: getEmptyAction(inputB2),
+      inputB3: getEmptyAction(inputB3),
+      inputR1: getEmptyAction(inputR1),
+      inputR1a: getEmptyAction(inputR1a),
+      inputR1b: getEmptyAction(inputR1b),
+      inputR2: getEmptyAction(inputR2),
+      inputR2a: getEmptyAction(inputR2a),
+      inputR3: getEmptyAction(inputR3),
     }
   },
   actions: {
@@ -29,7 +29,7 @@ export const useInputStore = defineStore('input-store', {
   },
   getters: {
     getModel: (state) => {
-      return (inputGroup: string): WBSCInput => {
+      return (inputGroup: string): WBSCAction => {
         switch (inputGroup) {
           case inputB:
             return state.inputB
@@ -52,12 +52,12 @@ export const useInputStore = defineStore('input-store', {
           case inputR3:
             return state.inputR3
           default:
-            return getEmptyInput(inputGroup)
+            return getEmptyAction(inputGroup)
         }
       }
     },
     getExtra1Model: (state) => {
-      return (inputGroup: string): WBSCInput => {
+      return (inputGroup: string): WBSCAction => {
         switch (inputGroup) {
           case inputB:
             return state.inputB1
@@ -66,40 +66,45 @@ export const useInputStore = defineStore('input-store', {
           case inputR2:
             return state.inputR2a
           default:
-            return getEmptyInput(inputGroup)
+            return getEmptyAction(inputGroup)
         }
       }
     },
     getExtra2Model: (state) => {
-      return (inputGroup: string): WBSCInput => {
+      return (inputGroup: string): WBSCAction => {
         switch (inputGroup) {
           case inputB:
             return state.inputB2
           case inputR1:
             return state.inputR1b
           default:
-            return getEmptyInput(inputGroup)
+            return getEmptyAction(inputGroup)
         }
       }
     },
     getExtra3Model: (state) => {
-      return (inputGroup: string): WBSCInput => {
+      return (inputGroup: string): WBSCAction => {
         switch (inputGroup) {
           case inputB:
             return state.inputB3
           default:
-            return getEmptyInput(inputGroup)
+            return getEmptyAction(inputGroup)
         }
       }
     },
   },
 })
 
-function clearInput(input: WBSCInput, inputGroup: string) {
+function clearInput(input: WBSCAction, group: string) {
+  // change here needs to be copied into wbsc-input.clearInput
+  // TODO test if this resets values properly
+  input.batter = 1
   input.baseAction = ''
   input.specAction = ''
-  input.origBase = getOrigBase(inputGroup)
   input.base = 0
+  input.origBase = getOrigBase(group)
+  input.targetBase = 0
+  input.outputBase = 0
   input.tie = false
   input.nodp = false
   input.pos1 = ''
@@ -107,47 +112,15 @@ function clearInput(input: WBSCInput, inputGroup: string) {
   input.pos3 = ''
   input.pos4 = ''
   input.runtype = 'e'
+  input.text1 = ''
+  input.text2 = ''
+  input.sub = ''
+  input.num = false
+  input.out = false
+  input.na = false
+  input.hit = false
 }
 
-export function getPos(input: WBSCInput): string {
+export function getPos(input: WBSCAction): string {
   return (input.pos1 || '') + (input.pos2 || '') + (input.pos3 || '') + (input.pos4 || '')
 }
-
-export type WBSCBase = 0 | 1 | 2 | 3 | 4
-
-export type WBSCOutput = {
-  group: string
-  specAction: string
-  batter: number
-  origBase: WBSCBase
-  base: WBSCBase
-  errorTarget: WBSCBase
-  text1: string
-  text2?: string
-  out: boolean
-  hit: boolean
-  sub?: string
-  run?: string
-  num: boolean
-  tie: boolean
-  nodp: boolean
-  na: boolean
-  extraOutput?: WBSCOutput[]
-}
-
-export type WBSCInput = {
-  group: string
-  baseAction: string
-  specAction: string
-  origBase: WBSCBase
-  base: WBSCBase
-  tie: boolean
-  nodp: boolean
-  pos1: string
-  pos2: string
-  pos3: string
-  pos4: string
-  runtype: string
-}
-
-export type WBSCInputJson = WBSCInput & { pos?: string }

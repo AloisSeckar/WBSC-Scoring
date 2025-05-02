@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass - not FC action', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Hit',
     specAction: '1B',
@@ -10,7 +10,7 @@ test('validation should pass - not FC action', () => {
   expect(checkFC([bInput])).toBe('')
 })
 
-const bOInput = createMockInput({
+const bOInput = createMockAction({
   group: 'input-b',
   baseAction: 'FC',
   specAction: 'O',
@@ -21,7 +21,7 @@ test('validation should fail - O-play with no runner action', () => {
 })
 
 test('validation should pass - O-play with forced-out runner', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'GroundOut',
     specAction: 'GO',
@@ -30,7 +30,7 @@ test('validation should pass - O-play with forced-out runner', () => {
 })
 
 test('validation should pass - O-play with decisive error at runner', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'err',
     specAction: 'ET',
@@ -39,7 +39,7 @@ test('validation should pass - O-play with decisive error at runner', () => {
 })
 
 test('validation should fail - O-play with extra-base error at runner', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'err',
     specAction: 'eF',
@@ -48,12 +48,12 @@ test('validation should fail - O-play with extra-base error at runner', () => {
 })
 
 test('validation should fail - O-play with decisive error at runner, but after he advanced', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'err',
     specAction: 'ET',
@@ -61,7 +61,7 @@ test('validation should fail - O-play with decisive error at runner, but after h
   expect(checkFC([r1aInput, r1Input, bOInput])).toBe(useT('editor.validation.missingOPlay'))
 })
 
-const bFCInput = createMockInput({
+const bFCInput = createMockAction({
   group: 'input-b',
   baseAction: 'FC',
   specAction: 'FC',
@@ -72,7 +72,7 @@ test('validation should fail - FC action with no runner action', () => {
 })
 
 test('validation should pass - FC action with runner advance', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
@@ -80,7 +80,7 @@ test('validation should pass - FC action with runner advance', () => {
   expect(checkFC([r1Input, bFCInput])).toBe('')
 })
 
-const bKSFCInput = createMockInput({
+const bKSFCInput = createMockAction({
   group: 'input-b',
   baseAction: 'StrikeOut',
   specAction: 'KSFC',
@@ -91,7 +91,7 @@ test('validation should fail - KSFC action with no runner action', () => {
 })
 
 test('validation should pass - KSFC action with PB at runner', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'exb',
     specAction: 'PB',
@@ -103,7 +103,7 @@ const bO1Input = structuredClone(bOInput)
 bO1Input.pos1 = '1'
 
 test('validation should pass - correct O-play target', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'GroundOut',
     specAction: 'GO',
@@ -114,7 +114,7 @@ test('validation should pass - correct O-play target', () => {
 })
 
 test('validation should fail - incorrect O-play target', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'GroundOut',
     specAction: 'GO',
@@ -125,7 +125,7 @@ test('validation should fail - incorrect O-play target', () => {
 })
 
 test('validation should fail - incorrect O-play target', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'GroundOut',
     specAction: 'GO',
@@ -133,7 +133,7 @@ test('validation should fail - incorrect O-play target', () => {
     pos2: '6',
   })
   // eDF situation must be ignored
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'Error',
     specAction: 'eDF',

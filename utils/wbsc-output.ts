@@ -1,49 +1,48 @@
 /* *************************************** */
-/* wbsc-output.ts                          */
+/* wbsc-action.ts                          */
 /* Final rendering based on user's input   */
 /* *************************************** */
-
-import type { WBSCBase, WBSCOutput } from '@/composables/useInputStore'
 
 // rendering the output
 //   battingOrder - number displayed at the left side (1-4)
 //   clear - true, if previous content should be ereased
-//   output - actions to be displayed
-function renderAction(battingOrder: number, clear: boolean, output: WBSCOutput) {
+//   action - main action (B, R1, R2, R3) to be displayed
+//   extraActions - possible extra outputs
+function renderAction(battingOrder: number, clear: boolean, action: WBSCAction, extraActions?: WBSCAction[]) {
   if (clear) {
     drawBackground(battingOrder)
   }
 
-  if (output.origBase > 0) {
-    const prevOutput: WBSCOutput = getEmptyOutput()
-    prevOutput.base = output.origBase
-    if ([inputR1, inputR2, inputR3].includes(output.group)) {
-      if (output.tie === true) {
-        prevOutput.text1 = 'TIE'
+  if (action.origBase > 0) {
+    const prevAction: WBSCAction = getEmptyAction('prev')
+    prevAction.targetBase = prevAction.outputBase = action.origBase
+    if ([inputR1, inputR2, inputR3].includes(action.group)) {
+      if (action.tie === true) {
+        prevAction.text1 = 'TIE'
       } else {
-        prevOutput.text1 = '*'
+        prevAction.text1 = '*'
       }
     }
-    renderAdvance(prevOutput)
+    renderAdvance(prevAction)
   }
 
-  if (output.out === true) {
-    renderOut(output)
-    if (!useEvalStore().brokenDP && !output.nodp) {
-      useEvalStore().outs.push({ batter: battingOrder, base: output.base })
+  if (action.out === true) {
+    renderOut(action)
+    if (!useEvalStore().brokenDP && !action.nodp) {
+      useEvalStore().outs.push({ batter: battingOrder, base: action.targetBase })
     }
   } else {
-    renderAdvance(output)
+    renderAdvance(action)
 
-    if (output.errorTarget) {
-      drawExtraErrorAdvanceIfNeeded(output.base, output.errorTarget, !!output.text2)
+    if (action.outputBase && action.text1 !== '*') {
+      drawExtraErrorAdvanceIfNeeded(action.outputBase, action.targetBase, !!action.text2)
     }
 
-    if (output.extraOutput) {
-      output.extraOutput.forEach((extraOutput) => {
-        renderAction(battingOrder, false, extraOutput)
-        if (!extraOutput.na) {
-          drawConnector(output.base, extraOutput.base)
+    if (extraActions && extraActions.length > 0) {
+      extraActions.forEach((extraAction) => {
+        renderAction(battingOrder, false, extraAction)
+        if (!extraAction.na) {
+          drawConnector(action.targetBase, extraAction.outputBase)
         }
       })
     }
@@ -51,19 +50,19 @@ function renderAction(battingOrder: number, clear: boolean, output: WBSCOutput) 
 }
 
 // process 'safe' situation
-function renderAdvance(output: WBSCOutput) {
-  if (!output.na) {
-    drawAdvanceLine(output.errorTarget > output.base ? output.errorTarget : output.base)
+function renderAdvance(action: WBSCAction) {
+  if (!action.na) {
+    drawAdvanceLine(action.targetBase)
   }
-  writeSituation(output)
+  writeSituation(action)
 }
 
 // process 'out' situation
-function renderOut(output: WBSCOutput) {
-  if (output.text1 !== 'LT') {
-    drawOutCircle(output.base)
+function renderOut(action: WBSCAction) {
+  if (action.text1 !== 'LT') {
+    drawOutCircle(action.targetBase)
   }
-  writeSituation(output)
+  writeSituation(action)
 }
 
 // prepare empty scoresheet element (blue square)
@@ -271,14 +270,14 @@ function drawHitSymbol(base: number) {
 }
 
 // draw the actual output of selected action
-function writeSituation(output: WBSCOutput) {
-  const out = output.out
-  const hit = output.hit
-  const sub = output.sub
-  const na = output.na
+function writeSituation(action: WBSCAction) {
+  const out = action.out
+  const hit = action.hit
+  const sub = action.sub
+  const na = action.na
 
-  const text1 = output.text1
-  const text2 = output.text2
+  const text1 = action.text1
+  const text2 = action.text2
 
   const ctx = useCanvasStore().ctx
   if (ctx) {
@@ -301,7 +300,7 @@ function writeSituation(output: WBSCOutput) {
     let row2font = ''
     let row2offset = 0
 
-    let base = output.base
+    let base = action.outputBase
     switch (base) {
       case 0:
         if (na) {
@@ -419,8 +418,8 @@ function writeSituation(output: WBSCOutput) {
           }
 
           // maybe the runner got home on error?
-          if (output.errorTarget === 4) {
-            drawRunType(output.run)
+          if (action.targetBase === 4) {
+            drawRunType(action.runtype)
           }
         }
         break
@@ -533,8 +532,8 @@ function writeSituation(output: WBSCOutput) {
           }
 
           // maybe the runner got home on error?
-          if (output.errorTarget === 4) {
-            drawRunType(output.run)
+          if (action.targetBase === 4) {
+            drawRunType(action.runtype)
           }
         }
         break
@@ -647,8 +646,8 @@ function writeSituation(output: WBSCOutput) {
           }
 
           // maybe the runner got home on error?
-          if (output.errorTarget === 4) {
-            drawRunType(output.run)
+          if (action.targetBase === 4) {
+            drawRunType(action.runtype)
           }
         }
         break
@@ -706,13 +705,13 @@ function writeSituation(output: WBSCOutput) {
           }
         }
 
-        if (output.out === false) {
-          drawRunType(output.run)
+        if (action.out === false) {
+          drawRunType(action.runtype)
         }
         break
     }
 
-    if (output.num && !useEvalStore().batterAction) {
+    if (action.num && !useEvalStore().batterAction) {
       writeBatterIndicator(base)
     }
   } else {

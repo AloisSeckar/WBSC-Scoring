@@ -1,12 +1,12 @@
 import { expect, test } from 'vitest'
-import { createMockOutput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass - no "se" action', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
   })
@@ -14,11 +14,11 @@ test('validation should pass - no "se" action', () => {
 })
 
 test('validation should pass - correct "se" action', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: 'ET',
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'se0',
   })
@@ -26,11 +26,11 @@ test('validation should pass - correct "se" action', () => {
 })
 
 test('validation should fail - no "se" action for R2', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: 'ET',
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'se2',
   })
@@ -38,11 +38,11 @@ test('validation should fail - no "se" action for R2', () => {
 })
 
 test('validation should pass - batter can have 1 extra "occupied" play', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
   })
-  const b1Output = createMockOutput({
+  const b1Output = createMockAction({
     group: 'input-b1',
     specAction: 'oc',
   })
@@ -50,15 +50,15 @@ test('validation should pass - batter can have 1 extra "occupied" play', () => {
 })
 
 test('validation should fail - batter can only have 1 extra "occupied" play', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
   })
-  const b1Output = createMockOutput({
+  const b1Output = createMockAction({
     group: 'input-b1',
     specAction: 'oc',
   })
-  const b2Output = createMockOutput({
+  const b2Output = createMockAction({
     group: 'input-b2',
     specAction: 'oc',
   })
@@ -66,15 +66,15 @@ test('validation should fail - batter can only have 1 extra "occupied" play', ()
 })
 
 test('validation should pass - can only have one "se" action', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: 'ET',
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'se0',
   })
-  const r1aOutput = createMockOutput({
+  const r1aOutput = createMockAction({
     group: 'input-r1a',
     specAction: 'se0',
   })

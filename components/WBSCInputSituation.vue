@@ -77,7 +77,7 @@ const emit = defineEmits<{
   play: [last: boolean]
 }>()
 
-const model = defineModel<WBSCInput>({ required: true })
+const model = defineModel<WBSCAction>({ required: true })
 
 const tieVisible = props.group === inputR1 || props.group === inputR2
 const tieLabel = props.group === inputR1 ? 'Tiebreak (baseball (old))' : 'Tiebreak (baseball/softball)'

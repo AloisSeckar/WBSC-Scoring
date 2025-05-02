@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass -  no WP/PB/BK/IP play', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
@@ -11,12 +11,12 @@ test('validation should pass -  no WP/PB/BK/IP play', () => {
 })
 
 test('validation should pass -  two WP plays possible', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'exb',
     specAction: 'WP',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'exb',
     specAction: 'WP',
@@ -25,12 +25,12 @@ test('validation should pass -  two WP plays possible', () => {
 })
 
 test('validation should fail -  mixed WP and PB', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'exb',
     specAction: 'WP',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'exb',
     specAction: 'PB',
@@ -39,12 +39,12 @@ test('validation should fail -  mixed WP and PB', () => {
 })
 
 test('validation should pass -  PB is first action', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'exb',
     specAction: 'PB',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'err',
     specAction: 'eT',
@@ -53,12 +53,12 @@ test('validation should pass -  PB is first action', () => {
 })
 
 test('validation should fail -  PB is second action', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'err',
     specAction: 'eT',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'exb',
     specAction: 'PB',
@@ -67,12 +67,12 @@ test('validation should fail -  PB is second action', () => {
 })
 
 test('validation should pass -  PB is second action, but after SB', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'exb',
     specAction: 'PB',
@@ -81,17 +81,17 @@ test('validation should pass -  PB is second action, but after SB', () => {
 })
 
 test('validation should fail -  WP is second action', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Hit',
     specAction: '1B',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'exb',
     specAction: 'WP',
@@ -99,17 +99,17 @@ test('validation should fail -  WP is second action', () => {
   expect(checkExtraBaseAdvances([r1aInput, r1Input, bInput])).toBe(useT('editor.validation.noWPAfterPlay'))
 })
 test('validation should pass -  WP is second action, but after BB', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Advance',
     specAction: 'BB1',
   })
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'exb',
     specAction: 'WP',

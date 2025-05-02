@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass -  no SB/CS play', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'GroundOut',
     specAction: 'GO',
@@ -11,12 +11,12 @@ test('validation should pass -  no SB/CS play', () => {
 })
 
 test('validation should pass - both SBs', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'ste',
     specAction: 'SB',
@@ -25,12 +25,12 @@ test('validation should pass - both SBs', () => {
 })
 
 test('validation should fail - SB + CS', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'ste',
     specAction: 'CS',
@@ -39,12 +39,12 @@ test('validation should fail - SB + CS', () => {
 })
 
 test('validation should fail - SB + E2T', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'err',
     specAction: 'ET',
@@ -54,12 +54,12 @@ test('validation should fail - SB + E2T', () => {
 })
 
 test('validation should pass - SB + e2T', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'err',
     specAction: 'eT',
@@ -69,12 +69,12 @@ test('validation should pass - SB + e2T', () => {
 })
 
 test('validation should pass - CS + O/', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'fc',
     specAction: 'O/',
   })
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'ste',
     specAction: 'CS',

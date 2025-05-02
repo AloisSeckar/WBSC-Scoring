@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
-import { createMockInput, createMockPosSelections } from '../vitestUtils'
+import { createMockAction, createMockPosSelections } from '../vitestUtils'
 
-const okInput = createMockInput({
+const okInput = createMockAction({
   group: 'input-b',
   baseAction: 'GroundOut',
   specAction: 'GO',

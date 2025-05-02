@@ -3,8 +3,6 @@
 /* Transform and process user's input      */
 /* *************************************** */
 
-import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
-
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
 function processAction() {
@@ -16,55 +14,55 @@ function processAction() {
   const GUI = useGUIStore()
   const inputStore = useInputStore()
 
-  // TODO skip "inputs" array creation
-  const inputs = [] as WBSCInput[]
+  // TODO maybe this can be dropped and data can be processed within the store itself?
+  const actions = [] as WBSCAction[]
 
   const r3Input = inputStore.inputR3
   if (GUI.inputR3 && r3Input.baseAction) {
-    inputs.push(r3Input)
+    actions.push(r3Input)
   }
 
   const r2aInput = inputStore.inputR2a
-  if (GUI.inputR2a && r2aInput.baseAction) {
-    inputs.push(r2aInput)
+  if (GUI.inputR2 && GUI.inputR2a && r2aInput.baseAction) {
+    actions.push(r2aInput)
   }
 
   const r2Input = inputStore.inputR2
   if (GUI.inputR2 && r2Input.baseAction) {
-    inputs.push(r2Input)
+    actions.push(r2Input)
   }
 
   const r1bInput = inputStore.inputR1b
-  if (GUI.inputR1b && r1bInput.baseAction) {
-    inputs.push(r1bInput)
+  if (GUI.inputR1 && GUI.inputR1b && r1bInput.baseAction) {
+    actions.push(r1bInput)
   }
 
   const r1aInput = inputStore.inputR1a
-  if (GUI.inputR1a && r1aInput.baseAction) {
-    inputs.push(r1aInput)
+  if (GUI.inputR1 && GUI.inputR1a && r1aInput.baseAction) {
+    actions.push(r1aInput)
   }
 
   const r1Input = inputStore.inputR1
-  if (GUI.inputR1 && r1Input.baseAction) {
-    inputs.push(r1Input)
+  if (GUI.inputR1 && GUI.inputR1 && r1Input.baseAction) {
+    actions.push(r1Input)
   }
 
   const b3Input = inputStore.inputB3
-  if (GUI.inputB3 && b3Input.baseAction) {
-    inputs.push(b3Input)
+  if (GUI.inputB && GUI.inputB3 && b3Input.baseAction) {
+    actions.push(b3Input)
   }
 
   const b2Input = inputStore.inputB2
-  if (GUI.inputB2 && b2Input.baseAction) {
-    inputs.push(b2Input)
+  if (GUI.inputB && GUI.inputB2 && b2Input.baseAction) {
+    actions.push(b2Input)
   }
 
   const b1Input = inputStore.inputB1
   const bInput = inputStore.inputB
-  let bErrorTarget: WBSCBase = 0
+  let bActionTarget: WBSCBase = 0
   let bRunType = 'e'
   let omitB1 = false
-  if (GUI.inputB1 && b1Input.baseAction) {
+  if (GUI.inputB && GUI.inputB1 && b1Input.baseAction) {
     // special case 1 - extra advance on error
     // special case 2 - multiple-base hit with later appeal play on some of the runners
     if (b1Input.specAction === 'se0' || b1Input.specAction === 'oc') {
@@ -74,16 +72,16 @@ function processAction() {
         useEvalStore().setError(extraValidation)
         return
       }
-      bErrorTarget = b1Input.base
+      bActionTarget = b1Input.base // here must be the "input" base, because evaluation happens later
       bRunType = b1Input.runtype || 'e'
       omitB1 = true
     } else {
-      inputs.push(b1Input)
+      actions.push(b1Input)
     }
   }
 
   if (GUI.inputB && bInput.baseAction) {
-    inputs.push(bInput)
+    actions.push(bInput)
   }
 
   log.info('Evaluating output')
@@ -96,102 +94,84 @@ function processAction() {
   useEvalStore().gdp = false
   useEvalStore().brokenDP = false
 
-  // TODO revision of this approach
-  const outputs = [] as WBSCOutput[]
-
   // runner 3
-  let r3Output: WBSCOutput
   if (GUI.inputR3 && r3Input.baseAction) {
     playersInvolved += 1
-    r3Output = processInput(r3Input, playersInvolved)
-    outputs.push(r3Output)
+    processInput(r3Input, playersInvolved)
   }
 
   // runner 2
-  let r2Output: WBSCOutput
   if (GUI.inputR2 && r2Input.baseAction) {
     playersInvolved += 1
 
-    const extraR2Output: WBSCOutput[] = []
     if (GUI.inputR2a && r2aInput.baseAction) {
-      extraR2Output.push(processInput(r2aInput, playersInvolved))
+      processInput(r2aInput, playersInvolved)
     }
 
-    r2Output = processInput(r2Input, playersInvolved)
-    r2Output.extraOutput = extraR2Output
-    outputs.push(r2Output)
+    processInput(r2Input, playersInvolved)
   }
 
   // runner 1
-  let r1Output: WBSCOutput
   if (GUI.inputR1 && r1Input.baseAction) {
     playersInvolved += 1
 
-    const extraR1Output: WBSCOutput[] = []
     if (GUI.inputR1b && r1bInput.baseAction) {
-      extraR1Output.push(processInput(r1bInput, playersInvolved))
+      processInput(r1bInput, playersInvolved)
     }
     if (GUI.inputR1a && r1aInput.baseAction) {
       if (r1Input.base) {
         r1aInput.origBase = r1Input.base
       }
-      extraR1Output.push(processInput(r1aInput, playersInvolved))
+      processInput(r1aInput, playersInvolved)
     }
 
-    r1Output = processInput(r1Input, playersInvolved)
-    r1Output.extraOutput = extraR1Output
-    outputs.push(r1Output)
+    processInput(r1Input, playersInvolved)
   }
 
   // batter
-  let bOutput: WBSCOutput
-  let b1Output: WBSCOutput
   if (GUI.inputB && bInput.baseAction) {
     playersInvolved += 1
 
-    const extraBatterOutput: WBSCOutput[] = []
     if (GUI.inputB3 && b3Input.baseAction) {
-      extraBatterOutput.push(processInput(b3Input, playersInvolved))
+      processInput(b3Input, playersInvolved)
     }
     if (GUI.inputB2 && b2Input.baseAction) {
       if (b1Input.base) {
         b2Input.origBase = b1Input.base
       }
-      extraBatterOutput.push(processInput(b2Input, playersInvolved))
+      processInput(b2Input, playersInvolved)
     }
     if (GUI.inputB1 && b1Input.baseAction && !omitB1) {
       if (bInput.base) {
         b1Input.origBase = bInput.base
       }
-      b1Output = processInput(b1Input, playersInvolved)
-      extraBatterOutput.push(b1Output)
+      processInput(b1Input, playersInvolved)
     }
 
     useEvalStore().batterAction = true
-    bOutput = processInput(bInput, playersInvolved)
-    if (bErrorTarget > 0) {
-      bOutput.errorTarget = bErrorTarget
-      bOutput.run = bRunType
+    processInput(bInput, playersInvolved)
+    if (bActionTarget > 0) {
+      bInput.targetBase = bActionTarget
+      bInput.outputBase = bInput.origBase + 1 as WBSCBase
+      bInput.runtype = bRunType
     }
-    bOutput.extraOutput = extraBatterOutput
-    outputs.push(bOutput)
+
+    // special case - double or triple followed by an error (#226)
+    if ((bInput?.specAction.startsWith('2') || bInput?.specAction.startsWith('3'))
+      && (b1Input?.specAction.startsWith('e') || b1Input?.specAction.startsWith('E'))) {
+      b1Input.origBase = bInput.targetBase as WBSCBase
+      b1Input.outputBase = bInput.targetBase + 1 as WBSCBase
+    }
   }
 
-  // special case - double or triple followed by an error (#226)
-  if ((bInput.specAction.startsWith('2') || bInput.specAction.startsWith('3'))
-    && (b1Input.specAction.startsWith('e') || b1Input.specAction.startsWith('E'))) {
-    b1Output!.base = bOutput!.base + 1 as WBSCBase
-    b1Output!.origBase = bOutput!.base + 1 as WBSCBase
-  }
-
-  mergeBatterIndicators(outputs)
-  adjustWPPB(outputs)
-  adjustIO(outputs)
-  connectSpecialCases(outputs)
+  mergeBatterIndicators(actions)
+  adjustWPPB(actions)
+  adjustIO(actions)
+  connectSpecialCases(actions)
 
   log.info('Validating data')
 
-  const validation = checkUserInput(inputs, outputs)
+  const validation = checkUserInput(actions)
   if (validation === '') {
     log.info('Rendering output')
 
@@ -209,19 +189,20 @@ function processAction() {
     // current batter is not known in the time of input evaluation (we don't forsee number of players involved)
     // therefore placeholder is being used and here is replaced with actual number
     const batter = useEvalStore().batter.toString()
-    outputs.forEach((o) => {
-      o.text1 = o.text1.replace('#b#', batter)
-      o.extraOutput?.forEach((o) => {
-        o.text1 = o.text1.replace('#b#', batter)
-      })
+    actions.forEach((a) => {
+      a.text1 = a.text1.replace('#b#', batter)
     })
 
     // render situations one by one
     let displayed = 0
-    outputs.forEach((output) => {
-      displayed += 1
-      renderAction(displayed, true, output)
-      useCanvasStore().vOffset += h1 - 8
+    actions.forEach((action) => {
+      // start rendering only for basic positions (B, R1, R2 or R3)
+      // possible extra actions are injected are injected as extra params
+      if (firstActions.includes(action.group)) {
+        displayed += 1
+        renderAction(displayed, true, action, getExtraActions(action.group, omitB1))
+        useCanvasStore().vOffset += h1 - 8
+      }
     })
 
     connectOutsIfNeeded()
@@ -234,15 +215,50 @@ function processAction() {
   }
 }
 
+// extract subsequent actions for given player from a "flat" input array
+// omitB1 is special case for extra base errors or FCs - see evaluation in processAction
+function getExtraActions(group: string, omitB1: boolean): WBSCAction[] {
+  const extraActions = [] as WBSCAction[]
+  const GUI = useGUIStore()
+  const inputStore = useInputStore()
+  switch (group) {
+    case inputB:
+      if (GUI.inputB1 && inputStore.inputB1.baseAction && !omitB1) {
+        extraActions.push(inputStore.inputB1)
+      }
+      if (GUI.inputB2 && inputStore.inputB2.baseAction) {
+        extraActions.push(inputStore.inputB2)
+      }
+      if (GUI.inputB3 && inputStore.inputB3.baseAction) {
+        extraActions.push(inputStore.inputB3)
+      }
+      break
+    case inputR1:
+      if (GUI.inputR1a && inputStore.inputR1a.baseAction) {
+        extraActions.push(inputStore.inputR1a)
+      }
+      if (GUI.inputR1b && inputStore.inputR1b.baseAction) {
+        extraActions.push(inputStore.inputR1b)
+      }
+      break
+    case inputR2:
+      if (GUI.inputR2 && inputStore.inputR2a.baseAction) {
+        extraActions.push(inputStore.inputR2a)
+      }
+      break
+  }
+  return extraActions
+}
+
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/188
-function mergeBatterIndicators(outputs: WBSCOutput[]) {
+function mergeBatterIndicators(actions: WBSCAction[]) {
   // render only one batter indicator - for the most advanced runner
   // other concurrent actions are connected to this play by other means
   let indicatorEncountered = false
-  outputs.forEach((output) => {
-    if (output.num) {
+  actions.forEach((action) => {
+    if (action.num) {
       if (indicatorEncountered) {
-        output.num = false
+        action.num = false
       }
       indicatorEncountered = true
     }
@@ -283,15 +299,15 @@ function removeDuplicateConnectors() {
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/178
-function adjustWPPB(outputs: WBSCOutput[]) {
-  const strikeoutWPPB = outputs.filter(o => ['KSWP', 'KSPB', 'KLWP', 'KLPB'].includes(o.specAction))?.length > 0
+function adjustWPPB(actions: WBSCAction[]) {
+  const strikeoutWPPB = actions.filter(a => ['KSWP', 'KSPB', 'KLWP', 'KLPB'].includes(a.specAction))?.length > 0
   if (strikeoutWPPB) {
-    outputs.forEach((output) => {
-      if (output.text1 === 'WP#b#') {
-        output.text1 = 'wp#b#'
+    actions.forEach((action) => {
+      if (action.text1 === 'WP#b#') {
+        action.text1 = 'wp#b#'
       }
-      if (output.text1 === 'PB#b#') {
-        output.text1 = 'pb#b#'
+      if (action.text1 === 'PB#b#') {
+        action.text1 = 'pb#b#'
       }
     })
     useEvalStore().concurrentPlays = useEvalStore().concurrentPlays.filter((p: ConcurrentPlay) => p.text1 !== 'WP#b#' && p.text1 !== 'PB#b#')
@@ -299,20 +315,20 @@ function adjustWPPB(outputs: WBSCOutput[]) {
 }
 
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/177
-function adjustIO(outputs: WBSCOutput[]) {
+function adjustIO(actions: WBSCAction[]) {
   const batterAction = useInputStore().inputB.specAction
   const isIO = batterAction === 'INT' || batterAction === 'OB'
   if (isIO) {
-    outputs.forEach((o) => {
-      if (o.specAction === 'ADV') {
-        o.text1 = '[' + o.text1 + ']'
+    actions.forEach((a) => {
+      if (a.specAction === 'ADV') {
+        a.text1 = '[' + a.text1 + ']'
       }
     })
   }
 }
 
 // helper for various special cases of concurrent plays
-function connectSpecialCases(outputs: WBSCOutput[]) {
+function connectSpecialCases(actions: WBSCAction[]) {
   const inputStore = useInputStore()
   const batterInput = inputStore.inputB
   const r1Input = inputStore.inputR1
@@ -334,15 +350,15 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   const r3error = extraBaseErrors.includes(r3SpecAction) || sameError.includes(r3SpecAction)
   const r3connect = r3error || connectingActions.includes(r3SpecAction)
 
-  const bOutput = outputs.find(o => o.group === inputB)
-  const r1Output = outputs.find(o => o.group === inputR1)
-  const r2Output = outputs.find(o => o.group === inputR2)
-  const r3Output = outputs.find(o => o.group === inputR3)
+  const bOutput = actions.find(a => a.group === inputB)
+  const r1Output = actions.find(a => a.group === inputR1)
+  const r2Output = actions.find(a => a.group === inputR2)
+  const r3Output = actions.find(a => a.group === inputR3)
 
   if (r1error && (r2connect || r3connect) && r1Output) {
     useEvalStore().pushConcurrentPlayIfNotAdded({
       batter: r1Output.batter,
-      base: r1Output.base,
+      base: r1Output.outputBase,
       out: r1Output.out,
       na: r1Output.na,
       text1: r1Output.text1,
@@ -351,7 +367,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   if (r2error && (r1connect || r3connect) && r2Output) {
     useEvalStore().pushConcurrentPlayIfNotAdded({
       batter: r2Output.batter,
-      base: r2Output.base,
+      base: r2Output.outputBase,
       out: r2Output.out,
       na: r2Output.na,
       text1: r2Output.text1,
@@ -360,7 +376,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   if (r3error && (r1connect || r2connect) && r3Output) {
     useEvalStore().pushConcurrentPlayIfNotAdded({
       batter: r3Output.batter,
-      base: r3Output.base,
+      base: r3Output.outputBase,
       out: r3Output.out,
       na: r3Output.na,
       text1: r3Output.text1,
@@ -434,11 +450,11 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   // #182 - connect "indifference" with runner out, not KSO (example 74)
   const isKSO = batterAction === 'KSO' || batterAction === 'KLO'
   if (isKSO) {
-    const playWithIndifference = outputs.find(o => o.specAction === 'O/')
-    const playWithOut = outputs.find(o => ['GO', 'GOT'].includes(o.specAction))
+    const playWithIndifference = actions.find(a => a.specAction === 'O/')
+    const playWithOut = actions.find(a => ['GO', 'GOT'].includes(a.specAction))
     const playToFix = useEvalStore().concurrentPlays.find(p => p.base === 1)
     if (playWithIndifference && playWithOut && playToFix) {
-      playToFix.base = playWithOut.base
+      playToFix.base = playWithOut.outputBase
       playToFix.batter = playWithOut.batter
       playToFix.out = true
       playToFix.text1 = playWithOut.specAction
@@ -448,14 +464,14 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   // #164 - connect DIF + error/out
   const isDIF = batterAction === 'OBR_DIF'
   if (isDIF) {
-    outputs.forEach((output) => {
-      if (['OBR_DIF', 'GO', 'GOT', 'eF', 'eT'].includes(output.specAction)) {
+    actions.forEach((action) => {
+      if (['OBR_DIF', 'GO', 'GOT', 'eF', 'eT'].includes(action.specAction)) {
         useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: output.batter,
-          base: output.base,
-          out: output.out,
+          batter: action.batter,
+          base: action.outputBase,
+          out: action.out,
           na: false,
-          text1: output.text1,
+          text1: action.text1,
         })
       }
     })
@@ -464,30 +480,30 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
   // #168 - connect dropped fly error (ExF) + error/out
   const droppedFly = ['EDF', 'EDL', 'EDP'].includes(batterAction)
   if (droppedFly) {
-    outputs.forEach((output) => {
-      if (['EDF', 'EDL', 'EDP', 'GO', 'GOT'].includes(output.specAction)) {
+    actions.forEach((action) => {
+      if (['EDF', 'EDL', 'EDP', 'GO', 'GOT'].includes(action.specAction)) {
         useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: output.batter,
-          base: output.base,
-          out: output.out,
+          batter: action.batter,
+          base: action.outputBase,
+          out: action.out,
           na: false,
-          text1: output.text1,
+          text1: action.text1,
         })
       }
     })
   }
 
   // #172 - connect dropped fly extra base error + batter's action (occupied)
-  const droppedFlyExtra = outputs.some(o => o.specAction === 'eDF')
+  const droppedFlyExtra = actions.some(a => a.specAction === 'eDF')
   if (droppedFlyExtra) {
-    outputs.forEach((output) => {
-      if (['O', 'OCB', 'eDF'].includes(output.specAction)) {
+    actions.forEach((action) => {
+      if (['O', 'OCB', 'eDF'].includes(action.specAction)) {
         useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: output.batter,
-          base: output.base,
-          out: output.out,
+          batter: action.batter,
+          base: action.outputBase,
+          out: action.out,
           na: false,
-          text1: output.text1,
+          text1: action.text1,
         })
       }
     })
@@ -511,7 +527,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
       // runner 2 advance on WP/PB
       useEvalStore().pushConcurrentPlayIfNotAdded({
         batter: r2Output!.batter,
-        base: r2Output!.base,
+        base: r2Output!.outputBase,
         out: false,
         na: false,
         text1: r2Output!.text1,
@@ -521,7 +537,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
       // runner 1 advance on WP/PB
       useEvalStore().pushConcurrentPlayIfNotAdded({
         batter: r1Output!.batter,
-        base: r1Output!.base,
+        base: r1Output!.outputBase,
         out: false,
         na: false,
         text1: r1Output!.text1,
@@ -546,7 +562,7 @@ function connectSpecialCases(outputs: WBSCOutput[]) {
       connected.forEach((output) => {
         useEvalStore().pushConcurrentPlayIfNotAdded({
           batter: output!.batter,
-          base: output!.base,
+          base: output!.outputBase,
           out: output!.out,
           na: false,
           text1: output!.text1,

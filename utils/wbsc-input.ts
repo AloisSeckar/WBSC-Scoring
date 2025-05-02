@@ -5,15 +5,18 @@
 
 // TODO rename to "init..."?
 
-import type { WBSCInput, WBSCOutput } from '@/composables/useInputStore'
-
-export function getEmptyInput(group: string): WBSCInput {
-  const input: WBSCInput = {
+export function getEmptyAction(group: string): WBSCAction {
+  const input: WBSCAction = {
     group,
+    // change here needs to be copied into useInputStore.clearInput
+    // TODO should be unified?
+    batter: 1,
     baseAction: '',
     specAction: '',
-    origBase: getOrigBase(group),
     base: 0,
+    origBase: getOrigBase(group),
+    targetBase: 0,
+    outputBase: 0,
     tie: false,
     nodp: false,
     pos1: '',
@@ -21,28 +24,16 @@ export function getEmptyInput(group: string): WBSCInput {
     pos3: '',
     pos4: '',
     runtype: 'e',
+    text1: '',
+    text2: '',
+    sub: '',
+    num: false,
+    out: false,
+    na: false,
+    hit: false,
   }
 
   return input
-}
-
-export function getEmptyOutput(): WBSCOutput {
-  const output: WBSCOutput = {
-    group: '',
-    specAction: '',
-    batter: 0,
-    origBase: 0,
-    base: 0,
-    text1: '',
-    out: false,
-    hit: false,
-    num: false,
-    errorTarget: 0,
-    na: false,
-    tie: false,
-    nodp: false,
-  }
-  return output
 }
 
 // returns original base based on input group

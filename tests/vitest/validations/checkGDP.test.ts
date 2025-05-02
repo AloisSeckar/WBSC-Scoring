@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
-import { createMockOutput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass - not GDP action', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
     text1: '1B',
@@ -11,19 +11,19 @@ test('validation should pass - not GDP action', () => {
   expect(checkGDP([bOutput])).toBe('')
 })
 
-const bGDPOutput = createMockOutput({
+const bGDPOutput = createMockAction({
   group: 'input-b',
   specAction: 'GDP',
   text1: 'GDP',
   base: 1,
 })
-const r1Output = createMockOutput({
+const r1Output = createMockAction({
   group: 'input-r1',
   specAction: 'GO',
   base: 2,
   out: true,
 })
-const r2Output = createMockOutput({
+const r2Output = createMockAction({
   group: 'input-r2',
   specAction: 'GO',
   base: 3,
@@ -50,7 +50,7 @@ test('validation should pass - GDPO action with two runners out', () => {
 })
 
 test('validation should pass - GDP action with decisive error at runner', () => {
-  const r1ErrorOutput = createMockOutput({
+  const r1ErrorOutput = createMockAction({
     group: 'input-r1',
     specAction: 'EF',
     text1: '4E6',

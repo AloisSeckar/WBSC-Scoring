@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass - not SH/SF action', () => {
-  const bInput = createMockInput({
+  const bInput = createMockAction({
     group: 'input-b',
     baseAction: 'Hit',
     specAction: '1B',
@@ -10,13 +10,13 @@ test('validation should pass - not SH/SF action', () => {
   expect(checkSHSF([bInput])).toBe('')
 })
 
-const bSHInput = createMockInput({
+const bSHInput = createMockAction({
   group: 'input-b',
   baseAction: 'Sacrifice',
   specAction: 'SH',
 })
 
-const r1ADVInput = createMockInput({
+const r1ADVInput = createMockAction({
   group: 'input-r1',
   baseAction: 'adv',
   specAction: 'ADV',
@@ -31,7 +31,7 @@ test('validation should pass - runner from 1st advanced', () => {
 })
 
 test('validation should fail - runner from 1st advanced, but runner from 2nd was out', () => {
-  const r2Input = createMockInput({
+  const r2Input = createMockAction({
     group: 'input-r2',
     baseAction: 'out',
     specAction: 'GO',
@@ -40,7 +40,7 @@ test('validation should fail - runner from 1st advanced, but runner from 2nd was
 })
 
 test('validation should fail - runner from 1st advanced, but runner from 3rd was out', () => {
-  const r3Input = createMockInput({
+  const r3Input = createMockAction({
     group: 'input-r3',
     baseAction: 'out',
     specAction: 'GO',
@@ -49,12 +49,12 @@ test('validation should fail - runner from 1st advanced, but runner from 3rd was
 })
 
 test('validation should pass - runner from 1st advanced one base, was out afterwards', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'adv',
     specAction: 'ADV',
   })
-  const r1aInput = createMockInput({
+  const r1aInput = createMockAction({
     group: 'input-r1a',
     baseAction: 'out',
     specAction: 'GO',
@@ -62,7 +62,7 @@ test('validation should pass - runner from 1st advanced one base, was out afterw
   expect(checkSHSF([r1aInput, r1Input, bSHInput])).toBe('')
 })
 
-const bSFInput = createMockInput({
+const bSFInput = createMockAction({
   group: 'input-b',
   baseAction: 'Sacrifice',
   specAction: 'SF',
@@ -78,7 +78,7 @@ test('validation should fail - no runner scored', () => {
 })
 
 test('validation should pass - runner scored', () => {
-  const r3Input = createMockInput({
+  const r3Input = createMockAction({
     group: 'input-r3',
     baseAction: 'adv',
     specAction: 'ADV',

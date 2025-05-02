@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
-import { createMockInput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass -  not a "no advance" play', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'SB',
@@ -11,7 +11,7 @@ test('validation should pass -  not a "no advance" play', () => {
 })
 
 test('validation should pass - "no advance" play at closest base', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'CSN',
@@ -22,7 +22,7 @@ test('validation should pass - "no advance" play at closest base', () => {
 })
 
 test('validation should fail - "no advance" play at +1 base', () => {
-  const r1Input = createMockInput({
+  const r1Input = createMockAction({
     group: 'input-r1',
     baseAction: 'ste',
     specAction: 'CSN',

@@ -1,94 +1,94 @@
 import { expect, test } from 'vitest'
-import { createMockOutput } from '../vitestUtils'
+import { createMockAction } from '../vitestUtils'
 
 test('validation should pass - no run scored', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
-    base: 1,
+    targetBase: 1,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
-    base: 2,
+    targetBase: 2,
   })
   expect(checkEarnedRuns([r1Output, bOutput])).toBe('')
 })
 
 test('validation should pass - ER with no error', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '3B',
-    base: 3,
+    targetBase: 3,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
-    base: 4,
-    run: 'e',
+    targetBase: 4,
+    runtype: 'e',
   })
   expect(checkEarnedRuns([r1Output, bOutput])).toBe('')
 })
 
 test('validation should fail - ER, but there was decessive error', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: 'O',
-    base: 1,
+    targetBase: 1,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'EF',
-    base: 2,
-    errorTarget: 4,
-    run: 'e',
+    outputBase: 2,
+    targetBase: 4,
+    runtype: 'e',
   })
   expect(checkEarnedRuns([r1Output, bOutput])).toBe(useT('editor.validation.noER').replace('#p#', 'R1'))
 })
 
 test('validation should pass - TIE run is UE', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
-    base: 1,
+    targetBase: 1,
   })
-  const r2Output = createMockOutput({
+  const r2Output = createMockAction({
     group: 'input-r2',
     specAction: 'ADV',
-    base: 4,
-    run: 'ue',
+    targetBase: 4,
+    runtype: 'ue',
     tie: true,
   })
   expect(checkEarnedRuns([r2Output, bOutput])).toBe('')
 })
 
 test('validation should fail - TIE run cannot be ER', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '1B',
-    base: 1,
+    targetBase: 1,
   })
-  const r2Output = createMockOutput({
+  const r2Output = createMockAction({
     group: 'input-r2',
     specAction: 'ADV',
-    base: 4,
-    run: 'e',
+    targetBase: 4,
+    runtype: 'e',
     tie: true,
   })
   expect(checkEarnedRuns([r2Output, bOutput])).toBe(useT('editor.validation.noTieER'))
 })
 
 test('validation should fail - TIE run cannot be TU', () => {
-  const bOutput = createMockOutput({
+  const bOutput = createMockAction({
     group: 'input-b',
     specAction: '2B',
-    base: 2,
+    targetBase: 2,
   })
-  const r1Output = createMockOutput({
+  const r1Output = createMockAction({
     group: 'input-r1',
     specAction: 'ADV',
-    base: 4,
-    run: 'tu',
+    targetBase: 4,
+    runtype: 'tu',
     tie: true,
   })
   expect(checkEarnedRuns([r1Output, bOutput])).toBe(useT('editor.validation.noTieER'))
