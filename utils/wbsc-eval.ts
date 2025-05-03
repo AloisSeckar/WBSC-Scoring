@@ -242,6 +242,7 @@ function processInput(data: WBSCAction, batter: number) {
   data.outputBase = data.base
 
   // soft reset special values
+  data.text2 = ''
   data.sub = ''
   data.num = false
   data.out = false
