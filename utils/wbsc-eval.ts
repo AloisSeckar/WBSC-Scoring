@@ -246,7 +246,6 @@ function processInput(data: WBSCAction, batter: number) {
   data.num = false
   data.out = false
   data.na = false
-  data.hit = false
 
   let pos = getPos(data)
   if (pos) {
@@ -346,7 +345,6 @@ function processInput(data: WBSCAction, batter: number) {
       if (action.endsWith('BB')) {
         data.text1 += 'B'
       }
-      data.hit = true
       break
     case 'O':
       data.text1 = action + pos
@@ -413,19 +411,16 @@ function processInput(data: WBSCAction, batter: number) {
       if (action.endsWith('G')) {
         data.text2 = 'GR'
       }
-      data.hit = true
       break
     case '3B':
       data.outputBase = data.targetBase = 3
       data.text1 = pos
-      data.hit = true
       break
     case 'HR':
     case 'IHR':
       data.outputBase = data.targetBase = 4
       data.text1 = action
       data.text2 = pos
-      data.hit = true
       break
     case 'BB1':
     case 'IBB1':

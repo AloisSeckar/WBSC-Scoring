@@ -68,9 +68,6 @@ export type WBSCAction = {
   out: boolean
   // true if runner ended up at the same base (no advance)
   na: boolean
-  // true if action was a hit
-  // TODO might be replaced with `baseAction === 'hit'` check
-  hit: boolean
 }
 
 // special type for representing stored plays' definition in JSON files

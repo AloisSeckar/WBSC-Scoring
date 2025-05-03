@@ -118,7 +118,6 @@ function clearInput(input: WBSCAction, group: string) {
   input.num = false
   input.out = false
   input.na = false
-  input.hit = false
 }
 
 export function getPos(input: WBSCAction): string {

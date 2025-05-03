@@ -272,9 +272,9 @@ function drawHitSymbol(base: number) {
 // draw the actual output of selected action
 function writeSituation(action: WBSCAction) {
   const out = action.out
-  const hit = action.hit
   const sub = action.sub
   const na = action.na
+  const hit = ['1B', '1BB', '2B', '2BG', '3B', 'HR', 'IHR'].includes(action.specAction)
 
   const text1 = action.text1
   const text2 = action.text2

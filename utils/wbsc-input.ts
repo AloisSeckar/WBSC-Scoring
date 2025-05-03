@@ -30,7 +30,6 @@ export function getEmptyAction(group: string): WBSCAction {
     num: false,
     out: false,
     na: false,
-    hit: false,
   }
 
   return input
