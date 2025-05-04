@@ -6,7 +6,7 @@
 // export current input selection as JSON file
 // by https://bobbyhadz.com/blog/javascript-set-blob-filename
 export function exportInputAsJSON() {
-  const actions = useInputStore().getInputs()
+  const actions = trimInputs(useInputStore().getInputs())
   const json = JSON.stringify(actions)
   const blob = new Blob([json], {
     type: 'application/octet-stream',
@@ -117,4 +117,27 @@ async function setInputFromJSON(input: WBSCActionJson) {
 
 function getPosSelected(...args: (string | undefined | null)[]) {
   return args.filter(arg => !!arg).length
+}
+
+type WBSCInputJson = Pick<WBSCAction, 'group' | 'baseAction' | 'specAction' | 'origBase' | 'base' | 'tie' | 'nodp' | 'pos1' | 'pos2' | 'pos3' | 'pos4' | 'runtype'>
+
+function trimInputs(actions: WBSCAction[]): WBSCInputJson[] {
+  const trimmed: WBSCInputJson[] = []
+  actions.forEach((action) => {
+    trimmed.push({
+      group: action.group,
+      baseAction: action.baseAction,
+      specAction: action.specAction,
+      origBase: action.origBase,
+      base: action.base,
+      tie: action.tie,
+      nodp: action.nodp,
+      pos1: action.pos1,
+      pos2: action.pos2,
+      pos3: action.pos3,
+      pos4: action.pos4,
+      runtype: action.runtype,
+    })
+  })
+  return trimmed
 }
