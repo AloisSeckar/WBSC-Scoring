@@ -6,7 +6,8 @@
 // export current input selection as JSON file
 // by https://bobbyhadz.com/blog/javascript-set-blob-filename
 export function exportInputAsJSON() {
-  const json = JSON.stringify(getRawInputs())
+  const actions = useInputStore().getInputs()
+  const json = JSON.stringify(actions)
   const blob = new Blob([json], {
     type: 'application/octet-stream',
   })
@@ -22,60 +23,6 @@ export function exportInputAsJSON() {
   anchorElement.click()
 
   window.URL.revokeObjectURL(url)
-}
-
-// TODO this is (nearly) the same as being done in wbsc-processor.processAction
-// except one special evaluation (bErrorTarget) and we dont use output+validation here
-// refactor to be able to have such code only once...
-function getRawInputs(): WBSCAction[] {
-  const inputStore = useInputStore()
-  const inputs = [] as WBSCAction[]
-
-  const r3Input = inputStore.inputR3
-  if (r3Input.visible && r3Input.baseAction) {
-    inputs.push(r3Input)
-  }
-
-  const r2aInput = inputStore.inputR2a
-  if (r2aInput.visible && r2aInput.baseAction) {
-    inputs.push(r2aInput)
-  }
-  const r2Input = inputStore.inputR2
-  if (r2Input.visible && r2Input.baseAction) {
-    inputs.push(r2Input)
-  }
-
-  const r1bInput = inputStore.inputR1b
-  if (r1bInput.visible && r1bInput.baseAction) {
-    inputs.push(r1bInput)
-  }
-  const r1aInput = inputStore.inputR1a
-  if (r1aInput.visible && r1aInput.baseAction) {
-    inputs.push(r1aInput)
-  }
-  const r1Input = inputStore.inputR1
-  if (r1Input.visible && r1Input.baseAction) {
-    inputs.push(r1Input)
-  }
-
-  const b3Input = inputStore.inputB3
-  if (b3Input.visible && b3Input.baseAction) {
-    inputs.push(b3Input)
-  }
-  const b2Input = inputStore.inputB2
-  if (b2Input.visible && b2Input.baseAction) {
-    inputs.push(b2Input)
-  }
-  const b1Input = inputStore.inputB1
-  if (b1Input.visible && b1Input.baseAction) {
-    inputs.push(b1Input)
-  }
-  const bInput = inputStore.inputB
-  if (bInput.visible && bInput.baseAction) {
-    inputs.push(bInput)
-  }
-
-  return inputs
 }
 
 export function importFile() {

@@ -8,66 +8,21 @@
 function processAction() {
   log.info('Getting input')
 
+  const inputStore = useInputStore()
+
   // #265
   useEvalStore().softReset()
 
-  const inputStore = useInputStore()
+  // get all inputs that are visible and filled
+  const actions = inputStore.getInputs()
 
-  // TODO maybe this can be dropped and data can be processed within the store itself?
-  const actions = [] as WBSCAction[]
-
-  const r3Input = inputStore.inputR3
-  if (r3Input.visible && r3Input.baseAction) {
-    actions.push(r3Input)
-  }
-
-  const r2visible = inputStore.isVisible(inputR2)
-
-  const r2aInput = inputStore.inputR2a
-  if (r2visible && r2aInput.visible && r2aInput.baseAction) {
-    actions.push(r2aInput)
-  }
-
-  const r2Input = inputStore.inputR2
-  if (r2visible && r2Input.baseAction) {
-    actions.push(r2Input)
-  }
-
-  const r1visible = inputStore.isVisible(inputR1)
-
-  const r1bInput = inputStore.inputR1b
-  if (r1visible && r1bInput.visible && r1bInput.baseAction) {
-    actions.push(r1bInput)
-  }
-
-  const r1aInput = inputStore.inputR1a
-  if (r1visible && r1aInput.visible && r1aInput.baseAction) {
-    actions.push(r1aInput)
-  }
-
-  const r1Input = inputStore.inputR1
-  if (r1visible && r1Input.baseAction) {
-    actions.push(r1Input)
-  }
-
-  const bvisible = inputStore.isVisible(inputB)
-
-  const b3Input = inputStore.inputB3
-  if (bvisible && b3Input.visible && b3Input.baseAction) {
-    actions.push(b3Input)
-  }
-
-  const b2Input = inputStore.inputB2
-  if (bvisible && b2Input.visible && b2Input.baseAction) {
-    actions.push(b2Input)
-  }
-
+  // edge-cases for batter
   const b1Input = inputStore.inputB1
   const bInput = inputStore.inputB
   let bActionTarget: WBSCBase = 0
   let bRunType = 'e'
   let omitB1 = false
-  if (bvisible && b1Input.visible && b1Input.baseAction) {
+  if (b1Input.visible && b1Input.baseAction) {
     // special case 1 - extra advance on error
     // special case 2 - multiple-base hit with later appeal play on some of the runners
     if (b1Input.specAction === 'se0' || b1Input.specAction === 'oc') {
@@ -79,19 +34,15 @@ function processAction() {
       }
       bActionTarget = b1Input.base // here must be the "input" base, because evaluation happens later
       bRunType = b1Input.runtype || 'e'
+      // result of subsequent action was transfered to input-b
+      // remove input-b1 from actions to be evaluated and rendered
       omitB1 = true
-    } else {
-      actions.push(b1Input)
+      actions.splice(actions.findIndex(a => a.group === inputB1), 1)
     }
-  }
-
-  if (bvisible && bInput.baseAction) {
-    actions.push(bInput)
   }
 
   log.info('Evaluating output')
 
-  let playersInvolved = 0
   useEvalStore().outs = []
   useEvalStore().concurrentPlays = []
 
@@ -99,69 +50,41 @@ function processAction() {
   useEvalStore().gdp = false
   useEvalStore().brokenDP = false
 
-  // runner 3
-  if (r3Input.visible && r3Input.baseAction) {
-    playersInvolved += 1
-    processInput(r3Input, playersInvolved)
+  // do basic evaluation for each input
+  actions.forEach((action) => {
+    processInput(action)
+  })
+
+  // edge-cases for runner 1
+  if (actions.some(a => a.group === inputR1a)) {
+    // adjust r1a input, if r1 input spans across 2 bases
+    inputStore.inputR1a.origBase = inputStore.inputR1.base
   }
 
-  // runner 2
-  if (r2Input.visible && r2Input.baseAction) {
-    playersInvolved += 1
-
-    if (r2aInput.visible && r2aInput.baseAction) {
-      processInput(r2aInput, playersInvolved)
-    }
-
-    processInput(r2Input, playersInvolved)
-  }
-
-  // runner 1
-  if (r1Input.visible && r1Input.baseAction) {
-    playersInvolved += 1
-
-    if (r1bInput.visible && r1bInput.baseAction) {
-      processInput(r1bInput, playersInvolved)
-    }
-    if (r1aInput.visible && r1aInput.baseAction) {
-      if (r1Input.base) {
-        r1aInput.origBase = r1Input.base
-      }
-      processInput(r1aInput, playersInvolved)
-    }
-
-    processInput(r1Input, playersInvolved)
-  }
-
-  // batter
-  if (bInput.visible && bInput.baseAction) {
-    playersInvolved += 1
-
-    if (b3Input.visible && b3Input.baseAction) {
-      processInput(b3Input, playersInvolved)
-    }
-    if (b2Input.visible && b2Input.baseAction) {
-      if (b1Input.base) {
-        b2Input.origBase = b1Input.base
-      }
-      processInput(b2Input, playersInvolved)
-    }
-    if (b1Input.visible && b1Input.baseAction && !omitB1) {
-      if (bInput.base) {
-        b1Input.origBase = bInput.base
-      }
-      processInput(b1Input, playersInvolved)
-    }
-
+  // edge-cases for batter
+  if (actions.some(a => a.group === inputB)) {
+    // indicate batter being involved in this play (not only the runners)
+    // (used for proper displaying of the batter indicator in corner in plays like CS or O/)
     useEvalStore().batterAction = true
-    processInput(bInput, playersInvolved)
+
+    // adjust b2 input, if b1 input spans across 2 bases
+    if (actions.some(a => a.group === inputB2)) {
+      inputStore.inputB2.origBase = inputStore.inputB1.base
+    }
+
+    // adjust b1 input, if b input spans across 2 bases
+    if (actions.some(a => a.group === inputB1) && !omitB1) {
+      inputStore.inputB1.origBase = inputStore.inputB.base
+    }
+
+    // adjust b input for extra advance on error or hit reverted by appeal play
     if (bActionTarget > 0) {
       bInput.targetBase = bActionTarget
       bInput.outputBase = bInput.origBase + 1 as WBSCBase
       bInput.runtype = bRunType
     }
 
-    // special case - double or triple followed by an error (#226)
+    // adjust inputs for double or triple followed by an error (#226)
     if ((bInput?.specAction.startsWith('2') || bInput?.specAction.startsWith('3'))
       && (b1Input?.specAction.startsWith('e') || b1Input?.specAction.startsWith('E'))) {
       b1Input.origBase = bInput.targetBase as WBSCBase
@@ -173,6 +96,14 @@ function processAction() {
   adjustWPPB(actions)
   adjustIO(actions)
   connectSpecialCases(actions)
+
+  const inputsVisible = [
+    inputStore.isVisible(inputB),
+    inputStore.isVisible(inputR1),
+    inputStore.isVisible(inputR2),
+    inputStore.isVisible(inputR3),
+  ]
+  const playersInvolved = inputsVisible.filter(Boolean).length
 
   log.info('Validating data')
 
@@ -193,6 +124,7 @@ function processAction() {
 
     // current batter is not known in the time of input evaluation (we don't forsee number of players involved)
     // therefore placeholder is being used and here is replaced with actual number
+
     const batter = useEvalStore().batter.toString()
     actions.forEach((a) => {
       a.text1 = a.text1.replace('#b#', batter)
@@ -583,6 +515,8 @@ function connectSpecialCases(actions: WBSCAction[]) {
     }
   }
 }
+
+// helper for deter
 
 export {
   processAction,

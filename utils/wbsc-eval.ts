@@ -234,10 +234,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
 // enhance user's input with output instructions
 // incoming data object is modified within this method
 // (makes more sense than cloning and returning a new copy)
-function processInput(data: WBSCAction, batter: number) {
-  // TODO can be set prior to this method?
-  data.batter = batter
-
+function processInput(data: WBSCAction) {
   data.targetBase = data.base
   data.outputBase = data.base
 
