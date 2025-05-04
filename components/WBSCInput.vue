@@ -32,7 +32,6 @@ const props = defineProps({
   visible: { type: Boolean, required: true },
 })
 
-const GUI = useGUIStore()
 const input = useInputStore()
 
 const model = input.getModel(props.group)
@@ -44,27 +43,10 @@ const extra1Visible = [inputB, inputR1, inputR2].includes(props.group)
 const extra1Disabled = ref(true)
 const extra1Model = input.getExtra1Model(props.group)
 const extra1Group = getExtra1Group(props.group)
-const extra1Rendered = computed(() => {
-  if (extra1Group === inputR2a) {
-    return GUI.inputR2a
-  } else if (extra1Group === inputR1a) {
-    return GUI.inputR1a
-  } else if (extra1Group === inputB1) {
-    return GUI.inputB1
-  }
-  return false
-})
+const extra1Rendered = computed(() => input.isVisible(extra1Group))
 const extra1Label = ref('+')
 const extra1Css = ref('btn-add')
-function toggleExtra1() {
-  if (extra1Group === inputR2a) {
-    GUI.inputR2a = !GUI.inputR2a
-  } else if (extra1Group === inputR1a) {
-    GUI.inputR1a = !GUI.inputR1a
-  } else {
-    GUI.inputB1 = !GUI.inputB1
-  }
-}
+const toggleExtra1 = () => input.setVisible(extra1Group, !input.isVisible(extra1Group))
 watch(extra1Rendered, (newValue) => {
   extra1Label.value = newValue ? '-' : '+'
   extra1Css.value = newValue ? 'btn-remove' : 'btn-add'
@@ -72,14 +54,14 @@ watch(extra1Rendered, (newValue) => {
 watch(extra1Disabled, (newValue) => {
   if (newValue) {
     if (props.group === inputB) {
-      GUI.inputB1 = false
-      GUI.inputB2 = false
-      GUI.inputB3 = false
+      input.setVisible(inputB1, false)
+      input.setVisible(inputB2, false)
+      input.setVisible(inputB3, false)
     } else if (props.group === inputR1) {
-      GUI.inputR1a = false
-      GUI.inputR1b = false
+      input.setVisible(inputR1a, false)
+      input.setVisible(inputR1b, false)
     } else if (props.group === inputR2) {
-      GUI.inputR2a = false
+      input.setVisible(inputR2, false)
     }
   }
 })
@@ -88,23 +70,10 @@ const extra2Visible = [inputB, inputR1].includes(props.group)
 const extra2Disabled = ref(true)
 const extra2Model = input.getExtra2Model(props.group)
 const extra2Group = getExtra2Group(props.group)
-const extra2Rendered = computed(() => {
-  if (extra2Group === inputR1b) {
-    return GUI.inputR1b
-  } else if (extra2Group === inputB2) {
-    return GUI.inputB2
-  }
-  return false
-})
+const extra2Rendered = computed(() => input.isVisible(extra2Group))
 const extra2Label = ref('+')
 const extra2Css = ref('btn-add')
-function toggleExtra2() {
-  if (extra2Group === inputR1b) {
-    GUI.inputR1b = !GUI.inputR1b
-  } else {
-    GUI.inputB2 = !GUI.inputB2
-  }
-}
+const toggleExtra2 = () => input.setVisible(extra2Group, !input.isVisible(extra2Group))
 watch(extra2Rendered, (newValue) => {
   extra2Label.value = newValue ? '-' : '+'
   extra2Css.value = newValue ? 'btn-remove' : 'btn-add'
@@ -112,10 +81,10 @@ watch(extra2Rendered, (newValue) => {
 watch(extra2Disabled, (newValue) => {
   if (newValue) {
     if (props.group === inputB) {
-      GUI.inputB2 = false
-      GUI.inputB3 = false
+      input.setVisible(inputB2, false)
+      input.setVisible(inputB3, false)
     } else if (props.group === inputR1) {
-      GUI.inputR1b = false
+      input.setVisible(inputR2, false)
     }
   }
 })
@@ -124,17 +93,10 @@ const extra3Visible = [inputB].includes(props.group)
 const extra3Disabled = ref(true)
 const extra3Model = input.getExtra3Model(props.group)
 const extra3Group = getExtra3Group(props.group)
-const extra3Rendered = computed(() => {
-  if (extra3Group === inputB3) {
-    return GUI.inputB3
-  }
-  return false
-})
+const extra3Rendered = computed(() => input.isVisible(extra3Group))
 const extra3Label = ref('+')
 const extra3Css = ref('btn-add')
-function toggleExtra3() {
-  GUI.inputB3 = !GUI.inputB3
-}
+const toggleExtra3 = () => input.setVisible(inputB3, !input.isVisible(inputB3))
 watch(extra3Rendered, (newValue) => {
   extra3Label.value = newValue ? '-' : '+'
   extra3Css.value = newValue ? 'btn-remove' : 'btn-add'
@@ -142,7 +104,7 @@ watch(extra3Rendered, (newValue) => {
 watch(extra3Disabled, (newValue) => {
   if (newValue) {
     if (props.group === inputB) {
-      GUI.inputB3 = false
+      input.setVisible(inputB3, false)
     }
   }
 })

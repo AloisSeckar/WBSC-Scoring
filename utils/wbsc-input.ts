@@ -10,6 +10,7 @@ export function getEmptyAction(group: string): WBSCAction {
     group,
     // change here needs to be copied into useInputStore.clearInput
     // TODO should be unified?
+    visible: false,
     batter: 1,
     baseAction: '',
     specAction: '',
@@ -57,7 +58,6 @@ export function getOrigBase(inputGroup: string): WBSCBase {
 
 // clear all user inputs and reset default state
 export function clearInputs() {
-  useGUIStore().$reset()
   useEvalStore().$reset()
   useInputStore().clear()
   useCanvasStore().init()

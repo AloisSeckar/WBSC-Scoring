@@ -473,14 +473,14 @@ function processInput(data: WBSCAction, batter: number) {
       break
     case 'se1': {
       let battingOrder = 1
-      battingOrder += useGUIStore().inputR2 ? 1 : 0
-      battingOrder += useGUIStore().inputR3 ? 1 : 0
+      battingOrder += useInputStore().inputR2.visible ? 1 : 0
+      battingOrder += useInputStore().inputR3.visible ? 1 : 0
       data.text1 = '(' + battingOrder + ')'
     }
       break
     case 'se2': {
       let battingOrder = 1
-      battingOrder += useGUIStore().inputR3 ? 1 : 0
+      battingOrder += useInputStore().inputR3.visible ? 1 : 0
       data.text1 = '(' + battingOrder + ')'
     }
       break

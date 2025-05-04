@@ -5,10 +5,10 @@
 
     <div class="container">
       <div id="wbsc-inputs">
-        <WBSCInput :group="inputB" :label="useT('editor.batter')" :visible="useGUIStore().inputB" />
-        <WBSCInput :group="inputR1" :label="useT('editor.r1')" :visible="useGUIStore().inputR1" />
-        <WBSCInput :group="inputR2" :label="useT('editor.r2')" :visible="useGUIStore().inputR2" />
-        <WBSCInput :group="inputR3" :label="useT('editor.r3')" :visible="useGUIStore().inputR3" />
+        <WBSCInput :group="inputB" :label="useT('editor.batter')" :visible="isVisible(inputB)" />
+        <WBSCInput :group="inputR1" :label="useT('editor.r1')" :visible="isVisible(inputR1)" />
+        <WBSCInput :group="inputR2" :label="useT('editor.r2')" :visible="isVisible(inputR2)" />
+        <WBSCInput :group="inputR3" :label="useT('editor.r3')" :visible="isVisible(inputR3)" />
         <WBSCToolbar ref="toolbar" />
       </div>
       <!-- modal window triggered by validation errors -->
@@ -57,4 +57,8 @@ const version = 'v' + useAppConfig().publicVersion
 
 const toolbar: Ref<InstanceType<typeof WBSCToolbar> | null> = ref(null)
 onMounted(() => toolbar.value?.init())
+
+function isVisible(group: string): boolean {
+  return useInputStore().isVisible(group)
+}
 </script>

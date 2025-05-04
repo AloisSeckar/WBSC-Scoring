@@ -11,49 +11,54 @@ function processAction() {
   // #265
   useEvalStore().softReset()
 
-  const GUI = useGUIStore()
   const inputStore = useInputStore()
 
   // TODO maybe this can be dropped and data can be processed within the store itself?
   const actions = [] as WBSCAction[]
 
   const r3Input = inputStore.inputR3
-  if (GUI.inputR3 && r3Input.baseAction) {
+  if (r3Input.visible && r3Input.baseAction) {
     actions.push(r3Input)
   }
 
+  const r2visible = inputStore.isVisible(inputR2)
+
   const r2aInput = inputStore.inputR2a
-  if (GUI.inputR2 && GUI.inputR2a && r2aInput.baseAction) {
+  if (r2visible && r2aInput.visible && r2aInput.baseAction) {
     actions.push(r2aInput)
   }
 
   const r2Input = inputStore.inputR2
-  if (GUI.inputR2 && r2Input.baseAction) {
+  if (r2visible && r2Input.baseAction) {
     actions.push(r2Input)
   }
 
+  const r1visible = inputStore.isVisible(inputR1)
+
   const r1bInput = inputStore.inputR1b
-  if (GUI.inputR1 && GUI.inputR1b && r1bInput.baseAction) {
+  if (r1visible && r1bInput.visible && r1bInput.baseAction) {
     actions.push(r1bInput)
   }
 
   const r1aInput = inputStore.inputR1a
-  if (GUI.inputR1 && GUI.inputR1a && r1aInput.baseAction) {
+  if (r1visible && r1aInput.visible && r1aInput.baseAction) {
     actions.push(r1aInput)
   }
 
   const r1Input = inputStore.inputR1
-  if (GUI.inputR1 && GUI.inputR1 && r1Input.baseAction) {
+  if (r1visible && r1Input.baseAction) {
     actions.push(r1Input)
   }
 
+  const bvisible = inputStore.isVisible(inputB)
+
   const b3Input = inputStore.inputB3
-  if (GUI.inputB && GUI.inputB3 && b3Input.baseAction) {
+  if (bvisible && b3Input.visible && b3Input.baseAction) {
     actions.push(b3Input)
   }
 
   const b2Input = inputStore.inputB2
-  if (GUI.inputB && GUI.inputB2 && b2Input.baseAction) {
+  if (bvisible && b2Input.visible && b2Input.baseAction) {
     actions.push(b2Input)
   }
 
@@ -62,7 +67,7 @@ function processAction() {
   let bActionTarget: WBSCBase = 0
   let bRunType = 'e'
   let omitB1 = false
-  if (GUI.inputB && GUI.inputB1 && b1Input.baseAction) {
+  if (bvisible && b1Input.visible && b1Input.baseAction) {
     // special case 1 - extra advance on error
     // special case 2 - multiple-base hit with later appeal play on some of the runners
     if (b1Input.specAction === 'se0' || b1Input.specAction === 'oc') {
@@ -80,7 +85,7 @@ function processAction() {
     }
   }
 
-  if (GUI.inputB && bInput.baseAction) {
+  if (bvisible && bInput.baseAction) {
     actions.push(bInput)
   }
 
@@ -95,16 +100,16 @@ function processAction() {
   useEvalStore().brokenDP = false
 
   // runner 3
-  if (GUI.inputR3 && r3Input.baseAction) {
+  if (r3Input.visible && r3Input.baseAction) {
     playersInvolved += 1
     processInput(r3Input, playersInvolved)
   }
 
   // runner 2
-  if (GUI.inputR2 && r2Input.baseAction) {
+  if (r2Input.visible && r2Input.baseAction) {
     playersInvolved += 1
 
-    if (GUI.inputR2a && r2aInput.baseAction) {
+    if (r2aInput.visible && r2aInput.baseAction) {
       processInput(r2aInput, playersInvolved)
     }
 
@@ -112,13 +117,13 @@ function processAction() {
   }
 
   // runner 1
-  if (GUI.inputR1 && r1Input.baseAction) {
+  if (r1Input.visible && r1Input.baseAction) {
     playersInvolved += 1
 
-    if (GUI.inputR1b && r1bInput.baseAction) {
+    if (r1bInput.visible && r1bInput.baseAction) {
       processInput(r1bInput, playersInvolved)
     }
-    if (GUI.inputR1a && r1aInput.baseAction) {
+    if (r1aInput.visible && r1aInput.baseAction) {
       if (r1Input.base) {
         r1aInput.origBase = r1Input.base
       }
@@ -129,19 +134,19 @@ function processAction() {
   }
 
   // batter
-  if (GUI.inputB && bInput.baseAction) {
+  if (bInput.visible && bInput.baseAction) {
     playersInvolved += 1
 
-    if (GUI.inputB3 && b3Input.baseAction) {
+    if (b3Input.visible && b3Input.baseAction) {
       processInput(b3Input, playersInvolved)
     }
-    if (GUI.inputB2 && b2Input.baseAction) {
+    if (b2Input.visible && b2Input.baseAction) {
       if (b1Input.base) {
         b2Input.origBase = b1Input.base
       }
       processInput(b2Input, playersInvolved)
     }
-    if (GUI.inputB1 && b1Input.baseAction && !omitB1) {
+    if (b1Input.visible && b1Input.baseAction && !omitB1) {
       if (bInput.base) {
         b1Input.origBase = bInput.base
       }
@@ -180,7 +185,7 @@ function processAction() {
     const canvas = useCanvasStore().canvas as HTMLCanvasElement
     canvas.height = playersInvolved * h1 - ((playersInvolved - 1) * 8)
 
-    if (!GUI.inputB) {
+    if (!bInput.visible) {
       useEvalStore().batter = playersInvolved + 1
     } else {
       useEvalStore().batter = playersInvolved
@@ -219,31 +224,38 @@ function processAction() {
 // omitB1 is special case for extra base errors or FCs - see evaluation in processAction
 function getExtraActions(group: string, omitB1: boolean): WBSCAction[] {
   const extraActions = [] as WBSCAction[]
-  const GUI = useGUIStore()
+
   const inputStore = useInputStore()
+  const b1 = inputStore.inputB1
+  const b2 = inputStore.inputB2
+  const b3 = inputStore.inputB3
+  const r1a = inputStore.inputR1a
+  const r1b = inputStore.inputR1b
+  const r2a = inputStore.inputR2a
+
   switch (group) {
     case inputB:
-      if (GUI.inputB1 && inputStore.inputB1.baseAction && !omitB1) {
-        extraActions.push(inputStore.inputB1)
+      if (b1.visible && b1.baseAction && !omitB1) {
+        extraActions.push(b1)
       }
-      if (GUI.inputB2 && inputStore.inputB2.baseAction) {
-        extraActions.push(inputStore.inputB2)
+      if (b2.visible && b2.baseAction) {
+        extraActions.push(b2)
       }
-      if (GUI.inputB3 && inputStore.inputB3.baseAction) {
-        extraActions.push(inputStore.inputB3)
+      if (b3.visible && b3.baseAction) {
+        extraActions.push(b3)
       }
       break
     case inputR1:
-      if (GUI.inputR1a && inputStore.inputR1a.baseAction) {
-        extraActions.push(inputStore.inputR1a)
+      if (r1a.visible && r1a.baseAction) {
+        extraActions.push(r1a)
       }
-      if (GUI.inputR1b && inputStore.inputR1b.baseAction) {
-        extraActions.push(inputStore.inputR1b)
+      if (r1b.visible && r1b.baseAction) {
+        extraActions.push(r1b)
       }
       break
     case inputR2:
-      if (GUI.inputR2 && inputStore.inputR2a.baseAction) {
-        extraActions.push(inputStore.inputR2a)
+      if (r2a.visible && r2a.baseAction) {
+        extraActions.push(r2a)
       }
       break
   }

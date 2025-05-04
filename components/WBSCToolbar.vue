@@ -1,10 +1,10 @@
 <template>
   <div id="wbsc-toolbar" class="wbsc-buttons">
     <div class="flex flex-row justify-center">
-      <WBSCButton :group="'button-' + inputB" :label="labelB" :css="cssB" @click="GUI.inputB = !GUI.inputB" />
-      <WBSCButton :group="'button-' + inputR1" :label="labelR1" :css="cssR1" @click="GUI.inputR1 = !GUI.inputR1" />
-      <WBSCButton :group="'button-' + inputR2" :label="labelR2" :css="cssR2" @click="GUI.inputR2 = !GUI.inputR2" />
-      <WBSCButton :group="'button-' + inputR3" :label="labelR3" :css="cssR3" @click="GUI.inputR3 = !GUI.inputR3" />
+      <WBSCButton :group="'button-' + inputB" :label="labelB" :css="cssB" @click="toggleInputs(inputB)" />
+      <WBSCButton :group="'button-' + inputR1" :label="labelR1" :css="cssR1" @click="toggleInputs(inputR1)" />
+      <WBSCButton :group="'button-' + inputR2" :label="labelR2" :css="cssR2" @click="toggleInputs(inputR2)" />
+      <WBSCButton :group="'button-' + inputR3" :label="labelR3" :css="cssR3" @click="toggleInputs(inputR3)" />
     </div>
     <div class="flex flex-row justify-center">
       <WBSCButton
@@ -32,10 +32,10 @@
 </template>
 
 <script setup lang="ts">
-const GUI = useGUIStore()
+const input = useInputStore()
 function init() {
   useCanvasStore().init()
-  useGUIStore().$reset()
+  useInputStore().clear()
   extendDownloadButton()
 }
 
@@ -45,31 +45,35 @@ defineExpose({
 
 const labelB = ref('+B')
 const cssB = ref('btn-add')
-watch(() => GUI.inputB, (newValue) => {
+watch(() => input.inputB.visible, (newValue) => {
   labelB.value = newValue ? '-B' : '+B'
   cssB.value = newValue ? 'btn-remove' : 'btn-add'
 }, { immediate: true })
 
 const labelR1 = ref('+R1')
 const cssR1 = ref('btn-add')
-watch(() => GUI.inputR1, (newValue) => {
+watch(() => input.inputR1.visible, (newValue) => {
   labelR1.value = newValue ? '-R1' : '+R1'
   cssR1.value = newValue ? 'btn-remove' : 'btn-add'
 })
 
 const labelR2 = ref('+R2')
 const cssR2 = ref('btn-add')
-watch(() => GUI.inputR2, (newValue) => {
+watch(() => input.inputR2.visible, (newValue) => {
   labelR2.value = newValue ? '-R2' : '+R2'
   cssR2.value = newValue ? 'btn-remove' : 'btn-add'
 })
 
 const labelR3 = ref('+R3')
 const cssR3 = ref('btn-add')
-watch(() => GUI.inputR3, (newValue) => {
+watch(() => input.inputR3.visible, (newValue) => {
   labelR3.value = newValue ? '-R3' : '+R3'
   cssR3.value = newValue ? 'btn-remove' : 'btn-add'
 })
+
+function toggleInputs(group: string) {
+  input.setVisible(group, !input.isVisible(group))
+}
 
 // button for saving output as PNG
 function extendDownloadButton() {

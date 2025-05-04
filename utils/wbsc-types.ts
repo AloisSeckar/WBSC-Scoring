@@ -27,6 +27,8 @@ export type WBSCBase = 0 | 1 | 2 | 3 | 4
 export type WBSCAction = {
   // identification (one of 10 possible values - B, B1, B2, B3, R1, R1a, R1b, R2, R2a, R3)
   group: string
+  // displayed in GUI
+  visible: boolean
   // number in batting order (1-4, based on number of inputs)
   batter: number
   // group of actions selected in the first select

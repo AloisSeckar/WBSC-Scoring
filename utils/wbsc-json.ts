@@ -28,52 +28,50 @@ export function exportInputAsJSON() {
 // except one special evaluation (bErrorTarget) and we dont use output+validation here
 // refactor to be able to have such code only once...
 function getRawInputs(): WBSCAction[] {
-  const GUI = useGUIStore()
-
   const inputStore = useInputStore()
   const inputs = [] as WBSCAction[]
 
   const r3Input = inputStore.inputR3
-  if (GUI.inputR3 && r3Input.baseAction) {
+  if (r3Input.visible && r3Input.baseAction) {
     inputs.push(r3Input)
   }
 
   const r2aInput = inputStore.inputR2a
-  if (GUI.inputR2a && r2aInput.baseAction) {
+  if (r2aInput.visible && r2aInput.baseAction) {
     inputs.push(r2aInput)
   }
   const r2Input = inputStore.inputR2
-  if (GUI.inputR2 && r2Input.baseAction) {
+  if (r2Input.visible && r2Input.baseAction) {
     inputs.push(r2Input)
   }
 
   const r1bInput = inputStore.inputR1b
-  if (GUI.inputR1b && r1bInput.baseAction) {
+  if (r1bInput.visible && r1bInput.baseAction) {
     inputs.push(r1bInput)
   }
   const r1aInput = inputStore.inputR1a
-  if (GUI.inputR1a && r1aInput.baseAction) {
+  if (r1aInput.visible && r1aInput.baseAction) {
     inputs.push(r1aInput)
   }
   const r1Input = inputStore.inputR1
-  if (GUI.inputR1 && r1Input.baseAction) {
+  if (r1Input.visible && r1Input.baseAction) {
     inputs.push(r1Input)
   }
 
   const b3Input = inputStore.inputB3
-  if (GUI.inputB3 && b3Input.baseAction) {
+  if (b3Input.visible && b3Input.baseAction) {
     inputs.push(b3Input)
   }
   const b2Input = inputStore.inputB2
-  if (GUI.inputB2 && b2Input.baseAction) {
+  if (b2Input.visible && b2Input.baseAction) {
     inputs.push(b2Input)
   }
   const b1Input = inputStore.inputB1
-  if (GUI.inputB1 && b1Input.baseAction) {
+  if (b1Input.visible && b1Input.baseAction) {
     inputs.push(b1Input)
   }
   const bInput = inputStore.inputB
-  if (GUI.inputB && bInput.baseAction) {
+  if (bInput.visible && bInput.baseAction) {
     inputs.push(bInput)
   }
 
@@ -110,7 +108,7 @@ export async function importInputFromLib(fileName: string) {
 async function processFile(fileData: string | ArrayBuffer | null | undefined) {
   if (fileData) {
     clearInputs()
-    useGUIStore().inputB = false
+    useInputStore().inputB.visible = false
     const jsonData: WBSCActionJson[] = JSON.parse(fileData.toString())
     for (const input of jsonData) {
       await setInputFromJSON(input)
@@ -167,7 +165,7 @@ async function setInputFromJSON(input: WBSCActionJson) {
     guiModel.pos4 = input.pos4 || ''
   }
 
-  useGUIStore().setVisible(input.group, true)
+  useInputStore().setVisible(input.group, true)
 }
 
 function getPosSelected(...args: (string | undefined | null)[]) {
