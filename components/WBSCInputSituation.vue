@@ -13,7 +13,7 @@
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase" ref="baseSelect" v-model="model.base" @change="changeBase()">
+        <select :id="group + inputBase" class="bg-white" ref="baseSelect" v-model="model.base" @change="changeBase()">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
@@ -31,14 +31,14 @@
     <div>
       <label :for="group + inputBaseAction" class="mr-1">{{ useT('editor.action.action') + ':' }}</label>
       <select
-        :id="group + inputBaseAction" v-model="model.baseAction" class="wbsc-base-action-select form-control">
+        :id="group + inputBaseAction" v-model="model.baseAction" class="bg-white">
         <option v-for="opt in baseActionOptions" :key="opt.value" :value="opt.value">
           {{ opt.label }}
         </option>
       </select>
       <select
         :id="group + inputSpecAction" v-model="model.specAction"
-        class="wbsc-specific-action-select form-control" :disabled="specActionDisabled">
+        class="bg-white" :disabled="specActionDisabled">
         <option v-for="opt in specActionOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
           {{ opt.label }}
         </option>

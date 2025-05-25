@@ -1,80 +1,82 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer components {
-	h1 {
-		@apply text-wbsc-blue text-4xl font-bold font-header;
-	}
-	h2 {
-		@apply mt-4 mb-2 text-wbsc-blue text-3xl font-bold;
-	}
-	h3 {
-		@apply mb-2 text-xl font-bold;
-	}
+@theme {
+	--color-wbsc-blue: #00a7d7;
+	--font-header: 'Verdana';
+	--font-body: 'Open Sans';
+}
 
-	p {
-		@apply mb-2;
-	}
+h1 {
+	@apply text-wbsc-blue text-4xl font-bold font-header;
+}
 
-	img {
-		@apply mb-4;
-	}
+h2 {
+	@apply mt-4 mb-2 text-wbsc-blue text-3xl font-bold;
+}
+h3 {
+	@apply mb-2 text-xl font-bold;
+}
 
-	ul {
-	  list-style-type: disc;
-	  margin: 0;
-	  padding: 0 0 0 1.5rem;
-	}
+p {
+	@apply mb-2;
+}
 
-	li {
-	  margin: 0.5rem 0;
-	  margin-left: 1.5rem;
-	}
+img {
+	@apply mb-4;
+}
 
-	.btn {
-		@apply border border-black rounded m-1 px-2 pt-1 pb-1.5 
-			text-white hover:text-gray-700 font-bold;
-	}
-	.btn-top {
-		@apply bg-gray-400 hover:bg-gray-200;
-	}
-	.btn-link {
-		@apply bg-wbsc-blue hover:bg-sky-300;
-	}
-	.btn-download {
-		@apply bg-emerald-500 hover:bg-emerald-300 cursor-pointer;
-	}
-	.btn-add {
-		@apply w-12 bg-green-500 hover:bg-green-300 disabled:bg-gray-400 disabled:text-gray-700;
-	}
-	.btn-remove {
-		@apply w-12 bg-red-600 hover:bg-red-400 disabled:bg-gray-400 disabled:text-gray-700;
-	}
-	.btn-generate {
-		@apply bg-wbsc-blue hover:bg-sky-300;
-	}
-	.btn-json {
-		@apply bg-violet-400 hover:bg-violet-200 whitespace-nowrap;
-	}
-	.btn-clear {
-		@apply bg-amber-500 hover:bg-amber-300;
-	}
+ul {
+	list-style-type: disc;
+	margin: 0;
+	padding: 0 0 0 1.5rem;
+}
 
-	.wbsc-buttons {
-		@apply mx-auto py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-lime-400;
-	}
+li {
+	margin: 0.5rem 0;
+	margin-left: 1.5rem;
+}
 
-	.wbsc-inputs {
-		@apply mx-auto mb-2 py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-blue-200;
-	}
+.btn {
+	@apply border border-black rounded m-1 px-2 pt-1 pb-1.5 
+		text-white hover:text-gray-700 font-bold;
+}
+.btn-top {
+	@apply bg-gray-400 hover:bg-gray-200;
+}
+.btn-link {
+	@apply bg-wbsc-blue hover:bg-sky-300;
+}
+.btn-download {
+	@apply bg-emerald-500 hover:bg-emerald-300 cursor-pointer;
+}
+.btn-add {
+	@apply w-12 bg-green-500 hover:bg-green-300 disabled:bg-gray-400 disabled:text-gray-700;
+}
+.btn-remove {
+	@apply w-12 bg-red-600 hover:bg-red-400 disabled:bg-gray-400 disabled:text-gray-700;
+}
+.btn-generate {
+	@apply bg-wbsc-blue hover:bg-sky-300;
+}
+.btn-json {
+	@apply bg-violet-400 hover:bg-violet-200 whitespace-nowrap;
+}
+.btn-clear {
+	@apply bg-amber-500 hover:bg-amber-300;
+}
 
-	select {
-		@apply m-1 p-1 h-8 min-w-[50px] rounded;
-	}
+.wbsc-buttons {
+	@apply mx-auto py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-lime-400;
+}
 
-	a {
-		@apply text-wbsc-blue hover:bg-sky-300
-	}
+.wbsc-inputs {
+	@apply mx-auto mb-2 py-2 md:w-4/5 xl:w-3/5 border-2 border-black bg-blue-200;
+}
 
+select {
+	@apply m-1 p-1 h-8 min-w-[50px] rounded;
+}
+
+a {
+	@apply text-wbsc-blue hover:bg-sky-300
 }

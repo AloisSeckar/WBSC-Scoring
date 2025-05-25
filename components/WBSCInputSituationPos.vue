@@ -1,6 +1,6 @@
 <template>
   <select
-    :id="`${group}-pos${ord}`" v-model="model" class="wbsc-pos-select">
+    :id="`${group}-pos${ord}`" v-model="model" class="bg-white">
     <option v-for="opt in options" :key="opt.value" :value="opt.value" :selected="opt.selected">
       {{ opt.label }}
     </option>
