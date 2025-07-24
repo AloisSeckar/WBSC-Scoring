@@ -53,9 +53,7 @@
 <script setup lang="ts">
 import type { WBSCToolbar } from '#components'
 
-const { locale } = useI18n()
-const storedLocale = useLocalStorage('wbsc-lang', 'en')
-locale.value = storedLocale.value
+setLocale()
 
 const version = 'v' + useAppConfig().publicVersion
 

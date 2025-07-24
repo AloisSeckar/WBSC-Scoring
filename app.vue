@@ -35,14 +35,11 @@
 
 <script setup lang="ts">
 initConsola()
-
-const { locale } = useI18n()
-const storedLocale = useLocalStorage('wbsc-lang', 'en')
-locale.value = storedLocale.value
+setLocale()
 
 useHead({
   htmlAttrs: {
-    lang: locale.value,
+    lang: useI18n().locale.value,
   },
 })
 

@@ -363,3 +363,11 @@ export function getFCLocations() {
   options.push({ value: 'Z', label: 'HP' })
   return options
 }
+
+// i18n helper to setup correct locale
+// needs to be called in <script setup> of SFC
+export function setLocale() {
+  const { locale } = useI18n()
+  const storedLocale = useLocalStorage('wbsc-lang', 'en')
+  locale.value = storedLocale.value
+}
