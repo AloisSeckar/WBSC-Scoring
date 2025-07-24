@@ -14,13 +14,13 @@
           </div>
           <footer class="fixed bottom-0 left-0 w-full p-1 bg-wbsc-blue text-black text-xs">
             {{ $t('footer.creator') }}
-            <NuxtLink to="http://alois-seckar.cz" class="text-white hover:text-yellow-300">
+            <NuxtLink to="http://alois-seckar.cz" class="text-white! hover:text-yellow-300! hover:bg-wbsc-blue!">
               Alois Sečkár
             </NuxtLink>
             (2019-{{ new Date().getFullYear() }})
             |
             Powered by
-            <NuxtLink to="https://github.com/AloisSeckar/nuxt-ignis" class="text-white hover:text-yellow-300">
+            <NuxtLink to="https://github.com/AloisSeckar/nuxt-ignis" class="text-white! hover:text-yellow-300! hover:bg-wbsc-blue!">
               nuxt-ignis
             </NuxtLink>
             |
@@ -38,10 +38,7 @@ initConsola()
 
 const { locale } = useI18n()
 const storedLocale = useLocalStorage('wbsc-lang', 'en')
-
-if (storedLocale.value && typeof storedLocale.value === 'string') {
-  locale.value = storedLocale.value
-}
+locale.value = storedLocale.value
 
 useHead({
   htmlAttrs: {

@@ -8,6 +8,9 @@ const props = defineProps({
 })
 
 const { locale } = useI18n()
+const storedLocale = useLocalStorage('wbsc-lang', 'en')
+locale.value = storedLocale.value
+
 const { data, refresh } = await useAsyncData(`${props.source}-content`, () => queryCollection('content').path(`/${locale.value}/${props.source}`).first())
 watch (() => locale.value, () => {
   refresh()
