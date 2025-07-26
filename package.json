@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "backstopjs": "6.3.25",
-    "nuxt-ignis": "0.4.0-rc.3"
+    "nuxt-ignis": "0.4.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
