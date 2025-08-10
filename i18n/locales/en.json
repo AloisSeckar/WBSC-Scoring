@@ -248,6 +248,8 @@
             "noPlayAfterBK" : "BK must be the only runner play at the moment.",
             "noPlayAfterRLE" : "RLE must be the only runner play at the moment.",
             "noHBBWithoutHit" : "HBB must be scored together with a single for the batter.",
+            "noRINWithoutOut" : "RIN for the batter is not possible without a corresponding out of a runner.",
+            "noHitWithRIN" : "Hit is not posssible, when a runner was RIN, use 'FC - Occupied' instead.",
             "noPlayAfterEDFB" : "Dropped foul error is a dead-ball and prevents all other actions.",
             "noPlayAfterDeadBall" : "Selected action is a dead-ball and prevents all runner actions except forced advancements.",
             "noAdvanceOnNA" : "No further advance is possible after 'no advance' play.",

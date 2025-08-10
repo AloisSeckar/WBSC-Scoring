@@ -248,6 +248,8 @@
             "noPlayAfterBK" : "BK musí být v daný moment jediná situace běžce.",
             "noPlayAfterRLE" : "RLE musí být v daný moment jediná situace běžce.",
             "noHBBWithoutHit" : "HBB musí být dohromady se single odpalem pro pálkaře.",
+            "noRINWithoutOut" : "RIN nemůže nastat u pálkaře, pokud nebyl aut některý z běžců.",
+            "noHitWithRIN" : "Hit není možné zapsat, pokud byl běžec RIN, použijte místo toho 'FC - Occupied'.",
             "noPlayAfterEDFB" : "Upuštěný foul ball znamená dead-ball, což vylučuje jakékoliv další rozehry.",
             "noPlayAfterDeadBall" : "Vybraná akce znamená dead-ball, což vylučuje jakékoliv další rozehry s výjimkou nucených postupů.",
             "noAdvanceOnNA" : "Po 'no advance' rozehře není možný další postup běžce.",

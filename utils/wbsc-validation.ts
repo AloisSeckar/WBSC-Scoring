@@ -629,6 +629,7 @@ export function checkNoAdvances(actions: WBSCAction[]) {
 // edge case - RLE is dead-ball
 // maybe can eventually be merged with `checkDeadBallPlays`?
 // #130 HBB - requires a single hit for batter
+// #285 RIN validations
 export function checkOBRs(actions: WBSCAction[]) {
   let validation = ''
 
@@ -649,6 +650,22 @@ export function checkOBRs(actions: WBSCAction[]) {
     const bAction = actions.find(i => i.group === inputB)?.specAction
     if (bAction !== '1B') {
       validation = attachValidation(validation, useT('editor.validation.noHBBWithoutHit'))
+    }
+  }
+
+  // #285 - batter can only be RIN out if a runner is also out
+  const isBatterRIN = actions.some(i => i.specAction === 'OBR_RIN')
+  if (isBatterRIN) {
+    if (!actions.some(i => [inputR1, inputR2, inputR3].includes(i.group) && i.out === true)) {
+      validation = attachValidation(validation, useT('editor.validation.noRINWithoutOut'))
+    }
+  }
+
+  // #285 - RIN for runner is deadball => batter gets FC - Occupied and not a hit
+  const isHit = actions.some(i => i.baseAction === 'Hit')
+  if (isHit) {
+    if (actions.some(i => [inputR1, inputR2, inputR3].includes(i.group) && i.specAction === 'OBR_rin')) {
+      validation = attachValidation(validation, useT('editor.validation.noHitWithRIN'))
     }
   }
 

@@ -248,6 +248,8 @@
             "noPlayAfterBK" : "BK deve essere la sola azione del corridore al momento.",
             "noPlayAfterRLE" : "RLE  deve essere la sola azione del corridore al momento.",
             "noHBBWithoutHit" : "HBB deve essere classificata con un singolo per il battitore.",
+            "noRINWithoutOut" : "RIN per il battitore non è possibile senza una corrispondente eliminazione del corridore.",
+            "noHitWithRIN" : "Non è possibile assegnare una VALIDA, se un corridore era RIN, usa 'FC - Occupata'.",
             "noPlayAfterEDFB" : "Foul mancata è una palla morta, i corridori non possono avanzare.",
             "noPlayAfterDeadBall" : "L'azione selezionata è una palla morta, i corridori non possono avanzare ad eccezione per gli avanzamenti forzati.",
             "noAdvanceOnNA" : "Nessun ulteriore avanzamento è possibile se è selezionato 'nessun avanzamento'.",
