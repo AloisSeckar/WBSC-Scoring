@@ -13,7 +13,9 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/help', '/project', '/report'],
+      // TODO: it is currently not possible to pre-render pages
+      // "Nuxt I18n server context has not been set up yet." error occurs
+      // routes: ['/help', '/project', '/report'],
     },
   },
 
