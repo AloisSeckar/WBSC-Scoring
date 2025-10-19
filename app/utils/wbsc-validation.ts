@@ -4,6 +4,8 @@
 /* that are clearly impossible.             */
 /* **************************************** */
 
+import { inputB, inputR1, inputR2, inputR3 } from './wbsc-constants'
+
 const firstRunnerActions = [inputR1, inputR2, inputR3]
 export const firstActions = [inputB, inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
