@@ -2,6 +2,7 @@
   "name": "wbsc-scoring",
   "version": "1.5.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "eslint": "eslint .",
     "dev": "nuxt dev",
@@ -10,12 +11,12 @@
     "start": "node .output/server/index.mjs",
     "test": "pnpm test-vitest && pnpm test-backstop",
     "test-vitest": "vitest run",
-    "test-backstop": "backstop test --config=backstop.config.js",
-    "test-approve": "backstop approve --config=backstop.config.js"
+    "test-backstop": "backstop test --config=backstop.config.cjs",
+    "test-approve": "backstop approve --config=backstop.config.cjs"
   },
   "devDependencies": {
     "backstopjs": "6.3.25",
-    "nuxt-ignis": "0.4.0"
+    "nuxt-ignis": "0.5.0-rc.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -29,5 +30,6 @@
       "unrs-resolver",
       "vue-demi"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.18.3"
 }
