@@ -1,5 +1,8 @@
 import { expect, test } from 'vitest'
 
+import { checkBInput } from '../../../app/utils/wbsc-validation'
+import { useT } from '../../../app/composables/useTranslation'
+
 test('validation should pass - no se0/oc play', () => {
   expect(checkBInput('T', '1B')).toBe('')
 })

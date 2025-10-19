@@ -6,7 +6,7 @@
  * Use this in an onBefore script E.G.
   ```
   module.exports = async function(page, scenario) {
-    require('./interceptImages')(page, scenario);
+    require('./interceptImages.cjs')(page, scenario);
   }
   ```
  *

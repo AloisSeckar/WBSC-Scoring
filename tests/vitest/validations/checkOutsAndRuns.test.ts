@@ -1,6 +1,9 @@
 import { expect, test } from 'vitest'
 import { createMockAction } from '../vitestUtils'
 
+import { checkOutsAndRuns } from '../../../app/utils/wbsc-validation'
+import { useT } from '../../../app/composables/useTranslation'
+
 const bOutput = createMockAction({
   group: 'input-b',
   specAction: 'GO',

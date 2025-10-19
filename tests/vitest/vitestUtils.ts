@@ -1,16 +1,21 @@
 import { defu } from 'defu'
+import { inputPosition, classWbscPos } from '../../app/utils/wbsc-constants'
+import { getEmptyAction } from '../../app/utils/wbsc-input'
+import type { WBSCAction } from '../../app/utils/wbsc-types'
 
 // Element.checkVisibility() is not available in Vitest
-global.Element.prototype.checkVisibility = function () {
-  // in tests we allways just assume the element is visible
-  return true
+if (global.Element) {
+  global.Element.prototype.checkVisibility = function () {
+    // in tests we allways just assume the element is visible
+    return true
+  }
 }
 
 // factory method to get WBSCAction instances
 // we use "Partial" TS object to define WBSCAction-like structure, but with all fiels optional
 // we use "defu" library to simply merge given values with defaults
 export function createMockAction(values: Partial<WBSCAction>): WBSCAction {
-  return defu(values, getEmptyAction('mock'))
+  return defu(values, getEmptyAction('mock')) as WBSCAction
 }
 
 // checkBasicRules validation checks, if the length of "pos" input matches the number of displayed inputs

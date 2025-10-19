@@ -1,6 +1,9 @@
 import { expect, test } from 'vitest'
 import { createMockAction } from '../vitestUtils'
 
+import { checkOBRs } from '../../../app/utils/wbsc-validation'
+import { useT } from '../../../app/composables/useTranslation'
+
 test('validation should pass -  not an OBR play', () => {
   const r1Input = createMockAction({
     group: 'input-r1',

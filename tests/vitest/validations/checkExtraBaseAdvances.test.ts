@@ -1,6 +1,9 @@
 import { expect, test } from 'vitest'
 import { createMockAction } from '../vitestUtils'
 
+import { checkExtraBaseAdvances } from '../../../app/utils/wbsc-validation'
+import { useT } from '../../../app/composables/useTranslation'
+
 test('validation should pass -  no WP/PB/BK/IP play', () => {
   const r1Input = createMockAction({
     group: 'input-r1',
