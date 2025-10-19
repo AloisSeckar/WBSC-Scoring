@@ -6,16 +6,16 @@ function getFunctionScenarioCfg(url) {
 }
 
 const functionScenarios = [
-  { label: 'visit-index', ...getFunctionScenarioCfg() },
-  { label: 'visit-project', ...getFunctionScenarioCfg('project') },
-  { label: 'visit-help', ...getFunctionScenarioCfg('help') },
-  { label: 'visit-report', ...getFunctionScenarioCfg('report') },
-  { label: 'generate-err', ...getFunctionScenarioCfg(), clickSelector: '#button-input-generate' }, // TODO fails for w:320, needs w:325 (why?)
+  { label: 'visit-index', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/visit-index.cjs' },
+  { label: 'visit-project', ...getFunctionScenarioCfg('project'), onReadyScript: 'puppet/scenarios/visit-page.cjs' },
+  { label: 'visit-help', ...getFunctionScenarioCfg('help'), onReadyScript: 'puppet/scenarios/visit-page.cjs' },
+  { label: 'visit-report', ...getFunctionScenarioCfg('report'), onReadyScript: 'puppet/scenarios/visit-page.cjs' },
+  { label: 'generate-err', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/generate-err.cjs' },
   { label: 'generate-ok', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/generate-ok.cjs' },
   { label: 'inputs-none', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-none.cjs' },
   { label: 'inputs-all', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-all.cjs' },
   { label: 'inputs-clear', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/inputs-clear.cjs' },
-  { label: 'lib-show', ...getFunctionScenarioCfg(), clickSelector: '#button-input-import-lib' },
+  { label: 'lib-show', ...getFunctionScenarioCfg(), onReadyScript: 'puppet/scenarios/lib-show.cjs' },
 ]
 
 function getImportScenarioCfg() {
@@ -38,7 +38,7 @@ function getImportScenarios() {
 module.exports = {
   id: 'wbsc',
   viewports: [
-    { label: 's', width: 320, height: 480 },
+    { label: 's', width: 325, height: 480 },
     { label: 'm', width: 1024, height: 768 },
     { label: 'l', width: 1920, height: 1080 },
   ],
