@@ -1,0 +1,1142 @@
+[
+  {
+    "file": "out-63",
+    "name": "Ground out - SS to 1B",
+    "cat": "GO"
+  },
+  {
+    "file": "out-3",
+    "name": "Ground out - 1B, unassisted",
+    "cat": "GO"
+  },
+  {
+    "file": "out-143",
+    "name": "Ground out - P to 2B to 1B",
+    "cat": "GO"
+  },
+  {
+    "file": "out-54b",
+    "name": "Ground out - 3B to 2B, bunt",
+    "cat": "GO"
+  },
+  {
+    "file": "out-f4",
+    "name": "Fly out - 2B",
+    "cat": "FO"
+  },
+  {
+    "file": "out-ff5",
+    "name": "Fly out (foul) - 3B",
+    "cat": "FO"
+  },
+  {
+    "file": "out-ff2b",
+    "name": "Fly out (foul) - C, bunt",
+    "cat": "FO"
+  },
+  {
+    "file": "out-63-r2-out-6",
+    "name": "Ground out - SS to 1B, R2 out 6, DP",
+    "cat": "DP"
+  },
+  {
+    "file": "out-l4-r1-out-43",
+    "name": "Lined out to 2B, R1 out 43, DP",
+    "cat": "DP"
+  },
+  {
+    "file": "out-l6-r2-out-64",
+    "name": "Lined out to SS, R2 out 64, DP",
+    "cat": "DP"
+  },
+  {
+    "file": "out-l1-r3-out-15",
+    "name": "Lined out to P, R3 out 15, DP",
+    "cat": "DP"
+  },
+  {
+    "file": "out-f9-r1-93-r3-3265",
+    "name": "Fly out to RF, R1 out 93, R3 out 3265, TP",
+    "cat": "DP"
+  },
+  {
+    "file": "ks",
+    "name": "Strike out - swinging",
+    "cat": "SO"
+  },
+  {
+    "file": "kl",
+    "name": "Strike out - looking",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-2",
+    "name": "Strike out (S) - tag by C",
+    "cat": "SO"
+  },
+  {
+    "file": "kl-23",
+    "name": "Strike out (L) - C to 1B",
+    "cat": "SO"
+  },
+  {
+    "file": "ksb",
+    "name": "Strike out (S) - bunt 3rd",
+    "cat": "SO"
+  },
+  {
+    "file": "ksr",
+    "name": "Strike out (S) - by rule",
+    "cat": "SO"
+  },
+  {
+    "file": "ksi",
+    "name": "Strike out (S) - interference",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-wp",
+    "name": "Strike out (S) + WP",
+    "cat": "SO"
+  },
+  {
+    "file": "kl-pb",
+    "name": "Strike out (L) + PB",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-e2t",
+    "name": "Strike out (S) + E2T",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-2e3",
+    "name": "Strike out (S) + 2E3",
+    "cat": "SO"
+  },
+  {
+    "file": "kso",
+    "name": "Strike out (S) + R3 out 12 at HP",
+    "cat": "SO"
+  },
+  {
+    "file": "kso-r1-24-r3-hp",
+    "name": "Strike out (S) + R1 out 24, R3 scores",
+    "cat": "SO"
+  },
+  {
+    "file": "kso-r1-o-r3-21",
+    "name": "Strike out (L) + R1 to 2nd (O/2), R3 out 12 at HP",
+    "cat": "SO"
+  },
+  {
+    "file": "ksfc",
+    "name": "Strike out (S) + R2 to 3B on PB",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-r1-sb",
+    "name": "Strike out (S) + R1 to 2nd on SB",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-r2-wp",
+    "name": "Strike out (S) + R2 to 3rd on WP",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-r3-pb",
+    "name": "Strike out (S) + R3 scores on PB",
+    "cat": "SO"
+  },
+  {
+    "file": "kl-r1-cs-2e4",
+    "name": "Strike out (L) + R1 to 2nd on CS 2E4",
+    "cat": "SO"
+  },
+  {
+    "file": "ksr-r2-cs-25e4t",
+    "name": "Strike out (KSR) + R2 to 3nd on CS 25E4t",
+    "cat": "SO"
+  },
+  {
+    "file": "ksr-r1-o2-r2-25",
+    "name": "Strike out (KSR) + R1 O/2 + R2 out 25",
+    "cat": "SO"
+  },
+  {
+    "file": "ksr-r1-r2-o2-r3-21",
+    "name": "Strike out (KSR) + R1 O/2 + R2 O/2 + R3 out 21",
+    "cat": "SO"
+  },
+  {
+    "file": "klr-r3-poa-e2t",
+    "name": "Strike out (KLR) + R3 scores on POA e2T",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-wp-r1-wp",
+    "name": "Strike out (S) + WP + R1 to 2nd on WP",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-pb-r1-cs-24",
+    "name": "Strike out (S) + PB + R2 out 24, CS",
+    "cat": "SO"
+  },
+  {
+    "file": "kl-pb-r2-pb",
+    "name": "Strike out (L) + PB + R2 to 3rd on PB",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-wp-r2-po-26",
+    "name": "Strike out (S) + WP + R2 out 26, PO",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-wp-r3-wp",
+    "name": "Strike out (S) + WP + R3 scores on WP",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-pb-r3-po-25",
+    "name": "Strike out (S) + PB + R3 out 25, PO",
+    "cat": "SO"
+  },
+  {
+    "file": "ksr-r1-po-23",
+    "name": "Strike out (KSR) + R1 out 23, PO",
+    "cat": "SO"
+  },
+  {
+    "file": "kl-r2-cs-25",
+    "name": "Strike out (L) + R2 out 25, CS",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-r3-po-2512",
+    "name": "Strike out (S) + R3 out 2512, PO",
+    "cat": "SO"
+  },
+  {
+    "file": "ks-r1-o2-r3-cs-26E2",
+    "name": "Strike out (S) + R1 O/2 + R3 CS with error 26E2",
+    "cat": "SO"
+  },
+  {
+    "file": "1b-7",
+    "name": "Single to LF",
+    "cat": "H"
+  },
+  {
+    "file": "1b-mi",
+    "name": "Single through the middle",
+    "cat": "H"
+  },
+  {
+    "file": "1b-gll",
+    "name": "Single grounded to left line",
+    "cat": "H"
+  },
+  {
+    "file": "1b-1b",
+    "name": "Single to P, bunt",
+    "cat": "H"
+  },
+  {
+    "file": "1b-9-916",
+    "name": "Single to RF + out 916 at 2nd",
+    "cat": "H"
+  },
+  {
+    "file": "1b-ls-r1-75",
+    "name": "Single to RF + R1 out 75 at 3rd",
+    "cat": "H"
+  },
+  {
+    "file": "1b-mi-t82-r2-82",
+    "name": "Single to MI + to 2nd on throw + R2 out 82 at HP",
+    "cat": "H"
+  },
+  {
+    "file": "1b-9-r2-hp-tie",
+    "name": "Single to RF + R2 scores (tiebreak)",
+    "cat": "H"
+  },
+  {
+    "file": "2b-rs",
+    "name": "Double to right side",
+    "cat": "H"
+  },
+  {
+    "file": "2b-gll",
+    "name": "Double grounded to left line",
+    "cat": "H"
+  },
+  {
+    "file": "2b-8gr",
+    "name": "Double to CF - ground rule",
+    "cat": "H"
+  },
+  {
+    "file": "3b-rc",
+    "name": "Triple to right center",
+    "cat": "H"
+  },
+  {
+    "file": "3b-grl",
+    "name": "Triple grounded to right line",
+    "cat": "H"
+  },
+  {
+    "file": "hr-8",
+    "name": "Home run to CF",
+    "cat": "H"
+  },
+  {
+    "file": "hr-8ue",
+    "name": "Home run to CF - unearned",
+    "cat": "H"
+  },
+  {
+    "file": "hr-8tu",
+    "name": "Home run to CF - team unearned",
+    "cat": "H"
+  },
+  {
+    "file": "hr-rl-i",
+    "name": "Home run to RL - inside-the-park",
+    "cat": "H"
+  },
+  {
+    "file": "hr-rc-4rbi",
+    "name": "Home run to RC - 4 RBI",
+    "cat": "H"
+  },
+  {
+    "file": "bb",
+    "name": "Base on balls",
+    "cat": "H"
+  },
+  {
+    "file": "bb-wp",
+    "name": "Base on balls + R2 to 3rd on WP, B stays at 1st",
+    "cat": "A"
+  },
+  {
+    "file": "bb-pb",
+    "name": "Base on balls + R2 to 3rd on PB, B to 2nd on PB",
+    "cat": "A"
+  },
+  {
+    "file": "bb-wp-r3-hp",
+    "name": "Base on balls + R2 to 3rd on WP, R3 scores on WP",
+    "cat": "A"
+  },
+  {
+    "file": "ibb",
+    "name": "Intentional base on balls",
+    "cat": "A"
+  },
+  {
+    "file": "hp",
+    "name": "Hit by pitch",
+    "cat": "A"
+  },
+  {
+    "file": "fc-o6-r1-64",
+    "name": "Fielder's choice - occupied - R1 out 64",
+    "cat": "FC"
+  },
+  {
+    "file": "fc-o1b-r1-14",
+    "name": "Fielder's choice - occupied - R1 out 14, bunt",
+    "cat": "FC"
+  },
+  {
+    "file": "fc-o1b-r1-o1-r2-15",
+    "name": "Fielder's choice - occupied - R1 to 2nd, R2 out 15, bunt",
+    "cat": "FC"
+  },
+  {
+    "file": "fc-o3-r3-32",
+    "name": "Fielder's choice - occupied - R3 out 32",
+    "cat": "FC"
+  },
+  {
+    "file": "fc-o64-94-dp",
+    "name": "Fielder's choice - occupied - R1 out 64, B out 94 at 2nd, DP",
+    "cat": "FC"
+  },
+  {
+    "file": "fc-o64-94-no-dp",
+    "name": "Fielder's choice - occupied - R1 out 64, B out 94 at 2nd, no DP",
+    "cat": "FC"
+  },
+  {
+    "file": "fc-o6-e-r2-6e5",
+    "name": "Fielder's choice - occupied - R2 reaches on 5E6, batter to 2nd",
+    "cat": "FC"
+  },
+  {
+    "file": "fc-64",
+    "name": "Fielder's choice - SS to 2B",
+    "cat": "FC"
+  },
+  {
+    "file": "error-5",
+    "name": "Error - fielding by 3B",
+    "cat": "E"
+  },
+  {
+    "file": "error-5b",
+    "name": "Error - fielding by 3B - bunt",
+    "cat": "E"
+  },
+  {
+    "file": "error-6t",
+    "name": "Error - throwing by SS",
+    "cat": "E"
+  },
+  {
+    "file": "error-7f",
+    "name": "Error - dropped fly by LF",
+    "cat": "E"
+  },
+  {
+    "file": "error-3df",
+    "name": "Error - dropped foul by 1B",
+    "cat": "E"
+  },
+  {
+    "file": "error-6-6t",
+    "name": "Error - fielding by SS + extra base throwing by SS",
+    "cat": "E"
+  },
+  {
+    "file": "error-4e3",
+    "name": "Error - fielding by 1B, assited by 2B",
+    "cat": "E"
+  },
+  {
+    "file": "error-23e4-r1-na",
+    "name": "Error - fielding by 2B, assited by C and 1B, no advance (R1)",
+    "cat": "E"
+  },
+  {
+    "file": "error-25e1t-r3-na",
+    "name": "Error - throwing by P, assited by C and 3B, no advance (R3)",
+    "cat": "E"
+  },
+  {
+    "file": "error-4e3",
+    "name": "Error - fielding by 1B, assisted by 2B",
+    "cat": "E"
+  },
+  {
+    "file": "error-5t-2nd-r1-3rd",
+    "name": "Error - throwing by 3B, B to 2nd, R1 to 3rd",
+    "cat": "E"
+  },
+  {
+    "file": "error-265e4-r2-hp",
+    "name": "Error - fielding by 2B, assited by C, SS and 3B, R2 scores",
+    "cat": "E"
+  },
+  {
+    "file": "error-4-e8",
+    "name": "Error - fielding by 2B, B scores on e8, R2 scores",
+    "cat": "E"
+  },
+  {
+    "file": "error-e4f-r1-r2",
+    "name": "Error - dropped fly by 2B, R1 and R2 advance on error",
+    "cat": "E"
+  },
+  {
+    "file": "error-8f-r2-85",
+    "name": "Error - dropped fly by CF, R2 out 85 at 3rd",
+    "cat": "E"
+  },
+  {
+    "file": "error-int",
+    "name": "Error - catcher's interference",
+    "cat": "E"
+  },
+  {
+    "file": "error-int-run",
+    "name": "Error - catcher's interference + all runners advance",
+    "cat": "E"
+  },
+  {
+    "file": "error-ob3",
+    "name": "Error - obstruction by 1B (B)",
+    "cat": "E"
+  },
+  {
+    "file": "error-ob4",
+    "name": "Error - obstruction by 2B (R1)",
+    "cat": "E"
+  },
+  {
+    "file": "error-ob3-run",
+    "name": "Error - obstruction by 1B (B) + all runners advance",
+    "cat": "E"
+  },
+  {
+    "file": "error-ob2-r3-bk",
+    "name": "Error - obstruction by C during squeeze play + R3 scores on BK",
+    "cat": "E"
+  },
+  {
+    "file": "error-ob2-r3-ip",
+    "name": "Error - obstruction by C during squeeze play + R3 scores on IP",
+    "cat": "E"
+  },
+  {
+    "file": "error-bb-e2t-r1-se",
+    "name": "Error - BB + extra base throwing by C, R1 to 3rd",
+    "cat": "E"
+  },
+  {
+    "file": "error-r3-e2t-r2-r1-se",
+    "name": "Error - R3 scores on e2T, R2 and R1 same error",
+    "cat": "E"
+  },
+  {
+    "file": "error-r3-e2t-r1-sb",
+    "name": "Error - R3 scores on e2T, R1 to 2nd (SB)",
+    "cat": "E"
+  },
+  {
+    "file": "error-r3-e2t-r1-o2",
+    "name": "Error - R3 scores on e2T, R1 to 2nd (O/2)",
+    "cat": "E"
+  },
+  {
+    "file": "error-r3-e6t-r1-cs26",
+    "name": "Error - R3 scores on e6T, R1 out (CS 26)",
+    "cat": "E"
+  },
+  {
+    "file": "error-r3-1e2",
+    "name": "Error - R3 scores on 1E2",
+    "cat": "E"
+  },
+  {
+    "file": "error-r3-e5-b-o5",
+    "name": "Error - R3 scores on E5, B reaches on O5",
+    "cat": "E"
+  },
+  {
+    "file": "1b-9-e9",
+    "name": "Single to RF + extra base fielding error to 2nd",
+    "cat": "E"
+  },
+  {
+    "file": "1b-mi-e8-3",
+    "name": "Single to RF + extra base fielding error to 3rd",
+    "cat": "E"
+  },
+  {
+    "file": "1b-ll-e7-hp",
+    "name": "Single to RF + extra base fielding error to HP",
+    "cat": "E"
+  },
+  {
+    "file": "1b-6-634e1t-3",
+    "name": "Single to SS + extra base fielding error (634e1t) to 3rd",
+    "cat": "E"
+  },
+  {
+    "file": "1b-6-e6t-95-3b",
+    "name": "Single to SS + e6T to 2nd + 95 tag out at 3rd",
+    "cat": "E"
+  },
+  {
+    "file": "1b-6-e6t-92-hp",
+    "name": "Single to SS + e6T to 3rd + 92 tag out at HP",
+    "cat": "E"
+  },
+  {
+    "file": "1b-7-e7-r2-hp",
+    "name": "Single to LF + extra base fielding error, R2 scores",
+    "cat": "E"
+  },
+  {
+    "file": "1b-9-e9t",
+    "name": "Single to RF + extra base throwing error",
+    "cat": "E"
+  },
+  {
+    "file": "1b-9-94e3-na",
+    "name": "Single to RF + RF to 2B to 1B, error, no advance",
+    "cat": "E"
+  },
+  {
+    "file": "1b-6-se2-r2-e6t",
+    "name": "Single to SS + R2 scores on e6T",
+    "cat": "E"
+  },
+  {
+    "file": "1b-7-e7-r1-e",
+    "name": "Single to LF + extra base fielding error + R1 scores on error",
+    "cat": "E"
+  },
+  {
+    "file": "1b-7-r1-7e5t-na",
+    "name": "Single to LF + LF to 3B, thrrowing error, no advance (R1)",
+    "cat": "E"
+  },
+  {
+    "file": "1b-8-fc-r1-854e6",
+    "name": "Single to CF + T85 to 2B + R1 scores on 854e6t",
+    "cat": "E"
+  },
+  {
+    "file": "1b-lc-r2-ob",
+    "name": "Single to LC + R2 scores on obstruction by 3B",
+    "cat": "E"
+  },
+  {
+    "file": "1b-6-t62-r2-62",
+    "name": "Single to SS + T62 + R2 out 62 at HP",
+    "cat": "H"
+  },
+  {
+    "file": "1b-5b-e5t-9e5",
+    "name": "Single to 3B, bunt + e5T to 2nd + 9E5 scores",
+    "cat": "E"
+  },
+  {
+    "file": "1b-ls-r2-e7-hp",
+    "name": "Single to LS, R2 out 82 at HP",
+    "cat": "H"
+  },
+  {
+    "file": "2b-rl-e9t",
+    "name": "Double to RL + e9T",
+    "cat": "E"
+  },
+  {
+    "file": "3b-rl-9e2",
+    "name": "Triple to RL + 9E2",
+    "cat": "E"
+  },
+  {
+    "file": "out-31-r1-e3t",
+    "name": "Ground out - 1B to P + R1 scores (FC + e3T)",
+    "cat": "E"
+  },
+  {
+    "file": "error-o9-r1-94-r2-e9df",
+    "name": "FC - occupied to 9, R1 out 94 at 2nd, R2 to 3rd on e9F",
+    "cat": "E"
+  },
+  {
+    "file": "fc-o6-r2-6e4-na",
+    "name": "FC - occupied - SS to 2B, error, no advance (R2)",
+    "cat": "E"
+  },
+  {
+    "file": "sh-54",
+    "name": "Sacrifice hit - 3B to 2B",
+    "cat": "S"
+  },
+  {
+    "file": "sh-fc-12-r2-r3",
+    "name": "Sacrifice hit - FC P to C, R3 scores, R2 scores (O/3), B out 234",
+    "cat": "S"
+  },
+  {
+    "file": "error-sh-e5t",
+    "name": "SH with throwing error by 3B",
+    "cat": "E"
+  },
+  {
+    "file": "error-sh-5e4",
+    "name": "SH with fielding error by 2B, assisted by 3B",
+    "cat": "E"
+  },
+  {
+    "file": "sf-8",
+    "name": "Sacrifice fly to CF",
+    "cat": "S"
+  },
+  {
+    "file": "fsf-7",
+    "name": "Sacrifice fly to LF in foul territory",
+    "cat": "S"
+  },
+  {
+    "file": "sf-7-r1-o",
+    "name": "Sacrifice fly to LF + R1 advance to 2nd (O/1)",
+    "cat": "S"
+  },
+  {
+    "file": "sf-e8",
+    "name": "SF with dropped fly error by CF",
+    "cat": "E"
+  },
+  {
+    "file": "sf-o8",
+    "name": "SF with forced out - CF to SS (R2)",
+    "cat": "S"
+  },
+  {
+    "file": "gdp-643",
+    "name": "Grounded into DP - SS to 2B to 1B",
+    "cat": "DP"
+  },
+  {
+    "file": "gdp-36",
+    "name": "Grounded into DP - 1B to SS",
+    "cat": "DP"
+  },
+  {
+    "file": "gdp-543-tp",
+    "name": "Grounded into DP - 3B to 2B to 1B, TP",
+    "cat": "DP"
+  },
+  {
+    "file": "gdpb-163",
+    "name": "Grounded into DP - P to SS to 1B, bunt",
+    "cat": "DP"
+  },
+  {
+    "file": "gdp-643-r3-hp",
+    "name": "Grounded into DP - SS to 2B to 1B, R3 scores",
+    "cat": "DP"
+  },
+  {
+    "file": "gdp-463-r2-adv-r3-hp",
+    "name": "Grounded into DP - 2B to SS to 1B, R2 to 3rd, R3 scores",
+    "cat": "DP"
+  },
+  {
+    "file": "gdp-64e3",
+    "name": "Grounded into DP - SS to 2B + 1B fielding error",
+    "cat": "E"
+  },
+  {
+    "file": "gdp-64e3-94",
+    "name": "Grounded into DP - 64 + 4E3, B out 94 at 2nd (no DP)",
+    "cat": "E"
+  },
+  {
+    "file": "gdpo-1-r1-54-r2-15",
+    "name": "Grounded into DP - occupied to P, R2 out 15, R1 out 54",
+    "cat": "DP"
+  },
+  {
+    "file": "out-if6",
+    "name": "Infield fly - SS",
+    "cat": "FO"
+  },
+  {
+    "file": "wp-r1",
+    "name": "Wild pitch - R1",
+    "cat": "A"
+  },
+  {
+    "file": "wp-r1-3b",
+    "name": "Wild pitch - R1 to 3rd",
+    "cat": "A"
+  },
+  {
+    "file": "wp-r1-r2",
+    "name": "Wild pitch - R1 + R2",
+    "cat": "A"
+  },
+  {
+    "file": "wp-r1-r2-r3",
+    "name": "Wild pitch - R1 + R2 + R3",
+    "cat": "A"
+  },
+  {
+    "file": "wp-r2-r3-21",
+    "name": "Wild pitch - R2 + R3 out 21 at HP",
+    "cat": "A"
+  },
+  {
+    "file": "pb-r1",
+    "name": "Passed ball - R1",
+    "cat": "A"
+  },
+  {
+    "file": "pb-r1-r2",
+    "name": "Passed ball - R1 + R2",
+    "cat": "A"
+  },
+  {
+    "file": "pb-r1-r2-r3",
+    "name": "Passed ball - R1 + R2 + R3",
+    "cat": "A"
+  },
+  {
+    "file": "pb-r1-r3-2r",
+    "name": "Passed ball - R3 scores + R1 scores",
+    "cat": "A"
+  },
+  {
+    "file": "pb-r3-r2-e2t-r1-e1",
+    "name": "Passed ball - R3 scores, R2 scores on e2T, R1 scores on e1",
+    "cat": "E"
+  },
+  {
+    "file": "pb-r1-r3-21",
+    "name": "Passed ball - R1 + R3 out 21 at HP",
+    "cat": "A"
+  },
+  {
+    "file": "bk-r1",
+    "name": "Balk - R1",
+    "cat": "A"
+  },
+  {
+    "file": "bk-r1-r2",
+    "name": "Balk - R1 + R2",
+    "cat": "A"
+  },
+  {
+    "file": "bk-r1-r2-r3",
+    "name": "Balk - R1 + R2 + R3",
+    "cat": "A"
+  },
+  {
+    "file": "ip-r1",
+    "name": "Illegal pitch - R1",
+    "cat": "A"
+  },
+  {
+    "file": "ip-r1-r2",
+    "name": "Illegal pitch - R1 + R2",
+    "cat": "A"
+  },
+  {
+    "file": "ip-r1-r2-r3",
+    "name": "Illegal pitch - R1 + R2 + R3",
+    "cat": "A"
+  },
+  {
+    "file": "sb-single",
+    "name": "Stolen base - R1",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-double-12",
+    "name": "Stolen base - R1 + R2",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-double-13",
+    "name": "Stolen base - R1 + R3",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-double-23",
+    "name": "Stolen base - R2 + R3",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-triple",
+    "name": "Stolen base - R1 + R2 + R3",
+    "cat": "SB"
+  },
+  {
+    "file" : "sb-double-r1-25",
+    "name" : "Stolen base - R1 + R3 - R1 out 25 at 3rd",
+    "cat": "SB"
+  },
+  {
+    "file": "r1-sb-t62-12-r3-sb",
+    "name": "Stolen base - R1 + R3 - R1 T62 to 3rd , out 21 at HP",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-e2t",
+    "name": "Stolen base + throwing error by C",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-poa",
+    "name": "Stolen base after pick-off attempt",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-52",
+    "name": "Stolen base + out 52 at HP",
+    "cat": "SB"
+  },
+  {
+    "file": "indifference-r1",
+    "name": "Indifference - R1 to 2nd, R3 stays",
+    "cat": "FC"
+  },
+  {
+    "file": "cs-26",
+    "name": "Caught stealing - C to SS",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-2e6",
+    "name": "Caught stealing - C to SS (fielding error)",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-2e6-45",
+    "name": "Caught stealing - C to SS (fielding error) + tag out 2B to 3B",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-25-r1-o",
+    "name": "Caught stealing - C to 3B + R1 O/2 to 2nd",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-2e5-r1-se",
+    "name": "Caught stealing - C to 3B (fielding error) + R1 to 2nd (SE)",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-2e4-r3-se",
+    "name": "Caught stealing - C to 2B (fielding error) + R3 scores (SE)",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-12-r2-o",
+    "name": "Caught stealing - P to C + R2 O/2 to 3rd",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-2e6-r3-o",
+    "name": "Caught stealing - C to 2B (fielding error) + R3 O/2 scores",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-2e4-r1-na",
+    "name": "Caught stealing - C to 2B (fielding error), no advance (R1)",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-26e5t-r2-na",
+    "name": "Caught stealing - C to SS to 3B (throwing error), no advance (R2)",
+    "cat": "SB"
+  },
+  {
+    "file": "cs-2e1-r3-na-r1-o",
+    "name": "Caught stealing - C to P (fielding error), no advance (R3) + O/2 to 2nd",
+    "cat": "SB"
+  },
+  {
+    "file": "po-r1",
+    "name": "Pick off - C to 1B (R1)",
+    "cat": "SB"
+  },
+  {
+    "file": "po-r2",
+    "name": "Pick off - P to SS (R2)",
+    "cat": "SB"
+  },
+  {
+    "file": "po-r3",
+    "name": "Pick off - C to 3B (R3)",
+    "cat": "SB"
+  },
+  {
+    "file": "po-r1-13-r2-o",
+    "name": "Pick off - P to 1B (R1) + O/2 to 3rd (R2)",
+    "cat": "SB"
+  },
+  {
+    "file": "po-r1-13-r3-o",
+    "name": "Pick off - P to 1B (R1) + O/2 scores (R3)",
+    "cat": "SB"
+  },
+  {
+    "file": "pocs-r1-1364",
+    "name": "Pick off + Caught stealing - P to 1B to SS to 2B (R1)",
+    "cat": "SB"
+  },
+  {
+    "file": "pocse-r1",
+    "name": "Pick off + Caught stealing + throwing error by P (R1)",
+    "cat": "SB"
+  },
+  {
+    "file": "pocsen-r3",
+    "name": "Pick off + Caught stealing + throwing error by P, no advance (R1)",
+    "cat": "SB"
+  },
+  {
+    "file": "error-poa-r1",
+    "name": "Pick off attempt - e1T (R1)",
+    "cat": "SB"
+  },
+  {
+    "file": "error-poa-r2",
+    "name": "Pick off attempt - e1T (R2)",
+    "cat": "SB"
+  },
+  {
+    "file": "error-poa-r3",
+    "name": "Pick off attempt - e1T (R3)",
+    "cat": "SB"
+  },
+  {
+    "file": "error-poa-r3-r2-r1-se",
+    "name": "Pick off attempt - e2T (R3), R1 and R2 score on error",
+    "cat": "SB"
+  },
+  {
+    "file": "error-poa-r1-na",
+    "name": "Pick off attempt - 1E3, no advance (R1)",
+    "cat": "SB"
+  },
+  {
+    "file": "error-poa-r2-na",
+    "name": "Pick off attempt - 1E4, no advance (R2)",
+    "cat": "SB"
+  },
+  {
+    "file": "error-poa-r3-na",
+    "name": "Pick off attempt - 25E1, no advance (R3)",
+    "cat": "SB"
+  },
+  {
+    "file": "obr-bob",
+    "name": "Out by rule - Batter Out of the Box",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-bia",
+    "name": "Out by rule - Batter's Illegal Action",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-tbb",
+    "name": "Out by rule - Touched by Batted Ball",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-bot",
+    "name": "Out by rule - Batting Out of Turn",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rol",
+    "name": "Out by rule - Running Out of Line (B)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rta",
+    "name": "Out by rule - Refusing To Advance",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-dif",
+    "name": "Out by rule - Dropped Infield Fly",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-dif-r2-e4",
+    "name": "Out by rule - Dropped Infield Fly, R2 to 3rd on e4",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-bin",
+    "name": "Out by rule - Batter Interference",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-oin",
+    "name": "Out by rule - Other Interference (batter)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-oin-r1",
+    "name": "Out by rule - Other Interference (runner)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-oin-ks",
+    "name": "Out by rule - KS (B) + OIN (R1)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rta-r3",
+    "name": "Out by rule - Refusing to advance (R3)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-hbb-r1",
+    "name": "Out by rule - Hit by fair Batted Ball (R1)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rol-r1",
+    "name": "Out by rule - Running Out of Line (R1)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-ppr-r1",
+    "name": "Out by rule - Passing a Preceding Runner (R1)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rro-r2",
+    "name": "Out by rule - Running the bases in Reverse Order (R2)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rin-r1-a",
+    "name": "Out by rule - Runner Interference (R1) w/o batter",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rin-r1-b",
+    "name": "Out by rule - Runner Interference (R1) with batter",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-hit-rin",
+    "name": "Out by rule - single to RF, RIN at 2nd",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rin-643",
+    "name": "Out by rule - batter RIN 43, runner 64 at 2nd",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rle-r1",
+    "name": "Out by rule - Runner Left Early (R1)",
+    "cat": "OBR"
+  },
+  {
+    "file": "obr-rhe-r3",
+    "name": "Out by rule - Removal of Helmet (R3)",
+    "cat": "OBR"
+  },
+  {
+    "file": "a-13",
+    "name": "Appeal play - P to 1B (batter)",
+    "cat": "OP"
+  },
+  {
+    "file": "o-a-r3",
+    "name": "Appeal play - hit (HR) + P to 3B (R3)",
+    "cat": "OP"
+  },
+  {
+    "file": "o-a-r1",
+    "name": "Appeal play - hit (3B) + SS (R1)",
+    "cat": "OP"
+  },
+  {
+    "file": "lt",
+    "name": "Lost turn at bat",
+    "cat": "OP"
+  }
+]
