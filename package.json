@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "backstopjs": "6.3.25",
-    "nuxt-ignis": "0.5.1"
+    "nuxt-ignis": "0.5.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -31,5 +31,5 @@
       "vue-demi"
     ]
   },
-  "packageManager": "pnpm@10.20.0"
+  "packageManager": "pnpm@10.28.1"
 }
