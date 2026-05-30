@@ -11,8 +11,31 @@ export default defineNuxtConfig({
     '@/assets/css/tailwind.css',
   ],
 
-  // @ts-expect-error there is likely a mismatch in @nuxt/schema versions in latest nuxt-ignis
-  // TODO remove once nuxt-ignis v6 is implemented
+  i18n: {
+    compilation: { strictMessage: false },
+  },
+
+  ignis: {
+    preset: {
+      ui: 'tailwind',
+    },
+    default: {
+      css: false,
+    },
+    content: {
+      content: {
+        enabled: true,
+      },
+      i18n: {
+        enabled: true,
+      },
+      pslo: {
+        enabled: true,
+        content: true,
+      }
+    },
+  },
+
   nitro: {
     prerender: {
       // TODO: it is currently not possible to pre-render pages
