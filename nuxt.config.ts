@@ -13,6 +13,7 @@ export default defineNuxtConfig({
 
   i18n: {
     compilation: { strictMessage: false },
+    strategy: 'no_prefix',
   },
 
   ignis: {

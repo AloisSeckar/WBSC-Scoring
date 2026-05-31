@@ -16,21 +16,25 @@
 </template>
 
 <script setup lang="ts">
+import type { GeneratedTypeConfig } from '@intlify/core-base'
+
 const lang = 'w-6 h-4 m-1 inline-block'
 const selectedLang = 'w-6 h-4 m-1 inline-block border-2 border-amber-300'
 
-const { locale } = useI18n()
+type AppLocale = GeneratedTypeConfig['locale']
+
+const { locale, locales, setLocale } = useI18n()
 
 const browserLocale = useBrowserLocale()
 const userLocale = useLocalStorage('wbsc-lang', browserLocale)
-locale.value = userLocale || browserLocale || 'en'
+const initialLocale = (userLocale.value || browserLocale || 'en') as string
+if (initialLocale !== locale.value && locales.value.some(l => l.code === initialLocale)) {
+  await setLocale(initialLocale as AppLocale)
+}
 
-async function setNewLocale(newLocale: string) {
-  if (newLocale) {
-    const storedLocale = useLocalStorage('wbsc-lang', browserLocale)
-    storedLocale.value = newLocale
-    locale.value = newLocale
-    return navigateTo(useRoute().fullPath)
-  }
+async function setNewLocale(newLocale: AppLocale) {
+  const storedLocale = useLocalStorage('wbsc-lang', browserLocale)
+  storedLocale.value = newLocale
+  await setLocale(newLocale)
 }
 </script>
