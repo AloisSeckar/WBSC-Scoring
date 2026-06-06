@@ -11,6 +11,12 @@ export default defineNuxtConfig({
     '@/assets/css/tailwind.css',
   ],
 
+  nitro: {
+    prerender: {
+      routes: ['/help', '/project', '/report'],
+    },
+  },
+
   i18n: {
     compilation: { strictMessage: false },
     strategy: 'no_prefix',
@@ -33,13 +39,7 @@ export default defineNuxtConfig({
       pslo: {
         enabled: true,
         content: true,
-      }
-    },
-  },
-
-  nitro: {
-    prerender: {
-      routes: ['/help', '/project', '/report'],
+      },
     },
   },
 
