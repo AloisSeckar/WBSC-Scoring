@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     headers: {
       // allow Nuxt Content pages to be loaded
       contentSecurityPolicy: {
-        'script-src': ['\'self\'', 'https:', '\'strict-dynamic\'', '\'nonce-{{nonce}}\'', '\'wasm-unsafe-eval\''],
+        'script-src': ['\'self\'', '\'nonce-{{nonce}}\'', '\'wasm-unsafe-eval\''],
       },
       crossOriginEmbedderPolicy: 'require-corp',
       crossOriginOpenerPolicy: 'same-origin',
