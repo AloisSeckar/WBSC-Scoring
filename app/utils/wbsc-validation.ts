@@ -10,8 +10,9 @@ const firstRunnerActions = [inputR1, inputR2, inputR3]
 export const firstActions = [inputB, inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
 const decisiveErrorActions = [
-  'EF', 'EFB', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB', 'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE',
-  'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN',
+  'EF', 'EFB', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB2', 'OB', 'ENF', 'ENT',
+  'KSET', 'KSE', 'KLET', 'KLE', 'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE',
+  'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN',
 ]
 const errorActions = [...decisiveErrorActions, 'eF', 'eT', 'eDF']
 const runnersOnlyActions = [
@@ -675,14 +676,14 @@ export function checkOBRs(actions: WBSCAction[]) {
 }
 
 // #206 - when there is a "dead-ball" play, only necessary forced advances of other runners are possible
-// exception: OB2 + BK/IP (obstruction during squeeze play)
+// exception: OB + BK/IP (obstruction during squeeze play)
 // #281 - dropped foul ball error must be the only play scored (ball is dead upon dropped in foul territory)
 export function checkDeadBallPlays(actions: WBSCAction[]) {
   if (actions.some(i => i.specAction === 'EDFB') && actions.length > 1) {
     return useT('editor.validation.noPlayAfterEDFB')
   }
 
-  if (actions.some(i => ['INT', 'OB', 'IBB1', 'HP'].includes(i.specAction))) {
+  if (actions.some(i => ['INT', 'OB2', 'OB', 'IBB1', 'HP'].includes(i.specAction))) {
     if (actions.some(i => i.group !== inputB && !i.specAction.includes('ADV') && (i.group !== inputR3 || !['BK', 'IP'].includes(i.specAction)))) {
       return useT('editor.validation.noPlayAfterDeadBall')
     }

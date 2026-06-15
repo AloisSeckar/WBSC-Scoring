@@ -52,6 +52,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'KLWP':
     case 'KLPB':
     case 'INT':
+    case 'OB2':
       minPosItems = targetPosItems = maxPosItems = 0
       break
     case 'SF':
@@ -401,6 +402,9 @@ function processInput(data: WBSCAction) {
       break
     case 'INT':
       data.text1 = action
+      break
+    case 'OB2':
+      data.text1 = 'OB' // "2" is only internal marker
       break
     case '2B':
     case '2BG':

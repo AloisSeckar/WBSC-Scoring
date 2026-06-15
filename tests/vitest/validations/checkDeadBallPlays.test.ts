@@ -61,6 +61,33 @@ test('validation should fail - ADV of not-forced runner at 3rd after dead-ball p
   expect(checkDeadBallPlays([r3Input, bINTInput])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
 })
 
+const bOB2Input = createMockAction({
+  group: 'input-b',
+  baseAction: 'Error',
+  specAction: 'OB2',
+})
+
+test('validation should pass - only ADV after dead-ball play', () => {
+  expect(checkDeadBallPlays([r3Input, r2Input, r1Input, bOB2Input])).toBe('')
+})
+
+test('validation should fail - other situation after dead-ball play', () => {
+  const r1Input = createMockAction({
+    group: 'input-r1',
+    baseAction: 'out',
+    specAction: 'GO',
+  })
+  expect(checkDeadBallPlays([r1Input, bOB2Input])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
+})
+
+test('validation should fail - ADV of not-forced runner at 2nd after dead-ball play', () => {
+  expect(checkDeadBallPlays([r2Input, bOB2Input])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
+})
+
+test('validation should fail - ADV of not-forced runner at 3rd after dead-ball play', () => {
+  expect(checkDeadBallPlays([r3Input, bOB2Input])).toBe(useT('editor.validation.noPlayAfterDeadBall'))
+})
+
 const bOBInput = createMockAction({
   group: 'input-b',
   baseAction: 'Error',

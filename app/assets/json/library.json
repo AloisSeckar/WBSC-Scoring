@@ -461,12 +461,22 @@
   },
   {
     "file": "error-int",
-    "name": "Error - catcher's interference",
+    "name": "Error - catcher's interference (baseball)",
     "cat": "E"
   },
   {
     "file": "error-int-run",
-    "name": "Error - catcher's interference + all runners advance",
+    "name": "Error - catcher's interference (baseball) + all runners advance",
+    "cat": "E"
+  },
+  {
+    "file": "error-ob",
+    "name": "Error - catcher's obstruction (softball)",
+    "cat": "E"
+  },
+  {
+    "file": "error-ob-run",
+    "name": "Error - catcher's obstruction (softball) + all runners advance",
     "cat": "E"
   },
   {

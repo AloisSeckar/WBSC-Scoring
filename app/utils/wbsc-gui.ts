@@ -178,6 +178,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bSafe, value: 'EDP', label: useT('editor.action.error.EDP') })
       options.push({ group: bSafe, value: 'EDFB', label: useT('editor.action.error.EDFB') })
       options.push({ group: bSafe, value: 'INT', label: useT('editor.action.error.INT') })
+      options.push({ group: bSafe, value: 'OB2', label: useT('editor.action.error.OB2') })
       options.push({ group: bSafe, value: 'OB', label: useT('editor.action.error.OB') })
       break
     case 'Advance':

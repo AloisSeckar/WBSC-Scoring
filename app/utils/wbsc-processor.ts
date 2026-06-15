@@ -261,7 +261,7 @@ function adjustWPPB(actions: WBSCAction[]) {
 // helper for https://github.com/AloisSeckar/WBSC-Scoring/issues/177
 function adjustIO(actions: WBSCAction[]) {
   const batterAction = useInputStore().inputB.specAction
-  const isIO = batterAction === 'INT' || batterAction === 'OB'
+  const isIO = batterAction === 'INT' || batterAction === 'OB2'
   if (isIO) {
     actions.forEach((a) => {
       if (a.specAction === 'ADV') {
