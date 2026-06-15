@@ -17,10 +17,10 @@ const r2Input = createMockAction({
   specAction: 'eDF',
 })
 
-const invalid = useT('editor.validation.eDF')
+const invalid = () => useT('editor.validation.eDF')
 
 test('validation should fail - missing batter action', () => {
-  expect(checkExtraBaseDroppedFlyError([r2Input])).toBe(invalid)
+  expect(checkExtraBaseDroppedFlyError([r2Input])).toBe(invalid())
 })
 
 test('validation should fail - invalid batter action', () => {
@@ -28,7 +28,7 @@ test('validation should fail - invalid batter action', () => {
     group: 'input-b',
     specAction: 'KS',
   })
-  expect(checkExtraBaseDroppedFlyError([r2Input, bInput])).toBe(invalid)
+  expect(checkExtraBaseDroppedFlyError([r2Input, bInput])).toBe(invalid())
 })
 
 test('validation should pass - FC - occupied', () => {
