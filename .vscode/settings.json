@@ -5,6 +5,10 @@
         "source.fixAll": "explicit",
         "source.fixAll.eslint": "explicit"
     },
-    // Enable ESlint flat config support
-    "eslint.experimental.useFlatConfig": true
+    // enable ESlint flat config
+    "eslint.useFlatConfig": true,
+    // markdownlint - do NOT treat LICENSE file as markdown
+    "files.associations": {
+      "LICENSE": "plaintext"
+    }
 }
