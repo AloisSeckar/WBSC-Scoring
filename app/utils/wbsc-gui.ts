@@ -3,6 +3,8 @@
 /* helper functions for working with GUI   */
 /* *************************************** */
 
+import type { GeneratedTypeConfig } from '@intlify/core-base'
+
 export function getBaseOptionsValue(inputGroup: string) {
   switch (inputGroup) {
     case inputB1:
@@ -369,5 +371,5 @@ export function getFCLocations() {
 export function setLocale() {
   const { locale } = useI18n()
   const storedLocale = useLocalStorage('wbsc-lang', 'en')
-  locale.value = storedLocale.value
+  locale.value = storedLocale.value as GeneratedTypeConfig['locale']
 }
