@@ -18,5 +18,5 @@
     "backstopjs": "6.3.25",
     "nuxt-ignis": "0.6.0"
   },
-  "packageManager": "pnpm@11.5.2"
+  "packageManager": "pnpm@11.7.0"
 }

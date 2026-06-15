@@ -22,3 +22,7 @@ minimumReleaseAgeExclude:
   - '@nuxt-ignis/ui'
   - '@nuxt-ignis/utils'
   - '@nuxt-ignis/validation'
+
+overrides:
+  # GHSA-g7r4-m6w7-qqqr & GHSA-gv7w-rqvm-qjhr
+  'esbuild': '^0.28.1'
