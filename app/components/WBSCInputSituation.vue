@@ -13,7 +13,9 @@
     <div>
       <div v-show="baseVisible" class="inline-block">
         <label :for="group + inputBase" class="mr-1">{{ useT('editor.base.base') + ':' }}</label>
-        <select :id="group + inputBase" class="bg-white" ref="baseSelect" v-model="model.base" @change="changeBase()">
+        <select
+          :id="group + inputBase" ref="baseSelect" v-model="model.base"
+          class="bg-white" @change="changeBase()">
           <option v-for="opt in baseOptions" :key="opt.value" :value="opt.value" :selected="opt.selected">
             {{ opt.label }}
           </option>
