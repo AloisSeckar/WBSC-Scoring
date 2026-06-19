@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     },
     default: {
       css: false,
+      auth: false,
     },
     content: {
       content: {

@@ -76,6 +76,10 @@ function drawBackground(battingOrder: number) {
     ctx.fillStyle = 'white'
     ctx.fillRect(0, 0 + vOffset, w1 + hOffset, h1)
 
+    // fix issue with 1px white line on top
+    ctx.fillStyle = '#00a7d7'
+    ctx.fillRect(0, 0, 4, h1)
+
     ctx.lineWidth = 8
     ctx.strokeStyle = '#00a7d7'
 

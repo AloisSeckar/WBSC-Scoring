@@ -7,10 +7,6 @@ node_modules
 # nuxt-content
 .data
 
-# backstop
-/tests/backstop/bitmaps_test/
-/tests/backstop/html_report/
-
 # env variables
 .env
 
@@ -19,3 +15,6 @@ todo.txt
 # ignis
 _ignis-config.json
 _nuxt-config.json
+
+# tests
+/test/actions/__current__/

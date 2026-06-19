@@ -9,14 +9,12 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "node .output/server/index.mjs",
-    "test": "pnpm test-vitest && pnpm test-backstop",
-    "test-vitest": "vitest run",
-    "test-backstop": "backstop test --config=backstop.config.cjs",
-    "test-approve": "backstop approve --config=backstop.config.cjs"
+    "test": "pnpm test-validations && pnpm test-actions",
+    "test-validations": "vitest run --project validations",
+    "test-actions": "vitest run --project actions"
   },
   "devDependencies": {
-    "backstopjs": "6.3.25",
     "nuxt-ignis": "0.6.0"
   },
-  "packageManager": "pnpm@11.7.0"
+  "packageManager": "pnpm@11.8.0"
 }
