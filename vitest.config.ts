@@ -1,8 +1,11 @@
 // we
 
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import { loadVitestConfig } from 'nuxt-spec/config'
 import { defineVitestProject } from '@nuxt/test-utils/config'
+
+const screenshotReportSetup = fileURLToPath(new URL('../utils/screenshot.ts', import.meta.resolve('nuxt-spec/config')))
 
 const projects = []
 
@@ -31,6 +34,7 @@ if (actions) {
       name: 'actions',
       include: ['test/actions/**/*.{test,spec}.ts'],
       environment: 'node',
+      globalSetup: [screenshotReportSetup],
     },
   })
 }

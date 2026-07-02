@@ -15,6 +15,7 @@ minimumReleaseAgeExclude:
   # nuxt-ignis and its submodules must be excluded to allow 
   # installing latest version without cooldown
   - 'nuxt-ignis'
+  - 'nuxt-spec'
   - '@nuxt-ignis/content'
   - '@nuxt-ignis/default'
   - '@nuxt-ignis/db'
@@ -26,3 +27,5 @@ minimumReleaseAgeExclude:
 overrides:
   # GHSA-g7r4-m6w7-qqqr & GHSA-gv7w-rqvm-qjhr
   'esbuild': '^0.28.1'
+  # testing latest features
+  'nuxt-spec': '0.2.4-alpha.2'  
