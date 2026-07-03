@@ -1,3 +1,4 @@
+import { availableParallelism } from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, test } from 'vitest'
 import type { NuxtPage } from '@nuxt/test-utils/e2e'
@@ -5,8 +6,11 @@ import { setup, createPage, url } from '@nuxt/test-utils/e2e'
 import { compareScreenshot } from 'nuxt-spec/utils'
 import library from '../../app/assets/json/library.json' with { type: 'json' }
 
+// allowed difference in screenshot comparison (mitigating platform differences)
 const diffRatio = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VITE_TEST_DIFF_RATIO) : 0.01
-const WORKERS = 8
+
+// number of parallel executions (based on available CPUs)
+const WORKERS = Math.max(1, availableParallelism() / 2)
 
 const chunkSize = Math.ceil(library.length / WORKERS)
 const chunks = Array.from({ length: WORKERS }, (_, i) =>

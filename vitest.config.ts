@@ -1,9 +1,8 @@
-// we
-
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { loadVitestConfig } from 'nuxt-spec/config'
 import { defineVitestProject } from '@nuxt/test-utils/config'
+import { availableParallelism } from 'node:os'
 
 const screenshotReportSetup = fileURLToPath(new URL('../utils/screenshot.ts', import.meta.resolve('nuxt-spec/config')))
 
@@ -35,6 +34,7 @@ if (actions) {
       include: ['test/actions/**/*.{test,spec}.ts'],
       environment: 'node',
       globalSetup: [screenshotReportSetup],
+      maxConcurrency: availableParallelism() / 2,
     },
   })
 }
