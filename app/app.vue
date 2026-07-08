@@ -67,10 +67,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .actions {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #canvas {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 </style>

@@ -17,6 +17,12 @@ export default defineNuxtConfig({
     },
   },
 
+  fonts: {
+    families: [
+      { name: 'Open Sans', weights: [700], styles: ['normal'] },
+    ],
+  },
+
   i18n: {
     compilation: { strictMessage: false },
     strategy: 'no_prefix',
