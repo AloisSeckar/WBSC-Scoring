@@ -12,9 +12,6 @@ const DIFF_RATIO = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VIT
 // number of parallel executions (based on available CPUs)
 const WORKERS = Math.max(1, availableParallelism() / 2)
 
-// project base url
-const INDEX_URL = url('/')
-
 // chunked content of library.json data file
 const chunkSize = Math.ceil(library.length / WORKERS)
 const chunks = Array.from({ length: WORKERS }, (_, i) =>
@@ -32,7 +29,7 @@ describe(`actions from library render correctly`, async () => {
     'group $group renders correctly',
     async ({ entries, group }) => {
       const page = await createPage(undefined, { viewport: { width: 999, height: 2300 }, deviceScaleFactor: 1 })
-      await page.goto(INDEX_URL)
+      await page.goto(url('/'))
       const failed: string[] = []
       try {
         for (const { file } of entries) {
@@ -43,7 +40,7 @@ describe(`actions from library render correctly`, async () => {
           catch (e) {
             failed.push(`${e instanceof Error ? e.message : e}`)
             // reset page state so subsequent actions can still run
-            await page.goto(INDEX_URL, {}).catch(() => {})
+            await page.goto(url('/'), {}).catch(() => {})
           }
         }
       }
