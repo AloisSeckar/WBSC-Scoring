@@ -9,14 +9,14 @@ const screenshotReportSetup = fileURLToPath(new URL('../utils/screenshot.ts', im
 const projects = []
 
 const args = process.argv.join(' ')
-console.warn(args)
 const perProjectConfig = args.includes('--project')
-console.warn('perProjectConfig', perProjectConfig)
 const validations = !perProjectConfig || args.includes('validations')
-console.warn('validations', validations)
 const actions = !perProjectConfig || args.includes('actions')
-console.warn('actions', actions)
+const screenshots = !perProjectConfig || args.includes('screenshots')
 
+// tests of input-validation functions
+// currently require Nuxt env due to reliance on Nuxt composables
+// TODO should be strictly split between validation logic and Nuxt processing
 if (validations) {
   projects.push(await defineVitestProject({
     test: {
@@ -27,11 +27,27 @@ if (validations) {
   }))
 }
 
+// CORE test suite
+// check if defined actions are rendered in the correct way
 if (actions) {
   projects.push({
     test: {
       name: 'actions',
       include: ['test/actions/**/*.{test,spec}.ts'],
+      environment: 'node',
+      globalSetup: [screenshotReportSetup],
+      maxConcurrency: availableParallelism() / 2,
+    },
+  })
+}
+
+// additional visual regression tests
+// check how pages are rendered in different resolutions
+if (screenshots) {
+  projects.push({
+    test: {
+      name: 'screenshots',
+      include: ['test/screenshots/**/*.{test,spec}.ts'],
       environment: 'node',
       globalSetup: [screenshotReportSetup],
       maxConcurrency: availableParallelism() / 2,

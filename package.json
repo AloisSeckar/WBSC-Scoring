@@ -9,9 +9,10 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "node .output/server/index.mjs",
-    "test": "pnpm test-validations && pnpm test-actions",
-    "test-validations": "vitest run --project validations",
-    "test-actions": "vitest run --project actions"
+    "test": "pnpm test-validations && pnpm test-actions && pnpm test-screenshots",
+    "test-actions": "vitest run --project actions",
+    "test-screenshots": "vitest run --project screenshots",
+    "test-validations": "vitest run --project validations"
   },
   "devDependencies": {
     "nuxt-ignis": "0.6.0"

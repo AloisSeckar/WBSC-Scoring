@@ -7,11 +7,15 @@ import { compareScreenshot } from 'nuxt-spec/utils'
 import library from '../../app/assets/json/library.json' with { type: 'json' }
 
 // allowed difference in screenshot comparison (mitigating platform differences)
-const diffRatio = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VITE_TEST_DIFF_RATIO) : 0.01
+const DIFF_RATIO = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VITE_TEST_DIFF_RATIO) : 0.01
 
 // number of parallel executions (based on available CPUs)
 const WORKERS = Math.max(1, availableParallelism() / 2)
 
+// project base url
+const INDEX_URL = url('/')
+
+// chunked content of library.json data file
 const chunkSize = Math.ceil(library.length / WORKERS)
 const chunks = Array.from({ length: WORKERS }, (_, i) =>
   library.slice(i * chunkSize, (i + 1) * chunkSize),
@@ -27,9 +31,8 @@ describe(`actions from library render correctly`, async () => {
   test.concurrent.each(chunks.map((entries, i) => ({ entries, group: i + 1 })))(
     'group $group renders correctly',
     async ({ entries, group }) => {
-      const indexUrl = url('/')
       const page = await createPage(undefined, { viewport: { width: 999, height: 2300 }, deviceScaleFactor: 1 })
-      await page.goto(indexUrl, { /* waitUntil: 'hydration' */})
+      await page.goto(INDEX_URL)
       const failed: string[] = []
       try {
         for (const { file } of entries) {
@@ -40,7 +43,7 @@ describe(`actions from library render correctly`, async () => {
           catch (e) {
             failed.push(`${e instanceof Error ? e.message : e}`)
             // reset page state so subsequent actions can still run
-            await page.goto(indexUrl, {}).catch(() => {})
+            await page.goto(INDEX_URL, {}).catch(() => {})
           }
         }
       }
@@ -68,7 +71,7 @@ async function doAction(page: NuxtPage, action: string) {
   // wait for modal overlay to fade
   await new Promise(resolve => setTimeout(resolve, 400))
   // test screenshot
-  expect(await compareScreenshot(page, { fileName: `action-${action}.png`, targetDir: 'test/actions', selector: '#canvas', maxDiffPixelRatio: diffRatio })).toEqual(true)
+  expect(await compareScreenshot(page, { fileName: `action-${action}.png`, targetDir: 'test/actions', selector: '#canvas', maxDiffPixelRatio: DIFF_RATIO })).toEqual(true)
 }
 
 function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {

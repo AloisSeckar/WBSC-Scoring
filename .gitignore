@@ -18,3 +18,4 @@ _nuxt-config.json
 
 # tests
 /test/actions/__current__/
+/test/screenshots/__current__/
