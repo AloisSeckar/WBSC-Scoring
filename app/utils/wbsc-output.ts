@@ -696,7 +696,7 @@ function writeSituation(action: WBSCAction) {
               offset = 14
             }
           } else if (out && text1.length > 1) {
-            ctx.font = 'bold 50px Verdana'
+            ctx.font = 'bold 50px Arial'
             offset = 16
           } else {
             ctx.font = FONT_BASE_XL

@@ -2,8 +2,9 @@
 
 @theme {
 	--color-wbsc-blue: #00a7d7;
-	--font-header: 'Verdana';
-	--font-body: 'Open Sans';
+	--font-header: 'Archivo Black';
+	--font-body: 'Roboto';
+	--font-action: 'Arial';
 }
 
 h1 {
@@ -11,10 +12,10 @@ h1 {
 }
 
 h2 {
-	@apply mt-4 mb-2 text-wbsc-blue text-3xl font-bold;
+	@apply mt-4 mb-2 text-wbsc-blue text-3xl font-bold font-header;
 }
 h3 {
-	@apply mb-2 text-xl font-bold;
+	@apply mb-2 text-xl font-bold font-header;
 }
 
 p {
@@ -37,8 +38,8 @@ li {
 }
 
 .btn {
-	@apply border border-black rounded m-1 px-2 pt-1 pb-1.5 
-		text-white hover:text-gray-700 font-bold;
+	@apply border border-black rounded m-1 px-2 py-1.25
+		text-white hover:text-gray-700 font-bold font-action;
 }
 .btn-top {
 	@apply bg-gray-400 hover:bg-gray-200;
