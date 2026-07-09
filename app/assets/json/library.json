@@ -181,7 +181,7 @@
   },
   {
     "file": "ks-pb-r1-cs-24",
-    "name": "Strike out (S) + PB + R2 out 24, CS",
+    "name": "Strike out (S) + PB + R1 out 24, CS",
     "cat": "SO"
   },
   {
@@ -976,7 +976,7 @@
   },
   {
     "file": "pocsen-r3",
-    "name": "Pick off + Caught stealing + throwing error by P, no advance (R1)",
+    "name": "Pick off + Caught stealing + throwing error by P, no advance (R3)",
     "cat": "SB"
   },
   {
