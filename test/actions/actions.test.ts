@@ -7,7 +7,7 @@ import { compareScreenshot } from 'nuxt-spec/utils'
 import library from '../../app/assets/json/library.json' with { type: 'json' }
 
 // allowed difference in screenshot comparison (mitigating platform differences)
-const DIFF_RATIO = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VITE_TEST_DIFF_RATIO) : 0.01
+const DIFF_RATIO = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VITE_TEST_DIFF_RATIO) : 0.005
 
 // number of parallel executions (based on available CPUs)
 const WORKERS = Math.max(1, availableParallelism() / 2)
