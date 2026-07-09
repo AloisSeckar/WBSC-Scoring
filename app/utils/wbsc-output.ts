@@ -396,7 +396,7 @@ function writeSituation(action: WBSCAction) {
               offset = 16
             } else if (text1.length > 3 || (hit && text1.length > 1) || text1 === 'IBB') {
               ctx.font = FONT_BASE_MEDIUM
-              offset = 16
+              offset = 20
               if (text1 === 'IBB') {
                 // special text adjustment because of "1" number behind
                 hitOffset = -6
@@ -629,7 +629,7 @@ function writeSituation(action: WBSCAction) {
               if (text1.includes('(')) {
                 // special case for "illegal advances" (i.e. "(2)")
                 ctx.font = FONT_BASE_XL
-                offset = 20
+                offset = 25
               } else if (text1.toUpperCase().includes('WP')) {
                 // special case for WP, because letter "W" is too wide
                 ctx.font = FONT_BASE_MEDIUM
@@ -688,7 +688,11 @@ function writeSituation(action: WBSCAction) {
               ctx.font = FONT_BASE_XL
               offset = 20
             } else {
-              ctx.font = FONT_BASE_MEDIUM
+              if (out || text1.toUpperCase().includes('WP')) {
+                ctx.font = FONT_BASE_MEDIUM
+              } else {
+                ctx.font = FONT_BASE_LARGE
+              }
               offset = 14
             }
           } else if (out && text1.length > 1) {

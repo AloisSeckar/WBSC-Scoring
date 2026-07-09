@@ -81,4 +81,4 @@ export const FONT_B2_TINY = 'bold 34px "Open Sans"'
 // extra fonts
 export const FONT_EXTRA_LARGE = 'bold 72px "Open Sans"' // (blue) number of the batter
 export const FONT_EXTRA_SMALL = 'bold 44px "Open Sans"' // strikeout number indicator
-export const FONT_EXTRA_TINY = '24px "Open Sans"' // DF error + NA situations + batter indicators
+export const FONT_EXTRA_TINY = '20px "Open Sans"' // DF error + NA situations + batter indicators
