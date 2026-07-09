@@ -325,10 +325,10 @@ function writeSituation(action: WBSCAction) {
             offset = 60
           } else if (text2.length > 2 || text1.length > 2) {
             ctx.font = FONT_B1_SMALL
-            offset = 65
+            offset = 70
           } else {
             ctx.font = FONT_B1_MEDIUM
-            offset = 75
+            offset = 78
           }
           ctx.fillText(text2, w2 + hOffset, h2 + offset + vOffset)
         } else {
@@ -337,13 +337,13 @@ function writeSituation(action: WBSCAction) {
             offset = 20
           } else if (text1.length > 3) {
             ctx.font = FONT_B1_SMALL
-            offset = 26
+            offset = 32
           } else if (text1.length > 2) {
             ctx.font = FONT_B1_MEDIUM
-            offset = 34
+            offset = 37
           } else {
             ctx.font = FONT_B1_LARGE
-            offset = 42
+            offset = 52
           }
           ctx.fillText(text1, w2 + hOffset, h2 + offset + vOffset)
         }
@@ -396,7 +396,7 @@ function writeSituation(action: WBSCAction) {
               offset = 16
             } else if (text1.length > 3 || (hit && text1.length > 1) || text1 === 'IBB') {
               ctx.font = FONT_BASE_MEDIUM
-              offset = 18
+              offset = 16
               if (text1 === 'IBB') {
                 // special text adjustment because of "1" number behind
                 hitOffset = -6
@@ -407,7 +407,7 @@ function writeSituation(action: WBSCAction) {
               if (text1 === 'BB') {
                 // special text adjustment because of "1" number behind
                 hitOffset = -8
-                offset = 20
+                offset = 22
               }
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 1.5 + offset + vOffset)
@@ -516,7 +516,7 @@ function writeSituation(action: WBSCAction) {
                 // special case for "illegal advances" (i.e. "(2)")
                 ctx.font = FONT_BASE_XL
                 offset = 20
-              } else if (text1.includes('WP')) {
+              } else if (text1.toUpperCase().includes('WP')) {
                 // special case for WP, because letter "W" is too wide
                 ctx.font = FONT_BASE_MEDIUM
                 offset = 12
@@ -530,7 +530,7 @@ function writeSituation(action: WBSCAction) {
               }
             } else {
               ctx.font = FONT_BASE_XL
-              offset = 20
+              offset = 25
             }
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
@@ -595,7 +595,7 @@ function writeSituation(action: WBSCAction) {
                 ctx.font = FONT_BASE_XL
                 offset = 20
               }
-              ctx.fillText(text1, w4 + hOffset, h2 + offset + vOffset)
+              ctx.fillText(text1, w4 + hOffset - 2, h2 + offset + vOffset)
             }
           } else if (text2) {
             row1font = FONT_BASE_MEDIUM
@@ -630,7 +630,7 @@ function writeSituation(action: WBSCAction) {
                 // special case for "illegal advances" (i.e. "(2)")
                 ctx.font = FONT_BASE_XL
                 offset = 20
-              } else if (text1.includes('WP')) {
+              } else if (text1.toUpperCase().includes('WP')) {
                 // special case for WP, because letter "W" is too wide
                 ctx.font = FONT_BASE_MEDIUM
                 offset = 12
@@ -644,7 +644,7 @@ function writeSituation(action: WBSCAction) {
               }
             } else {
               ctx.font = FONT_BASE_XL
-              offset = 20
+              offset = 25
             }
             ctx.fillText(text1, w2 * 0.5 + hOffset + hitOffset, h2 * 0.5 + offset + vOffset)
           }
@@ -665,7 +665,7 @@ function writeSituation(action: WBSCAction) {
               ctx.font = FONT_BASE_TINY
             }
           }
-          ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset)
+          ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset - 4)
           offset = 32
           if (text2.length > 3) {
             ctx.font = FONT_BASE_TINY
@@ -687,17 +687,13 @@ function writeSituation(action: WBSCAction) {
               // special case for "illegal advances" (i.e. "(2)")
               ctx.font = FONT_BASE_XL
               offset = 20
-            } else if (text1.includes('WP')) {
-              // special case for WP, because letter "W" is too wide
-              ctx.font = FONT_BASE_MEDIUM
-              offset = 12
             } else {
-              ctx.font = FONT_BASE_LARGE
+              ctx.font = FONT_BASE_MEDIUM
               offset = 14
             }
           } else if (out && text1.length > 1) {
-            ctx.font = 'bold 50px "Open Sans"'
-            offset = 16
+            ctx.font = FONT_BASE_LARGE
+            offset = 18
           } else {
             ctx.font = FONT_BASE_XL
             offset = 20

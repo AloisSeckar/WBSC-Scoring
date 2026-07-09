@@ -59,26 +59,26 @@ export const h5: number = dim / 5
 // Font size+style constants to keep consistency inside the rendering func.
 
 // general subset for situations at bases
-export const FONT_BASE_XL = 'bold 56px "Open Sans"'
-export const FONT_BASE_LARGE = 'bold 44px "Open Sans"'
-export const FONT_BASE_MEDIUM = 'bold 38px "Open Sans"'
-export const FONT_BASE_SMALL = 'bold 32px "Open Sans"'
-export const FONT_BASE_TINY = 'bold 26px "Open Sans"'
+export const FONT_BASE_XL = 'bold 60px "Open Sans"'
+export const FONT_BASE_LARGE = 'bold 52px "Open Sans"'
+export const FONT_BASE_MEDIUM = 'bold 44px "Open Sans"'
+export const FONT_BASE_SMALL = 'bold 35px "Open Sans"'
+export const FONT_BASE_TINY = 'bold 30px "Open Sans"'
 
 // subset for out-situations at (before) 1st base
-export const FONT_B1_LARGE = 'bold 110px "Open Sans"'
-export const FONT_B1_MEDIUM = 'bold 90px "Open Sans"'
-export const FONT_B1_SMALL = 'bold 70px "Open Sans"'
-export const FONT_B1_TINY = 'bold 56px "Open Sans"'
+export const FONT_B1_LARGE = 'bold 138px "Open Sans"'
+export const FONT_B1_MEDIUM = 'bold 100px "Open Sans"'
+export const FONT_B1_SMALL = 'bold 84px "Open Sans"'
+export const FONT_B1_TINY = 'bold 68px "Open Sans"'
 
 // subset for out-situations at 2nd base
-export const FONT_B2_XL = 'bold 70px "Open Sans"'
-export const FONT_B2_LARGE = 'bold 56px "Open Sans"'
-export const FONT_B2_MEDIUM = 'bold 45px "Open Sans"'
-export const FONT_B2_SMALL = 'bold 36px "Open Sans"'
-export const FONT_B2_TINY = 'bold 27px "Open Sans"'
+export const FONT_B2_XL = 'bold 80px "Open Sans"'
+export const FONT_B2_LARGE = 'bold 64px "Open Sans"'
+export const FONT_B2_MEDIUM = 'bold 50px "Open Sans"'
+export const FONT_B2_SMALL = 'bold 42px "Open Sans"'
+export const FONT_B2_TINY = 'bold 34px "Open Sans"'
 
 // extra fonts
-export const FONT_EXTRA_LARGE = 'bold 60px "Open Sans"' // (blue) number of the batter
-export const FONT_EXTRA_SMALL = 'bold 40px "Open Sans"' // strikeout number indicator
-export const FONT_EXTRA_TINY = '22px "Open Sans"' // DF error + NA situations + batter indicators
+export const FONT_EXTRA_LARGE = 'bold 72px "Open Sans"' // (blue) number of the batter
+export const FONT_EXTRA_SMALL = 'bold 44px "Open Sans"' // strikeout number indicator
+export const FONT_EXTRA_TINY = '24px "Open Sans"' // DF error + NA situations + batter indicators
