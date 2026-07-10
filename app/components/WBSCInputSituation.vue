@@ -23,7 +23,7 @@
       </div>
       <div v-show="runTypeVisible" :id="group + inputRuntype + '-box'" class="inline-block">
         <label :for="group + inputRuntype" class="mx-1">{{ useT('editor.run') + ':' }}</label>
-        <select :id="group + inputRuntype" v-model="model.runtype">
+        <select :id="group + inputRuntype" v-model="model.runtype" class="bg-white">
           <option v-for="opt in runTypeOptions" :key="opt.value" :value="opt.value">
             {{ opt.label }}
           </option>
