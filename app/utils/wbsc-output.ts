@@ -488,8 +488,10 @@ function writeSituation(action: WBSCAction) {
             row1offset = 8
             if (text1.length > 4) {
               row1font = FONT_BASE_TINY
+            } else if (text1.length > 2) {
+              row1font = FONT_BASE_SMALL
             }
-            row2font = FONT_BASE_MEDIUM
+            row2font = row1font
             row2offset = 30
             if (text2.length > 4) {
               row1offset = 3
@@ -500,6 +502,13 @@ function writeSituation(action: WBSCAction) {
               row2offset = 28
               row2font = FONT_BASE_SMALL
             }
+            // special case - POACS
+            if (text1 === 'POACS') {
+              row1offset = 4
+              row2font = FONT_BASE_SMALL
+              row2offset = 30
+            }
+            //
             ctx.font = row1font
             ctx.fillText(text1, w2 * 1.5 + hOffset + hitOffset, h2 * 0.5 - row1offset + vOffset)
             ctx.font = row2font
@@ -602,8 +611,10 @@ function writeSituation(action: WBSCAction) {
             row1offset = 8
             if (text1.length > 4) {
               row1font = FONT_BASE_TINY
+            } else if (text1.length > 2) {
+              row1font = FONT_BASE_SMALL
             }
-            row2font = FONT_BASE_MEDIUM
+            row2font = row1font
             row2offset = 30
             if (text2.length > 4) {
               row1offset = 3
@@ -614,6 +625,14 @@ function writeSituation(action: WBSCAction) {
               row2offset = 28
               row2font = FONT_BASE_SMALL
             }
+            // special case - POACS
+            console.log(text1)
+            if (text1 === 'POACS') {
+              row1offset = 4
+              row2font = FONT_BASE_SMALL
+              row2offset = 30
+            }
+            //
             ctx.font = row1font
             ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 0.5 - row1offset + vOffset)
             ctx.font = row2font
@@ -663,6 +682,8 @@ function writeSituation(action: WBSCAction) {
             ctx.font = FONT_BASE_MEDIUM
             if (text1.length > 4) {
               ctx.font = FONT_BASE_TINY
+            } else if (text1.length > 2) {
+              ctx.font = FONT_BASE_SMALL
             }
           }
           ctx.fillText(text1, w2 * 0.5 + hOffset, h2 * 1.5 + vOffset - 4)
