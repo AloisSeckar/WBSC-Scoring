@@ -931,7 +931,7 @@ function connectConcurrentPlaysIfNeeded() {
       const end = plays[i + 1]
 
       if (start && end) {
-      // two outs are already connected
+        // two outs are already connected
         if (start.out === false || end.out === false) {
           const hOffset = useCanvasStore().hOffset
           const lineHOffset = 30
@@ -967,7 +967,7 @@ function connectConcurrentPlaysIfNeeded() {
                     if (end.out === true) {
                       endY = h2 / 2 + vOffsetEnd
                     } else {
-                      endY = 25 + vOffsetEnd
+                      endY = 22 + vOffsetEnd
                     }
                   }
                   break
@@ -978,6 +978,11 @@ function connectConcurrentPlaysIfNeeded() {
                     endY = 20 + vOffsetEnd
                   } else {
                     startX = hOffset + (h2 - lineHOffset)
+                    if (start.out) {
+                      // avoid touching out circle
+                      startX += 12
+                      startY -= 1
+                    }
                     endX = hOffset + h2 + lineHOffset
                     endY = 25 + vOffsetEnd
                   }
@@ -986,7 +991,7 @@ function connectConcurrentPlaysIfNeeded() {
                   startX = hOffset + (w2 - 15)
                   startY = h1 - 25 + vOffsetStart
                   endX = hOffset + (w1 - w2 / 2)
-                  endY = h2 + 10 + vOffsetEnd
+                  endY = h2 + 18 + vOffsetEnd
                   break
                 case 0:
                   startX = endX = hOffset + 15 + lineHOffset
@@ -1020,7 +1025,7 @@ function connectConcurrentPlaysIfNeeded() {
                     startX = hOffset + (w2 / 2)
                   }
                   endX = hOffset + (w1 - w2 / 2)
-                  endY = h2 + 10 + vOffsetEnd
+                  endY = h2 + 18 + vOffsetEnd
                   break
                 case 0:
                   startX = endX = hOffset + 15 + lineHOffset
@@ -1042,7 +1047,7 @@ function connectConcurrentPlaysIfNeeded() {
               switch (end.base) {
                 case 1:
                   endX = hOffset + (w1 - w2 / 2)
-                  endY = h2 + 10 + vOffsetEnd
+                  endY = h2 + 18 + vOffsetEnd
                   break
                 case 0:
                   endX = hOffset + (h1 - lineHOffset)
@@ -1052,8 +1057,8 @@ function connectConcurrentPlaysIfNeeded() {
               break
           }
 
-          drawArrow(startX, startY, endX, endY, 6)
-          drawArrow(endX, endY, startX, startY, 6)
+          drawArrow(startX, startY, endX, endY, 5)
+          drawArrow(endX, endY, startX, startY, 5)
         }
       }
     }
