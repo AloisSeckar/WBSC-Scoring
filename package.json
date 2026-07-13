@@ -17,5 +17,5 @@
   "devDependencies": {
     "nuxt-ignis": "0.6.0"
   },
-  "packageManager": "pnpm@11.9.0"
+  "packageManager": "pnpm@11.12.0"
 }

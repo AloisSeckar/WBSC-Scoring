@@ -28,4 +28,4 @@ overrides:
   # GHSA-g7r4-m6w7-qqqr & GHSA-gv7w-rqvm-qjhr
   'esbuild': '^0.28.1'
   # testing latest features
-  'nuxt-spec': '0.2.4'
+  'nuxt-spec': '0.3.0-alpha'
