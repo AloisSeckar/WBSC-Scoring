@@ -13,6 +13,7 @@ const perProjectConfig = args.includes('--project')
 const validations = !perProjectConfig || args.includes('validations')
 const actions = !perProjectConfig || args.includes('actions')
 const screenshots = !perProjectConfig || args.includes('screenshots')
+const suite = actions ? 'actions' : screenshots ? 'screenshots' : 'validations'
 
 // tests of input-validation functions
 // currently require Nuxt env due to reliance on Nuxt composables
@@ -58,5 +59,7 @@ if (screenshots) {
 export default loadVitestConfig({
   test: {
     projects,
+    reporters: process.env.GITHUB_ACTIONS ? ['default', 'github-actions', 'junit'] : ['default', 'junit'],
+    outputFile: { junit: `test/${suite}/__current__/junit.xml` },
   },
 }, false)

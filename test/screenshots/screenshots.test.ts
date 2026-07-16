@@ -18,6 +18,11 @@ describe(`pages render correctly in different resolutions`, async () => {
     rootDir: fileURLToPath(new URL(`../..`, import.meta.url)),
     server: true,
     dev: true,
+    browserOptions: {
+      type: 'chromium',
+      // --no-sandbox is required in CI (because Chromium runs under root there)
+      launch: process.env.CHROMIUM_SANDBOX_DISABLED ? { args: ['--no-sandbox'] } : {},
+    },
   })
 
   test.concurrent.each(SCREENS)(

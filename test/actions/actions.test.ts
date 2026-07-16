@@ -23,6 +23,11 @@ describe(`actions from library render correctly`, async () => {
     rootDir: fileURLToPath(new URL(`../..`, import.meta.url)),
     server: true,
     dev: true,
+    browserOptions: {
+      type: 'chromium',
+      // --no-sandbox is required in CI (because Chromium runs under root there)
+      launch: process.env.CHROMIUM_SANDBOX_DISABLED ? { args: ['--no-sandbox'] } : {},
+    },
   })
 
   test.concurrent.each(chunks.map((entries, i) => ({ entries, group: i + 1 })))(
