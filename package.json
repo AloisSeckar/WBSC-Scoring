@@ -12,7 +12,8 @@
     "test": "pnpm test-validations && pnpm test-actions && pnpm test-screenshots",
     "test-actions": "vitest run --project actions",
     "test-screenshots": "vitest run --project screenshots",
-    "test-validations": "vitest run --project validations"
+    "test-validations": "vitest run --project validations",
+    "test-update": "vitest run --project actions --project screenshots -u"
   },
   "devDependencies": {
     "nuxt-ignis": "0.6.0"

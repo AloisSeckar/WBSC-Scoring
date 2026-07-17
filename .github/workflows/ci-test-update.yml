@@ -1,0 +1,63 @@
+# Manually triggered to update test baselines.
+# Runs in the same pinned Playwright container as "verify" phase.
+# The results are committed back to the branch it was dispatched.
+
+name: CI Tests (update baselines)
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-test-update-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    container:
+      # update when `playwright` dependency changes
+      image: mcr.microsoft.com/playwright:v1.60.0-jammy
+    env:
+      # --no-sandbox option for Chromium due to execution by container root
+      CHROMIUM_SANDBOX_DISABLED: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Enable pnpm via corepack
+        run: corepack enable
+
+      - name: Resolve pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pnpm store cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Regenerate visual baselines
+        run: pnpm test-update
+
+      - name: Commit and push updated baselines
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add test/actions/__baseline__ test/screenshots/__baseline__
+          if git diff --cached --quiet; then
+            echo "No baseline changes to commit."
+          else
+            git commit -m "chore(test): update visual baselines"
+            git push origin HEAD:${{ github.ref_name }}
+          fi

@@ -32,6 +32,51 @@ NUXT_PUBLIC_IGNIS_PSLO_ENABLED=true
 NUXT_PUBLIC_IGNIS_PSLO_CONTENT=true
 ```
 
+## Testing
+The test suite is built on [Vitest](https://vitest.dev/) and split into three projects:
+
+- `validations` – pure unit tests for input-validation logic (environment-independent)
+- `actions` – visual regression: renders every action from the library and compares the canvas against a stored baseline
+- `screenshots` – visual regression: compares whole pages against stored baselines in several viewports
+
+Run everything locally with:
+
+```
+pnpm test
+```
+
+or a single project with `pnpm test-validations`, `pnpm test-actions`, `pnpm test-screenshots`.
+
+### Visual regression baselines
+The `actions` and `screenshots` projects compare rendered PNGs against committed baselines
+(`test/actions/__baseline__/` and `test/screenshots/__baseline__/`). Rendering differs slightly
+between operating systems, so these baselines **cannot be reliably verified on a local machine** –
+they are owned by CI, which runs the tests in a pinned Playwright container for reproducible pixels.
+
+Two GitHub Actions workflows manage this:
+
+- **Visual Regression (verify)** – runs automatically on pull requests to `main` (and can be
+  triggered manually). It runs the full suite read-only and never writes back. When any test
+  fails, it uploads the `ci-test-report` artifact containing a JUnit report per suite plus the
+  current screenshots and a self-contained HTML diff report to inspect.
+- **Visual Regression (update baselines)** – triggered manually (`workflow_dispatch`) from the
+  Actions tab. It regenerates the baselines in the same container (`pnpm test-update`) and commits
+  them back to the branch it was dispatched on.
+
+Typical workflow when a change affects rendering:
+
+1. Make the UI changes on a feature branch and open a pull request.
+2. **verify** runs and reports pass/fail, with downloadable diffs for any mismatch.
+3. If the differences are intentional, run **update baselines** on the feature branch. It commits
+   fresh baselines, which re-triggers **verify** on the pull request – it should now pass.
+4. Merge.
+
+> First-time setup: because the initial baselines were generated on a different OS, run
+> **update baselines** once to re-generate them on CI before relying on **verify**.
+
+The Playwright container image is pinned to the installed `playwright` version in both workflow
+files – keep it in sync when upgrading the dependency.
+
 ## TO-DO list (to be implemented in next few releases)
 - More input validations
 - Deeper refactoring after switching to Nuxt 3

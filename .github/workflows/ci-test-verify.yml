@@ -1,0 +1,62 @@
+# Runs test suite in a pinned Playwright container for reproducible results.
+# Triggered automatically on pull requests to main with possible manual dispatch.
+# If tests fail, `ci-test-report` artifact is uploaded so results can be inspected.
+
+name: CI Tests (verify)
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-test-verify-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    container:
+      # update when `playwright` dependency changes
+      image: mcr.microsoft.com/playwright:v1.60.0-jammy
+    env:
+      # --no-sandbox option for Chromium due to execution by container root
+      CHROMIUM_SANDBOX_DISABLED: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Enable pnpm via corepack
+        run: corepack enable
+
+      - name: Resolve pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pnpm store cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ci-test-report
+          path: |
+            test/validations/__current__
+            test/actions/__current__
+            test/screenshots/__current__
+          if-no-files-found: ignore
+          retention-days: 14
