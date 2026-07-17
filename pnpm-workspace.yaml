@@ -29,3 +29,6 @@ overrides:
   'esbuild': '^0.28.1'
   # testing latest features
   'nuxt-spec': '0.3.0-alpha'
+  # ensure Playwright stability in CI
+  'playwright': '1.60.0'
+  'playwright-core': '1.60.0'
