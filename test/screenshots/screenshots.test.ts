@@ -30,9 +30,11 @@ describe(`pages render correctly in different resolutions`, async () => {
     async ({ name, width, height }) => {
       const page = await createPage(undefined, { viewport: { width, height }, deviceScaleFactor: 1 })
 
+      const baseUrl = url('/')
+
       // display index page
       console.log(`[viewport ${name}] running test for \`index\``)
-      await page.goto(url('/'), { waitUntil: 'hydration' })
+      await page.goto(baseUrl, { waitUntil: 'hydration' })
       await page.waitForSelector('#canvas', { state: 'visible' })
       const testIndex = await compareScreenshot(page, {
         fileName: `page-index-${name}.png`,
@@ -43,7 +45,7 @@ describe(`pages render correctly in different resolutions`, async () => {
 
       // display project page
       console.log(`[viewport ${name}] running test for \`project\``)
-      await page.goto(url('/project'), { waitUntil: 'hydration' })
+      await page.goto(baseUrl + 'project', { waitUntil: 'hydration' })
       await page.waitForSelector('#project-description', { state: 'visible' })
       const testProject = await compareScreenshot(page, {
         fileName: `page-project-${name}.png`,
@@ -54,7 +56,7 @@ describe(`pages render correctly in different resolutions`, async () => {
 
       // display help page
       console.log(`[viewport ${name}] running test for \`help\``)
-      await page.goto(url('/help'), { waitUntil: 'hydration' })
+      await page.goto(baseUrl + 'help', { waitUntil: 'hydration' })
       await page.waitForSelector('#using-the-program', { state: 'visible' })
       const testHelp = await compareScreenshot(page, {
         fileName: `page-help-${name}.png`,
@@ -65,7 +67,7 @@ describe(`pages render correctly in different resolutions`, async () => {
 
       // display report page
       console.log(`[viewport ${name}] running test for \`report\``)
-      await page.goto(url('/report'), { waitUntil: 'hydration' })
+      await page.goto(baseUrl + 'report', { waitUntil: 'hydration' })
       await page.waitForSelector('#reporting-bugs', { state: 'visible' })
       const testReport = await compareScreenshot(page, {
         fileName: `page-report-${name}.png`,
