@@ -25,7 +25,7 @@ describe(`pages render correctly in different resolutions`, async () => {
     },
   })
 
-  test.concurrent.each(SCREENS)(
+  test.each(SCREENS)(
     'viewport $name renders correctly',
     async ({ name, width, height }) => {
       const page = await createPage(undefined, { viewport: { width, height }, deviceScaleFactor: 1 })

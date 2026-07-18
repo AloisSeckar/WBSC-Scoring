@@ -10,7 +10,7 @@ import library from '../../app/assets/json/library.json' with { type: 'json' }
 const DIFF_RATIO = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VITE_TEST_DIFF_RATIO) : 0
 
 // number of parallel executions (based on available CPUs)
-const WORKERS = Math.max(1, availableParallelism() / 2)
+const WORKERS = 1 /* Math.max(1, availableParallelism() / 2) */
 
 // chunked content of library.json data file
 const chunkSize = Math.ceil(library.length / WORKERS)
