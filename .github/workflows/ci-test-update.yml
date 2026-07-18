@@ -13,6 +13,7 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update:
@@ -49,15 +50,60 @@ jobs:
       - name: Regenerate visual baselines
         run: pnpm test-update
 
-      - name: Commit and push updated baselines
+      - name: Commit updated baselines
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          REF_NAME: ${{ github.ref_name }}
+          RUN_NUMBER: ${{ github.run_number }}
         run: |
+          set -euo pipefail
+
+          command -v jq >/dev/null || { apt-get update && apt-get install -y jq; }
+
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add test/actions/__baseline__ test/screenshots/__baseline__
           if git diff --cached --quiet; then
             echo "No baseline changes to commit."
+            exit 0
+          fi
+
+          # Check if the current branch is protected before committing
+          HTTP_CODE=$(curl -sS -o branch.json -w '%{http_code}' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/branches/$REF_NAME")
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Failed to query branch protection (HTTP $HTTP_CODE):"
+            cat branch.json
+            exit 1
+          fi
+
+          git commit -m "chore(test): update visual baselines"
+
+          if jq -e '.protected == true' branch.json >/dev/null; then
+            echo "Branch '$REF_NAME' is protected - creating PR..."
+            NEW_BRANCH="ci-test/update-$(date +%Y%m%d%H%M%S)"
+            git checkout -b "$NEW_BRANCH"
+            git push origin "$NEW_BRANCH"
+            BODY=$(jq -n \
+              --arg head "$NEW_BRANCH" \
+              --arg base "$REF_NAME" \
+              --arg run "$RUN_NUMBER" \
+              '{title: "chore(test): update visual baselines",
+                head: $head,
+                base: $base,
+                body: "Automated baseline update triggered on run #\($run) against protected branch `\($base)`."}')
+            curl -sS -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Content-Type: application/json" \
+              -d "$BODY" \
+              --fail-with-body \
+              "https://api.github.com/repos/$REPO/pulls"
           else
-            git commit -m "chore(test): update visual baselines"
-            git push origin HEAD:${{ github.ref_name }}
+            echo "Branch '$REF_NAME' is not protected - pushing directly..."
+            git push origin "HEAD:$REF_NAME"
           fi
