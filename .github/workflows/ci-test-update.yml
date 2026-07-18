@@ -81,7 +81,7 @@ jobs:
             exit 1
           fi
 
-          git commit -m "chore(test): update visual baselines"
+          git commit -m "test(ci): update visual baselines"
 
           if jq -e '.protected == true' branch.json >/dev/null; then
             echo "Branch '$REF_NAME' is protected - creating PR..."
@@ -92,10 +92,10 @@ jobs:
               --arg head "$NEW_BRANCH" \
               --arg base "$REF_NAME" \
               --arg run "$RUN_NUMBER" \
-              '{title: "chore(test): update visual baselines",
+              '{title: "test(ci): update visual baselines",
                 head: $head,
                 base: $base,
-                body: "Automated baseline update triggered on run #\($run) against protected branch `\($base)`."}')
+                body: "Baseline images for Visual Regression Testing update triggered on run #\($run) against protected branch `\($base)`."}')
             curl -sS -X POST \
               -H "Authorization: Bearer $GH_TOKEN" \
               -H "Accept: application/vnd.github+json" \
