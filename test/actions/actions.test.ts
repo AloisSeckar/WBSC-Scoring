@@ -1,4 +1,3 @@
-import { availableParallelism } from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, test } from 'vitest'
 import type { NuxtPage } from '@nuxt/test-utils/e2e'
@@ -8,15 +7,6 @@ import library from '../../app/assets/json/library.json' with { type: 'json' }
 
 // allowed difference in screenshot comparison (mitigating platform differences)
 const DIFF_RATIO = process.env.VITE_TEST_DIFF_RATIO ? parseFloat(process.env.VITE_TEST_DIFF_RATIO) : 0
-
-// number of parallel executions (based on available CPUs)
-const WORKERS = 1 /* Math.max(1, availableParallelism() / 2) */
-
-// chunked content of library.json data file
-const chunkSize = Math.ceil(library.length / WORKERS)
-const chunks = Array.from({ length: WORKERS }, (_, i) =>
-  library.slice(i * chunkSize, (i + 1) * chunkSize),
-).filter(c => c.length > 0)
 
 describe(`actions from library render correctly`, async () => {
   await setup({
@@ -30,34 +20,30 @@ describe(`actions from library render correctly`, async () => {
     },
   })
 
-  test.concurrent.each(chunks.map((entries, i) => ({ entries, group: i + 1 })))(
-    'group $group renders correctly',
-    async ({ entries, group }) => {
-      const page = await createPage(undefined, { viewport: { width: 999, height: 2300 }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
-      await page.goto(url('/'))
-      const failed: string[] = []
-      try {
-        for (const { file } of entries) {
-          try {
-            console.log(`[group ${group}] running test for \`${file}\``)
-            await withTimeout(doAction(page, file), 15000, file)
-          }
-          catch (e) {
-            failed.push(`${e instanceof Error ? e.message : e}`)
-            // reset page state so subsequent actions can still run
-            await page.goto(url('/'), {}).catch(() => {})
-          }
+  test('all library actions render correctly', async () => {
+    const page = await createPage(undefined, { viewport: { width: 999, height: 2300 }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
+    await page.goto(url('/'))
+    const failed: string[] = []
+    try {
+      for (const { file } of library) {
+        try {
+          console.log(`running test for \`${file}\``)
+          await withTimeout(doAction(page, file), 15000, file)
+        }
+        catch (e) {
+          failed.push(`${e instanceof Error ? e.message : e}`)
+          // reset page state so subsequent actions can still run
+          await page.goto(url('/'), {}).catch(() => {})
         }
       }
-      finally {
-        await page.context().close()
-      }
-      if (failed.length > 0) {
-        throw new Error(`${failed.length} action(s) failed:\n${failed.join('\n')}`)
-      }
-    },
-    1000 * 60 * 5,
-  )
+    }
+    finally {
+      await page.context().close()
+    }
+    if (failed.length > 0) {
+      throw new Error(`${failed.length} action(s) failed:\n${failed.join('\n')}`)
+    }
+  }, 1000 * 60 * 5)
 })
 
 async function doAction(page: NuxtPage, action: string) {

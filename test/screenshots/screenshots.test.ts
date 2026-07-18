@@ -25,9 +25,8 @@ describe(`pages render correctly in different resolutions`, async () => {
     },
   })
 
-  test.each(SCREENS)(
-    'viewport $name renders correctly',
-    async ({ name, width, height }) => {
+  for (const { name, width, height } of SCREENS) {
+    test(`viewport ${name} renders correctly`, async () => {
       const page = await createPage(undefined, { viewport: { width, height }, deviceScaleFactor: 1 })
 
       const baseUrl = url('/')
@@ -75,7 +74,6 @@ describe(`pages render correctly in different resolutions`, async () => {
         maxDiffPixelRatio: diffRatio,
       })
       expect(testReport).toEqual(true)
-    },
-    1000 * 60 * 5,
-  )
+    }, 1000 * 60 * 5)
+  }
 })
