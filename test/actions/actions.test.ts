@@ -33,7 +33,7 @@ describe(`actions from library render correctly`, async () => {
   test.concurrent.each(chunks.map((entries, i) => ({ entries, group: i + 1 })))(
     'group $group renders correctly',
     async ({ entries, group }) => {
-      const page = await createPage(undefined, { viewport: { width: 999, height: 2300 }, deviceScaleFactor: 1 })
+      const page = await createPage(undefined, { viewport: { width: 999, height: 2300 }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
       await page.goto(url('/'))
       const failed: string[] = []
       try {
@@ -70,8 +70,8 @@ async function doAction(page: NuxtPage, action: string) {
   // select (and wait for generate action)
   await page.waitForSelector('#lib-select')
   await page.click('#lib-select')
-  // wait for modal overlay to fade
-  await new Promise(resolve => setTimeout(resolve, 400))
+  // wait for modal overlay to leave viewport
+  await page.waitForSelector('.modal-overlay', { state: 'hidden' })
   // test screenshot
   expect(await compareScreenshot(page, { fileName: `action-${action}.png`, targetDir: 'test/actions', selector: '#canvas', maxDiffPixelRatio: DIFF_RATIO })).toEqual(true)
 }

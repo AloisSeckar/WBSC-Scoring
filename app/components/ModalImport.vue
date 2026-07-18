@@ -84,4 +84,12 @@ function close() {
 .modal-fade-leave-active {
     transition: opacity 0.5s ease;
 }
+
+/* allows skipping transitions in CI tests */
+@media (prefers-reduced-motion: reduce) {
+    .modal-fade-enter-active,
+    .modal-fade-leave-active {
+        transition: none;
+    }
+}
 </style>
