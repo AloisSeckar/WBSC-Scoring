@@ -1,12 +1,14 @@
 # Runs test suite in a pinned Playwright container for reproducible results.
-# Triggered automatically on push/pull requests to master with possible manual dispatch.
+# Triggered automatically on push/pull requests to master with possible manual dispatch. When triggered by push, it waits for the `ci-cache-pnpm` workflow.
 # If tests fail, `ci-test-report` artifact is uploaded so results can be inspected.
 
 name: CI Tests (verify)
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI Cache pnpm (store)"]
     branches: [master]
+    types: [completed]
   pull_request:
     branches: [master]
   workflow_dispatch:

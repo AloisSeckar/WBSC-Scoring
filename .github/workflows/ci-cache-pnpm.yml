@@ -1,4 +1,5 @@
-# Populates the shared pnpm store cache on main to speed up CI runs.
+# Populates the shared pnpm store cache on master to speed up CI runs.
+# Triggered automatically on push to master with possible manual dispatch.
 # The cache is shared across all workflows.
 
 name: CI Cache pnpm (store)
