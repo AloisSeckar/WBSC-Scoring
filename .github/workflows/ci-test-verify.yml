@@ -1,14 +1,13 @@
 # Runs test suite in a pinned Playwright container for reproducible results.
-# Triggered automatically on push/pull requests to master with possible manual dispatch. When triggered by push, it waits for the `ci-cache-pnpm` workflow.
+# Triggered automatically on push/pull requests to master with possible manual dispatch.
+# The pnpm store is cached so subsequent `pnpm install` runs reuse downloaded deps.
 # If tests fail, `ci-test-report` artifact is uploaded so results can be inspected.
 
 name: CI Tests (verify)
 
 on:
-  workflow_run:
-    workflows: ["CI Cache pnpm (store)"]
+  push:
     branches: [master]
-    types: [completed]
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -40,8 +39,8 @@ jobs:
         id: pnpm-store
         run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
 
-      - name: Restore pnpm store cache
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      - name: Cache pnpm store
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.pnpm-store.outputs.path }}
           key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
@@ -49,6 +48,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Prune pnpm store
+        run: pnpm store prune
 
       - name: Run tests
         run: pnpm test
