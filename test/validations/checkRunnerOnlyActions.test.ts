@@ -84,6 +84,39 @@ test('validation should pass - BB + WP is possible', () => {
   expect(checkRunnerOnlyActions([r2Input, r1Input, bInput])).toBe('')
 })
 
+test('validation should pass - BB + WP + e2t is possible', () => {
+  const bInput = createMockAction({
+    group: 'input-b',
+    baseAction: 'Advance',
+    specAction: 'BB1',
+  })
+  const r1Input = createMockAction({
+    group: 'input-r1',
+    baseAction: 'exb',
+    specAction: 'WP',
+  })
+  const r2Input = createMockAction({
+    group: 'input-r1a',
+    baseAction: 'err',
+    specAction: 'eT',
+  })
+  expect(checkRunnerOnlyActions([r2Input, r1Input, bInput])).toBe('')
+})
+
+test('validation should fail - BB + PO is impossible', () => {
+  const bInput = createMockAction({
+    group: 'input-b',
+    baseAction: 'Advance',
+    specAction: 'BB1',
+  })
+  const r1Input = createMockAction({
+    group: 'input-r1',
+    baseAction: 'ste',
+    specAction: 'PO',
+  })
+  expect(checkRunnerOnlyActions([r1Input, bInput])).toBe(useT('editor.validation.runnerOnlyAction'))
+})
+
 test('validation should pass - KS + PB is possible', () => {
   const bInput = createMockAction({
     group: 'input-b',

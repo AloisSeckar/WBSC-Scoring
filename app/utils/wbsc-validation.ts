@@ -120,6 +120,7 @@ export function checkPosSelection(selection: string) {
 
 // #204 - check runners-only actions
 export function checkRunnerOnlyActions(actions: WBSCAction[]) {
+  console.warn(actions)
   // basically it is not allowed to combine batter + runner-only action
   const batterAction = actions.some(i => i.group === inputB)
   let invalidCombination = batterAction && actions.some(i => runnersOnlyActions.includes(i.specAction))
@@ -131,7 +132,8 @@ export function checkRunnerOnlyActions(actions: WBSCAction[]) {
     const runnerActions = actions.filter(i => i.group.startsWith('input-r'))
     if (batterSpecAction === 'BB1') {
       // exception 1 - BB + WP/PB is possible
-      invalidCombination = runnerActions.some(i => !['ADV', 'WP', 'PB'].includes(i.specAction))
+      // #302 - subsequent situation (as an error) must be allowed
+      invalidCombination = runnerActions.some(i => firstRunnerActions.includes(i.group) && !['ADV', 'WP', 'PB'].includes(i.specAction))
     } else if (batterSpecAction.startsWith('KS') || batterSpecAction.startsWith('KL')) {
       // exception 2 - KS/KL - only BK/IP is impossible
       invalidCombination = runnerActions.some(i => ['BK', 'IP'].includes(i.specAction))
