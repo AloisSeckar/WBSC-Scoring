@@ -1,12 +1,14 @@
 # Runs test suite in a pinned Playwright container for reproducible results.
-# Triggered automatically on pull requests to main with possible manual dispatch.
+# Triggered automatically on push/pull requests to master with possible manual dispatch.
 # If tests fail, `ci-test-report` artifact is uploaded so results can be inspected.
 
 name: CI Tests (verify)
 
 on:
+  push:
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 concurrency:
