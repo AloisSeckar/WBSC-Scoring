@@ -20,6 +20,11 @@
     "cat": "GO"
   },
   {
+    "file": "out-r1-234",
+    "name": "Ground out - R1 out 234 at 2B",
+    "cat": "GO"
+  },
+  {
     "file": "out-f4",
     "name": "Fly out - 2B",
     "cat": "FO"
@@ -280,6 +285,11 @@
     "cat": "H"
   },
   {
+    "file": "2b-9-92-r3-425",
+    "name": "Double to 9 + out 92 at 3rd + R3 out 425 at HP",
+    "cat": "H"
+  },
+  {
     "file": "3b-rc",
     "name": "Triple to right center",
     "cat": "H"
@@ -332,6 +342,11 @@
   {
     "file": "bb-wp-r3-hp",
     "name": "Base on balls + R2 to 3rd on WP, R3 scores on WP",
+    "cat": "A"
+  },
+  {
+    "file": "bb-pb-r2-e2t",
+    "name": "Base on balls + R2 to 3rd on PB, R3 scores on e2T",
     "cat": "A"
   },
   {
@@ -705,6 +720,11 @@
     "cat": "DP"
   },
   {
+    "file": "gdp-323",
+    "name": "Grounded into DP - 1B to C to 1B (R3);",
+    "cat": "DP"
+  },
+  {
     "file": "gdp-543-tp",
     "name": "Grounded into DP - 3B to 2B to 1B, TP",
     "cat": "DP"
@@ -867,6 +887,11 @@
   {
     "file": "sb-e2t",
     "name": "Stolen base + throwing error by C",
+    "cat": "SB"
+  },
+  {
+    "file": "sb-e2t-r2",
+    "name": "Stolen base + throwing error by C, R2 scores on e2T",
     "cat": "SB"
   },
   {
