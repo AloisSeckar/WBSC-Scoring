@@ -265,6 +265,11 @@
     "cat": "H"
   },
   {
+    "file": "1b-1b-r2-168-r3-t64",
+    "name": "Single to 1B + R2 out 168 at 3rd + R3 to HP on throw",
+    "cat": "H"
+  },
+  {
     "file": "1b-9-r2-hp-tie",
     "name": "Single to RF + R2 scores (tiebreak)",
     "cat": "H"
@@ -587,6 +592,16 @@
   {
     "file": "1b-7-e7-r2-hp",
     "name": "Single to LF + extra base fielding error, R2 scores",
+    "cat": "E"
+  },
+  {
+    "file": "1b-5b-364-r1-e5t",
+    "name": "Single to 3B, bunt + 364 out, R1 to 3rd on e5T",
+    "cat": "E"
+  },
+  {
+    "file": "1b-ls-e5-r1-e7t-r2-e7",
+    "name": "Single to LS + e5 to 2nd, R1 to 3rd on e7T, R2 scores on e7",
     "cat": "E"
   },
   {
