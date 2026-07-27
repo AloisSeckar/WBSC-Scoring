@@ -5,7 +5,7 @@
 
 // triggered when user selects from 'specific' action
 // returns true, if action cannot be followed by another (= must be last)
-function changeSpecificAction(specAction: string, inputGroup: string) {
+export function changeSpecificAction(specAction: string, inputGroup: string) {
   if (inputGroup === inputB) {
     return changeBatterSpecificAction(specAction)
   } else {
@@ -235,7 +235,7 @@ function changeRunnerSpecificAction(specAction: string, inputGroup: string) {
 // enhance user's input with output instructions
 // incoming data object is modified within this method
 // (makes more sense than cloning and returning a new copy)
-function processInput(data: WBSCAction) {
+export function processInput(data: WBSCAction) {
   data.targetBase = data.base
   data.outputBase = data.base
 
@@ -653,8 +653,4 @@ function processInput(data: WBSCAction) {
       text1: data.text1,
     })
   }
-}
-
-export {
-  changeBaseAction, changeSpecificAction, changeBase, processInput,
 }

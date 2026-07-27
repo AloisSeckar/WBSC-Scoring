@@ -5,7 +5,7 @@
 
 // triggered when user hits 'generate action'
 // get current inputs, process them and display the output
-function processAction() {
+export function processAction() {
   log.info('Getting input')
 
   const inputStore = useInputStore()
@@ -514,10 +514,4 @@ function connectSpecialCases(actions: WBSCAction[]) {
       })
     }
   }
-}
-
-// helper for deter
-
-export {
-  processAction,
 }

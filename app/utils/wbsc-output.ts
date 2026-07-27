@@ -8,7 +8,7 @@
 //   clear - true, if previous content should be ereased
 //   action - main action (B, R1, R2, R3) to be displayed
 //   extraActions - possible extra outputs
-function renderAction(battingOrder: number, clear: boolean, action: WBSCAction, extraActions?: WBSCAction[]) {
+export function renderAction(battingOrder: number, clear: boolean, action: WBSCAction, extraActions?: WBSCAction[]) {
   if (clear) {
     drawBackground(battingOrder)
   }
@@ -67,7 +67,7 @@ function renderOut(action: WBSCAction) {
 
 // prepare empty scoresheet element (blue square)
 //   battingOrder - number displayed at the left side (1-4)
-function drawBackground(battingOrder: number) {
+export function drawBackground(battingOrder: number) {
   const ctx = useCanvasStore().ctx
   if (ctx) {
     const hOffset = useCanvasStore().hOffset
@@ -828,7 +828,7 @@ function writeBatterIndicator(base: number) {
 // processed AFTER all sitations were rendered
 // if plays result into more than one out
 // out circles has to be connected together to mark down double (triple) play
-function connectOutsIfNeeded() {
+export function connectOutsIfNeeded() {
   if (useEvalStore().outs.length > 1) {
     for (let i = 0; i < useEvalStore().outs.length - 1; i += 1) {
       const start = useEvalStore().outs[i]
@@ -923,7 +923,7 @@ function connectOutsIfNeeded() {
 // if play contains 2 or more actions that has to be marked as "concurrent"
 // (e.g. KS+SB, BB+WP or SB+SB)
 // we need to link them with double-sided arrow connector
-function connectConcurrentPlaysIfNeeded() {
+export function connectConcurrentPlaysIfNeeded() {
   if (useEvalStore().concurrentPlays.length > 1) {
     const plays = useEvalStore().concurrentPlays.sort((a, b) => a.batter - b.batter)
     for (let i = 0; i < plays.length - 1; i += 1) {
@@ -1221,8 +1221,4 @@ function drawGDPMarker() {
     ctx.lineTo(w2 * 0.5 + 22 + hOffset, h2 + 33 + vOffset)
     ctx.stroke()
   }
-}
-
-export {
-  drawBackground, renderAction, connectOutsIfNeeded, connectConcurrentPlaysIfNeeded,
 }
