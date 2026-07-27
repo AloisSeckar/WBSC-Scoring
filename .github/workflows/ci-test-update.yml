@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       # update when `playwright` dependency changes
-      image: mcr.microsoft.com/playwright:v1.60.0-jammy
+      image: mcr.microsoft.com/playwright:v1.62.0-jammy
     env:
       # --no-sandbox option for Chromium due to execution by container root
       CHROMIUM_SANDBOX_DISABLED: '1'
