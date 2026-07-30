@@ -3,11 +3,6 @@ export default defineNuxtConfig({
     'nuxt-ignis',
   ],
 
-  // temporary fix for https://github.com/nuxt/nuxt/issues/35858
-  imports: {
-    parser: 'regex',
-  },
-
   devtools: {
     enabled: false,
   },

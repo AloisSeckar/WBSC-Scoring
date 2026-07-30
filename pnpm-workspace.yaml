@@ -30,6 +30,9 @@ minimumReleaseAgeExclude:
   - '@nuxt/schema@4.5.1'
   - '@nuxt/vite-builder@4.5.1'
   - 'nuxt@4.5.1'
+  # build 2026-07-30 09:00 GMT+1
+  - 'unimport@6.4.0'
+  - strip-literal@4.0.0
 
 overrides:
   # GHSA-g7r4-m6w7-qqqr & GHSA-gv7w-rqvm-qjhr
@@ -41,3 +44,5 @@ overrides:
   'nuxt-spec': '0.3.0-alpha.3'
   'nuxt': '4.5.1'
   'vue-router': '^5.2.0'
+  # temp fix https://github.com/nuxt/nuxt/issues/35858
+  'unimport': '^6.4.0'
