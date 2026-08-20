@@ -120,7 +120,6 @@ export function checkPosSelection(selection: string) {
 
 // #204 - check runners-only actions
 export function checkRunnerOnlyActions(actions: WBSCAction[]) {
-  console.warn(actions)
   // basically it is not allowed to combine batter + runner-only action
   const batterAction = actions.some(i => i.group === inputB)
   let invalidCombination = batterAction && actions.some(i => runnersOnlyActions.includes(i.specAction))
