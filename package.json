@@ -20,7 +20,7 @@
     "test-update": "vitest run --project actions -u && vitest run --project screenshots -u"
   },
   "devDependencies": {
-    "nuxt-ignis": "0.6.0"
+    "nuxt-ignis": "0.6.1"
   },
-  "packageManager": "pnpm@11.12.0"
+  "packageManager": "pnpm@11.22.0"
 }

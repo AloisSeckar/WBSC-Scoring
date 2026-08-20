@@ -1,15 +1,12 @@
 shamefullyHoist: true
 
 allowBuilds:
-  # post-install scripts required for correct behavior
   '@parcel/watcher': true
-  esbuild: true
-  sharp: true
-  unrs-resolver: true
-  vue-demi: true
-  # post-install scripts that can be ignored
-  maplibre-gl: false
-  puppeteer: false
+  'sharp': true
+  'unrs-resolver': true
+  'esbuild': false
+  'maplibre-gl': false
+  'vue-demi': false
 
 minimumReleaseAgeExclude:
   # nuxt-ignis and its submodules must be excluded to allow 
@@ -23,26 +20,6 @@ minimumReleaseAgeExclude:
   - '@nuxt-ignis/ui'
   - '@nuxt-ignis/utils'
   - '@nuxt-ignis/validation'
-  # exceptions required for CI tests
-  # build 2026-07-27 16:00 GMT+1
-  - '@nuxt/kit@4.5.1'
-  - '@nuxt/nitro-server@4.5.1'
-  - '@nuxt/schema@4.5.1'
-  - '@nuxt/vite-builder@4.5.1'
-  - 'nuxt@4.5.1'
-  # build 2026-07-30 09:00 GMT+1
-  - 'unimport@6.4.0'
-  - strip-literal@4.0.0
 
 overrides:
-  # GHSA-g7r4-m6w7-qqqr & GHSA-gv7w-rqvm-qjhr
-  'esbuild': '^0.28.1'
-  # ensure Playwright stability in CI
-  'playwright': '1.62.0'
-  'playwright-core': '1.62.0'
-  # testing latest features
-  'nuxt-spec': '0.3.0-alpha.3'
-  'nuxt': '4.5.1'
-  'vue-router': '^5.2.0'
-  # temp fix https://github.com/nuxt/nuxt/issues/35858
-  'unimport': '^6.4.0'
+  # will re-adjust later...
