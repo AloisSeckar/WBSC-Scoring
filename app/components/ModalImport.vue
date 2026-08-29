@@ -20,7 +20,7 @@
           <button id="lib-select" type="button" :class="divButton" @click="importFromLib()">
             {{ $t('editor.import.confirm') }}
           </button>
-          <button id="lib-cancel" :class="divButton" @click="close()">
+          <button id="lib-cancel" type="button" :class="divButton" @click="close()">
             {{ $t('editor.import.cancel') }}
           </button>
         </div>
