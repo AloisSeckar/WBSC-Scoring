@@ -1,16 +1,16 @@
 <template>
   <div class="text-center">
     <img
-      src="/img/flag-en.png" alt="EN" title="English"
-      :class="locale === 'en' ? selectedLang : lang"
+      id="lang-en" src="/img/flag-en.png" alt="EN"
+      title="English" :class="locale === 'en' ? selectedLang : lang"
       @click="setNewLocale('en')">
     <img
-      src="/img/flag-cs.png" alt="CS" title="Čeština"
-      :class="locale === 'cs' ? selectedLang : lang"
+      id="lang-cs" src="/img/flag-cs.png" alt="CS"
+      title="Čeština" :class="locale === 'cs' ? selectedLang : lang"
       @click="setNewLocale('cs')">
     <img
-      src="/img/flag-it.png" alt="IT" title="Italiano"
-      :class="locale === 'it' ? selectedLang : lang"
+      id="lang-it" src="/img/flag-it.png" alt="IT"
+      title="Italiano" :class="locale === 'it' ? selectedLang : lang"
       @click="setNewLocale('it')">
   </div>
 </template>
