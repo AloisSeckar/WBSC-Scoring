@@ -17,7 +17,7 @@
           </optgroup>
         </select>
         <div class="mx-auto">
-          <button id="lib-select" :class="divButton" @click="importFromLib()">
+          <button id="lib-select" type="button" :class="divButton" @click="importFromLib()">
             {{ $t('editor.import.confirm') }}
           </button>
           <button id="lib-cancel" :class="divButton" @click="close()">
