@@ -12,7 +12,7 @@
             {{ row }}
           </li>
         </ul>
-        <button id="validation-ok" :class="divButton" @click="invalidate()">
+        <button id="validation-ok" type="button" :class="divButton" @click="invalidate()">
           {{ $t('editor.validation.window.ok') }}
         </button>
       </div>
