@@ -1,17 +1,26 @@
 <template>
   <div class="text-center">
-    <img
-      id="lang-en" src="/img/flag-en.png" alt="EN"
-      title="English" :class="locale === 'en' ? selectedLang : lang"
-      @click="setNewLocale('en')">
-    <img
-      id="lang-cs" src="/img/flag-cs.png" alt="CS"
-      title="Čeština" :class="locale === 'cs' ? selectedLang : lang"
-      @click="setNewLocale('cs')">
-    <img
-      id="lang-it" src="/img/flag-it.png" alt="IT"
-      title="Italiano" :class="locale === 'it' ? selectedLang : lang"
-      @click="setNewLocale('it')">
+    <button
+      id="lang-en" type="button" class="cursor-pointer"
+      aria-label="English" @click="setNewLocale('en')">
+      <img
+        src="/img/flag-en.png" alt=""
+        title="English" :class="locale === 'en' ? selectedLang : lang">
+    </button>
+    <button
+      id="lang-cs" type="button" class="cursor-pointer"
+      aria-label="Čeština" @click="setNewLocale('cs')">
+      <img
+        src="/img/flag-cs.png" alt=""
+        title="Čeština" :class="locale === 'cs' ? selectedLang : lang">
+    </button>
+    <button
+      id="lang-it" type="button" class="cursor-pointer"
+      aria-label="Italiano" @click="setNewLocale('it')">
+      <img
+        src="/img/flag-it.png" alt=""
+        title="Italiano" :class="locale === 'it' ? selectedLang : lang">
+    </button>
   </div>
 </template>
 
