@@ -173,6 +173,7 @@ export function renderBatterSpecificActionOptions(baseAction: string): GUIOption
       options.push({ group: bSafe, value: 'EF', label: useT('editor.action.error.EF') })
       options.push({ group: bSafe, value: 'EFB', label: useT('editor.action.error.EFB') })
       options.push({ group: bSafe, value: 'ET', label: useT('editor.action.error.ET') })
+      options.push({ group: bSafe, value: 'ETB', label: useT('editor.action.error.ETB') })
       options.push({ group: bSafe, value: 'EDF', label: useT('editor.action.error.EDF') })
       options.push({ group: bSafe, value: 'EDL', label: useT('editor.action.error.EDL') })
       options.push({ group: bSafe, value: 'EDP', label: useT('editor.action.error.EDP') })

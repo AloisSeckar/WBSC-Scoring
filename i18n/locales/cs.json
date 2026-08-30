@@ -115,6 +115,7 @@
                 "EF" : "Fielding error",
                 "EFB" : "Fielding error - bunt",
                 "ET" : "Throwing error",
+                "ETB" : "Throwing error - bunt",
                 "EDF" : "Dropped fly",
                 "EDL" : "Dropped fly - line",
                 "EDP" : "Dropped fly - pop",
