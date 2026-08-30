@@ -361,6 +361,7 @@ export function getHitLocations() {
 // list of target bases for fielder's choice
 export function getFCLocations() {
   const options: GUIOption[] = []
+  options.push({ value: 'W', label: '1st' }) // #306 (2026)
   options.push({ value: 'X', label: '2nd' })
   options.push({ value: 'Y', label: '3rd' })
   options.push({ value: 'Z', label: 'HP' })
