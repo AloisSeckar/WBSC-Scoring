@@ -249,7 +249,9 @@ export function processInput(data: WBSCAction) {
   let pos = getPos(data)
   if (pos) {
     const lastPos = pos[pos.length - 1]
-    if (lastPos === 'X') {
+    if (lastPos === 'W') {
+      pos = pos.substring(0, pos.length - 1) + '3' // #306 (2026)
+    } else if (lastPos === 'X') {
       pos = pos.substring(0, pos.length - 1) + '4'
     } else if (lastPos === 'Y') {
       pos = pos.substring(0, pos.length - 1) + '5'
