@@ -420,6 +420,16 @@
     "cat": "E"
   },
   {
+    "file": "error-e2tb",
+    "name": "Error - throwing by C - bunt",
+    "cat": "E"
+  },
+  {
+    "file": "error-1e3tb",
+    "name": "Error - throwing by 1B, assited by C - bunt",
+    "cat": "E"
+  },
+  {
     "file": "error-7f",
     "name": "Error - dropped fly by LF",
     "cat": "E"

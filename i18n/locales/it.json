@@ -115,6 +115,7 @@
                 "EF" : "Errore di presa",
                 "EFB" : "Errore di presa - bunt",
                 "ET" : "Errore di tiro",
+                "ETB" : "Errore di tiro - bunt",
                 "EDF" : "Volata mancata",
                 "EDL" : "Volata mancata - linea",
                 "EDP" : "Volata mancata - pop",

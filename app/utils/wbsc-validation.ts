@@ -10,9 +10,9 @@ const firstRunnerActions = [inputR1, inputR2, inputR3]
 export const firstActions = [inputB, inputR1, inputR2, inputR3]
 const hitActions = ['1B', '2B', '3B', 'HR', '1BB', '2BG', 'IHR']
 const decisiveErrorActions = [
-  'EF', 'EFB', 'ET', 'EDF', 'EDL', 'EDP', 'INT', 'OB2', 'OB', 'ENF', 'ENT',
-  'KSET', 'KSE', 'KLET', 'KLE', 'GDPE', 'SHE', 'SHET', 'SHEF', 'SFE',
-  'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN',
+  'EF', 'EFB', 'ET', 'EB', 'EDF', 'EDL', 'EDP', 'INT', 'OB2', 'OB',
+  'ENF', 'ENT', 'KSET', 'KSE', 'KLET', 'KLE', 'GDPE',
+  'SHE', 'SHET', 'SHEF', 'SFE', 'CSE', 'CSET', 'CSN', 'CSNT', 'POE', 'POEN',
 ]
 const errorActions = [...decisiveErrorActions, 'eF', 'eT', 'eDF']
 const runnersOnlyActions = [

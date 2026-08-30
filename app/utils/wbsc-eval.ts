@@ -121,6 +121,7 @@ function changeBatterSpecificAction(specAction: string) {
     case 'EF':
     case 'EFB':
     case 'ET':
+    case 'ETB':
     case 'SHE':
     case 'SHET':
       // no pos adjustments
@@ -596,20 +597,31 @@ export function processInput(data: WBSCAction) {
     case 'EF':
     case 'EFB':
     case 'ET':
+    case 'ETB':
     case 'EM':
     case 'eF':
     case 'eT':
     case 'eDF':
       data.text1 = pos?.substring(0, pos.length - 1) + action.substring(0, 1) + pos?.substring(pos.length - 1)
+      if (action === 'ETB') {
+        data.text1 += 'T' // #305
+      }
       if (!action.endsWith('F')) {
         data.text1 += action.substring(action.length - 1)
       } else if (action === 'eDF') {
         data.text1 += 'F'
       }
+      console.warn(data.text1)
       if (data.text1.length > 4) {
         const tempText = data.text1
-        data.text1 = tempText.substring(0, tempText.toUpperCase().indexOf('E'))
-        data.text2 = tempText.substring(tempText.toUpperCase().indexOf('E'))
+        if (action === 'ETB' && tempText.length === 5) {
+          // special case for throwing error with bunt (#305)
+          data.text1 = tempText.substring(0, tempText.length - 1)
+          data.text2 = 'B'
+        } else {
+          data.text1 = tempText.substring(0, tempText.toUpperCase().indexOf('E'))
+          data.text2 = tempText.substring(tempText.toUpperCase().indexOf('E'))
+        }
       }
       if (action.includes('N')) {
         data.outputBase = data.targetBase = data.origBase
