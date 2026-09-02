@@ -453,20 +453,35 @@ function connectSpecialCases(actions: WBSCAction[]) {
     })
   }
 
-  // #256 - connect putout at home + WP/PB
-  const outAtHome = r3SpecAction === 'GOT'
+  // #256 - connect non-forced putout + WP/PB
+  // #297 - could also happen on BB
+  const r3Out = r3Output && r3SpecAction === 'GOT'
+  const r2Out = r2Output && r2SpecAction === 'GOT'
+  const batterBb = bOutput && batterAction === 'BB1'
   const r1WpOrPb = r1Output && (r1SpecAction === 'WP' || r1SpecAction === 'PB')
   const r2WpOrPb = r2Output && (r2SpecAction === 'WP' || r2SpecAction === 'PB')
 
-  if (outAtHome && (r1WpOrPb || r2WpOrPb)) {
-    // runner from 3rd out at HP
-    useEvalStore().pushConcurrentPlayIfNotAdded({
-      batter: r3Output!.batter,
-      base: 4,
-      out: true,
-      na: false,
-      text1: r3Output!.text1,
-    })
+  if ((r3Out || r2Out) && (batterBb || r1WpOrPb || r2WpOrPb)) {
+    if (r3Out) {
+      // runner from 3rd out at HP
+      useEvalStore().pushConcurrentPlayIfNotAdded({
+        batter: r3Output!.batter,
+        base: 4,
+        out: true,
+        na: false,
+        text1: r3Output!.text1,
+      })
+    }
+    if (r2Out) {
+      // runner from 2nd out at 3rd
+      useEvalStore().pushConcurrentPlayIfNotAdded({
+        batter: r2Output!.batter,
+        base: 3,
+        out: true,
+        na: false,
+        text1: r2Output!.text1,
+      })
+    }
     if (r2WpOrPb) {
       // runner 2 advance on WP/PB
       useEvalStore().pushConcurrentPlayIfNotAdded({
@@ -485,6 +500,16 @@ function connectSpecialCases(actions: WBSCAction[]) {
         out: false,
         na: false,
         text1: r1Output!.text1,
+      })
+    }
+    if (batterBb) {
+      // batter advances on BB
+      useEvalStore().pushConcurrentPlayIfNotAdded({
+        batter: bOutput!.batter,
+        base: 1,
+        out: false,
+        na: false,
+        text1: bOutput!.text1,
       })
     }
   }
