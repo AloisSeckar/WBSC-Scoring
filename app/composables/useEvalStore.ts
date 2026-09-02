@@ -86,7 +86,14 @@ export const useEvalStore = defineStore('eval-store', {
     setPosSelection(inputGroup: string, selection: string) {
       this.posSelection = resetItemInArray(this.posSelection, { inputGroup, selection })
     },
-    pushConcurrentPlayIfNotAdded(play: ConcurrentPlay) {
+    pushConcurrentPlayIfNotAdded(action: WBSCAction) {
+      const play: ConcurrentPlay = {
+        batter: action.batter,
+        base: action.base,
+        out: action.out,
+        na: action.na,
+        text1: action.text1,
+      }
       let notAddedYet = true
       for (let i = 0; i < this.concurrentPlays.length; i += 1) {
         if (this.concurrentPlays[i]?.batter === play.batter) {

@@ -300,31 +300,13 @@ function connectSpecialCases(actions: WBSCAction[]) {
   const r3Output = actions.find(a => a.group === inputR3)
 
   if (r1error && (r2connect || r3connect) && r1Output) {
-    useEvalStore().pushConcurrentPlayIfNotAdded({
-      batter: r1Output.batter,
-      base: r1Output.outputBase,
-      out: r1Output.out,
-      na: r1Output.na,
-      text1: r1Output.text1,
-    })
+    useEvalStore().pushConcurrentPlayIfNotAdded(r1Output)
   }
   if (r2error && (r1connect || r3connect) && r2Output) {
-    useEvalStore().pushConcurrentPlayIfNotAdded({
-      batter: r2Output.batter,
-      base: r2Output.outputBase,
-      out: r2Output.out,
-      na: r2Output.na,
-      text1: r2Output.text1,
-    })
+    useEvalStore().pushConcurrentPlayIfNotAdded(r2Output)
   }
   if (r3error && (r1connect || r2connect) && r3Output) {
-    useEvalStore().pushConcurrentPlayIfNotAdded({
-      batter: r3Output.batter,
-      base: r3Output.outputBase,
-      out: r3Output.out,
-      na: r3Output.na,
-      text1: r3Output.text1,
-    })
+    useEvalStore().pushConcurrentPlayIfNotAdded(r3Output)
   }
 
   // connect SF + indifferece, if some runner advances because appeal play attempt for other runner (example 80)
@@ -336,31 +318,13 @@ function connectSpecialCases(actions: WBSCAction[]) {
 
     if (r1Indifference || r2Indifference) {
       if (bOutput) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: bOutput.batter,
-          base: 0,
-          out: true,
-          na: false,
-          text1: batterAction,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(bOutput)
       }
       if (r1Indifference && r1Output) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: r1Output.batter,
-          base: 2,
-          out: false,
-          na: false,
-          text1: r1Output.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(r1Output)
       }
       if (r2Indifference && r2Output) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: r2Output.batter,
-          base: 3,
-          out: false,
-          na: false,
-          text1: r2Output.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(r2Output)
       }
     }
   }
@@ -371,22 +335,10 @@ function connectSpecialCases(actions: WBSCAction[]) {
     const r3ToHP = r3Input?.specAction === 'BK' || r3Input?.specAction === 'IP'
     if (r3ToHP) {
       if (r3Output) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: r3Output.batter,
-          base: 4,
-          out: false,
-          na: false,
-          text1: r3Output.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(r3Output)
       }
       if (bOutput) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: bOutput.batter,
-          base: 1,
-          out: false,
-          na: false,
-          text1: batterAction,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(bOutput)
       }
     }
   }
@@ -410,13 +362,7 @@ function connectSpecialCases(actions: WBSCAction[]) {
   if (isDIF) {
     actions.forEach((action) => {
       if (['OBR_DIF', 'GO', 'GOT', 'eF', 'eT'].includes(action.specAction)) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: action.batter,
-          base: action.outputBase,
-          out: action.out,
-          na: false,
-          text1: action.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(action)
       }
     })
   }
@@ -426,13 +372,7 @@ function connectSpecialCases(actions: WBSCAction[]) {
   if (droppedFly) {
     actions.forEach((action) => {
       if (['EDF', 'EDL', 'EDP', 'GO', 'GOT'].includes(action.specAction)) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: action.batter,
-          base: action.outputBase,
-          out: action.out,
-          na: false,
-          text1: action.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(action)
       }
     })
   }
@@ -442,13 +382,7 @@ function connectSpecialCases(actions: WBSCAction[]) {
   if (droppedFlyExtra) {
     actions.forEach((action) => {
       if (['O', 'OCB', 'eDF'].includes(action.specAction)) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: action.batter,
-          base: action.outputBase,
-          out: action.out,
-          na: false,
-          text1: action.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(action)
       }
     })
   }
@@ -456,23 +390,11 @@ function connectSpecialCases(actions: WBSCAction[]) {
   // #297 - flyout + extra base error
   const isFlyout = batterInput?.baseAction === 'FlyOut'
   if (isFlyout) {
-    useEvalStore().pushConcurrentPlayIfNotAdded({
-      batter: bOutput!.batter,
-      base: bOutput!.outputBase,
-      out: false,
-      na: false,
-      text1: bOutput!.text1,
-    })
+    useEvalStore().pushConcurrentPlayIfNotAdded(bOutput!)
     actions.forEach((action) => {
       console.log(action)
       if (['eF', 'eT'].includes(action.specAction)) {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: action.batter,
-          base: action.outputBase,
-          out: action.out,
-          na: false,
-          text1: action.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(action)
       }
     })
   }
@@ -488,53 +410,23 @@ function connectSpecialCases(actions: WBSCAction[]) {
   if ((r3Out || r2Out) && (batterBb || r1WpOrPb || r2WpOrPb)) {
     if (r3Out) {
       // runner from 3rd out at HP
-      useEvalStore().pushConcurrentPlayIfNotAdded({
-        batter: r3Output!.batter,
-        base: 4,
-        out: true,
-        na: false,
-        text1: r3Output!.text1,
-      })
+      useEvalStore().pushConcurrentPlayIfNotAdded(r3Output!)
     }
     if (r2Out) {
       // runner from 2nd out at 3rd
-      useEvalStore().pushConcurrentPlayIfNotAdded({
-        batter: r2Output!.batter,
-        base: 3,
-        out: true,
-        na: false,
-        text1: r2Output!.text1,
-      })
+      useEvalStore().pushConcurrentPlayIfNotAdded(r2Output!)
     }
     if (r2WpOrPb) {
       // runner 2 advance on WP/PB
-      useEvalStore().pushConcurrentPlayIfNotAdded({
-        batter: r2Output!.batter,
-        base: r2Output!.outputBase,
-        out: false,
-        na: false,
-        text1: r2Output!.text1,
-      })
+      useEvalStore().pushConcurrentPlayIfNotAdded(r2Output!)
     }
     if (r1WpOrPb && !r2WpOrPb) {
       // runner 1 advance on WP/PB
-      useEvalStore().pushConcurrentPlayIfNotAdded({
-        batter: r1Output!.batter,
-        base: r1Output!.outputBase,
-        out: false,
-        na: false,
-        text1: r1Output!.text1,
-      })
+      useEvalStore().pushConcurrentPlayIfNotAdded(r1Output!)
     }
     if (batterBb) {
       // batter advances on BB
-      useEvalStore().pushConcurrentPlayIfNotAdded({
-        batter: bOutput!.batter,
-        base: 1,
-        out: false,
-        na: false,
-        text1: bOutput!.text1,
-      })
+      useEvalStore().pushConcurrentPlayIfNotAdded(bOutput!)
     }
   }
 
@@ -553,13 +445,7 @@ function connectSpecialCases(actions: WBSCAction[]) {
     }
     if (connected.length > 1) {
       connected.forEach((output) => {
-        useEvalStore().pushConcurrentPlayIfNotAdded({
-          batter: output!.batter,
-          base: output!.outputBase,
-          out: output!.out,
-          na: false,
-          text1: output!.text1,
-        })
+        useEvalStore().pushConcurrentPlayIfNotAdded(output!)
       })
     }
   }

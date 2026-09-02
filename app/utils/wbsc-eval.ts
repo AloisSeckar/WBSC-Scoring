@@ -658,12 +658,6 @@ export function processInput(data: WBSCAction) {
   }
 
   if (possibleConcurrentPlay && firstActions.includes(data.group)) {
-    useEvalStore().pushConcurrentPlayIfNotAdded({
-      batter: data.batter,
-      base: data.outputBase,
-      out: data.out,
-      na: data.na,
-      text1: data.text1,
-    })
+    useEvalStore().pushConcurrentPlayIfNotAdded(data)
   }
 }
