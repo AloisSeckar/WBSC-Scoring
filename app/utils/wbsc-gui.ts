@@ -3,8 +3,6 @@
 /* helper functions for working with GUI   */
 /* *************************************** */
 
-import type { GeneratedTypeConfig } from '@intlify/core-base'
-
 export function getBaseOptionsValue(inputGroup: string) {
   switch (inputGroup) {
     case inputB1:
@@ -367,12 +365,4 @@ export function getFCLocations() {
   options.push({ value: 'Y', label: '3rd' })
   options.push({ value: 'Z', label: 'HP' })
   return options
-}
-
-// i18n helper to setup correct locale
-// needs to be called in <script setup> of SFC
-export function setLocale() {
-  const { locale } = useI18n()
-  const storedLocale = useLocalStorage('wbsc-lang', 'en')
-  locale.value = storedLocale.value as GeneratedTypeConfig['locale']
 }

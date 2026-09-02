@@ -53,8 +53,6 @@
 <script setup lang="ts">
 import type { WBSCToolbar } from '#components'
 
-setLocale()
-
 const version = 'v' + useAppConfig().publicVersion
 
 const toolbar: Ref<InstanceType<typeof WBSCToolbar> | null> = ref(null)
