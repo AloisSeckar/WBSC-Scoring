@@ -355,6 +355,11 @@
     "cat": "A"
   },
   {
+    "file": "bb-r3-21",
+    "name": "Base on balls + R3 out 21",
+    "cat": "A"
+  },
+  {
     "file": "ibb",
     "name": "Intentional base on balls",
     "cat": "A"
@@ -680,6 +685,11 @@
     "cat": "E"
   },
   {
+    "file": "out-f9-r1-e9t",
+    "name": "Flyout to RF + R1 advance on e9T",
+    "cat": "E"
+  },
+  {
     "file": "error-o9-r1-94-r2-e9df",
     "name": "FC - occupied to 9, R1 out 94 at 2nd, R2 to 3rd on e9F",
     "cat": "E"
@@ -812,6 +822,11 @@
   {
     "file": "wp-r2-r3-21",
     "name": "Wild pitch - R2 + R3 out 21 at HP",
+    "cat": "A"
+  },
+  {
+    "file": "wp-r1-r2-25",
+    "name": "Wild pitch - R1 + R2 out 25 at 3rd",
     "cat": "A"
   },
   {
