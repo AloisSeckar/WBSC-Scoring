@@ -2,7 +2,7 @@
 
 _In every computer program there is at least one bug._
 
-This saying might be a little exaggerated, but generally it is quite hard to keep any application error prone. I am doing my best developing "WBSC-like Scoring", also having quite solid bunch of automated tests with dozens of situations to test every time before I add/update/fix something, but basically, I am sure there are still mistakes hidden around and waiting to be discovered. And if not mistakes, then you'll probably come up with some "nice to have" new features I haven't thought about yet.
+This saying might be a little exaggerated, but generally it is quite hard to keep any application error-free. I am doing my best developing "WBSC-like Scoring", also having quite a solid bunch of automated tests with dozens of situations to test every time before I add/update/fix something, but basically, I am sure there are still mistakes hidden around and waiting to be discovered. And if not mistakes, then you'll probably come up with some "nice to have" new features I haven't thought about yet.
 
 I am ready for all your input. Here on this page, you can find details about the reporting process.
 
@@ -10,13 +10,13 @@ I am ready for all your input. Here on this page, you can find details about the
 
 GitHub provides a simple, yet sufficient bug/feature tracking system, which is being used for this project.
 
-You can find all the issues related to "WBSC-like Scoring" [HERE](https://github.com/AloisSeckar/WBSC-Scoring/issues). The default filter shows opened issues, that are known to me, but are about to be dealt with yet.
+You can find all the issues related to "WBSC-like Scoring" [HERE](https://github.com/AloisSeckar/WBSC-Scoring/issues). The default filter shows opened issues that are known to me, but have yet to be dealt with.
 
 If you are familiar with GitHub, feel free to open a new issue on your own. I will try to address it ASAP.
 
 ## Manual reporting
 
-If you're not sure how to deal with GitHub, you are of course welcome traditional ways of communication.
+If you're not sure how to deal with GitHub, you are of course welcome to use traditional ways of communication.
 
 The best option is to write me an email to [alois.seckar{'@'}gmail.com](mailto:alois.seckar{'@'}gmail.com).
 

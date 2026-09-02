@@ -10,13 +10,13 @@ Sono pronto per tutti i tuoi input. Qui su questa pagina, puoi trovare dettagli 
 
 GitHub fornisce un sistema di tracciamento dei bug/feature semplice, ma sufficiente, che viene utilizzato per questo progetto.
 
-Puoi trovare tutte le segnalazioni relativi a "WBSC-like Scoring" [QUI](https://github.com/AloisSeckar/WBSC-Scoring/issues). Il filtro predefinito mostra i problemi aperti, che sono noti a me, ma che devono ancora essere affrontati.
+Puoi trovare tutte le segnalazioni relative a "WBSC-like Scoring" [QUI](https://github.com/AloisSeckar/WBSC-Scoring/issues). Il filtro predefinito mostra i problemi aperti, che sono noti a me, ma che devono ancora essere affrontati.
 
-Se sei familiare con GitHub, sentiti libero di aprire una nuova segnalazione da solo. Cercherò di affontarla il prima possibile
+Se sei familiare con GitHub, sentiti libero di aprire una nuova segnalazione da solo. Cercherò di affrontarla il prima possibile.
 
 ## Report manuale
 
-Se non sei sicuro di come gestire GitHub, sei naturalmente il benvenuto usanto i modi tradizionali di comunicazione.
+Se non sei sicuro di come gestire GitHub, sei naturalmente benvenuto a usare i modi tradizionali di comunicazione.
 
 La migliore opzione è scrivermi una email a [alois.seckar{'@'}gmail.com](mailto:alois.seckar{'@'}gmail.com).
 
