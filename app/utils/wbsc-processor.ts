@@ -454,7 +454,6 @@ function connectSpecialCases(actions: WBSCAction[]) {
   }
 
   // #297 - flyout + extra base error
-  console.warn(batterInput?.baseAction)
   const isFlyout = batterInput?.baseAction === 'FlyOut'
   if (isFlyout) {
     useEvalStore().pushConcurrentPlayIfNotAdded({
