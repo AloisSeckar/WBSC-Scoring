@@ -318,7 +318,7 @@ function connectSpecialCases(actions: WBSCAction[]) {
 
     if (r1Indifference || r2Indifference) {
       if (bOutput) {
-        useEvalStore().pushConcurrentPlayIfNotAdded(bOutput)
+        useEvalStore().pushConcurrentPlayIfNotAdded({ ...bOutput, base: 0 })
       }
       if (r1Indifference && r1Output) {
         useEvalStore().pushConcurrentPlayIfNotAdded(r1Output)
