@@ -82,7 +82,7 @@ Vstup běžce je mírně odlišný od vstupu pálkaře a mezi metami jsou také 
 
 Pro 1. a 2. metu existuje zaškrtávací políčko "Tiebreak". Pokud je zaškrtnuto, běžec se na metě neobjevuje s obecnou červenou hvězdičkou, ale místo toho se používá symbol TIE (což je způsob, jak WBSC zápis zaznamenává běžce v tiebreaku).
 
-For 1., 2. a 3. metu existuje zaškrtávací políčko "No DP". Pokud je zaškrtnuto a vybraná rozehra má za následek aut, nebude propojen s dalším autem (či auty). To lze využít pro situaci, kdy v důsledku chyby (zapsané či skryté (extempted)) dojde k rozbití přirozeného flow double play hry.
+For 1., 2. a 3. metu existuje zaškrtávací políčko "No DP". Pokud je zaškrtnuto a vybraná rozehra má za následek aut, nebude propojen s dalším autem (či auty). To lze využít pro situaci, kdy v důsledku chyby (zapsané či skryté (exempted)) dojde k rozbití přirozeného flow double play hry.
 
 Z rozevírací nabídky "Meta" vybíráte metu, u které probíhá aktuální akce běžce. Samozřejmě možnosti jsou upraveny v závislosti na tom, na které metě se právě nacházíme. Pokud potřebujete, aby běžec zůstal na dosavadní metě, neděláte to zde, ale místo toho si z nabídky "Akce" vyberete "Žádný postup".
 
@@ -132,7 +132,7 @@ Můžete použít fialové tlačítko "Export rozehry" k převzetí aktuálního
 <article-image src="16-export.png" alt="" :height="40" />
 </div>
 
-Použitím fialového tlačítka "Importovat se souboru" můžete nahrát dříve exportovaný soubor `.json`. Pokud je to platný soubor, bude analyzován a převeden do odpovídajícího vstupního výběru a situace bude znovu vygenerována. Může být aktivována chyba validace.
+Použitím fialového tlačítka "Importovat ze souboru" můžete nahrát dříve exportovaný soubor `.json`. Pokud je to platný soubor, bude analyzován a převeden do odpovídajícího vstupního výběru a situace bude znovu vygenerována. Může být aktivována chyba validace.
 
 <div>
 <article-image src="17-import.png" alt="" :height="40" />

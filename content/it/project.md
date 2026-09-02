@@ -26,14 +26,14 @@ Il progetto è rilasciato sotto la licenza [UNLICENSE](https://unlicense.org/) e
 **(quello che verrà implementato nelle prossime versioni)**
 
 <ul class="list-disc">
-<li>Riconoscimento delle azioni presenti nella libreria per maggiore chiarezza</li><li>Traduzioni in altre lingue</li><li>Pagine informative con descrizione del punteggio e modi per segnare le sostituzioni</li><li>Ulteriori validazioni degli input</li><li>Correzioni e correzioni dell'output dove necessario</li>
+<li>Riconoscimento delle azioni presenti nella libreria per maggiore chiarezza</li><li>Traduzioni in altre lingue</li><li>Pagine informative con descrizione del punteggio e modi per segnare le sostituzioni</li><li>Ulteriori validazioni degli input</li><li>Correzioni e miglioramenti dell'output dove necessario</li>
 </ul>
 
 
 <a id="limitations"></a>   
 
 ## Limitazioni
-**(non pianificato per il prossino futuro)**
+**(non pianificato per il prossimo futuro)**
 
 Ci sono diverse situazioni del sistema di scoring WBSC che attualmente non sono coperte da questo programma. Potrebbero essere incluse in alcune versioni future, ma non ci sono promesse.
 
@@ -44,4 +44,4 @@ Ci sono diverse situazioni del sistema di scoring WBSC che attualmente non sono 
 <a id="history"></a>
 
  ## Storia
-Go to [CHANGELOG](https://github.com/AloisSeckar/WBSC-Scoring/blob/master/CHANGELOG.md)
+Vedi [CHANGELOG](https://github.com/AloisSeckar/WBSC-Scoring/blob/master/CHANGELOG.md)

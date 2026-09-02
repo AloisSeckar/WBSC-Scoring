@@ -82,7 +82,7 @@ Runner's input is slightly different from the batter's and there are also minor 
 
 For 1st and 2nd base. There is a "Tiebreak" checkbox. If it is checked, runner doesn't appear on base with generic red asterisk, but instead the symbol TIE is used (which is how WBSC scores tiebreaker runners).
 
-For 1st, 2nd and 3rd base. There is a "No DP" checkbox. If it is checked and selected action resulted into an out, it is not connected with other out(s). This can be used to point out a situation where an error (writter or extempted) breaks the natural flow of the double play.
+For 1st, 2nd and 3rd base. There is a "No DP" checkbox. If it is checked and selected action resulted into an out, it is not connected with other out(s). This can be used to point out a situation where an error (written or exempted) breaks the natural flow of the double play.
 
 From the "Base" combo-box you pick the base that runner gains with current action. Obviously, the options are adjusted depending on which base we are currently on. If you need a runner to stay on the current base, you don't do it here, but instead you pick "No advance" from the "Action" menu. 
 

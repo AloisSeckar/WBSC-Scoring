@@ -6,7 +6,7 @@ Ci sono alcuni presupposti da tenere a mente:
 
 - Il programma visualizza sempre UNA SOLA GIOCATA ALLA VOLTA. Può consistere in più situazioni (teoricamente fino a 10 azioni separate), ma tutte devono accadere durante lo stesso lancio (o nello stesso intervallo di tempo tra i lanci). Non è possibile seguire il flusso di una partita.
 - A causa di quanto sopra, il corridore posizionato in base è indicato con un <span style="color: red">asterisco rosso</span>. Questa non è un'abbreviazione ufficiale di punteggio, serve solo a indicare che c'è stata UNA giocata, ma non la sappiamo e non ce ne preoccupiamo. L'unica eccezione è un corridore del tiebreak (TIE), poiché si tratta di un'azione arbitraria.
-- L'ordine di battuta inizia sempre dal 1. A seconda del numero di giocatori coinvolti, l'output può mostrare i giocatori da 1 a 4. Non è possibile selezionare un ordine iniziale diverso, né saltare alcuni giocatori
+- L'ordine di battuta inizia sempre dal 1. A seconda del numero di giocatori coinvolti, l'output può mostrare i giocatori da 1 a 4. Non è possibile selezionare un ordine iniziale diverso, né saltare alcuni giocatori.
 
 ## CONTROLLI
 
@@ -64,29 +64,29 @@ Puoi scaricare il risultato per conservarlo sia facendo clic destro e scegliendo
 
 ### Avanzato - Corridori
 
-Le azioni non solo limitate al solo battitore. È presente un set di pulsanti per selezionare i giocatori coinvolti:
+Le azioni non sono limitate al solo battitore. È presente un set di pulsanti per selezionare i giocatori coinvolti:
 
 <div>
 <article-image src="09-pick-players.png" alt="" :height="40" />
 </div>
 
-I pulsati conetengono "B" per il battitore-corridore e "R1-R3" per i corridori delle rispettive basi. Quando uno qualsiasi di questi è selezionato il pulsante è colorato di rosse e un simbolo "-" compare prima della sigla. I gruppi di inserimenti sono visualizzati di conseguenza. Il pulsante con un "+" verde prima dell'etichetta significa che quella posizione non sta venendo usata. Cliccando un qualisasi pulsante lo stato di questo cambierà. Es. se si clicca su "+R1" questo sarà il risultato:
+I pulsanti contengono "B" per il battitore-corridore e "R1-R3" per i corridori delle rispettive basi. Quando uno qualsiasi di questi è selezionato il pulsante è colorato di rosso e un simbolo "-" compare prima della sigla. I gruppi di inserimenti sono visualizzati di conseguenza. Il pulsante con un "+" verde prima dell'etichetta significa che quella posizione non sta venendo usata. Cliccando un qualsiasi pulsante lo stato di questo cambierà. Es. se si clicca su "+R1" questo sarà il risultato:
 
 <div>
 <article-image src="10-runner-input.png" alt="" css="w-full sm:w-[640px]" />
 </div>
 
-Un altro click lo nasconderà. Puoi scegliere una qualisasi combinazione con o senza il battitore e con o senza i corridori, l'unico requisito è che almeno un giocatore è selezionato.
+Un altro click lo nasconderà. Puoi scegliere una qualsiasi combinazione con o senza il battitore e con o senza i corridori, l'unico requisito è che almeno un giocatore sia selezionato.
 
-Gli input dei corridori sono leggermente diversi dagli input del battotore e ci sono anche delle leggere differenze tra le diverse basi. Le possibilità delle azioni di una base specifica sono congrue alle possibilità di quella base.
+Gli input dei corridori sono leggermente diversi dagli input del battitore e ci sono anche delle leggere differenze tra le diverse basi. Le possibilità delle azioni di una base specifica sono congrue alle possibilità di quella base.
 
-Per la 1° e la 2° base. C'è una casella di spunta "Tiebreak". Se è selezionata, il corridore non apparirà con il generico asterico rosso, invece comparirà con il simbolo TIE (che è il simbolo per i corridori piazati al tiebreak).
+Per la 1° e la 2° base. C'è una casella di spunta "Tiebreak". Se è selezionata, il corridore non apparirà con il generico asterisco rosso, invece comparirà con il simbolo TIE (che è il simbolo per i corridori piazzati al tiebreak).
 
-Per la 1°, 2° e 3° base: è presente una checkbox "No DP", se questa è selezionata e il risultato dell'azione è un out questo non verrà connesso con altri eventuali out. Questa opzione è untile quando è stato commesso un errore (sia decisivo che esentato) che interrope il doppio gioco.
+Per la 1°, 2° e 3° base: è presente una checkbox "No DP", se questa è selezionata e il risultato dell'azione è un out questo non verrà connesso con altri eventuali out. Questa opzione è utile quando è stato commesso un errore (sia decisivo che esentato) che interrompe il doppio gioco.
 
-Dalla combo-box "Base" puoi selezionare la base che quel corridore ottiene, la disponibilità delle opzioni dipenende direttamente dalla base attuale. Per non far avanzare il corridore non devi usare questo menù ma devi selezionare "Nessun avanzamento" dal menù "Azione".
+Dalla combo-box "Base" puoi selezionare la base che quel corridore ottiene, la disponibilità delle opzioni dipende direttamente dalla base attuale. Per non far avanzare il corridore non devi usare questo menù ma devi selezionare "Nessun avanzamento" dal menù "Azione".
 
-Se l'azione risulta con un salvo a casa base, il menù "Punto" diventerà visibile. Ora puoi selezionare se il punto è: "ER" _(Guadagnato)_  / "UE" _(Non guadagnato)_ / "TU" _(Non guadagnato di squadra)_. Questa opzione è presente per mostrare le diverse varietà. Ci sono dei controlli di base, ma durante la partita il punto dipende dalle azioni precedenti, mentre qui classifichiamo solo una azione separata. Il menù "Punto" è usabile anche dalla sezione del battitore ma solo sulle giocate di tipo "Valida - Fuori campo".
+Se l'azione risulta in un salvo a casa base, il menù "Punto" diventerà visibile. Ora puoi selezionare se il punto è: "ER" _(Guadagnato)_  / "UE" _(Non guadagnato)_ / "TU" _(Non guadagnato di squadra)_. Questa opzione è presente per mostrare le diverse varietà. Ci sono dei controlli di base, ma durante la partita il punto dipende dalle azioni precedenti, mentre qui classifichiamo solo una azione separata. Il menù "Punto" è usabile anche dalla sezione del battitore ma solo sulle giocate di tipo "Valida - Fuori campo".
 
 <div>
 <article-image src="11-type-of-run.png" alt="" :height="150" />
@@ -101,7 +101,7 @@ Se necessario, possono essere concatenate più situazioni con l'azione iniziale.
 </div>
 
 
-IL pulsante è attivo solamente se l'azione selezionata termina con un "salvo". La casella con i nuovi parametri verrà visualizzata direttamente sotto:
+Il pulsante è attivo solamente se l'azione selezionata termina con un "salvo". La casella con i nuovi parametri verrà visualizzata direttamente sotto:
 
 <div>
 <article-image src="13-extra-input.png" alt="" :width="600" />
@@ -113,9 +113,9 @@ Se cambi idea, puoi nascondere e disabilitare i parametri extra con il pulsante 
 <article-image src="14-minus-action.png" alt="" :height="40" />
 </div>
 
-Per il battitore ci possono essere fino a 3 input extra (una situazione per ogni base). Se decidi di rimuoverli di nuovo, devi ricominciare dall'ultimo (solo il pulsante "-" è abilitato). Se selezioni una azione che risulta in un out gli input rimanenti scompariranno.
+Per il battitore ci possono essere fino a 3 input extra (una situazione per ogni base). Se decidi di rimuoverli di nuovo, devi ricominciare dall'ultimo (solo il pulsante "-" è abilitato). Se selezioni un'azione che risulta in un out gli input rimanenti scompariranno.
 
-Per i corridori, il numero di possibili input extra diminusce logicamente in base a quanto si avvicinano a casa base (0-2 per la 1° base, 0-1 per la 2° base e nessuno per la 3° base, poiché la prima azione ha già spostato quel corridore a casa). La selezione delle azioni è naturalmente diversa per il battitore (diventando battitore-corridore) e gli altri corridori. Le altre funzioni sono le stesse.
+Per i corridori, il numero di possibili input extra diminuisce logicamente in base a quanto si avvicinano a casa base (0-2 per la 1° base, 0-1 per la 2° base e nessuno per la 3° base, poiché la prima azione ha già spostato quel corridore a casa). La selezione delle azioni è naturalmente diversa per il battitore (diventando battitore-corridore) e gli altri corridori. Le altre funzioni sono le stesse.
 
 ### Avanzato - Pulisci input
 

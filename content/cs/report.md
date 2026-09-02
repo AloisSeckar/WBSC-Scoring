@@ -10,7 +10,7 @@ Jsem připraven na všechny vaše podněty. Na této stránce najdete detaily o 
 
 GitHub nabízí jednoduchý, a přitom plně dostačující systém sledování chyb/návrhů, který v tomto projektu používám.
 
-Všechny tickety tykající se "WBSC-like Scoring" můžete nalézt [ZDE](https://github.com/AloisSeckar/WBSC-Scoring/issues). Výchozí filtr ukazuje otevřené úkoly, které jsou mi známy, ale ještě je třeba je vypořádat.
+Všechny tickety týkající se "WBSC-like Scoring" můžete nalézt [ZDE](https://github.com/AloisSeckar/WBSC-Scoring/issues). Výchozí filtr ukazuje otevřené úkoly, které jsou mi známy, ale ještě je třeba je vypořádat.
 
 Pokud umíte s GitHubem pracovat, neváhejte tam sami vytvořit nové hlášení. Budu se je snažit vyřídit co nejdříve.
 
