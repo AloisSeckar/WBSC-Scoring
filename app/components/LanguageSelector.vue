@@ -32,17 +32,10 @@ const selectedLang = 'w-6 h-4 m-1 inline-block border-2 border-amber-300'
 
 type AppLocale = GeneratedTypeConfig['locale']
 
-const { locale, locales, setLocale } = useI18n()
-
-const browserLocale = useBrowserLocale()
-const userLocale = useLocalStorage('wbsc-lang', browserLocale)
-const initialLocale = (userLocale.value || browserLocale || 'en') as string
-if (initialLocale !== locale.value && locales.value.some(l => l.code === initialLocale)) {
-  await setLocale(initialLocale as AppLocale)
-}
+const { locale, setLocale } = useI18n()
 
 async function setNewLocale(newLocale: AppLocale) {
-  const storedLocale = useLocalStorage('wbsc-lang', browserLocale)
+  const storedLocale = useLocalStorage('wbsc-lang', newLocale)
   storedLocale.value = newLocale
   await setLocale(newLocale)
 }

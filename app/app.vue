@@ -35,7 +35,6 @@
 
 <script setup lang="ts">
 initConsola()
-setLocale()
 
 useHead({
   htmlAttrs: {
