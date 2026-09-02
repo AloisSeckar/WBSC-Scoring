@@ -453,6 +453,31 @@ function connectSpecialCases(actions: WBSCAction[]) {
     })
   }
 
+  // #297 - flyout + extra base error
+  console.warn(batterInput?.baseAction)
+  const isFlyout = batterInput?.baseAction === 'FlyOut'
+  if (isFlyout) {
+    useEvalStore().pushConcurrentPlayIfNotAdded({
+      batter: bOutput!.batter,
+      base: bOutput!.outputBase,
+      out: false,
+      na: false,
+      text1: bOutput!.text1,
+    })
+    actions.forEach((action) => {
+      console.log(action)
+      if (['eF', 'eT'].includes(action.specAction)) {
+        useEvalStore().pushConcurrentPlayIfNotAdded({
+          batter: action.batter,
+          base: action.outputBase,
+          out: action.out,
+          na: false,
+          text1: action.text1,
+        })
+      }
+    })
+  }
+
   // #256 - connect non-forced putout + WP/PB
   // #297 - could also happen on BB
   const r3Out = r3Output && r3SpecAction === 'GOT'

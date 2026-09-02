@@ -611,7 +611,6 @@ export function processInput(data: WBSCAction) {
       } else if (action === 'eDF') {
         data.text1 += 'F'
       }
-      console.warn(data.text1)
       if (data.text1.length > 4) {
         const tempText = data.text1
         if (action === 'ETB' && tempText.length === 5) {
