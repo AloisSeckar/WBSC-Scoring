@@ -89,7 +89,7 @@ export const useEvalStore = defineStore('eval-store', {
     pushConcurrentPlayIfNotAdded(action: WBSCAction) {
       const play: ConcurrentPlay = {
         batter: action.batter,
-        base: action.base,
+        base: action.outputBase,
         out: action.out,
         na: action.na,
         text1: action.text1,
