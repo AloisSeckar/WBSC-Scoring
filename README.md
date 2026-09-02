@@ -14,22 +14,33 @@ Suggestions, bug reports and pull requests are welcome!
 ## nuxt-ignis
 This project uses [Nuxt Ignis](https://github.com/AloisSeckar/nuxt-ignis) to simplify dependency management.
 
-To make it run locally, you need to provide a `.env` file with the following settings:
+Following settings are used inside `nuxt.config.ts`:
 
-```
-# enable Tailwind CSS
-NUXT_PUBLIC_IGNIS_PRESET_UI=tailwind
-
-# enable i18n translations
-NUXT_PUBLIC_IGNIS_I18N_ENABLED=true
-
-# enable working with Nuxt Content
-NUXT_PUBLIC_IGNIS_CONTENT=true
-
-# special setting to improve formatting
-# this should help prevent single-letter words at the end of the line
-NUXT_PUBLIC_IGNIS_PSLO_ENABLED=true
-NUXT_PUBLIC_IGNIS_PSLO_CONTENT=true
+```ts
+export default defineNuxtConfig({
+  // other Nuxt configuration options
+  ignis: {
+    preset: {
+      ui: 'tailwind',
+    },
+    default: {
+      css: false,
+      auth: false,
+    },
+    content: {
+      content: {
+        enabled: true,
+      },
+      i18n: {
+        enabled: true,
+      },
+      pslo: {
+        enabled: true,
+        content: true,
+      },
+    },
+  },
+})
 ```
 
 ## Testing
