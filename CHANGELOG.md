@@ -2,8 +2,26 @@
 
 This file keeps track of changes, updates and fixes in "WBSC-like Scoring" project.
 
-## Version 1.5 (in progress)
-- TODO
+## Version 1.5 (2026-09-02)
+- Features:
+  - Added Catcher's obstruction (softball) (#294)
+  - Added Throwing error with bunt (#305)
+  - Added Throw to 1st base option (#306)
+  - Pre-select catcher with BOT (#284)
+  - New validations for RIN (#285)
+  - Setting default locale (`en` | `cs` | `it`) based on browser locale (#229)
+- Tech updates:
+  - Project structure updated for **Nuxt v4**
+  - Underlying [`nuxt-ignis`](https://github.com/AloisSeckar/nuxt-ignis) bumped to `v0.6.1`
+  - Changed rendering fonts to open-sourced variants for better consistency (#295)
+  - Replaced visual regression testing in CI with [`nuxt-spec`](https://github.com/AloisSeckar/nuxt-spec) (#298)
+  - Stopped using divs as buttons (#310)
+  - Several significant refactors to make the code easier to maintain (i.e. #239, #287, #288, #290)
+- Bugfixes:
+  - Added more plays that should be connected with concurrent play marker (#297)
+  - Fixed validation for error after WP/PB (#302)
+  - Reviewed texts and translations (#280)
+  - Some labels in library actions (0a9e9ef)
 
 ## Version 1.4.2 (2025-04-25)
 - Features:
@@ -60,7 +78,7 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 
 ## Version 1.1.1 (2024-06-05)
 - Hotfixed error with displaying images (#227)
-- Dropped [Nuxt Image](https://nuxt.com/modules/image) due to Netlify-related issues
+- dropped [Nuxt Image](https://nuxt.com/modules/image) due to Netlify-related issues
 
 ## Version 1.1.0 (2024-06-05)
 - Features:
@@ -106,7 +124,7 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 - Language selection should be remembered in browser
 - Validations - GitHub issues #119, #120
 - Bug-fixes - GitHub issues #115, #116, #131
-- Refactoring - GitHub issues #74, #76
+- Refactoring - GitHub issues  #74, #76
 
 ## Version 0.13 (2023-07-28)
 - Actions library - SB/CS situations
@@ -123,7 +141,7 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 - New feature - when action results into an out, further actions cannot be rendered
 - Validations - GitHub issues #54, #57, #62, #70, #72, #77, #86, #87
 - Bug-fixes - GitHub issues #73, #78, #79, #88
-- Refactoring - GitHub issues #75
+- Refactoring- GitHub issues #75
 
 ## Version 0.11 (2023-04-08)
 - Source converted into Nuxt 3 project with TypeScript
@@ -134,7 +152,7 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 ## Version 0.10 (2022-11-08)
 - Errors with extra base advances (#30)
 - Grounded into double-play situation (#31)
-- Extra WP/PB for batter after BB/KS play (#46)
+- extra WP/PB for batter after BB/KS play (#46)
 - Bug-fixes - GitHub issues #10, #39, #41, #43, #47, #48, #49
 
 ## Version 0.9.4 (2022-11-08)
@@ -163,7 +181,7 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 - "No advance" situations
 - Earned/Unearned runs
 - Extra bases with more runners (GitHub issue #10)
-- Refactoring (files and function comments + optimized organization)
+- Refactoring (files and functions comments + optimized organization)
 - Enhanced HTML structure
 - Bug-fixes - GitHub issues #23, #24, #25, #26, #27, #28 + various minor and unreported
 
@@ -180,7 +198,7 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 ## Version 0.6 (2020-10-11)
 - New actions supported: Sacrifice hit/fly, Infield fly, Bunt hit/out, Strikeout with occupied ball, TIE
 - Strikeouts and base-on-balls are numbered according to the manual
-- Added option groups to help user determine if safe or out will occur
+- Added option groups to help user determine if safe our out will occur
 - GUI inputs now render in correct order
 - Advances to 3rd and HP now render correctly
 - CSP implemented in order to increase web security
@@ -190,12 +208,12 @@ This file keeps track of changes, updates and fixes in "WBSC-like Scoring" proje
 - Batting order (1-4) is now considered
 - New actions supported - Numerous strike out variants, Extra base advances - BB, IBB, HP, WP, PB, O/, SB and CS situations, Various plays with errors
 - Rendering improved and corrected for currently supported actions
-- Due to rendering issues, situations are now allowed only with 0-3 assists (followed by an out or an error)
+- Due to rendering issues situations are now allowed only with 0-3 assists (followed by an out or an error)
 - Various bugfixes and corrections
 
 ## Version 0.4 (2020-06-09)
 - Inputs reworked using dynamic JavaScript for displaying and hiding input fields
-- With broadened options, it is now possible to set up situations ranging from 0 to 4 assists (followed by an out or an error) and to set up some consecutive actions for runners on 1st, 2nd and/or 3rd base
+- With broadened options it is now possible to set up situations ranging from 0 to 4 assists (followed by an out or an error) and to set up some consecutive actions for runners on 1st, 2nd and/or 3rd base
 
 ## Version 0.3 (2020-03-15)
 - Fixed error in displaying "Inside-the-park home run"
