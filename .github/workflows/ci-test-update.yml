@@ -1,8 +1,12 @@
-# Manually triggered to update test baselines.
-# Runs in the same pinned Playwright container as "verify" phase.
-# The results are committed back to the branch it was dispatched.
+# GitHub Actions workflow (scaffolded by Nuxt Spec) to update test baselines (manually triggered).
+# Runs in the same pinned Playwright container as "verify" workflow.
+# Updated baselines (`__baseline__`, `__screenshots__`) and snapshots (`__snapshots__`) are committed back to the dispatched branch.
+# If the push is rejected (e.g. protected branch), a new branch with a pull request is created instead.
+# PREREQUISITE: for the pull request fallback, enable
+#   "Settings > Actions > General > Allow GitHub Actions to create and approve pull requests".
+# NOTE: commits and pull requests created via GITHUB_TOKEN don't trigger other workflows - run "verify" manually afterwards.
 
-name: CI Tests (update baselines)
+name: Nuxt Spec CI Tests (update baselines)
 
 on:
   workflow_dispatch:
@@ -19,8 +23,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     container:
-      # update when `playwright` dependency changes
-      image: mcr.microsoft.com/playwright:v1.62.0-jammy
+      # must match `playwright` dependency version
+      image: mcr.microsoft.com/playwright:v1.64.0-jammy
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -47,7 +51,7 @@ jobs:
       - name: Prune pnpm store
         run: pnpm store prune
 
-      - name: Regenerate visual baselines
+      - name: Regenerate test baselines
         run: pnpm test-update
 
       - name: Commit updated baselines
@@ -59,51 +63,43 @@ jobs:
         run: |
           set -eu
 
-          command -v jq >/dev/null || { apt-get update && apt-get install -y jq; }
-
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add test/actions/__baseline__ test/screenshots/__baseline__
+
+          # `git add` fails on a glob without matches, `git ls-files` doesn't
+          git ls-files -z -m -d -o --exclude-standard -- \
+            ':(glob)**/__baseline__/**' \
+            ':(glob)**/__screenshots__/**' \
+            ':(glob)**/__snapshots__/**' \
+            | xargs -0 -r git add -A --
           if git diff --cached --quiet; then
             echo "No baseline changes to commit."
             exit 0
           fi
 
-          # Check if the current branch is protected before committing
-          HTTP_CODE=$(curl -sS -o branch.json -w '%{http_code}' \
+          git commit -m "test(ci): update test baselines"
+
+          if git push origin "HEAD:$REF_NAME"; then
+            echo "Updated baselines pushed to '$REF_NAME'."
+            exit 0
+          fi
+
+          echo "Push to '$REF_NAME' was rejected (e.g. protected branch) - creating pull request..."
+          export NEW_BRANCH="ci-test/update-$(date +%Y%m%d%H%M%S)"
+          git push origin "HEAD:refs/heads/$NEW_BRANCH"
+          BODY=$(node -e '
+            const { NEW_BRANCH, REF_NAME, RUN_NUMBER } = process.env
+            console.log(JSON.stringify({
+              title: "test(ci): update test baselines",
+              head: NEW_BRANCH,
+              base: REF_NAME,
+              body: `Test baselines update triggered on run #${RUN_NUMBER} against branch \`${REF_NAME}\`.`,
+            }))')
+          curl -sS -X POST \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/$REPO/branches/$REF_NAME")
-          if [ "$HTTP_CODE" != "200" ]; then
-            echo "Failed to query branch protection (HTTP $HTTP_CODE):"
-            cat branch.json
-            exit 1
-          fi
-
-          git commit -m "test(ci): update visual baselines"
-
-          if jq -e '.protected == true' branch.json >/dev/null; then
-            echo "Branch '$REF_NAME' is protected - creating PR..."
-            NEW_BRANCH="ci-test/update-$(date +%Y%m%d%H%M%S)"
-            git checkout -b "$NEW_BRANCH"
-            git push origin "$NEW_BRANCH"
-            BODY=$(jq -n \
-              --arg head "$NEW_BRANCH" \
-              --arg base "$REF_NAME" \
-              --arg run "$RUN_NUMBER" \
-              '{title: "test(ci): update visual baselines",
-                head: $head,
-                base: $base,
-                body: "Baseline images for Visual Regression Testing update triggered on run #\($run) against protected branch `\($base)`."}')
-            curl -sS -X POST \
-              -H "Authorization: Bearer $GH_TOKEN" \
-              -H "Accept: application/vnd.github+json" \
-              -H "Content-Type: application/json" \
-              -d "$BODY" \
-              --fail-with-body \
-              "https://api.github.com/repos/$REPO/pulls"
-          else
-            echo "Branch '$REF_NAME' is not protected - pushing directly..."
-            git push origin "HEAD:$REF_NAME"
-          fi
+            -H "Content-Type: application/json" \
+            -d "$BODY" \
+            --fail-with-body \
+            "https://api.github.com/repos/$REPO/pulls"

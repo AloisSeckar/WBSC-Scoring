@@ -1,9 +1,10 @@
-# Runs test suite in a pinned Playwright container for reproducible results.
-# Triggered automatically on push/pull requests to master with possible manual dispatch.
-# The pnpm store is cached so subsequent `pnpm install` runs reuse downloaded deps.
-# If tests fail, `ci-test-report` artifact is uploaded so results can be inspected.
+# GitHub Actions workflow (scaffolded by Nuxt Spec) to run test suite in a pinned Playwright container for reproducible results.
+# Triggered automatically on push/pull requests to default branch with possible manual dispatch.
+# Uses pnpm - the pnpm store is cached so subsequent `pnpm install` runs reuse downloaded deps.
+# If tests fail, `ci-test-report` artifact (HTML report, current screenshots, Vitest attachments) is uploaded for inspection.
+# NOTE: commits pushed by "update baselines" workflow don't trigger this workflow - dispatch it manually afterwards.
 
-name: CI Tests (verify)
+name: Nuxt Spec CI Tests (verify)
 
 on:
   push:
@@ -23,8 +24,8 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     container:
-      # update when `playwright` dependency changes
-      image: mcr.microsoft.com/playwright:v1.62.0-jammy
+      # must match `playwright` dependency version
+      image: mcr.microsoft.com/playwright:v1.64.0-jammy
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -58,8 +59,10 @@ jobs:
         with:
           name: ci-test-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            test/validations/__current__
-            test/actions/__current__
-            test/screenshots/__current__
+            test/__reports__
+            **/__current__/**
+            .vitest/attachments
+            !**/node_modules/**
+          include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 14
