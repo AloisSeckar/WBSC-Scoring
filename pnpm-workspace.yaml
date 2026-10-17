@@ -22,6 +22,8 @@ minimumReleaseAgeExclude:
   - '@nuxt-ignis/validation'
 
 overrides:
+  # testing latest nuxt-spec features
+  'nuxt-spec': '0.4.0-alpha.3'
   # pnpm audit fix @ 2026-10-17
   '@simple-git/argv-parser@<2.0.1': ^2.0.1
   '@tiptap/core@>=2.0.0-alpha.0 <3.30.4': ^3.30.4
