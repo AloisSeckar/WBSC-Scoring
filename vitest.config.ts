@@ -1,10 +1,7 @@
 import process from 'node:process'
-import { fileURLToPath } from 'node:url'
 import { loadVitestConfig } from 'nuxt-spec/config'
 import { defineVitestProject } from '@nuxt/test-utils/config'
 import { availableParallelism } from 'node:os'
-
-const screenshotReportSetup = fileURLToPath(new URL('../utils/screenshot.ts', import.meta.resolve('nuxt-spec/config')))
 
 const projects = []
 
@@ -20,6 +17,7 @@ const suite = actions ? 'actions' : screenshots ? 'screenshots' : 'validations'
 // TODO should be strictly split between validation logic and Nuxt processing
 if (validations) {
   projects.push(await defineVitestProject({
+    extends: true,
     test: {
       name: 'validations',
       include: ['test/validations/**/*.{test,spec}.ts'],
@@ -32,11 +30,11 @@ if (validations) {
 // check if defined actions are rendered in the correct way
 if (actions) {
   projects.push({
+    extends: true,
     test: {
       name: 'actions',
       include: ['test/actions/**/*.{test,spec}.ts'],
       environment: 'node',
-      globalSetup: [screenshotReportSetup],
       maxConcurrency: availableParallelism() / 2,
     },
   })
@@ -46,11 +44,11 @@ if (actions) {
 // check how pages are rendered in different resolutions
 if (screenshots) {
   projects.push({
+    extends: true,
     test: {
       name: 'screenshots',
       include: ['test/screenshots/**/*.{test,spec}.ts'],
       environment: 'node',
-      globalSetup: [screenshotReportSetup],
       maxConcurrency: availableParallelism() / 2,
     },
   })

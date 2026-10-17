@@ -17,6 +17,7 @@ _ignis-config.json
 _nuxt-config.json
 
 # tests
+/test/__reports__
 /test/actions/__current__/
 /test/screenshots/__current__/
 /test/validations/__current__/
